@@ -54,6 +54,9 @@ fcm-ai/
 │   └── playbooks/         # rules-as-procedure (milestone racing)
 ├── scripts/
 │   ├── ask.py             # query the wiki from the CLI (no deps, no API key)
+│   ├── card.py            # look up any employee/milestone card by name (EN or 中文)
+│   ├── extract_cards.py   # regenerate card data from the game engine
+│   ├── verify_sources.py  # audit every card's provenance against the rulebooks
 │   ├── lint.py            # link/orphan/frontmatter/tag/secret/index checks
 │   └── extract_rules.py   # regenerate raw/*.txt from the PDFs (repairs PDF artifacts)
 ├── src/                   # Agent API client (see src/README.md)
@@ -77,6 +80,20 @@ python3 scripts/ask.py --list                     # all pages
 python3 scripts/ask.py --page milestones-overview # full page
 python3 scripts/ask.py "freezer" --json           # for programmatic use
 ```
+
+**Card lookup** — exact text for any of the 94 employee/milestone cards, EN or 中文,
+sourced from the game engine itself:
+
+```bash
+python3 scripts/card.py "Errand Boy"      # exact card lookup
+python3 scripts/card.py "跑腿伙计"          # Chinese name works too
+python3 scripts/card.py --expansion        # list the 22 expansion-only cards
+python3 scripts/card.py --milestones       # all 40 milestones
+python3 scripts/card.py --search "drink"   # full-text over card text
+```
+
+Off-domain queries are **refused with a non-zero exit code** rather than answered with an
+irrelevant card — a query must share a meaningful term with the card set.
 
 Output includes the **matched section** (not the whole page), the page path, and the page's
 declared `confidence`, so the agent can see whether it's reading a verified rule or a judgment

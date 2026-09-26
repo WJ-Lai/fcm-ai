@@ -206,7 +206,7 @@ class TestWhoamiScopes(unittest.TestCase):
         """whoami returns a prefix; assert it is short (i.e. not a full credential echo)."""
         a = make_agent()
         with mock.patch("urllib.request.urlopen", return_value=FakeResponse(
-                {"username": "u", "credential": {"id": 1, "prefix": "889b53bdd14e"}})):
+                {"username": "u", "credential": {"id": 1, "prefix": "abc123def456"}})):
             out = a.whoami()
         self.assertLess(len(out["credential"]["prefix"]), 32)
 

@@ -17,6 +17,8 @@
 
 - [[milestones-overview]] — every milestone: trigger, effect, and the 3 timing rules that decide who gets it
 - [[employees-overview]] — card abilities, salary status, training paths, "played in structure" traps
+- [[employee-cards-full]] — **all 54 employee cards, exact text, EN + 中文**
+- [[milestone-cards-full]] — **all 40 milestone cards, exact text, EN + 中文**, plus engine-set vs rulebook provenance
 - [[working-day-actions]] — the mandatory action order in phase 3 and the sub-phase pipeline
 - [[setup-and-map-generation]] — player-count table, map size, billboards removed, setup sequence
 - **Expansion lookups**

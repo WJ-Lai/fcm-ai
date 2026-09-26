@@ -91,6 +91,8 @@ Meta:
 - `comparison` — side-by-side analyses
 - `open-question` — known ambiguity or unverified item
 - `house-rule` — not official
+- `cards` — full card-text listings (employees, milestones)
+- `lookup` — pages whose primary job is fast mid-game retrieval
 
 Rule: every tag must appear above. Add it here first, then use it.
 

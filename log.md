@@ -78,3 +78,38 @@
 - Tests: **45 passed** (22 client + 23 content integrity)
 - Known issues carried forward: per-card supply counts unverified; five expansion modules flagged
   as card-text-dependent.
+
+## [2026-09-26] add | authoritative card database (task A)
+- **New data layer:** `raw/cards-authoritative.json` — all 94 cards (54 employees, 40
+  milestones) with **exact text + Chinese translation**, extracted programmatically from the
+  game engine's own i18n locale blocks in `FCMvuedist/main.js`. This replaces the previous
+  "card text unavailable without scans" gap. Not OCR; the strings the live game renders.
+- **New scripts:**
+  - `scripts/extract_cards.py` — regenerates the dataset; self-verifies (dup keys, missing
+    fields) and fails loudly rather than emitting a subtly bad file. Idempotent.
+  - `scripts/card.py` — offline card lookup by English or Chinese name, with `--expansion`,
+    `--milestones`, `--employees`, `--search` modes.
+  - `scripts/verify_sources.py` — audits every card's provenance against both rulebooks.
+- **New wiki pages:** `references/employee-cards-full.md`, `references/milestone-cards-full.md`
+  (both indexed, cited, and carrying the 5 most-misread-card warnings).
+- **Defect found and fixed by the new suite:** `card.py` answered off-domain queries with a
+  confident irrelevant card ("pokemon type chart" matched on the generic word "type").
+  Added `GENERIC` word filtering + explicit refusal with exit code 1.
+- **Substantive provenance finding:** 15 milestones ship in the engine's **base** set but are
+  documented **only** in the Ketchup rulebook's "New Milestones" chapter (under the "used"
+  wording). `set` and `documented_in` are therefore tracked as separate fields — a model
+  citing the base rulebook for those cards would be wrong.
+
+## [2026-09-26] classify | engine-only cards discovered
+- 6 cards exist solely in the OBG engine, in **neither** official rulebook and **not** in the
+  engine's own `modules:` list: Dumpling Cook/Chef, Hawker Marketeer, Delivery Driver,
+  Jazz Musician, First dumpling sold.
+- Labelled `set: obg-custom`, `documented_in: none`, and the lookup tool prints
+  "OBG house variant — NOT in the official rulebooks". A regression test asserts they stay
+  absent from the official rulebooks.
+
+## [2026-09-26] lint | post-card-database check
+- Broken wikilinks: **0** · Orphan pages: **0** · Pages: **26**
+- Tests: **71 passed** (23 content integrity + 26 card layer + 22 client)
+- `verify_sources.py`: OK — 94 cards (base 66 / expansion 22 / obg-custom 6;
+  documented_in base 51 / ketchup 37 / none 6)

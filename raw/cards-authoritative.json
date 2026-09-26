@@ -1,0 +1,935 @@
+{
+ "_comment": "Authoritative FCM card text extracted from the game engine's own locale data (the strings the live game renders). Not OCR, not hand-transcription.",
+ "_source": "<OBG_SERVER>/FCM/static/FCM/FCMvuedist/main.js (locale blocks: milestones, employees)",
+ "_generator": "scripts/extract_cards.py",
+ "employees": [
+  {
+   "key": "waitress",
+   "name": "Waitress",
+   "name_zh": "服务员",
+   "text": "Get $3 cash. Win ties against restaurants with fewer waitresses",
+   "text_zh": "获得$3现金。对服务员较少的餐厅平局获胜",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "newBusinessDeveloper",
+   "name": "New Business Developer",
+   "name_zh": "新业务拓展经理",
+   "text": "Place house or garden",
+   "text_zh": "放置房屋或花园",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "localManager",
+   "name": "Local Manager",
+   "name_zh": "区域经理",
+   "text": "Place new restaurant, \"COMING SOON\". Drive-in available",
+   "text_zh": "放置新的快餐店，即将开业。可使用免下车服务",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "regionalManager",
+   "name": "Regional Manager",
+   "name_zh": "大区经理",
+   "text": "Place or move restaurant, opens immediately. Drive-in available",
+   "text_zh": "放置或移动餐厅，立即开业。可使用免下车服务",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "cfo",
+   "name": "CFO",
+   "name_zh": "首席财务官",
+   "text": "Add +50% to cash earned this round",
+   "text_zh": "本回合收入增加50%",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "managementTrainee",
+   "name": "Management Trainee",
+   "name_zh": "管理培训生",
+   "text": "2 slots",
+   "text_zh": "2 格",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "juniorVicePresident",
+   "name": "Junior Vice President",
+   "name_zh": "总经理助理",
+   "text": "3 slots",
+   "text_zh": "3 格",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "vicePresident",
+   "name": "Vice President",
+   "name_zh": "副总裁",
+   "text": "4 slots",
+   "text_zh": "4 格",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "seniorVicePresident",
+   "name": "Senior Vice President",
+   "name_zh": "高级副总裁",
+   "text": "5 slots",
+   "text_zh": "5 格",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "executiveVicePresident",
+   "name": "Executive Vice President",
+   "name_zh": "执行副总裁",
+   "text": "10 slots",
+   "text_zh": "10 格",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "pricingManager",
+   "name": "Pricing Manager",
+   "name_zh": "定价经理",
+   "text": "Price -$1",
+   "text_zh": "售价 -$1",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "luxuriesManager",
+   "name": "Luxuries Manager",
+   "name_zh": "奢侈品经理",
+   "text": "Price +$10",
+   "text_zh": "售价 +$10",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "discountManager",
+   "name": "Discount Manager",
+   "name_zh": "折扣经理",
+   "text": "Price -$3",
+   "text_zh": "售价 -$3",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "marketingTrainee",
+   "name": "Marketing Trainee",
+   "name_zh": "营销实习生",
+   "text": "Place billboard, max duration 2",
+   "text_zh": "放置广告牌，最大持续时长为 2 回合",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "campaignManager",
+   "name": "Campaign Manager",
+   "name_zh": "营销经理",
+   "text": "Place mailbox or lower, max duration 3",
+   "text_zh": "放置邮箱或更低级的营销板块，最大持续时长 3 回合",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "brandManager",
+   "name": "Brand Manager",
+   "name_zh": "品牌经理",
+   "text": "Place airplane or lower, max duration 4",
+   "text_zh": "放置飞机或更低级的营销板块，最大持续时长 4 回合",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "brandDirector",
+   "name": "Brand Director",
+   "name_zh": "品牌总监",
+   "text": "Place radio or lower, max duration 5",
+   "text_zh": "放置广播或更低级的营销板块，最大持续时长 5 回合",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "recruitingGirl",
+   "name": "Recruiting Girl",
+   "name_zh": "人力资源专员",
+   "text": "Hire 1 person",
+   "text_zh": "雇佣1名员工",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "recruitingManager",
+   "name": "Recruiting Manager",
+   "name_zh": "人力资源经理",
+   "text": "2x Hire 1 person or $5 less salary",
+   "text_zh": "2x：雇用1名员工或少支付$5薪水",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "hrDirector",
+   "name": "HR Director",
+   "name_zh": "人力资源总监",
+   "text": "4x Hire 1 person or $5 less salary",
+   "text_zh": "4x：雇用1名员工或少支付$5薪水",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "trainer",
+   "name": "Trainer",
+   "name_zh": "培训讲师",
+   "text": "Train 1 person",
+   "text_zh": "培训1名员工",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "coach",
+   "name": "Coach",
+   "name_zh": "培训指导员",
+   "text": "2 training slots. May train the same person two steps",
+   "text_zh": "2个培训次数，可培训同一员工至多2个级别",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "guru",
+   "name": "Guru",
+   "name_zh": "培训专家",
+   "text": "3 training slots. May train the same person up to three steps",
+   "text_zh": "3个培训次数，可培训同一员工至多3个级别",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "errandBoy",
+   "name": "Errand Boy",
+   "name_zh": "跑腿伙计",
+   "text": "Get 1 drink of any type",
+   "text_zh": "获得 1 瓶任意类型的饮料",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "cartOperator",
+   "name": "Cart Operator",
+   "name_zh": "手推车操作员",
+   "text": "Get 2 drinks from each source on route",
+   "text_zh": "从路上的每个来源处获得 2 瓶饮料",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "truckDriver",
+   "name": "Truck Driver",
+   "name_zh": "货车驾驶员",
+   "text": "Get 3 drinks from each source on route",
+   "text_zh": "从路上的每个来源处获得 3 瓶饮料",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "zeppelinPilot",
+   "name": "Zeppelin Pilot",
+   "name_zh": "飞艇驾驶员",
+   "text": "Get 2 drinks from each source on route, ignore roads",
+   "text_zh": "从路上的每个来源处获得 2 瓶饮料，无视道路",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "kitchenTrainee",
+   "name": "Kitchen Trainee",
+   "name_zh": "见习厨师",
+   "text": "Produce 1 burger or 1 pizza",
+   "text_zh": "制作1个汉堡或1个披萨",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "burgerCook",
+   "name": "Burger Cook",
+   "name_zh": "汉堡厨师",
+   "text": "Produce 3 burgers",
+   "text_zh": "制作3个汉堡",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "burgerChef",
+   "name": "Burger Chef",
+   "name_zh": "汉堡主厨",
+   "text": "Produce 8 burgers",
+   "text_zh": "制作8个汉堡",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "pizzaCook",
+   "name": "Pizza Cook",
+   "name_zh": "披萨厨师",
+   "text": "Produce 3 pizzas",
+   "text_zh": "制作3个披萨",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "pizzaChef",
+   "name": "Pizza Chef",
+   "name_zh": "比萨主厨",
+   "text": "Produce 8 pizzas",
+   "text_zh": "制作8个披萨",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "fryChef",
+   "name": "Fry Chef",
+   "name_zh": "炸薯条主厨",
+   "text": "Bonus: +$10 per sale",
+   "text_zh": "奖励：卖出每单+$10",
+   "set": "expansion",
+   "documented_in": "ketchup"
+  },
+  {
+   "key": "kimchiMaster",
+   "name": "Kimchi Master",
+   "name_zh": "泡菜大师",
+   "text": "Produce 1 kimchi at end of cleanup phase",
+   "text_zh": "在清理阶段结束时制作 1 份泡菜",
+   "set": "expansion",
+   "documented_in": "ketchup"
+  },
+  {
+   "key": "noodleCook",
+   "name": "Noodle Cook",
+   "name_zh": "面条厨师",
+   "text": "Produce 6 noodles",
+   "text_zh": "制作6个面条",
+   "set": "expansion",
+   "documented_in": "ketchup"
+  },
+  {
+   "key": "noodleChef",
+   "name": "Noodle Chef",
+   "name_zh": "面条主厨",
+   "text": "Produce 16 noodles",
+   "text_zh": "制作16个面条",
+   "set": "expansion",
+   "documented_in": "ketchup"
+  },
+  {
+   "key": "sushiCook",
+   "name": "Sushi Cook",
+   "name_zh": "寿司厨师",
+   "text": "Produce 2 sushi",
+   "text_zh": "制作2个寿司",
+   "set": "expansion",
+   "documented_in": "ketchup"
+  },
+  {
+   "key": "sushiChef",
+   "name": "Sushi Chef",
+   "name_zh": "寿司主厨",
+   "text": "Produce 5 sushi",
+   "text_zh": "制作5个寿司",
+   "set": "expansion",
+   "documented_in": "ketchup"
+  },
+  {
+   "key": "baristaTrainee",
+   "name": "Barista Trainee",
+   "name_zh": "见习咖啡师",
+   "text": "Produce 1 coffee",
+   "text_zh": "制作1杯咖啡",
+   "set": "expansion",
+   "documented_in": "ketchup"
+  },
+  {
+   "key": "barista",
+   "name": "Barista",
+   "name_zh": "咖啡师",
+   "text": "Produce 2 coffee",
+   "text_zh": "制作2杯咖啡",
+   "set": "expansion",
+   "documented_in": "ketchup"
+  },
+  {
+   "key": "leadBarista",
+   "name": "Lead Barista",
+   "name_zh": "首席咖啡师",
+   "text": "Produce 5 coffee",
+   "text_zh": "制作5杯咖啡",
+   "set": "expansion",
+   "documented_in": "ketchup"
+  },
+  {
+   "key": "bMovieStar",
+   "name": "B-Movie Star",
+   "name_zh": "B-电影明星",
+   "text": "Win all ties; first choice in turn order",
+   "text_zh": "赢得所有平局; 优先挑选回合顺序",
+   "set": "expansion",
+   "documented_in": "ketchup"
+  },
+  {
+   "key": "cMovieStar",
+   "name": "C-Movie Star",
+   "name_zh": "C-电影明星",
+   "text": "Win all ties; first choice in turn order (unless B at work)",
+   "text_zh": "赢得所有平局; 优先挑选回合顺序（在B-电影明星工作之后）",
+   "set": "expansion",
+   "documented_in": "ketchup"
+  },
+  {
+   "key": "dMovieStar",
+   "name": "D-Movie Star",
+   "name_zh": "D-电影明星",
+   "text": "Win all ties; first choice in turn order (unless B or C at work)",
+   "text_zh": "赢得所有平局; 优先挑选回合顺序（在B和C电影明星工作之后）",
+   "set": "expansion",
+   "documented_in": "ketchup"
+  },
+  {
+   "key": "gourmetFoodCritic",
+   "name": "Gourmet Food Critic",
+   "name_zh": "美食评论家",
+   "text": "Market to all houses with a garden. Max duration 3",
+   "text_zh": "向所有带花园的房屋进行推销，最大持续时长为3回合",
+   "set": "expansion",
+   "documented_in": "ketchup"
+  },
+  {
+   "key": "lobbyist",
+   "name": "Lobbyist",
+   "name_zh": "提案人",
+   "text": "Place 1 road or park",
+   "text_zh": "放置1条道路或1个公园",
+   "set": "expansion",
+   "documented_in": "ketchup"
+  },
+  {
+   "key": "massMarketeer",
+   "name": "Mass Marketeer",
+   "name_zh": "大众推销员",
+   "text": "Play an extra marketing phase this turn. Do not remove an extra duration token",
+   "text_zh": "本回合额外进行一次营销阶段。不用额外移除持续时长标记",
+   "set": "expansion",
+   "documented_in": "ketchup"
+  },
+  {
+   "key": "nightShiftManager",
+   "name": "Night Shift Manager",
+   "name_zh": "夜班经理",
+   "text": "All employees who don't require a salary work twice",
+   "text_zh": "你所有无需支付薪水的员工全都工作两次",
+   "set": "expansion",
+   "documented_in": "ketchup"
+  },
+  {
+   "key": "ruralMarketeer",
+   "name": "Rural Marketeer",
+   "name_zh": "乡村推销员",
+   "text": "Place a giant billboard next to the rural area tile",
+   "text_zh": "在乡村地区板块旁放置一个巨型广告牌",
+   "set": "expansion",
+   "documented_in": "ketchup"
+  },
+  {
+   "key": "dumplingCook",
+   "name": "Dumpling Cook",
+   "name_zh": "饺子厨师",
+   "text": "Produce 3 dumplings",
+   "text_zh": "制作3个饺子",
+   "set": "obg-custom",
+   "documented_in": "none"
+  },
+  {
+   "key": "dumplingChef",
+   "name": "Dumpling Chef",
+   "name_zh": "饺子主厨",
+   "text": "Produce 8 dumplings",
+   "text_zh": "制作8个饺子",
+   "set": "obg-custom",
+   "documented_in": "none"
+  },
+  {
+   "key": "hawkerMarketeer",
+   "name": "Hawker Marketeer",
+   "name_zh": "小贩推销员",
+   "text": "Place a hawker marketing campaign",
+   "text_zh": "放置一个小贩营销活动",
+   "set": "obg-custom",
+   "documented_in": "none"
+  },
+  {
+   "key": "deliveryDriver",
+   "name": "Delivery Driver",
+   "name_zh": "送货司机",
+   "text": "Distance from any residence with 2+ demand is 0",
+   "text_zh": "到任何有2+需求的住宅的距离为0",
+   "set": "obg-custom",
+   "documented_in": "none"
+  },
+  {
+   "key": "jazzMusician",
+   "name": "Jazz Musician",
+   "name_zh": "爵士乐手",
+   "text": "Get $15 cash. Lose ties against restaurants with fewer musicians",
+   "text_zh": "获得$15现金。对乐手较少的餐厅平局失败",
+   "set": "obg-custom",
+   "documented_in": "none"
+  }
+ ],
+ "milestones": [
+  {
+   "key": "firstToHire3",
+   "name": "First to Hire 3",
+   "name_zh": "首个进行3雇佣",
+   "title": "First to Hire 3 people in 1 turn",
+   "title_zh": "首个在一回合内雇佣3名员工",
+   "text": "+ 2 Management Trainees",
+   "text_zh": "+2管培生",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "firstToThrowAway",
+   "name": "First to throw away",
+   "name_zh": "首个丢弃",
+   "title": "First to throw away food/drink",
+   "title_zh": "首个丢弃食物/饮料",
+   "text": "Get a freezer that stores 10 items (food/drink or kimchi)",
+   "text_zh": "获得一个可存放10个物品（食物/饮料或泡菜）的冰箱。",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "firstWaitress",
+   "name": "First waitress",
+   "name_zh": "首个服务员",
+   "title": "First waitress played",
+   "title_zh": "首个打出服务员",
+   "text": "Each Waitress +$2 ($5 total)",
+   "text_zh": "每个服务员+$2 (一共$5)",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "firstToHave20",
+   "name": "First to have $20",
+   "name_zh": "首个拥有$20",
+   "title": "First to have $20",
+   "title_zh": "首个拥有$20",
+   "text": "May see bank reserve cards",
+   "text_zh": "可以查看银行资金储备牌",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "firstToHave100",
+   "name": "First to have $100",
+   "name_zh": "首个拥有100美元",
+   "title": "First to have $100",
+   "title_zh": "首个拥有100美元",
+   "text": "Your CEO counts as CFO (+50% cash earned). May not have a CFO",
+   "text_zh": "你的 CEO 可以当做 CFO使用 (+50% cash earned). 不能再持有CFO了",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "firstToLowerPrices",
+   "name": "First to lower prices",
+   "name_zh": "首个降价",
+   "title": "First to lower price",
+   "title_zh": "首个降低价格",
+   "text": "Price -$1",
+   "text_zh": "售价 -$1",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "firstToTrain",
+   "name": "First to train",
+   "name_zh": "首个培训",
+   "title": "First to train someone",
+   "title_zh": "首个培训员工",
+   "text": "$15 discount on salaries",
+   "text_zh": "少支付$15薪水",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "firstBurgerProduced",
+   "name": "First burger produced",
+   "name_zh": "首个制作汉堡",
+   "title": "First burger produced",
+   "title_zh": "首个制作汉堡",
+   "text": "+1 Burger Cook",
+   "text_zh": "+1 汉堡厨师",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "firstPizzaProduced",
+   "name": "First pizza produced",
+   "name_zh": "首个制作披萨",
+   "title": "First pizza produced",
+   "title_zh": "首个制作披萨",
+   "text": "+1 Pizza Cook",
+   "text_zh": "+1 披萨厨师",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "firstErrandBoy",
+   "name": "First errand boy",
+   "name_zh": "首个跑腿伙计",
+   "title": "First errand boy played",
+   "title_zh": "首个打出跑腿伙计",
+   "text": "All buyers get + 1 drink from each source",
+   "text_zh": "所有饮料采购员工从每个来源处获取的饮料数量+1",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "firstCartOperator",
+   "name": "First cart operator",
+   "name_zh": "首个手推车操作员",
+   "title": "First cart operator played",
+   "title_zh": "首个使用手推车操作员",
+   "text": "Buyers get range +1",
+   "text_zh": "所有饮料采购员工的移动距离+1",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "firstToPay20Salaries",
+   "name": "First to pay $20 in salaries",
+   "name_zh": "首个支付 $20 或更高薪水",
+   "title": "First to pay $20 in salaries",
+   "title_zh": "首个支付 $20 或更高薪水",
+   "text": "May use multiple trainers on the same person",
+   "text_zh": "可用多个培训人员培训同一名员工",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "firstBillboard",
+   "name": "First billboard",
+   "name_zh": "首个广告牌",
+   "title": "First billboard placed",
+   "title_zh": "首个放置广告牌",
+   "text": "No salaries for marketeers; Eternal marketing",
+   "text_zh": "不用向营销人员发放薪水；进行永久营销",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "firstBurgerMarketed",
+   "name": "First burger marketed",
+   "name_zh": "首个推销汉堡",
+   "title": "First burger marketed",
+   "title_zh": "首个推销汉堡",
+   "text": "+ $5 for every burger sold",
+   "text_zh": "每售出一个汉堡 +$5",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "firstPizzaMarketed",
+   "name": "First pizza marketed",
+   "name_zh": "首个推销披萨",
+   "title": "First pizza marketed",
+   "title_zh": "首个推销披萨",
+   "text": "+ $5 for every pizza sold",
+   "text_zh": "每售出一个披萨 +$5",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "firstDrinkMarketed",
+   "name": "First drink marketed",
+   "name_zh": "首个推销饮料",
+   "title": "First drink marketed",
+   "title_zh": "首个推销饮料",
+   "text": "+ $5 for every drink sold",
+   "text_zh": "每售出一瓶饮料 +$5",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "firstAirplane",
+   "name": "First airplane",
+   "name_zh": "首个飞机",
+   "title": "First airplane campaign",
+   "title_zh": "首个飞机营销",
+   "text": "Count +2 open slots when determining order of play",
+   "text_zh": "在决定回合顺位时，员工的工位数量+2",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "firstRadio",
+   "name": "First radio",
+   "name_zh": "首个广播",
+   "title": "First radio campaign",
+   "title_zh": "首个广播营销",
+   "text": "Your radios market 2 goods per turn instead of 1",
+   "text_zh": "广播在每回合营销时可产生2份物品需求而非1份",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "firstMarketeer",
+   "name": "First marketeer",
+   "name_zh": "首个营销人员",
+   "title": "First marketeer used",
+   "title_zh": "首个使用营销人员",
+   "text": "Get $5 for every good your marketeers market. Distance -2",
+   "text_zh": "你的营销人员推销的每件物品都使你获得$5。晚餐时间，距离-2",
+   "set": "base",
+   "documented_in": "ketchup"
+  },
+  {
+   "key": "firstMarketingTrainee",
+   "name": "First marketing trainee",
+   "name_zh": "首个营销实习生",
+   "title": "First marketing trainee used",
+   "title_zh": "首个使用营销实习生",
+   "text": "Get a free kitchen trainee and an errand boy",
+   "text_zh": "免费获得见习厨房和跑腿伙计各1位",
+   "set": "base",
+   "documented_in": "ketchup"
+  },
+  {
+   "key": "firstCampaignManager",
+   "name": "First campaign manager",
+   "name_zh": "首个营销经理",
+   "title": "First campaign manager used",
+   "title_zh": "首个使用营销经理",
+   "text": "This turn, may place 1 marketing tile (same duration, type & range)",
+   "text_zh": "本回合可放置1个营销板块（相同时长、类型和范围）",
+   "set": "base",
+   "documented_in": "ketchup"
+  },
+  {
+   "key": "firstBrandManager",
+   "name": "First brand manager",
+   "name_zh": "首个品牌经理",
+   "title": "First brand manager used",
+   "title_zh": "首个使用品牌经理",
+   "text": "This turn, may place 2 different goods on 1 plane",
+   "text_zh": "当回合可以在1架飞机上放置2个不同的物品",
+   "set": "base",
+   "documented_in": "ketchup"
+  },
+  {
+   "key": "firstBrandDirector",
+   "name": "First brand director",
+   "name_zh": "首个品牌总监",
+   "title": "First brand director used",
+   "title_zh": "首个使用品牌总监",
+   "text": "Your radio is permanent",
+   "text_zh": "你的广播永久有效",
+   "set": "base",
+   "documented_in": "ketchup"
+  },
+  {
+   "key": "firstBurgerSold",
+   "name": "First burger sold",
+   "name_zh": "首个卖出汉堡",
+   "title": "First burger sold",
+   "title_zh": "首个卖出汉堡",
+   "text": "Your CEO always has 4 slots (regardless of reserve cards)",
+   "text_zh": "你的CEO总是拥有4个工位空格（格数不受银行资金储备卡的影响）",
+   "set": "base",
+   "documented_in": "ketchup"
+  },
+  {
+   "key": "firstPizzaSold",
+   "name": "First pizza sold",
+   "name_zh": "首个卖出披萨",
+   "title": "First pizza sold",
+   "title_zh": "首个卖出披萨",
+   "text": "Place radio (pizza, 2 turns) on tile of each house that bought pizza",
+   "text_zh": "放置广播（披萨，2回合）到每个购买了披萨的房子所在的地图板块上",
+   "set": "base",
+   "documented_in": "ketchup"
+  },
+  {
+   "key": "firstLemonadeSold",
+   "name": "First lemonade sold",
+   "name_zh": "首个卖出柠檬水",
+   "title": "First lemonade sold",
+   "title_zh": "首个卖出柠檬水",
+   "text": "Any employee can be trained on the job, preserving color",
+   "text_zh": "可对工作中的员工进行培训，但需保持其职业颜色不变",
+   "set": "base",
+   "documented_in": "ketchup"
+  },
+  {
+   "key": "firstBeerSold",
+   "name": "First beer sold",
+   "name_zh": "首个卖出啤酒",
+   "title": "First beer sold",
+   "title_zh": "首个卖出啤酒",
+   "text": "May pay salary with food/drink",
+   "text_zh": "可以用食物/饮料来支付薪水",
+   "set": "base",
+   "documented_in": "ketchup"
+  },
+  {
+   "key": "firstCokeSold",
+   "name": "First coke sold",
+   "name_zh": "首个卖出可乐",
+   "title": "First coke sold",
+   "title_zh": "首个卖出可乐",
+   "text": "Get a freezer that stores 10 items",
+   "text_zh": "获得1台冰箱，可存放 10 件物品",
+   "set": "base",
+   "documented_in": "ketchup"
+  },
+  {
+   "key": "firstRecruitingGirl",
+   "name": "First recruiting girl",
+   "name_zh": "首个人力资源专员",
+   "title": "First recruiting girl used",
+   "title_zh": "首个使用人力资源专员",
+   "text": "Get a free executive vice president; pay no salary for him",
+   "text_zh": "免费获得1位执行副总裁；无需为他支付薪水",
+   "set": "base",
+   "documented_in": "ketchup"
+  },
+  {
+   "key": "firstTrainer",
+   "name": "First trainer",
+   "name_zh": "首个培训讲师",
+   "title": "First trainer used",
+   "title_zh": "首个使用培训讲师",
+   "text": "Get a free trainer; no longer need to fire employees if broke",
+   "text_zh": "免费获得1位培训讲师；你破产时无需解雇员工",
+   "set": "base",
+   "documented_in": "ketchup"
+  },
+  {
+   "key": "firstDiscountManager",
+   "name": "First discount manager",
+   "name_zh": "首位促销经理",
+   "title": "First discount manager used",
+   "title_zh": "首位使用促销经理",
+   "text": "Remove $100 from bank each round you discount by $3 or more",
+   "text_zh": "每回合只要你降价不少于 $3，便从银行移除 $100",
+   "set": "base",
+   "documented_in": "ketchup"
+  },
+  {
+   "key": "firstHouse",
+   "name": "First house",
+   "name_zh": "首个房屋",
+   "title": "First house built",
+   "title_zh": "首个放置房屋",
+   "text": "May use multiple trainers on the same person",
+   "text_zh": "可用多个培训人员培训同一名员工",
+   "set": "base",
+   "documented_in": "ketchup"
+  },
+  {
+   "key": "firstRestaurant",
+   "name": "First restaurant",
+   "name_zh": "首个餐厅",
+   "title": "First new restaurant",
+   "title_zh": "首个放置新餐厅",
+   "text": "Place a permanent mailbox in restaurant area",
+   "text_zh": "可以放置1个永久邮箱到新餐厅所在的街区中",
+   "set": "base",
+   "documented_in": "base"
+  },
+  {
+   "key": "firstWaitressUsed",
+   "name": "First waitress",
+   "name_zh": "首个服务员",
+   "title": "First waitress used",
+   "title_zh": "首个使用服务员",
+   "text": "Your salaries are $3 each",
+   "text_zh": "你的员工薪水变为每人$3",
+   "set": "expansion",
+   "documented_in": "ketchup"
+  },
+  {
+   "key": "firstCartOperatorUsed",
+   "name": "First cart operator",
+   "name_zh": "首个手推车操作员",
+   "title": "First cart operator used",
+   "title_zh": "首个使用手推车操作员",
+   "text": "Double the amount of drinks hauled by cart/truck/zeppelin",
+   "text_zh": "手推车/火车/飞艇进货时获得的饮料数量加倍",
+   "set": "expansion",
+   "documented_in": "ketchup"
+  },
+  {
+   "key": "firstRuralMarketeer",
+   "name": "First rural marketeer",
+   "name_zh": "首个农村推销员",
+   "title": "First rural marketeer used",
+   "title_zh": "首个使用农村推销员",
+   "text": "Place highway offramp",
+   "text_zh": "可以放置1个高速公路匝道",
+   "set": "base",
+   "documented_in": "ketchup"
+  },
+  {
+   "key": "firstCoffeeSold",
+   "name": "First coffee sold",
+   "name_zh": "首个卖出咖啡",
+   "title": "First coffee sold",
+   "title_zh": "首个卖出咖啡",
+   "text": "Build one coffee shop in the next clean up phase",
+   "text_zh": "在当回合清理阶段建造1个咖啡厅",
+   "set": "expansion",
+   "documented_in": "ketchup"
+  },
+  {
+   "key": "someoneSellsYourDemand",
+   "name": "Someone sells your demand",
+   "name_zh": "首个遭遇抢单",
+   "title": "Someone sells your demand",
+   "title_zh": "首个遭遇抢单",
+   "text": "Distance -1",
+   "text_zh": "晚餐时间，距离-1",
+   "set": "expansion",
+   "documented_in": "ketchup"
+  },
+  {
+   "key": "firstLobbyist",
+   "name": "First lobbyist",
+   "name_zh": "首个提案人",
+   "title": "First lobbyist used",
+   "title_zh": "首个使用提案人",
+   "text": "Add tile to city",
+   "text_zh": "可以向城市增加1个地图板块",
+   "set": "expansion",
+   "documented_in": "ketchup"
+  },
+  {
+   "key": "firstDumplingSold",
+   "name": "First dumpling sold",
+   "name_zh": "首个卖出饺子",
+   "title": "First dumpling sold",
+   "title_zh": "首个卖出饺子",
+   "text": "Your CEO gets a bonus",
+   "text_zh": "您的CEO获得一个奖励",
+   "set": "obg-custom",
+   "documented_in": "none"
+  }
+ ]
+}
