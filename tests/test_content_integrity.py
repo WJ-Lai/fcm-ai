@@ -318,7 +318,10 @@ class TestStructure(unittest.TestCase):
         existing = {os.path.basename(p)[:-3] for p in wiki_pages()}
         broken = set()
         for p in wiki_pages():
-            for m in re.findall(r"\[\[([^\]]+)\]\]", read(p)):
+            # Strip code first: samples like `[[[name],seat,[[103,0]],...]]` are not links.
+            body = re.sub(r"```.*?```", "", read(p), flags=re.S)
+            body = re.sub(r"`[^`\n]*`", "", body)
+            for m in re.findall(r"\[\[([^\]]+)\]\]", body):
                 t = m.split("|")[0].strip()
                 if t not in existing:
                     broken.add((os.path.relpath(p, ROOT), t))
@@ -366,16 +369,23 @@ class TestConfidenceHonesty(unittest.TestCase):
     """
 
     def test_unverifiable_claims_are_not_high_confidence(self):
-        """Per-card supply counts are a PDF graphic; pages mentioning them must hedge."""
+        """Per-card supply counts are a PDF graphic; pages asserting them must hedge.
+
+        The trigger is deliberately narrow: it fires on phrasing that asserts a
+        count, not on any mention of the words. `availableEmployees` on the API is
+        a *live* count and is a different thing entirely — it must not be flagged.
+        """
+        assert_re = re.compile(
+            r"supply count of|per-card count of|\d+\s+copies of (each|every)|"
+            r"there are \d+ (copies|of each)",
+            re.I,
+        )
         for p in wiki_pages():
             text = read(p)
-            mentions_unverifiable = re.search(
-                r"supply count|per-card count|how many copies", text, re.I
-            )
-            if mentions_unverifiable:
+            if assert_re.search(text):
                 self.assertIn(
                     "unverified", text.lower(),
-                    f"{os.path.relpath(p, ROOT)} mentions card supply counts without marking "
+                    f"{os.path.relpath(p, ROOT)} asserts card supply counts without marking "
                     "them unverified",
                 )
 

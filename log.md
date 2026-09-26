@@ -113,3 +113,43 @@
 - Tests: **71 passed** (23 content integrity + 26 card layer + 22 client)
 - `verify_sources.py`: OK — 94 cards (base 66 / expansion 22 / obg-custom 6;
   documented_in base 51 / ketchup 37 / none 6)
+
+## [2026-09-26] add | rulebook ↔ live-API wire mapping (requested by Vincent)
+Vincent's concern: the rulebook describes a *physical* game, the MCP/HTTP API returns
+*online* state, so concepts may not line up (specifically: what is a "drink point", and
+which field is a player's money?). Audited both directions against a live response.
+
+- **New pages:** `references/wire-format-mapping.md` (field-by-field, both directions) and
+  `references/wire-format-gap-analysis.md` (the asymmetry audit).
+- **New data:** `raw/wire-format.json` — recorded expectations.
+- **New scripts:** `probe_api.py` (read-only live probe, verifies the mapping; needs token
+  via env, never embedded), `check_wire_drift.py` (offline: page ↔ JSON ↔ engine source).
+- **New tests:** `tests/test_wire_format.py` (18 assertions), incl. a negative test that
+  deliberately corrupts a good code to prove the drift guard actually fires.
+
+### Answers to the two specific questions
+1. **"饮料点" (a drink point)** → goods codes in `players[i].resources` / `board.needs`:
+   `0=lemonade, 1=coke, 2=beer, 3=pizza, 4=burger`. Note drinks are 0–2 and foods 3–4 —
+   the rulebook's food/drink split is NOT a numeric range. Rulebook "drink" = exactly
+   `{0,1,2}`. ⚡ `catalog.goods` omits the expansion codes 5–9
+   (coffee/noodles/sushi/kimchi/dumpling), so those must be hardcoded.
+2. **Player's money** → `players[i].money` (whole dollars); bank is `state.bank` +
+   `state.bankBroken`. **There is no "income this round" field** — dinnertime income is
+   only visible via `history` after resolution.
+
+### Gaps found (both directions)
+- API lacks: tile legend, unit price, salary math, distance, "played vs used", tie-breaks.
+- Rulebook lacks: version/ruleset hash, subphase, history, chat, live supply counts, module flags.
+- ⚡ Dinnertime and other automatic phases have **no agent action endpoint** (MCP README).
+- ⚡ `snapshot.gameData` is base64+gzip of an **unnamed positional array** — do not parse.
+- ⚡ `state.chat` is server-declared `untrustedTextFields` — a prompt-injection surface.
+- ⚡ `state.turnOrder` is the seats *yet to act*, not the rulebook's turn-order track.
+
+### Tooling defects found and fixed
+- `lint.py` and `test_content_integrity.py` scanned fenced/inline code for wikilinks, so a
+  JSON sample like `[[103,0]]` produced phantom broken links. Both now strip code first.
+- A confidence-honesty test fired on the phrase "supply counts" even when describing the
+  API's *live* `availableEmployees`. Narrowed the trigger to assertions of a count.
+
+Verification: **89 tests pass**, lint clean (28 pages), `verify_sources.py` OK,
+`check_wire_drift.py` OK, live probe OK against game 66.

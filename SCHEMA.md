@@ -93,6 +93,8 @@ Meta:
 - `house-rule` — not official
 - `cards` — full card-text listings (employees, milestones)
 - `lookup` — pages whose primary job is fast mid-game retrieval
+- `api` — mapping between the rulebook and the live Agent API wire format
+- `comparison` — already declared above
 
 Rule: every tag must appear above. Add it here first, then use it.
 

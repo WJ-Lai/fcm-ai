@@ -57,6 +57,8 @@ fcm-ai/
 │   ├── card.py            # look up any employee/milestone card by name (EN or 中文)
 │   ├── extract_cards.py   # regenerate card data from the game engine
 │   ├── verify_sources.py  # audit every card's provenance against the rulebooks
+│   ├── probe_api.py       # live read-only probe verifying the wire mapping (needs token)
+│   ├── check_wire_drift.py# offline: wiki page ↔ wire-format.json ↔ engine source
 │   ├── lint.py            # link/orphan/frontmatter/tag/secret/index checks
 │   └── extract_rules.py   # regenerate raw/*.txt from the PDFs (repairs PDF artifacts)
 ├── src/                   # Agent API client (see src/README.md)

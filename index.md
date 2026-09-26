@@ -19,6 +19,8 @@
 - [[employees-overview]] — card abilities, salary status, training paths, "played in structure" traps
 - [[employee-cards-full]] — **all 54 employee cards, exact text, EN + 中文**
 - [[milestone-cards-full]] — **all 40 milestone cards, exact text, EN + 中文**, plus engine-set vs rulebook provenance
+- [[wire-format-mapping]] — **rulebook vocab ↔ live Agent API fields**
+- [[wire-format-gap-analysis]] — what the API has that the rulebook doesn't, and vice versa, both directions, with the gaps named (goods codes, money field, opaque paths)
 - [[working-day-actions]] — the mandatory action order in phase 3 and the sub-phase pipeline
 - [[setup-and-map-generation]] — player-count table, map size, billboards removed, setup sequence
 - **Expansion lookups**

@@ -37,6 +37,18 @@ def read(p):
         return fh.read()
 
 
+def strip_code(text: str) -> str:
+    """Remove fenced and inline code before scanning for wikilinks.
+
+    Code samples legitimately contain bracket sequences that look like links
+    (e.g. a JSON array `[[103,0]]`). Scanning them produces phantom broken
+    links, which trains the reader to ignore the linter. Strip first.
+    """
+    text = re.sub(r"```.*?```", "", text, flags=re.S)      # fenced blocks
+    text = re.sub(r"`[^`\n]*`", "", text)                  # inline code
+    return text
+
+
 def frontmatter(text):
     m = re.match(r"^---\n(.*?)\n---\n", text, re.S)
     return m.group(1) if m else None
@@ -50,7 +62,7 @@ def main():
     # 1 + 2: links
     targets = {}
     for p in files:
-        for m in re.findall(r"\[\[([^\]]+)\]\]", read(p)):
+        for m in re.findall(r"\[\[([^\]]+)\]\]", strip_code(read(p))):
             targets.setdefault(m.split("|")[0].strip(), []).append(os.path.basename(p))
     broken = sorted(set(targets) - existing)
     if broken:

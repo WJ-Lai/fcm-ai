@@ -108,6 +108,7 @@ Bank refill is checked. See [[bank-and-reserve-cards]] and [[milestones-overview
 
 ## Related
 
+- [[wire-format-mapping]] — how these phases appear on the live Agent API wire (`phase`, `phaseName`, `subphase`)
 - [[milestones-overview]] — milestone timing depends heavily on phase order
 - [[salary-and-payday]] — phase 5 in full
 - [[dinnertime-sales-resolution]] — phase 4 in full
