@@ -48,15 +48,20 @@ fcm-ai/
 │       ├── fcm-ketchup-expansion-rules.pdf  # official expansion (md5 65d0538a…)
 │       └── fcm-ketchup-expansion-rules.txt
 ├── wiki/                  # Layer 2: agent-maintained pages
-│   ├── overview.md        # hub page + the 7 most-misremembered rules
-│   ├── concepts/          # mechanics (sales, salary, structure, marketing, …)
-│   ├── references/        # fast lookups (milestones, employees, actions, setup)
+│   ├── overview.md        # hub page + the 11 most-misremembered rules
+│   ├── concepts/          # mechanics (sales, salary, structure, marketing, expansion modules)
+│   ├── references/        # fast lookups (milestones, employees, actions, setup, expansion)
 │   └── playbooks/         # rules-as-procedure (milestone racing)
 ├── scripts/
-│   └── ask.py             # query the wiki from the CLI (no deps, no API key)
+│   ├── ask.py             # query the wiki from the CLI (no deps, no API key)
+│   ├── lint.py            # link/orphan/frontmatter/tag/secret/index checks
+│   └── extract_rules.py   # regenerate raw/*.txt from the PDFs (repairs PDF artifacts)
 ├── src/                   # Agent API client (see src/README.md)
+├── tests/                 # 45 tests, incl. adversarial content-integrity suite
 └── docs/
-    └── agent-system-prompt.md   # drop-in prompt for a game-playing agent
+    ├── agent-integration.md     # how an agent calls this wiki (4 options, trade-offs)
+    ├── agent-system-prompt.md   # drop-in prompt for a game-playing agent
+    └── legal.md
 ```
 
 ## Querying the wiki
@@ -86,7 +91,35 @@ call.
 3. Never act on an FCM rule the agent "remembers" — the wiki exists precisely because that
    memory is unreliable.
 
-See [`docs/agent-system-prompt.md`](docs/agent-system-prompt.md) for a ready-to-use prompt.
+**Full write-up of the integration options** (direct file reads / CLI tool / MCP server / system
+prompt inlining, with trade-offs) → [`docs/agent-integration.md`](docs/agent-integration.md).
+A ready-to-use prompt → [`docs/agent-system-prompt.md`](docs/agent-system-prompt.md).
+
+> 📌 **Note on "llmwiki".** This repo implements the LLM Wiki *pattern* (Karpathy's) and follows
+> the `lucasastorian/llmwiki` conventions — `SCHEMA.md` / `raw/` / `wiki/` / `index.md` / `log.md`,
+> and its `guide` frontmatter contract. It does **not** install or run the llmwiki *application*
+> (web UI, Chrome extension, SQLite FTS index, MCP server). The wiki is plain markdown: no service,
+> no index to rebuild, no API key. See `docs/agent-integration.md` for why, and for how to adopt
+> the app later if you want it.
+
+## Tests and lint
+
+```bash
+python3 -m pytest tests/ -q     # 45 tests
+python3 scripts/lint.py         # links / orphans / frontmatter / tags / secrets / index
+```
+
+`tests/test_content_integrity.py` is **adversarial** — it tries to falsify the wiki rather than
+confirm it:
+
+- Do the blockquoted "verbatim" rules **actually exist** in the raw source?
+- Are the **cited page numbers** real, and does the citation parse at all?
+- Is the extracted corpus free of PDF breakage (`Th e`, `Aft er`) that would confuse a model?
+- Does an **off-domain** query ("pokemon type chart") get **refused** instead of answered?
+- Are unverifiable claims honestly marked rather than stated as fact?
+
+This suite earned its keep: it caught a missing `/FCM/agent/v1/games/create/` assumption, a
+spread-page citation mismatch, and a real quote-fidelity problem during development.
 
 ## Provenance & accuracy
 

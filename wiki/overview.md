@@ -65,6 +65,28 @@ These are the rules most often misremembered. Each is expanded on its linked pag
 > and rotate** existing restaurants. Both grant drive-in/all-corner entrances while active.
 > → [[restaurant-placement]]
 
+## Expansion (Ketchup)
+
+The Ketchup expansion is **modular** — nothing applies unless the module is selected, and two
+modules **replace base rules outright**:
+
+> 🚨 **8. Check which modules are in play before reasoning at all.** With **New milestones**,
+> [[milestones-overview]] is void ("Remove **all** the milestone cards from the base game").
+> With **Reserve prices**, the base bank-break/slot rule is void and the **base unit price
+> changes mid-game**. → [[expansion-overview]]
+
+> 🚨 **9. Many expansion milestones require a card to be USED, not played.** "A card is *used* if
+> it performs at least one function printed on the card … Playing a card, training a card, or
+> paying salary for it, does not in itself count as using it." A marketeer only counts if it
+> **actually placed a tile**. → [[expansion-new-milestones]]
+
+> 🚨 **10. Noodles are all-or-nothing.** You must fulfil the **entire** demand with noodles — no
+> mixing noodles and real food for the same house — and they only apply when **no** restaurant
+> can serve the actual demand. → [[expansion-noodles-and-kimchi]]
+
+> 🚨 **11. Reserve-price tie-break is not "highest wins".** **$20 beats $10 and $5; but $5 beats
+> $10.** → [[expansion-reserve-prices]]
+
 ## How to use this
 
 | You want to… | Read |
@@ -76,6 +98,7 @@ These are the rules most often misremembered. Each is expanded on its linked pag
 | Work out who wins a contested house | [[dinnertime-sales-resolution]] + [[waitress-mechanics]] |
 | Decide which milestone to race for | [[milestone-strategy]] |
 | Understand the turn's shape | [[turn-structure-and-phases]] |
+| **Find out which expansion modules are in play** | [[expansion-overview]] |
 
 ## Provenance
 

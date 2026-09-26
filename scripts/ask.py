@@ -48,7 +48,8 @@ def pages():
 
 
 def tokenize(text):
-    return [w for w in re.findall(r"[a-z0-9]+", text.lower()) if w not in STOP and len(w) > 1]
+    return [w for w in re.findall(r"[a-z0-9]+", text.lower())
+            if w not in STOP and len(w) > 1 and w not in GENERIC_TERMS]
 
 
 def parse_frontmatter(text):
@@ -108,6 +109,26 @@ def score_page(query_terms, slug, text):
     return score, hits
 
 
+# Minimum score for an answer to be presented as a confident hit.
+#
+# Why this exists: without a floor, an off-domain query ("pokemon type chart") matched a
+# page on the incidental word "type" and returned it with no hedge — an agent could act on
+# a confidently-presented irrelevant page. Measured on this corpus, in-domain queries score
+# 15-60+ while off-domain noise lands under ~8, so the floor sits between the two.
+#
+# This is a heuristic, not a semantic gate: it cannot tell "right page" from "wrong page",
+# only "this corpus clearly has nothing" from "this corpus plausibly has something". When no
+# result clears the floor, that is reported explicitly so the caller knows the wiki does not
+# cover the question — which is the honest answer, and better than a weak match.
+MIN_CONFIDENT_SCORE = 10.0
+
+# Terms so generic they appear across many pages and inflate matches without signal.
+GENERIC_TERMS = {
+    "rule", "rules", "game", "card", "cards", "player", "players", "fcm", "play",
+    "can", "does", "many", "much", "type", "time", "turn", "turns", "way", "how",
+}
+
+
 def best_section(query_terms, body, max_chars=900):
     """Return the section of the page that best matches the query."""
     best, best_score = "", -1.0
@@ -145,19 +166,36 @@ def cmd_search(query, as_json=False, limit=5):
             "snippet": best_section(terms, body).strip(),
         })
     results.sort(key=lambda r: -r["score"])
-    results = results[:limit]
+
+    best_score = results[0]["score"] if results else 0.0
+    confident = bool(results) and best_score >= MIN_CONFIDENT_SCORE
+    # Only the pages that actually cleared the floor are answers; the rest are near-misses.
+    answers = [r for r in results if r["score"] >= MIN_CONFIDENT_SCORE][:limit]
+    weak = [r for r in results if r["score"] < MIN_CONFIDENT_SCORE]
 
     if as_json:
-        print(json.dumps({"query": query, "terms": terms, "results": results}, indent=2))
-        return 0 if results else 1
+        print(json.dumps({
+            "query": query,
+            "terms": terms,
+            "covered": confident,
+            "threshold": MIN_CONFIDENT_SCORE,
+            "best_score": best_score,
+            "results": answers,
+            "weak_matches": weak[:3],
+        }, indent=2))
+        return 0 if confident else 1
 
-    if not results:
-        print(f"No match for: {query!r}")
+    if not confident:
+        print(f"No confident match for: {query!r}")
+        print(f"  best score {best_score} is below the confident threshold {MIN_CONFIDENT_SCORE}.")
+        print("  This knowledge base does not appear to cover that question.")
+        if weak:
+            print(f"  closest page (NOT an answer): {weak[0]['title']} [{weak[0]['score']}]")
         return 1
 
     print(f"query: {query}")
     print(f"terms: {', '.join(terms)}\n")
-    for i, r in enumerate(results, 1):
+    for i, r in enumerate(answers, 1):
         print(f"{i}. {r['title']}   [{r['score']}]  ({r['confidence']})")
         print(f"   {r['path']}")
         print()

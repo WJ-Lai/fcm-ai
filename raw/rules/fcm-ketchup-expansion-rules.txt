@@ -2,9 +2,15 @@
 source_pdf: fcm-ketchup-expansion-rules.pdf
 source_title: Food Chain Magnate — Ketchup Expansion Rules
 pages: 10
-ingested: 2026-09-25
-sha256: 86a5e26b2fa0ba7b82af524417c29debaa10b0fcfed8054cfe7aca9b5af2d566
-note: Extracted text layer from the official PDF. Page markers are HTML comments.
+extracted: 2026-09-25
+sha256_pdf: 8c64b75cc8c3f2c223576eafc1eea7814eec9c3693a58b889d8e255f7aad54b9
+sha256_text: e3de7bb463a572999ecbd54c41540239cb9e3c44061e3e3f5198784090cc4de6
+note: Extracted text layer, with PDF split-ligature artifacts repaired
+  (e.g. 'Th e' -> 'The', 'Aft er' -> 'After'). Page markers are HTML comments.
+  Regenerate with scripts/extract_rules.py — do not hand-edit.
+citation: '<!-- page N -->' markers use the PDF *sheet* index. Wiki pages cite the
+  *printed* page number. These differ when the PDF is a spread (one sheet showing two
+  printed pages). Check the digits that appear right after each marker.
 ---
 
 <!-- page 1 -->
@@ -316,7 +322,7 @@ adjacent to a road square it can reach.
 •  New roads and parks must be placed on empty squares and may 
 not cover anything that was already on the map.
 Roads
-•  A new road is always played with the ‘under construction' side 
+•  A new road is always played with the 'under construction' side 
 face up. One of the arrows has to point to an existing stretch of 
 road or your restaurant entrance. For each of the arrows that 
 point directly to an existing road square, place a roadworks 
@@ -392,7 +398,7 @@ an additional map tile.
 agreed at the start of the game). If the tiles have run out, the 
 player does not get to place a new tile.
 •  The new tile must be placed so that one side fully connects to one 
-side of one existing tile; it has to ‘fit' the existing grid. The new tile 
+side of one existing tile; it has to 'fit' the existing grid. The new tile 
 does not have to be connected by road to an existing road. There 
 are no range limitations. 
 •  The new tile cannot be placed on a side that contains an airplane 
@@ -451,7 +457,7 @@ until the next dinnertime phase.
 to any of your restaurants, lower the distance by 2. In other 
 words, count your distance from customers to restaurants as 
 (unit price + distance - 2). The result may become negative! This 
-represents brand loyalty to your ‘original' products. 
+represents brand loyalty to your 'original' products. 
 Interaction with other milestones and modules: 
 •  The "pizza radio" created by the milestone is not linked to a 
 marketeer, and will not provide this bonus.
@@ -731,13 +737,13 @@ other publishers. We take competitive gameplay, and our players, very
 seriously. Not everybody likes this and so from time to time people write 
 critical reviews that basically suggest our games should be more like all 
 the others. During a Splotter playtest event some years ago, we had a 
-lot of fun by thinking of additions that we could make to ‘improve' our 
+lot of fun by thinking of additions that we could make to 'improve' our 
 games in this way. The idea of a catch-up mechanism called ketchup 
 stuck, and ever since the expansion has been named after it. We'll let 
 you find out yourselves if it is really a catch-up mechanism, or if it is 
 more bloody than that!
 Core idea
-If someone ‘steals' one of the goods you have marketed, you get a boost.
+If someone 'steals' one of the goods you have marketed, you get a boost.
 Rules
 •  You are awarded the Ketchup milestone "Someone sells your 
 demand" at the end of a dinnertime phase when another player 
@@ -800,7 +806,7 @@ Sushi is produced by sushi cooks and chefs in the same way as other
 food. Sushi cannot be marketed. 
 During dinner time, any house with a garden will look first if they can 
 get sushi. They need a restaurant that can provide one sushi per item 
-marketed to that house (food or drink—sushi replaces both). If such 
+marketed to that house (food or drink-sushi replaces both). If such 
 a restaurant is available, they will go there and buy sushi instead of 
 the marketed goods (but only if all demand can be replaced by sushi). 
 If there are multiple restaurants that have sufficient sushi, the house 
@@ -836,7 +842,7 @@ rules for those cards.
 •  For each active mass marketeer, run an additional marketing 
 campaign phase. So, if there is one mass marketeer, you will have 
 2 campaign phases, with 2 mass marketeers, play 3 phases, etc. It 
-does not matter which player played the Mass Marketeer(s) — 
+does not matter which player played the Mass Marketeer(s) - 
 their effect is global and additive.
 •  The marketing duration marker on the campaign is only 
 discarded after the last round of campaigns in this phase. So, you 
