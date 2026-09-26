@@ -64,11 +64,8 @@ then burger — the rulebook's "food vs drink" distinction is *not* a range spli
 Codes 5–9 exist in the engine (`FCMreference.js`: `COFFEE=5 … DUMPLING=9`) but are **absent
 from the catalog**, so expansion play must hardcode them. The rulebook's "drink" is exactly
 `{0,1,2}`, "food" is `{3,4}`, and 3–9 count as *food* for milestones — **except coffee, which
-counts as neither**.
-
-> Rulebook nuance the wire does not encode: `coffee` is not a drink and not food for
-> milestones (ketchup rules, p.10). Noodles/sushi/kimchi/dumplings **do** count as food.
-> The API gives no flag for this — it lives in [[expansion-coffee]] only.
+counts as neither** (ketchup rules, p.10). The API gives no flag for this; it lives in
+[[expansion-coffee]] only.
 
 ### Campaign types
 
@@ -120,22 +117,55 @@ entry, so no rulebook lookup is needed to read a milestone off the wire.
 has run out. **There is no separate "income this round" field** — dinnertime income is only
 visible via `history` entries after the fact.
 
+⚡ **The bank can go negative — that is normal, not corruption.** Game 63 (FINISHED) ended at
+`bank = -53` with `bankBroken = 2`. A 3-player game starts at exactly `150` = `$50 × 3`
+(base rules, p.6), verified live. **Game over = bank emptied twice** (`bankBroken == 2`);
+winner = most `money`. ⚡ A bankrupt player shows `money = 0` but **still appears** in
+`players[]` with restaurants and milestones intact — do not read `0` as "absent player".
+
 ### Board state
+
+> ⚡ `startingMap` and the `history` code-25 reserve ladder live on [[wire-format-gap-analysis]]
+> under "Closed by decoding a FINISHED game" (forensics-oriented).
 
 | Rulebook concept | Wire path | Notes |
 |---|---|---|
-| Map grid | `board.tiles` | flat array, length = `dimensions[0]*dimensions[1]*25`; `-1` = empty cell |
-| Map size | `board.dimensions` | `[width, height]` in **tiles** (game 66: `[17,16]`) |
+| Map grid | `board.tiles` | flat array of **`(tileId, rotation)` PAIRS**; `-1` = no tile here. Length = `tiles*2` |
+| Map size | `board.dimensions` | `[tileGridWidth, tileGridHeight]` — **in tiles, not squares** (game 66: `[17,16]`) |
 | Houses | `board.houses[]` | placed house records |
 | Gardens | `board.gardens[]` | |
 | **Demand on houses** | `board.needs[]` | `{needs: [[goodCode, …]], …}` |
 | Active campaigns | `board.campaigns[]` | marketing tiles in play |
 | Freeways / parks / new roads | `board.freeways`, `.parks`, `.newRoads` | expansion |
 
-⚡ **Gap #2:** `board.tiles` uses **raw engine cell codes** (`-1` empty, `1` road, `2` drink
-source …) with **no catalog and no legend**; decoding needs the engine's `sg` tile table.
-Treat it as opaque and prefer `board.houses` / `board.needs` / `board.campaigns`, which **are**
-self-describing.
+⚡ **Gap #2:** `board.tiles` uses **raw engine tile ids** with **no catalog and no legend**;
+decoding needs the engine's `rf.TILES` table. Prefer `board.houses` / `board.needs` /
+`board.campaigns`, which **are** self-describing.
+
+#### Tile & square coordinate encoding — verified against live game 66
+
+Two different coordinate systems appear on the wire, and they are **not** interchangeable.
+Verified by decoding game 66's real map and confirming every legal placement square landed on an
+in-map tile (22/22).
+
+| Thing | Encoding | Formula |
+|---|---|---|
+| **Tile grid size** | `board.dimensions = [W, H]` | in **tiles**, W is the tile-row stride |
+| **Map tiles** | `board.tiles[2k]` = tileId, `[2k+1]` = rotation | tile #k sits at `(k // W, k % W)` |
+| **Square index** | plain integer, small-square units | square width = `ssW` = 17×5 = **85** |
+| **Square → tile** | `tileRow = (sq // ssW) // 5`, `tileCol = (sq % ssW) // 5` | `tile = tileRow*W + tileCol` |
+
+⚠️ **The trap:** the small-square width is **85** (17 tiles × 5 squares), but
+`board.dimensions[0]` is **17** (tiles). Mixing them silently produces tile numbers that
+are out of range — `giveTileNumber(3008)` computed with 85 gives 601, which exceeds the
+544-entry array. **Use 85 to go square→tile-row/col, then `dimensions[0]` to flatten.**
+
+⚡ **Verified example (game 66, seat 0's starting restaurant):** `restaurants[0].index = 3008`
+→ `tileRow 7, tileCol 6` → tile **#125**, and `board.tiles[250]` (2×125) is indeed occupied.
+Game 66's live 3-player map occupies tiles **108–111, 125–128, 142–145** — exactly the
+`start = 216` → `(12,12)` block that the engine's `getOriginalTiles()` seeds for 3 players
+(`naturalWidth 4 × naturalHeight 3`). Rulebook p.4 gives 3 players a **3×4** map; the wire
+says 4 wide × 3 tall — **same tiles, transposed**. Both agree underneath.
 
 ### Phase / turn
 
@@ -156,8 +186,7 @@ self-describing.
 
 The API and the rulebook are **not** symmetric — each carries things the other lacks
 (no agent action endpoint for dinnertime; `version`/`subphase`/`chat` with no rulebook
-counterpart; tiles with no legend; salary and distance math that live rules-side only).
-
+counterpart; tiles with no legend; salary and distance math rules-side only).
 → Full list, both directions: [[wire-format-gap-analysis]]
 
 ## Rules claims on this page
@@ -165,6 +194,6 @@ counterpart; tiles with no legend; salary and distance math that live rules-side
 - Dinnertime and other automatic phases have no agent action entry (MCP README, "架构与安全边界").
 - Coffee is not a drink and not food for milestones; noodles/sushi/kimchi are food (ketchup rules, p.10).
 - "New Milestones" replaces the base milestone set (ketchup rules, p.8).
-- Goods codes and module flags as enumerated above (`FCMreference.js`, verified live on game 66).
+- Goods codes and module flags as enumerated above (`FCMreference.js`; verified live on games 66 and 63).
 
 → Relates to: docs/agent-integration.md · [[employee-cards-full]] · [[milestone-cards-full]] · [[expansion-coffee]]

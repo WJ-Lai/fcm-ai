@@ -155,5 +155,105 @@ class TestProbeScriptIsSafe(unittest.TestCase):
         self.assertIn("FCM_AGENT_TOKEN", src)
 
 
+class TestNewWireGuardsActuallyBite(unittest.TestCase):
+    """Negative controls for the game-63-derived guards.
+
+    Each test deliberately corrupts the recorded expectation in a COPY, runs the
+    drift checker against it, and asserts failure. Without these, a guard could
+    silently become dead code (e.g. if a key gets renamed) and we'd never notice.
+    The real file is restored in `finally`.
+    """
+
+    PAGE = os.path.join(REPO, "wiki", "references", "wire-format-mapping.md")
+    GAP = os.path.join(REPO, "wiki", "references", "wire-format-gap-analysis.md")
+
+    def _run_with(self, mutate):
+        """Apply `mutate(wire, combined_pages) -> (wire, combined_pages)`.
+
+        The checker reads BOTH wire-format pages (some findings live on the companion
+        page), so mutations must be applied to the concatenation and then written back
+        split on the marker ``"\n===SPLIT===\n"``.
+        """
+        wire_orig = open(WIRE, encoding="utf-8").read()
+        page_orig = open(self.PAGE, encoding="utf-8").read()
+        gap_orig = open(self.GAP, encoding="utf-8").read()
+        try:
+            new_wire, new_combined = mutate(
+                json.loads(wire_orig), page_orig + "\n===SPLIT===\n" + gap_orig
+            )
+            new_page, _, new_gap = new_combined.partition("\n===SPLIT===\n")
+            with open(WIRE, "w", encoding="utf-8") as f:
+                json.dump(new_wire, f, ensure_ascii=False, indent=1)
+            with open(self.PAGE, "w", encoding="utf-8") as f:
+                f.write(new_page)
+            with open(self.GAP, "w", encoding="utf-8") as f:
+                f.write(new_gap)
+            return subprocess.run(
+                [sys.executable, os.path.join(REPO, "scripts", "check_wire_drift.py")],
+                capture_output=True, text=True, timeout=60,
+            )
+        finally:
+            with open(WIRE, "w", encoding="utf-8") as f:
+                f.write(wire_orig)
+            with open(self.PAGE, "w", encoding="utf-8") as f:
+                f.write(page_orig)
+            with open(self.GAP, "w", encoding="utf-8") as f:
+                f.write(gap_orig)
+
+    def test_catches_removed_coordinate_encoding(self):
+        """Dropping the ssW=85 warning from the page must fail."""
+        def mutate(wire, page):
+            page = page.replace("85", "XX").replace("dimensions[0]", "dim[0]")
+            return wire, page
+        r = self._run_with(mutate)
+        self.assertNotEqual(r.returncode, 0, "guard missed a missing coordinate-encoding note")
+
+    def test_catches_stale_tiles_description(self):
+        """Re-introducing the old wrong 'cell array' wording must fail."""
+        def mutate(wire, page):
+            page = page.replace("PAIRS", "cells").replace("pairs", "cells")
+            page += "\nflat array, length = dimensions[0]*dimensions[1]*25\n"
+            return wire, page
+        r = self._run_with(mutate)
+        self.assertNotEqual(r.returncode, 0, "guard missed a stale board.tiles description")
+
+    def test_catches_removed_history_code_25(self):
+        """Un-documenting the reserve ladder must fail."""
+        def mutate(wire, page):
+            return wire, page.replace("code 25", "XXXXX").replace("`25`", "`XX`")
+        r = self._run_with(mutate)
+        self.assertNotEqual(r.returncode, 0, "guard missed the reserve-ladder removal")
+
+    def test_catches_removed_startingmap_note(self):
+        """Un-documenting startingMap must fail."""
+        def mutate(wire, page):
+            return wire, page.replace("startingMap", "theMap")
+        r = self._run_with(mutate)
+        self.assertNotEqual(r.returncode, 0, "guard missed the startingMap removal")
+
+    def test_catches_deleted_required_key(self):
+        """Deleting a recorded key must fail, not silently disable its own guard.
+
+        Regression for a vacuous-green hole found by adversarial testing: removing
+        `history_codes` made the code-25 guard skip entirely and the check still passed.
+        """
+        def mutate(wire, page):
+            wire.pop("history_codes", None)
+            return wire, page
+        r = self._run_with(mutate)
+        self.assertNotEqual(
+            r.returncode, 0,
+            "checker passed green after a required key was deleted (vacuous green)",
+        )
+        self.assertIn("history_codes", r.stdout, "failure message should name the missing key")
+
+    def test_catches_removed_negative_bank_note(self):
+        """Un-documenting negative bank must fail."""
+        def mutate(wire, page):
+            return wire, page.replace("negative", "NEG").replace("Negative", "NEG")
+        r = self._run_with(mutate)
+        self.assertNotEqual(r.returncode, 0, "guard missed the negative-bank removal")
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

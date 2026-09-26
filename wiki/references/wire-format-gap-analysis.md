@@ -82,6 +82,99 @@ the 40 known cards) and no expansion employee id can legally appear.
 | Mis-mapping risk | **High without this page.** `goods` codes and `turnOrder` are the two that bite. |
 | Actionable gap | Expansion good codes (5–9) and tile codes have **no catalog** |
 
+## Closed by decoding a FINISHED game (game 63)
+
+Game 66 is mid-setup, so several fields could only be *predicted*. Game 63 is **FINISHED**
+(3 players, 71 turns, phase 10, `bankBroken = 2`), which settles them from real endgame data.
+
+### startingMap
+
+`startingMap` is `''` **only before the first player places their starting restaurant**.
+Once seeded it holds the authoritative tile layout — a flat list of `(tileId, rotation)`
+**pairs**, exactly the same shape as `board.tiles`.
+
+Game 63 (finished, 3 players) carried:
+
+```
+[17,0, 4,0, 18,2, 16,3, 15,3, 3,1, 0,2, 5,2, 9,2, 11,2, 19,2, 13,3]
+```
+
+= **12 tile pairs = 4 wide × 3 tall**, matching the 3-player map. For post-game forensics
+this is a **better** source than `board.tiles` (it is the seed, not the live state).
+
+### Bank-break ladder in `history` (code 25)
+
+The players' **chosen reserve card values** are NOT in `state.startingOptions` — they appear in
+the history feed as entries with **code 25**:
+
+```
+[turn, bankAfterThisTurn, [playerA_value, playerB_value, playerC_value]]
+```
+
+game 63's real ladder:
+
+| Turn | Bank | Reserve values (3 players) |
+|---|---|---|
+| 68 | 60 | `[45, 0, 45]` |
+| 69 | 0 | `[75, 0, 75]` |
+| 70 | 195 | `[120, 0, 135]` |
+| 71 | 105 | `[165, 0, 180]` |
+
+A `0` means that player was **bankrupt** and contributed nothing. ⚡ The values are the
+**engine's own ladder** ($45/$75/$120/…), **not** the $100/$200/$300 printed on the physical
+cards — never assume the paper values. This matches the rulebook's "1st break adds the sum of
+the chosen reserve cards" (base rules, p.6–7).
+
+### ✅ Game-over condition, confirmed numerically
+
+Rulebook: the game ends when the bank runs out **twice**. Game 63's decoder gives
+`bankBroken = 2` with the bank at **−53** and `status = FINISHED`. The negative bank is
+normal — the server keeps paying out and allows the balance to go below zero at the end.
+
+### ✅ Winner = most money, confirmed from the endgame payload
+
+| Seat | Player | Final money | Winner |
+|---|---|---|---|
+| 0 | Vincent | 233 | |
+| 1 | `fcm-agent-20-6ffad2a01a91` | **0** | |
+| 2 | `fcm-agent-20-90cbeb551474` | **270** | ✅ |
+
+The bankrupt seat (money `0`) still appears in `players[]` with its restaurant and milestone
+list intact — **do not treat money `0` as "no player"**.
+
+### ⚡ `gameData` index map (decoded, cross-checked against the named `state`)
+
+The opaque positional array in `gameData` has the same shape as the named state. Verified
+indices for a 3-player game:
+
+| Index | Meaning |
+|---|---|
+| `[0]` | players — each `[[name], seat, [[restaurantIndex, rotation], …], money, beach, ceoSlots, employees, milestones, structure]` |
+| `[1]` | bank (may be **negative**) |
+| `[2]` | active campaigns |
+| `[5]` | `bankBroken` count |
+| `[6]` | houses |
+| `[7]` | history feed |
+| `[8]` | per-player turn flags |
+
+⚡ **Per-player field order is positional and unnamed** — `[4]` is `beach` (fired/unscheduled
+employees, `-1` = empty slot) and `[5]` is `ceoSlots`. Reading these by position is exactly
+the guessing this knowledge base forbids; prefer `legalActions`/`state`, and treat this table
+only as a last resort for post-game forensics.
+
+### ✅ `startingMap` IS the map — contradicting my earlier claim
+
+I previously wrote that `startingMap` is "empty and self-healing", based on game 66 (`''`).
+**For a started game that is wrong.** Game 63's `startingMap` is real data:
+
+```
+[17,0, 4,0, 18,2, 16,3, 15,3, 3,1, 0,2, 5,2, 9,2, 11,2, 19,2, 13,3]
+```
+
+That is **12 tile pairs = 4 wide × 3 tall**, exactly the 3-player map the rulebook specifies.
+So `startingMap` is empty only **before** the first player places; once seeded it holds the
+authoritative tile layout and is a *better* source than `board.tiles` for forensics.
+
 
 ## Related
 
