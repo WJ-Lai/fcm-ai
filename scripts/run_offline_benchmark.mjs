@@ -4,7 +4,7 @@ import { performance } from 'node:perf_hooks'
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
 
-import { safeFirstLegal } from '../src/baselines.mjs'
+import { randomLegal, safeFirstLegal, seededPolicyRandom } from '../src/baselines.mjs'
 
 function argument(name, fallback) {
   const index = process.argv.indexOf(name)
@@ -24,6 +24,10 @@ const episodes = positiveInteger('--episodes', '1')
 const maxCommands = positiveInteger('--max-commands', '500')
 const players = positiveInteger('--players', '3')
 if (players < 2 || players > 6) throw new Error('--players must be between 2 and 6')
+const policyName = argument('--policy', 'safe-first-legal')
+if (!['safe-first-legal', 'random-legal'].includes(policyName)) {
+  throw new Error('--policy must be safe-first-legal or random-legal')
+}
 
 // The legacy engine contains diagnostic console.log calls. Keep stdout as one
 // machine-readable JSON document; opt into those diagnostics on stderr only.
@@ -46,20 +50,29 @@ for (let episode = 0; episode < episodes; episode += 1) {
     gameID: episode + 1,
   })
   const started = performance.now()
+  const random = seededPolicyRandom(`policy:${policyName}:${episode}:${players}`)
   let commands = 0
   const actionCounts = {}
+  let violation = null
   while (env.snapshot().phase !== 10 && commands < maxCommands) {
-    const pending = env.snapshot().currentPlayers
-    if (!pending.length) throw new Error('official environment has no pending player before Game Over')
-    const seat = names.indexOf(pending[0])
-    if (seat < 0) throw new Error(`unknown pending player ${pending[0]}`)
-    const view = await env.observe(seat)
-    if (!view.legalActions.yourTurn) throw new Error(`seat ${seat} is pending but has no turn`)
-    const actions = safeFirstLegal(view)
-    for (const action of actions) {
-      actionCounts[action.type] = (actionCounts[action.type] ?? 0) + 1
+    try {
+      const pending = env.snapshot().currentPlayers
+      if (!pending.length) throw new Error('official environment has no pending player before Game Over')
+      const seat = names.indexOf(pending[0])
+      if (seat < 0) throw new Error(`unknown pending player ${pending[0]}`)
+      const view = await env.observe(seat)
+      if (!view.legalActions.yourTurn) throw new Error(`seat ${seat} is pending but has no turn`)
+      const actions = policyName === 'random-legal'
+        ? randomLegal(view, random)
+        : safeFirstLegal(view)
+      for (const action of actions) {
+        actionCounts[action.type] = (actionCounts[action.type] ?? 0) + 1
+      }
+      await env.step(seat, actions)
+    } catch (error) {
+      violation = { code: error.code ?? 'ERROR', message: error.message }
+      break
     }
-    await env.step(seat, actions)
     commands += 1
   }
   const terminalView = await env.observe(0)
@@ -69,6 +82,8 @@ for (let episode = 0; episode < episodes; episode += 1) {
   results.push({
     seed: `benchmark:${episode}:${players}`,
     completed: terminalView.state.phase === 10,
+    violations: violation ? 1 : 0,
+    error: violation,
     commands,
     turn: terminalView.state.turn,
     phase: terminalView.state.phase,
@@ -93,10 +108,33 @@ for (let episode = 0; episode < episodes; episode += 1) {
   })
 }
 
+const seatRanks = Array.from({ length: players }, (_, seat) => {
+  const completed = results.filter((result) => result.completed && !result.violations)
+  const ranks = completed.map((result) => (
+    result.ranking.findIndex((entry) => entry.seat === seat) + 1
+  ))
+  const money = completed.map((result) => (
+    result.ranking.find((entry) => entry.seat === seat).money
+  ))
+  return {
+    seat,
+    samples: completed.length,
+    meanRank: ranks.length ? ranks.reduce((total, rank) => total + rank, 0) / ranks.length : null,
+    meanMoney: money.length ? money.reduce((total, value) => total + value, 0) / money.length : null,
+  }
+})
 process.stdout.write(`${JSON.stringify({
   benchmarkVersion: 'fcm-benchmark-v1',
-  policy: 'safe-first-legal-v1',
+  policy: `${policyName}-v1`,
   players,
+  summary: {
+    completed: results.filter((result) => result.completed).length,
+    violations: results.reduce((total, result) => total + result.violations, 0),
+    meanLatencyMs: Math.round(
+      results.reduce((total, result) => total + result.latencyMs, 0) / results.length,
+    ),
+    seatRanks,
+  },
   episodes: results,
 }, null, 2)}\n`)
-if (results.some((result) => !result.completed)) process.exitCode = 2
+if (results.some((result) => !result.completed || result.violations)) process.exitCode = 2

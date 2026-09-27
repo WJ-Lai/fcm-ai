@@ -578,13 +578,21 @@ explanation—while calculators and the official engine handle exactness.
 - Thirty-five seeded phase/subphase fixtures detect ruleset and legal-action drift; cloned dinner
   resolution matches the official transition and restructuring resolves without mutating its
   parent branch.
-- The first deterministic weak policy and JSON benchmark runner are available. Fixed two-player
-  and three-player seeds reached Game Over in 197 and 606 commands respectively.
+- Deterministic `safe-first-legal-v1` and seeded `random-legal-v1` weak policies now share a JSON
+  benchmark runner. Fixed two-player and three-player deterministic seeds reached Game Over in
+  197 and 606 commands; the first two two-player random seeds reached Game Over in 185 and 178
+  commands with no rejected actions. The random policy randomizes only within strategically viable action
+  families so it remains a completion baseline rather than an endless legal-action fuzzer.
 - The benchmark exposed and regression-tested two real integration defects: explicit Agent
   restructuring needed to confirm the normal UI warning, and last-player-standing Game Over had
   to be persisted instead of remaining browser-only state.
-- This completes the early environment extraction, not the strategy AI. Random/built-in baselines,
-  leagues, `DecisionView` economics, bounded candidate generation and evaluators remain next.
+- The randomized run exposed another inherited simultaneous-phase boundary: players automatically
+  skipped during restructuring/payday could leave an empty move envelope for the final submitter
+  to decode. The official client path now marks and safely ignores only seats that the controller
+  itself declares skippable; no salary or restructuring rule was reimplemented.
+- This completes the early environment extraction and two weak baselines, not the strategy AI.
+  The built-in-AI adapter, leagues, `DecisionView` economics, bounded candidate generation and
+  evaluators remain next.
 
 ### Phase 0 — define contracts, evidence and the benchmark
 

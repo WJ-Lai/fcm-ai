@@ -140,6 +140,7 @@ python3 -m unittest discover -s tests -p 'test_*.py' -q  # 104 tests, stdlib onl
 python3 scripts/lint.py         # links / orphans / frontmatter / tags / secrets / index
 node --test src/baselines.test.mjs
 node scripts/run_offline_benchmark.mjs --players 2 --episodes 1 --max-commands 250
+node scripts/run_offline_benchmark.mjs --policy random-legal --players 2 --episodes 1 --max-commands 500
 ```
 
 `tests/test_content_integrity.py` is **adversarial** — it tries to falsify the wiki rather than

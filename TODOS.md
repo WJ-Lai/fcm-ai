@@ -47,10 +47,11 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
   - Depends on: P1.3.
   - Done when: random, first-legal and built-in OBG policies run across fixed seeds/seats and report
     completion, violations, rank, money, latency and seat bias.
-  - Current: deterministic `safe-first-legal-v1` and a JSON benchmark runner are implemented. A
-    seeded 2-player game reached Game Over in 197 commands and a seeded 3-player game in 606
-    commands without HTTP/database access. Random and built-in-OBG adapters, multi-seed leagues
-    and aggregate seat-bias reports remain.
+  - Current: deterministic `safe-first-legal-v1`, seeded `random-legal-v1` and a JSON benchmark
+    runner are implemented. The first two seeded 2-player random games reached Game Over in 185
+    and 178 commands with zero rejected actions; the runner aggregates completion, violations,
+    latency and terminal rank by seat across `--episodes`. The built-in-OBG adapter, full
+    multi-seed/seat league and statistically useful seat-bias report remain.
 - [ ] **P1.5 Add a safe human-trajectory import and review pipeline.**
   - Why: strong human examples can reveal strategic abstractions and calibrate opponent models.
   - Depends on: P1.1 and explicit provenance/consent rules.

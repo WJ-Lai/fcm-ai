@@ -199,3 +199,17 @@ Verification: **89 tests pass**, lint clean (28 pages), `verify_sources.py` OK,
   in the OBG integration branch without adding a second rule implementation.
 - Fixed seeds now reach Game Over in 197 commands (2 players) and 606 commands (3 players). This is
   simulator/control validation, not evidence that the weak baseline plays strategically.
+
+## [2026-09-27] build | seeded random baseline and skipped-seat hardening
+
+- Added reproducible `random-legal-v1`. It samples only advertised legal values while retaining
+  the minimum productive structure needed to create demand, produce matching goods and terminate
+  a game; this distinguishes a benchmark opponent from an unconstrained liveness fuzzer.
+- Extended the benchmark JSON with policy selection, completion/violation totals, mean latency and
+  mean terminal rank per seat. The first two fixed two-player random seeds reached Game Over in
+  185 and 178 commands with zero rejected actions.
+- The randomized trajectory found inherited empty-envelope crashes when bankrupt or automatic
+  zero-salary seats were removed from simultaneous turn order. The OBG client now exempts and
+  ignores only seats that its authoritative controller already marks skippable.
+- Remaining P1.4 work: adapt the state-mutating 1v1 built-in bot without conflating bot-seat rules
+  with external Agent seats, then run full multi-seed/all-seat leagues.
