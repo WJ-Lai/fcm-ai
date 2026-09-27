@@ -189,7 +189,8 @@ Verification: **89 tests pass**, lint clean (28 pages), `verify_sources.py` OK,
 
 - Added a database-free `reset/observe/legal/step/clone` environment around the official
   JavaScript engine. It preserves per-seat observations, aggregates simultaneous moves and returns
-  canonical snapshots without opening HTTP or WebSocket connections.
+  canonical snapshots without opening HTTP or WebSocket connections. A process-wide FIFO guards
+  the official engine's global Pinia/browser state; parallel rollouts must use worker processes.
 - Added deterministic `safe-first-legal-v1`, prioritizing productive workers over idle managers,
   plus a JSON benchmark runner with completion, command, phase, bank, latency, action-count and
   final-company metrics.

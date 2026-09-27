@@ -572,6 +572,9 @@ explanation—while calculators and the official engine handle exactness.
 
 - The base-game `reset/observe/legal/step/clone` environment now executes the official JavaScript
   engine entirely in memory, including simultaneous-move aggregation and seat-specific views.
+- Because the inherited Pinia/browser runtime is process-global, all branches in one process share
+  a FIFO executor. Parallel rollouts must use isolated worker processes; this prevents search
+  branches from silently contaminating one another while retaining safe cloning semantics.
 - Thirty-five seeded phase/subphase fixtures detect ruleset and legal-action drift; cloned dinner
   resolution matches the official transition and restructuring resolves without mutating its
   parent branch.
