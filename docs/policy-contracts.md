@@ -52,6 +52,12 @@ The selected candidate must have been offered.
 Token, password, secret, authorization, cookie and API-key-like keys are rejected recursively.
 Trajectories therefore remain safe to retain and use as training data.
 
+Human-supplied trajectories require the additional two-stage `fcm.human-import.v1` /
+`fcm.human-review.v1` boundary described in
+[`human-trajectory-import.md`](human-trajectory-import.md). Validation alone does not assert that
+a claimed exporter or consent record is authentic; only separately approved records may enter a
+training/evaluation corpus.
+
 ## `fcm.game-result.v1`
 
 A result is terminal and records reason, turns, unique seat/rank/money rows, and winner seats.

@@ -59,6 +59,10 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
   - Depends on: P1.1 and explicit provenance/consent rules.
   - Done when: imports contain only seat-visible observations, public actions and outcomes; private
     simultaneous choices, credentials and unlicensed prose are rejected.
+  - Current: strict consent/provenance/license validation, content-hashed pending records and
+    explicit three-attestation approval are implemented. Cross-seat observations, unadvertised
+    actions, beliefs, temporary choices and free text fail closed. A trusted live-human UI exporter
+    and the first consented sample remain; prose reports are intentionally not accepted as traces.
 
 ## P2 — deterministic decision support
 

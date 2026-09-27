@@ -87,7 +87,7 @@ class TrajectoryContractTests(unittest.TestCase):
             "schemaVersion": "fcm.trajectory.v1",
             "episodeId": "episode-001",
             "gameId": 63,
-            "rulesetHash": "sha256:" + "b" * 64,
+            "rulesetHash": "sha256:" + "a" * 64,
             "steps": [{
                 "sequence": 0,
                 "sourceVersion": 42,
@@ -107,7 +107,7 @@ class TrajectoryContractTests(unittest.TestCase):
             "schemaVersion": "fcm.trajectory.v1",
             "episodeId": "episode-001",
             "gameId": 63,
-            "rulesetHash": "sha256:" + "b" * 64,
+            "rulesetHash": "sha256:" + "a" * 64,
             "steps": [{
                 "sequence": 0,
                 "sourceVersion": 42,

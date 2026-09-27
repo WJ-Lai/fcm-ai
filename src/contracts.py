@@ -13,6 +13,10 @@ GAME_RESULT_VERSION = "fcm.game-result.v1"
 
 _RULESET_HASH = re.compile(r"^sha256:[0-9a-f]{64}$")
 _CREDENTIAL_TERMS = ("token", "password", "secret", "authorization", "cookie", "apikey")
+_CREDENTIAL_VALUES = (
+    re.compile(r"^obg_pat_[A-Za-z0-9]{12}_[A-Za-z0-9_-]{32,}$"),
+    re.compile(r"^Bearer\s+\S{16,}$", re.IGNORECASE),
+)
 
 
 class ContractError(ValueError):
@@ -88,6 +92,8 @@ def _reject_credentials(value: Any, path: str = "$") -> None:
     elif isinstance(value, list):
         for index, item in enumerate(value):
             _reject_credentials(item, f"{path}[{index}]")
+    elif isinstance(value, str) and any(pattern.fullmatch(value) for pattern in _CREDENTIAL_VALUES):
+        raise ContractError(f"{path}: credential-like value is forbidden")
 
 
 def _derived_player(value: Any, path: str) -> None:
@@ -242,8 +248,14 @@ def validate_trajectory(value: Any) -> dict[str, Any]:
         _integer(step["sourceVersion"], f"{path}.sourceVersion")
         _integer(step["seat"], f"{path}.seat")
         observation = validate_decision_view(step["observation"])
+        if observation["gameId"] != trajectory["gameId"]:
+            raise ContractError(f"{path}.observation.gameId: trajectory mismatch")
+        if observation["rulesetHash"] != trajectory["rulesetHash"]:
+            raise ContractError(f"{path}.observation.rulesetHash: trajectory mismatch")
         if observation["sourceVersion"] != step["sourceVersion"]:
             raise ContractError(f"{path}.sourceVersion: observation mismatch")
+        if observation["seat"] != step["seat"]:
+            raise ContractError(f"{path}.seat: observation mismatch")
         candidate_ids = _list(step["legalCandidateIds"], f"{path}.legalCandidateIds")
         for candidate_index, candidate_id in enumerate(candidate_ids):
             _string(candidate_id, f"{path}.legalCandidateIds[{candidate_index}]")
@@ -252,7 +264,12 @@ def validate_trajectory(value: Any) -> dict[str, Any]:
         selected = _string(step["selectedCandidateId"], f"{path}.selectedCandidateId")
         if selected not in candidate_ids:
             raise ContractError(f"{path}.selectedCandidateId: candidate was not offered")
-        _list(step["primitiveActions"], f"{path}.primitiveActions")
+        for action_index, action in enumerate(
+            _list(step["primitiveActions"], f"{path}.primitiveActions")
+        ):
+            action_path = f"{path}.primitiveActions[{action_index}]"
+            action = _object(action, action_path)
+            _string(action.get("type"), f"{action_path}.type")
         _number(step["latencyMs"], f"{path}.latencyMs")
     if trajectory["result"] is not None:
         result = validate_game_result(trajectory["result"])

@@ -228,3 +228,15 @@ Verification: **89 tests pass**, lint clean (28 pages), `verify_sources.py` OK,
   not presented as statistical evidence that either weak policy is stronger.
 - Verification at this checkpoint: targeted contract/runtime tests 14/14, full MCP suite 94/94,
   full Vue suite 31/31, deterministic single-seed replay, and production Vue build.
+
+## [2026-09-27] build | consented human trajectory safety gate
+
+- Added strict `fcm.human-import.v1` and `fcm.human-review.v1` records around the existing
+  trajectory contract. Import requires one-seat provenance, explicit research/training consent and
+  a declared license; approval recomputes the content hash and requires three explicit reviewer
+  attestations.
+- Adversarial checks reject cross-seat records, opponent beliefs, temporary own pending choices,
+  action types absent from the seat's legal view, credentials, raw blobs and free-form prose.
+  Output paths are create-only so a review stage cannot silently replace an earlier artifact.
+- This implements the safety/review boundary, not live human capture. A trusted seat-scoped OBG UI
+  exporter and the first consented sample remain before P1.5 is complete.

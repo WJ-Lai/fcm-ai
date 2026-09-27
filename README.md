@@ -63,6 +63,7 @@ fcm-ai/
 │   ├── verify_sources.py  # audit every card's provenance against the rulebooks
 │   ├── probe_api.py       # live read-only probe verifying the wire mapping (needs token)
 │   ├── check_wire_drift.py# offline: wiki page ↔ wire-format.json ↔ engine source
+│   ├── human_trajectory.py# consented human trace import + independent approval
 │   ├── lint.py            # link/orphan/frontmatter/tag/secret/index checks
 │   ├── run_offline_benchmark.mjs # seeded official-engine policy benchmark
 │   └── extract_rules.py   # regenerate raw/*.txt from the PDFs (repairs PDF artifacts)
@@ -72,6 +73,7 @@ fcm-ai/
     ├── agent-integration.md     # how an agent calls this wiki (4 options, trade-offs)
     ├── agent-system-prompt.md   # drop-in prompt for a game-playing agent
     ├── fcm-ai-architecture.md   # strategy-capable AI design, MCP gap audit, RL roadmap
+    ├── human-trajectory-import.md # consent + seat-visibility import/review gate
     ├── policy-contracts.md      # strict DecisionView / trajectory / result boundary
     └── legal.md
 ```
@@ -136,8 +138,9 @@ LLM, search and reinforcement-learning roadmap.
 ## Tests and lint
 
 ```bash
-python3 -m unittest discover -s tests -p 'test_*.py' -q  # 104 tests, stdlib only
+python3 -m unittest discover -s tests -p 'test_*.py' -q  # 109 tests, stdlib only
 python3 scripts/lint.py         # links / orphans / frontmatter / tags / secrets / index
+python3 scripts/human_trajectory.py --help
 node --test src/baselines.test.mjs
 node scripts/run_offline_benchmark.mjs --players 2 --episodes 1 --max-commands 250
 node scripts/run_offline_benchmark.mjs --policy random-legal --players 2 --episodes 1 --max-commands 500

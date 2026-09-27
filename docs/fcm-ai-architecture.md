@@ -603,6 +603,10 @@ explanation—while calculators and the official engine handle exactness.
 - This completes the adapter part of the weak-baseline milestone, not the strategy AI. A larger
   paired league, privacy-safe human trajectory import, `DecisionView` economics, bounded candidate
   generation and evaluators remain next.
+- The human-data trust boundary now has strict import and independent-review records. It requires
+  consent, license, one-seat provenance, legal advertised actions and explicit reviewer
+  attestations; beliefs, temporary simultaneous choices, credentials and prose fail closed. A
+  trusted live-UI exporter is still required before any real human trace enters the corpus.
 
 ### Phase 0 — define contracts, evidence and the benchmark
 
