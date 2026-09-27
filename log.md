@@ -250,3 +250,26 @@ Verification: **89 tests pass**, lint clean (28 pages), `verify_sources.py` OK,
   pool. No manager-parent relationship is invented because the source model does not persist one.
 - Added fail-closed unit tests and expanded all 35 base phase fixtures to require valid economic
   projections. MCP tests pass 96/96 and the fixture parity suite remains green.
+
+## [2026-09-28] build | public milestone and market-threat DecisionView
+
+- Added `state.decisionSupport.strategicThreats`. Milestones distinguish unclaimed open windows,
+  same-turn shared windows and closed races from the public official store.
+- Added sorted per-house fulfillment tiers and eligible suppliers through official demand priority,
+  reachability, milestone-distance, inventory, price and tie-break inputs. The view never reads
+  hidden simultaneous choices and does not predict a winner.
+- Made the inventory boundary explicit: houses are evaluated independently from the current public
+  position; exact sequential dinner consumption remains owned by isolated `projectDinner`.
+- Added delegation, non-mutation and fail-closed tests and extended all 35 phase fixtures to require
+  the new view.
+
+## [2026-09-28] benchmark | 10-seed paired-seat built-in AI pilot
+
+- Ran 20 complete base games, swapping `official-builtin-v1` and `safe-first-legal-v1` across both
+  seats for every one of 10 seeds. All 20 reached Game Over with zero rule violations.
+- Official built-in AI placed first 13/20 (65%; Wilson 95% CI 43.3–81.9%) and safe-first placed
+  first 7/20 (35%; 18.1–56.7%). Seat 0 also placed first 13/20, so policy comparisons must remain
+  paired by seed and seat.
+- Added Wilson first-place/completion intervals to benchmark JSON and adversarial tests for empty,
+  extreme and invalid samples. The intervals overlap at this sample size; no strength claim is
+  promoted until the planned 100-game league.

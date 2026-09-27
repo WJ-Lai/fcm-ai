@@ -613,6 +613,16 @@ explanation—while calculators and the official engine handle exactness.
   stores subordinate slots as a pool, so the view deliberately does not invent manager-parent
   links. Thirty-five phase fixtures exercise the projection, and missing official functions fail
   closed.
+- Public milestone and market-threat decoding is now authoritative as well. It reports open/shared
+  milestone windows and current per-house eligible suppliers using official priority, distance,
+  stock and price functions. The view labels its independent-house inventory assumption and sends
+  exact sequential dinner evaluation to `projectDinner`, so observed facts cannot be mistaken for
+  an opponent belief or a predicted winner.
+- The first larger paired pilot now covers 10 seeds/20 games with seat swapping: 20/20 completed
+  without violations; official built-in placed first 13 times and safe-first 7 times. Wilson 95%
+  intervals (43.3–81.9% versus 18.1–56.7%) still overlap, and seat 0 also won 13 games, so this is
+  pipeline evidence rather than a promoted policy-strength conclusion. Reports now include these
+  confidence bounds by policy and seat.
 
 ### Phase 0 — define contracts, evidence and the benchmark
 

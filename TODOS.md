@@ -51,9 +51,12 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     runner are implemented. The legacy 1v1 OBG policy now runs through a dedicated seeded offline
     adapter; its source has a separate `policyHash`, and normal external-seat steps suppress its
     implicit browser auto-run without changing online behavior. A four-game, two-map paired-seat
-    smoke league completed 4/4 with zero violations, but seat 0 won all four games. This is evidence
-    that seat swapping is mandatory, not evidence that either policy is stronger. A statistically
-    useful multi-seed league and confidence-bounded report remain before this gate closes.
+    smoke league completed 4/4 with zero violations. A subsequent 10-seed/20-game paired-seat run
+    completed 20/20 with zero violations: official built-in AI placed first 13/20 (65%, Wilson 95%
+    CI 43.3–81.9%) versus safe-first 7/20 (35%, 18.1–56.7%); seat 0 also placed first 13/20.
+    The harness now reports first-place and completion confidence intervals. This confirms that
+    seat swapping is mandatory and that the benchmark path is stable, but the intervals still
+    overlap; the 100-game promotion league remains before this gate closes.
 - [ ] **P1.5 Add a safe human-trajectory import and review pipeline.**
   - Why: strong human examples can reveal strategic abstractions and calibrate opponent models.
   - Depends on: P1.1 and explicit provenance/consent rules.
@@ -80,11 +83,16 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     loaded official player/rules/controller modules and fails closed when one is absent. All 35
     phase fixtures verify CEO/shared subordinate slots, free slots, salary, effective price and
     recruiting/training/production/marketing capacity are present and structurally valid.
-- [ ] **P2.3 Add milestone and market-threat features.**
+- [x] **P2.3 Add milestone and market-threat features.**
   - Why: long-term FCM strategy revolves around races and contested demand.
   - Depends on: P2.1–P2.2.
   - Done when: the view identifies currently claimable milestones and house competition without
     reading hidden simultaneous choices.
+  - Evidence: `state.decisionSupport.strategicThreats` reports official open/shared/closed milestone
+    windows plus sorted, per-house fulfillment tiers and eligible suppliers using official demand,
+    reachability, inventory, price and tie-break inputs. The scope explicitly excludes sequential
+    inventory consumption and delegates exact winner resolution to `projectDinner`. Delegation,
+    non-mutation, fail-closed and all 35 phase-fixture checks pass.
 
 ## P3 — first measurable strategy AI
 

@@ -84,6 +84,23 @@ for (const name of names) {
     assert.ok(Array.isArray(player.capacities.production), `${name}: missing production capacity`)
     assert.ok(Array.isArray(player.capacities.marketing), `${name}: missing marketing capacity`)
   }
+  const threats = result.state.decisionSupport?.strategicThreats
+  assert.equal(
+    threats?.provenance?.exactDinnerResolution,
+    'projectDinner',
+    `${name}: strategic threat provenance drift`,
+  )
+  assert.ok(Array.isArray(threats?.milestones), `${name}: milestone race view missing`)
+  assert.equal(
+    threats?.market?.houses?.length,
+    result.state.houseDemands.length,
+    `${name}: market house count drift`,
+  )
+  assert.deepEqual(
+    threats.market.houses.map((house) => house.house),
+    [...threats.market.houses.map((house) => house.house)].sort((a, b) => a - b),
+    `${name}: market houses are not ordered`,
+  )
   assert.equal(JSON.stringify(record.snapshot), before, `${name}: inspect mutated source snapshot`)
 }
 

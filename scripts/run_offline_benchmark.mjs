@@ -5,6 +5,7 @@ import path from 'node:path'
 import { pathToFileURL } from 'node:url'
 
 import { randomLegal, safeFirstLegal, seededPolicyRandom } from '../src/baselines.mjs'
+import { rankedSampleSummary, wilsonInterval } from '../src/benchmark-stats.mjs'
 
 function argument(name, fallback) {
   const index = process.argv.indexOf(name)
@@ -131,7 +132,7 @@ for (let episode = 0; episode < episodes; episode += 1) {
     stateDigest: {
       activeCampaigns: terminalView.state.campaigns?.length ?? 0,
       demandedItems: (terminalView.state.houseDemands ?? []).reduce(
-        (total, demand) => total + (demand?.length ?? 0),
+        (total, demand) => total + (demand?.goods?.length ?? 0),
         0,
       ),
       companies: terminalView.state.players.map((player) => ({
@@ -154,12 +155,7 @@ const seatRanks = Array.from({ length: players }, (_, seat) => {
   const money = completed.map((result) => (
     result.ranking.find((entry) => entry.seat === seat).money
   ))
-  return {
-    seat,
-    samples: completed.length,
-    meanRank: ranks.length ? ranks.reduce((total, rank) => total + rank, 0) / ranks.length : null,
-    meanMoney: money.length ? money.reduce((total, value) => total + value, 0) / money.length : null,
-  }
+  return { seat, ...rankedSampleSummary(ranks.map((rank, index) => ({ rank, money: money[index] }))) }
 })
 const policyResults = [...new Set(results.flatMap((result) => result.seatPolicies))].map((policy) => {
   const samples = results
@@ -167,17 +163,9 @@ const policyResults = [...new Set(results.flatMap((result) => result.seatPolicie
     .flatMap((result) => result.ranking.flatMap((entry, rank) => (
       entry.policy === policy ? [{ rank: rank + 1, money: entry.money }] : []
     )))
-  return {
-    policy,
-    samples: samples.length,
-    meanRank: samples.length
-      ? samples.reduce((total, sample) => total + sample.rank, 0) / samples.length
-      : null,
-    meanMoney: samples.length
-      ? samples.reduce((total, sample) => total + sample.money, 0) / samples.length
-      : null,
-  }
+  return { policy, ...rankedSampleSummary(samples) }
 })
+const completedCount = results.filter((result) => result.completed).length
 process.stdout.write(`${JSON.stringify({
   benchmarkVersion: 'fcm-benchmark-v1',
   policy: `${policyName}-v1`,
@@ -186,7 +174,9 @@ process.stdout.write(`${JSON.stringify({
   builtinPolicy: results.find((result) => result.builtinPolicy)?.builtinPolicy ?? null,
   players,
   summary: {
-    completed: results.filter((result) => result.completed).length,
+    completed: completedCount,
+    completionRate: completedCount / results.length,
+    completionRate95CI: wilsonInterval(completedCount, results.length),
     violations: results.reduce((total, result) => total + result.violations, 0),
     meanLatencyMs: Math.round(
       results.reduce((total, result) => total + result.latencyMs, 0) / results.length,

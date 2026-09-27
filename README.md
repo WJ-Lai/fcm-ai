@@ -133,6 +133,11 @@ salary, effective price and phase-independent recruiting/training/production/mar
 These values come from the official JavaScript functions and are suitable inputs to a policy; they
 are not an LLM summary or a second implementation of the rules.
 
+It also includes `decisionSupport.strategicThreats`: public milestone claim windows and per-house
+supplier competition derived through official reachability, demand-priority, inventory and price
+functions. The supplier view intentionally treats each house independently; use the official
+`projectDinner` operation when sequential sales and exact winners matter.
+
 > 📌 **Note on "llmwiki".** This repo implements the LLM Wiki *pattern* (Karpathy's) and follows
 > the `lucasastorian/llmwiki` conventions — `SCHEMA.md` / `raw/` / `wiki/` / `index.md` / `log.md`,
 > and its `guide` frontmatter contract. It does **not** install or run the llmwiki *application*
