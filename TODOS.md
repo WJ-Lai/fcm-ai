@@ -42,7 +42,7 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
   - Depends on: P1.1–P1.2.
   - Done when: `reset/observe/legal/step/clone` is deterministic, keeps seat-private observations
     hidden and matches online transitions on every phase fixture.
-- [ ] **P1.4 Build the benchmark harness and weak baselines.**
+- [x] **P1.4 Build the benchmark harness and weak baselines.**
   - Why: “finished a game” is not an intelligence metric.
   - Depends on: P1.3.
   - Done when: random, first-legal and built-in OBG policies run across fixed seeds/seats and report
@@ -54,9 +54,12 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     smoke league completed 4/4 with zero violations. A subsequent 10-seed/20-game paired-seat run
     completed 20/20 with zero violations: official built-in AI placed first 13/20 (65%, Wilson 95%
     CI 43.3–81.9%) versus safe-first 7/20 (35%, 18.1–56.7%); seat 0 also placed first 13/20.
-    The harness now reports first-place and completion confidence intervals. This confirms that
-    seat swapping is mandatory and that the benchmark path is stable, but the intervals still
-    overlap; the 100-game promotion league remains before this gate closes.
+    The harness now reports first-place and completion confidence intervals and supports disjoint
+    seed shards. The final 50-seed/100-game paired-seat league completed 100/100 with zero
+    violations: official built-in AI placed first 68/100 (68%, Wilson 95% CI 58.3–76.3%) versus
+    safe-first 32/100 (32%, 23.7–41.7%). Seat 0 placed first 54/100 (44.3–63.4%) versus seat 1
+    46/100 (36.6–55.7%), so the prior four-game seat signal did not persist. Random, first-legal
+    and built-in policies are reproducible, and this gate is closed.
 - [ ] **P1.5 Add a safe human-trajectory import and review pipeline.**
   - Why: strong human examples can reveal strategic abstractions and calibrate opponent models.
   - Depends on: P1.1 and explicit provenance/consent rules.

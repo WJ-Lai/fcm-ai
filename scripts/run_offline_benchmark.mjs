@@ -24,6 +24,10 @@ const serverRoot = path.resolve(argument('--server', '../obg-server-fcm-agent-re
 const episodes = positiveInteger('--episodes', '1')
 const maxCommands = positiveInteger('--max-commands', '500')
 const players = positiveInteger('--players', '3')
+const seedOffset = Number(argument('--seed-offset', '0'))
+if (!Number.isSafeInteger(seedOffset) || seedOffset < 0) {
+  throw new Error('--seed-offset must be a non-negative integer')
+}
 if (players < 2 || players > 6) throw new Error('--players must be between 2 and 6')
 const policyName = argument('--policy', 'safe-first-legal')
 if (!['safe-first-legal', 'random-legal'].includes(policyName)) {
@@ -57,7 +61,7 @@ const { OfflineEnvironment } = await import(
 const results = []
 for (let episode = 0; episode < episodes; episode += 1) {
   const pairedSeats = opponent === 'official-builtin' && builtinSeat === 'alternate'
-  const seedIndex = pairedSeats ? Math.floor(episode / players) : episode
+  const seedIndex = seedOffset + (pairedSeats ? Math.floor(episode / players) : episode)
   const names = Array.from({ length: players }, (_, seat) => `baseline-${seat}`)
   const episodeBuiltinSeat = builtinSeat === 'alternate' ? episode % players : builtinSeat
   if (opponent === 'official-builtin') names[episodeBuiltinSeat] = 'FcmAI'
@@ -173,6 +177,7 @@ process.stdout.write(`${JSON.stringify({
   builtinSeat: opponent === 'official-builtin' ? builtinSeat : null,
   builtinPolicy: results.find((result) => result.builtinPolicy)?.builtinPolicy ?? null,
   players,
+  seedOffset,
   summary: {
     completed: completedCount,
     completionRate: completedCount / results.length,

@@ -623,6 +623,11 @@ explanation—while calculators and the official engine handle exactness.
   intervals (43.3–81.9% versus 18.1–56.7%) still overlap, and seat 0 also won 13 games, so this is
   pipeline evidence rather than a promoted policy-strength conclusion. Reports now include these
   confidence bounds by policy and seat.
+- The promotion run now covers 50 seeds/100 paired-seat games: 100/100 completed with zero
+  violations. Official built-in placed first 68% (Wilson 95% CI 58.3–76.3%) versus safe-first 32%
+  (23.7–41.7%). Seat 0 was 54% (44.3–63.4%) versus seat 1 46% (36.6–55.7%), so the apparent seat
+  sweep in the four-game smoke sample did not persist. This closes the weak-baseline benchmark
+  gate; it does not claim that the official built-in AI is a strong human-level policy.
 
 ### Phase 0 — define contracts, evidence and the benchmark
 

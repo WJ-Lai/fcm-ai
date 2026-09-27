@@ -156,7 +156,12 @@ node scripts/run_offline_benchmark.mjs --players 2 --episodes 1 --max-commands 2
 node scripts/run_offline_benchmark.mjs --policy random-legal --players 2 --episodes 1 --max-commands 500
 node scripts/run_offline_benchmark.mjs --policy safe-first-legal --opponent official-builtin --builtin-seat 1 --players 2 --episodes 1
 node scripts/run_offline_benchmark.mjs --policy safe-first-legal --opponent official-builtin --builtin-seat alternate --players 2 --episodes 4
+node scripts/run_offline_benchmark.mjs --policy safe-first-legal --opponent official-builtin --builtin-seat alternate --players 2 --episodes 20 --seed-offset 10
 ```
+
+`--seed-offset` makes parallel shards disjoint. Benchmark summaries include completion and
+first-place Wilson 95% confidence intervals by policy and seat; always compare policies with both
+seat assignments for each seed.
 
 `official-builtin` is the original OBG 1v1 controller, isolated as a seeded offline benchmark
 opponent. `--builtin-seat alternate` pairs consecutive games on the same map seed while swapping

@@ -273,3 +273,17 @@ Verification: **89 tests pass**, lint clean (28 pages), `verify_sources.py` OK,
 - Added Wilson first-place/completion intervals to benchmark JSON and adversarial tests for empty,
   extreme and invalid samples. The intervals overlap at this sample size; no strength claim is
   promoted until the planned 100-game league.
+
+## [2026-09-28] benchmark | 50-seed/100-game promotion league
+
+- Added `--seed-offset` so paired-seat leagues can be partitioned into disjoint reproducible
+  shards without repeating maps or policy RNG seeds.
+- Completed seeds 0–49 with both seat assignments: 100/100 games reached Game Over and produced
+  zero engine/action violations under the same built-in policy hash.
+- Official built-in AI placed first 68/100 (68%; Wilson 95% CI 58.3–76.3%) versus safe-first
+  32/100 (32%; 23.7–41.7%). Mean money was $294.33 versus $181.33.
+- Seat 0 placed first 54/100 (54%; 44.3–63.4%) versus seat 1 46/100 (46%; 36.6–55.7%); those
+  confidence intervals overlap strongly. The earlier four-game all-seat-0 result was small-sample
+  noise, while the built-in policy advantage survives paired seat swapping.
+- P1.4 is closed: random, first-legal and the official built-in adapter are reproducible; the
+  harness reports completion, violations, rank, money, latency, seat bias and confidence bounds.
