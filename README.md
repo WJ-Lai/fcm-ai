@@ -141,7 +141,14 @@ python3 scripts/lint.py         # links / orphans / frontmatter / tags / secrets
 node --test src/baselines.test.mjs
 node scripts/run_offline_benchmark.mjs --players 2 --episodes 1 --max-commands 250
 node scripts/run_offline_benchmark.mjs --policy random-legal --players 2 --episodes 1 --max-commands 500
+node scripts/run_offline_benchmark.mjs --policy safe-first-legal --opponent official-builtin --builtin-seat 1 --players 2 --episodes 1
+node scripts/run_offline_benchmark.mjs --policy safe-first-legal --opponent official-builtin --builtin-seat alternate --players 2 --episodes 4
 ```
+
+`official-builtin` is the original OBG 1v1 controller, isolated as a seeded offline benchmark
+opponent. `--builtin-seat alternate` pairs consecutive games on the same map seed while swapping
+the two policies between seats. Reports include both the official ruleset hash and a separate
+hash of `FCM_AI.js`; compare policies only across paired seats, never from one fixed seat.
 
 `tests/test_content_integrity.py` is **adversarial** — it tries to falsify the wiki rather than
 confirm it:

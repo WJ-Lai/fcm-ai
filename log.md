@@ -213,3 +213,18 @@ Verification: **89 tests pass**, lint clean (28 pages), `verify_sources.py` OK,
   ignores only seats that its authoritative controller already marks skippable.
 - Remaining P1.4 work: adapt the state-mutating 1v1 built-in bot without conflating bot-seat rules
   with external Agent seats, then run full multi-seed/all-seat leagues.
+
+## [2026-09-27] build | isolated official built-in AI benchmark adapter
+
+- Wrapped the legacy state-mutating `FcmAI` controller in a dedicated offline-only transition.
+  Normal offline Agent steps suppress its implicit browser auto-run; the online browser still uses
+  its existing default behavior. The adapter accepts only the literal `FcmAI` seat, base-game
+  snapshots and an explicit random seed.
+- Added an independent `official-builtin-v1` source fingerprint for `FCM_AI.js`. Benchmark reports
+  now identify both ruleset and opponent-policy code, and the runtime restores `Math.random` plus
+  all process-global transport flags after every attempt.
+- A paired two-map/four-game smoke league completed 4/4 with zero rule violations. Seat 0 won all
+  four games, so the run validates the adapter and exposes material seat bias; it is deliberately
+  not presented as statistical evidence that either weak policy is stronger.
+- Verification at this checkpoint: targeted contract/runtime tests 14/14, full MCP suite 94/94,
+  full Vue suite 31/31, deterministic single-seed replay, and production Vue build.

@@ -48,10 +48,12 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
   - Done when: random, first-legal and built-in OBG policies run across fixed seeds/seats and report
     completion, violations, rank, money, latency and seat bias.
   - Current: deterministic `safe-first-legal-v1`, seeded `random-legal-v1` and a JSON benchmark
-    runner are implemented. The first two seeded 2-player random games reached Game Over in 185
-    and 178 commands with zero rejected actions; the runner aggregates completion, violations,
-    latency and terminal rank by seat across `--episodes`. The built-in-OBG adapter, full
-    multi-seed/seat league and statistically useful seat-bias report remain.
+    runner are implemented. The legacy 1v1 OBG policy now runs through a dedicated seeded offline
+    adapter; its source has a separate `policyHash`, and normal external-seat steps suppress its
+    implicit browser auto-run without changing online behavior. A four-game, two-map paired-seat
+    smoke league completed 4/4 with zero violations, but seat 0 won all four games. This is evidence
+    that seat swapping is mandatory, not evidence that either policy is stronger. A statistically
+    useful multi-seed league and confidence-bounded report remain before this gate closes.
 - [ ] **P1.5 Add a safe human-trajectory import and review pipeline.**
   - Why: strong human examples can reveal strategic abstractions and calibrate opponent models.
   - Depends on: P1.1 and explicit provenance/consent rules.

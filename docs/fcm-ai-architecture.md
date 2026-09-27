@@ -590,9 +590,19 @@ explanation—while calculators and the official engine handle exactness.
   skipped during restructuring/payday could leave an empty move envelope for the final submitter
   to decode. The official client path now marks and safely ignores only seats that the controller
   itself declares skippable; no salary or restructuring rule was reimplemented.
-- This completes the early environment extraction and two weak baselines, not the strategy AI.
-  The built-in-AI adapter, leagues, `DecisionView` economics, bounded candidate generation and
-  evaluators remain next.
+- The legacy official `FcmAI` is now available only through a dedicated seeded offline benchmark
+  adapter. It remains the original state-mutating 1v1 controller rather than pretending to be an
+  external Agent policy. Normal offline steps disable its implicit browser auto-run, while the
+  online browser default is unchanged. Benchmark output records a separate `policyHash` for
+  `FCM_AI.js` in addition to the ruleset hash.
+- A two-map/four-game paired-seat smoke league completed 4/4 with zero violations. Seat 0 won all
+  four games: when the built-in policy had seat 0 it finished with $212 and $497 against $199 and
+  $21; when the deterministic baseline had seat 0 it finished with $471 and $382 against $59 and
+  $126. Both policies therefore had mean rank 1.5 in this tiny sample. This is a strong warning
+  about seat bias, not a statistically useful policy-strength result.
+- This completes the adapter part of the weak-baseline milestone, not the strategy AI. A larger
+  paired league, privacy-safe human trajectory import, `DecisionView` economics, bounded candidate
+  generation and evaluators remain next.
 
 ### Phase 0 — define contracts, evidence and the benchmark
 
