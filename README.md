@@ -128,6 +128,11 @@ To build an Agent that does more than select legal moves, read
 control layer rather than a winning policy, and lays out the recommended deterministic planner,
 LLM, search and reinforcement-learning roadmap.
 
+The authoritative state now includes `decisionSupport.economyPlayers`: decoded company slots,
+salary, effective price and phase-independent recruiting/training/production/marketing capacity.
+These values come from the official JavaScript functions and are suitable inputs to a policy; they
+are not an LLM summary or a second implementation of the rules.
+
 > 📌 **Note on "llmwiki".** This repo implements the LLM Wiki *pattern* (Karpathy's) and follows
 > the `lucasastorian/llmwiki` conventions — `SCHEMA.md` / `raw/` / `wiki/` / `index.md` / `log.md`,
 > and its `guide` frontmatter contract. It does **not** install or run the llmwiki *application*

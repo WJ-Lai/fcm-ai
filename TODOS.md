@@ -71,11 +71,15 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
   - Depends on: P1 fixtures.
   - Done when: projected suppliers, ranking, goods consumed and earnings match actual dinner on
     base-game fixtures; projection never mutates the source snapshot.
-- [ ] **P2.2 Decode company structure and economic capacity.**
+- [x] **P2.2 Decode company structure and economic capacity.**
   - Why: a flat employee array is technically complete but poor decision input.
   - Depends on: P1 schema.
   - Done when: hierarchy, free slots, salary, recruiting, training, production, marketing and price
     agree with official functions for every fixture.
+  - Evidence: `state.decisionSupport.economyPlayers` delegates every rules-sensitive value to the
+    loaded official player/rules/controller modules and fails closed when one is absent. All 35
+    phase fixtures verify CEO/shared subordinate slots, free slots, salary, effective price and
+    recruiting/training/production/marketing capacity are present and structurally valid.
 - [ ] **P2.3 Add milestone and market-threat features.**
   - Why: long-term FCM strategy revolves around races and contested demand.
   - Depends on: P2.1–P2.2.

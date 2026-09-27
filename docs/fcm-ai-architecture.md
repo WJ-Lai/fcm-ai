@@ -607,6 +607,12 @@ explanation—while calculators and the official engine handle exactness.
   consent, license, one-seat provenance, legal advertised actions and explicit reviewer
   attestations; beliefs, temporary simultaneous choices, credentials and prose fail closed. A
   trusted live-UI exporter is still required before any real human trace enters the corpus.
+- Company/economic decoding is now authoritative rather than prompt-derived. Every state includes
+  CEO/shared subordinate slots, free slots, salary liabilities, effective unit price/discount and
+  recruiting, training, production, marketing and restaurant-building capacity. The official save
+  stores subordinate slots as a pool, so the view deliberately does not invent manager-parent
+  links. Thirty-five phase fixtures exercise the projection, and missing official functions fail
+  closed.
 
 ### Phase 0 — define contracts, evidence and the benchmark
 

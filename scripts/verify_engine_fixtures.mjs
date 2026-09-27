@@ -66,6 +66,24 @@ for (const name of names) {
   assert.equal(result.state.subphase, record.expected.subphase, `${name}: subphase drift`)
   assert.deepEqual(actionTypes, record.expected.legalActionTypes, `${name}: legal-action drift`)
   assert.equal(result.rulesetHash, record.expected.rulesetHash, `${name}: ruleset drift`)
+  const economy = result.state.decisionSupport?.economyPlayers
+  assert.equal(economy?.length, result.state.players.length, `${name}: economic player count drift`)
+  for (const [index, player] of economy.entries()) {
+    assert.equal(player.seat, index, `${name}: economic seat drift`)
+    assert.ok(player.freeSlots >= 0, `${name}: negative free slots`)
+    assert.ok(player.salary.due >= 0, `${name}: negative salary`)
+    assert.ok(Number.isFinite(player.price.unit), `${name}: invalid unit price`)
+    assert.ok(Number.isFinite(player.price.discount), `${name}: invalid price discount`)
+    assert.equal(
+      player.company.ceoReports.length,
+      player.company.ceoSlots,
+      `${name}: CEO slot decoding drift`,
+    )
+    assert.ok(player.capacities.recruiting.total >= 0, `${name}: invalid recruiting capacity`)
+    assert.ok(player.capacities.training.total >= 0, `${name}: invalid training capacity`)
+    assert.ok(Array.isArray(player.capacities.production), `${name}: missing production capacity`)
+    assert.ok(Array.isArray(player.capacities.marketing), `${name}: missing marketing capacity`)
+  }
   assert.equal(JSON.stringify(record.snapshot), before, `${name}: inspect mutated source snapshot`)
 }
 

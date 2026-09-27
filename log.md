@@ -240,3 +240,13 @@ Verification: **89 tests pass**, lint clean (28 pages), `verify_sources.py` OK,
   Output paths are create-only so a review stage cannot silently replace an earlier artifact.
 - This implements the safety/review boundary, not live human capture. A trusted seat-scoped OBG UI
   exporter and the first consented sample remain before P1.5 is complete.
+
+## [2026-09-27] build | authoritative company and economic DecisionView
+
+- Added `state.decisionSupport.economyPlayers` to the official-engine adapter. It delegates free
+  slots, salary liabilities, unit price/discount, recruiting, training, producer, marketer and
+  restaurant-building capacity to existing official functions instead of copying card rules.
+- Decoded the persisted company layout into CEO slots and the official shared subordinate-slot
+  pool. No manager-parent relationship is invented because the source model does not persist one.
+- Added fail-closed unit tests and expanded all 35 base phase fixtures to require valid economic
+  projections. MCP tests pass 96/96 and the fixture parity suite remains green.
