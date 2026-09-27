@@ -1,0 +1,70 @@
+{
+  "expected": {
+    "actorSeat": 0,
+    "legalActionTypes": [
+      "end_turn",
+      "marketing",
+      "next_subphase"
+    ],
+    "phase": 5,
+    "rulesetHash": "ef670a2981adc35fb69707b1e8118377ed1bcf7d5fdf67f9d4d3aa4d2e8b7dc0",
+    "sourceVersion": "1790476291000",
+    "subphase": 3
+  },
+  "fixtureVersion": "fcm-engine-fixture-v1",
+  "key": "phase-05-subphase-03-seat-00",
+  "snapshot": {
+    "chatData": "",
+    "currentPlayers": [
+      "Vincent"
+    ],
+    "displayNames": [
+      "Vincent",
+      "Acceptance Red 0927-022947",
+      "Acceptance Blue 0927-022947"
+    ],
+    "gameCreationTimestamp": "1790476187000",
+    "gameData": "H4sIAAAAAAAAA81VTYvcMAz9K0vOCkiyE2+O7U/ooRfhw+xMDgvLUMru/y+W/JXZDJOyUEqY8Yv8LD19BIuIDD9fr+f1+j5EmEAEAWMEBCEHHIBCBIkgAcgAgj0UI4gMp9fxdD6vv95P1/M6/l4vIy4cRmRefBgduZn8AMO3ynn6sV6eOs4QwYPIVMJuYwIxkIuqRtcSnvfCv7x9rJv43r/Qhbbxv799rDcCCEToiALaKohAE4IIAwFq+VDPJboQAc0LeDvKPIOP5jWC05XCgj7M9LyAjJRCR/VPkLsglLAJ0yBFpSAwCBmlIK5oJOBJTyd5KjcaQyXqqSlzEWYQtt2QNNl2hdjgmDIykSkCNjipvG0wSlmKVdLcb9/x0/5DcdzEcRPHj8W5fXG1003PxsR7pscldLldOhph+81Ynwikq7PLrb7Dp8bHxse7fGz8/aIQsMtjDmk0n7Oqz0bcMyanocxqCkVNJbUE+0n0/2QSLa+WTMvgRnZWNf2XI/u3WcwHZntnkHfH/cuzfWigD03xF4tDwB7EZ2aB2GCuXrgzA93l13X+xsp3rA/LaGCBekmkrwu7b4c7fKTkBpZ21VSH1DmkzuGD9mSkVv2lf73ndHUZ2Q5lDuvTTjV+wS7bsfrEzo/5KL6prma3N1dj0I0GzrHKQxu/PeLq0xiu6uRyQ+vVSzH+AddvQaYiCQAA",
+    "gameName": "Human + 2 Agents 0927-022947",
+    "id": 1,
+    "initializationSeed": "1:17974",
+    "latestUpdate": "1790476291000",
+    "moveData": "",
+    "mySeat": 0,
+    "phase": 5,
+    "playerNames": [
+      "Vincent",
+      "ai-acceptance-red-0927-022947-313614",
+      "ai-acceptance-blue-0927-022947-44b1d1"
+    ],
+    "startingMap": [
+      0,
+      0,
+      2,
+      3,
+      17,
+      3,
+      14,
+      3,
+      15,
+      3,
+      1,
+      0,
+      11,
+      1,
+      6,
+      3,
+      3,
+      3,
+      8,
+      3,
+      19,
+      0,
+      13,
+      0
+    ],
+    "startingOptions": [],
+    "status": "ACTIVE",
+    "turn": 7
+  }
+}

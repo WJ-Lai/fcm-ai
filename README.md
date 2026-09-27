@@ -39,6 +39,7 @@ answer is **checkable** rather than plausible.
 ```
 fcm-ai/
 ├── SCHEMA.md              # conventions + tag taxonomy the wiki obeys
+├── TODOS.md               # dependency-ordered AI implementation and promotion gates
 ├── index.md               # content catalog — read this first
 ├── log.md                 # append-only action log
 ├── raw/                   # Layer 1: immutable source material
@@ -47,6 +48,7 @@ fcm-ai/
 │       ├── fcm-base-rules-eng-v4.txt        # extracted text, sha256 in frontmatter
 │       ├── fcm-ketchup-expansion-rules.pdf  # official expansion (md5 65d0538a…)
 │       └── fcm-ketchup-expansion-rules.txt
+├── fixtures/base-v1/      # seeded official-engine snapshots for every base decision phase
 ├── wiki/                  # Layer 2: agent-maintained pages
 │   ├── overview.md        # hub page + the 11 most-misremembered rules
 │   ├── concepts/          # mechanics (sales, salary, structure, marketing, expansion modules)
@@ -62,10 +64,12 @@ fcm-ai/
 │   ├── lint.py            # link/orphan/frontmatter/tag/secret/index checks
 │   └── extract_rules.py   # regenerate raw/*.txt from the PDFs (repairs PDF artifacts)
 ├── src/                   # Agent API client (see src/README.md)
-├── tests/                 # 45 tests, incl. adversarial content-integrity suite
+├── tests/                 # adversarial content, contract and engine-fixture tests
 └── docs/
     ├── agent-integration.md     # how an agent calls this wiki (4 options, trade-offs)
     ├── agent-system-prompt.md   # drop-in prompt for a game-playing agent
+    ├── fcm-ai-architecture.md   # strategy-capable AI design, MCP gap audit, RL roadmap
+    ├── policy-contracts.md      # strict DecisionView / trajectory / result boundary
     └── legal.md
 ```
 
@@ -114,6 +118,11 @@ call.
 prompt inlining, with trade-offs) → [`docs/agent-integration.md`](docs/agent-integration.md).
 A ready-to-use prompt → [`docs/agent-system-prompt.md`](docs/agent-system-prompt.md).
 
+To build an Agent that does more than select legal moves, read
+[`docs/fcm-ai-architecture.md`](docs/fcm-ai-architecture.md). It explains why the current MCP is a
+control layer rather than a winning policy, and lays out the recommended deterministic planner,
+LLM, search and reinforcement-learning roadmap.
+
 > 📌 **Note on "llmwiki".** This repo implements the LLM Wiki *pattern* (Karpathy's) and follows
 > the `lucasastorian/llmwiki` conventions — `SCHEMA.md` / `raw/` / `wiki/` / `index.md` / `log.md`,
 > and its `guide` frontmatter contract. It does **not** install or run the llmwiki *application*
@@ -124,7 +133,7 @@ A ready-to-use prompt → [`docs/agent-system-prompt.md`](docs/agent-system-prom
 ## Tests and lint
 
 ```bash
-python3 -m pytest tests/ -q     # 45 tests
+python3 -m unittest discover -s tests -p 'test_*.py' -q  # 104 tests, stdlib only
 python3 scripts/lint.py         # links / orphans / frontmatter / tags / secrets / index
 ```
 

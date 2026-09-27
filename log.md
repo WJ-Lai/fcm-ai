@@ -153,3 +153,34 @@ which field is a player's money?). Audited both directions against a live respon
 
 Verification: **89 tests pass**, lint clean (28 pages), `verify_sources.py` OK,
 `check_wire_drift.py` OK, live probe OK against game 66.
+
+## [2026-09-27] design | strategy-capable FCM AI architecture
+
+- Added `docs/fcm-ai-architecture.md` after auditing the live Agent API/MCP, minimal Python
+  client, rules wiki, strategy playbook and official built-in AI.
+- Core finding: the current integration is sufficient for safe legal control but not for strong
+  play. It lacks a policy, persistent strategy memory, semantic decision features, complete-plan
+  candidate generation, consequence simulation and an evaluation league.
+- Recommended a hybrid architecture: official engine for legality/transitions, deterministic
+  calculators and candidate plans, shallow search/value evaluation, optional LLM high-level
+  selection, then imitation/self-play only after an offline simulator exists.
+- Recorded explicit observation/action/reward formulations and why raw PPO is not the first step
+  for a 2–6 player, general-sum game with simultaneous hidden choices.
+- Verification: **95 tests passed**, wiki lint clean, card provenance audit clean and wire-format
+  drift check clean.
+
+## [2026-09-27] build | policy contracts, engine fixtures and architecture hardening
+
+- Added strict versioned validators for `DecisionView`, trajectories and terminal results. Unknown
+  fields, credential-like keys, mismatched rulesets and invalid candidate selections fail closed.
+- Captured 35 credential-free snapshots spanning every base-game phase/subphase and verify each by
+  loading the official JavaScript engine. Dinner projection is compared with a real official
+  `end_turn` transition from the same immutable source state.
+- Moved the cloneable offline environment ahead of benchmark/search work; specified bounded
+  phase-local candidate generation, observed/derived/believed provenance, human-game ingestion,
+  measurable LLM A/B value and potential-difference reward-shaping gates.
+- Removed the unused Python map-engine port because it duplicated official rules and could drift.
+- Audited game 69: confirmed the direct-hire fairness bug and public/internal end-turn mismatch;
+  fixed both in the OBG branch with adversarial tests and a 276-command mixed-game acceptance run.
+- Verification: **104 Python tests**, 83 MCP tests, 31 Vue tests and 42 targeted Django tests pass;
+  35 fixtures pass official-engine and dinner-transition parity.

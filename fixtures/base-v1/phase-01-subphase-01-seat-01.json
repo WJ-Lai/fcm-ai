@@ -1,0 +1,74 @@
+{
+  "fixtureVersion": "fcm-engine-fixture-v1",
+  "key": "phase-01-subphase-01-seat-01",
+  "snapshot": {
+    "chatData": "",
+    "currentPlayers": [
+      "ai-acceptance-red-0927-022947-313614"
+    ],
+    "displayNames": [
+      "Vincent",
+      "Acceptance Red 0927-022947",
+      "Acceptance Blue 0927-022947"
+    ],
+    "gameCreationTimestamp": "1790476187000",
+    "gameData": "H4sIAAAAAAAAA43OzQqDMAzA8VeRnBNo7Bcet0fYYZfQg9YcBClj6PuLZYiOHQahgfLnR0RE4DmVrGWBhB4lodmf0yQUgX6iPmd9LX3JSm8dyXRtJNO2nYtk2QZ2gHA7muahY3Nq4AP/oQ/zqhfeuYFHvvL3edUvn3/6CdkbFOEacP3mU2Lr5tgZF0MIHoW4Kvtp5giJsU5KG9RCpSs0AQAA",
+    "gameName": "Human + 2 Agents 0927-022947",
+    "id": 1,
+    "initializationSeed": "1:17974",
+    "latestUpdate": "1790476188000",
+    "moveData": "",
+    "mySeat": 1,
+    "phase": 1,
+    "playerNames": [
+      "Vincent",
+      "ai-acceptance-red-0927-022947-313614",
+      "ai-acceptance-blue-0927-022947-44b1d1"
+    ],
+    "startingMap": [
+      0,
+      0,
+      2,
+      3,
+      17,
+      3,
+      14,
+      3,
+      15,
+      3,
+      1,
+      0,
+      11,
+      1,
+      6,
+      3,
+      3,
+      3,
+      8,
+      3,
+      19,
+      0,
+      13,
+      0
+    ],
+    "startingOptions": [],
+    "status": "ACTIVE",
+    "turn": 0
+  },
+  "expected": {
+    "phase": 1,
+    "subphase": 1,
+    "actorSeat": 1,
+    "sourceVersion": "1790476188000",
+    "rulesetHash": "ef670a2981adc35fb69707b1e8118377ed1bcf7d5fdf67f9d4d3aa4d2e8b7dc0",
+    "legalActionTypes": [
+      "end_turn",
+      "place_restaurant"
+    ]
+  },
+  "provenance": {
+    "kind": "official-engine-synthetic",
+    "sourceFixture": "phase-00-subphase-01-seat-01",
+    "note": "Only phase/context and reachable employee holdings were prepared; rules and legal actions come from the official JavaScript engine."
+  }
+}

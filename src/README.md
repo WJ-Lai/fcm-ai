@@ -1,4 +1,8 @@
-# `src/` — Agent API client
+# `src/` — Agent API client and policy contracts
+
+`contracts.py` defines the strict, versioned policy boundary for DecisionView observations,
+recorded trajectories and terminal results. Its validators reject unknown envelope fields and any
+credential-like key; call them before policy input and before writing training data.
 
 `fcm_agent.py` is a dependency-free client for the **OnlineBoardGamers FCM Agent API**
 (`fcm-agent-v1`). It is the bridge between the rules knowledge base in `../wiki/` and an actual

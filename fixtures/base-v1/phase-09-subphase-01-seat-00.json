@@ -1,0 +1,68 @@
+{
+  "expected": {
+    "actorSeat": 0,
+    "legalActionTypes": [
+      "resolve_cleanup"
+    ],
+    "phase": 9,
+    "rulesetHash": "ef670a2981adc35fb69707b1e8118377ed1bcf7d5fdf67f9d4d3aa4d2e8b7dc0",
+    "sourceVersion": "1790476273000",
+    "subphase": 1
+  },
+  "fixtureVersion": "fcm-engine-fixture-v1",
+  "key": "phase-09-subphase-01-seat-00",
+  "snapshot": {
+    "chatData": "",
+    "currentPlayers": [
+      "Vincent"
+    ],
+    "displayNames": [
+      "Vincent",
+      "Acceptance Red 0927-022947",
+      "Acceptance Blue 0927-022947"
+    ],
+    "gameCreationTimestamp": "1790476187000",
+    "gameData": "H4sIAAAAAAAAA81Vy2rDQAz8leLzGCSt7a2P7Sf00IvQIU18KJRQSvP/ZV9eO3VJSqAUJ1lZO9aMtIOjqto8vx730/GzMfRQJZAZCCoe7A3KzqAebFBD2I4Xm0G12b22u/1+ev/cHfdT+zEdWhrFtyQydr517AbuGjQPM+buaTrcLTCNoYNqfwPry9tpWtF23QsfeE37+HaazngZqnw9sYF7gqqAQYYRJVIr6PhxcWU/UucHvh+hLQcCi+UYecLKIU70sVLRogSBcoKUSOaoZUgfnw5qojpLiB6aC/cZSxigknZ90JS255Bq2DJ4SCIDA9Wwj/LWZBy61DivTL6+p2/7F8VJFSdVnFwW57bFlfNc6FmlZCt1eYQuH1d0gj93SDgnhi7m7PJR/4DniqeKpx/xVPHbQ2GIy2YGO8h9VvU9SVvJUNQXrwYqriq5Nrh0YvcnTkx91WZqB2eys6r+X1r2t10MV3h7w8ibdr/Z21cZ+ioX3zScuRrHb/iNL+K4uhylHc4YiVd9quJL7HKe5pq0qJNqlNo8rymf7tzMwWcaJHOVa1Fl/tuISLMvcGekT5AHAAA=",
+    "gameName": "Human + 2 Agents 0927-022947",
+    "id": 1,
+    "initializationSeed": "1:17974",
+    "latestUpdate": "1790476273000",
+    "moveData": "",
+    "mySeat": 0,
+    "phase": 9,
+    "playerNames": [
+      "Vincent",
+      "ai-acceptance-red-0927-022947-313614",
+      "ai-acceptance-blue-0927-022947-44b1d1"
+    ],
+    "startingMap": [
+      0,
+      0,
+      2,
+      3,
+      17,
+      3,
+      14,
+      3,
+      15,
+      3,
+      1,
+      0,
+      11,
+      1,
+      6,
+      3,
+      3,
+      3,
+      8,
+      3,
+      19,
+      0,
+      13,
+      0
+    ],
+    "startingOptions": [],
+    "status": "ACTIVE",
+    "turn": 6
+  }
+}

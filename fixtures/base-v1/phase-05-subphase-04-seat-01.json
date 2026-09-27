@@ -1,0 +1,71 @@
+{
+  "expected": {
+    "actorSeat": 1,
+    "legalActionTypes": [
+      "collect_drinks",
+      "end_turn",
+      "next_subphase",
+      "produce"
+    ],
+    "phase": 5,
+    "rulesetHash": "ef670a2981adc35fb69707b1e8118377ed1bcf7d5fdf67f9d4d3aa4d2e8b7dc0",
+    "sourceVersion": "1790476219000",
+    "subphase": 4
+  },
+  "fixtureVersion": "fcm-engine-fixture-v1",
+  "key": "phase-05-subphase-04-seat-01",
+  "snapshot": {
+    "chatData": "",
+    "currentPlayers": [
+      "ai-acceptance-red-0927-022947-313614"
+    ],
+    "displayNames": [
+      "Vincent",
+      "Acceptance Red 0927-022947",
+      "Acceptance Blue 0927-022947"
+    ],
+    "gameCreationTimestamp": "1790476187000",
+    "gameData": "H4sIAAAAAAAAA4VSwW7CMAz9FdTzi2Q7LaHH7RN22MXyAUoPSAhN0/j/KU5oKENDaRM3fvV7cZ6qavd5ukzz5aczDFAlkBkIKgmcDNoeg2q3P4X9NM1fP/vLNIfv+RholBRIZOxTiBy33Hfo3hbM5mM+bu4wnaGH6vDIw/FfpsP5Oq+o+v7AR15TvZ+v8wMXQ5WfkEF2Bq0HJJTBZgYeCKoCBnlLfFVDf9eM6Cunkfq05d0IDZzrmxdj1DYq57iwe8WbFCUIlAvkFskSBYY4s2txbVYQA7QWHiqWsIVKyaasqaSXkFoYGLwtIjMDtXBweWsyzqfU4oFSfv1Nf/IvxUkTJ02cvBYXn4tbPNr0rLbk2dbrFsZ6Xe6D9OiPfE+crbP0OVZ+h/ibZ3eQr7FGJcMVIz7aXw1PkMVrjjf7BV3PmceqAwAA",
+    "gameName": "Human + 2 Agents 0927-022947",
+    "id": 1,
+    "initializationSeed": "1:17974",
+    "latestUpdate": "1790476219000",
+    "moveData": "",
+    "mySeat": 1,
+    "phase": 5,
+    "playerNames": [
+      "Vincent",
+      "ai-acceptance-red-0927-022947-313614",
+      "ai-acceptance-blue-0927-022947-44b1d1"
+    ],
+    "startingMap": [
+      0,
+      0,
+      2,
+      3,
+      17,
+      3,
+      14,
+      3,
+      15,
+      3,
+      1,
+      0,
+      11,
+      1,
+      6,
+      3,
+      3,
+      3,
+      8,
+      3,
+      19,
+      0,
+      13,
+      0
+    ],
+    "startingOptions": [],
+    "status": "ACTIVE",
+    "turn": 3
+  }
+}
