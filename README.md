@@ -9,8 +9,10 @@ Two parts:
    a rule mid-game instead of hallucinating one. Built on the
    [LLM Wiki](https://github.com/lucasastorian/llmwiki) pattern (Karpathy's
    [LLM Wiki concept](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)).
-2. **`src/` — an agent client for the [OnlineBoardGamers](https://www.onlineboardgamers.com/)
-   Agent API**, so the AI actually plays a game.
+2. **`src/` — an agent client and policy code for the
+   [OnlineBoardGamers](https://www.onlineboardgamers.com/) Agent API.** Policy experiments import
+   the cloneable official-engine environment from the sibling OBG server checkout, so online play
+   and reproducible offline evaluation use the same rules authority.
 
 ## Why a wiki instead of RAG
 
@@ -62,8 +64,9 @@ fcm-ai/
 │   ├── probe_api.py       # live read-only probe verifying the wire mapping (needs token)
 │   ├── check_wire_drift.py# offline: wiki page ↔ wire-format.json ↔ engine source
 │   ├── lint.py            # link/orphan/frontmatter/tag/secret/index checks
+│   ├── run_offline_benchmark.mjs # seeded official-engine policy benchmark
 │   └── extract_rules.py   # regenerate raw/*.txt from the PDFs (repairs PDF artifacts)
-├── src/                   # Agent API client (see src/README.md)
+├── src/                   # Agent API client + deterministic weak baseline
 ├── tests/                 # adversarial content, contract and engine-fixture tests
 └── docs/
     ├── agent-integration.md     # how an agent calls this wiki (4 options, trade-offs)
@@ -135,6 +138,8 @@ LLM, search and reinforcement-learning roadmap.
 ```bash
 python3 -m unittest discover -s tests -p 'test_*.py' -q  # 104 tests, stdlib only
 python3 scripts/lint.py         # links / orphans / frontmatter / tags / secrets / index
+node --test src/baselines.test.mjs
+node scripts/run_offline_benchmark.mjs --players 2 --episodes 1 --max-commands 250
 ```
 
 `tests/test_content_integrity.py` is **adversarial** — it tries to falsify the wiki rather than

@@ -37,6 +37,17 @@ best starting point for FCM because the game combines a long horizon, sparse ter
 large combinatorial turn plans, variable player counts, simultaneous hidden choices and
 competitive general-sum play.
 
+### What to keep from the rules wiki
+
+The rulebook wiki and the web-element/rule mapping are **not a replacement rules engine**, but
+they are not disposable. Official JavaScript is the authority for legality, state transitions and
+exact arithmetic; it is poorly shaped as strategy context for an LLM and does not explain why a
+choice is strategically important. Keep the verified rules, citations, semantic names, phase
+decision cards and compact mappings for human review, prompt grounding and explanation. Remove
+only code that independently reimplements official map/rule algorithms or stale mappings that
+cannot be verified against the versioned wire format. This boundary preserves useful teaching
+material without creating two competing implementations of FCM.
+
 ## Engineering review corrections
 
 The overall direction survives engineering review, with these mandatory constraints:
@@ -556,6 +567,21 @@ This makes the LLM useful where language models are strongest—abstraction, com
 explanation—while calculators and the official engine handle exactness.
 
 ## 11. Implementation roadmap
+
+### Current implementation checkpoint (2026-09-27)
+
+- The base-game `reset/observe/legal/step/clone` environment now executes the official JavaScript
+  engine entirely in memory, including simultaneous-move aggregation and seat-specific views.
+- Thirty-five seeded phase/subphase fixtures detect ruleset and legal-action drift; cloned dinner
+  resolution matches the official transition and restructuring resolves without mutating its
+  parent branch.
+- The first deterministic weak policy and JSON benchmark runner are available. Fixed two-player
+  and three-player seeds reached Game Over in 197 and 606 commands respectively.
+- The benchmark exposed and regression-tested two real integration defects: explicit Agent
+  restructuring needed to confirm the normal UI warning, and last-player-standing Game Over had
+  to be persisted instead of remaining browser-only state.
+- This completes the early environment extraction, not the strategy AI. Random/built-in baselines,
+  leagues, `DecisionView` economics, bounded candidate generation and evaluators remain next.
 
 ### Phase 0 — define contracts, evidence and the benchmark
 

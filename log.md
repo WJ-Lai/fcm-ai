@@ -184,3 +184,17 @@ Verification: **89 tests pass**, lint clean (28 pages), `verify_sources.py` OK,
   fixed both in the OBG branch with adversarial tests and a 276-command mixed-game acceptance run.
 - Verification: **104 Python tests**, 83 MCP tests, 31 Vue tests and 42 targeted Django tests pass;
   35 fixtures pass official-engine and dinner-transition parity.
+
+## [2026-09-27] build | cloneable offline environment and first weak benchmark
+
+- Added a database-free `reset/observe/legal/step/clone` environment around the official
+  JavaScript engine. It preserves per-seat observations, aggregates simultaneous moves and returns
+  canonical snapshots without opening HTTP or WebSocket connections.
+- Added deterministic `safe-first-legal-v1`, prioritizing productive workers over idle managers,
+  plus a JSON benchmark runner with completion, command, phase, bank, latency, action-count and
+  final-company metrics.
+- The benchmark exposed two control-path defects: explicit Agent restructuring was not confirming
+  the normal human warning, and last-player-standing Game Over was not persisted. Both were fixed
+  in the OBG integration branch without adding a second rule implementation.
+- Fixed seeds now reach Game Over in 197 commands (2 players) and 606 commands (3 players). This is
+  simulator/control validation, not evidence that the weak baseline plays strategically.

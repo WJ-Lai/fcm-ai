@@ -17,11 +17,26 @@ await import(pathToFileURL(path.join(serverRoot, 'mcp-server/register-hook.mjs')
 const { EngineRuntime } = await import(
   pathToFileURL(path.join(serverRoot, 'mcp-server/engine-runtime.mjs')).href
 )
+const { OfflineEnvironment } = await import(
+  pathToFileURL(path.join(serverRoot, 'mcp-server/offline-environment.mjs')).href
+)
 const { setupBrowserEnv } = await import(
   pathToFileURL(path.join(serverRoot, 'mcp-server/browser-env.mjs')).href
 )
 
 await setupBrowserEnv()
+const engineErrors = []
+const originalConsoleError = console.error
+const originalConsoleLog = console.log
+console.error = (...items) => {
+  engineErrors.push(items.map((item) => String(item)).join(' '))
+  originalConsoleError(...items)
+}
+console.log = (...items) => {
+  const line = items.map((item) => String(item)).join(' ')
+  if (line.startsWith('Error:')) engineErrors.push(line)
+  originalConsoleLog(...items)
+}
 globalThis.alert = (message) => {
   throw new Error(`official engine alert: ${message}`)
 }
@@ -67,30 +82,11 @@ const projected = await dinnerRuntime.projectDinner({
   actor,
 })
 const nextVersion = String(BigInt(dinnerInput.latestUpdate) + 1n)
-const actualRuntime = new EngineRuntime()
-const transition = await actualRuntime.executeBatch({
-  snapshot: structuredClone(dinnerInput),
-  actor,
-  expectedVersion: dinnerInput.latestUpdate,
-  actions: [{ type: 'end_turn' }],
-  transportContext: {
-    existingMoves: [],
-    pendingPlayerNames: dinnerInput.currentPlayers,
-    acceptedPhases: [5],
-    nextVersion,
-    sideData: '',
-  },
-})
-assert.ok(transition.canonicalSave, 'official end-turn transition produced no canonical save')
-const actualSnapshot = {
-  ...structuredClone(dinnerInput),
-  gameData: transition.canonicalSave.gameData,
-  phase: transition.canonicalSave.phase,
-  turn: transition.canonicalSave.turn,
-  latestUpdate: nextVersion,
-  startingMap: transition.canonicalSave.mapTiles ?? dinnerInput.startingMap,
-  currentPlayers: transition.canonicalSave.nextPlayer ?? [],
-}
+const environment = new OfflineEnvironment({ snapshot: dinnerInput })
+const branch = environment.clone()
+const transition = await branch.step(actor.seat, [{ type: 'end_turn' }])
+const actualSnapshot = transition.after
+assert.equal(actualSnapshot.latestUpdate, nextVersion, 'offline step did not advance version')
 const actual = await new EngineRuntime().inspect({ snapshot: actualSnapshot, actor })
 assert.equal(projected.after.bank, actual.state.bank, 'projected dinner bank differs from live result')
 assert.deepEqual(
@@ -100,6 +96,31 @@ assert.deepEqual(
 )
 assert.deepEqual(projected.after.houseDemands, actual.state.houseDemands, 'projected needs differ from live result')
 assert.deepEqual(dinnerInput, beforeDinner.snapshot, 'dinner projection mutated its source snapshot')
+assert.deepEqual(environment.snapshot(), dinnerInput, 'cloned offline branch mutated its parent')
 
-process.stdout.write(`verified ${names.length} immutable engine fixtures and official dinner-transition parity\n`)
+const restructure = records.get('phase-03-subphase-01-seat-01.json')
+assert.ok(restructure, 'restructuring fixture is missing')
+const simultaneous = new OfflineEnvironment({ snapshot: restructure.snapshot })
+for (const name of [...simultaneous.snapshot().currentPlayers]) {
+  const seat = restructure.snapshot.playerNames.indexOf(name)
+  assert.ok(seat >= 0, `unknown pending restructuring player ${name}`)
+  const legal = await simultaneous.legal(seat)
+  const placement = legal.actions.find((action) => action.type === 'place_employees')
+  const count = Math.min(placement?.beach?.length ?? 0, placement?.slots?.length ?? 0)
+  const actions = count > 0
+    ? [{
+        type: 'place_employees',
+        employees: placement.beach.slice(0, count),
+        slots: placement.slots.slice(0, count),
+      }]
+    : [{ type: 'end_turn' }]
+  await simultaneous.step(seat, actions)
+}
+assert.equal(simultaneous.snapshot().phase, 4, 'simultaneous restructuring did not resolve')
+await new Promise((resolve) => setTimeout(resolve, 25))
+assert.deepEqual(engineErrors, [], `background engine errors: ${engineErrors.join('\n')}`)
+
+process.stdout.write(
+  `verified ${names.length} immutable fixtures, dinner parity, cloning and simultaneous resolution\n`,
+)
 process.exit(0)

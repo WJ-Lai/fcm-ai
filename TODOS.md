@@ -36,7 +36,7 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
   - Depends on: P1.1.
   - Done when: setup, reserve, restructure, order, all working-day subphases, payday, cleanup and
     game-over fixtures load deterministically and contain no Token/private opponent choice.
-- [ ] **P1.3 Extract a fast cloneable base-game environment from the official JS engine.**
+- [x] **P1.3 Extract a fast cloneable base-game environment from the official JS engine.**
   - Why: HTTP/Django/SQLite is suitable for acceptance but too slow for benchmark leagues,
     candidate evaluation or learning.
   - Depends on: P1.1–P1.2.
@@ -47,6 +47,10 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
   - Depends on: P1.3.
   - Done when: random, first-legal and built-in OBG policies run across fixed seeds/seats and report
     completion, violations, rank, money, latency and seat bias.
+  - Current: deterministic `safe-first-legal-v1` and a JSON benchmark runner are implemented. A
+    seeded 2-player game reached Game Over in 197 commands and a seeded 3-player game in 606
+    commands without HTTP/database access. Random and built-in-OBG adapters, multi-seed leagues
+    and aggregate seat-bias reports remain.
 - [ ] **P1.5 Add a safe human-trajectory import and review pipeline.**
   - Why: strong human examples can reveal strategic abstractions and calibrate opponent models.
   - Depends on: P1.1 and explicit provenance/consent rules.

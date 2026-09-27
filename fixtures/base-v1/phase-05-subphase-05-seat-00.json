@@ -60,7 +60,7 @@
     "subphase": 5,
     "actorSeat": 0,
     "sourceVersion": "1790476291000",
-    "rulesetHash": "ef670a2981adc35fb69707b1e8118377ed1bcf7d5fdf67f9d4d3aa4d2e8b7dc0",
+    "rulesetHash": "a7b0ae2289ca54547c50e7bffdf323c47d729e220b38a530ff9639cadb71f4cc",
     "legalActionTypes": [
       "build_house",
       "end_turn",
