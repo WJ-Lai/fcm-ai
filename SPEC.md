@@ -171,6 +171,13 @@ frozen, diverse policy league.
   to the frozen 15-sample maximum, with p-values 0.375–1.0 against alpha 0.02. Cash means remain
   unstable (one root moved from -$215.67 to +$10) and therefore remain non-authoritative. At sample
   15, unresolved roots must be recorded as abstentions rather than assigned cash-sign/static labels.
+- At the frozen 15-sample maximum, 0/4 production roots are selected and 4/4 become explicit
+  abstentions. Final p-values are 0.289–1.0; 4–10 of 15 paired continuations per root give both
+  actions the same terminal rank, and cash-margin standard errors remain $107–$139. These roots are
+  therefore excluded from supervised action-preference training under continuation population v1.
+  The maximum must not be enlarged after seeing the result. Apply the same three-sample first gate
+  to hiring and marketing, and define the versioned opponent-policy population required by P3.3d;
+  repeated seeds from one weak built-in policy are not evidence of value against realistic agents.
 
 ## 5. Target architecture
 

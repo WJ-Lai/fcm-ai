@@ -2,8 +2,8 @@
   "schemaVersion": "fcm.action-regret-stability.v1",
   "rulesetHash": "a171620e533a34f0c77133afac1d239a02c7600978486d09a77a20ead95d0b5e",
   "continuationPolicy": "fcm.deterministic-vs-official-builtin-population.v1",
-  "sampleCount": 7,
-  "resumedFromSampleCount": 3,
+  "sampleCount": 15,
+  "resumedFromSampleCount": 7,
   "promotionHoldoutOpened": false,
   "roots": [
     {
@@ -21,7 +21,15 @@
             -351,
             485,
             134,
-            52
+            52,
+            246,
+            144,
+            -16,
+            506,
+            -62,
+            -183,
+            -96,
+            -56
           ],
           "terminalCommands": [
             434,
@@ -30,7 +38,15 @@
             294,
             283,
             386,
-            351
+            351,
+            176,
+            143,
+            411,
+            235,
+            430,
+            431,
+            432,
+            428
           ]
         },
         {
@@ -42,7 +58,15 @@
             195,
             -15,
             -127,
-            -450
+            -450,
+            -57,
+            -26,
+            -108,
+            -246,
+            -115,
+            -109,
+            232,
+            198
           ],
           "terminalCommands": [
             257,
@@ -51,7 +75,15 @@
             397,
             431,
             433,
-            432
+            432,
+            426,
+            433,
+            387,
+            385,
+            435,
+            430,
+            389,
+            438
           ]
         }
       ]
@@ -71,7 +103,15 @@
             252,
             472,
             486,
-            485
+            485,
+            435,
+            155,
+            470,
+            212,
+            7,
+            -309,
+            101,
+            -187
           ],
           "terminalCommands": [
             126,
@@ -80,7 +120,15 @@
             116,
             118,
             128,
-            128
+            128,
+            140,
+            167,
+            140,
+            115,
+            96,
+            120,
+            108,
+            107
           ]
         },
         {
@@ -92,7 +140,15 @@
             260,
             -510,
             161,
-            96
+            96,
+            -15,
+            334,
+            -296,
+            -444,
+            446,
+            -216,
+            172,
+            217
           ],
           "terminalCommands": [
             103,
@@ -101,7 +157,15 @@
             115,
             202,
             90,
-            151
+            151,
+            161,
+            112,
+            115,
+            254,
+            222,
+            105,
+            90,
+            150
           ]
         }
       ]
@@ -121,7 +185,15 @@
             386,
             78,
             492,
-            487
+            487,
+            351,
+            53,
+            51,
+            -48,
+            350,
+            -510,
+            169,
+            -85
           ],
           "terminalCommands": [
             96,
@@ -130,7 +202,15 @@
             118,
             260,
             142,
-            130
+            130,
+            118,
+            142,
+            154,
+            144,
+            120,
+            138,
+            143,
+            144
           ]
         },
         {
@@ -142,7 +222,15 @@
             -358,
             -155,
             -349,
-            415
+            415,
+            348,
+            425,
+            -371,
+            -198,
+            -315,
+            468,
+            373,
+            -114
           ],
           "terminalCommands": [
             173,
@@ -151,7 +239,15 @@
             138,
             256,
             138,
-            138
+            138,
+            115,
+            92,
+            128,
+            212,
+            142,
+            150,
+            161,
+            163
           ]
         }
       ]
@@ -171,7 +267,15 @@
             7,
             -509,
             -174,
-            -363
+            -363,
+            -536,
+            636,
+            206,
+            -5,
+            -504,
+            185,
+            69,
+            -47
           ],
           "terminalCommands": [
             427,
@@ -180,7 +284,15 @@
             425,
             386,
             431,
-            434
+            434,
+            282,
+            368,
+            167,
+            431,
+            239,
+            398,
+            377,
+            431
           ]
         },
         {
@@ -192,7 +304,15 @@
             -292,
             348,
             -278,
-            -31
+            -31,
+            19,
+            336,
+            561,
+            -213,
+            -321,
+            -423,
+            181,
+            -205
           ],
           "terminalCommands": [
             433,
@@ -201,7 +321,15 @@
             268,
             403,
             406,
-            439
+            439,
+            430,
+            424,
+            391,
+            436,
+            307,
+            284,
+            436,
+            430
           ]
         }
       ]
@@ -212,7 +340,7 @@
     "roots": 4,
     "stableRoots": 0,
     "flippedRoots": 4,
-    "meanSampleAgreement": 0.6785714285714286,
+    "meanSampleAgreement": 0.6,
     "details": [
       {
         "rootId": "development-00-middle-production",
@@ -220,7 +348,7 @@
           "p5s4-fallback-21d4f44933",
           "p5s4-produce-4edc9db56b"
         ],
-        "sampleAgreement": 0.5714285714285714,
+        "sampleAgreement": 0.6,
         "stable": false,
         "meanOracleCandidateIds": [
           "p5s4-produce-4edc9db56b"
@@ -228,13 +356,13 @@
         "candidates": [
           {
             "candidateId": "p5s4-produce-4edc9db56b",
-            "meanTerminalMargin": 63.142857142857146,
+            "meanTerminalMargin": 61.666666666666664,
             "minTerminalMargin": -351,
-            "maxTerminalMargin": 485
+            "maxTerminalMargin": 506
           },
           {
             "candidateId": "p5s4-fallback-21d4f44933",
-            "meanTerminalMargin": 53.142857142857146,
+            "meanTerminalMargin": 9.4,
             "minTerminalMargin": -450,
             "maxTerminalMargin": 488
           }
@@ -246,7 +374,7 @@
           "p5s4-fallback-21d4f44933",
           "p5s4-produce-4edc9db56b"
         ],
-        "sampleAgreement": 0.7142857142857143,
+        "sampleAgreement": 0.5333333333333333,
         "stable": false,
         "meanOracleCandidateIds": [
           "p5s4-produce-4edc9db56b"
@@ -254,15 +382,15 @@
         "candidates": [
           {
             "candidateId": "p5s4-produce-4edc9db56b",
-            "meanTerminalMargin": 344.85714285714283,
-            "minTerminalMargin": -60,
+            "meanTerminalMargin": 219.86666666666667,
+            "minTerminalMargin": -309,
             "maxTerminalMargin": 486
           },
           {
             "candidateId": "p5s4-fallback-21d4f44933",
-            "meanTerminalMargin": 30,
+            "meanTerminalMargin": 27.2,
             "minTerminalMargin": -510,
-            "maxTerminalMargin": 288
+            "maxTerminalMargin": 446
           }
         ]
       },
@@ -272,7 +400,7 @@
           "p5s4-fallback-21d4f44933",
           "p5s4-produce-4edc9db56b"
         ],
-        "sampleAgreement": 0.8571428571428571,
+        "sampleAgreement": 0.7333333333333333,
         "stable": false,
         "meanOracleCandidateIds": [
           "p5s4-produce-4edc9db56b"
@@ -280,15 +408,15 @@
         "candidates": [
           {
             "candidateId": "p5s4-produce-4edc9db56b",
-            "meanTerminalMargin": 199.71428571428572,
-            "minTerminalMargin": -425,
+            "meanTerminalMargin": 115.26666666666667,
+            "minTerminalMargin": -510,
             "maxTerminalMargin": 532
           },
           {
             "candidateId": "p5s4-fallback-21d4f44933",
-            "meanTerminalMargin": -88.42857142857143,
-            "minTerminalMargin": -358,
-            "maxTerminalMargin": 415
+            "meanTerminalMargin": -0.2,
+            "minTerminalMargin": -371,
+            "maxTerminalMargin": 468
           }
         ]
       },
@@ -298,7 +426,7 @@
           "p5s4-fallback-21d4f44933",
           "p5s4-produce-4edc9db56b"
         ],
-        "sampleAgreement": 0.5714285714285714,
+        "sampleAgreement": 0.5333333333333333,
         "stable": false,
         "meanOracleCandidateIds": [
           "p5s4-fallback-21d4f44933"
@@ -306,13 +434,13 @@
         "candidates": [
           {
             "candidateId": "p5s4-produce-4edc9db56b",
-            "meanTerminalMargin": -215,
-            "minTerminalMargin": -509,
-            "maxTerminalMargin": 7
+            "meanTerminalMargin": -100.06666666666666,
+            "minTerminalMargin": -536,
+            "maxTerminalMargin": 636
           },
           {
             "candidateId": "p5s4-fallback-21d4f44933",
-            "meanTerminalMargin": -28.285714285714285,
+            "meanTerminalMargin": -17.533333333333335,
             "minTerminalMargin": -509,
             "maxTerminalMargin": 566
           }

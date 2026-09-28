@@ -313,6 +313,12 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     selects 0/4 and advances 4/4 to sample 15; p-values are 0.375–1.0 versus alpha 0.02, while one
     cash mean reverses from -$215.67 to +$10. Next resume only samples 7–14, then freeze selected vs
     max-sample-abstained outcomes without any cash/static fallback.
+    The frozen maximum is complete: all prior prefixes are unchanged, 120/120 candidate
+    continuations reach Game Over, 0/4 roots are selected and 4/4 are `abstain-max-samples`.
+    Final p-values are 0.289–1.0, terminal-rank ties occur in 4–10/15 samples per root and cash
+    standard errors remain $107–$139. Exclude these production roots from supervised labels. Next
+    run the three-sample first gate on frozen hiring/marketing roots and begin P3.3d's versioned
+    opponent-policy population; do not enlarge the production maximum after observing the result.
 - [ ] **P3.3d Add versioned opponent-belief sampling.**
   - Why: future dinner outcomes depend on unrevealed simultaneous choices and opponent reactions.
   - Depends on: P1.1 observation provenance, P3.2 and validated public-replay/self-play traces. A

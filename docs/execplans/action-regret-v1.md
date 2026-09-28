@@ -215,3 +215,27 @@ The seven-sample stage produced no false certainty.
 Iteration 6 changes only sample availability from seven to the frozen maximum of fifteen. At the
 maximum, every unresolved root must become an explicit `abstain-max-samples`; the estimator may not
 fall back to cash sign or static order to fabricate a training label.
+
+As in iteration 5, collection must preserve the seven-sample prefix exactly, compute only indices
+7–14 and replace the report atomically after all 64 new candidate continuations finish.
+
+## Iteration 6 result
+
+The frozen maximum closed all four production roots as abstentions.
+
+- The seven-sample prefix was preserved exactly. Across 4 roots × 2 candidates × 15 samples, all
+  120 candidate continuations reached Game Over within the existing command bound.
+- The estimator selected 0/4 and returned `abstain-max-samples` for 4/4. Final p-values are
+  0.5488, 0.4531, 0.2891 and 1.0 against alpha 0.025.
+- Terminal rank is frequently insensitive to the local production choice under this opponent
+  population: 4, 8, 7 and 10 of 15 paired samples are ties at the four roots.
+- Cash-margin standard errors fall with more samples but remain $107.07–$139.27. Their signs are
+  recorded only as diagnostics and do not create labels.
+- Promotion remained sealed. These four roots are excluded from supervised action-preference
+  training under continuation population v1.
+
+This completes the production label-stability puncture. The next bounded experiment should apply
+the same three-sample first gate to frozen hiring and marketing roots. In parallel, P3.3d must define
+a versioned opponent-policy population; repeatedly sampling one weak built-in policy cannot by
+itself establish action value against realistic external agents. Do not increase the production
+maximum post hoc.
