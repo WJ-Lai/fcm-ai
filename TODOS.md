@@ -377,7 +377,11 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     reuses identical frozen belief samples, measures both per-seed mismatch and pairwise total
     variation, omits trusted-world payloads from reports, and adversarially detects a private-reserve
     leak at total variation 1 while a public-only policy scores 0. P3.3e remains open until official-
-    engine paired hidden-world fixtures and the actual belief-aware planner pass this gate.
+    engine paired hidden-world fixtures and the actual belief-aware planner pass this gate. The first
+    authentic fixture now passes: official reserve-card envelopes differed while public snapshots
+    and DecisionViews matched; 16 matched belief seeds × 3 candidates produced mismatch 0 and TV 0,
+    with a byte-reproducible sanitized report. Next add a working-day hidden submission boundary,
+    then audit the belief-aware planner itself.
 - [ ] **P3.3f Add plan-health and opportunity arbitration.**
   - Why: reacting to every locally attractive move creates thrashing, while blindly following a
     plan misses real opponent mistakes.

@@ -373,6 +373,14 @@ private reserve choice fails with total variation 1. Reports contain only ids/co
 world payloads. This is audit infrastructure, not completion of the gate: official-engine paired
 hidden-world fixtures and the eventual belief-aware planner must still pass before integration.
 
+The first official-engine paired fixture now covers reserve-card simultaneous submissions. Official
+legal transitions created two worlds with different private submission envelopes but identical
+public snapshots and actor DecisionViews. Across 16 matched belief seeds and three reserve-card
+candidates, the current bounded official rollout produced zero per-seed mismatches and zero total
+variation. Its sanitized report is byte-reproducible after normalizing display-only history
+timestamps and contains no private envelope. This proves one authentic boundary only; P3.3e still
+requires a working-day hidden submission fixture and an actual belief-aware planner audit.
+
 ### 6.6 Value and objective
 
 The primary objective is terminal performance:

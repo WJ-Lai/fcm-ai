@@ -1,0 +1,51 @@
+{
+  "schemaVersion": "fcm.official-information-set-audit.v2",
+  "experimentId": 15,
+  "boundary": "reserve-card-simultaneous-envelope",
+  "protocolDigest": "sha256:482a662e43db5f4249e35b976876675c90f91893dee39203b7e6aecf96728890",
+  "engineProtocolVersion": "fcm-engine-v1",
+  "rulesetHash": "a171620e533a34f0c77133afac1d239a02c7600978486d09a77a20ead95d0b5e",
+  "publicViewsEqual": true,
+  "publicSnapshotsEqual": true,
+  "hiddenEnvelopesDiffer": true,
+  "audit": {
+    "schemaVersion": "fcm.information-set-audit.v1",
+    "populationId": "base-public-population-v1",
+    "publicObservationDigest": "sha256:ca0a30c0bebb7d907c2e5c5c118faf9e16fdb8d3b75f8b140949bbc38ee0431c",
+    "worldIds": [
+      "official-world-a",
+      "official-world-b"
+    ],
+    "legalCandidateIds": [
+      "p2s1-reserve-card-10d125fc1a",
+      "p2s1-reserve-card-30aa34c405",
+      "p2s1-reserve-card-3e02fe4f94"
+    ],
+    "samplesPerWorld": 16,
+    "candidateCountsByWorld": {
+      "official-world-a": {
+        "p2s1-reserve-card-10d125fc1a": 0,
+        "p2s1-reserve-card-30aa34c405": 16,
+        "p2s1-reserve-card-3e02fe4f94": 0
+      },
+      "official-world-b": {
+        "p2s1-reserve-card-10d125fc1a": 0,
+        "p2s1-reserve-card-30aa34c405": 16,
+        "p2s1-reserve-card-3e02fe4f94": 0
+      }
+    },
+    "pairwise": [
+      {
+        "leftWorldId": "official-world-a",
+        "rightWorldId": "official-world-b",
+        "totalVariation": 0
+      }
+    ],
+    "maximumPairwiseTotalVariation": 0,
+    "perSeedMismatchRate": 0,
+    "maximumTotalVariation": 0,
+    "passed": true
+  },
+  "privatePayloadPersisted": false,
+  "promotionHoldoutOpened": false
+}

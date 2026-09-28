@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "fcm.official-information-set-audit-protocol.v2",
+  "seed": "official-information-set-reserve-v2",
+  "players": ["actor", "opponent-b", "opponent-c"],
+  "actorSeat": 0,
+  "opponentSubmissionOrder": [2, 1],
+  "sampleSeeds": [
+    "official-audit-00", "official-audit-01", "official-audit-02", "official-audit-03",
+    "official-audit-04", "official-audit-05", "official-audit-06", "official-audit-07",
+    "official-audit-08", "official-audit-09", "official-audit-10", "official-audit-11",
+    "official-audit-12", "official-audit-13", "official-audit-14", "official-audit-15"
+  ],
+  "rolloutBudget": { "maxCandidates": 3, "maxTransitions": 3, "deadlineMs": 3000 },
+  "maximumTotalVariation": 0,
+  "promotionHoldoutOpened": false
+}

@@ -8,6 +8,9 @@ import { auditInformationSetPolicy } from './information-set-audit.mjs'
 const population = JSON.parse(await readFile(
   new URL('../fixtures/opponent-population-v1/manifest.json', import.meta.url),
 ))
+const officialReport = JSON.parse(await readFile(
+  new URL('../fixtures/information-set-audit-v2/report.json', import.meta.url),
+))
 const belief = buildOpponentBelief(population, {
   observed: {
     publicHistoryDigest: `sha256:${'a'.repeat(64)}`,
@@ -81,4 +84,16 @@ test('audit fails closed on unequal information sets and illegal recommendations
     maximumTotalVariation: 0,
     recommend: async () => ({ candidateId: 'invented' }),
   }), /illegal candidate/)
+})
+
+test('official reserve-card hidden worlds preserve the frozen rollout distribution', () => {
+  assert.equal(officialReport.schemaVersion, 'fcm.official-information-set-audit.v2')
+  assert.equal(officialReport.boundary, 'reserve-card-simultaneous-envelope')
+  assert.equal(officialReport.publicViewsEqual, true)
+  assert.equal(officialReport.publicSnapshotsEqual, true)
+  assert.equal(officialReport.audit.maximumPairwiseTotalVariation, 0)
+  assert.equal(officialReport.audit.perSeedMismatchRate, 0)
+  assert.equal(officialReport.audit.passed, true)
+  assert.equal(officialReport.privatePayloadPersisted, false)
+  assert.equal(officialReport.promotionHoldoutOpened, false)
 })
