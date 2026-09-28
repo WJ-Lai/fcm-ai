@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "fcm.value-dataset-protocol-manifest.v1",
+  "protocolVersion": "fcm.value-dataset.v2",
+  "createdBeforeCollection": true,
+  "promotionHoldoutOpened": false,
+  "splitCounts": {
+    "development": 12,
+    "calibration": 12,
+    "promotion-holdout": 24
+  },
+  "seedTemplate": "fcm.value-dataset.v2:{split}:{zeroBasedIndex}",
+  "matchups": [
+    ["deterministic-strategy", "safe-first-legal"],
+    ["safe-first-legal", "deterministic-strategy"],
+    ["random-legal", "safe-first-legal"],
+    ["safe-first-legal", "random-legal"],
+    ["deterministic-strategy", "random-legal"],
+    ["random-legal", "deterministic-strategy"],
+    ["official-builtin", "safe-first-legal"],
+    ["safe-first-legal", "official-builtin"],
+    ["official-builtin", "random-legal"],
+    ["random-legal", "official-builtin"],
+    ["official-builtin", "deterministic-strategy"],
+    ["deterministic-strategy", "official-builtin"]
+  ],
+  "rules": [
+    "Development may fit parameters.",
+    "Calibration may select regularization and freeze the evaluator.",
+    "Promotion holdout may be opened exactly once after evaluator and thresholds are frozen.",
+    "Every game contributes equal total fitting weight regardless of turn count.",
+    "Only seat-visible DecisionView features may be persisted; terminal targets attach after Game Over."
+  ]
+}

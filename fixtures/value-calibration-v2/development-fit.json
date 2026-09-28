@@ -1,0 +1,3805 @@
+{
+  "schemaVersion": "fcm.value-development-fit.v2",
+  "dataset": {
+    "path": "fixtures/value-calibration-v2/development.json",
+    "protocolVersion": "fcm.value-dataset.v2",
+    "featureVersion": "fcm.terminal-value-features.v2",
+    "rulesetHash": "a171620e533a34f0c77133afac1d239a02c7600978486d09a77a20ead95d0b5e",
+    "games": 12,
+    "rows": 281
+  },
+  "candidates": [
+    {
+      "lambda": 0.01,
+      "developmentAudit": {
+        "schemaVersion": "fcm.pairwise-value-audit.v1",
+        "turns": 281,
+        "totalWeight": 11.99999999999996,
+        "correctTurns": 258,
+        "weightedAccuracy": 0.9170788952988934,
+        "weightedLogLoss": 0.18574685142324043,
+        "games": 12,
+        "gameCorrect": 12,
+        "gameAccuracy": 1,
+        "byPhase": {
+          "early": {
+            "turns": 36,
+            "totalWeight": 1.8130453800058781,
+            "correctTurns": 24,
+            "weightedAccuracy": 0.7207787982826569,
+            "weightedLogLoss": 0.4682091259466359
+          },
+          "middle": {
+            "turns": 36,
+            "totalWeight": 1.8130453800058781,
+            "correctTurns": 28,
+            "weightedAccuracy": 0.8151235694756437,
+            "weightedLogLoss": 0.3412739170016028
+          },
+          "late": {
+            "turns": 209,
+            "totalWeight": 8.373909239988244,
+            "correctTurns": 206,
+            "weightedAccuracy": 0.9816545434153745,
+            "weightedLogLoss": 0.09091724116531545
+          }
+        }
+      },
+      "leaveOneGameOut": {
+        "schemaVersion": "fcm.pairwise-value-cross-validation.v1",
+        "games": 12,
+        "gameAccuracy": 0.75,
+        "weightedAccuracy": 0.6796473115871535,
+        "weightedLogLoss": 0.7869653807741567,
+        "byPhase": {
+          "early": {
+            "turns": 36,
+            "totalWeight": 1.8130453800058786,
+            "correctTurns": 20,
+            "turnAccuracy": 0.5555555555555556,
+            "weightedAccuracy": 0.5728884745826516,
+            "weightedLogLoss": 0.6404142698731946
+          },
+          "middle": {
+            "turns": 36,
+            "totalWeight": 1.8130453800058786,
+            "correctTurns": 21,
+            "turnAccuracy": 0.5833333333333334,
+            "weightedAccuracy": 0.6471442872553226,
+            "weightedLogLoss": 0.6532590483243745
+          },
+          "late": {
+            "turns": 209,
+            "totalWeight": 8.373909239988244,
+            "correctTurns": 142,
+            "turnAccuracy": 0.6794258373205742,
+            "weightedAccuracy": 0.7097990683199754,
+            "weightedLogLoss": 0.8476442642343313
+          }
+        },
+        "folds": [
+          {
+            "holdoutGame": "development-00",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 15,
+              "totalWeight": 0.9999999999999999,
+              "correctTurns": 15,
+              "weightedAccuracy": 1,
+              "weightedLogLoss": 0.017958815287672812,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.2,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.03619486714771843
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.2,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.025503304021209892
+                },
+                "late": {
+                  "turns": 9,
+                  "totalWeight": 0.6,
+                  "correctTurns": 9,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.009365301756478569
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-01",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 20,
+              "totalWeight": 1.0000000000000002,
+              "correctTurns": 20,
+              "weightedAccuracy": 1,
+              "weightedLogLoss": 0.022126959683575358,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.15000000000000002,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.08831079910313017
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.15000000000000002,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.03453508498389466
+                },
+                "late": {
+                  "turns": 14,
+                  "totalWeight": 0.7000000000000001,
+                  "correctTurns": 14,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.00528582438645947
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-02",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 15,
+              "totalWeight": 0.9999999999999999,
+              "correctTurns": 15,
+              "weightedAccuracy": 1,
+              "weightedLogLoss": 0.31316068912556516,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.2,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.48767583600072895
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.2,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.5374057569032918
+                },
+                "late": {
+                  "turns": 9,
+                  "totalWeight": 0.6,
+                  "correctTurns": 9,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.18024061757460152
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-03",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 23,
+              "totalWeight": 0.9999999999999996,
+              "correctTurns": 15,
+              "weightedAccuracy": 0.6521739130434784,
+              "weightedLogLoss": 0.738646014585027,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.13043478260869565,
+                  "correctTurns": 1,
+                  "weightedAccuracy": 0.3333333333333333,
+                  "weightedLogLoss": 1.0515882948310502
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.13043478260869565,
+                  "correctTurns": 1,
+                  "weightedAccuracy": 0.3333333333333333,
+                  "weightedLogLoss": 1.0758103459714772
+                },
+                "late": {
+                  "turns": 17,
+                  "totalWeight": 0.7391304347826084,
+                  "correctTurns": 13,
+                  "weightedAccuracy": 0.7647058823529412,
+                  "weightedLogLoss": 0.6239213184145903
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-04",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 15,
+              "totalWeight": 0.9999999999999999,
+              "correctTurns": 2,
+              "weightedAccuracy": 0.13333333333333336,
+              "weightedLogLoss": 1.4343142837538727,
+              "games": 1,
+              "gameCorrect": 0,
+              "gameAccuracy": 0,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.2,
+                  "correctTurns": 0,
+                  "weightedAccuracy": 0,
+                  "weightedLogLoss": 1.6031595128278102
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.2,
+                  "correctTurns": 0,
+                  "weightedAccuracy": 0,
+                  "weightedLogLoss": 2.0652580262977067
+                },
+                "late": {
+                  "turns": 9,
+                  "totalWeight": 0.6,
+                  "correctTurns": 2,
+                  "weightedAccuracy": 0.22222222222222224,
+                  "weightedLogLoss": 1.1677179598812821
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-05",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 45,
+              "totalWeight": 1.0000000000000004,
+              "correctTurns": 39,
+              "weightedAccuracy": 0.8666666666666666,
+              "weightedLogLoss": 0.24359042612090245,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.06666666666666667,
+                  "correctTurns": 0,
+                  "weightedAccuracy": 0,
+                  "weightedLogLoss": 0.8700197690661141
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.06666666666666667,
+                  "correctTurns": 2,
+                  "weightedAccuracy": 0.6666666666666667,
+                  "weightedLogLoss": 0.3575239673930705
+                },
+                "late": {
+                  "turns": 39,
+                  "totalWeight": 0.8666666666666669,
+                  "correctTurns": 37,
+                  "weightedAccuracy": 0.9487179487179487,
+                  "weightedLogLoss": 0.186639435027258
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-06",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 32,
+              "totalWeight": 1,
+              "correctTurns": 17,
+              "weightedAccuracy": 0.53125,
+              "weightedLogLoss": 0.7749719161605119,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.09375,
+                  "correctTurns": 2,
+                  "weightedAccuracy": 0.6666666666666666,
+                  "weightedLogLoss": 0.7238100454547759
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.09375,
+                  "correctTurns": 0,
+                  "weightedAccuracy": 0,
+                  "weightedLogLoss": 1.2306584571389363
+                },
+                "late": {
+                  "turns": 26,
+                  "totalWeight": 0.8125,
+                  "correctTurns": 15,
+                  "weightedAccuracy": 0.5769230769230769,
+                  "weightedLogLoss": 0.7282959926675094
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-07",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 27,
+              "totalWeight": 0.9999999999999993,
+              "correctTurns": 17,
+              "weightedAccuracy": 0.62962962962963,
+              "weightedLogLoss": 0.46642496108120646,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.1111111111111111,
+                  "correctTurns": 0,
+                  "weightedAccuracy": 0,
+                  "weightedLogLoss": 0.8884164821837653
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.1111111111111111,
+                  "correctTurns": 0,
+                  "weightedAccuracy": 0,
+                  "weightedLogLoss": 1.2196070161205448
+                },
+                "late": {
+                  "turns": 21,
+                  "totalWeight": 0.7777777777777775,
+                  "correctTurns": 17,
+                  "weightedAccuracy": 0.8095238095238098,
+                  "weightedLogLoss": 0.2985430216323636
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-08",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 21,
+              "totalWeight": 1.0000000000000004,
+              "correctTurns": 7,
+              "weightedAccuracy": 0.33333333333333315,
+              "weightedLogLoss": 1.6226985054746146,
+              "games": 1,
+              "gameCorrect": 0,
+              "gameAccuracy": 0,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.14285714285714285,
+                  "correctTurns": 2,
+                  "weightedAccuracy": 0.6666666666666666,
+                  "weightedLogLoss": 0.4432975156835851
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.14285714285714285,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.3390861928238921
+                },
+                "late": {
+                  "turns": 15,
+                  "totalWeight": 0.7142857142857144,
+                  "correctTurns": 2,
+                  "weightedAccuracy": 0.1333333333333333,
+                  "weightedLogLoss": 2.1153011659629657
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-09",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 41,
+              "totalWeight": 1.0000000000000004,
+              "correctTurns": 13,
+              "weightedAccuracy": 0.31707317073170715,
+              "weightedLogLoss": 3.334318838590636,
+              "games": 1,
+              "gameCorrect": 0,
+              "gameAccuracy": 0,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.07317073170731708,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.3367218009830976
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.07317073170731708,
+                  "correctTurns": 1,
+                  "weightedAccuracy": 0.3333333333333333,
+                  "weightedLogLoss": 0.6453271551925192
+                },
+                "late": {
+                  "turns": 35,
+                  "totalWeight": 0.8536585365853663,
+                  "correctTurns": 9,
+                  "weightedAccuracy": 0.257142857142857,
+                  "weightedLogLoss": 3.821740728962549
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-10",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 13,
+              "totalWeight": 0.9999999999999998,
+              "correctTurns": 9,
+              "weightedAccuracy": 0.6923076923076924,
+              "weightedLogLoss": 0.40585867167820494,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.23076923076923078,
+                  "correctTurns": 0,
+                  "weightedAccuracy": 0,
+                  "weightedLogLoss": 0.9814610887945995
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.23076923076923078,
+                  "correctTurns": 2,
+                  "weightedAccuracy": 0.6666666666666666,
+                  "weightedLogLoss": 0.5265072560090823
+                },
+                "late": {
+                  "turns": 7,
+                  "totalWeight": 0.5384615384615385,
+                  "correctTurns": 7,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.10746538534365968
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-11",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 14,
+              "totalWeight": 0.9999999999999997,
+              "correctTurns": 14,
+              "weightedAccuracy": 1,
+              "weightedLogLoss": 0.06951448774809,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.21428571428571427,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.21585624597394357
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.21428571428571427,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.09972134307039092
+                },
+                "late": {
+                  "turns": 8,
+                  "totalWeight": 0.5714285714285713,
+                  "correctTurns": 8,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.003308757667532032
+                }
+              }
+            }
+          }
+        ]
+      },
+      "topWeights": [
+        {
+          "name": "cash",
+          "standardizedWeight": 1.176820900091154,
+          "rawWeight": 0.009468969154203144
+        },
+        {
+          "name": "cashLead",
+          "standardizedWeight": 1.176820900091154,
+          "rawWeight": 0.004734484577101572
+        },
+        {
+          "name": "restaurants",
+          "standardizedWeight": 1.1183727027234136,
+          "rawWeight": 1.4505159229761524
+        },
+        {
+          "name": "inventoryDemandFit",
+          "standardizedWeight": 1.0132272861766518,
+          "rawWeight": 0.6700516361544399
+        },
+        {
+          "name": "beachRestaurantBuilding",
+          "standardizedWeight": 0.9153681897083974,
+          "rawWeight": 1.9168108144927787
+        },
+        {
+          "name": "exclusivelyReachableHouses",
+          "standardizedWeight": 0.664146490548348,
+          "rawWeight": 0.46013418611932005
+        },
+        {
+          "name": "reachableHouses",
+          "standardizedWeight": 0.664146490548348,
+          "rawWeight": 0.46013418611932005
+        },
+        {
+          "name": "salaryDue",
+          "standardizedWeight": -0.6332550422907443,
+          "rawWeight": -0.05310566999312918
+        },
+        {
+          "name": "turnOrderPosition",
+          "standardizedWeight": 0.5599214867293382,
+          "rawWeight": 0.5599214867293382
+        },
+        {
+          "name": "beachRecruiting",
+          "standardizedWeight": -0.5476674535417653,
+          "rawWeight": -0.39046075093032095
+        },
+        {
+          "name": "inventoryTotal",
+          "standardizedWeight": -0.4978783168971363,
+          "rawWeight": -0.10609045816085445
+        },
+        {
+          "name": "beachEmployees",
+          "standardizedWeight": -0.46950206582872944,
+          "rawWeight": -0.05963521821299496
+        }
+      ],
+      "model": {
+        "schemaVersion": "fcm.pairwise-value-model.v1",
+        "featureNames": [
+          "turn",
+          "turnOrderPosition",
+          "turnOrderKnown",
+          "bankPerPlayer",
+          "cash",
+          "cashLead",
+          "salaryDue",
+          "salaryGap",
+          "unitPrice",
+          "discount",
+          "activeEmployees",
+          "beachEmployees",
+          "freeSlots",
+          "recruitingCapacity",
+          "salaryDiscountPoints",
+          "trainingCapacity",
+          "trainingLevel2Capacity",
+          "trainingLevel3Capacity",
+          "unlimitedTraining",
+          "productionWorkers",
+          "productionGoodsCoverage",
+          "marketingWorkers",
+          "campaignTypeCoverage",
+          "restaurantBuilders",
+          "beachManagement",
+          "beachRecruiting",
+          "beachTraining",
+          "beachMarketing",
+          "beachProduction",
+          "beachRestaurantBuilding",
+          "beachTrainable",
+          "beachSalaryLiable",
+          "restaurants",
+          "milestonesHeld",
+          "openMilestoneOptions",
+          "inventoryTotal",
+          "inventoryDemandFit",
+          "reachableDemandUnits",
+          "unreachableDemandUnits",
+          "servableDemandUnits",
+          "uncontestedServableUnits",
+          "reachableHouses",
+          "exclusivelyReachableHouses",
+          "closestHouses",
+          "tiedClosestHouses",
+          "distanceDeficitTotal",
+          "productionMarketingSynergy",
+          "reachableEngineReady",
+          "futureDemandSupplyEngineReady",
+          "bankrupt"
+        ],
+        "scales": [
+          1,
+          1,
+          1,
+          1,
+          124.28183901821875,
+          248.5636780364375,
+          11.92443372567703,
+          2.784321403587357,
+          0.5191148799822437,
+          0.5191148799822437,
+          1,
+          7.872899268211639,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0.4560328526868246,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1.964251887423421,
+          1.4026184507325767,
+          2.0973409087072445,
+          2.0898477869265712,
+          3.794387176457546,
+          0.4775474881440606,
+          3.5250965863872046,
+          4.428369311483517,
+          0.7710171843055325,
+          3.8605092284782723,
+          1,
+          4.69296038049202,
+          1.5121629908879344,
+          0.8967534034876417,
+          0.8967534034876417,
+          1.3675478793094678,
+          1.3675478793094678,
+          1.4433756729740665,
+          1.4433756729740665,
+          2.064523828443594,
+          1,
+          5.0135121171560915,
+          1,
+          1,
+          0.5738605959179219,
+          1
+        ],
+        "standardizedWeights": [
+          0,
+          0.5599214867293382,
+          0,
+          0,
+          1.176820900091154,
+          1.176820900091154,
+          -0.6332550422907443,
+          -0.1643435210426788,
+          0.4620504306718945,
+          -0.4620504306718945,
+          0,
+          -0.46950206582872944,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -0.241614307782691,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0.004131805539762468,
+          -0.5476674535417653,
+          0.17464314692480284,
+          -0.1918634115281113,
+          -0.014711866978800335,
+          0.9153681897083974,
+          0.3109129167203738,
+          -0.3529817121459801,
+          1.1183727027234136,
+          0.27544274494513826,
+          0,
+          -0.4978783168971363,
+          1.0132272861766518,
+          -0.0032796596523799065,
+          0.0032796596523799065,
+          0.1577708504427227,
+          0.1577708504427227,
+          0.664146490548348,
+          0.664146490548348,
+          0.403910224923514,
+          0,
+          -0.35153943158438905,
+          0,
+          0,
+          -0.1493682530735607,
+          0
+        ],
+        "lambda": 0.01,
+        "iterations": 1200,
+        "learningRate": 0.2,
+        "optimizerStep": 0.19801980198019803,
+        "trainingRows": 281,
+        "trainingGames": 12,
+        "objective": 0.2331765720929455,
+        "dataLoss": 0.18574685142324043,
+        "regularizationLoss": 0.04742972066970508
+      }
+    },
+    {
+      "lambda": 0.1,
+      "developmentAudit": {
+        "schemaVersion": "fcm.pairwise-value-audit.v1",
+        "turns": 281,
+        "totalWeight": 11.99999999999996,
+        "correctTurns": 249,
+        "weightedAccuracy": 0.8862209951066442,
+        "weightedLogLoss": 0.30204244417873577,
+        "games": 12,
+        "gameCorrect": 12,
+        "gameAccuracy": 1,
+        "byPhase": {
+          "early": {
+            "turns": 36,
+            "totalWeight": 1.8130453800058781,
+            "correctTurns": 22,
+            "weightedAccuracy": 0.6415807014378454,
+            "weightedLogLoss": 0.5159501533125223
+          },
+          "middle": {
+            "turns": 36,
+            "totalWeight": 1.8130453800058781,
+            "correctTurns": 27,
+            "weightedAccuracy": 0.7859325897594028,
+            "weightedLogLoss": 0.4140522693682563
+          },
+          "late": {
+            "turns": 209,
+            "totalWeight": 8.373909239988244,
+            "correctTurns": 200,
+            "weightedAccuracy": 0.9609019316035557,
+            "weightedLogLoss": 0.23147763831171828
+          }
+        }
+      },
+      "leaveOneGameOut": {
+        "schemaVersion": "fcm.pairwise-value-cross-validation.v1",
+        "games": 12,
+        "gameAccuracy": 0.75,
+        "weightedAccuracy": 0.6560762535637713,
+        "weightedLogLoss": 0.6561827135856001,
+        "byPhase": {
+          "early": {
+            "turns": 36,
+            "totalWeight": 1.8130453800058786,
+            "correctTurns": 20,
+            "turnAccuracy": 0.5555555555555556,
+            "weightedAccuracy": 0.5728884745826516,
+            "weightedLogLoss": 0.5915516422178995
+          },
+          "middle": {
+            "turns": 36,
+            "totalWeight": 1.8130453800058786,
+            "correctTurns": 23,
+            "turnAccuracy": 0.6388888888888888,
+            "weightedAccuracy": 0.6728537739778833,
+            "weightedLogLoss": 0.562319311977384
+          },
+          "late": {
+            "turns": 209,
+            "totalWeight": 8.373909239988244,
+            "correctTurns": 134,
+            "turnAccuracy": 0.6411483253588517,
+            "weightedAccuracy": 0.6704548202557691,
+            "weightedLogLoss": 0.6904985466989116
+          }
+        },
+        "folds": [
+          {
+            "holdoutGame": "development-00",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 15,
+              "totalWeight": 0.9999999999999999,
+              "correctTurns": 15,
+              "weightedAccuracy": 1,
+              "weightedLogLoss": 0.19723543969250643,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.2,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.2026826858465779
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.2,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.1835281192136875
+                },
+                "late": {
+                  "turns": 9,
+                  "totalWeight": 0.6,
+                  "correctTurns": 9,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.19998879780075554
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-01",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 20,
+              "totalWeight": 1.0000000000000002,
+              "correctTurns": 20,
+              "weightedAccuracy": 1,
+              "weightedLogLoss": 0.10224555204196756,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.15000000000000002,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.24518370173389314
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.15000000000000002,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.13945469642477887
+                },
+                "late": {
+                  "turns": 14,
+                  "totalWeight": 0.7000000000000001,
+                  "correctTurns": 14,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.06364256045452399
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-02",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 15,
+              "totalWeight": 0.9999999999999999,
+              "correctTurns": 15,
+              "weightedAccuracy": 1,
+              "weightedLogLoss": 0.43009767749056443,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.2,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.5076013478651145
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.2,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.5657308092915078
+                },
+                "late": {
+                  "turns": 9,
+                  "totalWeight": 0.6,
+                  "correctTurns": 9,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.3590520767653998
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-03",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 23,
+              "totalWeight": 0.9999999999999996,
+              "correctTurns": 14,
+              "weightedAccuracy": 0.6086956521739131,
+              "weightedLogLoss": 0.6928977132095813,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.13043478260869565,
+                  "correctTurns": 1,
+                  "weightedAccuracy": 0.3333333333333333,
+                  "weightedLogLoss": 0.7911968091191616
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.13043478260869565,
+                  "correctTurns": 1,
+                  "weightedAccuracy": 0.3333333333333333,
+                  "weightedLogLoss": 0.8218487068590143
+                },
+                "late": {
+                  "turns": 17,
+                  "totalWeight": 0.7391304347826084,
+                  "correctTurns": 12,
+                  "weightedAccuracy": 0.7058823529411765,
+                  "weightedLogLoss": 0.6527947562285784
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-04",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 15,
+              "totalWeight": 0.9999999999999999,
+              "correctTurns": 0,
+              "weightedAccuracy": 0,
+              "weightedLogLoss": 1.072730043528833,
+              "games": 1,
+              "gameCorrect": 0,
+              "gameAccuracy": 0,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.2,
+                  "correctTurns": 0,
+                  "weightedAccuracy": 0,
+                  "weightedLogLoss": 1.042942007486355
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.2,
+                  "correctTurns": 0,
+                  "weightedAccuracy": 0,
+                  "weightedLogLoss": 1.2123798866175572
+                },
+                "late": {
+                  "turns": 9,
+                  "totalWeight": 0.6,
+                  "correctTurns": 0,
+                  "weightedAccuracy": 0,
+                  "weightedLogLoss": 1.0361094411800842
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-05",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 45,
+              "totalWeight": 1.0000000000000004,
+              "correctTurns": 42,
+              "weightedAccuracy": 0.9333333333333332,
+              "weightedLogLoss": 0.2870902017436522,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.06666666666666667,
+                  "correctTurns": 0,
+                  "weightedAccuracy": 0,
+                  "weightedLogLoss": 0.8074228173806449
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.06666666666666667,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.42231158009393693
+                },
+                "late": {
+                  "turns": 39,
+                  "totalWeight": 0.8666666666666669,
+                  "correctTurns": 39,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.2366629714369385
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-06",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 32,
+              "totalWeight": 1,
+              "correctTurns": 15,
+              "weightedAccuracy": 0.46875,
+              "weightedLogLoss": 0.7585892797315863,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.09375,
+                  "correctTurns": 2,
+                  "weightedAccuracy": 0.6666666666666666,
+                  "weightedLogLoss": 0.6717765475458689
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.09375,
+                  "correctTurns": 0,
+                  "weightedAccuracy": 0,
+                  "weightedLogLoss": 1.055320543427638
+                },
+                "late": {
+                  "turns": 26,
+                  "totalWeight": 0.8125,
+                  "correctTurns": 13,
+                  "weightedAccuracy": 0.5,
+                  "weightedLogLoss": 0.734367910711163
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-07",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 27,
+              "totalWeight": 0.9999999999999993,
+              "correctTurns": 16,
+              "weightedAccuracy": 0.592592592592593,
+              "weightedLogLoss": 0.6341465280072572,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.1111111111111111,
+                  "correctTurns": 0,
+                  "weightedAccuracy": 0,
+                  "weightedLogLoss": 0.7611067498026108
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.1111111111111111,
+                  "correctTurns": 0,
+                  "weightedAccuracy": 0,
+                  "weightedLogLoss": 1.1064401041636154
+                },
+                "late": {
+                  "turns": 21,
+                  "totalWeight": 0.7777777777777775,
+                  "correctTurns": 16,
+                  "weightedAccuracy": 0.7619047619047622,
+                  "weightedLogLoss": 0.5485388425855836
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-08",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 21,
+              "totalWeight": 1.0000000000000004,
+              "correctTurns": 7,
+              "weightedAccuracy": 0.33333333333333315,
+              "weightedLogLoss": 1.0596737134698846,
+              "games": 1,
+              "gameCorrect": 0,
+              "gameAccuracy": 0,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.14285714285714285,
+                  "correctTurns": 2,
+                  "weightedAccuracy": 0.6666666666666666,
+                  "weightedLogLoss": 0.5585709516288374
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.14285714285714285,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.41967020386296
+                },
+                "late": {
+                  "turns": 15,
+                  "totalWeight": 0.7142857142857144,
+                  "correctTurns": 2,
+                  "weightedAccuracy": 0.1333333333333333,
+                  "weightedLogLoss": 1.2878949677594795
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-09",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 41,
+              "totalWeight": 1.0000000000000004,
+              "correctTurns": 10,
+              "weightedAccuracy": 0.2439024390243901,
+              "weightedLogLoss": 2.1264828723291473,
+              "games": 1,
+              "gameCorrect": 0,
+              "gameAccuracy": 0,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.07317073170731708,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.49162977642848493
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.07317073170731708,
+                  "correctTurns": 2,
+                  "weightedAccuracy": 0.6666666666666666,
+                  "weightedLogLoss": 0.6179189518767028
+                },
+                "late": {
+                  "turns": 35,
+                  "totalWeight": 0.8536585365853663,
+                  "correctTurns": 5,
+                  "weightedAccuracy": 0.1428571428571428,
+                  "weightedLogLoss": 2.3959186165879847
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-10",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 13,
+              "totalWeight": 0.9999999999999998,
+              "correctTurns": 9,
+              "weightedAccuracy": 0.6923076923076924,
+              "weightedLogLoss": 0.379981990064149,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.23076923076923078,
+                  "correctTurns": 0,
+                  "weightedAccuracy": 0,
+                  "weightedLogLoss": 0.8112327339498389
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.23076923076923078,
+                  "correctTurns": 2,
+                  "weightedAccuracy": 0.6666666666666666,
+                  "weightedLogLoss": 0.45254766294375365
+                },
+                "late": {
+                  "turns": 7,
+                  "totalWeight": 0.5384615384615385,
+                  "correctTurns": 7,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.16406066859330815
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-11",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 14,
+              "totalWeight": 0.9999999999999997,
+              "correctTurns": 14,
+              "weightedAccuracy": 1,
+              "weightedLogLoss": 0.13302155171807453,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.21428571428571427,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.36183771944217147
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.21428571428571427,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.18404430777531391
+                },
+                "late": {
+                  "turns": 8,
+                  "totalWeight": 0.5714285714285713,
+                  "correctTurns": 8,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.02808195530007335
+                }
+              }
+            }
+          }
+        ]
+      },
+      "topWeights": [
+        {
+          "name": "cash",
+          "standardizedWeight": 0.5090733196601569,
+          "rawWeight": 0.00409611994545342
+        },
+        {
+          "name": "cashLead",
+          "standardizedWeight": 0.5090733196601569,
+          "rawWeight": 0.00204805997272671
+        },
+        {
+          "name": "inventoryDemandFit",
+          "standardizedWeight": 0.341846421582789,
+          "rawWeight": 0.22606453381196595
+        },
+        {
+          "name": "exclusivelyReachableHouses",
+          "standardizedWeight": 0.33942460367613536,
+          "rawWeight": 0.2351602635623982
+        },
+        {
+          "name": "reachableHouses",
+          "standardizedWeight": 0.33942460367613536,
+          "rawWeight": 0.2351602635623982
+        },
+        {
+          "name": "turnOrderPosition",
+          "standardizedWeight": 0.3264476512744609,
+          "rawWeight": 0.3264476512744609
+        },
+        {
+          "name": "restaurants",
+          "standardizedWeight": 0.3118583200906779,
+          "rawWeight": 0.40447648436211403
+        },
+        {
+          "name": "closestHouses",
+          "standardizedWeight": 0.29976812284950144,
+          "rawWeight": 0.14519964299733515
+        },
+        {
+          "name": "beachRecruiting",
+          "standardizedWeight": -0.2836320032575917,
+          "rawWeight": -0.2022160788698116
+        },
+        {
+          "name": "beachRestaurantBuilding",
+          "standardizedWeight": 0.26992043880799066,
+          "rawWeight": 0.5652221936231071
+        },
+        {
+          "name": "inventoryTotal",
+          "standardizedWeight": -0.23619325755125573,
+          "rawWeight": -0.05032926732837508
+        },
+        {
+          "name": "discount",
+          "standardizedWeight": -0.2076468800740448,
+          "rawWeight": -0.4000017878145727
+        }
+      ],
+      "model": {
+        "schemaVersion": "fcm.pairwise-value-model.v1",
+        "featureNames": [
+          "turn",
+          "turnOrderPosition",
+          "turnOrderKnown",
+          "bankPerPlayer",
+          "cash",
+          "cashLead",
+          "salaryDue",
+          "salaryGap",
+          "unitPrice",
+          "discount",
+          "activeEmployees",
+          "beachEmployees",
+          "freeSlots",
+          "recruitingCapacity",
+          "salaryDiscountPoints",
+          "trainingCapacity",
+          "trainingLevel2Capacity",
+          "trainingLevel3Capacity",
+          "unlimitedTraining",
+          "productionWorkers",
+          "productionGoodsCoverage",
+          "marketingWorkers",
+          "campaignTypeCoverage",
+          "restaurantBuilders",
+          "beachManagement",
+          "beachRecruiting",
+          "beachTraining",
+          "beachMarketing",
+          "beachProduction",
+          "beachRestaurantBuilding",
+          "beachTrainable",
+          "beachSalaryLiable",
+          "restaurants",
+          "milestonesHeld",
+          "openMilestoneOptions",
+          "inventoryTotal",
+          "inventoryDemandFit",
+          "reachableDemandUnits",
+          "unreachableDemandUnits",
+          "servableDemandUnits",
+          "uncontestedServableUnits",
+          "reachableHouses",
+          "exclusivelyReachableHouses",
+          "closestHouses",
+          "tiedClosestHouses",
+          "distanceDeficitTotal",
+          "productionMarketingSynergy",
+          "reachableEngineReady",
+          "futureDemandSupplyEngineReady",
+          "bankrupt"
+        ],
+        "scales": [
+          1,
+          1,
+          1,
+          1,
+          124.28183901821875,
+          248.5636780364375,
+          11.92443372567703,
+          2.784321403587357,
+          0.5191148799822437,
+          0.5191148799822437,
+          1,
+          7.872899268211639,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0.4560328526868246,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1.964251887423421,
+          1.4026184507325767,
+          2.0973409087072445,
+          2.0898477869265712,
+          3.794387176457546,
+          0.4775474881440606,
+          3.5250965863872046,
+          4.428369311483517,
+          0.7710171843055325,
+          3.8605092284782723,
+          1,
+          4.69296038049202,
+          1.5121629908879344,
+          0.8967534034876417,
+          0.8967534034876417,
+          1.3675478793094678,
+          1.3675478793094678,
+          1.4433756729740665,
+          1.4433756729740665,
+          2.064523828443594,
+          1,
+          5.0135121171560915,
+          1,
+          1,
+          0.5738605959179219,
+          1
+        ],
+        "standardizedWeights": [
+          0,
+          0.3264476512744609,
+          0,
+          0,
+          0.5090733196601569,
+          0.5090733196601569,
+          -0.0361697753945312,
+          -0.14236966134165097,
+          0.2076468800740448,
+          -0.2076468800740448,
+          0,
+          -0.18099554970376533,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -0.024318656121913272,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -0.05888891630899421,
+          -0.2836320032575917,
+          0.048260161107368235,
+          -0.08359195287483723,
+          0.038544125168080555,
+          0.26992043880799066,
+          0.006652668287474467,
+          -0.03437142206015053,
+          0.3118583200906779,
+          0.12117416483704872,
+          0,
+          -0.23619325755125573,
+          0.341846421582789,
+          0.01515465226472938,
+          -0.01515465226472938,
+          0.126596135227162,
+          0.126596135227162,
+          0.33942460367613536,
+          0.33942460367613536,
+          0.29976812284950144,
+          0,
+          -0.1286122492412171,
+          0,
+          0,
+          -0.0998854641601883,
+          0
+        ],
+        "lambda": 0.1,
+        "iterations": 1200,
+        "learningRate": 0.2,
+        "optimizerStep": 0.18181818181818182,
+        "trainingRows": 281,
+        "trainingGames": 12,
+        "objective": 0.38197928269837733,
+        "dataLoss": 0.30204244417873577,
+        "regularizationLoss": 0.07993683851964159
+      }
+    },
+    {
+      "lambda": 1,
+      "developmentAudit": {
+        "schemaVersion": "fcm.pairwise-value-audit.v1",
+        "turns": 281,
+        "totalWeight": 11.99999999999996,
+        "correctTurns": 241,
+        "weightedAccuracy": 0.8584309845676509,
+        "weightedLogLoss": 0.49814740565405996,
+        "games": 12,
+        "gameCorrect": 11,
+        "gameAccuracy": 0.9166666666666666,
+        "byPhase": {
+          "early": {
+            "turns": 36,
+            "totalWeight": 1.8130453800058781,
+            "correctTurns": 22,
+            "weightedAccuracy": 0.6415807014378454,
+            "weightedLogLoss": 0.6108414133274757
+          },
+          "middle": {
+            "turns": 36,
+            "totalWeight": 1.8130453800058781,
+            "correctTurns": 25,
+            "weightedAccuracy": 0.7287339642603724,
+            "weightedLogLoss": 0.5570819396917571
+          },
+          "late": {
+            "turns": 209,
+            "totalWeight": 8.373909239988244,
+            "correctTurns": 194,
+            "weightedAccuracy": 0.9334623670968176,
+            "weightedLogLoss": 0.4609878991788103
+          }
+        }
+      },
+      "leaveOneGameOut": {
+        "schemaVersion": "fcm.pairwise-value-cross-validation.v1",
+        "games": 12,
+        "gameAccuracy": 0.5833333333333334,
+        "weightedAccuracy": 0.6349985196960718,
+        "weightedLogLoss": 0.6531211920586509,
+        "byPhase": {
+          "early": {
+            "turns": 36,
+            "totalWeight": 1.8130453800058786,
+            "correctTurns": 23,
+            "turnAccuracy": 0.6388888888888888,
+            "weightedAccuracy": 0.6561721875345368,
+            "weightedLogLoss": 0.6396367414275578
+          },
+          "middle": {
+            "turns": 36,
+            "totalWeight": 1.8130453800058786,
+            "correctTurns": 25,
+            "turnAccuracy": 0.6944444444444444,
+            "weightedAccuracy": 0.7287339642603722,
+            "weightedLogLoss": 0.6196699133030972
+          },
+          "late": {
+            "turns": 209,
+            "totalWeight": 8.373909239988244,
+            "correctTurns": 121,
+            "turnAccuracy": 0.5789473684210527,
+            "weightedAccuracy": 0.6101194065612485,
+            "weightedLogLoss": 0.6632833045061207
+          }
+        },
+        "folds": [
+          {
+            "holdoutGame": "development-00",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 15,
+              "totalWeight": 0.9999999999999999,
+              "correctTurns": 12,
+              "weightedAccuracy": 0.8,
+              "weightedLogLoss": 0.5602745274423725,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.2,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.45184792178875954
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.2,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.482415545788315
+                },
+                "late": {
+                  "turns": 9,
+                  "totalWeight": 0.6,
+                  "correctTurns": 6,
+                  "weightedAccuracy": 0.6666666666666666,
+                  "weightedLogLoss": 0.6223697232115959
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-01",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 20,
+              "totalWeight": 1.0000000000000002,
+              "correctTurns": 20,
+              "weightedAccuracy": 1,
+              "weightedLogLoss": 0.40555880556773016,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.15000000000000002,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.49398223913623635
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.15000000000000002,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.44083738666016614
+                },
+                "late": {
+                  "turns": 14,
+                  "totalWeight": 0.7000000000000001,
+                  "correctTurns": 14,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.37905123099752847
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-02",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 15,
+              "totalWeight": 0.9999999999999999,
+              "correctTurns": 15,
+              "weightedAccuracy": 1,
+              "weightedLogLoss": 0.6002241243536764,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.2,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.627752190743058
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.2,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.6407318891155591
+                },
+                "late": {
+                  "turns": 9,
+                  "totalWeight": 0.6,
+                  "correctTurns": 9,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.5775455139699215
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-03",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 23,
+              "totalWeight": 0.9999999999999996,
+              "correctTurns": 16,
+              "weightedAccuracy": 0.6956521739130436,
+              "weightedLogLoss": 0.6628923085502598,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.13043478260869565,
+                  "correctTurns": 1,
+                  "weightedAccuracy": 0.3333333333333333,
+                  "weightedLogLoss": 0.7001758858678291
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.13043478260869565,
+                  "correctTurns": 1,
+                  "weightedAccuracy": 0.3333333333333333,
+                  "weightedLogLoss": 0.7212374079771121
+                },
+                "late": {
+                  "turns": 17,
+                  "totalWeight": 0.7391304347826084,
+                  "correctTurns": 14,
+                  "weightedAccuracy": 0.823529411764706,
+                  "weightedLogLoss": 0.6460166597130088
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-04",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 15,
+              "totalWeight": 0.9999999999999999,
+              "correctTurns": 0,
+              "weightedAccuracy": 0,
+              "weightedLogLoss": 0.816499740696782,
+              "games": 1,
+              "gameCorrect": 0,
+              "gameAccuracy": 0,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.2,
+                  "correctTurns": 0,
+                  "weightedAccuracy": 0,
+                  "weightedLogLoss": 0.7895187932629506
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.2,
+                  "correctTurns": 0,
+                  "weightedAccuracy": 0,
+                  "weightedLogLoss": 0.8390293499714738
+                },
+                "late": {
+                  "turns": 9,
+                  "totalWeight": 0.6,
+                  "correctTurns": 0,
+                  "weightedAccuracy": 0,
+                  "weightedLogLoss": 0.8179835200831617
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-05",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 45,
+              "totalWeight": 1.0000000000000004,
+              "correctTurns": 42,
+              "weightedAccuracy": 0.9333333333333332,
+              "weightedLogLoss": 0.49887630598423516,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.06666666666666667,
+                  "correctTurns": 0,
+                  "weightedAccuracy": 0,
+                  "weightedLogLoss": 0.7233226507571066
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.06666666666666667,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.5784694771997803
+                },
+                "late": {
+                  "turns": 39,
+                  "totalWeight": 0.8666666666666669,
+                  "correctTurns": 39,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.47548865090820336
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-06",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 32,
+              "totalWeight": 1,
+              "correctTurns": 14,
+              "weightedAccuracy": 0.4375,
+              "weightedLogLoss": 0.7287418125652373,
+              "games": 1,
+              "gameCorrect": 0,
+              "gameAccuracy": 0,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.09375,
+                  "correctTurns": 2,
+                  "weightedAccuracy": 0.6666666666666666,
+                  "weightedLogLoss": 0.7004961153646074
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.09375,
+                  "correctTurns": 0,
+                  "weightedAccuracy": 0,
+                  "weightedLogLoss": 0.8636186308554025
+                },
+                "late": {
+                  "turns": 26,
+                  "totalWeight": 0.8125,
+                  "correctTurns": 12,
+                  "weightedAccuracy": 0.46153846153846156,
+                  "weightedLogLoss": 0.716438221670291
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-07",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 27,
+              "totalWeight": 0.9999999999999993,
+              "correctTurns": 7,
+              "weightedAccuracy": 0.2592592592592594,
+              "weightedLogLoss": 0.8162428556126176,
+              "games": 1,
+              "gameCorrect": 0,
+              "gameAccuracy": 0,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.1111111111111111,
+                  "correctTurns": 2,
+                  "weightedAccuracy": 0.6666666666666666,
+                  "weightedLogLoss": 0.6964276655011356
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.1111111111111111,
+                  "correctTurns": 0,
+                  "weightedAccuracy": 0,
+                  "weightedLogLoss": 0.9046480801368149
+                },
+                "late": {
+                  "turns": 21,
+                  "totalWeight": 0.7777777777777775,
+                  "correctTurns": 5,
+                  "weightedAccuracy": 0.2380952380952382,
+                  "weightedLogLoss": 0.8207299935536578
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-08",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 21,
+              "totalWeight": 1.0000000000000004,
+              "correctTurns": 9,
+              "weightedAccuracy": 0.4285714285714284,
+              "weightedLogLoss": 0.7865093721375064,
+              "games": 1,
+              "gameCorrect": 0,
+              "gameAccuracy": 0,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.14285714285714285,
+                  "correctTurns": 2,
+                  "weightedAccuracy": 0.6666666666666666,
+                  "weightedLogLoss": 0.6420479016230715
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.14285714285714285,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.5713463573113142
+                },
+                "late": {
+                  "turns": 15,
+                  "totalWeight": 0.7142857142857144,
+                  "correctTurns": 4,
+                  "weightedAccuracy": 0.2666666666666666,
+                  "weightedLogLoss": 0.8584342692056319
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-09",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 41,
+              "totalWeight": 1.0000000000000004,
+              "correctTurns": 9,
+              "weightedAccuracy": 0.21951219512195108,
+              "weightedLogLoss": 1.1391373404524396,
+              "games": 1,
+              "gameCorrect": 0,
+              "gameAccuracy": 0,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.07317073170731708,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.638779035789113
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.07317073170731708,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.6450301667342946
+                },
+                "late": {
+                  "turns": 35,
+                  "totalWeight": 0.8536585365853663,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 0.08571428571428569,
+                  "weightedLogLoss": 1.2243772385994225
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-10",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 13,
+              "totalWeight": 0.9999999999999998,
+              "correctTurns": 11,
+              "weightedAccuracy": 0.8461538461538463,
+              "weightedLogLoss": 0.48323404008911547,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.23076923076923078,
+                  "correctTurns": 1,
+                  "weightedAccuracy": 0.3333333333333333,
+                  "weightedLogLoss": 0.7141757054022283
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.23076923076923078,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.5445336602137877
+                },
+                "late": {
+                  "turns": 7,
+                  "totalWeight": 0.5384615384615385,
+                  "correctTurns": 7,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.357987774901493
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-11",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 14,
+              "totalWeight": 0.9999999999999997,
+              "correctTurns": 14,
+              "weightedAccuracy": 1,
+              "weightedLogLoss": 0.3392630712518399,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.21428571428571427,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.5875208426619424
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.21428571428571427,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.44953571035037804
+                },
+                "late": {
+                  "turns": 8,
+                  "totalWeight": 0.5714285714285713,
+                  "correctTurns": 8,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.20481416731109942
+                }
+              }
+            }
+          }
+        ]
+      },
+      "topWeights": [
+        {
+          "name": "cash",
+          "standardizedWeight": 0.1523757482292988,
+          "rawWeight": 0.0012260499959850265
+        },
+        {
+          "name": "cashLead",
+          "standardizedWeight": 0.1523757482292988,
+          "rawWeight": 0.0006130249979925133
+        },
+        {
+          "name": "exclusivelyReachableHouses",
+          "standardizedWeight": 0.11807624907788415,
+          "rawWeight": 0.08180562502802113
+        },
+        {
+          "name": "reachableHouses",
+          "standardizedWeight": 0.11807624907788415,
+          "rawWeight": 0.08180562502802113
+        },
+        {
+          "name": "closestHouses",
+          "standardizedWeight": 0.1092305358520667,
+          "rawWeight": 0.05290834348684343
+        },
+        {
+          "name": "inventoryDemandFit",
+          "standardizedWeight": 0.0939411517424271,
+          "rawWeight": 0.06212369454119846
+        },
+        {
+          "name": "beachRecruiting",
+          "standardizedWeight": -0.07848513435500806,
+          "rawWeight": -0.05595615422998028
+        },
+        {
+          "name": "turnOrderPosition",
+          "standardizedWeight": 0.07093890737608269,
+          "rawWeight": 0.07093890737608269
+        },
+        {
+          "name": "inventoryTotal",
+          "standardizedWeight": -0.0663271359722923,
+          "rawWeight": -0.01413332536281468
+        },
+        {
+          "name": "restaurants",
+          "standardizedWeight": 0.05968179930104295,
+          "rawWeight": 0.07740657473775932
+        },
+        {
+          "name": "salaryGap",
+          "standardizedWeight": -0.05471429980143256,
+          "rawWeight": -0.019650856302342798
+        },
+        {
+          "name": "discount",
+          "standardizedWeight": -0.05372199281149554,
+          "rawWeight": -0.10348767658775856
+        }
+      ],
+      "model": {
+        "schemaVersion": "fcm.pairwise-value-model.v1",
+        "featureNames": [
+          "turn",
+          "turnOrderPosition",
+          "turnOrderKnown",
+          "bankPerPlayer",
+          "cash",
+          "cashLead",
+          "salaryDue",
+          "salaryGap",
+          "unitPrice",
+          "discount",
+          "activeEmployees",
+          "beachEmployees",
+          "freeSlots",
+          "recruitingCapacity",
+          "salaryDiscountPoints",
+          "trainingCapacity",
+          "trainingLevel2Capacity",
+          "trainingLevel3Capacity",
+          "unlimitedTraining",
+          "productionWorkers",
+          "productionGoodsCoverage",
+          "marketingWorkers",
+          "campaignTypeCoverage",
+          "restaurantBuilders",
+          "beachManagement",
+          "beachRecruiting",
+          "beachTraining",
+          "beachMarketing",
+          "beachProduction",
+          "beachRestaurantBuilding",
+          "beachTrainable",
+          "beachSalaryLiable",
+          "restaurants",
+          "milestonesHeld",
+          "openMilestoneOptions",
+          "inventoryTotal",
+          "inventoryDemandFit",
+          "reachableDemandUnits",
+          "unreachableDemandUnits",
+          "servableDemandUnits",
+          "uncontestedServableUnits",
+          "reachableHouses",
+          "exclusivelyReachableHouses",
+          "closestHouses",
+          "tiedClosestHouses",
+          "distanceDeficitTotal",
+          "productionMarketingSynergy",
+          "reachableEngineReady",
+          "futureDemandSupplyEngineReady",
+          "bankrupt"
+        ],
+        "scales": [
+          1,
+          1,
+          1,
+          1,
+          124.28183901821875,
+          248.5636780364375,
+          11.92443372567703,
+          2.784321403587357,
+          0.5191148799822437,
+          0.5191148799822437,
+          1,
+          7.872899268211639,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0.4560328526868246,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1.964251887423421,
+          1.4026184507325767,
+          2.0973409087072445,
+          2.0898477869265712,
+          3.794387176457546,
+          0.4775474881440606,
+          3.5250965863872046,
+          4.428369311483517,
+          0.7710171843055325,
+          3.8605092284782723,
+          1,
+          4.69296038049202,
+          1.5121629908879344,
+          0.8967534034876417,
+          0.8967534034876417,
+          1.3675478793094678,
+          1.3675478793094678,
+          1.4433756729740665,
+          1.4433756729740665,
+          2.064523828443594,
+          1,
+          5.0135121171560915,
+          1,
+          1,
+          0.5738605959179219,
+          1
+        ],
+        "standardizedWeights": [
+          0,
+          0.07093890737608269,
+          0,
+          0,
+          0.1523757482292988,
+          0.1523757482292988,
+          0.03987100234545755,
+          -0.05471429980143256,
+          0.05372199281149554,
+          -0.05372199281149554,
+          0,
+          -0.04802256573555113,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0.02367592674330389,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -0.05163174788233431,
+          -0.07848513435500806,
+          -0.0014165195355302293,
+          -0.0011580283966545137,
+          0.025393719216970444,
+          0.04778276407526249,
+          -0.03510041638622869,
+          0.029168333327763234,
+          0.05968179930104295,
+          0.02962879407669485,
+          0,
+          -0.0663271359722923,
+          0.0939411517424271,
+          0.006879506551886158,
+          -0.006879506551886158,
+          0.05062291215148258,
+          0.05062291215148258,
+          0.11807624907788415,
+          0.11807624907788415,
+          0.1092305358520667,
+          0,
+          -0.03836790653261499,
+          0,
+          0,
+          -0.01163025067457905,
+          0
+        ],
+        "lambda": 1,
+        "iterations": 1200,
+        "learningRate": 0.2,
+        "optimizerStep": 0.1,
+        "trainingRows": 281,
+        "trainingGames": 12,
+        "objective": 0.5695663555180899,
+        "dataLoss": 0.49814740565405996,
+        "regularizationLoss": 0.0714189498640299
+      }
+    },
+    {
+      "lambda": 10,
+      "developmentAudit": {
+        "schemaVersion": "fcm.pairwise-value-audit.v1",
+        "turns": 281,
+        "totalWeight": 11.99999999999996,
+        "correctTurns": 236,
+        "weightedAccuracy": 0.8344124490907832,
+        "weightedLogLoss": 0.6525545982517374,
+        "games": 12,
+        "gameCorrect": 11,
+        "gameAccuracy": 0.9166666666666666,
+        "byPhase": {
+          "early": {
+            "turns": 36,
+            "totalWeight": 1.8130453800058781,
+            "correctTurns": 24,
+            "weightedAccuracy": 0.7026488768075178,
+            "weightedLogLoss": 0.6783236890268548
+          },
+          "middle": {
+            "turns": 36,
+            "totalWeight": 1.8130453800058781,
+            "correctTurns": 25,
+            "weightedAccuracy": 0.7287339642603724,
+            "weightedLogLoss": 0.6662507543625127
+          },
+          "late": {
+            "turns": 209,
+            "totalWeight": 8.373909239988244,
+            "correctTurns": 187,
+            "weightedAccuracy": 0.8858213206621707,
+            "weightedLogLoss": 0.6440099291507633
+          }
+        }
+      },
+      "leaveOneGameOut": {
+        "schemaVersion": "fcm.pairwise-value-cross-validation.v1",
+        "games": 12,
+        "gameAccuracy": 0.5833333333333334,
+        "weightedAccuracy": 0.6204341404213266,
+        "weightedLogLoss": 0.6844178875604134,
+        "byPhase": {
+          "early": {
+            "turns": 36,
+            "totalWeight": 1.8130453800058786,
+            "correctTurns": 24,
+            "turnAccuracy": 0.6666666666666666,
+            "weightedAccuracy": 0.6824368625085814,
+            "weightedLogLoss": 0.6820819739771548
+          },
+          "middle": {
+            "turns": 36,
+            "totalWeight": 1.8130453800058786,
+            "correctTurns": 24,
+            "turnAccuracy": 0.6666666666666666,
+            "weightedAccuracy": 0.7152813258590323,
+            "weightedLogLoss": 0.6781973631689885
+          },
+          "late": {
+            "turns": 209,
+            "totalWeight": 8.373909239988244,
+            "correctTurns": 115,
+            "turnAccuracy": 0.5502392344497608,
+            "weightedAccuracy": 0.586474374194761,
+            "weightedLogLoss": 0.6862704524610725
+          }
+        },
+        "folds": [
+          {
+            "holdoutGame": "development-00",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 15,
+              "totalWeight": 0.9999999999999999,
+              "correctTurns": 12,
+              "weightedAccuracy": 0.8,
+              "weightedLogLoss": 0.6760766272023916,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.2,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.6382756555244632
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.2,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.6532745675470963
+                },
+                "late": {
+                  "turns": 9,
+                  "totalWeight": 0.6,
+                  "correctTurns": 6,
+                  "weightedAccuracy": 0.6666666666666666,
+                  "weightedLogLoss": 0.6962776376467994
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-01",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 20,
+              "totalWeight": 1.0000000000000002,
+              "correctTurns": 20,
+              "weightedAccuracy": 1,
+              "weightedLogLoss": 0.6406455256386043,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.15000000000000002,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.6562370053403784
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.15000000000000002,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.6460960954138305
+                },
+                "late": {
+                  "turns": 14,
+                  "totalWeight": 0.7000000000000001,
+                  "correctTurns": 14,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.63613651503639
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-02",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 15,
+              "totalWeight": 0.9999999999999999,
+              "correctTurns": 15,
+              "weightedAccuracy": 1,
+              "weightedLogLoss": 0.677661808727271,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.2,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.6829307920757147
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.2,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.68325948034874
+                },
+                "late": {
+                  "turns": 9,
+                  "totalWeight": 0.6,
+                  "correctTurns": 9,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.6740395904039669
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-03",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 23,
+              "totalWeight": 0.9999999999999996,
+              "correctTurns": 16,
+              "weightedAccuracy": 0.6956521739130436,
+              "weightedLogLoss": 0.6856223412442399,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.13043478260869565,
+                  "correctTurns": 1,
+                  "weightedAccuracy": 0.3333333333333333,
+                  "weightedLogLoss": 0.6934118029461237
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.13043478260869565,
+                  "correctTurns": 1,
+                  "weightedAccuracy": 0.3333333333333333,
+                  "weightedLogLoss": 0.6984808320952343
+                },
+                "late": {
+                  "turns": 17,
+                  "totalWeight": 0.7391304347826084,
+                  "correctTurns": 14,
+                  "weightedAccuracy": 0.823529411764706,
+                  "weightedLogLoss": 0.6819785849113789
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-04",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 15,
+              "totalWeight": 0.9999999999999999,
+              "correctTurns": 0,
+              "weightedAccuracy": 0,
+              "weightedLogLoss": 0.7135095424189328,
+              "games": 1,
+              "gameCorrect": 0,
+              "gameAccuracy": 0,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.2,
+                  "correctTurns": 0,
+                  "weightedAccuracy": 0,
+                  "weightedLogLoss": 0.7074939435442523
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.2,
+                  "correctTurns": 0,
+                  "weightedAccuracy": 0,
+                  "weightedLogLoss": 0.7166207895376088
+                },
+                "late": {
+                  "turns": 9,
+                  "totalWeight": 0.6,
+                  "correctTurns": 0,
+                  "weightedAccuracy": 0,
+                  "weightedLogLoss": 0.7144776596709339
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-05",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 45,
+              "totalWeight": 1.0000000000000004,
+              "correctTurns": 42,
+              "weightedAccuracy": 0.9333333333333332,
+              "weightedLogLoss": 0.6527813599016203,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.06666666666666667,
+                  "correctTurns": 0,
+                  "weightedAccuracy": 0,
+                  "weightedLogLoss": 0.696658774498063
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.06666666666666667,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.6693935113141595
+                },
+                "late": {
+                  "turns": 39,
+                  "totalWeight": 0.8666666666666669,
+                  "correctTurns": 39,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.648128316362468
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-06",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 32,
+              "totalWeight": 1,
+              "correctTurns": 12,
+              "weightedAccuracy": 0.375,
+              "weightedLogLoss": 0.7105449596972502,
+              "games": 1,
+              "gameCorrect": 0,
+              "gameAccuracy": 0,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.09375,
+                  "correctTurns": 2,
+                  "weightedAccuracy": 0.6666666666666666,
+                  "weightedLogLoss": 0.6955286937660553
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.09375,
+                  "correctTurns": 0,
+                  "weightedAccuracy": 0,
+                  "weightedLogLoss": 0.7262942507341702
+                },
+                "late": {
+                  "turns": 26,
+                  "totalWeight": 0.8125,
+                  "correctTurns": 10,
+                  "weightedAccuracy": 0.38461538461538464,
+                  "weightedLogLoss": 0.710460379877359
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-07",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 27,
+              "totalWeight": 0.9999999999999993,
+              "correctTurns": 4,
+              "weightedAccuracy": 0.14814814814814825,
+              "weightedLogLoss": 0.7338568405292875,
+              "games": 1,
+              "gameCorrect": 0,
+              "gameAccuracy": 0,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.1111111111111111,
+                  "correctTurns": 2,
+                  "weightedAccuracy": 0.6666666666666666,
+                  "weightedLogLoss": 0.6934460483627085
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.1111111111111111,
+                  "correctTurns": 0,
+                  "weightedAccuracy": 0,
+                  "weightedLogLoss": 0.7326725220569803
+                },
+                "late": {
+                  "turns": 21,
+                  "totalWeight": 0.7777777777777775,
+                  "correctTurns": 2,
+                  "weightedAccuracy": 0.09523809523809527,
+                  "weightedLogLoss": 0.7397989991919854
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-08",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 21,
+              "totalWeight": 1.0000000000000004,
+              "correctTurns": 10,
+              "weightedAccuracy": 0.47619047619047594,
+              "weightedLogLoss": 0.7046683497244157,
+              "games": 1,
+              "gameCorrect": 0,
+              "gameAccuracy": 0,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.14285714285714285,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.6820972372331092
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.14285714285714285,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.6684103281179397
+                },
+                "late": {
+                  "turns": 15,
+                  "totalWeight": 0.7142857142857144,
+                  "correctTurns": 4,
+                  "weightedAccuracy": 0.2666666666666666,
+                  "weightedLogLoss": 0.7164341765439725
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-09",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 41,
+              "totalWeight": 1.0000000000000004,
+              "correctTurns": 7,
+              "weightedAccuracy": 0.17073170731707307,
+              "weightedLogLoss": 0.7639203100107325,
+              "games": 1,
+              "gameCorrect": 0,
+              "gameAccuracy": 0,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.07317073170731708,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.6854762435991938
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.07317073170731708,
+                  "correctTurns": 2,
+                  "weightedAccuracy": 0.6666666666666666,
+                  "weightedLogLoss": 0.6861165081223034
+                },
+                "late": {
+                  "turns": 35,
+                  "totalWeight": 0.8536585365853663,
+                  "correctTurns": 2,
+                  "weightedAccuracy": 0.05714285714285711,
+                  "weightedLogLoss": 0.777312984436444
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-10",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 13,
+              "totalWeight": 0.9999999999999998,
+              "correctTurns": 11,
+              "weightedAccuracy": 0.8461538461538463,
+              "weightedLogLoss": 0.6426124022002639,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.23076923076923078,
+                  "correctTurns": 1,
+                  "weightedAccuracy": 0.3333333333333333,
+                  "weightedLogLoss": 0.6950016460390515
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.23076923076923078,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.6594950035948286
+                },
+                "late": {
+                  "turns": 7,
+                  "totalWeight": 0.5384615384615385,
+                  "correctTurns": 7,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.6129244685288271
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-11",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 14,
+              "totalWeight": 0.9999999999999997,
+              "correctTurns": 14,
+              "weightedAccuracy": 1,
+              "weightedLogLoss": 0.6111145834299522,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.21428571428571427,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.678259748206263
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.21428571428571427,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.6484083633689429
+                },
+                "late": {
+                  "turns": 8,
+                  "totalWeight": 0.5714285714285713,
+                  "correctTurns": 8,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.5719499791617142
+                }
+              }
+            }
+          }
+        ]
+      },
+      "topWeights": [
+        {
+          "name": "cash",
+          "standardizedWeight": 0.025171511335399428,
+          "rawWeight": 0.0002025357166762674
+        },
+        {
+          "name": "cashLead",
+          "standardizedWeight": 0.025171511335399428,
+          "rawWeight": 0.0001012678583381337
+        },
+        {
+          "name": "exclusivelyReachableHouses",
+          "standardizedWeight": 0.018756179018300963,
+          "rawWeight": 0.012994662006221827
+        },
+        {
+          "name": "reachableHouses",
+          "standardizedWeight": 0.018756179018300963,
+          "rawWeight": 0.012994662006221827
+        },
+        {
+          "name": "closestHouses",
+          "standardizedWeight": 0.017524495283909224,
+          "rawWeight": 0.00848839574650035
+        },
+        {
+          "name": "inventoryDemandFit",
+          "standardizedWeight": 0.01576030839012467,
+          "rawWeight": 0.010422360873195487
+        },
+        {
+          "name": "beachRecruiting",
+          "standardizedWeight": -0.012181979054803843,
+          "rawWeight": -0.008685169547314374
+        },
+        {
+          "name": "beachManagement",
+          "standardizedWeight": -0.010584770212603428,
+          "rawWeight": -0.005388703088628744
+        },
+        {
+          "name": "servableDemandUnits",
+          "standardizedWeight": 0.010373600108346565,
+          "rawWeight": 0.007585548020142907
+        },
+        {
+          "name": "uncontestedServableUnits",
+          "standardizedWeight": 0.010373600108346565,
+          "rawWeight": 0.007585548020142907
+        },
+        {
+          "name": "salaryDue",
+          "standardizedWeight": 0.009587127702250887,
+          "rawWeight": 0.0008039901871068985
+        },
+        {
+          "name": "inventoryTotal",
+          "standardizedWeight": -0.009176425654872422,
+          "rawWeight": -0.001955359711327958
+        }
+      ],
+      "model": {
+        "schemaVersion": "fcm.pairwise-value-model.v1",
+        "featureNames": [
+          "turn",
+          "turnOrderPosition",
+          "turnOrderKnown",
+          "bankPerPlayer",
+          "cash",
+          "cashLead",
+          "salaryDue",
+          "salaryGap",
+          "unitPrice",
+          "discount",
+          "activeEmployees",
+          "beachEmployees",
+          "freeSlots",
+          "recruitingCapacity",
+          "salaryDiscountPoints",
+          "trainingCapacity",
+          "trainingLevel2Capacity",
+          "trainingLevel3Capacity",
+          "unlimitedTraining",
+          "productionWorkers",
+          "productionGoodsCoverage",
+          "marketingWorkers",
+          "campaignTypeCoverage",
+          "restaurantBuilders",
+          "beachManagement",
+          "beachRecruiting",
+          "beachTraining",
+          "beachMarketing",
+          "beachProduction",
+          "beachRestaurantBuilding",
+          "beachTrainable",
+          "beachSalaryLiable",
+          "restaurants",
+          "milestonesHeld",
+          "openMilestoneOptions",
+          "inventoryTotal",
+          "inventoryDemandFit",
+          "reachableDemandUnits",
+          "unreachableDemandUnits",
+          "servableDemandUnits",
+          "uncontestedServableUnits",
+          "reachableHouses",
+          "exclusivelyReachableHouses",
+          "closestHouses",
+          "tiedClosestHouses",
+          "distanceDeficitTotal",
+          "productionMarketingSynergy",
+          "reachableEngineReady",
+          "futureDemandSupplyEngineReady",
+          "bankrupt"
+        ],
+        "scales": [
+          1,
+          1,
+          1,
+          1,
+          124.28183901821875,
+          248.5636780364375,
+          11.92443372567703,
+          2.784321403587357,
+          0.5191148799822437,
+          0.5191148799822437,
+          1,
+          7.872899268211639,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0.4560328526868246,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1.964251887423421,
+          1.4026184507325767,
+          2.0973409087072445,
+          2.0898477869265712,
+          3.794387176457546,
+          0.4775474881440606,
+          3.5250965863872046,
+          4.428369311483517,
+          0.7710171843055325,
+          3.8605092284782723,
+          1,
+          4.69296038049202,
+          1.5121629908879344,
+          0.8967534034876417,
+          0.8967534034876417,
+          1.3675478793094678,
+          1.3675478793094678,
+          1.4433756729740665,
+          1.4433756729740665,
+          2.064523828443594,
+          1,
+          5.0135121171560915,
+          1,
+          1,
+          0.5738605959179219,
+          1
+        ],
+        "standardizedWeights": [
+          0,
+          0.00819386963649944,
+          0,
+          0,
+          0.025171511335399428,
+          0.025171511335399428,
+          0.009587127702250887,
+          -0.00881692863369411,
+          0.008425152468190469,
+          -0.008425152468190469,
+          0,
+          -0.006567556676483145,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0.0065012204196045476,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -0.010584770212603428,
+          -0.012181979054803843,
+          -0.0014757668329745976,
+          0.0032913458697034314,
+          0.005026826455032612,
+          0.006159908442137829,
+          -0.00788573642368509,
+          0.007887645329018584,
+          0.007990410010109581,
+          0.004202581728639981,
+          0,
+          -0.009176425654872422,
+          0.01576030839012467,
+          0.0007983150174496283,
+          -0.0007983150174496283,
+          0.010373600108346565,
+          0.010373600108346565,
+          0.018756179018300963,
+          0.018756179018300963,
+          0.017524495283909224,
+          0,
+          -0.005695035990741416,
+          0,
+          0,
+          0.0009778169682228865,
+          0
+        ],
+        "lambda": 10,
+        "iterations": 1200,
+        "learningRate": 0.2,
+        "optimizerStep": 0.018181818181818184,
+        "trainingRows": 281,
+        "trainingGames": 12,
+        "objective": 0.6718901685387821,
+        "dataLoss": 0.6525545982517374,
+        "regularizationLoss": 0.01933557028704465
+      }
+    },
+    {
+      "lambda": 100,
+      "developmentAudit": {
+        "schemaVersion": "fcm.pairwise-value-audit.v1",
+        "turns": 281,
+        "totalWeight": 11.99999999999996,
+        "correctTurns": 235,
+        "weightedAccuracy": 0.8276223256339931,
+        "weightedLogLoss": 0.6885370639238908,
+        "games": 12,
+        "gameCorrect": 11,
+        "gameAccuracy": 0.9166666666666666,
+        "byPhase": {
+          "early": {
+            "turns": 36,
+            "totalWeight": 1.8130453800058781,
+            "correctTurns": 25,
+            "weightedAccuracy": 0.7149057251287386,
+            "weightedLogLoss": 0.6915266830251339
+          },
+          "middle": {
+            "turns": 36,
+            "totalWeight": 1.8130453800058781,
+            "correctTurns": 25,
+            "weightedAccuracy": 0.7287339642603724,
+            "weightedLogLoss": 0.6901300436322473
+          },
+          "late": {
+            "turns": 209,
+            "totalWeight": 8.373909239988244,
+            "correctTurns": 185,
+            "weightedAccuracy": 0.8734371759656311,
+            "weightedLogLoss": 0.6875448798241972
+          }
+        }
+      },
+      "leaveOneGameOut": {
+        "schemaVersion": "fcm.pairwise-value-cross-validation.v1",
+        "games": 12,
+        "gameAccuracy": 0.5833333333333334,
+        "weightedAccuracy": 0.6054701800178338,
+        "weightedLogLoss": 0.6921824966400796,
+        "byPhase": {
+          "early": {
+            "turns": 36,
+            "totalWeight": 1.8130453800058786,
+            "correctTurns": 22,
+            "turnAccuracy": 0.6111111111111112,
+            "weightedAccuracy": 0.6479644766051478,
+            "weightedLogLoss": 0.6918885205759308
+          },
+          "middle": {
+            "turns": 36,
+            "totalWeight": 1.8130453800058786,
+            "correctTurns": 24,
+            "turnAccuracy": 0.6666666666666666,
+            "weightedAccuracy": 0.7152813258590323,
+            "weightedLogLoss": 0.6914642376712772
+          },
+          "late": {
+            "turns": 209,
+            "totalWeight": 8.373909239988244,
+            "correctTurns": 111,
+            "turnAccuracy": 0.5311004784688995,
+            "weightedAccuracy": 0.5724943415138625,
+            "weightedLogLoss": 0.6924016568909702
+          }
+        },
+        "folds": [
+          {
+            "holdoutGame": "development-00",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 15,
+              "totalWeight": 0.9999999999999999,
+              "correctTurns": 12,
+              "weightedAccuracy": 0.8,
+              "weightedLogLoss": 0.6913448297013972,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.2,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.6867434970537508
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.2,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.68866076743138
+                },
+                "late": {
+                  "turns": 9,
+                  "totalWeight": 0.6,
+                  "correctTurns": 6,
+                  "weightedAccuracy": 0.6666666666666666,
+                  "weightedLogLoss": 0.6937732946739515
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-01",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 20,
+              "totalWeight": 1.0000000000000002,
+              "correctTurns": 20,
+              "weightedAccuracy": 1,
+              "weightedLogLoss": 0.6873472774000995,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.15000000000000002,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.6890802892522534
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.15000000000000002,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.6879182900559759
+                },
+                "late": {
+                  "turns": 14,
+                  "totalWeight": 0.7000000000000001,
+                  "correctTurns": 14,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.6868535578626647
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-02",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 15,
+              "totalWeight": 0.9999999999999999,
+              "correctTurns": 15,
+              "weightedAccuracy": 1,
+              "weightedLogLoss": 0.6914585038777049,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.2,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.6920502903075465
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.2,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.6920408605362711
+                },
+                "late": {
+                  "turns": 9,
+                  "totalWeight": 0.6,
+                  "correctTurns": 9,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.6910671228482358
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-03",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 23,
+              "totalWeight": 0.9999999999999996,
+              "correctTurns": 16,
+              "weightedAccuracy": 0.6956521739130436,
+              "weightedLogLoss": 0.6922871015348164,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.13043478260869565,
+                  "correctTurns": 1,
+                  "weightedAccuracy": 0.3333333333333333,
+                  "weightedLogLoss": 0.6931696486393123
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.13043478260869565,
+                  "correctTurns": 1,
+                  "weightedAccuracy": 0.3333333333333333,
+                  "weightedLogLoss": 0.6937560634319698
+                },
+                "late": {
+                  "turns": 17,
+                  "totalWeight": 0.7391304347826084,
+                  "correctTurns": 14,
+                  "weightedAccuracy": 0.823529411764706,
+                  "weightedLogLoss": 0.6918721293580546
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-04",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 15,
+              "totalWeight": 0.9999999999999999,
+              "correctTurns": 0,
+              "weightedAccuracy": 0,
+              "weightedLogLoss": 0.695360276681606,
+              "games": 1,
+              "gameCorrect": 0,
+              "gameAccuracy": 0,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.2,
+                  "correctTurns": 0,
+                  "weightedAccuracy": 0,
+                  "weightedLogLoss": 0.6946741628444676
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.2,
+                  "correctTurns": 0,
+                  "weightedAccuracy": 0,
+                  "weightedLogLoss": 0.6956911728021848
+                },
+                "late": {
+                  "turns": 9,
+                  "totalWeight": 0.6,
+                  "correctTurns": 0,
+                  "weightedAccuracy": 0,
+                  "weightedLogLoss": 0.695478682587126
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-05",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 45,
+              "totalWeight": 1.0000000000000004,
+              "correctTurns": 42,
+              "weightedAccuracy": 0.9333333333333332,
+              "weightedLogLoss": 0.6885470863653457,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.06666666666666667,
+                  "correctTurns": 0,
+                  "weightedAccuracy": 0,
+                  "weightedLogLoss": 0.6935022490346502
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.06666666666666667,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.690422426330085
+                },
+                "late": {
+                  "turns": 39,
+                  "totalWeight": 0.8666666666666669,
+                  "correctTurns": 39,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.6880216630858039
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-06",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 32,
+              "totalWeight": 1,
+              "correctTurns": 9,
+              "weightedAccuracy": 0.28125,
+              "weightedLogLoss": 0.6954833347423531,
+              "games": 1,
+              "gameCorrect": 0,
+              "gameAccuracy": 0,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.09375,
+                  "correctTurns": 0,
+                  "weightedAccuracy": 0,
+                  "weightedLogLoss": 0.6934157328550362
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.09375,
+                  "correctTurns": 0,
+                  "weightedAccuracy": 0,
+                  "weightedLogLoss": 0.6968755201650741
+                },
+                "late": {
+                  "turns": 26,
+                  "totalWeight": 0.8125,
+                  "correctTurns": 9,
+                  "weightedAccuracy": 0.34615384615384615,
+                  "weightedLogLoss": 0.6955612674113449
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-07",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 27,
+              "totalWeight": 0.9999999999999993,
+              "correctTurns": 3,
+              "weightedAccuracy": 0.11111111111111117,
+              "weightedLogLoss": 0.6980817163876772,
+              "games": 1,
+              "gameCorrect": 0,
+              "gameAccuracy": 0,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.1111111111111111,
+                  "correctTurns": 2,
+                  "weightedAccuracy": 0.6666666666666666,
+                  "weightedLogLoss": 0.693198166052334
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.1111111111111111,
+                  "correctTurns": 0,
+                  "weightedAccuracy": 0,
+                  "weightedLogLoss": 0.6975356304297728
+                },
+                "late": {
+                  "turns": 21,
+                  "totalWeight": 0.7777777777777775,
+                  "correctTurns": 1,
+                  "weightedAccuracy": 0.04761904761904764,
+                  "weightedLogLoss": 0.6988573787152836
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-08",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 21,
+              "totalWeight": 1.0000000000000004,
+              "correctTurns": 10,
+              "weightedAccuracy": 0.47619047619047594,
+              "weightedLogLoss": 0.6943169048587351,
+              "games": 1,
+              "gameCorrect": 0,
+              "gameAccuracy": 0,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.14285714285714285,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.691882856594027
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.14285714285714285,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.6903454348718361
+                },
+                "late": {
+                  "turns": 15,
+                  "totalWeight": 0.7142857142857144,
+                  "correctTurns": 4,
+                  "weightedAccuracy": 0.2666666666666666,
+                  "weightedLogLoss": 0.6955980085090571
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-09",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 41,
+              "totalWeight": 1.0000000000000004,
+              "correctTurns": 5,
+              "weightedAccuracy": 0.12195121951219506,
+              "weightedLogLoss": 0.7008921156906956,
+              "games": 1,
+              "gameCorrect": 0,
+              "gameAccuracy": 0,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.07317073170731708,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.6923330520259454
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.07317073170731708,
+                  "correctTurns": 2,
+                  "weightedAccuracy": 0.6666666666666666,
+                  "weightedLogLoss": 0.6924709743196805
+                },
+                "late": {
+                  "turns": 35,
+                  "totalWeight": 0.8536585365853663,
+                  "correctTurns": 0,
+                  "weightedAccuracy": 0,
+                  "weightedLogLoss": 0.7023475618366185
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-10",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 13,
+              "totalWeight": 0.9999999999999998,
+              "correctTurns": 11,
+              "weightedAccuracy": 0.8461538461538463,
+              "weightedLogLoss": 0.6872825265286526,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.23076923076923078,
+                  "correctTurns": 1,
+                  "weightedAccuracy": 0.3333333333333333,
+                  "weightedLogLoss": 0.6933234454065818
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.23076923076923078,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.6892907618871204
+                },
+                "late": {
+                  "turns": 7,
+                  "totalWeight": 0.5384615384615385,
+                  "correctTurns": 7,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.6838328889987679
+                }
+              }
+            }
+          },
+          {
+            "holdoutGame": "development-11",
+            "trainingGames": 11,
+            "audit": {
+              "schemaVersion": "fcm.pairwise-value-audit.v1",
+              "turns": 14,
+              "totalWeight": 0.9999999999999997,
+              "correctTurns": 14,
+              "weightedAccuracy": 1,
+              "weightedLogLoss": 0.6837882859118716,
+              "games": 1,
+              "gameCorrect": 1,
+              "gameAccuracy": 1,
+              "byPhase": {
+                "early": {
+                  "turns": 3,
+                  "totalWeight": 0.21428571428571427,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.6915829709468543
+                },
+                "middle": {
+                  "turns": 3,
+                  "totalWeight": 0.21428571428571427,
+                  "correctTurns": 3,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.6882359524965078
+                },
+                "late": {
+                  "turns": 8,
+                  "totalWeight": 0.5714285714285713,
+                  "correctTurns": 8,
+                  "weightedAccuracy": 1,
+                  "weightedLogLoss": 0.6791974040545142
+                }
+              }
+            }
+          }
+        ]
+      },
+      "topWeights": [
+        {
+          "name": "cash",
+          "standardizedWeight": 0.002746313828821874,
+          "rawWeight": 0.00002209746693898926
+        },
+        {
+          "name": "cashLead",
+          "standardizedWeight": 0.002746313828821874,
+          "rawWeight": 0.00001104873346949463
+        },
+        {
+          "name": "exclusivelyReachableHouses",
+          "standardizedWeight": 0.0020051203324912116,
+          "rawWeight": 0.0013891881164656695
+        },
+        {
+          "name": "reachableHouses",
+          "standardizedWeight": 0.0020051203324912116,
+          "rawWeight": 0.0013891881164656695
+        },
+        {
+          "name": "closestHouses",
+          "standardizedWeight": 0.0018801776478110227,
+          "rawWeight": 0.0009107076517631931
+        },
+        {
+          "name": "inventoryDemandFit",
+          "standardizedWeight": 0.0017315147946584727,
+          "rawWeight": 0.001145058307267351
+        },
+        {
+          "name": "beachRecruiting",
+          "standardizedWeight": -0.0013156467734836666,
+          "rawWeight": -0.0009379933458001458
+        },
+        {
+          "name": "beachManagement",
+          "standardizedWeight": -0.001184425002870455,
+          "rawWeight": -0.0006029903855274424
+        },
+        {
+          "name": "servableDemandUnits",
+          "standardizedWeight": 0.0011764943187071964,
+          "rawWeight": 0.0008602947922388338
+        },
+        {
+          "name": "uncontestedServableUnits",
+          "standardizedWeight": 0.0011764943187071964,
+          "rawWeight": 0.0008602947922388338
+        },
+        {
+          "name": "salaryDue",
+          "standardizedWeight": 0.0010934449341276425,
+          "rawWeight": 0.00009169784991744422
+        },
+        {
+          "name": "salaryGap",
+          "standardizedWeight": -0.0009554981766763978,
+          "rawWeight": -0.00034317093401836483
+        }
+      ],
+      "model": {
+        "schemaVersion": "fcm.pairwise-value-model.v1",
+        "featureNames": [
+          "turn",
+          "turnOrderPosition",
+          "turnOrderKnown",
+          "bankPerPlayer",
+          "cash",
+          "cashLead",
+          "salaryDue",
+          "salaryGap",
+          "unitPrice",
+          "discount",
+          "activeEmployees",
+          "beachEmployees",
+          "freeSlots",
+          "recruitingCapacity",
+          "salaryDiscountPoints",
+          "trainingCapacity",
+          "trainingLevel2Capacity",
+          "trainingLevel3Capacity",
+          "unlimitedTraining",
+          "productionWorkers",
+          "productionGoodsCoverage",
+          "marketingWorkers",
+          "campaignTypeCoverage",
+          "restaurantBuilders",
+          "beachManagement",
+          "beachRecruiting",
+          "beachTraining",
+          "beachMarketing",
+          "beachProduction",
+          "beachRestaurantBuilding",
+          "beachTrainable",
+          "beachSalaryLiable",
+          "restaurants",
+          "milestonesHeld",
+          "openMilestoneOptions",
+          "inventoryTotal",
+          "inventoryDemandFit",
+          "reachableDemandUnits",
+          "unreachableDemandUnits",
+          "servableDemandUnits",
+          "uncontestedServableUnits",
+          "reachableHouses",
+          "exclusivelyReachableHouses",
+          "closestHouses",
+          "tiedClosestHouses",
+          "distanceDeficitTotal",
+          "productionMarketingSynergy",
+          "reachableEngineReady",
+          "futureDemandSupplyEngineReady",
+          "bankrupt"
+        ],
+        "scales": [
+          1,
+          1,
+          1,
+          1,
+          124.28183901821875,
+          248.5636780364375,
+          11.92443372567703,
+          2.784321403587357,
+          0.5191148799822437,
+          0.5191148799822437,
+          1,
+          7.872899268211639,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0.4560328526868246,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1.964251887423421,
+          1.4026184507325767,
+          2.0973409087072445,
+          2.0898477869265712,
+          3.794387176457546,
+          0.4775474881440606,
+          3.5250965863872046,
+          4.428369311483517,
+          0.7710171843055325,
+          3.8605092284782723,
+          1,
+          4.69296038049202,
+          1.5121629908879344,
+          0.8967534034876417,
+          0.8967534034876417,
+          1.3675478793094678,
+          1.3675478793094678,
+          1.4433756729740665,
+          1.4433756729740665,
+          2.064523828443594,
+          1,
+          5.0135121171560915,
+          1,
+          1,
+          0.5738605959179219,
+          1
+        ],
+        "standardizedWeights": [
+          0,
+          0.0008381272017905095,
+          0,
+          0,
+          0.002746313828821874,
+          0.002746313828821874,
+          0.0010934449341276425,
+          -0.0009554981766763978,
+          0.0009191909490583452,
+          -0.0009191909490583452,
+          0,
+          -0.0006853880718971526,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0.0007521064792247944,
+          0,
+          0,
+          0,
+          0,
+          0,
+          -0.001184425002870455,
+          -0.0013156467734836666,
+          -0.0001843270009935646,
+          0.0004324985820357522,
+          0.0005628199639185567,
+          0.000639974286856157,
+          -0.0008874295222057006,
+          0.000913468001422879,
+          0.0008360629927462573,
+          0.00044244839022727515,
+          0,
+          -0.0009487722426635029,
+          0.0017315147946584727,
+          0.00007109766311504154,
+          -0.00007109766311504154,
+          0.0011764943187071964,
+          0.0011764943187071964,
+          0.0020051203324912116,
+          0.0020051203324912116,
+          0.0018801776478110227,
+          0,
+          -0.0006056572205358524,
+          0,
+          0,
+          0.0001691106608274005,
+          0
+        ],
+        "lambda": 100,
+        "iterations": 1200,
+        "learningRate": 0.2,
+        "optimizerStep": 0.0019801980198019802,
+        "trainingRows": 281,
+        "trainingGames": 12,
+        "objective": 0.6908304065605642,
+        "dataLoss": 0.6885370639238908,
+        "regularizationLoss": 0.002293342636673324
+      }
+    }
+  ],
+  "selectionStatus": "deferred-to-frozen-calibration-split",
+  "promotionStatus": "not-promoted"
+}

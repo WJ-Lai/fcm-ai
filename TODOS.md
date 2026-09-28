@@ -259,8 +259,15 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     is only 65.7% for balanced/growth and 67.5% for cash; balanced and growth make identical ranking
     decisions, early turn accuracy is 47.2%, 13/18 early states are ties and decisive early calls are
     only 2/5. The inspected three-game diagnostic holdout is consumed and cannot be reused for
-    promotion. Fresh frozen seeds, richer policy populations, phase-calibrated features and a new
-    one-shot paired terminal holdout remain required; do not expose a remote simulation API yet.
+    promotion. Terminal-value v2 now replaces the invalid generic capacity sum with explicit
+    semantic employee-pipeline, market, reachability, payroll and spatial features. A frozen
+    12-development/12-calibration/24-promotion protocol balances four weak policy families and both
+    seats. Development and calibration completed 24/24 games with 574 observations. Independent
+    calibration selected per-phase regularization: early scored 46.9% weighted accuracy and 0.692
+    log loss and is rejected/forced to abstain; middle scored 63.6%/0.626 and late 78.6%/0.512.
+    The 24-game promotion holdout remains sealed. Next freeze the gated evaluator inside leaf/cutoff
+    diagnostics, then open the promotion holdout exactly once only after policy and thresholds stop
+    changing. Do not expose a remote simulation API yet.
 - [ ] **P3.3c Freeze leaf-value and search-cutoff diagnostics.**
   - Why: a deeper search can become worse when a biased leaf evaluator rewards unfinished engines,
     excess staff or demand donated to opponents. More depth is not evidence of better planning.

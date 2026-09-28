@@ -123,6 +123,14 @@ frozen, diverse policy league.
   leader accuracy), cash reached 67.5% by changing only two late calls, and early accuracy was 47.2%
   with 13/18 ties. The inspected diagnostic holdout is consumed. This localizes evaluator weakness;
   it does not calibrate or promote any profile.
+- Terminal-value v2 removes the v1 representation bug that treated employee, good and campaign IDs
+  as numeric capacity. Its frozen protocol contains 12 development, 12 independent calibration and
+  24 still-sealed promotion games across deterministic, random, safe-first and official built-in
+  opponents with both seats represented. The first two splits completed 24/24 games and yielded 574
+  seat-safe observations. Regularization is selected independently per phase; calibration weighted
+  accuracy/log loss is 46.9%/0.692 early, 63.6%/0.626 middle and 78.6%/0.512 late. The predeclared
+  gate therefore rejects the early model and exports a neutral abstention there, while middle/late
+  remain experimental. The promotion holdout has not been opened and no policy is promoted.
 
 ## 5. Target architecture
 

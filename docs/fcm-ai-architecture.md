@@ -918,12 +918,17 @@ Exit criterion: clearly beats first-legal/random across seats and makes zero ill
   The suite drift-checks the conservative public projection digest because raw compressed engine
   blobs contain a non-semantic process-level field. This validates execution fidelity, not terminal
   value quality; the earlier full-game loss still blocks evaluator/search promotion.
-- Terminal-value calibration now has a seat-safe collector and pure audit contract. Its first 3+3
-  game puncture generated 94 turn samples but reports the six-game macro average as primary evidence
-  to avoid pseudo-replication. Balanced/growth were directionally identical (65.7% macro leader
-  accuracy); cash reached 67.5%, while early-turn accuracy remained 47.2% with 13/18 ties. The small
-  two-player weak-policy corpus and inspected holdout are diagnostic only; fresh frozen seeds,
-  broader opponents and a one-shot paired league are still required.
+- Terminal-value calibration has a seat-safe collector, equal-game weighting and a frozen three-way
+  data protocol. V2 removes the structural v1 error that recursively summed employee IDs, good IDs,
+  campaign IDs and durations as capacity. Explicit features use official DecisionView employee
+  families, payroll, all-map-house reachability, public demand/inventory, price and spatial control.
+  Twelve development plus twelve disjoint calibration games completed across deterministic,
+  random, safe-first and official built-in opponents in both seats, producing 574 observations.
+  Calibration selects regularization per phase and reports 46.9%/0.692 weighted accuracy/log loss
+  early, 63.6%/0.626 middle and 78.6%/0.512 late. A frozen 55%/0.69 gate makes the early scorer
+  abstain instead of exporting a misleading value; middle and late remain experimental inputs.
+  The 24-game paired promotion holdout is still sealed. None of these fit metrics promotes a policy;
+  leaf/cutoff diagnostics and a one-shot terminal league remain required.
 - Treat opponent hidden simultaneous actions as sampled `believed` inputs. A planner must produce
   the same choice when unavailable opponent reserve cards or submitted move buffers are mutated;
   those metamorphic privacy tests are a promotion gate.

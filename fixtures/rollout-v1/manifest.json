@@ -5,67 +5,67 @@
     {
       "id": "fixture-s1-seat0",
       "source": {"type": "engine-fixture", "path": "fixtures/base-v1/phase-05-subphase-01-seat-00.json"},
-"expected": {"sourceDigest": "sha256:b57498dbd512984c6b8f8dd5d69db75ca511bda44837b680b554077524469e38", "seedKey": "engine-fixture-v1", "seat": 0, "phase": 5, "subphase": 1, "candidateCount": 9, "oracleCandidate": "p5s1-hire-1dfd160273", "oracleTop3": ["p5s1-hire-1dfd160273", "p5s1-hire-d85bc8e066", "p5s1-hire-f62c499152"]}
+"expected": {"sourceDigest": "sha256:8018b3581b82a2d3e084b847fa7748fc0e0dd2c3558dfc5bde097bf58d5524a7", "seedKey": "engine-fixture-v1", "seat": 0, "phase": 5, "subphase": 1, "candidateCount": 9, "oracleCandidate": "p5s1-hire-1dfd160273", "oracleTop3": ["p5s1-hire-1dfd160273", "p5s1-hire-d85bc8e066", "p5s1-hire-f62c499152"]}
     },
     {
       "id": "fixture-s1-seat1",
       "source": {"type": "engine-fixture", "path": "fixtures/base-v1/phase-05-subphase-01-seat-01.json"},
-"expected": {"sourceDigest": "sha256:528ac210f17b1010bce424bf666561657d5e613a7783aad22eacf1ee503087f7", "seedKey": "engine-fixture-v1", "seat": 1, "phase": 5, "subphase": 1, "candidateCount": 9, "oracleCandidate": "p5s1-hire-1dfd160273", "oracleTop3": ["p5s1-hire-1dfd160273", "p5s1-hire-d85bc8e066", "p5s1-hire-f62c499152"]}
+"expected": {"sourceDigest": "sha256:026ae957874ca957869c2c4e6e0c24579e34860aa51fec9cafafaee95e8179b9", "seedKey": "engine-fixture-v1", "seat": 1, "phase": 5, "subphase": 1, "candidateCount": 9, "oracleCandidate": "p5s1-hire-1dfd160273", "oracleTop3": ["p5s1-hire-1dfd160273", "p5s1-hire-d85bc8e066", "p5s1-hire-f62c499152"]}
     },
     {
       "id": "fixture-s1-seat2",
       "source": {"type": "engine-fixture", "path": "fixtures/base-v1/phase-05-subphase-01-seat-02.json"},
-"expected": {"sourceDigest": "sha256:40d5cceb2eea61de85a43931cf2f03123d0b80f13dbe408b3d85f93ecc96bae2", "seedKey": "engine-fixture-v1", "seat": 2, "phase": 5, "subphase": 1, "candidateCount": 9, "oracleCandidate": "p5s1-hire-1dfd160273", "oracleTop3": ["p5s1-hire-1dfd160273", "p5s1-hire-d85bc8e066", "p5s1-hire-f62c499152"]}
+"expected": {"sourceDigest": "sha256:c1665196c0240de7badaa7505b15a4352e88214d836ff323a0ed4592acd497ba", "seedKey": "engine-fixture-v1", "seat": 2, "phase": 5, "subphase": 1, "candidateCount": 9, "oracleCandidate": "p5s1-hire-1dfd160273", "oracleTop3": ["p5s1-hire-1dfd160273", "p5s1-hire-d85bc8e066", "p5s1-hire-f62c499152"]}
     },
     {
       "id": "fixture-s2-seat0",
       "source": {"type": "engine-fixture", "path": "fixtures/base-v1/phase-05-subphase-02-seat-00.json"},
-"expected": {"sourceDigest": "sha256:946b1bd904348512d5a89031f4d1d7d25cda143fcbe71066745915ea9dddb47f", "seedKey": "engine-fixture-v1", "seat": 0, "phase": 5, "subphase": 2, "candidateCount": 8, "oracleCandidate": "p5s2-train-2dd5d77261", "oracleTop3": ["p5s2-train-2dd5d77261", "p5s2-train-5faf56c369", "p5s2-train-cf004f11eb"]}
+"expected": {"sourceDigest": "sha256:0a83ed2e087cd0555bb308c942e1de57f00c9f4f8269d4d690414153d4542fb2", "seedKey": "engine-fixture-v1", "seat": 0, "phase": 5, "subphase": 2, "candidateCount": 8, "oracleCandidate": "p5s2-train-2dd5d77261", "oracleTop3": ["p5s2-train-2dd5d77261", "p5s2-train-5faf56c369", "p5s2-train-cf004f11eb"]}
     },
     {
       "id": "fixture-s3-seat0",
       "source": {"type": "engine-fixture", "path": "fixtures/base-v1/phase-05-subphase-03-seat-00.json"},
-"expected": {"sourceDigest": "sha256:a8054127b261d8d52479b48a5ba917cc75e2dc7a381819cb10753bc79953fac4", "seedKey": "engine-fixture-v1", "seat": 0, "phase": 5, "subphase": 3, "candidateCount": 31, "oracleCandidate": "p5s3-fallback-21d4f44933", "oracleTop3": ["p5s3-fallback-21d4f44933", "p5s3-create-demand-3b1a03c95a", "p5s3-create-demand-9e657ef640"]}
+"expected": {"sourceDigest": "sha256:ed931eafec231d13dbfdcc135437ff67cccee52385c10c7a6063622c5851b5a3", "seedKey": "engine-fixture-v1", "seat": 0, "phase": 5, "subphase": 3, "candidateCount": 31, "oracleCandidate": "p5s3-fallback-21d4f44933", "oracleTop3": ["p5s3-fallback-21d4f44933", "p5s3-create-demand-5013f1d6af", "p5s3-create-demand-a4d3ffb692"]}
     },
     {
       "id": "fixture-s3-seat1",
       "source": {"type": "engine-fixture", "path": "fixtures/base-v1/phase-05-subphase-03-seat-01.json"},
-"expected": {"sourceDigest": "sha256:780e8e8a2c82737b6d94916e59d708233984851e4adad5465adb037ff2acecc9", "seedKey": "engine-fixture-v1", "seat": 1, "phase": 5, "subphase": 3, "candidateCount": 32, "oracleCandidate": "p5s3-fallback-21d4f44933", "oracleTop3": ["p5s3-fallback-21d4f44933", "p5s3-create-demand-3b1a03c95a", "p5s3-create-demand-5dd5426acf"]}
+"expected": {"sourceDigest": "sha256:7662e49181b01e657763193512d65cb9422ed7ca6ca1254835daddd11dd9ef7f", "seedKey": "engine-fixture-v1", "seat": 1, "phase": 5, "subphase": 3, "candidateCount": 32, "oracleCandidate": "p5s3-fallback-21d4f44933", "oracleTop3": ["p5s3-fallback-21d4f44933", "p5s3-create-demand-5dd5426acf", "p5s3-create-demand-a5ca0d81e3"]}
     },
     {
       "id": "fixture-s3-seat2",
       "source": {"type": "engine-fixture", "path": "fixtures/base-v1/phase-05-subphase-03-seat-02.json"},
-"expected": {"sourceDigest": "sha256:32dab558d4ed9c092b611d8ebdd7aca03c3708c83c81cb8cd904963cf5ceee43", "seedKey": "engine-fixture-v1", "seat": 2, "phase": 5, "subphase": 3, "candidateCount": 32, "oracleCandidate": "p5s3-fallback-21d4f44933", "oracleTop3": ["p5s3-fallback-21d4f44933", "p5s3-create-demand-8f10f5c356", "p5s3-create-demand-9615b54f50"]}
+"expected": {"sourceDigest": "sha256:2192575f63881250be82ce2a37f6ef1e4f9c30170d976f7d3772c3f396f0f8d0", "seedKey": "engine-fixture-v1", "seat": 2, "phase": 5, "subphase": 3, "candidateCount": 32, "oracleCandidate": "p5s3-fallback-21d4f44933", "oracleTop3": ["p5s3-fallback-21d4f44933", "p5s3-create-demand-8f10f5c356", "p5s3-create-demand-9615b54f50"]}
     },
     {
       "id": "fixture-s4-seat0",
       "source": {"type": "engine-fixture", "path": "fixtures/base-v1/phase-05-subphase-04-seat-00.json"},
-"expected": {"sourceDigest": "sha256:dd96009ab903b06a18a26d8762653bb37a4037c95c20257ba15358bfd55af80b", "seedKey": "engine-fixture-v1", "seat": 0, "phase": 5, "subphase": 4, "candidateCount": 3, "oracleCandidate": "p5s4-produce-8aa223e313", "oracleTop3": ["p5s4-produce-8aa223e313", "p5s4-produce-99b38f8808", "p5s4-fallback-21d4f44933"]}
+"expected": {"sourceDigest": "sha256:710aa4d2bd89aa24653aa786ac3c537cfa9a550231b61007eeceed222e785e2f", "seedKey": "engine-fixture-v1", "seat": 0, "phase": 5, "subphase": 4, "candidateCount": 3, "oracleCandidate": "p5s4-produce-8aa223e313", "oracleTop3": ["p5s4-produce-8aa223e313", "p5s4-produce-99b38f8808", "p5s4-fallback-21d4f44933"]}
     },
     {
       "id": "fixture-s4-seat1",
       "source": {"type": "engine-fixture", "path": "fixtures/base-v1/phase-05-subphase-04-seat-01.json"},
-"expected": {"sourceDigest": "sha256:a44425736b2780709930c8ff36dd78d0f417205b5ab3537ba77d9a83b08a7cbd", "seedKey": "engine-fixture-v1", "seat": 1, "phase": 5, "subphase": 4, "candidateCount": 3, "oracleCandidate": "p5s4-produce-8aa223e313", "oracleTop3": ["p5s4-produce-8aa223e313", "p5s4-produce-99b38f8808", "p5s4-fallback-21d4f44933"]}
+"expected": {"sourceDigest": "sha256:e757955be975485ef415173e9e7a84975e8e7204dd31d1a289a627169f4ab6c6", "seedKey": "engine-fixture-v1", "seat": 1, "phase": 5, "subphase": 4, "candidateCount": 3, "oracleCandidate": "p5s4-produce-8aa223e313", "oracleTop3": ["p5s4-produce-8aa223e313", "p5s4-produce-99b38f8808", "p5s4-fallback-21d4f44933"]}
     },
     {
       "id": "fixture-s4-seat2",
       "source": {"type": "engine-fixture", "path": "fixtures/base-v1/phase-05-subphase-04-seat-02.json"},
-"expected": {"sourceDigest": "sha256:9af7779b908d728d79f1ec5f710c5db46dd3d433e9bc1787d4f36236a0debc8d", "seedKey": "engine-fixture-v1", "seat": 2, "phase": 5, "subphase": 4, "candidateCount": 3, "oracleCandidate": "p5s4-produce-8aa223e313", "oracleTop3": ["p5s4-produce-8aa223e313", "p5s4-produce-99b38f8808", "p5s4-fallback-21d4f44933"]}
+"expected": {"sourceDigest": "sha256:638092cb5e1eeb96715f2f27f235636a1e465f406a4b2a79bae5bff699ec8417", "seedKey": "engine-fixture-v1", "seat": 2, "phase": 5, "subphase": 4, "candidateCount": 3, "oracleCandidate": "p5s4-produce-8aa223e313", "oracleTop3": ["p5s4-produce-8aa223e313", "p5s4-produce-99b38f8808", "p5s4-fallback-21d4f44933"]}
     },
     {
       "id": "fixture-s5-seat0",
       "source": {"type": "engine-fixture", "path": "fixtures/base-v1/phase-05-subphase-05-seat-00.json"},
-"expected": {"sourceDigest": "sha256:b8cfec182256e5ccbf14775ebe6dd4b7842ea39a8b1fcfcc592c6d11bfc36fe3", "seedKey": "engine-fixture-v1", "seat": 0, "phase": 5, "subphase": 5, "candidateCount": 32, "oracleCandidate": "p5s5-build-garden-35e55356b7", "oracleTop3": ["p5s5-build-garden-35e55356b7", "p5s5-build-garden-4630a29b0c", "p5s5-build-garden-49f1fd68c9"]}
+"expected": {"sourceDigest": "sha256:01f42c5052959c26c02acb8929fc551521d24e61974a1389a510a09351395c7b", "seedKey": "engine-fixture-v1", "seat": 0, "phase": 5, "subphase": 5, "candidateCount": 32, "oracleCandidate": "p5s5-build-garden-35e55356b7", "oracleTop3": ["p5s5-build-garden-35e55356b7", "p5s5-build-garden-4630a29b0c", "p5s5-build-garden-49f1fd68c9"]}
     },
     {
       "id": "seed0-command5",
       "source": {"type": "seeded-replay", "seed": 0, "command": 5},
-"expected": {"sourceDigest": "sha256:78932b457930742bc49121057269fb7801d61d11af0bd8f1146ebba380f7e8d1", "seedKey": "rollout-spike:0", "seat": 1, "phase": 5, "subphase": 1, "candidateCount": 9, "oracleCandidate": "p5s1-hire-1dfd160273", "oracleTop3": ["p5s1-hire-1dfd160273", "p5s1-hire-d85bc8e066", "p5s1-hire-f62c499152"]}
+"expected": {"sourceDigest": "sha256:6ea25140a26050f8dfc561a35ba1452f9bbf75dde8c68eab4da8695ab228b9cc", "seedKey": "rollout-spike:0", "seat": 1, "phase": 5, "subphase": 1, "candidateCount": 9, "oracleCandidate": "p5s1-hire-1dfd160273", "oracleTop3": ["p5s1-hire-1dfd160273", "p5s1-hire-d85bc8e066", "p5s1-hire-f62c499152"]}
     },
     {
       "id": "seed1-command5",
       "source": {"type": "seeded-replay", "seed": 1, "command": 5},
-"expected": {"sourceDigest": "sha256:ffe8d569ae4fa75ada71f8c7548247ea9fad9c77adab47926f7771a2add9a9ff", "seedKey": "rollout-spike:1", "seat": 1, "phase": 5, "subphase": 1, "candidateCount": 9, "oracleCandidate": "p5s1-hire-1dfd160273", "oracleTop3": ["p5s1-hire-1dfd160273", "p5s1-hire-d85bc8e066", "p5s1-hire-f62c499152"]}
+"expected": {"sourceDigest": "sha256:0481eac733d18972cfb48922f1e91f0cc4d210babde3e8f6bfdf35b746bdbfcc", "seedKey": "rollout-spike:1", "seat": 1, "phase": 5, "subphase": 1, "candidateCount": 9, "oracleCandidate": "p5s1-hire-1dfd160273", "oracleTop3": ["p5s1-hire-1dfd160273", "p5s1-hire-d85bc8e066", "p5s1-hire-f62c499152"]}
     }
   ]
 }

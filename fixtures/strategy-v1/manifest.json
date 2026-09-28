@@ -10,7 +10,7 @@
       "tags": ["delayed-activation", "milestone-closure"],
       "source": {
         "path": "fixtures/base-v1/phase-05-subphase-01-seat-00.json",
-        "sha256": "96266cbf0c29150d819c3018856aed46649214c0412f1a7033faf061792c603c",
+        "sha256": "926558f87a605ec158a5724bd85f5420c13927b8c0dee616ab35457d9036fb71",
         "phase": 5,
         "subphase": 1,
         "seat": 0
@@ -40,7 +40,7 @@
       "tags": ["delayed-activation"],
       "source": {
         "path": "fixtures/base-v1/phase-05-subphase-02-seat-00.json",
-        "sha256": "37cbaf819c8f1c93eec14e17e7c0e3201e6d4961be6d1105110d1b85cec772e8",
+        "sha256": "f5db4c1ec7b715edacb38a01fe58341ed3758fdced3c1c25a7d5668d5a67452c",
         "phase": 5,
         "subphase": 2,
         "seat": 0
@@ -68,7 +68,7 @@
       "tags": ["salary-runway"],
       "source": {
         "path": "fixtures/base-v1/phase-07-subphase-01-seat-00.json",
-        "sha256": "a643fa95f0f60364b16de78742ddde43452b52f6729b0ada71f1f6cde3340248",
+        "sha256": "a46a0fa4f159fa79eba6a420016b7330701874d6ee6506daa6e9999375c95662",
         "phase": 7,
         "subphase": 1,
         "seat": 0
@@ -95,7 +95,7 @@
       "tags": ["expiring-opportunity"],
       "source": {
         "path": "fixtures/base-v1/phase-05-subphase-03-seat-00.json",
-        "sha256": "cc8ee423564457365bc4bdc9694d5317f3ac1edda4dc66d86208491fe1e94977",
+        "sha256": "9fb00a1b7f6e58bb8399dc10553205f4f847478e78fc1c4fa2f0bb1f50239eff",
         "phase": 5,
         "subphase": 3,
         "seat": 0
@@ -125,7 +125,7 @@
       "tags": ["attractive-bait", "demand-donation"],
       "source": {
         "path": "fixtures/base-v1/phase-05-subphase-03-seat-00.json",
-        "sha256": "cc8ee423564457365bc4bdc9694d5317f3ac1edda4dc66d86208491fe1e94977",
+        "sha256": "9fb00a1b7f6e58bb8399dc10553205f4f847478e78fc1c4fa2f0bb1f50239eff",
         "phase": 5,
         "subphase": 3,
         "seat": 0
@@ -154,7 +154,7 @@
       "tags": ["restaurant-blocking"],
       "source": {
         "path": "fixtures/base-v1/phase-05-subphase-06-seat-00.json",
-        "sha256": "0c0ee385be23aa4f1d6294ec16b39ed50ec44f03fcb68d5a4176e5502352ff76",
+        "sha256": "fccd2e0a6cc970a49d7e3511c0148c6375b3d81b863b5e9d94789732e46baa6d",
         "phase": 5,
         "subphase": 6,
         "seat": 0
@@ -182,7 +182,7 @@
       "tags": ["restaurant-blocking"],
       "source": {
         "path": "fixtures/base-v1/phase-05-subphase-06-seat-00.json",
-        "sha256": "0c0ee385be23aa4f1d6294ec16b39ed50ec44f03fcb68d5a4176e5502352ff76",
+        "sha256": "fccd2e0a6cc970a49d7e3511c0148c6375b3d81b863b5e9d94789732e46baa6d",
         "phase": 5,
         "subphase": 6,
         "seat": 0
@@ -208,7 +208,7 @@
       "tags": ["sequential-inventory"],
       "source": {
         "path": "fixtures/base-v1/phase-05-subphase-07-seat-00.json",
-        "sha256": "f168a8fb9a85c4f1df4a3416c622e6e5e2562c6c23d4475725b3fd51a7226787",
+        "sha256": "21dad609618ae13f5be87b5f8a2b0361ddf99ae4bc312264314b4741aa17f85c",
         "phase": 5,
         "subphase": 7,
         "seat": 0
@@ -236,7 +236,7 @@
       "tags": ["sequential-inventory"],
       "source": {
         "path": "fixtures/base-v1/phase-05-subphase-07-seat-00.json",
-        "sha256": "f168a8fb9a85c4f1df4a3416c622e6e5e2562c6c23d4475725b3fd51a7226787",
+        "sha256": "21dad609618ae13f5be87b5f8a2b0361ddf99ae4bc312264314b4741aa17f85c",
         "phase": 5,
         "subphase": 7,
         "seat": 0
@@ -262,7 +262,7 @@
       "tags": ["milestone-closure"],
       "source": {
         "path": "fixtures/base-v1/phase-05-subphase-01-seat-00.json",
-        "sha256": "96266cbf0c29150d819c3018856aed46649214c0412f1a7033faf061792c603c",
+        "sha256": "926558f87a605ec158a5724bd85f5420c13927b8c0dee616ab35457d9036fb71",
         "phase": 5,
         "subphase": 1,
         "seat": 0
@@ -291,7 +291,7 @@
       "tags": ["milestone-closure"],
       "source": {
         "path": "fixtures/base-v1/phase-05-subphase-01-seat-00.json",
-        "sha256": "96266cbf0c29150d819c3018856aed46649214c0412f1a7033faf061792c603c",
+        "sha256": "926558f87a605ec158a5724bd85f5420c13927b8c0dee616ab35457d9036fb71",
         "phase": 5,
         "subphase": 1,
         "seat": 0
@@ -320,7 +320,7 @@
       "tags": ["hidden-state-invariance"],
       "source": {
         "path": "fixtures/base-v1/phase-03-subphase-01-seat-00.json",
-        "sha256": "cf4c20559cc31a96cfae31788c35638678023a8dc4c11ff994952bf5412997f2",
+        "sha256": "a1b6cdb153a5eede3914e087f68cbbbbec02081caa85e7685debea47cc1ab1ba",
         "phase": 3,
         "subphase": 1,
         "seat": 0
@@ -344,7 +344,7 @@
       "tags": ["hidden-state-invariance"],
       "source": {
         "path": "fixtures/base-v1/phase-03-subphase-01-seat-00.json",
-        "sha256": "cf4c20559cc31a96cfae31788c35638678023a8dc4c11ff994952bf5412997f2",
+        "sha256": "a1b6cdb153a5eede3914e087f68cbbbbec02081caa85e7685debea47cc1ab1ba",
         "phase": 3,
         "subphase": 1,
         "seat": 0
@@ -368,7 +368,7 @@
       "tags": ["leaf-cutoff", "demand-donation"],
       "source": {
         "path": "fixtures/base-v1/phase-05-subphase-03-seat-00.json",
-        "sha256": "cc8ee423564457365bc4bdc9694d5317f3ac1edda4dc66d86208491fe1e94977",
+        "sha256": "9fb00a1b7f6e58bb8399dc10553205f4f847478e78fc1c4fa2f0bb1f50239eff",
         "phase": 5,
         "subphase": 3,
         "seat": 0
@@ -394,7 +394,7 @@
       "tags": ["sequential-inventory"],
       "source": {
         "path": "fixtures/base-v1/phase-05-subphase-04-seat-00.json",
-        "sha256": "60602e55db662ef2b31da0142decbbc6d38c5c9493518bd03060708cf45b02fb",
+        "sha256": "d9ad8118dd8b34031c25601ed80e36e034b90109974e86d0e309dd9db0d9150b",
         "phase": 5,
         "subphase": 4,
         "seat": 0
