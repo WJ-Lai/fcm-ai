@@ -33,6 +33,25 @@ function demandedGoods(state) {
   return [...counts].sort((a, b) => b[1] - a[1] || a[0] - b[0]).map(([good]) => good)
 }
 
+function boundedCombinations(items, length, { canUse = () => true, limit = 20 } = {}) {
+  const result = []
+  const visit = (selected, start) => {
+    if (result.length >= limit) return
+    if (selected.length === length) {
+      result.push([...selected])
+      return
+    }
+    for (let index = start; index < items.length && result.length < limit; index += 1) {
+      if (!canUse(items[index], selected)) continue
+      selected.push(items[index])
+      visit(selected, index)
+      selected.pop()
+    }
+  }
+  visit([], 0)
+  return result
+}
+
 function restructuringCandidates(action, phase, subphase) {
   const candidates = [stableCandidate(phase, subphase, 'fallback', [{ type: 'end_turn' }])]
   const slots = action.slots ?? []
@@ -111,17 +130,69 @@ function workingDayCandidates(view, actions) {
           finish,
         ], { employees: ordered.map((employee) => employee.id) }))
       }
+
+      const priorityTitles = [
+        'Recruiting Girl', 'Trainer', 'Management Trainee', 'Kitchen Trainee',
+        'Marketing Trainee', 'Errand Boy', 'Pricing Manager', 'Waitress',
+      ]
+      const sequencePool = [...hire.candidates].sort((left, right) => {
+        const leftRank = priorityTitles.indexOf(normalizedName(left))
+        const rightRank = priorityTitles.indexOf(normalizedName(right))
+        return (leftRank < 0 ? priorityTitles.length : leftRank) -
+          (rightRank < 0 ? priorityTitles.length : rightRank) || left.id - right.id
+      })
+      for (let length = 2; length <= Math.min(recruitingPoints, 3); length += 1) {
+        const sequences = boundedCombinations(sequencePool, length, {
+          canUse: (employee, selected) => {
+            const used = selected.filter((item) => item.id === employee.id).length
+            return used < (view.state.availableEmployees?.[employee.id] ?? 1)
+          },
+          limit: 16,
+        })
+        for (const sequence of sequences) {
+          candidates.push(stableCandidate(
+            phase,
+            subphase,
+            `hire-sequence-${length}-${sequence[0].id}`,
+            [...sequence.map((employee) => ({ type: 'hire', employee: employee.id })), finish],
+            { employees: sequence.map((employee) => employee.id) },
+          ))
+        }
+      }
     }
   } else if (subphase === 2) {
-    for (const employee of actions.get('train')?.available ?? []) {
+    const train = actions.get('train')
+    const primitives = []
+    for (const employee of train?.available ?? []) {
       for (const upgrade of employee.upgrades ?? []) {
+        const action = {
+          type: 'train', employee: employee.id, toEmployee: upgrade.id,
+          origin: employee.origin, steps: upgrade.steps,
+        }
+        primitives.push(action)
         candidates.push(stableCandidate(phase, subphase, 'train', [
-          {
-            type: 'train', employee: employee.id, toEmployee: upgrade.id,
-            origin: employee.origin, steps: upgrade.steps,
-          },
+          action,
           finish,
         ], { employee: employee.id, upgrade: upgrade.id }))
+      }
+    }
+    const trainingPoints = train?.trainingPoints ?? 0
+    if (trainingPoints > 1) {
+      const combinations = boundedCombinations(primitives, 2, {
+        canUse: (action, selected) => (
+          selected.reduce((total, item) => total + item.steps, 0) + action.steps <= trainingPoints &&
+          !selected.some((item) => item.employee === action.employee && item.origin === action.origin)
+        ),
+        limit: 16,
+      })
+      for (const sequence of combinations) {
+        candidates.push(stableCandidate(
+          phase,
+          subphase,
+          `train-sequence-${sequence[0].toEmployee}`,
+          [...sequence, finish],
+          { upgrades: sequence.map((action) => action.toEmployee) },
+        ))
       }
     }
   } else if (subphase === 3) {

@@ -6,6 +6,7 @@ import { pathToFileURL } from 'node:url'
 
 import { randomLegal, safeFirstLegal, seededPolicyRandom } from '../src/baselines.mjs'
 import { rankedSampleSummary, wilsonInterval } from '../src/benchmark-stats.mjs'
+import { officialRolloutStrategy } from '../src/official-rollout.mjs'
 import { deterministicStrategy } from '../src/strategy.mjs'
 
 function argument(name, fallback) {
@@ -31,8 +32,8 @@ if (!Number.isSafeInteger(seedOffset) || seedOffset < 0) {
 }
 if (players < 2 || players > 6) throw new Error('--players must be between 2 and 6')
 const policyName = argument('--policy', 'safe-first-legal')
-if (!['safe-first-legal', 'random-legal', 'deterministic-strategy'].includes(policyName)) {
-  throw new Error('--policy must be safe-first-legal, random-legal, or deterministic-strategy')
+if (!['safe-first-legal', 'random-legal', 'deterministic-strategy', 'official-rollout-strategy'].includes(policyName)) {
+  throw new Error('--policy must be safe-first-legal, random-legal, deterministic-strategy, or official-rollout-strategy')
 }
 const opponent = argument('--opponent', 'none')
 if (!['none', 'official-builtin', 'safe-first-legal'].includes(opponent)) {
@@ -80,6 +81,8 @@ for (let episode = 0; episode < episodes; episode += 1) {
   const random = seededPolicyRandom(`policy:${policyName}:${seedIndex}:${players}`)
   let commands = 0
   const actionCounts = {}
+  const rolloutMetrics = []
+  let rolloutChangedStatic = 0
   let violation = null
   let builtinPolicy = null
   while (env.snapshot().phase !== 10 && commands < maxCommands) {
@@ -101,11 +104,19 @@ for (let episode = 0; episode < episodes; episode += 1) {
       const view = await env.observe(seat)
       if (!view.legalActions.yourTurn) throw new Error(`seat ${seat} is pending but has no turn`)
       const seatPolicy = seatPolicies[seat]
-      const actions = seatPolicy === 'random-legal-v1'
-        ? randomLegal(view, random)
-        : seatPolicy === 'deterministic-strategy-v1'
-          ? deterministicStrategy(view).selected.actions
-          : safeFirstLegal(view)
+      let actions
+      if (seatPolicy === 'random-legal-v1') actions = randomLegal(view, random)
+      else if (seatPolicy === 'deterministic-strategy-v1') {
+        actions = deterministicStrategy(view).selected.actions
+      } else if (seatPolicy === 'official-rollout-strategy-v1') {
+        const staticResult = deterministicStrategy(view)
+        if (view.state.phase === 5 && !view.legalActions.isSimulPhase && staticResult.ranked.length > 1) {
+          const planned = await officialRolloutStrategy(view, { env, seat })
+          actions = planned.selected.actions
+          rolloutMetrics.push(planned.metrics)
+          if (planned.selected.id !== planned.staticSelected.id) rolloutChangedStatic += 1
+        } else actions = staticResult.selected.actions
+      } else actions = safeFirstLegal(view)
       for (const action of actions) {
         actionCounts[action.type] = (actionCounts[action.type] ?? 0) + 1
       }
@@ -139,6 +150,14 @@ for (let episode = 0; episode < episodes; episode += 1) {
     bank: terminalView.state.bank,
     latencyMs: Math.round(performance.now() - started),
     actionCounts,
+    rollout: {
+      decisions: rolloutMetrics.length,
+      changedStatic: rolloutChangedStatic,
+      fallbacks: rolloutMetrics.filter((metric) => metric.fallbackUsed).length,
+      maxDecisionMs: rolloutMetrics.length
+        ? Math.max(...rolloutMetrics.map((metric) => metric.elapsedMs))
+        : 0,
+    },
     stateDigest: {
       activeCampaigns: terminalView.state.campaigns?.length ?? 0,
       demandedItems: (terminalView.state.houseDemands ?? []).reduce(

@@ -51,6 +51,39 @@ test('working-day candidates never form a cross-phase Cartesian plan', () => {
   })
 })
 
+test('recruiting proposes bounded multi-hire sequences instead of only single actions', () => {
+  const candidates = generateCandidates(view(5, 1, [
+    { type: 'hire', recruitingPoints: 2, candidates: [
+      { id: 17, name: 'Recruiting Girl' },
+      { id: 27, name: 'Kitchen Trainee' },
+    ] },
+    { type: 'next_subphase' },
+  ], {
+    availableEmployees: { 17: 4, 27: 4 },
+  }))
+  const batches = candidates.map((item) => item.actions.map((action) => action.type === 'hire'
+    ? action.employee
+    : action.type))
+  assert.ok(batches.some((batch) => JSON.stringify(batch) === JSON.stringify([17, 17, 'next_subphase'])))
+  assert.ok(batches.some((batch) => JSON.stringify(batch) === JSON.stringify([17, 27, 'next_subphase'])))
+  assert.ok(candidates.length <= 32)
+})
+
+test('training proposes bounded multi-action sequences when multiple training points exist', () => {
+  const candidates = generateCandidates(view(5, 2, [
+    { type: 'train', trainingPoints: 2, available: [
+      { id: 5, origin: 0, upgrades: [{ id: 6, steps: 1 }] },
+      { id: 13, origin: 0, upgrades: [{ id: 14, steps: 1 }] },
+    ] },
+    { type: 'next_subphase' },
+  ]))
+  assert.ok(candidates.some((item) => (
+    item.actions.filter((action) => action.type === 'train').length === 2 &&
+    item.actions.at(-1).type === 'next_subphase'
+  )))
+  assert.ok(candidates.length <= 32)
+})
+
 test('marketing prioritizes demanded goods and impactful legal squares under budget', () => {
   const candidates = generateCandidates(view(5, 3, [
     { type: 'marketing', goods: [0, 1, 2, 3, 4], options: [{ marketer: 13, campaigns: [{

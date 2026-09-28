@@ -25,6 +25,9 @@ import {
   markLabelEngineReplayed,
 } from '../src/replay-action-label.mjs'
 import { mapReplayDecisionGroup } from '../src/replay-action-mapper.mjs'
+import { exactCandidateRank } from '../src/candidate-imitation.mjs'
+import { generateCandidates } from '../src/candidates.mjs'
+import { rankCandidates } from '../src/strategy.mjs'
 
 
 function argument(name, fallback = null) {
@@ -205,6 +208,14 @@ function verifyActionEffects(group, store, target) {
 const manifest = JSON.parse(await readFile(path.join(captureRoot, 'manifest.json'), 'utf8'))
 assert.equal(manifest.schemaVersion, 'fcm.public-replay-manifest.v1', 'unsupported manifest')
 const report = []
+const imitation = {
+  verifiedLabels: 0,
+  candidateOffered: 0,
+  staticTop1: 0,
+  staticTop3: 0,
+  byDecision: {},
+  missingExamples: [],
+}
 
 for (const [recordIndex, record] of manifest.records.entries()) {
   process.stderr.write(
@@ -262,6 +273,42 @@ for (const [recordIndex, record] of manifest.records.entries()) {
         const target = decodeSimpleModel(capture.replay.states[Math.max(...group.eventIndexes)])
         verifyActionEffects(group, store, target)
         label = markLabelEngineReplayed(label, actions)
+        const comparableActions = [0, 1].includes(group.phase)
+          ? [...actions, { type: 'end_turn' }]
+          : actions
+        const ranked = rankCandidates(
+          { state, legalActions },
+          generateCandidates({ state, legalActions }),
+        )
+        const match = exactCandidateRank(ranked, comparableActions)
+        const decisionKey = `${group.phase}/${group.subphase}`
+        const bucket = imitation.byDecision[decisionKey] ??= {
+          verifiedLabels: 0, candidateOffered: 0, staticTop1: 0, staticTop3: 0,
+        }
+        imitation.verifiedLabels += 1
+        bucket.verifiedLabels += 1
+        if (match) {
+          imitation.candidateOffered += 1
+          bucket.candidateOffered += 1
+          if (match.rank === 1) {
+            imitation.staticTop1 += 1
+            bucket.staticTop1 += 1
+          }
+          if (match.rank <= 3) {
+            imitation.staticTop3 += 1
+            bucket.staticTop3 += 1
+          }
+        } else if (imitation.missingExamples.length < 20) {
+          imitation.missingExamples.push({
+            gameId: capture.source.gameId,
+            sourceStateIndex: group.sourceIndex,
+            phase: group.phase,
+            subphase: group.subphase,
+            seat: group.seat,
+            actionTypes: actions.map((action) => action.type),
+            candidateCount: ranked.length,
+          })
+        }
       } catch (error) {
         const failure = {
           sourceStateIndex: group.sourceIndex,
@@ -309,6 +356,18 @@ const output = {
   mcpProjection: 'FCMAdapter.getState + FCMAdapter.getLegalActions',
   scaleGatePassed: unclassifiedEngineReplayFailures === 0,
   unclassifiedEngineReplayFailures,
+  candidateImitation: {
+    ...imitation,
+    candidateRecall: imitation.verifiedLabels
+      ? imitation.candidateOffered / imitation.verifiedLabels
+      : 0,
+    staticTop1RateGivenOffered: imitation.candidateOffered
+      ? imitation.staticTop1 / imitation.candidateOffered
+      : 0,
+    staticTop3RateGivenOffered: imitation.candidateOffered
+      ? imitation.staticTop3 / imitation.candidateOffered
+      : 0,
+  },
   report,
 }
 process.stdout.write(`${JSON.stringify(output, null, 2)}\n`)

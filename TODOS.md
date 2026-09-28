@@ -118,6 +118,23 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
   - Evidence: `generateCandidates` uses fixed total/per-intent budgets, action-sequence deduplication,
     phase-local macros and a legal fallback. A two-seed official-clone audit executed 1,280 generated
     candidates with zero rejected actions at about 0.049 ms generation time per candidate.
+- [ ] **P3.1b Raise strategic candidate coverage before adding deeper search.**
+  - Why: legal candidates are not useful if the generator systematically omits realistic complete
+    turns. On 10 public human games, only 175/494 (35.4%) exact working-day choices were offered;
+    recruiting was 74/233, training 77/153, marketing 4/62 and restaurant actions 0/10. Among the
+    offered working-day actions, the static evaluator put only 16.0% Top-1 and 52.0% Top-3.
+  - Scope: replace hand-picked one-action templates with bounded phase-local sequence beams for
+    repeated hire/train/marketing/build/restaurant operations. Keep the official action layer as
+    legality oracle and measure candidate recall separately from ranking quality.
+  - Done when: discrete hire/train batch recall reaches >=75% without exceeding 32 candidates or
+    the latency budget, then holds on untouched games. Spatial marketing/build/restaurant choices
+    use task-specific equivalence/value labels rather than requiring the exact human square. Report
+    every subphase separately so high-volume hiring cannot hide missing action families.
+  - Current: bounded 2–3 action hire/train sequences passed 848 official-clone executions with zero
+    invalid actions and ~0.044 ms mean generation time. On the same 10-game development set,
+    working-day exact recall rose from 35.4% to 42.3% (hire 74→98/233; train 77→87/153), while
+    conditional static Top-1 fell from 16.0% to 13.4%. This is useful negative evidence: proposal
+    coverage improved, but the evaluator becomes less reliable as the choice set grows.
 - [x] **P3.2 Implement persistent `GameMemory`.**
   - Why: plans, opponent hypotheses and prediction errors must survive LLM/tool calls.
   - Depends on: P1 schemas.
@@ -125,23 +142,47 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     trajectory without storing credentials.
   - Evidence: `fcm.game-memory.v1` bounds plans, beliefs, errors and decisions; rejects credential
     keys/text; and is byte-for-byte rebuildable from its event stream in tests.
-- [ ] **P3.3 Implement explainable heuristic evaluators and strategy profiles.**
+- [ ] **P3.3a Prove official-clone consequence evaluation in a bounded spike.**
+  - Why: the first static evaluator completed games but could not distinguish demand it would sell
+    from demand donated to a closer opponent. More static weight tuning cannot recover missing
+    consequences.
+  - Depends on: P3.1b–P3.2 and the official offline environment.
+  - Scope: prefilter at most six diverse candidates; execute them only in isolated official-engine
+    clones; use phase-specific horizons; never advance a simultaneous boundary from an opponent's
+    hidden submitted move. Unknown opponent choices are versioned beliefs, never observations.
+  - Budgets: one-ply by default, maximum 24 official transitions, 3-second local deadline and a
+    static legal fallback on timeout/error. Cache keys include ruleset, internal snapshot digest,
+    seat, candidate, horizon and opponent-model version; cache contents never leave the planner.
+  - Done when: 12–20 fixed tactical cases spanning at least two seeds and three working-day
+    subphases achieve >=80% oracle Top-1 and >=95% Top-3, hidden-state metamorphic tests are
+    invariant, every selected action is legal, and local P95 is <=3 seconds. Dynamic cases drawn
+    from one self-play path are calibration evidence, not the fixed promotion suite.
+  - Current: the clone selector, strict budgets, static fallback and own-seat-only continuation are
+    implemented. A 12-case cross-seed dynamic run had 0 illegal selections, 100% agreement with the
+    exhaustive same-horizon scorer and 1.10 s local P95, but covered only working-day subphases 1/4.
+    It exposed and fixed an equal-outcome tie-break defect. The fixed >=3-subphase suite and
+    hidden-state engine fixtures remain open, so the policy is not promoted.
+    A paired full game then scored $10 against the built-in AI's $498 versus $35/$493 for the static
+    policy on the same seed. It made 34 hires, no marketing, and changed 43/66 eligible decisions.
+    This falsifies the current short-horizon score as a strategy oracle; do not expand rollout search
+    until P3.1b and an independently labelled tactical outcome suite are complete.
+- [ ] **P3.3b Calibrate the explainable evaluator and strategy profiles.**
   - Why: this creates the first meaningful opponent and training-data generator.
-  - Depends on: P3.1–P3.2.
-  - Done when: score breakdowns are auditable and the policy beats random/first-legal across the
-    fixed league without increasing invalid actions.
+  - Depends on: P3.3a.
+  - Done when: score breakdowns are auditable and a frozen policy completes every game and beats
+    random/first-legal across held-out paired seeds without increasing invalid actions.
   - Current: the auditable evaluator and balanced/growth/cash profiles exist, but are not promoted.
     An initial four-game paired official-AI smoke test finished without violations but lost 0-4;
     corrections raised mean cash from $5 to $37.75 but still lost 0-4. A paired safe-first trial
     also lost every completed game and one game exceeded the 500-command ceiling. This falsifies
-    static one-step scoring as sufficient. Next implement official-clone consequence evaluation
-    and shallow beam search, then rerun a held-out paired gate; do not tune against these seeds.
+    static one-step scoring as sufficient. P3.3a is now the required spike before any beam search;
+    do not tune against the recorded failure seeds or expose a remote simulation API yet.
 
 ## P4 — search and opponent beliefs
 
 - [ ] **P4.1 Add beam search, then evaluate whether MCTS is justified.**
   - Why: search should prove value before adding more infrastructure.
-  - Depends on: P1.3 and P3.
+  - Depends on: P3.3a passing its accuracy, privacy and latency gates.
   - Done when: held-out league rank improves within a defined decision-time budget.
 - [ ] **P4.2 Add versioned opponent-belief sampling.**
   - Why: future dinner outcomes depend on unrevealed simultaneous choices and opponent reactions.

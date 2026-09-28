@@ -352,3 +352,20 @@ Verification: **89 tests pass**, lint clean (28 pages), `verify_sources.py` OK,
 - The Agent DecisionView now exposes official per-house restaurant distances even before demand is
   present, allowing marketing planners to distinguish merely reachable demand from demand where a
   competitor is closer.
+
+## [2026-09-28] experiment | rollout and candidate-coverage piercing tests
+
+- Added a fail-closed official-clone selector: six diverse candidates, 24-transition/3-second
+  limits, static fallback, deterministic ties and no continuation across another seat or unresolved
+  simultaneous choice. Twelve cross-seed dynamic cases were legal, agreed with the exhaustive
+  same-horizon scorer and had 1.10-second local P95, but covered only recruiting and production.
+- A paired full game falsified that short-horizon score as a strategy oracle. Rollout completed with
+  zero violations but lost $10 to $498, versus the static policy's $35 to $493 on the same seed. It
+  changed 43/66 choices, hired 34 times and never marketed.
+- Added human-label candidate/rank measurement to the replay audit. On 10 games, exact working-day
+  recall was 175/494 (35.4%); among offered labels static Top-1 was 16.0% and Top-3 52.0%.
+- Added bounded multi-hire and multi-train sequence proposals. They passed 848 dynamic and 28 fixed
+  official-clone executions with zero illegal actions; working-day recall rose to 209/494 (42.3%),
+  while conditional Top-1 fell to 13.4%, cleanly separating proposal gains from evaluator weakness.
+- Execution order changed: improve measured candidate coverage and independent tactical labels
+  before deeper beam/MCTS or further rollout-league expansion.

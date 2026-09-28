@@ -673,7 +673,20 @@ Exit criterion: clearly beats first-legal/random across seats and makes zero ill
 
 ### Phase 2 — engine search
 
-- Add shallow beam search first; add MCTS only if measured branching and latency justify it.
+- First run a bounded consequence-evaluation spike: static diversity-preserving prefilter to six
+  candidates, official-clone execution, phase-specific horizons, at most 24 transitions and a
+  three-second deadline with static fallback. Do not add a remote simulation endpoint during the
+  spike.
+- Treat opponent hidden simultaneous actions as sampled `believed` inputs. A planner must produce
+  the same choice when unavailable opponent reserve cards or submitted move buffers are mutated;
+  those metamorphic privacy tests are a promotion gate.
+- Cache only inside the trusted planner. The key includes ruleset hash, internal snapshot digest,
+  acting seat, candidate id, horizon and opponent-model version; neither snapshot nor cache payload
+  is returned through MCP.
+- Add shallow beam search only after 12–20 fixed cases across at least two seeds and three working-day
+  subphases reach >=80% oracle Top-1, >=95% Top-3, zero illegal selections and local P95 <=3 seconds.
+  A dynamic slice from one policy trajectory cannot promote the search even if it agrees perfectly
+  with its same-horizon oracle. Add MCTS only if measured branching and latency then justify it.
 - Sample opponent actions from versioned belief models for simultaneous and future phases.
 - Train a value model from completed trajectories only after deterministic rollout parity passes.
 
@@ -685,6 +698,34 @@ it completed games legally but lost all initial paired games to both the built-i
 safe-first. The failure trace showed demand donation to closer competitors and excessive staff
 investment. The next experiment must evaluate candidate consequences in official engine clones;
 more hand-tuned static weights are not an acceptable substitute for this gate.
+
+A 10-game human-label audit subsequently separated proposal failure from evaluator failure. Exact
+working-day candidate recall was only 175/494 (35.4%); conditional on being offered, the human action
+ranked Top-1 16.0% and Top-3 52.0%. Therefore candidate sequence coverage is now a prerequisite to
+the rollout spike, not a later optimization. Recruit/train/marketing/build/restaurant recall must be
+reported separately under the same 32-candidate cap.
+
+The first bounded sequence expansion (multi-hire and multi-train) remained fast and legal: 848
+official clone executions, zero rejects and ~0.044 ms mean generation time. It raised working-day
+exact recall to 209/494 (42.3%), but conditional static Top-1 fell to 13.4%. This is the expected
+diagnostic separation: a better proposal set exposed a worse ranker. Exact-square imitation is not
+a valid sole target for spatial marketing/build/restaurant actions; those require equivalence or
+terminal-value labels, while discrete hire/train batches retain exact-recall gates.
+
+The spike's tactical suite must cover restaurant access, marketing distance/price competition,
+production-to-demand closure, organization/salary discipline and dinner inventory consumption.
+An exhaustive official rollout is allowed only to create each fixture's oracle. Development uses
+10 paired games for directional evidence; promotion uses untouched 50-seed/100-game paired data.
+
+Initial calibration evidence (2026-09-28): a 12-case, two-seed dynamic official-engine run produced
+zero illegal selections, 12/12 Top-1 agreement with the exhaustive same-horizon scorer and a
+1.10-second local P95. Ten cases were recruiting and two production; therefore this validates the
+clone/budget mechanism but not strategic quality or coverage. The policy remains experimental.
+A paired full-game probe confirmed that distinction: the short-horizon rollout policy completed
+legally but lost $10 to $498, while the static policy on the same seed lost $35 to $493. The rollout
+changed 43/66 choices, over-hired (34 hires) and placed no marketing. Same-evaluator exhaustive
+agreement is not an oracle for strategic promotion; fixed cases need independent human
+or terminal-consequence labels.
 
 ### Phase 3 — hybrid LLM planner
 
