@@ -679,6 +679,13 @@ Exit criterion: clearly beats first-legal/random across seats and makes zero ill
 
 Exit criterion: search improves held-out league rank at an acceptable per-decision latency.
 
+Current boundary: bounded phase-local candidates and persistent memory are implemented and pass
+official-engine legality audits. The first static heuristic evaluator is deliberately unpromoted:
+it completed games legally but lost all initial paired games to both the built-in AI and
+safe-first. The failure trace showed demand donation to closer competitors and excessive staff
+investment. The next experiment must evaluate candidate consequences in official engine clones;
+more hand-tuned static weights are not an acceptable substitute for this gate.
+
 ### Phase 3 — hybrid LLM planner
 
 - Automatically retrieve rule/strategy decision cards by phase.

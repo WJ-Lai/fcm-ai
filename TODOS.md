@@ -109,22 +109,33 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
 
 ## P3 — first measurable strategy AI
 
-- [ ] **P3.1 Generate bounded legal candidates by phase.**
+- [x] **P3.1 Generate bounded legal candidates by phase.**
   - Why: primitive JSON choices create an unmanageable combinatorial problem.
   - Depends on: P2.
   - Done when: each phase has a deterministic expansion budget, duplicate/dominance pruning,
     top-K diversity per strategic intent and a safe legal fallback; one-turn macros meet a measured
     latency budget before multi-turn composition is enabled.
-- [ ] **P3.2 Implement persistent `GameMemory`.**
+  - Evidence: `generateCandidates` uses fixed total/per-intent budgets, action-sequence deduplication,
+    phase-local macros and a legal fallback. A two-seed official-clone audit executed 1,280 generated
+    candidates with zero rejected actions at about 0.049 ms generation time per candidate.
+- [x] **P3.2 Implement persistent `GameMemory`.**
   - Why: plans, opponent hypotheses and prediction errors must survive LLM/tool calls.
   - Depends on: P1 schemas.
   - Done when: memory is versioned, bounded, contains confidence labels and can be rebuilt from a
     trajectory without storing credentials.
+  - Evidence: `fcm.game-memory.v1` bounds plans, beliefs, errors and decisions; rejects credential
+    keys/text; and is byte-for-byte rebuildable from its event stream in tests.
 - [ ] **P3.3 Implement explainable heuristic evaluators and strategy profiles.**
   - Why: this creates the first meaningful opponent and training-data generator.
   - Depends on: P3.1–P3.2.
   - Done when: score breakdowns are auditable and the policy beats random/first-legal across the
     fixed league without increasing invalid actions.
+  - Current: the auditable evaluator and balanced/growth/cash profiles exist, but are not promoted.
+    An initial four-game paired official-AI smoke test finished without violations but lost 0-4;
+    corrections raised mean cash from $5 to $37.75 but still lost 0-4. A paired safe-first trial
+    also lost every completed game and one game exceeded the 500-command ceiling. This falsifies
+    static one-step scoring as sufficient. Next implement official-clone consequence evaluation
+    and shallow beam search, then rerun a held-out paired gate; do not tune against these seeds.
 
 ## P4 — search and opponent beliefs
 

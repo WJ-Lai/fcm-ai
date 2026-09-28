@@ -6,6 +6,7 @@ import { pathToFileURL } from 'node:url'
 
 import { randomLegal, safeFirstLegal, seededPolicyRandom } from '../src/baselines.mjs'
 import { rankedSampleSummary, wilsonInterval } from '../src/benchmark-stats.mjs'
+import { deterministicStrategy } from '../src/strategy.mjs'
 
 function argument(name, fallback) {
   const index = process.argv.indexOf(name)
@@ -30,20 +31,20 @@ if (!Number.isSafeInteger(seedOffset) || seedOffset < 0) {
 }
 if (players < 2 || players > 6) throw new Error('--players must be between 2 and 6')
 const policyName = argument('--policy', 'safe-first-legal')
-if (!['safe-first-legal', 'random-legal'].includes(policyName)) {
-  throw new Error('--policy must be safe-first-legal or random-legal')
+if (!['safe-first-legal', 'random-legal', 'deterministic-strategy'].includes(policyName)) {
+  throw new Error('--policy must be safe-first-legal, random-legal, or deterministic-strategy')
 }
 const opponent = argument('--opponent', 'none')
-if (!['none', 'official-builtin'].includes(opponent)) {
-  throw new Error('--opponent must be none or official-builtin')
+if (!['none', 'official-builtin', 'safe-first-legal'].includes(opponent)) {
+  throw new Error('--opponent must be none, official-builtin, or safe-first-legal')
 }
-const builtinSeatArgument = argument('--builtin-seat', '1')
-const builtinSeat = builtinSeatArgument === 'alternate' ? 'alternate' : Number(builtinSeatArgument)
-if (builtinSeat !== 'alternate' && (
-  !Number.isInteger(builtinSeat) || builtinSeat < 0 || builtinSeat >= players
-)) throw new Error('--builtin-seat must identify an existing seat or be alternate')
-if (opponent === 'official-builtin' && players !== 2) {
-  throw new Error('official-builtin is the original 1v1 policy and requires --players 2')
+const opponentSeatArgument = argument('--opponent-seat', argument('--builtin-seat', '1'))
+const opponentSeat = opponentSeatArgument === 'alternate' ? 'alternate' : Number(opponentSeatArgument)
+if (opponentSeat !== 'alternate' && (
+  !Number.isInteger(opponentSeat) || opponentSeat < 0 || opponentSeat >= players
+)) throw new Error('--opponent-seat must identify an existing seat or be alternate')
+if (opponent !== 'none' && players !== 2) {
+  throw new Error('paired opponent benchmarks require --players 2')
 }
 
 // The legacy engine contains diagnostic console.log calls. Keep stdout as one
@@ -60,14 +61,16 @@ const { OfflineEnvironment } = await import(
 
 const results = []
 for (let episode = 0; episode < episodes; episode += 1) {
-  const pairedSeats = opponent === 'official-builtin' && builtinSeat === 'alternate'
+  const pairedSeats = opponent !== 'none' && opponentSeat === 'alternate'
   const seedIndex = seedOffset + (pairedSeats ? Math.floor(episode / players) : episode)
   const names = Array.from({ length: players }, (_, seat) => `baseline-${seat}`)
-  const episodeBuiltinSeat = builtinSeat === 'alternate' ? episode % players : builtinSeat
-  if (opponent === 'official-builtin') names[episodeBuiltinSeat] = 'FcmAI'
-  const seatPolicies = names.map((name) => (
-    name === 'FcmAI' ? 'official-builtin' : `${policyName}-v1`
-  ))
+  const episodeOpponentSeat = opponentSeat === 'alternate' ? episode % players : opponentSeat
+  if (opponent === 'official-builtin') names[episodeOpponentSeat] = 'FcmAI'
+  const seatPolicies = names.map((name, seat) => {
+    if (name === 'FcmAI') return 'official-builtin'
+    if (opponent === 'safe-first-legal' && seat === episodeOpponentSeat) return 'safe-first-legal-v1'
+    return `${policyName}-v1`
+  })
   const env = OfflineEnvironment.fromSeed({
     seed: `benchmark:${seedIndex}:${players}`,
     playerNames: names,
@@ -97,9 +100,12 @@ for (let episode = 0; episode < episodes; episode += 1) {
       }
       const view = await env.observe(seat)
       if (!view.legalActions.yourTurn) throw new Error(`seat ${seat} is pending but has no turn`)
-      const actions = policyName === 'random-legal'
+      const seatPolicy = seatPolicies[seat]
+      const actions = seatPolicy === 'random-legal-v1'
         ? randomLegal(view, random)
-        : safeFirstLegal(view)
+        : seatPolicy === 'deterministic-strategy-v1'
+          ? deterministicStrategy(view).selected.actions
+          : safeFirstLegal(view)
       for (const action of actions) {
         actionCounts[action.type] = (actionCounts[action.type] ?? 0) + 1
       }
@@ -174,7 +180,8 @@ process.stdout.write(`${JSON.stringify({
   benchmarkVersion: 'fcm-benchmark-v1',
   policy: `${policyName}-v1`,
   opponent,
-  builtinSeat: opponent === 'official-builtin' ? builtinSeat : null,
+  opponentSeat: opponent !== 'none' ? opponentSeat : null,
+  builtinSeat: opponent === 'official-builtin' ? opponentSeat : null,
   builtinPolicy: results.find((result) => result.builtinPolicy)?.builtinPolicy ?? null,
   players,
   seedOffset,

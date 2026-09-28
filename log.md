@@ -337,3 +337,18 @@ Verification: **89 tests pass**, lint clean (28 pages), `verify_sources.py` OK,
   only while recruiting points remain. Both are fixed with adversarial tests. The identity audit
   now scans decoded text before compression, avoiding Base64 coincidences without weakening
   anonymization.
+
+## [2026-09-28] experiment | bounded candidates and first strategy falsification
+
+- Added deterministic phase-local candidate generation with total/per-intent budgets, deduplication
+  and legal fallbacks. The final official-clone audit executed 1,280 candidates over two seeded
+  games with zero illegal actions and about 0.049 ms generation time per candidate.
+- Added bounded, versioned and credential-rejecting `GameMemory`, rebuildable from events, plus an
+  auditable position/candidate evaluator with three strategy profiles.
+- The first evaluator was not promoted. It lost 0-4 to the official AI; after organization fixes,
+  mean cash improved from $5 to $37.75 but it still lost 0-4. It then lost every completed paired
+  safe-first game and one game exceeded 500 commands. The next design step is official-clone
+  consequence evaluation and shallow beam search, not further static-weight tuning.
+- The Agent DecisionView now exposes official per-house restaurant distances even before demand is
+  present, allowing marketing planners to distinguish merely reachable demand from demand where a
+  competitor is closer.

@@ -1,0 +1,95 @@
+import assert from 'node:assert/strict'
+import test from 'node:test'
+
+import { generateCandidates } from './candidates.mjs'
+
+function view(phase, subphase, actions, state = {}) {
+  return {
+    state: { phase, subphase, mySeat: 0, players: [{ resources: [] }], ...state },
+    legalActions: { yourTurn: true, actions },
+  }
+}
+
+test('candidate generation is deterministic, unique and strictly budgeted', () => {
+  const input = view(0, 1, [{
+    type: 'place_restaurant', placements: [
+      { rotation: 0, legalSquares: [10, 11, 12] },
+      { rotation: 1, legalSquares: [20, 21, 22] },
+    ],
+  }, { type: 'end_turn' }])
+  const first = generateCandidates(input, { totalBudget: 4, perIntentBudget: 3 })
+  const second = generateCandidates(input, { totalBudget: 4, perIntentBudget: 3 })
+  assert.deepEqual(first, second)
+  assert.equal(first.length, 3)
+  assert.equal(new Set(first.map((item) => item.id)).size, first.length)
+  assert.equal(first[0].intent, 'restaurant-start')
+  assert.ok(first.every((item) => item.actions[0].type === 'place_restaurant'))
+})
+
+test('restructuring produces bounded strategic orderings and an explicit fallback', () => {
+  const candidates = generateCandidates(view(3, 1, [{
+    type: 'place_employees', beach: [5, 13, 27, 17], slots: [0, 1],
+  }, { type: 'end_turn' }]))
+  assert.deepEqual(candidates[0].actions, [{ type: 'end_turn' }])
+  assert.deepEqual(candidates.find((item) => item.intent === 'demand-engine').actions[0].employees, [13, 5])
+  assert.deepEqual(candidates.find((item) => item.intent === 'supply-engine').actions[0].employees, [27, 5])
+})
+
+test('working-day candidates never form a cross-phase Cartesian plan', () => {
+  const candidates = generateCandidates(view(5, 2, [
+    { type: 'train', available: [
+      { id: 5, origin: 0, upgrades: [{ id: 6, steps: 1 }, { id: 7, steps: 2 }] },
+      { id: -1, origin: 1, upgrades: [{ id: 17, steps: 1 }] },
+    ] },
+    { type: 'next_subphase' },
+    { type: 'end_turn' },
+  ]))
+  assert.equal(candidates.length, 4)
+  assert.ok(candidates.every((item) => item.actions.length <= 2))
+  assert.deepEqual(candidates.find((item) => item.details.upgrade === 17).actions[0], {
+    type: 'train', employee: -1, toEmployee: 17, origin: 1, steps: 1,
+  })
+})
+
+test('marketing prioritizes demanded goods and impactful legal squares under budget', () => {
+  const candidates = generateCandidates(view(5, 3, [
+    { type: 'marketing', goods: [0, 1, 2, 3, 4], options: [{ marketer: 13, campaigns: [{
+      campaign: 14, durationInfinite: false, maxDuration: 2,
+      placements: [{ rotated: false, legalSquares: [40, 41], houseImpacts: [
+        { index: 40, houses: [1, 2] }, { index: 41, houses: [] },
+      ] }],
+    }] }] },
+    { type: 'next_subphase' },
+  ], { houseDemands: [{ goods: [4, 4] }, { goods: [4, 3] }] }), {
+    totalBudget: 5, perIntentBudget: 4,
+  })
+  assert.equal(candidates.length, 5)
+  const marketing = candidates.filter((item) => item.intent === 'create-demand')
+  assert.ok(marketing.every((item) => [40, 41].includes(item.actions[0].index)))
+  assert.equal(marketing[0].actions[0].good, 4)
+})
+
+test('production, drink collection and cleanup candidates use only advertised values', () => {
+  const production = generateCandidates(view(5, 4, [
+    { type: 'produce', producers: [{ id: 12, goods: [4, 3] }] },
+    { type: 'collect_drinks', collectors: [{ id: 20, startMode: 'square', starts: [55, 66] }] },
+    { type: 'next_subphase' },
+  ]))
+  assert.ok(production.some((item) => item.actions[0].type === 'produce'))
+  assert.deepEqual(production.find((item) => item.intent === 'collect').actions[0].route, [55])
+
+  const cleanup = generateCandidates(view(9, 1, [{
+    type: 'resolve_cleanup', resources: [4, 1, 3, 99], minimumDiscardCount: 2,
+    requiresFridgeChoice: true, kimchiResource: 99,
+  }]))
+  assert.deepEqual(cleanup.map((item) => item.actions[0]), [
+    { type: 'resolve_cleanup', discardResources: [], fridgeChoice: 'rest' },
+    { type: 'resolve_cleanup', discardResources: [], fridgeChoice: 'kimchi' },
+  ])
+})
+
+test('candidate generation fails closed when it is not the seat turn', () => {
+  const input = view(4, 1, [{ type: 'choose_turn_order', positions: [0] }])
+  input.legalActions.yourTurn = false
+  assert.throws(() => generateCandidates(input), /outside this seat turn/)
+})

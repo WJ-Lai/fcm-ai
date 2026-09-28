@@ -156,10 +156,12 @@ python3 scripts/lint.py         # links / orphans / frontmatter / tags / secrets
 python3 scripts/human_trajectory.py --help
 node scripts/audit_public_replays.mjs data/public-replays/pilot-100
 node scripts/audit_replay_observation_parity.mjs --captures data/public-replays/pilot-100
+node scripts/audit_candidates.mjs --seeds 2 --max-commands 500
 node --test src/*.test.mjs
 node scripts/run_offline_benchmark.mjs --players 2 --episodes 1 --max-commands 250
 node scripts/run_offline_benchmark.mjs --policy random-legal --players 2 --episodes 1 --max-commands 500
 node scripts/run_offline_benchmark.mjs --policy safe-first-legal --opponent official-builtin --builtin-seat 1 --players 2 --episodes 1
+node scripts/run_offline_benchmark.mjs --policy deterministic-strategy --opponent safe-first-legal --opponent-seat alternate --players 2 --episodes 4
 node scripts/run_offline_benchmark.mjs --policy safe-first-legal --opponent official-builtin --builtin-seat alternate --players 2 --episodes 4
 node scripts/run_offline_benchmark.mjs --policy safe-first-legal --opponent official-builtin --builtin-seat alternate --players 2 --episodes 20 --seed-offset 10
 ```
