@@ -49,6 +49,24 @@ test('equal genome values preserve static root order', async () => {
   assert.equal(result.bestGenome[0], 0)
 })
 
+test('a later generation evaluates a novel child when one-step genotype space remains', async () => {
+  const result = await selectWithRhea(request({
+    evolutionSeed: 'rhea-budget-evolution-v1',
+    budget: {
+      populationSize: 2,
+      eliteCount: 1,
+      generations: 2,
+      horizonLength: 2,
+      geneCardinality: 3,
+      maxEvaluations: 8,
+      deadlineMs: 1000,
+    },
+  }))
+  assert.equal(result.metrics.completedGenerations, 2)
+  assert.equal(result.metrics.uniqueGenomesEvaluated, 3)
+  assert.equal(result.metrics.scenarioEvaluations, 6)
+})
+
 test('deadline and incomplete common-sample evaluation fail closed', async () => {
   let clock = 0
   const deadline = await selectWithRhea(request({ now: () => clock += 600 }))

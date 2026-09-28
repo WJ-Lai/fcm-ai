@@ -1,0 +1,195 @@
+{
+  "schemaVersion": "fcm.rhea-novel-mutation.v5",
+  "experimentId": 31,
+  "protocolDigest": "sha256:95d866019fd064f257ad903bd470a3c791181f814f04437e2b67dbcc3348b1c4",
+  "rows": [
+    {
+      "externalDeadlineMs": 3000,
+      "replicate": 0,
+      "internalDeadlineMs": 2400,
+      "elapsedMs": 1541.659439,
+      "fallbackUsed": false,
+      "stopReason": "complete",
+      "completedGenerations": 2,
+      "scenarioEvaluations": 6,
+      "uniqueGenomesEvaluated": 3,
+      "staticCandidateId": "p5s1-hire-1dfd160273",
+      "selectedCandidateId": "p5s1-hire-1dfd160273",
+      "evaluatedRootCandidateIds": [
+        "p5s1-hire-1dfd160273",
+        "p5s1-fallback-21d4f44933"
+      ],
+      "bestGenome": [
+        0,
+        0
+      ],
+      "bestMeanScore": 40.4
+    },
+    {
+      "externalDeadlineMs": 3000,
+      "replicate": 1,
+      "internalDeadlineMs": 2400,
+      "elapsedMs": 1479.0703400000002,
+      "fallbackUsed": false,
+      "stopReason": "complete",
+      "completedGenerations": 2,
+      "scenarioEvaluations": 6,
+      "uniqueGenomesEvaluated": 3,
+      "staticCandidateId": "p5s1-hire-1dfd160273",
+      "selectedCandidateId": "p5s1-hire-1dfd160273",
+      "evaluatedRootCandidateIds": [
+        "p5s1-hire-1dfd160273",
+        "p5s1-fallback-21d4f44933"
+      ],
+      "bestGenome": [
+        0,
+        0
+      ],
+      "bestMeanScore": 40.4
+    },
+    {
+      "externalDeadlineMs": 3000,
+      "replicate": 2,
+      "internalDeadlineMs": 2400,
+      "elapsedMs": 1528.3207759999996,
+      "fallbackUsed": false,
+      "stopReason": "complete",
+      "completedGenerations": 2,
+      "scenarioEvaluations": 6,
+      "uniqueGenomesEvaluated": 3,
+      "staticCandidateId": "p5s1-hire-1dfd160273",
+      "selectedCandidateId": "p5s1-hire-1dfd160273",
+      "evaluatedRootCandidateIds": [
+        "p5s1-hire-1dfd160273",
+        "p5s1-fallback-21d4f44933"
+      ],
+      "bestGenome": [
+        0,
+        0
+      ],
+      "bestMeanScore": 40.4
+    },
+    {
+      "externalDeadlineMs": 3000,
+      "replicate": 3,
+      "internalDeadlineMs": 2400,
+      "elapsedMs": 1519.1429689999995,
+      "fallbackUsed": false,
+      "stopReason": "complete",
+      "completedGenerations": 2,
+      "scenarioEvaluations": 6,
+      "uniqueGenomesEvaluated": 3,
+      "staticCandidateId": "p5s1-hire-1dfd160273",
+      "selectedCandidateId": "p5s1-hire-1dfd160273",
+      "evaluatedRootCandidateIds": [
+        "p5s1-hire-1dfd160273",
+        "p5s1-fallback-21d4f44933"
+      ],
+      "bestGenome": [
+        0,
+        0
+      ],
+      "bestMeanScore": 40.4
+    },
+    {
+      "externalDeadlineMs": 3000,
+      "replicate": 4,
+      "internalDeadlineMs": 2400,
+      "elapsedMs": 1477.4822599999998,
+      "fallbackUsed": false,
+      "stopReason": "complete",
+      "completedGenerations": 2,
+      "scenarioEvaluations": 6,
+      "uniqueGenomesEvaluated": 3,
+      "staticCandidateId": "p5s1-hire-1dfd160273",
+      "selectedCandidateId": "p5s1-hire-1dfd160273",
+      "evaluatedRootCandidateIds": [
+        "p5s1-hire-1dfd160273",
+        "p5s1-fallback-21d4f44933"
+      ],
+      "bestGenome": [
+        0,
+        0
+      ],
+      "bestMeanScore": 40.4
+    },
+    {
+      "externalDeadlineMs": 3000,
+      "replicate": 5,
+      "internalDeadlineMs": 2400,
+      "elapsedMs": 1473.399061,
+      "fallbackUsed": false,
+      "stopReason": "complete",
+      "completedGenerations": 2,
+      "scenarioEvaluations": 6,
+      "uniqueGenomesEvaluated": 3,
+      "staticCandidateId": "p5s1-hire-1dfd160273",
+      "selectedCandidateId": "p5s1-hire-1dfd160273",
+      "evaluatedRootCandidateIds": [
+        "p5s1-hire-1dfd160273",
+        "p5s1-fallback-21d4f44933"
+      ],
+      "bestGenome": [
+        0,
+        0
+      ],
+      "bestMeanScore": 40.4
+    },
+    {
+      "externalDeadlineMs": 3000,
+      "replicate": 6,
+      "internalDeadlineMs": 2400,
+      "elapsedMs": 1458.9641649999994,
+      "fallbackUsed": false,
+      "stopReason": "complete",
+      "completedGenerations": 2,
+      "scenarioEvaluations": 6,
+      "uniqueGenomesEvaluated": 3,
+      "staticCandidateId": "p5s1-hire-1dfd160273",
+      "selectedCandidateId": "p5s1-hire-1dfd160273",
+      "evaluatedRootCandidateIds": [
+        "p5s1-hire-1dfd160273",
+        "p5s1-fallback-21d4f44933"
+      ],
+      "bestGenome": [
+        0,
+        0
+      ],
+      "bestMeanScore": 40.4
+    },
+    {
+      "externalDeadlineMs": 3000,
+      "replicate": 7,
+      "internalDeadlineMs": 2400,
+      "elapsedMs": 1713.9320349999998,
+      "fallbackUsed": false,
+      "stopReason": "complete",
+      "completedGenerations": 2,
+      "scenarioEvaluations": 6,
+      "uniqueGenomesEvaluated": 3,
+      "staticCandidateId": "p5s1-hire-1dfd160273",
+      "selectedCandidateId": "p5s1-hire-1dfd160273",
+      "evaluatedRootCandidateIds": [
+        "p5s1-hire-1dfd160273",
+        "p5s1-fallback-21d4f44933"
+      ],
+      "bestGenome": [
+        0,
+        0
+      ],
+      "bestMeanScore": 40.4
+    }
+  ],
+  "summary": {
+    "3000": {
+      "replicates": 8,
+      "p95Ms": 1713.9320349999998,
+      "maximumMs": 1713.9320349999998,
+      "completed": 8,
+      "withinBudget": true
+    }
+  },
+  "privatePayloadPersisted": false,
+  "promotionHoldoutOpened": false,
+  "strengthPromoted": false
+}

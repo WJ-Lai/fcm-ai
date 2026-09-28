@@ -481,7 +481,12 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     beliefs, candidates, horizon and evaluator. All 8 runs reported two complete generations inside
     one second, but the second generation added zero novel genomes: every run remained at two unique
     genomes and four scenario evaluations. Iteration 30 is rejected as cached pseudo-progress. Next
-    add a tested novelty contract to mutation, then repeat this exact fixture. This is throughput
+    adds a tested novelty contract: seeded mutation rotates through every one-gene alternative and
+    excludes both the parent population and the evaluated cache before accepting a child. Repeating
+    the exact fixture in iteration 31 yields 8/8 real two-generation runs, three unique genomes, six
+    scenario evaluations and 1.71s P95 under the three-second cap. The action remains the correct
+    static hire. Next freeze this optimizer and compare Beam/RHEA/static on disjoint development
+    roots with terminal continuations before opening any promotion holdout. This is throughput
     calibration, not strength proof.
 
 - [ ] **P4.1c Evaluate belief-aware information-set search only where uncertainty warrants it.**

@@ -59,20 +59,37 @@ function initialPopulation(rootCount, budget) {
   })
 }
 
-function mutatePopulation(elites, rootCount, budget, random) {
+function mutationOptions(parent, rootCount, budget) {
+  const options = []
+  for (let gene = 0; gene < budget.horizonLength; gene += 1) {
+    const cardinality = gene === 0 ? rootCount : budget.geneCardinality
+    for (let offset = 1; offset < cardinality; offset += 1) {
+      const child = [...parent]
+      child[gene] = (child[gene] + offset) % cardinality
+      options.push(child)
+    }
+  }
+  return options
+}
+
+function mutatePopulation(elites, rootCount, budget, random, previouslyEvaluated) {
   const next = elites.map((item) => [...item.genome])
+  const unavailable = new Set([...previouslyEvaluated, ...next.map(genomeKey)])
   while (next.length < budget.populationSize) {
     const parent = elites[Math.floor(random() * elites.length)].genome
-    const child = [...parent]
-    const gene = Math.floor(random() * budget.horizonLength)
-    const cardinality = gene === 0 ? rootCount : budget.geneCardinality
-    if (gene === 0) {
-      child[0] = Math.floor(random() * rootCount)
-    } else {
-      const offset = 1 + Math.floor(random() * Math.max(1, cardinality - 1))
-      child[gene] = (child[gene] + offset) % cardinality
+    const options = mutationOptions(parent, rootCount, budget)
+    const start = options.length === 0 ? 0 : Math.floor(random() * options.length)
+    let child = null
+    for (let offset = 0; offset < options.length; offset += 1) {
+      const candidate = options[(start + offset) % options.length]
+      if (!unavailable.has(genomeKey(candidate))) {
+        child = candidate
+        break
+      }
     }
+    child ??= options[start] ?? [...parent]
     next.push(child)
+    unavailable.add(genomeKey(child))
   }
   return next
 }
@@ -156,6 +173,7 @@ export async function selectWithRhea({
     if (generation + 1 < budget.generations) {
       population = mutatePopulation(
         evaluated.slice(0, budget.eliteCount), rankedCandidates.length, budget, random,
+        new Set(cache.keys()),
       )
     }
   }

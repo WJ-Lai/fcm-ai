@@ -548,6 +548,14 @@ bounded deterministic fallback when random attempts collide. Completion and timi
 gates, not evidence that RHEA plays better; terminal promotion still requires paired, equal-budget
 outcomes and horizon/seed robustness.
 
+The novelty repair enumerates all one-gene mutations in seeded rotated order, skips the next
+population and evaluation-cache keys, and falls back to a duplicate only when no novel one-step child
+exists. On the unchanged three-second puncture, 8/8 runs now complete two real generations with three
+unique genomes and six common-sample scenario evaluations; P95 is 1713.93ms. This validates the
+optimizer contract and available throughput, while the unchanged static hire choice confirms only
+that the known root is no longer regressed. Freeze the mutation rule here: subsequent work must use
+disjoint development roots and paired terminal continuations rather than further fitting this root.
+
 ### 6.8 Execution, memory and learning
 
 The execution layer accepts one versioned candidate id, revalidates it against the current game
