@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "fcm.opponent-population.v1",
+  "populationId": "base-public-population-v1",
+  "ruleset": "base",
+  "models": [
+    {
+      "modelId": "deterministic-balanced-v1",
+      "archetype": "deterministic",
+      "policyKind": "external",
+      "policyId": "deterministic-strategy-v1",
+      "priorWeight": 0.35,
+      "frozen": true
+    },
+    {
+      "modelId": "safe-first-v1",
+      "archetype": "safe-first",
+      "policyKind": "external",
+      "policyId": "safe-first-legal-v1",
+      "priorWeight": 0.25,
+      "frozen": true
+    },
+    {
+      "modelId": "seeded-random-v1",
+      "archetype": "seeded-random",
+      "policyKind": "external",
+      "policyId": "seeded-random-legal-v1",
+      "priorWeight": 0.25,
+      "frozen": true
+    },
+    {
+      "modelId": "official-built-in-v1",
+      "archetype": "official-built-in",
+      "policyKind": "environment-adapter",
+      "policyId": "official-built-in-v1",
+      "priorWeight": 0.15,
+      "frozen": true
+    }
+  ]
+}

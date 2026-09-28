@@ -307,6 +307,17 @@ Tests must distinguish:
 The system reports belief calibration and sensitivity. Search must remain robust when the true
 opponent differs from the highest-probability model.
 
+Opponent-population v1 now freezes deterministic-balanced, safe-first, seeded-random and official
+built-in archetypes behind one strict contract. `observed`, official/public `derived` and model
+`believed` partitions cannot be interchanged; updates are bound to a public-history digest and
+updater id, while every component carries model id, confidence and sample count. External policies
+receive only the legal seat view, and the official built-in is an environment-adapter directive.
+The seeded sampler reproduced its declared distributions over two 4,096-sample conditions with a
+maximum absolute error of 0.0137 and reacted to an explicit public update. These are mechanical
+contract and sensitivity results only: v1's prior weights remain uncalibrated until evaluated on
+public trajectories and independent self-play traces, so the population is not yet connected to
+rollout labels or search.
+
 ### 6.6 Value and objective
 
 The primary objective is terminal performance:

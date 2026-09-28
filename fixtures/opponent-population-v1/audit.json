@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "fcm.opponent-population-audit.v1",
+  "experimentId": 8,
+  "hypothesis": "versioned-public-belief-sampler-is-reproducible-and-sensitive-to-explicit-public-updates",
+  "populationDigest": "sha256:85bd13b1985786c3e022b24a3d0141eee6e3d71c23c1c4de8f832c20da48d5d9",
+  "populationId": "base-public-population-v1",
+  "modelCount": 4,
+  "sampleCountPerCondition": 4096,
+  "priorDistribution": [
+    {
+      "modelId": "deterministic-balanced-v1",
+      "expectedProbability": 0.35,
+      "observedCount": 1450,
+      "observedProbability": 0.35400390625,
+      "absoluteError": 0.004003906250000022
+    },
+    {
+      "modelId": "safe-first-v1",
+      "expectedProbability": 0.25,
+      "observedCount": 1058,
+      "observedProbability": 0.25830078125,
+      "absoluteError": 0.00830078125
+    },
+    {
+      "modelId": "seeded-random-v1",
+      "expectedProbability": 0.25,
+      "observedCount": 968,
+      "observedProbability": 0.236328125,
+      "absoluteError": 0.013671875
+    },
+    {
+      "modelId": "official-built-in-v1",
+      "expectedProbability": 0.15,
+      "observedCount": 620,
+      "observedProbability": 0.1513671875,
+      "absoluteError": 0.0013671875000000056
+    }
+  ],
+  "shiftedDistribution": [
+    {
+      "modelId": "deterministic-balanced-v1",
+      "expectedProbability": 0.5941048132675038,
+      "observedCount": 2429,
+      "observedProbability": 0.593017578125,
+      "absoluteError": 0.0010872351425037508
+    },
+    {
+      "modelId": "safe-first-v1",
+      "expectedProbability": 0.1561135333586524,
+      "observedCount": 631,
+      "observedProbability": 0.154052734375,
+      "absoluteError": 0.002060798983652412
+    },
+    {
+      "modelId": "seeded-random-v1",
+      "expectedProbability": 0.1561135333586524,
+      "observedCount": 633,
+      "observedProbability": 0.154541015625,
+      "absoluteError": 0.001572517733652412
+    },
+    {
+      "modelId": "official-built-in-v1",
+      "expectedProbability": 0.09366812001519145,
+      "observedCount": 403,
+      "observedProbability": 0.098388671875,
+      "absoluteError": 0.004720551859808547
+    }
+  ],
+  "maximumAbsoluteSamplingError": 0.013671875,
+  "publicUpdateChangedDistribution": true,
+  "promotionHoldoutOpened": false,
+  "interpretation": "Mechanical sampler audit only; population weights are not yet empirically calibrated."
+}

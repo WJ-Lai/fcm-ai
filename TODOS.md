@@ -331,11 +331,14 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
   - Done when: `observed`, official-engine `derived` and model `believed` fields are impossible to
     confuse; every belief records model id, confidence and sample count; and hidden-state mutation
     cannot change a recommendation except through an explicitly sampled public-history model.
-  - Current: production and hiring/marketing stability punctures show that repeated seeds of the
-    official built-in policy produce no safe action labels at current gates. Next freeze population
-    v1 with deterministic, safe-first, seeded-random and official-built-in archetypes; implement a
-    public-history-only belief/sampling contract and hidden-state metamorphic tests before using it
-    in rollout labels or search.
+  - Current: population v1 freezes deterministic, safe-first, seeded-random and official-built-in
+    archetypes. Its fail-closed contract separates `observed`/`derived`/`believed`, binds updates to
+    a public-history digest, records model id/confidence/sample count, rejects private fields and
+    delegates official AI to the environment adapter. Two 4,096-sample mechanical audits are
+    deterministic with 0.0137 maximum probability error. This completes the sampler contract, but
+    the hand-set priors are deliberately labelled uncalibrated. Next fit/evaluate weights and OOD
+    thresholds on public traces plus independent self-play, then run sensitivity against held-out
+    opponent identities before connecting the population to rollout labels or search.
 - [ ] **P3.3e Enforce information-set policy consistency.**
   - Why: ordinary determinization can create strategy fusion—the planner chooses mutually
     incompatible actions in different sampled hidden worlds and behaves as if it knew which world
