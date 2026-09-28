@@ -275,6 +275,19 @@ expiry, asset reuse, belief uncertainty and prediction error. Separate enter/exi
 cooldown and minimum evidence prevent oscillation. Repeated unchanged observations must not trigger
 replanning merely because the evaluator has numeric noise.
 
+`PlanArbitration v1` now implements this contract as a deterministic, public-evidence-only layer.
+It scores all five modes, discounts alternatives for switching/disruption cost and uncertainty,
+requires an enter margin, uses a smaller return-to-plan exit margin, and applies a one-turn cooldown
+unless the plan is infeasible/invalidated or cash danger is an emergency. Identical observation
+digests in the same turn reuse the prior mode exactly. The event reducer records the complete score
+audit and changes plan status without deleting the plan graph; tactical deviation therefore keeps
+all capabilities and commitments, while pivot/abandon require an explicit replacement plan before
+further arbitration. The selected mode raises only the matching candidate-relation prior and never
+bypasses official legality. Frozen adversarial tests cover genuine expiring gains, destructive bait,
+asset-reusing repair, infeasible pivot, abandonment, low confidence, cooldown, deterministic event
+rebuild, malformed/private evidence and terminal-plan resurrection. Its input values are still
+bootstrap estimates; P4 must measure terminal lift and cannot treat this contract test as strength.
+
 ### 6.4 Candidate generator
 
 - Generate complete candidates one phase at a time, not a Cartesian product of an entire turn.

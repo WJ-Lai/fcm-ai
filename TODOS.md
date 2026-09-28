@@ -385,7 +385,7 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     beach assignments differed while actor-visible state remained equal; 16 matched seeds × 2
     candidates again produced mismatch 0 and TV 0. Its frozen fixture clock prevents display-time
     sorting from making reconstructions nondeterministic. Next audit the belief-aware planner itself.
-- [ ] **P3.3f Add plan-health and opportunity arbitration.**
+- [x] **P3.3f Add plan-health and opportunity arbitration.**
   - Why: reacting to every locally attractive move creates thrashing, while blindly following a
     plan misses real opponent mistakes.
   - Depends on: P3.2b–P3.2c and frozen P3.3b–P3.3d value and belief baselines.
@@ -397,6 +397,14 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
   - Done when: frozen adversarial cases exploit a genuine opportunity, ignore bait that destroys a
     higher-value commitment, make a tactical deviation without erasing the plan, pivot when the
     goal becomes infeasible and do not oscillate on unchanged observations.
+  - Completed: `PlanArbitration v1` consumes an exact public evidence contract and compares all five
+    modes with explicit switching/disruption costs, uncertainty, reusable assets, deadline/cash
+    danger, enter/exit margins and a one-turn cooldown. The event reducer preserves the plan graph
+    during tactical deviation, records auditable scores, makes pivot/abandon terminal until an
+    explicit replacement plan is created, and feeds the selected relation into candidate priority
+    without bypassing official legality. Ten adversarial tests cover opportunity, bait, repair,
+    pivot, abandonment, low confidence, unchanged observations, cooldown, replay determinism,
+    malformed/private inputs and resurrection attempts. P4 still must validate terminal lift.
 
 ## P4 — online-planner bake-off and component promotion
 

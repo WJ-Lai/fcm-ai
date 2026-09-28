@@ -553,11 +553,19 @@ lead times, deadlines/slack, provenance-labelled assumptions, reusable/stranded 
 repair/fallback paths and public invalidation history. It is event-rebuildable and bounded, rejects
 hidden engine fields and credentials, and derives critical-path feasibility deterministically.
 
+`PlanArbitration v1` is now implemented beside that memory. It chooses continue, repair, tactical
+deviation, pivot or abandon from an exact public evidence contract; applies switching/disruption
+cost, reusable assets, uncertainty, enter/exit hysteresis and cooldown; and records a deterministic
+score audit in the event stream. Tactical deviation retains the same plan graph, while pivot and
+abandon cannot silently resurrect it. The chosen mode raises only the matching candidate-relation
+prior, so official legality remains authoritative. This is a control contract, not evidence of
+playing strength; P4 must supply calibrated values and terminal league validation.
+
 Candidate generation consumes v2 features only as a proposal prior: under a tight budget it reserves
 a critical plan step when available and separately retains an off-plan/fallback option. The existing
-official legal-action layer remains authoritative. V2 does not yet decide when to continue, repair,
-deviate, pivot or abandon; that policy belongs to the later arbiter and must pass the frozen strategy
-fixtures before promotion.
+official legal-action layer remains authoritative. The adjacent arbiter now decides when to
+continue, repair, deviate, pivot or abandon, but its bootstrap values remain unpromoted until P4
+search and frozen terminal leagues measure causal lift.
 
 Strategic-abstraction v1 is deliberately conservative. It canonicalizes the complete seat-visible
 board, economy, market/threat, legal-action and active-plan structures, while removing transport

@@ -3,6 +3,7 @@ import assert from 'node:assert/strict'
 import { validateGameMemory } from './game-memory.mjs'
 
 export const STRATEGIC_MEMORY_VERSION = 'fcm.game-memory.v2'
+const PLAN_ARBITRATION_VERSION = 'fcm.plan-arbitration.v1'
 
 const CONFIDENCE = new Set(['low', 'medium', 'high'])
 const PLAN_STATUS = new Set([
@@ -16,6 +17,9 @@ const PRIVATE_KEYS = new Set([
 ])
 const SENSITIVE_KEY = /(?:token|password|secret|cookie|authorization|credential)/i
 const SENSITIVE_TEXT = /(?:bearer\s+[a-z0-9._~-]+|fcm_agent_token|sessionid=)/i
+const ARBITRATION_MODES = new Set([
+  'continue', 'repair', 'tactical_deviation', 'pivot', 'abandon',
+])
 
 function bounded(items, limit) {
   return items.slice(Math.max(0, items.length - limit))
@@ -54,6 +58,39 @@ function uniqueIds(items, key, label) {
     ids.add(item[key])
   }
   return ids
+}
+
+function validateArbitrationRecord(record, currentTurn) {
+  const expected = [
+    'schemaVersion', 'observationDigest', 'currentTurn', 'trigger', 'previousMode', 'mode',
+    'scores', 'eligibleModes', 'reasonCodes', 'thresholds',
+  ]
+  assert.deepEqual(Object.keys(record).sort(), expected.sort(), 'arbitration fields differ')
+  assert.equal(record.schemaVersion, PLAN_ARBITRATION_VERSION,
+    'unsupported plan arbitration version')
+  assert.match(record.observationDigest, /^sha256:[a-f0-9]{64}$/,
+    'invalid arbitration observation digest')
+  assert.ok(ARBITRATION_MODES.has(record.previousMode), 'invalid previous arbitration mode')
+  assert.ok(ARBITRATION_MODES.has(record.mode), 'invalid arbitration mode')
+  assert.ok(Number.isInteger(record.currentTurn) && record.currentTurn <= currentTurn,
+    'arbitration turn cannot exceed memory')
+  assert.deepEqual(Object.keys(record.scores).sort(), [...ARBITRATION_MODES].sort(),
+    'arbitration score fields differ')
+  for (const score of Object.values(record.scores)) {
+    assert.ok(score == null || Number.isFinite(score), 'arbitration score must be finite or null')
+  }
+  assert.ok(Array.isArray(record.eligibleModes) && record.eligibleModes.length > 0,
+    'arbitration needs eligible modes')
+  record.eligibleModes.forEach((mode) => assert.ok(ARBITRATION_MODES.has(mode),
+    'invalid eligible arbitration mode'))
+  assert.ok(Array.isArray(record.reasonCodes) && record.reasonCodes.length > 0,
+    'arbitration needs reason codes')
+  record.reasonCodes.forEach((reason) => assertId(reason, 'arbitration reason'))
+  assert.ok(record.thresholds && typeof record.thresholds === 'object',
+    'arbitration thresholds are required')
+  Object.values(record.thresholds).forEach((value) => assert.ok(Number.isFinite(value),
+    'arbitration threshold must be finite'))
+  return record
 }
 
 function normalizeCapability(capability) {
@@ -251,6 +288,7 @@ export function createStrategicMemory({ gameId, seat, rulesetHash }) {
     predictionErrors: [],
     decisions: [],
     planHistory: [],
+    lastArbitration: null,
   }
 }
 
@@ -268,6 +306,9 @@ export function validateStrategicMemory(memory) {
     'invalid decisions')
   assert.ok(Array.isArray(memory.planHistory) && memory.planHistory.length <= 16,
     'invalid plan history')
+  if (memory.lastArbitration) {
+    validateArbitrationRecord(memory.lastArbitration, memory.currentTurn)
+  }
   if (memory.strategicPlan) {
     assert.ok(PLAN_STATUS.has(memory.strategicPlan.status), 'invalid plan status')
     assert.equal(memory.strategicPlan.currentTurn, memory.currentTurn,
@@ -396,6 +437,23 @@ export function updateStrategicMemory(memory, event) {
         ], 16)
       }
     }
+  } else if (event.type === 'plan-arbitrated') {
+    assert.ok(next.strategicPlan, 'arbitration requires a strategic plan')
+    assert.ok(!['pivoted', 'abandoned', 'completed'].includes(next.strategicPlan.status),
+      'terminal plan status requires an explicit replacement plan')
+    const decision = structuredClone(event.decision)
+    validateArbitrationRecord(decision, next.currentTurn)
+    assert.equal(decision.currentTurn, next.currentTurn, 'arbitration turn must match memory')
+    const statusByMode = {
+      continue: 'active',
+      repair: 'repairing',
+      tactical_deviation: 'tactical-deviation',
+      pivot: 'pivoted',
+      abandon: 'abandoned',
+    }
+    assert.ok(statusByMode[decision.mode], 'invalid arbitration mode')
+    next.strategicPlan.status = statusByMode[decision.mode]
+    next.lastArbitration = decision
   } else if (['belief', 'prediction-error', 'decision'].includes(event.type)) {
     updateLegacyEvidence(next, event)
   } else {
@@ -436,9 +494,7 @@ export function compileCandidatePlanFeatures(memory, candidate) {
   assert.ok(candidate && typeof candidate === 'object', 'candidate is required')
   const plan = memory.strategicPlan
   if (!plan) return { relation: 'off-plan', eligible: true, priority: 0 }
-  if (!['active', 'repairing', 'tactical-deviation'].includes(plan.status)) {
-    return { relation: 'off-plan', eligible: true, priority: 0 }
-  }
+  const planOperational = ['active', 'repairing', 'tactical-deviation'].includes(plan.status)
   const details = candidate.details ?? {}
   const provides = [...(details.providesCapabilities ?? [])]
   const critical = new Set(plan.analysis.criticalCapabilities)
@@ -450,22 +506,35 @@ export function compileCandidatePlanFeatures(memory, candidate) {
     ...provides.filter((id) => critical.has(id)),
     ...intentCapabilities,
   ])]
-  const supportsCritical = supportsCapabilities.length > 0
+  const supportsCritical = planOperational && supportsCapabilities.length > 0
   let relation = 'off-plan'
   if (details.strategicIntent === 'tactical-deviation') relation = 'tactical-deviation'
   else if (details.repairId) relation = 'repair'
   else if (details.pivotPlanId) relation = 'pivot'
   else if (supportsCritical) relation = 'plan-consistent'
   else if (candidate.intent === 'fallback') relation = 'fallback'
+  if (!planOperational && !['pivot', 'fallback'].includes(relation)) relation = 'off-plan'
   const opportunityUrgency = Number.isInteger(details.opportunityExpiryTurn)
     ? Math.max(0, details.opportunityExpiryTurn - memory.currentTurn + 1)
     : null
+  const arbitrationMode = memory.lastArbitration?.mode ?? null
+  const targetRelation = {
+    continue: 'plan-consistent',
+    repair: 'repair',
+    tactical_deviation: 'tactical-deviation',
+    pivot: 'pivot',
+    abandon: 'fallback',
+  }[arbitrationMode] ?? null
+  const arbitrationMatch = targetRelation != null && relation === targetRelation
+  const planPriority = supportsCritical ? (plan.analysis.slackTurns <= 0 ? 3 : 2) : 0
   return {
     relation,
     eligible: true,
-    priority: supportsCritical ? (plan.analysis.slackTurns <= 0 ? 3 : 2) : 0,
+    priority: arbitrationMatch ? Math.max(4, planPriority) : planPriority,
     deadlineCritical: supportsCritical && plan.analysis.slackTurns <= 0,
     supportsCapabilities,
     opportunityUrgency,
+    arbitrationMode,
+    arbitrationMatch,
   }
 }
