@@ -380,8 +380,11 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     engine paired hidden-world fixtures and the actual belief-aware planner pass this gate. The first
     authentic fixture now passes: official reserve-card envelopes differed while public snapshots
     and DecisionViews matched; 16 matched belief seeds × 3 candidates produced mismatch 0 and TV 0,
-    with a byte-reproducible sanitized report. Next add a working-day hidden submission boundary,
-    then audit the belief-aware planner itself.
+    with a byte-reproducible sanitized report. A second authentic fixture corrects the earlier plan:
+    working day is sequential, so the relevant hidden boundary is restructuring. Opponent active-vs-
+    beach assignments differed while actor-visible state remained equal; 16 matched seeds × 2
+    candidates again produced mismatch 0 and TV 0. Its frozen fixture clock prevents display-time
+    sorting from making reconstructions nondeterministic. Next audit the belief-aware planner itself.
 - [ ] **P3.3f Add plan-health and opportunity arbitration.**
   - Why: reacting to every locally attractive move creates thrashing, while blindly following a
     plan misses real opponent mistakes.

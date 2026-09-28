@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "fcm.official-information-set-audit-protocol.v3",
+  "experimentId": 16,
+  "seed": "official-information-set-restructuring-v3",
+  "players": ["audit-actor", "audit-opponent-a", "audit-opponent-b"],
+  "actorSeat": 0,
+  "opponentSubmissionOrder": [2, 1],
+  "fixtureEpochMs": 1700000000000,
+  "sampleSeeds": [
+    "restructure-belief-01",
+    "restructure-belief-02",
+    "restructure-belief-03",
+    "restructure-belief-04",
+    "restructure-belief-05",
+    "restructure-belief-06",
+    "restructure-belief-07",
+    "restructure-belief-08",
+    "restructure-belief-09",
+    "restructure-belief-10",
+    "restructure-belief-11",
+    "restructure-belief-12",
+    "restructure-belief-13",
+    "restructure-belief-14",
+    "restructure-belief-15",
+    "restructure-belief-16"
+  ],
+  "maximumTotalVariation": 0,
+  "rolloutBudget": {
+    "maxCandidates": 4,
+    "maxTransitions": 8,
+    "deadlineMs": 10000
+  },
+  "promotionHoldoutOpened": false
+}

@@ -11,6 +11,9 @@ const population = JSON.parse(await readFile(
 const officialReport = JSON.parse(await readFile(
   new URL('../fixtures/information-set-audit-v2/report.json', import.meta.url),
 ))
+const restructuringReport = JSON.parse(await readFile(
+  new URL('../fixtures/information-set-audit-v3/report.json', import.meta.url),
+))
 const belief = buildOpponentBelief(population, {
   observed: {
     publicHistoryDigest: `sha256:${'a'.repeat(64)}`,
@@ -96,4 +99,17 @@ test('official reserve-card hidden worlds preserve the frozen rollout distributi
   assert.equal(officialReport.audit.passed, true)
   assert.equal(officialReport.privatePayloadPersisted, false)
   assert.equal(officialReport.promotionHoldoutOpened, false)
+})
+
+test('official restructuring hidden worlds preserve the frozen rollout distribution', () => {
+  assert.equal(restructuringReport.schemaVersion, 'fcm.official-information-set-audit.v3')
+  assert.equal(restructuringReport.boundary, 'restructuring-simultaneous-envelope')
+  assert.equal(restructuringReport.publicViewsEqual, true)
+  assert.equal(restructuringReport.publicSnapshotsEqual, true)
+  assert.equal(restructuringReport.hiddenEnvelopesDiffer, true)
+  assert.equal(restructuringReport.audit.maximumPairwiseTotalVariation, 0)
+  assert.equal(restructuringReport.audit.perSeedMismatchRate, 0)
+  assert.equal(restructuringReport.audit.passed, true)
+  assert.equal(restructuringReport.privatePayloadPersisted, false)
+  assert.equal(restructuringReport.promotionHoldoutOpened, false)
 })

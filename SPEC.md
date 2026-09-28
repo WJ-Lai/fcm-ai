@@ -379,7 +379,16 @@ public snapshots and actor DecisionViews. Across 16 matched belief seeds and thr
 candidates, the current bounded official rollout produced zero per-seed mismatches and zero total
 variation. Its sanitized report is byte-reproducible after normalizing display-only history
 timestamps and contains no private envelope. This proves one authentic boundary only; P3.3e still
-requires a working-day hidden submission fixture and an actual belief-aware planner audit.
+requires another authentic hidden submission fixture and an actual belief-aware planner audit.
+
+The second official fixture corrects an earlier plan error: the base-game working day is sequential,
+so there is no "working-day hidden submission" to test. Instead it covers company restructuring,
+where opponents privately commit active and beach employees before resolution. Two official worlds
+with different opponent assignments retained identical actor-visible state and candidates; all 16
+matched belief seeds again produced zero mismatch and zero total variation. The fixture freezes its
+clock because the UI records and sorts simultaneous history by display timestamps; this prevents
+test scheduling from changing history order. Reports remain private-payload-free and byte-
+reproducible. P3.3e remains open until the belief-sampled planner itself passes these audits.
 
 ### 6.6 Value and objective
 

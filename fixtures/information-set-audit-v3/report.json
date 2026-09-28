@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "fcm.official-information-set-audit.v3",
+  "experimentId": 16,
+  "boundary": "restructuring-simultaneous-envelope",
+  "protocolDigest": "sha256:71705e6c17c1bf5137887fb76bfe32fcb14ecfc0185faf11224ff4af23f04026",
+  "engineProtocolVersion": "fcm-engine-v1",
+  "rulesetHash": "a171620e533a34f0c77133afac1d239a02c7600978486d09a77a20ead95d0b5e",
+  "publicViewsEqual": true,
+  "publicSnapshotsEqual": true,
+  "hiddenEnvelopesDiffer": true,
+  "audit": {
+    "schemaVersion": "fcm.information-set-audit.v1",
+    "populationId": "base-public-population-v1",
+    "publicObservationDigest": "sha256:f4dc1c200970b845e94a9b17b195979dd537a1ddcf96778b15dd92a171f6e56a",
+    "worldIds": [
+      "restructuring-world-a",
+      "restructuring-world-b"
+    ],
+    "legalCandidateIds": [
+      "p3s1-balanced-6e3272a0d2",
+      "p3s1-fallback-5c896494fa"
+    ],
+    "samplesPerWorld": 16,
+    "candidateCountsByWorld": {
+      "restructuring-world-a": {
+        "p3s1-balanced-6e3272a0d2": 16,
+        "p3s1-fallback-5c896494fa": 0
+      },
+      "restructuring-world-b": {
+        "p3s1-balanced-6e3272a0d2": 16,
+        "p3s1-fallback-5c896494fa": 0
+      }
+    },
+    "pairwise": [
+      {
+        "leftWorldId": "restructuring-world-a",
+        "rightWorldId": "restructuring-world-b",
+        "totalVariation": 0
+      }
+    ],
+    "maximumPairwiseTotalVariation": 0,
+    "perSeedMismatchRate": 0,
+    "maximumTotalVariation": 0,
+    "passed": true
+  },
+  "privatePayloadPersisted": false,
+  "promotionHoldoutOpened": false
+}
