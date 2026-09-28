@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "fcm.scenario-beam-information-set-protocol.v2",
+  "experimentId": 19,
+  "fixtureEpochMs": 1700000000000,
+  "sampleSeeds": [
+    "beam-is-01", "beam-is-02", "beam-is-03", "beam-is-04",
+    "beam-is-05", "beam-is-06", "beam-is-07", "beam-is-08",
+    "beam-is-09", "beam-is-10", "beam-is-11", "beam-is-12",
+    "beam-is-13", "beam-is-14", "beam-is-15", "beam-is-16"
+  ],
+  "innerSampleSuffixes": ["left", "right"],
+  "maximumTotalVariation": 0,
+  "promotionHoldoutOpened": false
+}

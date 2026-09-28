@@ -401,7 +401,17 @@ with different opponent assignments retained identical actor-visible state and c
 matched belief seeds again produced zero mismatch and zero total variation. The fixture freezes its
 clock because the UI records and sorts simultaneous history by display timestamps; this prevents
 test scheduling from changing history order. Reports remain private-payload-free and byte-
-reproducible. P3.3e remains open until the belief-sampled planner itself passes these audits.
+reproducible.
+
+The actual `ScenarioBeam v1` adapter has now passed both paired-world audits. Sixteen matched outer
+belief seeds produced zero per-seed mismatch and zero total variation for four reserve candidates
+and two restructuring candidates. Because these are live simultaneous roots, the declared safe
+behavior is to return the same static public-information action with `root-simultaneous`, without
+cloning either trusted world; the audit injects a clone guard that would fail if this boundary were
+crossed. The sanitized report is byte-reproducible. This closes the current planner's information-
+set gate, not the problem forever: every future planner/version that actively searches a live
+hidden boundary must repeat the audit and prove that one actor commitment is shared across sampled
+worlds.
 
 ### 6.6 Value and objective
 

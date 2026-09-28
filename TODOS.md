@@ -362,7 +362,7 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     six-game blocks passed independently (Top-1 24/24, 23/24, 22/24; coverage 17/24, 19/24, 15/24;
     accepted correct 17/17, 18/19, 15/15; ECE 0.030–0.059). Calibration v5 is frozen. Advance to
     P3.3e information-set consistency before any rollout/search connection.
-- [ ] **P3.3e Enforce information-set policy consistency.**
+- [x] **P3.3e Enforce information-set policy consistency.**
   - Why: ordinary determinization can create strategy fusion—the planner chooses mutually
     incompatible actions in different sampled hidden worlds and behaves as if it knew which world
     was real.
@@ -384,7 +384,13 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     working day is sequential, so the relevant hidden boundary is restructuring. Opponent active-vs-
     beach assignments differed while actor-visible state remained equal; 16 matched seeds × 2
     candidates again produced mismatch 0 and TV 0. Its frozen fixture clock prevents display-time
-    sorting from making reconstructions nondeterministic. Next audit the belief-aware planner itself.
+    sorting from making reconstructions nondeterministic. Iteration 19 then audited the actual
+    `ScenarioBeam v1` adapter on both official paired-world fixtures. Across 16 outer matched seeds,
+    reserve produced four legal candidates and restructuring two; both had per-seed mismatch 0 and
+    TV 0. The planner reported `root-simultaneous`, attempted no clone, and selected the same static
+    public candidate in every hidden world. The report is byte-reproducible and private-payload-free.
+    This closes P3.3e for ScenarioBeam v1; any later planner that searches rather than safely
+    declining these boundaries (including P4.1c) must pass the gate independently.
 - [x] **P3.3f Add plan-health and opportunity arbitration.**
   - Why: reacting to every locally attractive move creates thrashing, while blindly following a
     plan misses real opponent mistakes.

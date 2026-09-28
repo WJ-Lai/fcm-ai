@@ -380,6 +380,12 @@ and rejected as strategy fusion. The official smoke crosses restructuring and re
 but currently changes a turn-1 hire to skip because the unpromoted cutoff evaluator prefers 39 to
 35.4. Therefore the mechanism passes while playing strength remains explicitly unproven.
 
+The production adapter also passes the two official paired hidden-world audits. At live reserve and
+restructuring roots it makes no clone attempt and returns the same public static commitment across
+16 matched seeds in both worlds (per-seed mismatch 0, TV 0). This is an explicit safe decline, not
+evidence that hidden-boundary search is strong; a future ISMCTS/POMCP-style specialist must pass its
+own information-set audit before comparison.
+
 **Rolling Horizon Evolutionary Algorithms (RHEA)** evolve complete macro sequences rather than
 expanding a strict prefix tree. Mutation can recover plans that beam pruning would discard and can
 work well with irregular candidate sets. The cost is seed variance, legality repair and less

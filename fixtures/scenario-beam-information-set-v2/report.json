@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "fcm.scenario-beam-information-set-audit.v2",
+  "experimentId": 19,
+  "planner": "scenario-beam-v1",
+  "protocolDigest": "sha256:dbbdef132c724d745274c4a0804940fb084ed8fe90fefba6ca7399cb2ad0f23f",
+  "boundaries": [
+    {
+      "boundary": "reserve-card-simultaneous-envelope",
+      "engineProtocolVersion": "fcm-engine-v1",
+      "rulesetHash": "a171620e533a34f0c77133afac1d239a02c7600978486d09a77a20ead95d0b5e",
+      "publicViewsEqual": true,
+      "publicSnapshotsEqual": true,
+      "hiddenEnvelopesDiffer": true,
+      "rootFallbackReason": "root-simultaneous",
+      "cloneAttempted": false,
+      "audit": {
+        "schemaVersion": "fcm.information-set-audit.v1",
+        "populationId": "base-public-population-v1",
+        "publicObservationDigest": "sha256:850e03dacb66448c25076ddd181044a7db4ea0f6e90fd4807c895892b6fa6cc7",
+        "worldIds": [
+          "beam-reserve-world-a",
+          "beam-reserve-world-b"
+        ],
+        "legalCandidateIds": [
+          "p2s1-reserve-card-10d125fc1a",
+          "p2s1-reserve-card-30aa34c405",
+          "p2s1-reserve-card-3e02fe4f94",
+          "p2s1-reserve-card-9108f05268"
+        ],
+        "samplesPerWorld": 16,
+        "candidateCountsByWorld": {
+          "beam-reserve-world-a": {
+            "p2s1-reserve-card-10d125fc1a": 0,
+            "p2s1-reserve-card-30aa34c405": 16,
+            "p2s1-reserve-card-3e02fe4f94": 0,
+            "p2s1-reserve-card-9108f05268": 0
+          },
+          "beam-reserve-world-b": {
+            "p2s1-reserve-card-10d125fc1a": 0,
+            "p2s1-reserve-card-30aa34c405": 16,
+            "p2s1-reserve-card-3e02fe4f94": 0,
+            "p2s1-reserve-card-9108f05268": 0
+          }
+        },
+        "pairwise": [
+          {
+            "leftWorldId": "beam-reserve-world-a",
+            "rightWorldId": "beam-reserve-world-b",
+            "totalVariation": 0
+          }
+        ],
+        "maximumPairwiseTotalVariation": 0,
+        "perSeedMismatchRate": 0,
+        "maximumTotalVariation": 0,
+        "passed": true
+      }
+    },
+    {
+      "boundary": "restructuring-simultaneous-envelope",
+      "engineProtocolVersion": "fcm-engine-v1",
+      "rulesetHash": "a171620e533a34f0c77133afac1d239a02c7600978486d09a77a20ead95d0b5e",
+      "publicViewsEqual": true,
+      "publicSnapshotsEqual": true,
+      "hiddenEnvelopesDiffer": true,
+      "rootFallbackReason": "root-simultaneous",
+      "cloneAttempted": false,
+      "audit": {
+        "schemaVersion": "fcm.information-set-audit.v1",
+        "populationId": "base-public-population-v1",
+        "publicObservationDigest": "sha256:c21a4f41734faab8bc351df9809428e5f550dd501d8536041aa50e625ee62fa0",
+        "worldIds": [
+          "beam-restructuring-world-a",
+          "beam-restructuring-world-b"
+        ],
+        "legalCandidateIds": [
+          "p3s1-balanced-6e3272a0d2",
+          "p3s1-fallback-5c896494fa"
+        ],
+        "samplesPerWorld": 16,
+        "candidateCountsByWorld": {
+          "beam-restructuring-world-a": {
+            "p3s1-balanced-6e3272a0d2": 16,
+            "p3s1-fallback-5c896494fa": 0
+          },
+          "beam-restructuring-world-b": {
+            "p3s1-balanced-6e3272a0d2": 16,
+            "p3s1-fallback-5c896494fa": 0
+          }
+        },
+        "pairwise": [
+          {
+            "leftWorldId": "beam-restructuring-world-a",
+            "rightWorldId": "beam-restructuring-world-b",
+            "totalVariation": 0
+          }
+        ],
+        "maximumPairwiseTotalVariation": 0,
+        "perSeedMismatchRate": 0,
+        "maximumTotalVariation": 0,
+        "passed": true
+      }
+    }
+  ],
+  "privatePayloadPersisted": false,
+  "promotionHoldoutOpened": false
+}
