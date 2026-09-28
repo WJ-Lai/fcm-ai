@@ -947,6 +947,20 @@ campaign-aware diversity raised strict effect coverage from 78/208 to 109/208 on
 validation slice, versus a pre-pruning ceiling of 138/208. Multi-marketing batches and placement
 generation explain part of the remaining gap.
 
+A subsequent multi-marketing puncture test made complete campaign batches semantically comparable,
+then tried bounded two-worker macros and all finite durations. Neither found an additional match on
+the 10-game development slice; extra duration buckets reduced bounded effect coverage from 29/62 to
+24–26/62 by displacing stronger candidates. The wider production generator was therefore removed.
+The retained diagnostics identify batch composition separately, and any future retry must use a
+versioned proposal/ranker rather than unbounded cross products.
+
+Before fitting `GameMemory v2` or arbitration weights, strategy-fixture v1 freezes 15 adversarial
+cases spanning long-horizon, reactive, tactical, abstraction, information-set and leaf-cutoff axes.
+It covers six working-day subphases and distinguishes rule legality, plan feasibility and strategic
+desirability. Content hashes bind every case to an official-engine fixture. Paired restaurant
+blocking, sequential inventory and milestone states must produce different preferences; paired
+hidden reserve mutations expose identical policy input and must preserve the same preference.
+
 Build/open/move labels are now produced by executing each candidate on an isolated official-engine
 clone and comparing only public pre/post `DecisionView` reachability. Raw coordinates are excluded;
 unreachable sentinels are categorical rather than large numeric distances. This raised build exact
@@ -1015,20 +1029,18 @@ observation fields, action candidates, simulator parity tests and benchmark scen
 
 The dependency-ordered source of truth is `../TODOS.md`. In summary:
 
-1. Finish marketing proposal coverage and the independent tactical consequence suite; bounded
-   hire/train proposal coverage has passed the frozen 75% gate on the disjoint final 50 games.
-2. Implement `GameMemory v2` as a typed reactive plan graph with prerequisite timing, slack,
+1. Implement `GameMemory v2` as a typed reactive plan graph with prerequisite timing, slack,
    commitments, repair/fallback paths and invalidation events; freeze causal long-horizon and
    reactive adversarial suites, including bait and no-oscillation cases.
-3. Calibrate opponent beliefs and a terminal/value evaluator against held-out games.
-4. Implement plan-health/opportunity arbitration with switching cost, confidence, hysteresis and
+2. Calibrate opponent beliefs and a terminal/value evaluator against held-out games.
+3. Implement plan-health/opportunity arbitration with switching cost, confidence, hysteresis and
    tactical-deviation versus strategic-pivot semantics.
-5. Freeze abstraction-collision, information-set-consistency and leaf-cutoff diagnostics before
-   deeper search.
-6. Run an equal-budget deadline-aware scenario-beam versus RHEA bake-off. Evaluate belief-aware
+4. Execute the frozen abstraction-collision, information-set-consistency and leaf-cutoff cases
+   against each contender before deeper search.
+5. Run an equal-budget deadline-aware scenario-beam versus RHEA bake-off. Evaluate belief-aware
    ISMCTS/POMCP-style search only where uncertainty leaves measured value.
-7. Add the LLM only as a selector over validated near-tie candidates and require measured lift.
-8. Distil useful search with Expert Iteration; evaluate PPO/self-play and PSRO/JPSRO-style population
+6. Add the LLM only as a selector over validated near-tie candidates and require measured lift.
+7. Distil useful search with Expert Iteration; evaluate PPO/self-play and PSRO/JPSRO-style population
    solvers only after their respective promotion triggers occur.
 
 ## 13. What success should mean

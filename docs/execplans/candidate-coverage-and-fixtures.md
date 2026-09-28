@@ -1,6 +1,6 @@
 # Candidate coverage and independent fixture execution plan
 
-Status: active — discrete proposal gate complete; marketing and fixtures remain
+Status: complete — remaining marketing ceiling is measured and strategy fixtures are frozen
 
 Updated: 2026-09-28
 
@@ -88,5 +88,6 @@ git diff --check
 - [x] Implement bounded, versioned proposal priors and length/source diversity.
 - [x] Re-run official-clone and disjoint final-50 coverage audits.
 - [x] Add campaign-aware marketing quotas and validate 78/208 → 109/208 effect coverage.
-- [ ] Add bounded multi-marketing batches and close the remaining generation ceiling.
-- [ ] Freeze independent fixture suite.
+- [x] Test bounded multi-marketing batches and intermediate durations; reject the 24–26/62
+  regressions and retain only batch diagnostics.
+- [x] Freeze 15 content-hashed strategy cases with adversarial label/privacy validators.

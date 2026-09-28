@@ -1,0 +1,417 @@
+{
+  "schemaVersion": "fcm.strategy-fixtures.v1",
+  "frozenAt": "2026-09-28",
+  "policyIndependent": true,
+  "rulesetHash": "a7b0ae2289ca54547c50e7bffdf323c47d729e220b38a530ff9639cadb71f4cc",
+  "cases": [
+    {
+      "id": "delayed-recruiting-engine",
+      "axis": "long-horizon",
+      "tags": ["delayed-activation", "milestone-closure"],
+      "source": {
+        "path": "fixtures/base-v1/phase-05-subphase-01-seat-00.json",
+        "sha256": "96266cbf0c29150d819c3018856aed46649214c0412f1a7033faf061792c603c",
+        "phase": 5,
+        "subphase": 1,
+        "seat": 0
+      },
+      "policyInput": {
+        "observed": [
+          {"key": "targetTurn", "value": 3},
+          {"key": "openMilestone", "value": "first-demand"},
+          {"key": "currentCapability", "value": "no-marketing-chain"}
+        ],
+        "derived": [
+          {"key": "minimumActivationLead", "value": 2},
+          {"key": "deadlineSlack", "value": 0}
+        ],
+        "believed": []
+      },
+      "candidates": [
+        {"id": "hire-enabler", "intent": "plan-consistent", "legality": "legal", "feasibility": "feasible", "desirability": "preferred"},
+        {"id": "hire-cash-role", "intent": "short-term", "legality": "legal", "feasibility": "feasible", "desirability": "trap"},
+        {"id": "skip-recruiting", "intent": "fallback", "legality": "legal", "feasibility": "infeasible", "desirability": "forbidden"}
+      ],
+      "expected": {"preferredCandidate": "hire-enabler", "reasonCode": "preserve-zero-slack-prerequisite"}
+    },
+    {
+      "id": "delayed-training-chain",
+      "axis": "long-horizon",
+      "tags": ["delayed-activation"],
+      "source": {
+        "path": "fixtures/base-v1/phase-05-subphase-02-seat-00.json",
+        "sha256": "37cbaf819c8f1c93eec14e17e7c0e3201e6d4961be6d1105110d1b85cec772e8",
+        "phase": 5,
+        "subphase": 2,
+        "seat": 0
+      },
+      "policyInput": {
+        "observed": [
+          {"key": "targetTurn", "value": 3},
+          {"key": "availableTrainee", "value": "management-trainee"}
+        ],
+        "derived": [
+          {"key": "requiredCapability", "value": "campaign-placement"},
+          {"key": "earliestActivationTurn", "value": 3}
+        ],
+        "believed": []
+      },
+      "candidates": [
+        {"id": "train-prerequisite", "intent": "plan-consistent", "legality": "legal", "feasibility": "feasible", "desirability": "preferred"},
+        {"id": "train-unrelated", "intent": "off-plan", "legality": "legal", "feasibility": "feasible", "desirability": "acceptable"}
+      ],
+      "expected": {"preferredCandidate": "train-prerequisite", "reasonCode": "meet-earliest-activation"}
+    },
+    {
+      "id": "salary-runway-overhire",
+      "axis": "long-horizon",
+      "tags": ["salary-runway"],
+      "source": {
+        "path": "fixtures/base-v1/phase-07-subphase-01-seat-00.json",
+        "sha256": "a643fa95f0f60364b16de78742ddde43452b52f6729b0ada71f1f6cde3340248",
+        "phase": 7,
+        "subphase": 1,
+        "seat": 0
+      },
+      "policyInput": {
+        "observed": [
+          {"key": "cashRunwayTurns", "value": 1},
+          {"key": "committedPayroll", "value": 25}
+        ],
+        "derived": [
+          {"key": "survivalMargin", "value": -5}
+        ],
+        "believed": []
+      },
+      "candidates": [
+        {"id": "fire-noncritical", "intent": "repair", "legality": "legal", "feasibility": "feasible", "desirability": "preferred"},
+        {"id": "retain-everyone", "intent": "commit", "legality": "legal", "feasibility": "infeasible", "desirability": "forbidden"}
+      ],
+      "expected": {"preferredCandidate": "fire-noncritical", "reasonCode": "avoid-payroll-failure"}
+    },
+    {
+      "id": "expiring-demand-gap",
+      "axis": "reactive",
+      "tags": ["expiring-opportunity"],
+      "source": {
+        "path": "fixtures/base-v1/phase-05-subphase-03-seat-00.json",
+        "sha256": "cc8ee423564457365bc4bdc9694d5317f3ac1edda4dc66d86208491fe1e94977",
+        "phase": 5,
+        "subphase": 3,
+        "seat": 0
+      },
+      "policyInput": {
+        "observed": [
+          {"key": "unservedReachableHouses", "value": 2},
+          {"key": "opponentCampaignCapacity", "value": 0}
+        ],
+        "derived": [
+          {"key": "opportunityExpiryTurns", "value": 1},
+          {"key": "switchingCost", "value": 1}
+        ],
+        "believed": [
+          {"key": "opponentEntryProbability", "value": 0.1}
+        ]
+      },
+      "candidates": [
+        {"id": "tactical-campaign", "intent": "tactical-deviation", "legality": "legal", "feasibility": "feasible", "desirability": "preferred"},
+        {"id": "continue-plan", "intent": "plan-consistent", "legality": "legal", "feasibility": "feasible", "desirability": "acceptable"}
+      ],
+      "expected": {"preferredCandidate": "tactical-campaign", "reasonCode": "positive-expiring-opportunity-after-switch-cost"}
+    },
+    {
+      "id": "unreachable-demand-bait",
+      "axis": "reactive",
+      "tags": ["attractive-bait", "demand-donation"],
+      "source": {
+        "path": "fixtures/base-v1/phase-05-subphase-03-seat-00.json",
+        "sha256": "cc8ee423564457365bc4bdc9694d5317f3ac1edda4dc66d86208491fe1e94977",
+        "phase": 5,
+        "subphase": 3,
+        "seat": 0
+      },
+      "policyInput": {
+        "observed": [
+          {"key": "advertisedHouseCount", "value": 3},
+          {"key": "ourReachableHouseCount", "value": 0},
+          {"key": "opponentReachableHouseCount", "value": 3}
+        ],
+        "derived": [
+          {"key": "projectedOurSales", "value": 0},
+          {"key": "projectedOpponentSales", "value": 3}
+        ],
+        "believed": []
+      },
+      "candidates": [
+        {"id": "continue-plan", "intent": "plan-consistent", "legality": "legal", "feasibility": "feasible", "desirability": "preferred"},
+        {"id": "donate-demand", "intent": "opportunity", "legality": "legal", "feasibility": "feasible", "desirability": "trap"}
+      ],
+      "expected": {"preferredCandidate": "continue-plan", "reasonCode": "reject-demand-donation"}
+    },
+    {
+      "id": "restaurant-blocking-open-lane",
+      "axis": "abstraction",
+      "tags": ["restaurant-blocking"],
+      "source": {
+        "path": "fixtures/base-v1/phase-05-subphase-06-seat-00.json",
+        "sha256": "0c0ee385be23aa4f1d6294ec16b39ed50ec44f03fcb68d5a4176e5502352ff76",
+        "phase": 5,
+        "subphase": 6,
+        "seat": 0
+      },
+      "policyInput": {
+        "observed": [
+          {"key": "laneStatus", "value": "open"},
+          {"key": "futureRestaurantAccess", "value": 2}
+        ],
+        "derived": [
+          {"key": "blockingLoss", "value": 0}
+        ],
+        "believed": []
+      },
+      "candidates": [
+        {"id": "expand-lane", "intent": "network-expansion", "legality": "legal", "feasibility": "feasible", "desirability": "preferred"},
+        {"id": "idle-manager", "intent": "fallback", "legality": "legal", "feasibility": "feasible", "desirability": "acceptable"}
+      ],
+      "expected": {"preferredCandidate": "expand-lane", "reasonCode": "preserve-network-access"},
+      "abstractionProbe": {"pairId": "restaurant-blocking", "expectedRelation": "different-preference", "distinctionFields": ["laneStatus", "futureRestaurantAccess"]}
+    },
+    {
+      "id": "restaurant-blocking-closed-lane",
+      "axis": "abstraction",
+      "tags": ["restaurant-blocking"],
+      "source": {
+        "path": "fixtures/base-v1/phase-05-subphase-06-seat-00.json",
+        "sha256": "0c0ee385be23aa4f1d6294ec16b39ed50ec44f03fcb68d5a4176e5502352ff76",
+        "phase": 5,
+        "subphase": 6,
+        "seat": 0
+      },
+      "policyInput": {
+        "observed": [
+          {"key": "laneStatus", "value": "blocked"},
+          {"key": "futureRestaurantAccess", "value": 0}
+        ],
+        "derived": [{"key": "blockingLoss", "value": 2}],
+        "believed": []
+      },
+      "candidates": [
+        {"id": "expand-lane", "intent": "network-expansion", "legality": "legal", "feasibility": "infeasible", "desirability": "forbidden"},
+        {"id": "reroute-manager", "intent": "repair", "legality": "legal", "feasibility": "feasible", "desirability": "preferred"}
+      ],
+      "expected": {"preferredCandidate": "reroute-manager", "reasonCode": "reject-blocked-network-branch"},
+      "abstractionProbe": {"pairId": "restaurant-blocking", "expectedRelation": "different-preference", "distinctionFields": ["laneStatus", "futureRestaurantAccess"]}
+    },
+    {
+      "id": "sequential-inventory-priority",
+      "axis": "abstraction",
+      "tags": ["sequential-inventory"],
+      "source": {
+        "path": "fixtures/base-v1/phase-05-subphase-07-seat-00.json",
+        "sha256": "f168a8fb9a85c4f1df4a3416c622e6e5e2562c6c23d4475725b3fd51a7226787",
+        "phase": 5,
+        "subphase": 7,
+        "seat": 0
+      },
+      "policyInput": {
+        "observed": [
+          {"key": "inventoryUnits", "value": 1},
+          {"key": "eligibleHousesInOrder", "value": [4, 18]}
+        ],
+        "derived": [
+          {"key": "firstHouseConsumesStock", "value": true}
+        ],
+        "believed": []
+      },
+      "candidates": [
+        {"id": "protect-first-sale", "intent": "inventory-priority", "legality": "legal", "feasibility": "feasible", "desirability": "preferred"},
+        {"id": "count-independent-sales", "intent": "aliased-evaluation", "legality": "legal", "feasibility": "infeasible", "desirability": "forbidden"}
+      ],
+      "expected": {"preferredCandidate": "protect-first-sale", "reasonCode": "respect-sequential-consumption"},
+      "abstractionProbe": {"pairId": "sequential-inventory", "expectedRelation": "different-preference", "distinctionFields": ["eligibleHousesInOrder", "inventoryUnits"]}
+    },
+    {
+      "id": "sequential-inventory-sufficient",
+      "axis": "abstraction",
+      "tags": ["sequential-inventory"],
+      "source": {
+        "path": "fixtures/base-v1/phase-05-subphase-07-seat-00.json",
+        "sha256": "f168a8fb9a85c4f1df4a3416c622e6e5e2562c6c23d4475725b3fd51a7226787",
+        "phase": 5,
+        "subphase": 7,
+        "seat": 0
+      },
+      "policyInput": {
+        "observed": [
+          {"key": "inventoryUnits", "value": 2},
+          {"key": "eligibleHousesInOrder", "value": [4, 18]}
+        ],
+        "derived": [{"key": "allEligibleSalesFunded", "value": true}],
+        "believed": []
+      },
+      "candidates": [
+        {"id": "serve-both-houses", "intent": "inventory-utilization", "legality": "legal", "feasibility": "feasible", "desirability": "preferred"},
+        {"id": "protect-first-sale", "intent": "inventory-priority", "legality": "legal", "feasibility": "feasible", "desirability": "acceptable"}
+      ],
+      "expected": {"preferredCandidate": "serve-both-houses", "reasonCode": "sufficient-sequential-inventory"},
+      "abstractionProbe": {"pairId": "sequential-inventory", "expectedRelation": "different-preference", "distinctionFields": ["inventoryUnits", "allEligibleSalesFunded"]}
+    },
+    {
+      "id": "open-milestone-continue",
+      "axis": "abstraction",
+      "tags": ["milestone-closure"],
+      "source": {
+        "path": "fixtures/base-v1/phase-05-subphase-01-seat-00.json",
+        "sha256": "96266cbf0c29150d819c3018856aed46649214c0412f1a7033faf061792c603c",
+        "phase": 5,
+        "subphase": 1,
+        "seat": 0
+      },
+      "policyInput": {
+        "observed": [
+          {"key": "targetMilestoneWindow", "value": "open"},
+          {"key": "reusableCommittedAssets", "value": 2}
+        ],
+        "derived": [
+          {"key": "oldGoalFeasible", "value": true},
+          {"key": "deadlineSlack", "value": 1}
+        ],
+        "believed": []
+      },
+      "candidates": [
+        {"id": "repair-reuse-assets", "intent": "repair", "legality": "legal", "feasibility": "feasible", "desirability": "acceptable"},
+        {"id": "chase-open-goal", "intent": "plan-consistent", "legality": "legal", "feasibility": "feasible", "desirability": "preferred"}
+      ],
+      "expected": {"preferredCandidate": "chase-open-goal", "reasonCode": "open-goal-remains-feasible"},
+      "abstractionProbe": {"pairId": "milestone-closure", "expectedRelation": "different-preference", "distinctionFields": ["targetMilestoneWindow", "oldGoalFeasible"]}
+    },
+    {
+      "id": "closed-milestone-pivot",
+      "axis": "abstraction",
+      "tags": ["milestone-closure"],
+      "source": {
+        "path": "fixtures/base-v1/phase-05-subphase-01-seat-00.json",
+        "sha256": "96266cbf0c29150d819c3018856aed46649214c0412f1a7033faf061792c603c",
+        "phase": 5,
+        "subphase": 1,
+        "seat": 0
+      },
+      "policyInput": {
+        "observed": [
+          {"key": "targetMilestoneWindow", "value": "closed"},
+          {"key": "reusableCommittedAssets", "value": 2}
+        ],
+        "derived": [
+          {"key": "oldGoalFeasible", "value": false},
+          {"key": "repairValue", "value": 8}
+        ],
+        "believed": []
+      },
+      "candidates": [
+        {"id": "repair-reuse-assets", "intent": "repair", "legality": "legal", "feasibility": "feasible", "desirability": "preferred"},
+        {"id": "chase-closed-goal", "intent": "stale-plan", "legality": "legal", "feasibility": "infeasible", "desirability": "forbidden"}
+      ],
+      "expected": {"preferredCandidate": "repair-reuse-assets", "reasonCode": "closed-goal-with-reusable-commitments"},
+      "abstractionProbe": {"pairId": "milestone-closure", "expectedRelation": "different-preference", "distinctionFields": ["targetMilestoneWindow", "oldGoalFeasible"]}
+    },
+    {
+      "id": "hidden-reserve-invariance-a",
+      "axis": "information-set",
+      "tags": ["hidden-state-invariance"],
+      "source": {
+        "path": "fixtures/base-v1/phase-03-subphase-01-seat-00.json",
+        "sha256": "cf4c20559cc31a96cfae31788c35638678023a8dc4c11ff994952bf5412997f2",
+        "phase": 3,
+        "subphase": 1,
+        "seat": 0
+      },
+      "policyInput": {
+        "observed": [{"key": "publicCompanyState", "value": "same-a-b"}],
+        "derived": [{"key": "legalCandidateSet", "value": "same-a-b"}],
+        "believed": [{"key": "hiddenChoiceDistribution", "value": "unchanged"}]
+      },
+      "candidates": [
+        {"id": "balanced-structure", "intent": "plan-consistent", "legality": "legal", "feasibility": "feasible", "desirability": "preferred"},
+        {"id": "empty-structure", "intent": "fallback", "legality": "legal", "feasibility": "feasible", "desirability": "acceptable"}
+      ],
+      "expected": {"preferredCandidate": "balanced-structure", "reasonCode": "information-set-policy-invariance"},
+      "testOnlyMutation": {"reserveCards": [100, 200, 300]},
+      "metamorphicProbe": {"pairId": "hidden-reserve", "expectedRelation": "same-policy"}
+    },
+    {
+      "id": "hidden-reserve-invariance-b",
+      "axis": "information-set",
+      "tags": ["hidden-state-invariance"],
+      "source": {
+        "path": "fixtures/base-v1/phase-03-subphase-01-seat-00.json",
+        "sha256": "cf4c20559cc31a96cfae31788c35638678023a8dc4c11ff994952bf5412997f2",
+        "phase": 3,
+        "subphase": 1,
+        "seat": 0
+      },
+      "policyInput": {
+        "observed": [{"key": "publicCompanyState", "value": "same-a-b"}],
+        "derived": [{"key": "legalCandidateSet", "value": "same-a-b"}],
+        "believed": [{"key": "hiddenChoiceDistribution", "value": "unchanged"}]
+      },
+      "candidates": [
+        {"id": "balanced-structure", "intent": "plan-consistent", "legality": "legal", "feasibility": "feasible", "desirability": "preferred"},
+        {"id": "empty-structure", "intent": "fallback", "legality": "legal", "feasibility": "feasible", "desirability": "acceptable"}
+      ],
+      "expected": {"preferredCandidate": "balanced-structure", "reasonCode": "information-set-policy-invariance"},
+      "testOnlyMutation": {"reserveCards": [0, 0, 0]},
+      "metamorphicProbe": {"pairId": "hidden-reserve", "expectedRelation": "same-policy"}
+    },
+    {
+      "id": "marketing-leaf-cutoff",
+      "axis": "leaf-cutoff",
+      "tags": ["leaf-cutoff", "demand-donation"],
+      "source": {
+        "path": "fixtures/base-v1/phase-05-subphase-03-seat-00.json",
+        "sha256": "cc8ee423564457365bc4bdc9694d5317f3ac1edda4dc66d86208491fe1e94977",
+        "phase": 5,
+        "subphase": 3,
+        "seat": 0
+      },
+      "policyInput": {
+        "observed": [
+          {"key": "campaignImmediateDemand", "value": 3},
+          {"key": "ourInventoryNextDinner", "value": 0}
+        ],
+        "derived": [{"key": "minimumInformativeHorizon", "value": 2}],
+        "believed": [{"key": "opponentSupplyProbability", "value": 0.8}]
+      },
+      "candidates": [
+        {"id": "defer-campaign", "intent": "plan-consistent", "legality": "legal", "feasibility": "feasible", "desirability": "preferred"},
+        {"id": "one-ply-campaign", "intent": "leaf-bias", "legality": "legal", "feasibility": "feasible", "desirability": "trap"}
+      ],
+      "expected": {"preferredCandidate": "defer-campaign", "reasonCode": "avoid-truncated-demand-donation"},
+      "cutoffProbe": {"horizons": [1, 2, 3], "expectedRelation": "one-ply-may-differ-terminal-must-stabilize"}
+    },
+    {
+      "id": "production-closes-demand",
+      "axis": "tactical",
+      "tags": ["sequential-inventory"],
+      "source": {
+        "path": "fixtures/base-v1/phase-05-subphase-04-seat-00.json",
+        "sha256": "60602e55db662ef2b31da0142decbbc6d38c5c9493518bd03060708cf45b02fb",
+        "phase": 5,
+        "subphase": 4,
+        "seat": 0
+      },
+      "policyInput": {
+        "observed": [
+          {"key": "reachableDemand", "value": {"burger": 1}},
+          {"key": "inventory", "value": {"burger": 0}}
+        ],
+        "derived": [{"key": "minimumProduction", "value": {"burger": 1}}],
+        "believed": []
+      },
+      "candidates": [
+        {"id": "produce-burger", "intent": "demand-closure", "legality": "legal", "feasibility": "feasible", "desirability": "preferred"},
+        {"id": "produce-unwanted", "intent": "inventory-growth", "legality": "legal", "feasibility": "feasible", "desirability": "trap"}
+      ],
+      "expected": {"preferredCandidate": "produce-burger", "reasonCode": "close-observed-reachable-demand"}
+    }
+  ]
+}

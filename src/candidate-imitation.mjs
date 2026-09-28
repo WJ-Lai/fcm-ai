@@ -50,21 +50,32 @@ export function projectedCandidateRank(rankedCandidates, humanActions, project) 
  */
 export function marketingEffectSignature(actions, legalActions) {
   const marketingActions = actions.filter((action) => action.type === 'marketing')
-  if (marketingActions.length !== 1) return null
-  const action = marketingActions[0]
+  if (!marketingActions.length) return null
   const legal = legalActions.actions.find((item) => item.type === 'marketing')
-  const marketer = legal?.options?.find((item) => item.marketer === action.marketer)
-  const campaign = marketer?.campaigns?.find((item) => item.campaign === action.campaign)
-  const placement = campaign?.placements?.find((item) => item.rotated === action.rotated)
-  const impact = placement?.houseImpacts?.find((item) => item.index === action.index)
-  if (!impact) return null
-  return {
-    marketer: action.marketer,
-    campaign: action.campaign,
-    good: action.good,
-    duration: action.duration,
-    houses: [...impact.houses].sort((left, right) => left - right),
+  const usedMarketers = new Set()
+  const signatures = []
+  for (const action of marketingActions) {
+    if (usedMarketers.has(action.marketer)) return null
+    usedMarketers.add(action.marketer)
+    const marketer = legal?.options?.find((item) => item.marketer === action.marketer)
+    const campaign = marketer?.campaigns?.find((item) => item.campaign === action.campaign)
+    const placement = campaign?.placements?.find((item) => item.rotated === action.rotated)
+    const impact = placement?.houseImpacts?.find((item) => item.index === action.index)
+    if (!impact) return null
+    signatures.push({
+      marketer: action.marketer,
+      campaign: action.campaign,
+      good: action.good,
+      duration: action.duration,
+      houses: [...impact.houses].sort((left, right) => left - right),
+    })
   }
+  signatures.sort((left, right) => (
+    left.marketer - right.marketer || left.campaign - right.campaign ||
+    left.good - right.good || left.duration - right.duration ||
+    JSON.stringify(left.houses).localeCompare(JSON.stringify(right.houses))
+  ))
+  return signatures.length === 1 ? signatures[0] : signatures
 }
 
 /** Return every tied first-place seat from terminal public player state. */

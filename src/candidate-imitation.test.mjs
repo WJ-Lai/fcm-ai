@@ -86,6 +86,41 @@ test('marketing effect signature treats coordinates with identical affected hous
   })
 })
 
+test('marketing effect signature canonicalizes a complete multi-campaign batch', () => {
+  const legalActions = { actions: [{
+    type: 'marketing', goods: [3, 4], options: [
+      { marketer: 13, campaigns: [{ campaign: 14, placements: [{
+        rotated: false, houseImpacts: [
+          { index: 40, houses: [2, 1] }, { index: 41, houses: [1, 2] },
+        ],
+      }] }] },
+      { marketer: 15, campaigns: [{ campaign: 16, placements: [{
+        rotated: true, houseImpacts: [
+          { index: 50, houses: [3] }, { index: 51, houses: [3] },
+        ],
+      }] }] },
+    ],
+  }] }
+  const batch = (firstIndex, secondIndex, reversed = false) => {
+    const actions = [
+      { type: 'marketing', marketer: 13, campaign: 14, good: 4,
+        duration: 2, rotated: false, index: firstIndex },
+      { type: 'marketing', marketer: 15, campaign: 16, good: 3,
+        duration: 1, rotated: true, index: secondIndex },
+    ]
+    if (reversed) actions.reverse()
+    return [...actions, { type: 'next_subphase' }]
+  }
+  const signature = marketingEffectSignature(batch(40, 50), legalActions)
+  assert.notEqual(signature, null)
+  assert.deepEqual(signature, marketingEffectSignature(batch(41, 51, true), legalActions))
+  assert.equal(marketingEffectSignature([
+    ...batch(40, 50).slice(0, 2),
+    { ...batch(40, 50)[0] },
+    { type: 'next_subphase' },
+  ], legalActions), null)
+})
+
 test('winner seats are derived from terminal public money and preserve ties', () => {
   assert.deepEqual(winnerSeatsFromPlayers([
     { money: 20 }, { money: 50 }, { money: 50 },

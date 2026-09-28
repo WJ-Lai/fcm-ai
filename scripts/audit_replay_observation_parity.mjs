@@ -385,7 +385,8 @@ for (const [recordIndex, record] of manifest.records.entries()) {
           patternEquivalentTop1: 0, patternEquivalentTop3: 0,
           winnerPatternEquivalentOffered: 0,
           winnerPatternEquivalentTop1: 0, winnerPatternEquivalentTop3: 0,
-          missingPatternHistogram: {},
+          missingPatternHistogram: {}, marketingBatchHistogram: {},
+          missingMarketingBatchHistogram: {},
           winnerVerifiedLabels: 0, winnerCandidateOffered: 0,
           winnerStaticTop1: 0, winnerStaticTop3: 0,
           actionCountHistogram: {}, actionTypeHistogram: {},
@@ -412,6 +413,18 @@ for (const [recordIndex, record] of manifest.records.entries()) {
         bucket.actionTypeHistogram[actionFamily] =
           (bucket.actionTypeHistogram[actionFamily] ?? 0) + 1
         bucket.patternHistogram[pattern] = (bucket.patternHistogram[pattern] ?? 0) + 1
+        const marketingBatch = comparableActions.filter((action) => action.type === 'marketing')
+          .map((action) => (
+            `${action.marketer}/${action.campaign}/${action.good}/${action.duration}`
+          )).sort().join('+')
+        if (marketingBatch) {
+          bucket.marketingBatchHistogram[marketingBatch] =
+            (bucket.marketingBatchHistogram[marketingBatch] ?? 0) + 1
+          if (!effectMatch) {
+            bucket.missingMarketingBatchHistogram[marketingBatch] =
+              (bucket.missingMarketingBatchHistogram[marketingBatch] ?? 0) + 1
+          }
+        }
         if (winnerDecision) {
           bucket.winnerPatternHistogram[pattern] =
             (bucket.winnerPatternHistogram[pattern] ?? 0) + 1

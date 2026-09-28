@@ -143,11 +143,15 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     on development games and from 78/208 to 109/208 on the disjoint 40-game validation slice;
     its enumerated validation ceiling is 138/208. Multi-marketing batches and missing placements
     remain open, so P3.1b is not yet complete.
+    A bounded multi-marketing spike added semantic batch matching and tested pair macros plus every
+    finite duration. It produced no additional development matches and diluted bounded coverage to
+    24–26/62, so the production generator was restored. Batch diagnostics remain; a future attempt
+    needs a learned/versioned proposal rather than a wider Cartesian enumeration.
     Build exact coverage rose
     45→86/147 and official public-consequence coverage is 103/147 (70.1%); winner consequence
     coverage is 67/94 (71.3%). Restaurant exact coordinates cover only 12/85, but official
     consequence equivalence covers 82/85 (96.5%) and 32/33 winner decisions. Marketing effect
-    equivalence remains 100/270 (37.0%). Ranking quality remains poor as coverage grows, so
+    equivalence is now 138/270 (51.1%) across the 50 training games. Ranking quality remains poor as coverage grows, so
     evaluator promotion stays blocked.
 - [x] **P3.2 Implement persistent `GameMemory`.**
   - Why: plans, opponent hypotheses and prediction errors must survive LLM/tool calls.
@@ -169,7 +173,7 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     for a turn-3 goal, detects an impossible/missed deadline, repairs a partially reusable plan and
     still offers a valuable off-plan pivot. Memory rebuilds byte-for-byte from the event stream
     without hidden-state fields.
-- [ ] **P3.2c Freeze long-horizon and reactive promotion fixtures.**
+- [x] **P3.2c Freeze long-horizon and reactive promotion fixtures.**
   - Why: plan/arbitration weights fitted before independent examples exist will encode anecdotes
     and make every later comparison circular.
   - Scope: causal long-horizon cases cover delayed employee activation, milestone preparation,
@@ -178,6 +182,11 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     deviations and repeated unchanged observations.
   - Done when: labels distinguish plan feasibility from desirability, use only public/seat-visible
     inputs and are frozen before arbitration parameters are fitted.
+  - Evidence: `fixtures/strategy-v1/manifest.json` contains 15 immutable cases across six evaluation
+    axes and six working-day subphases. Every source official-engine fixture is content-hashed;
+    labels separately encode legality, feasibility and desirability. Three abstraction pairs require
+    different preferred choices, while hidden reserve-card mutations require identical policy input
+    and preference. Validators reject private fields and impossible preferred candidates.
 - [ ] **P3.2d Audit strategic-abstraction fidelity before deeper search.**
   - Why: a compact `DecisionView`, plan capability or macro can map strategically different raw
     states to the same feature vector. Search then becomes confidently wrong because it cannot see

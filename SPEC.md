@@ -83,6 +83,16 @@ frozen, diverse policy league.
   development games and from 78/208 to 109/208 (52.4%) on the disjoint 40-game validation slice.
   The enumerated ceiling there is 138/208; multi-marketing batches and missing placements remain
   explicit follow-up work. The already-opened final 50 set was not reused to tune this change.
+- A bounded multi-marketing spike was tested and rejected: multi-batch semantic labels are now
+  measurable, but adding pair macros or every intermediate campaign duration consumed scarce
+  proposal slots and reduced development coverage from 29/62 to 24–26/62. Production generation
+  remains on the better single-campaign policy until a learned/versioned proposal can demonstrate
+  lift. This is a measured combinatorial blocker, not an unimplemented legality path.
+- Strategy fixture v1 freezes 15 policy-independent cases across long-horizon, reactive, tactical,
+  abstraction, information-set and leaf-cutoff axes. Cases cover six working-day subphases, anchor
+  to content-hashed official-engine fixtures and separate legality, feasibility and desirability.
+  Restaurant blocking, sequential inventory and milestone closure have paired states requiring
+  different choices; hidden reserve-card mutations require identical policy input and preference.
 - `GameMemory v1` stores only coarse intent, a 1–5 turn horizon, confidence and evidence. The current
   shallow rollout evaluates at most six candidates, 24 official transitions and three seconds, and
   stops at opponent/simultaneous boundaries.
@@ -397,20 +407,17 @@ policy-population method such as PSRO/JPSRO before claiming convergence.
 
 ## 11. Execution order
 
-1. Close missing marketing coverage without exceeding 32 candidates; the bounded hire/train 75%
-   gate is complete on the disjoint final 50-game test.
-2. Freeze independent tactical, long-horizon, reactive, abstraction-collision and
-   information-set-consistency suites before fitting new weights.
-3. Implement `GameMemory v2`, the typed plan graph and event-rebuild tests.
-4. Calibrate terminal/value evaluation and a versioned opponent-population belief sampler.
-5. Implement plan-health/opportunity arbitration with switching cost and hysteresis.
-6. Run the equal-budget scenario-beam versus RHEA bake-off; add belief-aware search only at
+1. Implement `GameMemory v2`, the typed plan graph and event-rebuild tests against the frozen
+   strategy-fixture v1 suite.
+2. Calibrate terminal/value evaluation and a versioned opponent-population belief sampler.
+3. Implement plan-health/opportunity arbitration with switching cost and hysteresis.
+4. Run the equal-budget scenario-beam versus RHEA bake-off; add belief-aware search only at
    hidden/uncertain boundaries after privacy semantics pass.
-7. Run held-out leagues and component ablations; promote only on terminal lift.
-8. Evaluate an LLM selector only on deterministic near-ties and remove it if it adds no lift.
-9. Distil useful search through Expert Iteration; evaluate masked PPO and potential shaping only
+5. Run held-out leagues and component ablations; promote only on terminal lift.
+6. Evaluate an LLM selector only on deterministic near-ties and remove it if it adds no lift.
+7. Distil useful search through Expert Iteration; evaluate masked PPO and potential shaping only
    after the simulator, value and policy-population gates pass.
-10. Add expansions one module at a time after base-game strength and parity stabilize.
+8. Add expansions one module at a time after base-game strength and parity stabilize.
 
 ## 12. Non-goals for the current stage
 
