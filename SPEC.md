@@ -668,6 +668,18 @@ digest is demoted from identity evidence. Subsequent reports use a normalized ro
 stable projection, public features and candidate ids, while the official reconstruction assertions
 continue to fail closed on candidate or projection drift.
 
+The 15-sample gate rejects the contextual interaction. The unmatched deficit-7 root closes with six
+alternate rank wins, zero static wins and nine ties (`p=0.03125`), narrowly above alpha 0.025. The
+matched deficit-10 root closes with six alternate wins, one static win and eight ties (`p=0.125`).
+Both correctly abstain, so the preregistered claim that the threshold identifies a rank-selectable
+root is false; it must not become an online gate or be retuned. Across all four candidate-matched
+roots, however, `CEO -> Management Trainee` has 21 rank wins versus one for the static training
+choice over 60 paired continuations, with one root entirely rank-tied. Those samples are clustered
+within only four roots and were used during hypothesis discovery, so pooling them as 60 independent
+observations would be invalid. The next admissible hypothesis is action-pair-wide rather than
+map-threshold-specific: preregister exact eligibility, discover untouched roots on new seeds without
+terminal peeking, and evaluate root-level generalization before any online change.
+
 ### 6.8 Execution, memory and learning
 
 The execution layer accepts one versioned candidate id, revalidates it against the current game

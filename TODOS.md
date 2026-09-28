@@ -548,7 +548,13 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     unmatched root 3 wins / 4 ties; both request 15. The unmatched direction is stronger, so retain
     falsification as the expected live risk. Also replace the process-volatile whole-view digest with
     a normalized projection+features+candidate identity in the 15-sample report; do not use the old
-    digest as reproducibility evidence.
+    digest as reproducibility evidence. Iteration 44 closes both roots at 15 with exact prefixes and
+    normalized identity. Unmatched root: alternate 6 wins / static 0 / ties 9, p=0.03125; matched:
+    alternate 6 / static 1 / ties 8, p=0.125. Both abstain, so reject the map-threshold interaction
+    and keep static online. The four known roots together show 21 alternate rank wins vs 1 static
+    win across 60 continuations, but these clustered/discovery samples may not be pooled as IID.
+    Next preregister the exact action pair as a candidate-wide hypothesis and find untouched roots on
+    new seeds before observing their terminal outcomes.
 
 - [ ] **P4.1c Evaluate belief-aware information-set search only where uncertainty warrants it.**
   - Why: hidden/simultaneous choices may justify ISMCTS/POMCP-style sampling, but naive MCTS or
