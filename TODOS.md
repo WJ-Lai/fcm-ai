@@ -309,6 +309,10 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     Existing three-sample data selects 0/4 roots and requests more samples for 4/4; all p-values are
     1.0 and cash-advantage standard errors are $264–$441. Next resume the same roots to seven samples
     without recomputing the verified first three, then either select or continue to the maximum.
+    Seven-sample continuation is now complete with every first-three prefix unchanged. It still
+    selects 0/4 and advances 4/4 to sample 15; p-values are 0.375–1.0 versus alpha 0.02, while one
+    cash mean reverses from -$215.67 to +$10. Next resume only samples 7–14, then freeze selected vs
+    max-sample-abstained outcomes without any cash/static fallback.
 - [ ] **P3.3d Add versioned opponent-belief sampling.**
   - Why: future dinner outcomes depend on unrevealed simultaneous choices and opponent reactions.
   - Depends on: P1.1 observation provenance, P3.2 and validated public-replay/self-play traces. A

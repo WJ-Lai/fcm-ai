@@ -3,6 +3,7 @@ import test from 'node:test'
 
 import {
   auditActionRegretStability,
+  prepareActionRegretStabilityResume,
   validateActionRegretStability,
 } from './action-regret-stability.mjs'
 
@@ -57,4 +58,36 @@ test('stability data fails closed on hidden state, uneven samples, and an opened
   const opened = fixture()
   opened.promotionHoldoutOpened = true
   assert.throws(() => validateActionRegretStability(opened), /must remain sealed/)
+})
+
+test('resume plan preserves verified samples and requires the exact frozen roots and candidates', () => {
+  const existing = fixture()
+  const targets = existing.roots.map((root) => ({
+    rootId: root.rootId,
+    candidateIds: root.candidates.map((candidate) => candidate.candidateId),
+  }))
+  const resume = prepareActionRegretStabilityResume(existing, {
+    requestedSampleCount: 7,
+    targets,
+  })
+  assert.equal(resume.previousSampleCount, 3)
+  assert.equal(resume.requestedSampleCount, 7)
+  assert.deepEqual(resume.roots, existing.roots)
+  resume.roots[0].candidates[0].terminalMargins[0] = 999
+  assert.equal(existing.roots[0].candidates[0].terminalMargins[0], 10)
+
+  assert.throws(
+    () => prepareActionRegretStabilityResume(existing, {
+      requestedSampleCount: 3,
+      targets,
+    }),
+    /must increase/,
+  )
+  assert.throws(
+    () => prepareActionRegretStabilityResume(existing, {
+      requestedSampleCount: 7,
+      targets: [{ rootId: 'wrong-root', candidateIds: ['produce', 'skip'] }],
+    }),
+    /frozen root set/,
+  )
 })

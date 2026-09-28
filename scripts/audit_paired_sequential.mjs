@@ -32,6 +32,13 @@ const outputPath = path.resolve(argument(
   '--output',
   'fixtures/paired-sequential-v1/iteration-4.json',
 ))
+const experimentId = Number(argument('--experiment-id', '4'))
+const hypothesis = argument(
+  '--hypothesis',
+  'sequential paired evidence abstains instead of forcing noisy action labels',
+)
+assert.ok(Number.isInteger(experimentId) && experimentId > 0,
+  'experiment id must be a positive integer')
 const datasetText = await readFile(datasetPath, 'utf8')
 const protocolText = await readFile(protocolPath, 'utf8')
 const dataset = JSON.parse(datasetText)
@@ -43,8 +50,8 @@ assert.equal(protocol.promotionHoldoutOpened, false, 'promotion holdout must rem
 const audit = auditPairedSequentialDataset(dataset, protocol)
 const report = {
   schemaVersion: 'fcm.paired-sequential-experiment.v1',
-  experimentId: 4,
-  hypothesis: 'sequential paired evidence abstains instead of forcing noisy action labels',
+  experimentId,
+  hypothesis,
   datasetDigest: digest(datasetText),
   protocolDigest: digest(protocolText),
   rulesetHash: dataset.rulesetHash,

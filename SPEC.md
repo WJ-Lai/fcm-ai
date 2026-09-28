@@ -166,6 +166,11 @@ frozen, diverse policy league.
   override uncertain terminal rank. This is the intended fail-closed result, not a weak-policy
   failure. Subsequent collection must resume the same paired seed streams and may export a training
   label only when the predeclared test selects one candidate; otherwise it proceeds or abstains.
+- Resuming the same production roots from three to seven paired continuations preserved every prior
+  sample exactly and recomputed none. The stage-seven estimator still selects 0/4; all roots proceed
+  to the frozen 15-sample maximum, with p-values 0.375–1.0 against alpha 0.02. Cash means remain
+  unstable (one root moved from -$215.67 to +$10) and therefore remain non-authoritative. At sample
+  15, unresolved roots must be recorded as abstentions rather than assigned cash-sign/static labels.
 
 ## 5. Target architecture
 

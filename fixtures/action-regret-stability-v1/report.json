@@ -2,7 +2,8 @@
   "schemaVersion": "fcm.action-regret-stability.v1",
   "rulesetHash": "a171620e533a34f0c77133afac1d239a02c7600978486d09a77a20ead95d0b5e",
   "continuationPolicy": "fcm.deterministic-vs-official-builtin-population.v1",
-  "sampleCount": 3,
+  "sampleCount": 7,
+  "resumedFromSampleCount": 3,
   "promotionHoldoutOpened": false,
   "roots": [
     {
@@ -16,12 +17,20 @@
           "terminalMargins": [
             62,
             -135,
-            195
+            195,
+            -351,
+            485,
+            134,
+            52
           ],
           "terminalCommands": [
             434,
             396,
-            375
+            375,
+            294,
+            283,
+            386,
+            351
           ]
         },
         {
@@ -29,12 +38,20 @@
           "terminalMargins": [
             488,
             475,
-            -194
+            -194,
+            195,
+            -15,
+            -127,
+            -450
           ],
           "terminalCommands": [
             257,
             234,
-            295
+            295,
+            397,
+            431,
+            433,
+            432
           ]
         }
       ]
@@ -50,11 +67,19 @@
           "terminalMargins": [
             483,
             -60,
-            296
+            296,
+            252,
+            472,
+            486,
+            485
           ],
           "terminalCommands": [
             126,
             131,
+            128,
+            116,
+            118,
+            128,
             128
           ]
         },
@@ -63,12 +88,20 @@
           "terminalMargins": [
             132,
             288,
-            -217
+            -217,
+            260,
+            -510,
+            161,
+            96
           ],
           "terminalCommands": [
             103,
             113,
-            150
+            150,
+            115,
+            202,
+            90,
+            151
           ]
         }
       ]
@@ -84,12 +117,20 @@
           "terminalMargins": [
             -152,
             532,
-            -425
+            -425,
+            386,
+            78,
+            492,
+            487
           ],
           "terminalCommands": [
             96,
             144,
-            141
+            141,
+            118,
+            260,
+            142,
+            130
           ]
         },
         {
@@ -97,12 +138,20 @@
           "terminalMargins": [
             -321,
             -203,
-            352
+            352,
+            -358,
+            -155,
+            -349,
+            415
           ],
           "terminalCommands": [
             173,
             140,
-            126
+            126,
+            138,
+            256,
+            138,
+            138
           ]
         }
       ]
@@ -118,12 +167,20 @@
           "terminalMargins": [
             -137,
             -47,
-            -282
+            -282,
+            7,
+            -509,
+            -174,
+            -363
           ],
           "terminalCommands": [
             427,
             437,
-            332
+            332,
+            425,
+            386,
+            431,
+            434
           ]
         },
         {
@@ -131,12 +188,20 @@
           "terminalMargins": [
             -2,
             -509,
-            566
+            566,
+            -292,
+            348,
+            -278,
+            -31
           ],
           "terminalCommands": [
             433,
             280,
-            427
+            427,
+            268,
+            403,
+            406,
+            439
           ]
         }
       ]
@@ -147,7 +212,7 @@
     "roots": 4,
     "stableRoots": 0,
     "flippedRoots": 4,
-    "meanSampleAgreement": 0.6666666666666666,
+    "meanSampleAgreement": 0.6785714285714286,
     "details": [
       {
         "rootId": "development-00-middle-production",
@@ -155,22 +220,22 @@
           "p5s4-fallback-21d4f44933",
           "p5s4-produce-4edc9db56b"
         ],
-        "sampleAgreement": 0.6666666666666666,
+        "sampleAgreement": 0.5714285714285714,
         "stable": false,
         "meanOracleCandidateIds": [
-          "p5s4-fallback-21d4f44933"
+          "p5s4-produce-4edc9db56b"
         ],
         "candidates": [
           {
             "candidateId": "p5s4-produce-4edc9db56b",
-            "meanTerminalMargin": 40.666666666666664,
-            "minTerminalMargin": -135,
-            "maxTerminalMargin": 195
+            "meanTerminalMargin": 63.142857142857146,
+            "minTerminalMargin": -351,
+            "maxTerminalMargin": 485
           },
           {
             "candidateId": "p5s4-fallback-21d4f44933",
-            "meanTerminalMargin": 256.3333333333333,
-            "minTerminalMargin": -194,
+            "meanTerminalMargin": 53.142857142857146,
+            "minTerminalMargin": -450,
             "maxTerminalMargin": 488
           }
         ]
@@ -181,7 +246,7 @@
           "p5s4-fallback-21d4f44933",
           "p5s4-produce-4edc9db56b"
         ],
-        "sampleAgreement": 0.6666666666666666,
+        "sampleAgreement": 0.7142857142857143,
         "stable": false,
         "meanOracleCandidateIds": [
           "p5s4-produce-4edc9db56b"
@@ -189,14 +254,14 @@
         "candidates": [
           {
             "candidateId": "p5s4-produce-4edc9db56b",
-            "meanTerminalMargin": 239.66666666666666,
+            "meanTerminalMargin": 344.85714285714283,
             "minTerminalMargin": -60,
-            "maxTerminalMargin": 483
+            "maxTerminalMargin": 486
           },
           {
             "candidateId": "p5s4-fallback-21d4f44933",
-            "meanTerminalMargin": 67.66666666666667,
-            "minTerminalMargin": -217,
+            "meanTerminalMargin": 30,
+            "minTerminalMargin": -510,
             "maxTerminalMargin": 288
           }
         ]
@@ -207,7 +272,7 @@
           "p5s4-fallback-21d4f44933",
           "p5s4-produce-4edc9db56b"
         ],
-        "sampleAgreement": 0.6666666666666666,
+        "sampleAgreement": 0.8571428571428571,
         "stable": false,
         "meanOracleCandidateIds": [
           "p5s4-produce-4edc9db56b"
@@ -215,15 +280,15 @@
         "candidates": [
           {
             "candidateId": "p5s4-produce-4edc9db56b",
-            "meanTerminalMargin": -15,
+            "meanTerminalMargin": 199.71428571428572,
             "minTerminalMargin": -425,
             "maxTerminalMargin": 532
           },
           {
             "candidateId": "p5s4-fallback-21d4f44933",
-            "meanTerminalMargin": -57.333333333333336,
-            "minTerminalMargin": -321,
-            "maxTerminalMargin": 352
+            "meanTerminalMargin": -88.42857142857143,
+            "minTerminalMargin": -358,
+            "maxTerminalMargin": 415
           }
         ]
       },
@@ -233,7 +298,7 @@
           "p5s4-fallback-21d4f44933",
           "p5s4-produce-4edc9db56b"
         ],
-        "sampleAgreement": 0.6666666666666666,
+        "sampleAgreement": 0.5714285714285714,
         "stable": false,
         "meanOracleCandidateIds": [
           "p5s4-fallback-21d4f44933"
@@ -241,13 +306,13 @@
         "candidates": [
           {
             "candidateId": "p5s4-produce-4edc9db56b",
-            "meanTerminalMargin": -155.33333333333334,
-            "minTerminalMargin": -282,
-            "maxTerminalMargin": -47
+            "meanTerminalMargin": -215,
+            "minTerminalMargin": -509,
+            "maxTerminalMargin": 7
           },
           {
             "candidateId": "p5s4-fallback-21d4f44933",
-            "meanTerminalMargin": 18.333333333333332,
+            "meanTerminalMargin": -28.285714285714285,
             "minTerminalMargin": -509,
             "maxTerminalMargin": 566
           }

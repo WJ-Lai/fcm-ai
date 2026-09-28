@@ -1,6 +1,6 @@
 {
   "schemaVersion": "fcm.action-regret-stability-protocol.v1",
-  "sampleCount": 3,
+  "sampleCount": 7,
   "continuationPolicy": "fcm.deterministic-vs-official-builtin-population.v1",
   "promotionHoldoutOpened": false,
   "targets": [

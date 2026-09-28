@@ -192,3 +192,26 @@ The fail-closed estimator hypothesis passed.
 
 Iteration 5 changes only the available paired sample count from three to seven on the same four
 roots. It must resume samples 3–6 without recomputing or overwriting the verified first three.
+
+The collector therefore refuses to overwrite an existing report unless `--resume` is explicit,
+validates the full frozen root/candidate set, copies prior arrays without mutation, computes only
+the missing sample indices, and atomically replaces the report only after all branches pass.
+
+## Iteration 5 result
+
+The seven-sample stage produced no false certainty.
+
+- All 4 roots and 8 candidates retained their first three margins and command counts exactly; only
+  sample indices 3–6 were executed. The completed report records `resumedFromSampleCount: 3`.
+- The estimator selected 0/4 roots and sent 4/4 to the predeclared 15-sample maximum. Stage-seven
+  p-values are 0.6875, 1.0, 0.375 and 1.0 versus alpha 0.02.
+- Decisive terminal-rank comparisons remain sparse because both actions often produce the same
+  win/loss result against the opponent: the four roots contain only 6, 3, 5 and 3 decisive pairs.
+- Cash diagnostics remain unstable. For example, development root 00 changes from a -$215.67
+  three-sample mean production advantage to +$10 at seven samples. Standard errors are still
+  $156.97–$213.34 at stage seven.
+- Promotion remained sealed and no label was exported.
+
+Iteration 6 changes only sample availability from seven to the frozen maximum of fifteen. At the
+maximum, every unresolved root must become an explicit `abstain-max-samples`; the estimator may not
+fall back to cash sign or static order to fabricate a training label.

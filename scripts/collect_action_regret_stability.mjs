@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 
 import assert from 'node:assert/strict'
-import { readFile, writeFile } from 'node:fs/promises'
+import { access, readFile, rename, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
 
 import {
   auditActionRegretStability,
+  prepareActionRegretStabilityResume,
   validateActionRegretStability,
 } from '../src/action-regret-stability.mjs'
 import { prefilterDiverseCandidates } from '../src/rollout-planner.mjs'
@@ -28,6 +29,7 @@ const outputPath = path.resolve(argument(
   'fixtures/action-regret-stability-v1/report.json',
 ))
 const sourceRoot = path.resolve(argument('--source-root', 'fixtures/action-regret-v2'))
+const resumeRequested = process.argv.includes('--resume')
 const maxCommands = 700
 const protocol = JSON.parse(await readFile(protocolPath, 'utf8'))
 assert.equal(protocol.schemaVersion, 'fcm.action-regret-stability-protocol.v1')
@@ -47,6 +49,33 @@ for (const split of new Set(protocol.targets.map((target) => target.sourceSplit)
   assert.equal(dataset.split, split)
   assert.equal(dataset.promotionHoldoutOpened, false)
   sourceDatasets.set(split, dataset)
+}
+let outputExists = true
+try {
+  await access(outputPath)
+} catch {
+  outputExists = false
+}
+assert.ok(resumeRequested || !outputExists,
+  'output already exists; pass --resume to preserve verified samples')
+assert.ok(!resumeRequested || outputExists, 'cannot resume a missing output file')
+let resumePlan = null
+if (resumeRequested) {
+  const existing = JSON.parse(await readFile(outputPath, 'utf8'))
+  const targets = protocol.targets.map((target) => {
+    const source = sourceDatasets.get(target.sourceSplit).roots.find(
+      (root) => root.rootId === target.rootId,
+    )
+    assert.ok(source, `unknown source root ${target.rootId}`)
+    return {
+      rootId: target.rootId,
+      candidateIds: source.candidates.map((candidate) => candidate.candidateId),
+    }
+  })
+  resumePlan = prepareActionRegretStabilityResume(existing, {
+    requestedSampleCount: protocol.sampleCount,
+    targets,
+  })
 }
 
 async function pendingDecision(environment, names) {
@@ -139,11 +168,15 @@ for (const target of protocol.targets) {
   rulesetHash ??= dataset.rulesetHash
   assert.equal(dataset.rulesetHash, rulesetHash, 'source ruleset drift')
   const root = await reconstructRoot(source, target.sourceSplit)
+  const priorRoot = resumePlan?.roots.find((stored) => stored.rootId === source.rootId) ?? null
   const candidates = []
   for (const candidate of root.candidates) {
-    const terminalMargins = []
-    const terminalCommands = []
-    for (let sample = 0; sample < protocol.sampleCount; sample += 1) {
+    const priorCandidate = priorRoot?.candidates.find(
+      (stored) => stored.candidateId === candidate.id,
+    ) ?? null
+    const terminalMargins = priorCandidate ? [...priorCandidate.terminalMargins] : []
+    const terminalCommands = priorCandidate ? [...priorCandidate.terminalCommands] : []
+    for (let sample = terminalMargins.length; sample < protocol.sampleCount; sample += 1) {
       const result = await completeBranch(root, source, candidate, sample)
       terminalMargins.push(result.terminalMargin)
       terminalCommands.push(result.terminalCommands)
@@ -167,11 +200,14 @@ const dataset = {
   rulesetHash,
   continuationPolicy: protocol.continuationPolicy,
   sampleCount: protocol.sampleCount,
+  resumedFromSampleCount: resumePlan?.previousSampleCount ?? null,
   promotionHoldoutOpened: false,
   roots,
 }
 const validation = validateActionRegretStability(dataset)
 const audit = auditActionRegretStability(dataset)
 const report = { ...dataset, audit }
-await writeFile(outputPath, `${JSON.stringify(report, null, 2)}\n`, 'utf8')
+const temporaryPath = `${outputPath}.tmp`
+await writeFile(temporaryPath, `${JSON.stringify(report, null, 2)}\n`, 'utf8')
+await rename(temporaryPath, outputPath)
 process.stdout.write(`${JSON.stringify({ output: outputPath, validation, audit }, null, 2)}\n`)

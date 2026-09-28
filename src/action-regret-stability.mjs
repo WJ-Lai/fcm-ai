@@ -111,3 +111,29 @@ export function auditActionRegretStability(dataset) {
     details,
   }
 }
+
+export function prepareActionRegretStabilityResume(existing, {
+  requestedSampleCount,
+  targets,
+}) {
+  validateActionRegretStability(existing)
+  assert.ok(Number.isInteger(requestedSampleCount) &&
+    requestedSampleCount > existing.sampleCount,
+  'requested sample count must increase')
+  assert.ok(Array.isArray(targets) && targets.length === existing.roots.length,
+    'frozen root set mismatch')
+  for (const [index, root] of existing.roots.entries()) {
+    const target = targets[index]
+    assert.equal(target?.rootId, root.rootId, 'frozen root set mismatch')
+    assert.deepEqual(
+      target?.candidateIds,
+      root.candidates.map((candidate) => candidate.candidateId),
+      `frozen candidate set mismatch for ${root.rootId}`,
+    )
+  }
+  return {
+    previousSampleCount: existing.sampleCount,
+    requestedSampleCount,
+    roots: structuredClone(existing.roots),
+  }
+}
