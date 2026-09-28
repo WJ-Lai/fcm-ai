@@ -12,10 +12,12 @@ The current OBG Agent API and MCP are good **control infrastructure**. They auth
 per seat, expose public game state, enumerate legal operations and execute them through the
 official FCM rules code. DeepSeek completing a game proves that this control loop works.
 
-It does **not** prove that the model has a strategy. The current `fcm-ai` project contains a precise
-rules knowledge base and a minimal API client, but almost no decision system. A model that sees a
-list of legal actions will naturally choose locally plausible actions—often the first thing it can
-do—without understanding whether the action contributes to a winning engine.
+It does **not** prove that the model has a strategy. The current `fcm-ai` project now contains the
+offline official-engine environment, `DecisionView`, bounded phase candidates, persistent memory,
+weak baselines and experimental static/rollout policies. Those are substantial decision
+infrastructure, but the promoted strategy layer is still missing. A model that mainly sees legal
+actions will naturally choose locally plausible moves without understanding whether they complete
+a profitable multi-turn engine.
 
 The recommended first serious AI is therefore not “LLM alone” and not “start with PPO.” It is a
 hybrid, model-based Agent:
@@ -23,13 +25,17 @@ hybrid, model-based Agent:
 1. The existing official FCM engine remains the sole legality and transition authority.
 2. Deterministic calculators turn the raw game state into strategic features and score tactical
    consequences.
-3. Phase-specific generators produce a small set of complete, legal candidate plans.
-4. A planner searches or compares those candidates against several opponent models.
-5. An LLM may choose and explain a high-level plan, but it never performs raw board arithmetic or
-   invents executable actions.
-6. Persistent per-game memory carries commitments, opponent hypotheses and failed predictions
+3. A reactive strategic plan graph represents multi-turn goals, prerequisites, deadlines, slack,
+   commitments and contingencies without duplicating official game rules.
+4. A plan-health/opportunity arbiter decides whether to continue, repair, make a tactical
+   deviation, pivot or abandon the plan, with explicit switching cost and hysteresis.
+5. Phase-specific generators produce a small set of complete, legal candidates consistent with
+   the active plan; bounded scenario search compares them against sampled opponent responses.
+6. An LLM may propose intent or explain a high-level choice, but it never performs raw board
+   arithmetic or invents executable actions.
+7. Persistent per-game memory carries the plan graph, opponent hypotheses and failed predictions
    across calls.
-7. Imitation learning and self-play are added only after the simulator, baselines and evaluation
+8. Imitation learning and self-play are added only after the simulator, baselines and evaluation
    league are trustworthy.
 
 PPO is technically possible later, with hierarchical action masking and self-play. It is not the
@@ -80,6 +86,14 @@ The overall direction survives engineering review, with these mandatory constrai
 10. **Never label a belief as a calculation.** Reachability, current inventory, price, distance and
     resolution of a frozen public state are deterministic engine derivations. Opponent unrevealed
     actions and future reactions are sampled beliefs with provenance and confidence.
+11. **Planning and execution are different authorities.** A strategic graph may say that a trainer
+    capability must exist by turn 3; only the official engine may say which concrete hire/train
+    action is legal now. Do not encode the same rule in HTN methods, Utility conditions or a
+    behavior tree.
+12. **Long horizon and responsiveness need separate tests.** A policy can look reactive by changing
+    moves frequently while having no viable long-term plan, or look consistent by stubbornly
+    following a dead plan. Measure causal plan completion, pivot quality and oscillation in
+    addition to terminal rank.
 
 ## 1. What an FCM player actually has to understand
 
@@ -118,11 +132,17 @@ above in a concrete position.
 
 ## 2. Why the current LLM looks like “it does whatever it can”
 
-### 2.1 The current client has no policy
+### 2.1 The online client is transport, while experimental policies are not yet strategic
 
 `src/fcm_agent.py` is intentionally a transport client. It can fetch state, list legal actions and
 submit a versioned command. It has no position evaluator, strategy memory, candidate generator,
 opponent model, search procedure or learning component.
+
+Separate JavaScript modules now provide bounded candidates, `GameMemory v1`, static evaluation and
+same-seat shallow rollout. They are deliberately unpromoted: the current memory carries only a
+coarse intent, and rollout stops at opponent/simultaneous boundaries. A full-game probe scored $10
+against the built-in AI's $498. This is direct evidence that legality and local consequence
+evaluation are not equivalent to long-horizon strategy.
 
 The existing system prompt asks the model to inspect legal actions and consult the wiki. That is
 useful for avoiding rule hallucinations, but “do not break a rule” and “maximize the chance of
@@ -270,6 +290,56 @@ simultaneous-move and imperfect-information games. Porting all FCM rules into a 
 implementation would be expensive and risky, so the better first step is an OpenSpiel-like adapter
 around the existing official JavaScript engine.
 
+### 4.1 Review of the proposed HTN + Utility + MCTS + behavior-tree designs
+
+Both external proposals correctly identify the main decomposition: FCM needs a persistent
+multi-turn plan, an explicit opportunity/replanning mechanism and model-based verification. That
+direction is adopted. Their stronger claims are not adopted unchanged.
+
+**Adopt:**
+
+- hierarchical goals whose prerequisites can start several turns before payoff;
+- plan-health checks at every public decision boundary;
+- explicit opportunity value, switching cost and anti-oscillation hysteresis;
+- bounded forward simulation for consequential or uncertain choices;
+- modular evaluation that can be ablated independently.
+
+**Adopt after narrowing:**
+
+- “HTN/GOAP” becomes a small typed **reactive strategic plan graph**. It may use backward
+  prerequisite scheduling and hand-reviewed goal decompositions, but it is not a generic planner
+  over the full engine state. FCM plans are partially ordered, opponent-dependent and contingent;
+  a large static method library would be brittle and would silently become a second rules system.
+- “Utility AI” becomes the plan arbiter and an explainable prior, not the final strategy oracle.
+  It compares continue/repair/deviate/pivot/abandon using terminal-value estimates, timing slack,
+  milestone probability, salary runway, reusable commitments and confidence. The previously
+  rejected distance scorer and failed static policy show why hand weights alone are insufficient.
+- “MCTS” becomes **scenario beam search first, MCTS only with evidence**. Search branches on
+  bounded plan/turn macros rather than primitive JSON actions, samples opponent policies and
+  bootstraps leaves with a frozen value model. A fixed two- or three-turn depth is not inherently
+  long-horizon: a turn-1 training choice may pay off after that horizon, while the branching factor
+  across several opponents and simultaneous phases is already large.
+
+**Reject for the current architecture:**
+
+- a separate behavior tree for legality or execution. The official legal-action list, candidate
+  validator, versioned submission and fail-closed fallback already provide execution safety. A
+  second action controller would duplicate rules and create drift. A small retry/command state
+  machine is sufficient for transport failures.
+- full-state GOAP/HTN search and fixed “early/mid/late” scripts as the strategic oracle;
+- the claim that FCM is wholly perfect-information or that the AI may read every opponent field.
+  Board/economy information is mostly public, but reserve, restructure and other pending
+  simultaneous choices are temporarily hidden and must remain beliefs;
+- the claim that reinforcement learning is categorically unsuitable. It is deferred, not ruled
+  out: PPO or value learning becomes testable only after a fast simulator, stable candidate space,
+  calibrated value target and frozen opponent league exist.
+
+The key correction is that **decomposition is not evaluation**. An HTN can explain how to obtain a
+burger-producing engine, but cannot prove that this is the best engine on the current map. Utility
+can detect an apparent opportunity, but cannot prove the opponent response. Search can compare
+scenarios, but cannot recover a valuable plan that the goal/candidate generator never proposed.
+The three layers must therefore retain separate contracts and promotion metrics.
+
 ## 5. Recommended architecture
 
 Use a hexagonal design so live play, offline simulation, heuristics, LLMs and learned policies can
@@ -286,17 +356,29 @@ Live OBG HTTP/MCP ────▶│ Environment port         │◀────
                        │ graph + economy + races  │
                        └────────────┬─────────────┘
                                     ▼
+                       ┌──────────────────────────┐
+                       │ Reactive plan graph      │
+                       │ goals / prerequisites /  │
+                       │ deadlines / commitments │
+                       └────────────┬─────────────┘
+                                    ▼
+                       ┌──────────────────────────┐
+                       │ Plan health + opportunity│
+                       │ continue/repair/deviate/ │
+                       │ pivot/abandon            │
+                       └────────────┬─────────────┘
+                                    ▼
              ┌──────────────────────┴─────────────────────┐
              ▼                                            ▼
 ┌──────────────────────────┐                 ┌──────────────────────────┐
-│ Candidate plan generator │                 │ Persistent game memory   │
-│ complete legal macros    │                 │ goals / beliefs / errors │
+│ Phase candidate generator│                 │ Belief sampler + memory  │
+│ complete legal macros    │                 │ public history / errors  │
 └────────────┬─────────────┘                 └────────────┬─────────────┘
              └──────────────────────┬─────────────────────┘
                                     ▼
                        ┌──────────────────────────┐
-                       │ Evaluator + search       │
-                       │ heuristics/value/rollout │
+                       │ Scenario beam + value    │
+                       │ official clones / beliefs│
                        └────────────┬─────────────┘
                                     ▼
                        ┌──────────────────────────┐
@@ -374,11 +456,22 @@ Store a small `GameMemory` record outside the LLM:
 ```json
 {
   "game_id": 63,
-  "strategy": "short description of the current economic plan",
-  "commitments": ["employees being trained toward a capability"],
-  "milestone_races": ["target, deadline, rival threat"],
+  "plan": {
+    "plan_id": "p-17",
+    "goal": "sell_burger_and_claim_milestone",
+    "target_turn": 3,
+    "status": "active",
+    "prerequisites": ["burger_production", "reachable_demand"],
+    "achieved": ["recruiting_capacity"],
+    "slack_turns": 1,
+    "commitments": ["kitchen_trainee"],
+    "expected_value": 0.0,
+    "confidence": 0.0,
+    "repair_options": ["alternate_training_chain"],
+    "fallback": "cash_flow_plan",
+    "invalidation_rules": ["milestone_closed", "deadline_missed"]
+  },
   "opponent_models": {"seat": {"observed_plan": "...", "confidence": 0.0}},
-  "horizon_assumption": "short | medium | long",
   "last_prediction": {"expected_income": 0, "actual_income": 0},
   "lessons": ["prediction errors or invalid assumptions"]
 }
@@ -386,6 +479,37 @@ Store a small `GameMemory` record outside the LLM:
 
 Update it after every revealed simultaneous phase and dinner result. Never treat a hypothesis as
 an observed fact.
+
+`GameMemory v1` currently implements only a bounded coarse `intent`, `horizonTurns`, confidence and
+evidence. That is useful persistence infrastructure, not yet the plan graph above. `GameMemory v2`
+must remain event-rebuildable and schema-versioned rather than silently changing v1 semantics.
+
+### Reactive strategic plan graph
+
+The graph represents **capabilities and timing**, not official action legality. Initial base-game
+capabilities include recruiting/training throughput, employee technology chains, earliest employee
+activation, production/marketing closure for each good, salary runway, restaurant-to-market reach,
+milestone race windows and estimated bank horizon. A goal edge answers “what must be true by when?”;
+the official engine still answers “which action is legal now?”
+
+The plan is a strong prior, not a hard tunnel. Candidate generation reserves a bounded
+off-plan/opportunity quota, so a missing goal template or newly revealed tactic cannot eliminate
+every alternative before the arbiter/search sees it. Proposal recall is measured separately for
+plan-consistent, repair, tactical-deviation and pivot candidates.
+
+At each decision boundary, the arbiter evaluates five alternatives:
+
+1. `continue`: the plan remains feasible and valuable;
+2. `repair`: a prerequisite slipped but the goal and most commitments remain reusable;
+3. `tactical deviation`: take an expiring local gain, then return to the same plan;
+4. `pivot`: replace the goal because another plan has enough net value after switching cost;
+5. `abandon`: avoid further losses when no viable repair or pivot exists.
+
+Strategic review is event-triggered by a milestone closing, a prerequisite deadline becoming
+impossible, a meaningful public opponent action, cash-runway danger, a prediction error or a
+high-impact/high-uncertainty decision. Facts may be refreshed every phase, but the plan changes only
+after separate enter/exit thresholds and cooldown checks. This distinction prevents both blindness
+and thrashing.
 
 ## 7. Action space design
 
@@ -452,6 +576,13 @@ features should include:
 Weights must depend on phase and horizon. Immediate money is more valuable near the second bank
 break; training capacity is more valuable early. The first version can use explicit weights, but
 every score must produce a breakdown so failures can be diagnosed and later fitted from data.
+
+The evaluator must expose separate values for plan feasibility and plan desirability. Deadline
+slack and prerequisite completion can establish that a plan is executable; only terminal/value
+evidence can establish that it is worth pursuing. Opportunity arbitration records the estimated
+value of continuing, repairing and switching, including reusable versus stranded commitments. It
+also records uncertainty so search budget can be allocated by expected decision impact rather than
+only by a manually named “major mistake.”
 
 ## 9. Reinforcement-learning formulation
 
@@ -661,9 +792,11 @@ not close the separate consented live-export requirement.
 - Extract a fast cloneable environment from the official JS engine early; online parity fixtures
   remain its promotion gate.
 - Implement `DecisionView` and the competition matrix.
-- Implement persistent `GameMemory`.
+- Implement persistent `GameMemory v1`, then upgrade it to a versioned reactive plan graph after
+  the phase-local proposal gate is stable.
 - Generate bounded phase-local candidates, then one-turn macros; record pruning coverage and
   latency before attempting multi-turn composition.
+- Freeze causal long-horizon and reactive adversarial fixtures before tuning plan arbitration.
 - Add an explainable evaluator and a few intentionally distinct strategy profiles.
 - Distil reviewed human trajectories into playbook examples and evaluator diagnostics; use them to
   calibrate opponent models, not as unquestioned ground truth.
@@ -671,29 +804,38 @@ not close the separate consented live-export requirement.
 
 Exit criterion: clearly beats first-legal/random across seats and makes zero illegal submissions.
 
-### Phase 2 — engine search
+### Phase 2 — reactive planning and engine search
 
 - First run a bounded consequence-evaluation spike: static diversity-preserving prefilter to six
   candidates, official-clone execution, phase-specific horizons, at most 24 transitions and a
   three-second deadline with static fallback. Do not add a remote simulation endpoint during the
   spike.
+- Add typed capability prerequisites, earliest activation, target turns, slack, commitments,
+  repair/fallback paths and invalidation rules to `GameMemory v2`. The graph expresses what must be
+  achieved by when; it never decides official legality.
 - Treat opponent hidden simultaneous actions as sampled `believed` inputs. A planner must produce
   the same choice when unavailable opponent reserve cards or submitted move buffers are mutated;
   those metamorphic privacy tests are a promotion gate.
+- Train a value model from completed trajectories only after deterministic rollout parity passes.
+  Freeze the model/version used to fit or test arbitration.
+- Add a plan-health/opportunity arbiter for continue/repair/tactical-deviation/pivot/abandon. Use
+  switching cost, reusable commitments, confidence, separate enter/exit thresholds and cooldown.
 - Cache only inside the trusted planner. The key includes ruleset hash, internal snapshot digest,
   acting seat, candidate id, horizon and opponent-model version; neither snapshot nor cache payload
   is returned through MCP.
-- Add shallow beam search only after 12–20 fixed cases across at least two seeds and three working-day
+- Add scenario beam search only after 12–20 fixed cases across at least two seeds and three working-day
   subphases reach >=80% oracle Top-1, >=95% Top-3, zero illegal selections and local P95 <=3 seconds.
   A dynamic slice from one policy trajectory cannot promote the search even if it agrees perfectly
-  with its same-horizon oracle. Add MCTS only if measured branching and latency then justify it.
+  with its same-horizon oracle. Search bounded plan macros, adapt depth to the active deadline and
+  bootstrap leaves with a frozen calibrated evaluator. Add MCTS only if measured branching,
+  latency and a frozen-case spike then justify it.
 - Sample opponent actions from versioned belief models for simultaneous and future phases.
-- Train a value model from completed trajectories only after deterministic rollout parity passes.
 
 Exit criterion: search improves held-out league rank at an acceptable per-decision latency.
 
-Current boundary: bounded phase-local candidates and persistent memory are implemented and pass
-official-engine legality audits. The first static heuristic evaluator is deliberately unpromoted:
+Current boundary: bounded phase-local candidates and `GameMemory v1` are implemented and pass
+official-engine legality audits. The reactive plan graph, opportunity arbiter and opponent-response
+scenario search are not implemented. The first static heuristic evaluator is deliberately unpromoted:
 it completed games legally but lost all initial paired games to both the built-in AI and
 safe-first. The failure trace showed demand donation to closer competitors and excessive staff
 investment. The next experiment must evaluate candidate consequences in official engine clones;
@@ -782,11 +924,16 @@ observation fields, action candidates, simulator parity tests and benchmark scen
 
 The dependency-ordered source of truth is `../TODOS.md`. In summary:
 
-1. Stabilize the current Agent branch on the newest upstream and rerun parity/acceptance tests.
-2. Freeze versioned observation, trace and benchmark contracts.
-3. Add side-effect-free official-engine `DecisionView` primitives and dinner projection.
-4. Add company-structure candidates, persistent memory and deterministic baselines.
-5. Use the early offline environment for bounded search and human-game calibration.
+1. Raise bounded hire/train proposal coverage to the frozen 75% gate and finish the independent
+   tactical consequence suite.
+2. Implement `GameMemory v2` as a typed reactive plan graph with prerequisite timing, slack,
+   commitments, repair/fallback paths and invalidation events; freeze causal long-horizon and
+   reactive adversarial suites, including bait and no-oscillation cases.
+3. Calibrate opponent beliefs and a terminal/value evaluator against held-out games.
+4. Implement plan-health/opportunity arbitration with switching cost, confidence, hysteresis and
+   tactical-deviation versus strategic-pivot semantics.
+5. Add deadline-aware scenario beam search over official-engine clones. Evaluate MCTS only if that
+   measured baseline leaves value.
 6. Add the LLM only as a selector over validated near-tie candidates and require measured lift.
 7. Evaluate imitation learning and PPO/self-play only after every prior promotion gate passes.
 

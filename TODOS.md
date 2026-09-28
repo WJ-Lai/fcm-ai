@@ -1,6 +1,6 @@
 # FCM AI execution backlog
 
-Updated: 2026-09-27
+Updated: 2026-09-28
 
 This is ordered by dependency, not excitement. A stage may start only after its exit gate passes.
 The official OBG FCM JavaScript remains the sole rule and transition authority.
@@ -153,6 +153,28 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     trajectory without storing credentials.
   - Evidence: `fcm.game-memory.v1` bounds plans, beliefs, errors and decisions; rejects credential
     keys/text; and is byte-for-byte rebuildable from its event stream in tests.
+- [ ] **P3.2b Upgrade memory into a reactive strategic plan graph.**
+  - Why: `GameMemory v1` remembers a coarse intent but cannot represent “hire now so a trained
+    capability is active by turn 3,” deadline slack, sunk commitments, repair paths or plan
+    invalidation. A continuity bonus is not long-horizon planning.
+  - Scope: add typed goals and capabilities, prerequisite edges, earliest activation and target
+    turns, slack, committed/reusable assets, expected payoff/confidence, repair/fallback options and
+    public-event invalidation rules. Compile these records into candidate priorities/features while
+    reserving an off-plan/opportunity candidate quota; never duplicate official legality or
+    transitions.
+  - Done when: fixed causal fixtures prove that the planner preserves a necessary turn-1 enabler
+    for a turn-3 goal, detects an impossible/missed deadline, repairs a partially reusable plan and
+    still offers a valuable off-plan pivot. Memory rebuilds byte-for-byte from the event stream
+    without hidden-state fields.
+- [ ] **P3.2c Freeze long-horizon and reactive promotion fixtures.**
+  - Why: plan/arbitration weights fitted before independent examples exist will encode anecdotes
+    and make every later comparison circular.
+  - Scope: causal long-horizon cases cover delayed employee activation, milestone preparation,
+    salary runway, restaurant/network expansion and bank horizon. Reactive adversarial cases cover
+    genuine expiring opportunities, bait, milestone closure, reusable sunk assets, one-phase
+    deviations and repeated unchanged observations.
+  - Done when: labels distinguish plan feasibility from desirability, use only public/seat-visible
+    inputs and are frozen before arbitration parameters are fitted.
 - [ ] **P3.3a Prove official-clone consequence evaluation in a bounded spike.**
   - Why: the first static evaluator completed games but could not distinguish demand it would sell
     from demand donated to a closer opponent. More static weight tuning cannot recover missing
@@ -194,18 +216,47 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     also lost every completed game and one game exceeded the 500-command ceiling. This falsifies
     static one-step scoring as sufficient. P3.3a is now the required spike before any beam search;
     do not tune against the recorded failure seeds or expose a remote simulation API yet.
-
-## P4 — search and opponent beliefs
-
-- [ ] **P4.1 Add beam search, then evaluate whether MCTS is justified.**
-  - Why: search should prove value before adding more infrastructure.
-  - Depends on: P3.3a passing its accuracy, privacy and latency gates.
-  - Done when: held-out league rank improves within a defined decision-time budget.
-- [ ] **P4.2 Add versioned opponent-belief sampling.**
+- [ ] **P3.3c Add versioned opponent-belief sampling.**
   - Why: future dinner outcomes depend on unrevealed simultaneous choices and opponent reactions.
-  - Depends on: P1.5 and P3.2.
+  - Depends on: P1.1 observation provenance, P3.2 and validated public-replay/self-play traces. A
+    consented human trace improves calibration but is not a hard dependency for the first model.
   - Done when: `observed`, official-engine `derived` and model `believed` fields are impossible to
-    confuse, and every belief records model id, confidence and sample count.
+    confuse; every belief records model id, confidence and sample count; and hidden-state mutation
+    cannot change a recommendation except through an explicitly sampled public-history model.
+- [ ] **P3.3d Add plan-health and opportunity arbitration.**
+  - Why: reacting to every locally attractive move creates thrashing, while blindly following a
+    plan misses real opponent mistakes.
+  - Depends on: P3.2b–P3.2c and frozen P3.3b/P3.3c value and belief baselines.
+  - Scope: compare `continue`, `repair`, `tactical deviation`, `pivot` and `abandon` using estimated
+    terminal value, deadline/milestone risk, salary runway, switching cost, asset reuse, confidence
+    and opportunity expiry. Use separate enter/exit thresholds plus cooldown/hysteresis. Trigger a
+    strategic review on milestone closure, missed prerequisite, meaningful public opponent change,
+    cash danger or high-impact uncertainty—not only on a hand-labelled “mistake.”
+  - Done when: frozen adversarial cases exploit a genuine opportunity, ignore bait that destroys a
+    higher-value commitment, make a tactical deviation without erasing the plan, pivot when the
+    goal becomes infeasible and do not oscillate on unchanged observations.
+
+## P4 — scenario search and component promotion
+
+- [ ] **P4.1 Add scenario beam search, then evaluate whether MCTS is justified.**
+  - Why: one-seat shallow rollout cannot verify a multi-turn plan. Full primitive MCTS is also not
+    a credible first answer to FCM's branching, delayed rewards, multiple opponents and hidden
+    simultaneous choices.
+  - Depends on: P3.3d.
+  - Scope: search bounded strategic/turn macros, sample opponent responses from versioned beliefs,
+    adapt depth to the active goal's deadline and bootstrap leaf values from a frozen calibrated
+    evaluator. Trigger extra budget from decision impact and uncertainty, not merely from a named
+    tactical event.
+  - Done when: paired ablations show a confidence-bounded held-out rank/win lift over the same
+    policy without search, under a defined P95 deadline, with zero visibility or legality
+    violations. Add MCTS only if measured beam diversity/branching leaves material value on the
+    table and an MCTS spike improves the same frozen cases and league.
+
+- [ ] **P4.2 Run component ablations.**
+  - Compare no memory vs plan graph, always-continue vs opportunity arbitration, no-search vs beam,
+    deterministic opponent vs belief samples, and static horizon vs deadline-aware horizon.
+  - Promote on paired-seat terminal rank/win plus calibration, plan-completion, pivot-regret and
+    oscillation metrics; human action match is diagnostic only.
 
 ## P5 — hybrid LLM policy
 
@@ -242,3 +293,9 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
 - Letting an LLM emit arbitrary action JSON: violates the candidate/validator safety boundary.
 - Porting official map or rule algorithms into Python: duplicates rule authority; Python may only
   orchestrate versioned JS-engine outputs.
+- Adopting a generic full-state HTN or GOAP framework: use a small typed prerequisite/capability
+  graph first and expand only from measured missing expressiveness.
+- Adding a behavior tree as a second legality/execution system: official legal enumeration,
+  candidate validation and fail-closed submission already provide that layer.
+- Treating handwritten Utility weights as a strategy oracle or “two to three turns of MCTS” as a
+  guaranteed long-horizon solution.
