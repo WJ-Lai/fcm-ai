@@ -1,7 +1,11 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 
-import { continueOwnPublicTurn, scorePublicPositionOutcome } from './official-rollout.mjs'
+import {
+  continueOwnPublicTurn,
+  explainPublicPositionOutcome,
+  scorePublicPositionOutcome,
+} from './official-rollout.mjs'
 
 class ScriptedEnvironment {
   constructor(frames) {
@@ -102,4 +106,40 @@ test('public outcome score uses only the supplied seat-safe DecisionView', () =>
   changedOpponentPrivateState.state.players[1].employees = [999, 998, 997]
   changedOpponentPrivateState.state.players[1].resources = [99, 99]
   assert.equal(scorePublicPositionOutcome(changedOpponentPrivateState, { seat: 0 }), result)
+})
+
+test('public outcome score exposes the declared evaluator profile for calibration', () => {
+  const view = {
+    state: {
+      mySeat: 0,
+      players: [
+        { money: 20, employees: [5, 13], beach: [], resources: [4], bankrupt: false },
+        { money: 10, employees: [], beach: [], resources: [], bankrupt: false },
+      ],
+      decisionSupport: { economyPlayers: [] },
+    },
+  }
+  const balanced = scorePublicPositionOutcome(view, { seat: 0, profile: 'balanced' })
+  const cash = scorePublicPositionOutcome(view, { seat: 0, profile: 'cash' })
+  assert.notEqual(balanced, cash)
+})
+
+test('public outcome explanation reconciles exactly to its scalar score', () => {
+  const view = {
+    state: {
+      mySeat: 0,
+      players: [
+        { money: 20, employees: [5], beach: [], resources: [4], bankrupt: false },
+        { money: 50, employees: [], beach: [], resources: [], bankrupt: false },
+      ],
+      decisionSupport: { economyPlayers: [] },
+    },
+  }
+  const explained = explainPublicPositionOutcome(view, { seat: 0, profile: 'balanced' })
+  assert.equal(explained.breakdown.publicCashLead, -7.5)
+  assert.equal(
+    explained.score,
+    Object.values(explained.breakdown).reduce((sum, value) => sum + value, 0),
+  )
+  assert.equal(explained.score, scorePublicPositionOutcome(view, { seat: 0 }))
 })

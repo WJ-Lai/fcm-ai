@@ -254,8 +254,13 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     An initial four-game paired official-AI smoke test finished without violations but lost 0-4;
     corrections raised mean cash from $5 to $37.75 but still lost 0-4. A paired safe-first trial
     also lost every completed game and one game exceeded the 500-command ceiling. This falsifies
-    static one-step scoring as sufficient. P3.3a is now the required spike before any beam search;
-    do not tune against the recorded failure seeds or expose a remote simulation API yet.
+    static one-step scoring as sufficient. The first terminal-calibration puncture now adds six
+    completed two-player games and 94 seat-safe turn observations. Game-level macro leader accuracy
+    is only 65.7% for balanced/growth and 67.5% for cash; balanced and growth make identical ranking
+    decisions, early turn accuracy is 47.2%, 13/18 early states are ties and decisive early calls are
+    only 2/5. The inspected three-game diagnostic holdout is consumed and cannot be reused for
+    promotion. Fresh frozen seeds, richer policy populations, phase-calibrated features and a new
+    one-shot paired terminal holdout remain required; do not expose a remote simulation API yet.
 - [ ] **P3.3c Freeze leaf-value and search-cutoff diagnostics.**
   - Why: a deeper search can become worse when a biased leaf evaluator rewards unfinished engines,
     excess staff or demand donated to opponents. More depth is not evidence of better planning.

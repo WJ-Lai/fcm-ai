@@ -117,6 +117,12 @@ frozen, diverse policy league.
   source projection and oracle labels are drift-checked. This validates clone execution and budget
   discipline only. Because the oracle still uses the uncalibrated short-horizon evaluator, it does
   not overturn the failed terminal-game results or promote the policy as strong.
+- A first terminal-value puncture completed six two-player games and scored 94 turn boundaries using
+  only each seat's `DecisionView`, attaching outcomes after Game Over. Reports separate game-macro
+  from correlated per-turn metrics. Balanced/growth produced identical orderings (65.7% game-macro
+  leader accuracy), cash reached 67.5% by changing only two late calls, and early accuracy was 47.2%
+  with 13/18 ties. The inspected diagnostic holdout is consumed. This localizes evaluator weakness;
+  it does not calibrate or promote any profile.
 
 ## 5. Target architecture
 

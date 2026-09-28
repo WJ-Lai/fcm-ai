@@ -1,0 +1,55 @@
+{
+  "schemaVersion": "fcm.value-calibration-puncture.v1",
+  "collector": "scripts/audit_value_calibration.mjs",
+  "engine": "official-offline-engine",
+  "ruleset": "base-game",
+  "playerCount": 2,
+  "developmentGames": 3,
+  "diagnosticHoldoutGames": 3,
+  "completedGames": 6,
+  "turnSamples": 94,
+  "provenance": {
+    "observation": "seat-visible-decision-view",
+    "target": "terminal-result"
+  },
+  "profiles": {
+    "balanced": {
+      "gameMacroLeaderAccuracy": 0.6573896863370547,
+      "turnLeaderAccuracy": 0.6436170212765957,
+      "predictedLeaderTies": 15,
+      "decisiveTurnAccuracy": 0.6708860759493671,
+      "earlyTurnAccuracy": 0.4722222222222222,
+      "middleTurnAccuracy": 0.5555555555555556,
+      "lateTurnAccuracy": 0.7241379310344828
+    },
+    "growth": {
+      "gameMacroLeaderAccuracy": 0.6573896863370547,
+      "turnLeaderAccuracy": 0.6436170212765957,
+      "predictedLeaderTies": 15,
+      "decisiveTurnAccuracy": 0.6708860759493671,
+      "earlyTurnAccuracy": 0.4722222222222222,
+      "middleTurnAccuracy": 0.5555555555555556,
+      "lateTurnAccuracy": 0.7241379310344828
+    },
+    "cash": {
+      "gameMacroLeaderAccuracy": 0.6749335459861777,
+      "turnLeaderAccuracy": 0.6648936170212766,
+      "predictedLeaderTies": 15,
+      "decisiveTurnAccuracy": 0.6962025316455697,
+      "earlyTurnAccuracy": 0.4722222222222222,
+      "middleTurnAccuracy": 0.5555555555555556,
+      "lateTurnAccuracy": 0.7586206896551724
+    }
+  },
+  "diagnosis": [
+    "Turn samples from one game are correlated; game-macro metrics are the primary puncture result.",
+    "Balanced and growth produced identical ordering on every sampled turn; profile names do not yet imply distinct decisions.",
+    "Early positions were mostly tied (13 of 18) and decisive early predictions were correct only 2 of 5 times.",
+    "The cash profile changed only two late-turn directions and is not promoted from six weak-policy games."
+  ],
+  "promotion": {
+    "status": "diagnostic-only",
+    "holdoutConsumed": true,
+    "reason": "The three diagnostic holdout games were inspected and cannot serve as a future promotion set. Fresh frozen seeds, paired terminal leagues, multiplayer strata, and cutoff diagnostics remain required."
+  }
+}

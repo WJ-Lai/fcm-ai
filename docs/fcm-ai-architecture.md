@@ -918,6 +918,12 @@ Exit criterion: clearly beats first-legal/random across seats and makes zero ill
   The suite drift-checks the conservative public projection digest because raw compressed engine
   blobs contain a non-semantic process-level field. This validates execution fidelity, not terminal
   value quality; the earlier full-game loss still blocks evaluator/search promotion.
+- Terminal-value calibration now has a seat-safe collector and pure audit contract. Its first 3+3
+  game puncture generated 94 turn samples but reports the six-game macro average as primary evidence
+  to avoid pseudo-replication. Balanced/growth were directionally identical (65.7% macro leader
+  accuracy); cash reached 67.5%, while early-turn accuracy remained 47.2% with 13/18 ties. The small
+  two-player weak-policy corpus and inspected holdout are diagnostic only; fresh frozen seeds,
+  broader opponents and a one-shot paired league are still required.
 - Treat opponent hidden simultaneous actions as sampled `believed` inputs. A planner must produce
   the same choice when unavailable opponent reserve cards or submitted move buffers are mutated;
   those metamorphic privacy tests are a promotion gate.

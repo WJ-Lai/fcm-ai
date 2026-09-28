@@ -50,8 +50,11 @@ export async function continueOwnPublicTurn({
 }
 
 /** Score only public fields plus the acting seat's own private state. */
-export function scorePublicPositionOutcome(view, { seat = view.state.mySeat } = {}) {
-  const position = evaluatePosition(view, { seat })
+export function explainPublicPositionOutcome(
+  view,
+  { seat = view.state.mySeat, profile = 'balanced' } = {},
+) {
+  const position = evaluatePosition(view, { seat, profile })
   const me = view.state.players[seat]
   const opponentMoney = view.state.players
     .filter((player) => player.index !== seat)
@@ -59,7 +62,16 @@ export function scorePublicPositionOutcome(view, { seat = view.state.mySeat } = 
   const publicCashLead = opponentMoney.length
     ? (me.money ?? 0) - Math.max(...opponentMoney)
     : 0
-  return position.score + publicCashLead * 0.25
+  const breakdown = { ...position.breakdown, publicCashLead: publicCashLead * 0.25 }
+  return {
+    score: Object.values(breakdown).reduce((sum, value) => sum + value, 0),
+    breakdown,
+  }
+}
+
+/** Preserve the scalar interface used by bounded rollout selection. */
+export function scorePublicPositionOutcome(view, options = {}) {
+  return explainPublicPositionOutcome(view, options).score
 }
 
 /** Static pre-ranking plus bounded consequence checks in official engine clones. */
