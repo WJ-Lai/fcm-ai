@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict'
+import { createHash } from 'node:crypto'
 import test from 'node:test'
 
 import {
@@ -68,6 +69,7 @@ test('builds a quarantined capture with anonymous players and no embedded histor
   assert.ok(!serialized.includes('123456'))
   const decoded = decodeSimpleModel(capture.replay.states[0])
   assert.equal(decoded[13].length, 0)
+  assert.deepEqual(decoded[19], [-1, -1])
   assert.deepEqual(decoded[20], {})
 })
 
@@ -102,4 +104,15 @@ test('detects state tampering after capture', () => {
   const capture = buildPublicReplayCapture(raw(), { capturedAt: '2026-09-28T01:00:00.000Z' })
   capture.replay.states[0] = capture.replay.states[1]
   assert.throws(() => validatePublicReplayCapture(capture), /digest differs/)
+})
+
+
+test('rejects a capture that reintroduces a hidden reserve-card choice', () => {
+  const capture = buildPublicReplayCapture(raw(), { capturedAt: '2026-09-28T01:00:00.000Z' })
+  const decoded = decodeSimpleModel(capture.replay.states[0])
+  decoded[19][0] = 3
+  capture.replay.states[0] = encodeSimpleModel(decoded)
+  capture.integrity.stateDigest = `sha256:${createHash('sha256')
+    .update(capture.replay.states.join('\n')).digest('hex')}`
+  assert.throws(() => validatePublicReplayCapture(capture), /private reserve-card choice/)
 })

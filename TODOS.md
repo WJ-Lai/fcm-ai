@@ -69,12 +69,15 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     explicit three-attestation approval are implemented. Cross-seat observations, unadvertised
     actions, beliefs, temporary choices and free text fail closed. A trusted live-human UI exporter
     and the first consented sample remain; prose reports are intentionally not accepted as traces.
-    A separate public-ended-game capture pilot now passes 2/2 on current-format base games 35807
-    and 35732 (449 events/states total), with identical digests on a fresh second capture. Player
-    names, timestamps, embedded history and transient engine context are removed. Legacy game 6113
-    proved that old scalar `startingMap` metadata is incompatible and now fails fast. These captures
-    remain quarantined until event-to-legal-action mapping and pinned local-engine re-execution
-    pass; do not advance to the 10-game gate before that validator exists.
+    A corrected public-ended-game v2 capture passes 2/2 on current-format base games 35807 and
+    35732 (449 events/states total). Player names, timestamps, embedded history, reserve-card
+    storage and transient engine context are removed. Its 281 seat-scoped decision observations
+    contain every current MCP field and legal action, share a pre-choice frame across simultaneous
+    actors, and pass pinned-engine projection parity. Of these, 214 action labels are candidates
+    awaiting exact action-layer replay; 67 production/payday labels are permanently outcome-only
+    because public history omits drink routes or paid resource identities. A code gate forbids both
+    classes from behavior cloning. Legacy game 6113 still fails fast. Do not advance to 10 games
+    until the 214 candidates have exact engine-replay status or an explicit exclusion.
 
 ## P2 — deterministic decision support
 

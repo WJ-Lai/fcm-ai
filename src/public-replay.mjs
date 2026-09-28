@@ -117,6 +117,11 @@ function sanitizeModel(model, aliases) {
   // History is stored once at package level. Keeping it in every state multiplies the corpus and
   // can retain legacy text fields that have no bearing on the position.
   source[13] = []
+  // Reserve cards are simultaneous secret choices. Replay reconstructs them one player at a time,
+  // which would let a later synthetic observation see an earlier player's still-hidden choice.
+  // They are deliberately absent from the live MCP state, so retain only the public fact that a
+  // card slot exists for each seat.
+  source[19] = Array.from({ length: source[1].length }, () => -1)
   // Runtime context contains transient simultaneous-move buffers such as preMoveData. It is not
   // part of the persistent public position and must never enter a policy training record.
   source[20] = {}
@@ -223,6 +228,10 @@ export function validatePublicReplayCapture(capture) {
   for (const [index, encoded] of capture.replay.states.entries()) {
     const model = decodeSimpleModel(encoded)
     assert(model[13].length === 0, `state ${index} retained embedded history`)
+    assert(
+      model[19].length === model[1].length && model[19].every((card) => card === -1),
+      `state ${index} retained a private reserve-card choice`,
+    )
     assert(Object.keys(model[20]).length === 0, `state ${index} retained runtime context`)
     for (const [seat, player] of model[1].entries()) {
       if ('name' in player) assert(player.name === `seat-${seat}`, `state ${index} name is not anonymous`)

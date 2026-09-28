@@ -303,3 +303,20 @@ Verification: **89 tests pass**, lint clean (28 pages), `verify_sources.py` OK,
   captured successfully. A fresh second browser capture produced identical per-game state digests.
   Both remain quarantined pending event-to-action mapping and pinned local-engine re-execution; the
   10-game gate is intentionally not started.
+
+## [2026-09-28] audit | MCP-complete public replay observations
+
+- Found and closed a privacy gap in the first capture format: model index 19 retained private
+  reserve-card choices even though transient context at index 20 was cleared. The sanitizer now
+  replaces all reserve choices with `-1`, and an adversarial digest-valid sample is rejected.
+- Recaptured games 35807 and 35732 into the v2 pilot. All 281 seat-scoped decision boundaries pass
+  current `FCMAdapter.getState()`/`getLegalActions()` completeness, source-state parity, recursive
+  hidden-field rejection and simultaneous pre-choice-frame checks on ruleset hash
+  `a171620e533a34f0c77133afac1d239a02c7600978486d09a77a20ead95d0b5e`.
+- Classified 214 labels as candidates pending official action replay and 67 as outcome-only.
+  Production history loses drink routes; payday history loses paid resource identities. A
+  fail-closed behavior-cloning gate rejects both until a label is explicitly engine-replayed.
+- Auditing a real human setup exposed one MCP parity defect: humans could rotate their starting
+  restaurant, while the Agent action only advertised the current orientation. The clean server
+  branch now exposes all four placement rotations and validates/applies the requested rotation.
+  It was rebased onto upstream `baebcba`, rebuilt, and passed 99 MCP plus 51 Django Agent tests.

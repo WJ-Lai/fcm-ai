@@ -642,6 +642,9 @@ explanation—while calculators and the official engine handle exactness.
 - Treat public ended-game replays as quarantined evidence, not automatically approved trajectories.
   Scale collection through explicit 2 -> 10 -> 50 -> 100 gates; require deterministic recapture,
   anonymization, ruleset/version classification and pinned-engine replay before each promotion.
+- Build every replay observation from the current seat-scoped MCP state/legal-action projection.
+  Simultaneous actors must share the public pre-choice frame. Keep lossy history (currently
+  production routes and payday resource identities) as outcome/value data, never imitation labels.
 - Record win/rank rate, illegal attempts, completion rate, decision latency and seat/map bias.
 
 Exit criterion: a result is reproducible by seed and every policy can play 100 base games without

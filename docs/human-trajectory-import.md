@@ -64,7 +64,8 @@ above. A successful download is **not** an approved `fcm.trajectory.v1` record. 
   reconstruct every history event;
 - requires one replay state per history event and the official end-game event (`26`) at the end;
 - records ruleset options and map metadata, replaces player identities with `seat-N`, removes event
-  timestamps, repeated embedded history and the entire transient runtime context;
+  timestamps, repeated embedded history, reserve-card storage and the entire transient runtime
+  context;
 - rejects credential-like content, incomplete games, count/digest drift and incompatible legacy
   metadata;
 - writes `fcm.public-replay-capture.v1` files with status
@@ -79,16 +80,32 @@ node scripts/collect_public_replays.mjs \
   --max-games 2 \
   --delay-ms 1500 \
   --require-class base-standard \
-  --output data/public-replays/pilot-2
-node scripts/audit_public_replays.mjs data/public-replays/pilot-2
+  --output data/public-replays/pilot-2-parity-v2
+node scripts/audit_public_replays.mjs data/public-replays/pilot-2-parity-v2
+node scripts/audit_replay_observation_parity.mjs \
+  --captures data/public-replays/pilot-2-parity-v2 \
+  --server ../obg-server-fcm-agent-rebased
 ```
 
 The local browser profile owns authentication cookies. The collector never accepts a password or
-exports cookies. Capture files stay gitignored. Promotion from quarantine still requires mapping
-history events to seat-visible legal actions and re-executing them against the pinned local official
-engine; until then these files may be inspected but not used for policy training.
+exports cookies. Capture files stay gitignored. Each audited decision observation is the current
+MCP `getState()` plus seat-scoped `getLegalActions()`. Every simultaneous participant receives the
+same public frame from before the first hidden submission. Chat is human-visible but deliberately
+omitted because it is irrelevant to rules decisions and is an untrusted prompt-injection surface.
+The audit rejects missing MCP fields and recursively rejects reserve cards, runtime context and
+move buffers.
+
+Public history is not a lossless action log. Production records producer ids and resulting totals
+but not drink routes; payday records fired employees and only the number of food payments, not the
+resource identities. Those decisions are permanently `outcome-only`: useful for state/value
+learning, never for behavior cloning. All other labels remain
+`candidate-pending-engine-replay`; a fail-closed code gate refuses behavior cloning until an exact
+action has been executed successfully by the pinned official action layer.
 
 The first trial exposed a real version boundary: game 6113 renders `startingMap` in a legacy scalar
 format, leaving the current Replay client unable to initialize its history. It is rejected quickly
-rather than coerced. Games 35807 and 35732 use current array metadata and produced deterministic,
-anonymous 177-state and 272-state captures respectively.
+rather than coerced. An earlier two-game capture is superseded because its sanitizer left the
+private reserve-card array at model index 19 intact; the strengthened validator now rejects it.
+The canonical v2 recapture of games 35807 and 35732 is deterministic and anonymous, with 177 and
+272 states. It contains 281 MCP decision boundaries: all pass observation parity, 214 are action
+candidates awaiting engine replay and 67 are outcome-only. The 10-game gate remains closed.
