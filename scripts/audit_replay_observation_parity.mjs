@@ -33,9 +33,10 @@ import {
   projectedCandidateRank,
   winnerSeatsFromPlayers,
 } from '../src/candidate-imitation.mjs'
-import { generateCandidates } from '../src/candidates.mjs'
+import { auditCandidateGeneration } from '../src/candidates.mjs'
 import { rankCandidates } from '../src/strategy.mjs'
 import { spatialConsequenceSignature } from '../src/spatial-consequence.mjs'
+import { excludeManifestGames, manifestGameIds } from '../src/replay-split.mjs'
 
 
 function argument(name, fallback = null) {
@@ -45,6 +46,7 @@ function argument(name, fallback = null) {
 
 const captureRoot = path.resolve(argument('--captures', 'data/public-replays/pilot-2'))
 const serverRoot = path.resolve(argument('--server', '../obg-server-fcm-agent-rebased'))
+const excludeManifestPath = argument('--exclude-manifest')
 
 await import(pathToFileURL(path.join(serverRoot, 'mcp-server/register-hook.mjs')).href)
 const browser = await import(
@@ -243,12 +245,20 @@ function verifyActionEffects(group, store, target) {
 }
 
 
-const manifest = JSON.parse(await readFile(path.join(captureRoot, 'manifest.json'), 'utf8'))
+let manifest = JSON.parse(await readFile(path.join(captureRoot, 'manifest.json'), 'utf8'))
 assert.equal(manifest.schemaVersion, 'fcm.public-replay-manifest.v1', 'unsupported manifest')
+let excludedGameIds = []
+if (excludeManifestPath) {
+  const exclusionManifest = JSON.parse(await readFile(path.resolve(excludeManifestPath), 'utf8'))
+  assert.equal(exclusionManifest.schemaVersion, manifest.schemaVersion, 'exclusion manifest schema differs')
+  excludedGameIds = manifestGameIds(exclusionManifest)
+  manifest = excludeManifestGames(manifest, new Set(excludedGameIds))
+}
 const report = []
 const imitation = {
   verifiedLabels: 0,
   candidateOffered: 0,
+  enumeratedCandidateOffered: 0,
   staticTop1: 0,
   staticTop3: 0,
   winnerVerifiedLabels: 0,
@@ -322,11 +332,13 @@ for (const [recordIndex, record] of manifest.records.entries()) {
         const comparableActions = [0, 1].includes(group.phase)
           ? [...actions, { type: 'end_turn' }]
           : actions
-        const ranked = rankCandidates(
-          { state, legalActions },
-          generateCandidates({ state, legalActions }),
-        )
+        const candidateAudit = auditCandidateGeneration({ state, legalActions })
+        const ranked = rankCandidates({ state, legalActions }, candidateAudit.boundedCandidates)
         const match = exactCandidateRank(ranked, comparableActions)
+        const enumeratedMatch = exactCandidateRank(
+          candidateAudit.enumeratedCandidates,
+          comparableActions,
+        )
         let effectMatch = group.phase === 5 && group.subphase === 3
           ? projectedCandidateRank(
             ranked,
@@ -334,8 +346,22 @@ for (const [recordIndex, record] of manifest.records.entries()) {
             (candidateActions) => marketingEffectSignature(candidateActions, legalActions),
           )
           : null
+        const enumeratedEffectMatch = group.phase === 5 && group.subphase === 3
+          ? projectedCandidateRank(
+            candidateAudit.enumeratedCandidates,
+            comparableActions,
+            (candidateActions) => marketingEffectSignature(candidateActions, legalActions),
+          )
+          : null
         const patternMatch = group.phase === 5 && [1, 2].includes(group.subphase)
           ? projectedCandidateRank(ranked, comparableActions, decisionPatternKey)
+          : null
+        const enumeratedPatternMatch = group.phase === 5 && [1, 2].includes(group.subphase)
+          ? projectedCandidateRank(
+            candidateAudit.enumeratedCandidates,
+            comparableActions,
+            decisionPatternKey,
+          )
           : null
         if ([5, 6].includes(group.subphase)) {
           effectMatch = await spatialEffectRank({
@@ -349,10 +375,13 @@ for (const [recordIndex, record] of manifest.records.entries()) {
         const decisionKey = `${group.phase}/${group.subphase}`
         const bucket = imitation.byDecision[decisionKey] ??= {
           verifiedLabels: 0, candidateOffered: 0, staticTop1: 0, staticTop3: 0,
-          effectEquivalentOffered: 0, effectEquivalentTop1: 0, effectEquivalentTop3: 0,
+          enumeratedCandidateOffered: 0,
+          effectEquivalentOffered: 0, enumeratedEffectEquivalentOffered: 0,
+          effectEquivalentTop1: 0, effectEquivalentTop3: 0,
           winnerEffectEquivalentOffered: 0,
           winnerEffectEquivalentTop1: 0, winnerEffectEquivalentTop3: 0,
           patternEquivalentOffered: 0,
+          enumeratedPatternEquivalentOffered: 0,
           patternEquivalentTop1: 0, patternEquivalentTop3: 0,
           winnerPatternEquivalentOffered: 0,
           winnerPatternEquivalentTop1: 0, winnerPatternEquivalentTop3: 0,
@@ -366,6 +395,12 @@ for (const [recordIndex, record] of manifest.records.entries()) {
         imitation.verifiedLabels += 1
         bucket.verifiedLabels += 1
         const winnerDecision = winnerSeats.has(group.seat)
+        if (enumeratedMatch) {
+          imitation.enumeratedCandidateOffered += 1
+          bucket.enumeratedCandidateOffered += 1
+        }
+        if (enumeratedPatternMatch) bucket.enumeratedPatternEquivalentOffered += 1
+        if (enumeratedEffectMatch) bucket.enumeratedEffectEquivalentOffered += 1
         if (winnerDecision) {
           imitation.winnerVerifiedLabels += 1
           bucket.winnerVerifiedLabels += 1
@@ -482,6 +517,7 @@ const unclassifiedEngineReplayFailures = report.reduce(
 const output = {
   schemaVersion: 'fcm.public-replay-observation-audit-report.v2',
   auditedGames: report.length,
+  excludedGames: excludedGameIds.length,
   mcpProjection: 'FCMAdapter.getState + FCMAdapter.getLegalActions',
   scaleGatePassed: unclassifiedEngineReplayFailures === 0,
   unclassifiedEngineReplayFailures,

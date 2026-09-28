@@ -928,23 +928,24 @@ safe-first. The failure trace showed demand donation to closer competitors and e
 investment. The next experiment must evaluate candidate consequences in official engine clones;
 more hand-tuned static weights are not an acceptable substitute for this gate.
 
-A 10-game human-label audit subsequently separated proposal failure from evaluator failure. Exact
+A 10-game human-label audit initially separated proposal failure from evaluator failure. Exact
 working-day candidate recall was only 175/494 (35.4%); conditional on being offered, the human action
-ranked Top-1 16.0% and Top-3 52.0%. Therefore candidate sequence coverage is now a prerequisite to
-the rollout spike, not a later optimization. Recruit/train/marketing/build/restaurant recall must be
-reported separately under the same 32-candidate cap.
+ranked Top-1 16.0% and Top-3 52.0%. Therefore candidate sequence coverage became a prerequisite to
+the rollout spike, not a later optimization. Recruit/train/marketing/build/restaurant recall remains
+separate under the same 32-candidate cap.
 
-The candidate audit now reports action-count/pattern histograms, winner-only metrics and official
-effect equivalence. Bounded multi-action sequences, duplicate employee-copy handling, round-robin
-source allocation and range-spanning spatial sampling first raised 50-game working-day exact recall
-to 1349/2730. A second pass removed depth-first combination prefix bias, added explicit
-management-trainee engine pairs, and preserved every distinct training upgrade. Current exact recall
-is 1516/2730 (55.5%) and winner-only recall is 645/1195 (54.0%). Hire exact and order-insensitive
-pattern coverage is 795/935 of 1337; training is 562/605 of 891. Eventual-winner exact/pattern counts
-are 320/379 of 564 for hire and 238/255 of 400 for training. The pattern metric is a proposal
-diagnostic only until permutation effects receive an official-engine equivalence suite; it does not
-weaken the exact action-replay gate. Marketing exact-coordinate recall is 61/270, while strict
-same-worker/campaign/good/duration/affected-houses coverage is 100/270 (37.0%).
+The audit now separates candidates before and after the 32-item pruning boundary. The replay folders
+are cumulative, so `pilot-50` was never an untouched set relative to `pilot-10`; manifests now
+enforce a disjoint 50-game training / final-50 test split. A reproducible prior derived only from the
+training manifest keeps repeated complete hire/train batches and frequent training transitions.
+Training-corpus hire/train pattern coverage is 1093/1337 (81.8%) and 672/891 (75.4%). The single
+frozen final-test run produced 1013/1260 (80.4%) and 656/825 (79.5%), with exact coverage 837/1260
+and 615/825. Thus proposal coverage clears the gate without changing the rule engine or 32-candidate
+budget. Pattern matching is still only an order-insensitive proposal diagnostic; exact action replay
+and official execution remain separate gates. Marketing remains a separate incomplete action family:
+campaign-aware diversity raised strict effect coverage from 78/208 to 109/208 on the 40-game
+validation slice, versus a pre-pruning ceiling of 138/208. Multi-marketing batches and placement
+generation explain part of the remaining gap.
 
 Build/open/move labels are now produced by executing each candidate on an isolated official-engine
 clone and comparing only public pre/post `DecisionView` reachability. Raw coordinates are excluded;
@@ -1014,8 +1015,8 @@ observation fields, action candidates, simulator parity tests and benchmark scen
 
 The dependency-ordered source of truth is `../TODOS.md`. In summary:
 
-1. Raise bounded hire/train proposal coverage to the frozen 75% gate and finish the independent
-   tactical consequence suite.
+1. Finish marketing proposal coverage and the independent tactical consequence suite; bounded
+   hire/train proposal coverage has passed the frozen 75% gate on the disjoint final 50 games.
 2. Implement `GameMemory v2` as a typed reactive plan graph with prerequisite timing, slack,
    commitments, repair/fallback paths and invalidation events; freeze causal long-horizon and
    reactive adversarial suites, including bait and no-oscillation cases.

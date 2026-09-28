@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 
-import { generateCandidates } from './candidates.mjs'
+import { auditCandidateGeneration, generateCandidates } from './candidates.mjs'
 
 function view(phase, subphase, actions, state = {}) {
   return {
@@ -24,6 +24,26 @@ test('candidate generation is deterministic, unique and strictly budgeted', () =
   assert.equal(new Set(first.map((item) => item.id)).size, first.length)
   assert.equal(first[0].intent, 'restaurant-start')
   assert.ok(first.every((item) => item.actions[0].type === 'place_restaurant'))
+})
+
+test('candidate diagnostics separate enumeration loss from budget pruning', () => {
+  const input = view(5, 1, [{
+    type: 'hire', recruitingPoints: 2, candidates: [
+      { id: 5, name: 'Management Trainee' },
+      { id: 13, name: 'Marketing Trainee' },
+      { id: 17, name: 'Recruiting Girl' },
+    ],
+  }, { type: 'next_subphase' }], {
+    availableEmployees: { 5: 4, 13: 4, 17: 4 },
+  })
+  const audit = auditCandidateGeneration(input, { totalBudget: 3, perIntentBudget: 6 })
+  assert.deepEqual(audit.boundedCandidates, generateCandidates(input, {
+    totalBudget: 3, perIntentBudget: 6,
+  }))
+  assert.ok(audit.enumeratedCandidates.length > audit.boundedCandidates.length)
+  assert.ok(audit.enumeratedCandidates.some((candidate) => (
+    candidate.actions.filter((action) => action.type === 'hire').length === 2
+  )))
 })
 
 test('restructuring produces bounded strategic orderings and an explicit fallback', () => {
@@ -101,6 +121,82 @@ test('multi-hire search does not starve management-trainee engine pairs behind e
       .map((action) => action.employee).sort((left, right) => left - right)
     return JSON.stringify(hired) === JSON.stringify([5, 13])
   }))
+})
+
+test('versioned proposal prior preserves frequent three-role hire engines under the cap', () => {
+  const hireables = [
+    [0, 'Errand Boy'], [5, 'Management Trainee'], [10, 'Waitress'],
+    [13, 'Marketing Trainee'], [17, 'Recruiting Girl'], [20, 'Trainer'],
+    [23, 'Pricing Manager'], [27, 'Kitchen Trainee'],
+  ].map(([id, name]) => ({ id, name }))
+  const candidates = generateCandidates(view(5, 1, [
+    { type: 'hire', recruitingPoints: 3, candidates: hireables },
+    { type: 'next_subphase' },
+  ], { availableEmployees: Object.fromEntries(hireables.map(({ id }) => [id, 4])) }))
+  const patterns = new Set(candidates.map((candidate) => candidate.actions
+    .filter((action) => action.type === 'hire')
+    .map((action) => action.employee).sort((left, right) => left - right).join(',')))
+  assert.ok(patterns.has('13,23,27'))
+  assert.ok(patterns.has('5,13,20'))
+  assert.ok(candidates.length <= 32)
+})
+
+test('training proposal prior reserves a legal multi-upgrade candidate', () => {
+  const candidates = generateCandidates(view(5, 2, [
+    { type: 'train', trainingPoints: 2, available: [
+      { id: 5, origin: 0, upgrades: [{ id: 1, steps: 1 }, { id: 11, steps: 1 }] },
+      { id: 5, origin: 0, upgrades: [{ id: 1, steps: 1 }, { id: 11, steps: 1 }] },
+      ...[6, 7, 13, 14, 23, 27, 30].map((id) => ({
+        id, origin: 0, upgrades: [{ id: id + 1, steps: 1 }],
+      })),
+    ] },
+    { type: 'next_subphase' },
+  ]))
+  assert.ok(candidates.some((candidate) => {
+    const upgrades = candidate.actions.filter((action) => action.type === 'train')
+      .map((action) => `${action.origin}/${action.employee}>${action.toEmployee}`).sort()
+    return upgrades.join(',') === '0/5>1,0/5>11'
+  }))
+  assert.ok(candidates.length <= 32)
+})
+
+test('training marginal prior reserves source-diverse combinations when singles fill the cap', () => {
+  const sources = [
+    [5, [1, 2, 3, 6, 7, 8, 11, 12, 18, 21]],
+    [13, [14, 15, 16]],
+    [27, [28, 29, 30, 31]],
+    [23, [24, 25, 26]],
+    [6, [7, 9, 12, 21]],
+  ]
+  const candidates = generateCandidates(view(5, 2, [
+    { type: 'train', trainingPoints: 2, available: sources.map(([id, upgrades]) => ({
+      id, origin: 0, upgrades: upgrades.map((upgrade) => ({ id: upgrade, steps: 1 })),
+    })) },
+    { type: 'next_subphase' },
+  ]))
+  const patterns = new Set(candidates.map((candidate) => candidate.actions
+    .filter((action) => action.type === 'train')
+    .map((action) => `${action.origin}/${action.employee}>${action.toEmployee}`).sort().join(',')))
+  assert.ok(patterns.has('0/23>24,0/27>30'))
+  assert.ok(patterns.has('0/27>30,0/5>6'))
+  assert.ok(candidates.length <= 32)
+})
+
+test('training marginal prior reserves bounded three- and four-step plans by length', () => {
+  const candidates = generateCandidates(view(5, 2, [
+    { type: 'train', trainingPoints: 4, available: [
+      { id: 5, origin: 0, upgrades: [{ id: 6, steps: 1 }] },
+      { id: 13, origin: 0, upgrades: [{ id: 14, steps: 1 }] },
+      { id: 23, origin: 0, upgrades: [{ id: 24, steps: 1 }] },
+      { id: 27, origin: 0, upgrades: [{ id: 30, steps: 1 }] },
+    ] },
+    { type: 'next_subphase' },
+  ]))
+  const lengths = new Set(candidates
+    .filter((candidate) => candidate.intent.startsWith('train-marginal'))
+    .map((candidate) => candidate.actions.filter((action) => action.type === 'train').length))
+  assert.deepEqual(lengths, new Set([2, 3, 4]))
+  assert.ok(candidates.length <= 32)
 })
 
 test('training proposes bounded multi-action sequences when multiple training points exist', () => {
@@ -196,6 +292,29 @@ test('marketing diversity budget preserves at least one candidate for every adve
       .filter((action) => action.type === 'marketing')
       .map((action) => action.good)))].sort(),
     [0, 1, 2, 3, 4],
+  )
+})
+
+test('marketing diversity does not let the first campaign starve later workers', () => {
+  const campaign = (marketer, campaignId, square) => ({
+    marketer,
+    campaigns: [{
+      campaign: campaignId, durationInfinite: false, maxDuration: 2,
+      placements: [{
+        rotated: false, legalSquares: [square],
+        houseImpacts: [{ index: square, houses: [marketer] }],
+      }],
+    }],
+  })
+  const candidates = generateCandidates(view(5, 3, [
+    { type: 'marketing', goods: [0, 1], options: [campaign(13, 14, 40), campaign(15, 16, 50)] },
+    { type: 'next_subphase' },
+  ]), { totalBudget: 8, perIntentBudget: 1 })
+  assert.deepEqual(
+    [...new Set(candidates.flatMap((candidate) => candidate.actions
+      .filter((action) => action.type === 'marketing')
+      .map((action) => action.marketer)))].sort((left, right) => left - right),
+    [13, 15],
   )
 })
 

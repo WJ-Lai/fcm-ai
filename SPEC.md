@@ -70,11 +70,19 @@ frozen, diverse policy league.
 - The 100-game public corpus contains 14,078 audited decision observations. The official action
   layer exactly replays 10,001 labels; 3,541 lossy production/payday records are value-only and 536
   legacy-drift records are quarantined.
-- On the untouched 50-game candidate audit, exact working-day coverage is 1516/2730 (55.5%) and
-  eventual-winner coverage is 645/1195 (54.0%). Hire exact/pattern coverage is 795/935 of 1337;
-  training is 562/605 of 891. Build public-consequence coverage is 103/147, restaurant coverage is
-  82/85 and marketing effect coverage is 100/270. Pattern/effect coverage is a proposal diagnostic,
-  not proof that the actions have equal long-term value.
+- Candidate data is now split by manifest identity rather than directory name: games 1–50 are the
+  proposal-training corpus and games 51–100 are the frozen final test. This corrects the earlier
+  mistaken description of `pilot-50` as untouched even though it contains `pilot-10`. A versioned
+  prior retains only repeated 50-game hire/train patterns and transitions. Under the 32-candidate
+  cap, training-corpus hire/train pattern coverage is 1093/1337 (81.8%) and 672/891 (75.4%). On the
+  disjoint final 50 games it is 1013/1260 (80.4%) and 656/825 (79.5%), so both pass the frozen 75%
+  proposal gate. Exact final-test coverage is 837/1260 and 615/825; pattern coverage remains a
+  proposal diagnostic, not evidence that orders or plans have equal long-term value.
+- Marketing proposal diversity is still below its desired ceiling. Separating candidates by
+  employee/campaign/good/duration raised strict effect-equivalent coverage from 22/62 to 29/62 on
+  development games and from 78/208 to 109/208 (52.4%) on the disjoint 40-game validation slice.
+  The enumerated ceiling there is 138/208; multi-marketing batches and missing placements remain
+  explicit follow-up work. The already-opened final 50 set was not reused to tune this change.
 - `GameMemory v1` stores only coarse intent, a 1–5 turn horizon, confidence and evidence. The current
   shallow rollout evaluates at most six candidates, 24 official transitions and three seconds, and
   stops at opponent/simultaneous boundaries.
@@ -389,8 +397,8 @@ policy-population method such as PSRO/JPSRO before claiming convergence.
 
 ## 11. Execution order
 
-1. Raise bounded hire/train coverage to the existing 75% gate and close missing marketing coverage
-   without exceeding 32 candidates.
+1. Close missing marketing coverage without exceeding 32 candidates; the bounded hire/train 75%
+   gate is complete on the disjoint final 50-game test.
 2. Freeze independent tactical, long-horizon, reactive, abstraction-collision and
    information-set-consistency suites before fitting new weights.
 3. Implement `GameMemory v2`, the typed plan graph and event-rebuild tests.

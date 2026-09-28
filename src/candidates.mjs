@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict'
 import { createHash } from 'node:crypto'
 
+import { PROPOSAL_PRIOR } from './proposal-prior.mjs'
+
 function legalByType(view) {
   return new Map((view.legalActions?.actions ?? []).map((action) => [action.type, action]))
 }
@@ -78,6 +80,115 @@ function boundedCombinations(items, length, { canUse = () => true, limit = 20 } 
   return result
 }
 
+function legalHirePriorCandidates(hire, state, recruitingPoints, phase, subphase, finish) {
+  const legalIds = new Set((hire?.candidates ?? []).map((employee) => employee.id))
+  const result = []
+  for (const pattern of PROPOSAL_PRIOR.hirePatterns) {
+    if (pattern.length > recruitingPoints || pattern.some((employee) => !legalIds.has(employee))) continue
+    const counts = new Map()
+    let available = true
+    for (const employee of pattern) {
+      const used = (counts.get(employee) ?? 0) + 1
+      counts.set(employee, used)
+      if (used > (state.availableEmployees?.[employee] ?? 1)) available = false
+    }
+    if (!available) continue
+    result.push(stableCandidate(
+      phase,
+      subphase,
+      `hire-prior-${pattern.join('-')}`,
+      [...pattern.map((employee) => ({ type: 'hire', employee })), finish],
+      { employees: [...pattern], proposalPriorVersion: PROPOSAL_PRIOR.version },
+      `hire-prior:${pattern.join(',')}`,
+    ))
+  }
+  return result
+}
+
+function trainingActionKey(action) {
+  return `${action.origin}/${action.employee}>${action.toEmployee}`
+}
+
+function legalTrainPriorCandidates(primitives, sourceCounts, trainingPoints, phase, subphase, finish) {
+  const byKey = new Map(primitives.map((action) => [trainingActionKey(action), action]))
+  const result = []
+  for (const pattern of PROPOSAL_PRIOR.trainPatterns) {
+    const sequence = pattern.map((key) => byKey.get(key))
+    if (sequence.some((action) => action == null)) continue
+    if (sequence.reduce((total, action) => total + action.steps, 0) > trainingPoints) continue
+    const uses = new Map()
+    let available = true
+    for (const action of sequence) {
+      const sourceKey = `${action.origin}:${action.employee}`
+      const used = (uses.get(sourceKey) ?? 0) + 1
+      uses.set(sourceKey, used)
+      if (used > (sourceCounts.get(sourceKey) ?? 1)) available = false
+    }
+    if (!available) continue
+    result.push(stableCandidate(
+      phase,
+      subphase,
+      `train-prior-${result.length}`,
+      [...sequence, finish],
+      { upgrades: sequence.map((action) => action.toEmployee), proposalPriorVersion: PROPOSAL_PRIOR.version },
+      `train-prior:${pattern.join(',')}`,
+    ))
+  }
+  return result
+}
+
+function legalMarginalTrainCandidates(
+  primitives, sourceCounts, trainingPoints, phase, subphase, finish,
+) {
+  if (trainingPoints < 2) return []
+  const support = PROPOSAL_PRIOR.trainTransitionSupport
+  const rankedPrimitives = [...primitives].sort((left, right) => (
+    (support[trainingActionKey(right)] ?? 0) - (support[trainingActionKey(left)] ?? 0) ||
+    trainingActionKey(left).localeCompare(trainingActionKey(right))
+  ))
+  const selected = []
+  const perLengthBudget = new Map([[2, 6], [3, 4], [4, 2]])
+  for (let length = 2; length <= Math.min(trainingPoints, 4); length += 1) {
+    const combinations = boundedCombinations(rankedPrimitives, length, {
+      canUse: (action, prefix) => {
+        const sourceKey = `${action.origin}:${action.employee}`
+        const sourceUses = prefix.filter(
+          (item) => item.employee === action.employee && item.origin === action.origin,
+        ).length
+        return prefix.reduce((total, item) => total + item.steps, 0) + action.steps <= trainingPoints &&
+          sourceUses < (sourceCounts.get(sourceKey) ?? 1)
+      },
+      limit: 512,
+    })
+    const bestBySourceSignature = new Map()
+    for (const sequence of combinations) {
+      const pattern = sequence.map(trainingActionKey).sort().join(',')
+      const sourceSignature = sequence.map(
+        (action) => `${action.origin}/${action.employee}`,
+      ).sort().join(',')
+      const score = sequence.reduce(
+        (total, action) => total + (support[trainingActionKey(action)] ?? 0),
+        unique(sequence.map((action) => `${action.origin}/${action.employee}`)).length * 4,
+      )
+      const existing = bestBySourceSignature.get(sourceSignature)
+      if (!existing || score > existing.score || (score === existing.score && pattern < existing.pattern)) {
+        bestBySourceSignature.set(sourceSignature, { sequence, score, pattern })
+      }
+    }
+    selected.push(...[...bestBySourceSignature.values()]
+      .sort((left, right) => right.score - left.score || left.pattern.localeCompare(right.pattern))
+      .slice(0, perLengthBudget.get(length) ?? 0))
+  }
+  return selected.map(({ sequence, pattern }, index) => stableCandidate(
+      phase,
+      subphase,
+      `train-marginal-${index}`,
+      [...sequence, finish],
+      { upgrades: sequence.map((action) => action.toEmployee), proposalPriorVersion: PROPOSAL_PRIOR.version },
+      `train-marginal:${pattern}`,
+    ))
+}
+
 function restructuringCandidates(action, phase, subphase) {
   const candidates = [stableCandidate(phase, subphase, 'fallback', [{ type: 'end_turn' }])]
   const slots = action.slots ?? []
@@ -125,15 +236,15 @@ function workingDayCandidates(view, actions) {
 
   if (subphase === 1) {
     const hire = actions.get('hire')
+    const recruitingPoints = hire?.recruitingPoints ?? 0
+    candidates.push(...legalHirePriorCandidates(
+      hire, view.state, recruitingPoints, phase, subphase, finish,
+    ))
     for (const employee of hire?.candidates ?? []) {
       candidates.push(stableCandidate(phase, subphase, 'hire', [
         { type: 'hire', employee: employee.id }, finish,
       ], { employee: employee.id, name: employee.name }, `hire:${employee.id}`))
     }
-    const recruitingPoints = Math.min(
-      hire?.recruitingPoints ?? 0,
-      hire?.candidates?.length ?? 0,
-    )
     if (recruitingPoints > 1) {
       const normalizedName = (employee) => (
         typeof employee.name === 'object' ? employee.name?.title ?? '' : String(employee.name ?? '')
@@ -220,18 +331,23 @@ function workingDayCandidates(view, actions) {
           `${sourceKey}:${upgrade.id}:${upgrade.steps}`,
           action,
         )
-        candidates.push(stableCandidate(phase, subphase, 'train', [
-          action,
-          finish,
-        ], {
-          employee: employee.id,
-          upgrade: upgrade.id,
-        }, `train:${employee.origin}:${employee.id}:${upgrade.id}`))
       }
     }
     const trainingPoints = train?.trainingPoints ?? 0
+    const primitives = [...primitivesByKey.values()]
+    candidates.push(...legalTrainPriorCandidates(
+      primitives, sourceCounts, trainingPoints, phase, subphase, finish,
+    ))
+    candidates.push(...legalMarginalTrainCandidates(
+      primitives, sourceCounts, trainingPoints, phase, subphase, finish,
+    ))
+    for (const action of primitives) {
+      candidates.push(stableCandidate(phase, subphase, 'train', [action, finish], {
+        employee: action.employee,
+        upgrade: action.toEmployee,
+      }, `train:${action.origin}:${action.employee}:${action.toEmployee}`))
+    }
     if (trainingPoints > 1) {
-      const primitives = [...primitivesByKey.values()]
       for (let length = 2; length <= Math.min(trainingPoints, 3); length += 1) {
         const combinations = boundedCombinations(primitives, length, {
           canUse: (action, selected) => {
@@ -242,7 +358,7 @@ function workingDayCandidates(view, actions) {
             return selected.reduce((total, item) => total + item.steps, 0) + action.steps <= trainingPoints &&
               sourceUses < (sourceCounts.get(sourceKey) ?? 1)
           },
-          limit: 16,
+          limit: 64,
         })
         for (const sequence of combinations) {
           candidates.push(stableCandidate(
@@ -286,7 +402,7 @@ function workingDayCandidates(view, actions) {
                 ], {
                   affectedHouses: impactful.find((impact) => impact.index === index)?.houses?.length ?? 0,
                   affectedHouseIds: [...(impactful.find((impact) => impact.index === index)?.houses ?? [])],
-                }, `create-demand:${good}`))
+                }, `create-demand:${marketer.marketer}:${campaign.campaign}:${good}:${duration}`))
               }
             }
           }
@@ -394,9 +510,7 @@ function capCandidates(candidates, { totalBudget, perIntentBudget }) {
  * Deterministically generate a small phase-local candidate set from advertised legal actions.
  * This deliberately avoids cross-phase Cartesian products; multi-turn composition belongs to search.
  */
-export function generateCandidates(view, { totalBudget = 32, perIntentBudget = 6 } = {}) {
-  assert.ok(Number.isInteger(totalBudget) && totalBudget > 0, 'totalBudget must be positive')
-  assert.ok(Number.isInteger(perIntentBudget) && perIntentBudget > 0, 'perIntentBudget must be positive')
+function enumerateCandidates(view) {
   assert.equal(view.legalActions?.yourTurn, true, 'cannot generate candidates outside this seat turn')
   const actions = legalByType(view)
   const { phase, subphase } = view.state
@@ -481,7 +595,28 @@ export function generateCandidates(view, { totalBudget = 32, perIntentBudget = 6
     }
   }
 
-  const bounded = capCandidates(candidates, { totalBudget, perIntentBudget })
+  return candidates
+}
+
+function validateBudgets(totalBudget, perIntentBudget) {
+  assert.ok(Number.isInteger(totalBudget) && totalBudget > 0, 'totalBudget must be positive')
+  assert.ok(Number.isInteger(perIntentBudget) && perIntentBudget > 0, 'perIntentBudget must be positive')
+}
+
+export function generateCandidates(view, { totalBudget = 32, perIntentBudget = 6 } = {}) {
+  validateBudgets(totalBudget, perIntentBudget)
+  const bounded = capCandidates(enumerateCandidates(view), { totalBudget, perIntentBudget })
+  const { phase, subphase } = view.state
   assert.ok(bounded.length > 0, `no safe candidate for phase ${phase}/${subphase}`)
   return bounded
+}
+
+/** Audit-only view of candidates before and after diversity/budget pruning. */
+export function auditCandidateGeneration(view, { totalBudget = 32, perIntentBudget = 6 } = {}) {
+  validateBudgets(totalBudget, perIntentBudget)
+  const enumeratedCandidates = enumerateCandidates(view)
+  const boundedCandidates = capCandidates(enumeratedCandidates, { totalBudget, perIntentBudget })
+  const { phase, subphase } = view.state
+  assert.ok(boundedCandidates.length > 0, `no safe candidate for phase ${phase}/${subphase}`)
+  return { enumeratedCandidates, boundedCandidates }
 }

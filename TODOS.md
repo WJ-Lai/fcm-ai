@@ -130,16 +130,19 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     the latency budget, then holds on untouched games. Spatial marketing/build/restaurant choices
     use task-specific equivalence/value labels rather than requiring the exact human square. Report
     every subphase separately so high-volume hiring cannot hide missing action families.
-  - Current: bounded 2–3 action sequences, duplicate employee-copy handling, round-robin source
-    allocation and range-spanning spatial sampling are implemented. On 10 development games,
-    exact hire/train recall is 112/233 and 94/153; marketing effect-equivalent coverage is 22/62.
-    Build exact/effect coverage rose from 7/7 to 25/27 of 36 after removing prefix bias.
-    A subsequent source-fair combination pass raised development hire exact/pattern coverage to
-    131/154 of 233 and training to 102/108 of 153. On the untouched 50-game corpus, working-day
-    exact recall is now 1516/2730 (55.5%) and winner-only 645/1195 (54.0%). Hire exact/pattern
-    coverage is 795/935 of 1337 and training is 562/605 of 891; eventual-winner exact/pattern counts
-    are 320/379 of 564 and 238/255 of 400. Pattern equivalence is currently a diagnostic for
-    order-insensitive proposal coverage, not a substitute for official consequence validation.
+  - Current: manifest-level exclusion tests corrected an earlier cumulative-corpus mistake:
+    `pilot-50` contains `pilot-10`, so games 1–50 are now proposal training and games 51–100 are the
+    frozen final test. A versioned, provenance-tested repeated-pattern prior plus source-diverse
+    length-aware generation clears the discrete gate under the 32-candidate cap. Training-corpus
+    hire/train pattern coverage is 1093/1337 (81.8%) and 672/891 (75.4%); final-test coverage is
+    1013/1260 (80.4%) and 656/825 (79.5%). Exact final-test coverage is 837/1260 and 615/825.
+    Pattern equivalence remains an order-insensitive proposal diagnostic, not a substitute for
+    official consequence validation. The official two-seed audit executed 2,145 candidates with
+    zero rejected actions at about 0.037 ms generation time per candidate.
+    Campaign-aware marketing quotas raised strict effect-equivalent coverage from 22/62 to 29/62
+    on development games and from 78/208 to 109/208 on the disjoint 40-game validation slice;
+    its enumerated validation ceiling is 138/208. Multi-marketing batches and missing placements
+    remain open, so P3.1b is not yet complete.
     Build exact coverage rose
     45→86/147 and official public-consequence coverage is 103/147 (70.1%); winner consequence
     coverage is 67/94 (71.3%). Restaurant exact coordinates cover only 12/85, but official
