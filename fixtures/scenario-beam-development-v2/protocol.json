@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "fcm.scenario-beam-development-protocol.v2",
+  "experimentId": 20,
+  "seeds": ["scenario-beam-dev-01", "scenario-beam-dev-02"],
+  "arms": [
+    { "id": "static", "deadlineMs": null },
+    { "id": "beam-1000ms", "deadlineMs": 1000 },
+    { "id": "beam-3000ms", "deadlineMs": 3000 }
+  ],
+  "maxBeamDecisions": 1,
+  "maxCommands": 500,
+  "beamBudget": {
+    "maxRootCandidates": 2,
+    "branchFactor": 2,
+    "beamWidth": 2,
+    "maxOwnDepth": 4,
+    "maxTransitions": 80
+  },
+  "promotionHoldoutOpened": false
+}

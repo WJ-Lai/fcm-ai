@@ -432,8 +432,12 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     belief fallback, deadline/transition fallback, stable ties and policy failure. A frozen official
     smoke reached actor depth 4 through restructuring using 20 transitions and 4/4 completed root
     scenarios with zero violations. It nevertheless replaced a turn-1 hire with skip (leaf score
-    35.4 vs 39), so strength is explicitly unpromoted. Next freeze one-/three-second development
-    leagues and measure terminal rank, latency, fallback, horizon sensitivity and seed variance.
+    35.4 vs 39), so strength is explicitly unpromoted. Iteration 20 froze a two-seed, paired-seat,
+    single-intervention development puncture: all 12 games completed with zero violations. Static
+    won 4/4 at mean $517.5. The one-second arm timed out and legally fell back in 4/4 (P95 1.08s),
+    retaining 4/4 wins. The three-second arm completed 4/4 searches but always changed hire to skip,
+    fell to 0/4 wins and mean $38.75. Current beam is therefore rejected for strength; do not expand
+    the league or open promotion holdout until cutoff/horizon diagnostics prevent this reversal.
 
 - [ ] **P4.1b Implement RHEA as an equal-budget challenger.**
   - Why: rolling-horizon evolution may discover useful macro sequences that beam pruning loses in

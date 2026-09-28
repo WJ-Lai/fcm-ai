@@ -386,6 +386,13 @@ restructuring roots it makes no clone attempt and returns the same public static
 evidence that hidden-boundary search is strong; a future ISMCTS/POMCP-style specialist must pass its
 own information-set audit before comparison.
 
+The first terminal development puncture rejects this Beam for strength. Across two development seeds
+and both seats, static won 4/4 at mean $517.5. A one-second budget fell back safely in all four games
+and retained those wins; a three-second budget completed all searches, changed hire to skip in all
+four games, and produced 0/4 wins at mean $38.75. More search time is currently harmful because it
+makes the biased cutoff estimate actionable. League expansion is paused until horizon diagnostics
+and a safety gate stop completed search from overriding a stronger static prior on unstable leaves.
+
 **Rolling Horizon Evolutionary Algorithms (RHEA)** evolve complete macro sequences rather than
 expanding a strict prefix tree. Mutation can recover plans that beam pruning would discard and can
 work well with irregular candidate sets. The cost is seed variance, legality repair and less

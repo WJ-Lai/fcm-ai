@@ -469,6 +469,16 @@ skipping because the current leaf evaluator scored skip 39 versus hire 35.4. Tha
 evidence and a warning about cutoff bias—not evidence of better play. P4.1 remains open for frozen
 one-/three-second development leagues, horizon diagnostics and terminal lift.
 
+The first paired development puncture confirms that warning is causal, not cosmetic. On two fresh
+development seeds with both seats and exactly one eligible Beam intervention per game, all 12 games
+completed with zero violations. Static won 4/4 with mean money $517.5. The one-second planner missed
+its complete-scenario requirement in 4/4, safely retained hire, and also won 4/4 (P95 1.08 seconds).
+The three-second planner completed all four root-scenario sets in 4/4, changed hire to skip every
+time, and collapsed to 0/4 wins with mean money $38.75. Giving the current evaluator more compute
+therefore makes the policy strictly worse on this paired sample. The current Beam is rejected for
+strength; expanding its league would only measure a known cutoff defect. Promotion data stays
+sealed while the next iteration diagnoses horizon/leaf ranking and adds a monotonic safety gate.
+
 ### 6.8 Execution, memory and learning
 
 The execution layer accepts one versioned candidate id, revalidates it against the current game

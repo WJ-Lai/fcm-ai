@@ -1,0 +1,405 @@
+{
+  "schemaVersion": "fcm.scenario-beam-development-league.v2",
+  "experimentId": 20,
+  "protocolDigest": "sha256:e9cfea1ae481e75610d198bd134abf96af36484e31aadede687e5a75a90aad01",
+  "protocol": {
+    "schemaVersion": "fcm.scenario-beam-development-protocol.v2",
+    "experimentId": 20,
+    "seeds": [
+      "scenario-beam-dev-01",
+      "scenario-beam-dev-02"
+    ],
+    "arms": [
+      {
+        "id": "static",
+        "deadlineMs": null
+      },
+      {
+        "id": "beam-1000ms",
+        "deadlineMs": 1000
+      },
+      {
+        "id": "beam-3000ms",
+        "deadlineMs": 3000
+      }
+    ],
+    "maxBeamDecisions": 1,
+    "maxCommands": 500,
+    "beamBudget": {
+      "maxRootCandidates": 2,
+      "branchFactor": 2,
+      "beamWidth": 2,
+      "maxOwnDepth": 4,
+      "maxTransitions": 80
+    },
+    "promotionHoldoutOpened": false
+  },
+  "arms": [
+    "static",
+    "beam-1000ms",
+    "beam-3000ms"
+  ],
+  "summary": {
+    "static": {
+      "games": 4,
+      "completed": 4,
+      "violations": 0,
+      "firstPlaces": 4,
+      "meanAgentMoney": 517.5,
+      "beamDecisions": 0,
+      "changedStatic": 0,
+      "fallbacks": 0,
+      "decisionP95Ms": 0
+    },
+    "beam-1000ms": {
+      "games": 4,
+      "completed": 4,
+      "violations": 0,
+      "firstPlaces": 4,
+      "meanAgentMoney": 510.25,
+      "beamDecisions": 4,
+      "changedStatic": 0,
+      "fallbacks": 4,
+      "decisionP95Ms": 1079.906799999997
+    },
+    "beam-3000ms": {
+      "games": 4,
+      "completed": 4,
+      "violations": 0,
+      "firstPlaces": 0,
+      "meanAgentMoney": 38.75,
+      "beamDecisions": 4,
+      "changedStatic": 4,
+      "fallbacks": 0,
+      "decisionP95Ms": 2483.581770000019
+    }
+  },
+  "games": [
+    {
+      "arm": "static",
+      "seed": "scenario-beam-dev-01",
+      "agentSeat": 0,
+      "completed": true,
+      "violation": null,
+      "commands": 163,
+      "gameLatencyMs": 17854,
+      "agentRank": 1,
+      "agentMoney": 502,
+      "opponentMoney": 22,
+      "beam": {
+        "decisions": 0,
+        "changedStatic": 0,
+        "fallbacks": 0,
+        "decisionP95Ms": 0,
+        "metrics": []
+      }
+    },
+    {
+      "arm": "static",
+      "seed": "scenario-beam-dev-01",
+      "agentSeat": 1,
+      "completed": true,
+      "violation": null,
+      "commands": 325,
+      "gameLatencyMs": 41075,
+      "agentRank": 1,
+      "agentMoney": 533,
+      "opponentMoney": 32,
+      "beam": {
+        "decisions": 0,
+        "changedStatic": 0,
+        "fallbacks": 0,
+        "decisionP95Ms": 0,
+        "metrics": []
+      }
+    },
+    {
+      "arm": "static",
+      "seed": "scenario-beam-dev-02",
+      "agentSeat": 0,
+      "completed": true,
+      "violation": null,
+      "commands": 367,
+      "gameLatencyMs": 45632,
+      "agentRank": 1,
+      "agentMoney": 533,
+      "opponentMoney": 38,
+      "beam": {
+        "decisions": 0,
+        "changedStatic": 0,
+        "fallbacks": 0,
+        "decisionP95Ms": 0,
+        "metrics": []
+      }
+    },
+    {
+      "arm": "static",
+      "seed": "scenario-beam-dev-02",
+      "agentSeat": 1,
+      "completed": true,
+      "violation": null,
+      "commands": 282,
+      "gameLatencyMs": 32363,
+      "agentRank": 1,
+      "agentMoney": 502,
+      "opponentMoney": 35,
+      "beam": {
+        "decisions": 0,
+        "changedStatic": 0,
+        "fallbacks": 0,
+        "decisionP95Ms": 0,
+        "metrics": []
+      }
+    },
+    {
+      "arm": "beam-1000ms",
+      "seed": "scenario-beam-dev-01",
+      "agentSeat": 0,
+      "completed": true,
+      "violation": null,
+      "commands": 162,
+      "gameLatencyMs": 18085,
+      "agentRank": 1,
+      "agentMoney": 479,
+      "opponentMoney": 46,
+      "beam": {
+        "decisions": 1,
+        "changedStatic": 0,
+        "fallbacks": 1,
+        "decisionP95Ms": 1033.1418160000176,
+        "metrics": [
+          {
+            "elapsedMs": 1033.1418160000176,
+            "stopReason": "deadline",
+            "fallbackUsed": true,
+            "changedStatic": false,
+            "staticCandidateId": "p5s1-hire-1dfd160273",
+            "selectedCandidateId": "p5s1-hire-1dfd160273",
+            "completedRootScenarios": 1,
+            "officialTransitions": 9,
+            "maxOwnDepthReached": 4
+          }
+        ]
+      }
+    },
+    {
+      "arm": "beam-1000ms",
+      "seed": "scenario-beam-dev-01",
+      "agentSeat": 1,
+      "completed": true,
+      "violation": null,
+      "commands": 138,
+      "gameLatencyMs": 15698,
+      "agentRank": 1,
+      "agentMoney": 443,
+      "opponentMoney": 226,
+      "beam": {
+        "decisions": 1,
+        "changedStatic": 0,
+        "fallbacks": 1,
+        "decisionP95Ms": 1079.906799999997,
+        "metrics": [
+          {
+            "elapsedMs": 1079.906799999997,
+            "stopReason": "deadline",
+            "fallbackUsed": true,
+            "changedStatic": false,
+            "staticCandidateId": "p5s1-hire-1dfd160273",
+            "selectedCandidateId": "p5s1-hire-1dfd160273",
+            "completedRootScenarios": 1,
+            "officialTransitions": 10,
+            "maxOwnDepthReached": 4
+          }
+        ]
+      }
+    },
+    {
+      "arm": "beam-1000ms",
+      "seed": "scenario-beam-dev-02",
+      "agentSeat": 0,
+      "completed": true,
+      "violation": null,
+      "commands": 175,
+      "gameLatencyMs": 18250,
+      "agentRank": 1,
+      "agentMoney": 523,
+      "opponentMoney": 10,
+      "beam": {
+        "decisions": 1,
+        "changedStatic": 0,
+        "fallbacks": 1,
+        "decisionP95Ms": 1023.5668489999953,
+        "metrics": [
+          {
+            "elapsedMs": 1023.5668489999953,
+            "stopReason": "deadline",
+            "fallbackUsed": true,
+            "changedStatic": false,
+            "staticCandidateId": "p5s1-hire-1dfd160273",
+            "selectedCandidateId": "p5s1-hire-1dfd160273",
+            "completedRootScenarios": 1,
+            "officialTransitions": 10,
+            "maxOwnDepthReached": 4
+          }
+        ]
+      }
+    },
+    {
+      "arm": "beam-1000ms",
+      "seed": "scenario-beam-dev-02",
+      "agentSeat": 1,
+      "completed": true,
+      "violation": null,
+      "commands": 378,
+      "gameLatencyMs": 47165,
+      "agentRank": 1,
+      "agentMoney": 596,
+      "opponentMoney": 10,
+      "beam": {
+        "decisions": 1,
+        "changedStatic": 0,
+        "fallbacks": 1,
+        "decisionP95Ms": 1037.3137949999946,
+        "metrics": [
+          {
+            "elapsedMs": 1037.3137949999946,
+            "stopReason": "deadline",
+            "fallbackUsed": true,
+            "changedStatic": false,
+            "staticCandidateId": "p5s1-hire-1dfd160273",
+            "selectedCandidateId": "p5s1-hire-1dfd160273",
+            "completedRootScenarios": 1,
+            "officialTransitions": 10,
+            "maxOwnDepthReached": 4
+          }
+        ]
+      }
+    },
+    {
+      "arm": "beam-3000ms",
+      "seed": "scenario-beam-dev-01",
+      "agentSeat": 0,
+      "completed": true,
+      "violation": null,
+      "commands": 155,
+      "gameLatencyMs": 18750,
+      "agentRank": 2,
+      "agentMoney": 125,
+      "opponentMoney": 427,
+      "beam": {
+        "decisions": 1,
+        "changedStatic": 1,
+        "fallbacks": 0,
+        "decisionP95Ms": 2483.581770000019,
+        "metrics": [
+          {
+            "elapsedMs": 2483.581770000019,
+            "stopReason": "complete",
+            "fallbackUsed": false,
+            "changedStatic": true,
+            "staticCandidateId": "p5s1-hire-1dfd160273",
+            "selectedCandidateId": "p5s1-fallback-21d4f44933",
+            "completedRootScenarios": 4,
+            "officialTransitions": 20,
+            "maxOwnDepthReached": 4
+          }
+        ]
+      }
+    },
+    {
+      "arm": "beam-3000ms",
+      "seed": "scenario-beam-dev-01",
+      "agentSeat": 1,
+      "completed": true,
+      "violation": null,
+      "commands": 135,
+      "gameLatencyMs": 15839,
+      "agentRank": 2,
+      "agentMoney": 0,
+      "opponentMoney": 533,
+      "beam": {
+        "decisions": 1,
+        "changedStatic": 1,
+        "fallbacks": 0,
+        "decisionP95Ms": 2398.232218000019,
+        "metrics": [
+          {
+            "elapsedMs": 2398.232218000019,
+            "stopReason": "complete",
+            "fallbackUsed": false,
+            "changedStatic": true,
+            "staticCandidateId": "p5s1-hire-1dfd160273",
+            "selectedCandidateId": "p5s1-fallback-21d4f44933",
+            "completedRootScenarios": 4,
+            "officialTransitions": 20,
+            "maxOwnDepthReached": 4
+          }
+        ]
+      }
+    },
+    {
+      "arm": "beam-3000ms",
+      "seed": "scenario-beam-dev-02",
+      "agentSeat": 0,
+      "completed": true,
+      "violation": null,
+      "commands": 313,
+      "gameLatencyMs": 34078,
+      "agentRank": 2,
+      "agentMoney": 15,
+      "opponentMoney": 490,
+      "beam": {
+        "decisions": 1,
+        "changedStatic": 1,
+        "fallbacks": 0,
+        "decisionP95Ms": 2159.871718999988,
+        "metrics": [
+          {
+            "elapsedMs": 2159.871718999988,
+            "stopReason": "complete",
+            "fallbackUsed": false,
+            "changedStatic": true,
+            "staticCandidateId": "p5s1-hire-1dfd160273",
+            "selectedCandidateId": "p5s1-fallback-21d4f44933",
+            "completedRootScenarios": 4,
+            "officialTransitions": 20,
+            "maxOwnDepthReached": 4
+          }
+        ]
+      }
+    },
+    {
+      "arm": "beam-3000ms",
+      "seed": "scenario-beam-dev-02",
+      "agentSeat": 1,
+      "completed": true,
+      "violation": null,
+      "commands": 248,
+      "gameLatencyMs": 25689,
+      "agentRank": 2,
+      "agentMoney": 15,
+      "opponentMoney": 495,
+      "beam": {
+        "decisions": 1,
+        "changedStatic": 1,
+        "fallbacks": 0,
+        "decisionP95Ms": 2067.60754300002,
+        "metrics": [
+          {
+            "elapsedMs": 2067.60754300002,
+            "stopReason": "complete",
+            "fallbackUsed": false,
+            "changedStatic": true,
+            "staticCandidateId": "p5s1-hire-1dfd160273",
+            "selectedCandidateId": "p5s1-fallback-21d4f44933",
+            "completedRootScenarios": 4,
+            "officialTransitions": 20,
+            "maxOwnDepthReached": 4
+          }
+        ]
+      }
+    }
+  ],
+  "promotionHoldoutOpened": false,
+  "strengthPromoted": false
+}
