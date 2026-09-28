@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "fcm.rhea-hire-stability-protocol.v10",
+  "reportSchemaVersion": "fcm.rhea-hire-stability.v10",
+  "experimentId": 36,
+  "sampleCount": 7,
+  "resumeFrom": "fixtures/rhea-hire-stability-v9/report.json",
+  "maxCommands": 500,
+  "targets": [
+    {
+      "rootId": "rhea-intervention-dev-03-seat-0-index-3",
+      "seed": "rhea-intervention-dev-03",
+      "agentSeat": 0,
+      "scanIndex": 3,
+      "gameID": 9912,
+      "staticCandidateId": "p5s1-hire-f62c499152",
+      "alternateCandidateId": "p5s1-hire-00073b191c"
+    },
+    {
+      "rootId": "rhea-intervention-dev-04-seat-0-index-3",
+      "seed": "rhea-intervention-dev-04",
+      "agentSeat": 0,
+      "scanIndex": 3,
+      "gameID": 9914,
+      "staticCandidateId": "p5s1-hire-f62c499152",
+      "alternateCandidateId": "p5s1-hire-00073b191c"
+    }
+  ],
+  "promotionHoldoutOpened": false
+}

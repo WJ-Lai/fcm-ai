@@ -598,6 +598,13 @@ objectives, not a scalar cash label, and one continuation is unusable supervisio
 sequential estimator selects neither root and requests seven samples. Resume only samples 3–6 from
 the verified prefix; do not recompute it or change features before that evidence arrives.
 
+At seven samples, both hire roots preserve the entire three-sample prefix and report the same primary
+pattern: static has two rank wins, zero losses and five ties against the RHEA alternate. The exact
+sign-test p-value is 0.5, so neither root is selected; cash-advantage standard errors shrink to about
+139 and 118 but remain vastly larger than the searcher's +1.4 leaf margin. Both roots advance to the
+predeclared maximum of 15. Resume samples 7–14 only, require the stable strategic-projection digest
+in addition to candidates and preserved arrays, and make no interim phase or action allowlist.
+
 ### 6.8 Execution, memory and learning
 
 The execution layer accepts one versioned candidate id, revalidates it against the current game

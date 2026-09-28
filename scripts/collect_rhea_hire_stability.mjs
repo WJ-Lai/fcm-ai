@@ -11,16 +11,21 @@ import { OfflineEnvironment } from '../../obg-server-fcm-agent-rebased/mcp-serve
 
 import { auditPairedSequentialDataset } from '../src/paired-sequential-estimator.mjs'
 import { prefilterDiverseCandidates } from '../src/rollout-planner.mjs'
+import { strategicProjectionDigest } from '../src/strategic-abstraction.mjs'
 import { deterministicStrategy } from '../src/strategy.mjs'
 
 const root = path.resolve(new URL('..', import.meta.url).pathname)
-const fixtureDirectory = path.join(root, 'fixtures/rhea-hire-stability-v9')
+const fixtureName = process.argv[2] ?? 'rhea-hire-stability-v9'
+assert.match(fixtureName, /^rhea-[a-z0-9-]+$/)
+const fixtureDirectory = path.join(root, 'fixtures', fixtureName)
 const protocol = JSON.parse(await readFile(path.join(fixtureDirectory, 'protocol.json'), 'utf8'))
 const sequentialProtocol = JSON.parse(await readFile(
   path.join(root, 'fixtures/paired-sequential-v1/protocol.json'), 'utf8'))
 const sourceReport = JSON.parse(await readFile(
   path.join(root, 'fixtures/rhea-root-breadth-v8/report.json'), 'utf8'))
 const outputPath = path.join(fixtureDirectory, 'report.json')
+const priorReport = protocol.resumeFrom == null ? null : JSON.parse(await readFile(
+  path.join(root, protocol.resumeFrom), 'utf8'))
 
 function digest(value) {
   return `sha256:${createHash('sha256').update(JSON.stringify(value)).digest('hex')}`
@@ -66,6 +71,7 @@ async function reconstructRoot(target) {
           environment, names,
           candidates: [candidates[0], candidates[2]],
           publicRootDigest: digest(decision.view),
+          strategicProjectionDigest: strategicProjectionDigest({ view: decision.view }),
         }
       }
       if (eligible) scanned += 1
@@ -120,26 +126,48 @@ for (const target of protocol.targets) {
   assert.ok(source, `missing source intervention ${target.rootId}`)
   const candidates = []
   for (const candidate of reconstructed.candidates) {
-    const samples = []
-    for (let sample = 0; sample < protocol.sampleCount; sample += 1) {
-      samples.push(await completeBranch(reconstructed, target, candidate, sample))
+    const priorRoot = priorReport?.roots.find((entry) => entry.rootId === target.rootId) ?? null
+    if (priorReport) {
+      assert.ok(priorRoot, `resume source lacks root ${target.rootId}`)
+      if (priorRoot.strategicProjectionDigest) {
+        assert.equal(priorRoot.strategicProjectionDigest, reconstructed.strategicProjectionDigest,
+          `resume strategic projection drift at ${target.rootId}`)
+      }
+    }
+    const priorCandidate = priorRoot?.candidates.find((entry) => entry.candidateId === candidate.id)
+      ?? null
+    if (priorRoot) assert.ok(priorCandidate, `resume source lacks candidate ${candidate.id}`)
+    const terminalMargins = priorCandidate ? [...priorCandidate.terminalMargins] : []
+    const terminalRanks = priorCandidate ? [...priorCandidate.terminalRanks] : []
+    const terminalMoney = priorCandidate ? [...priorCandidate.terminalMoney] : []
+    const terminalCommands = priorCandidate ? [...priorCandidate.terminalCommands] : []
+    const completed = priorCandidate ? [...priorCandidate.completed] : []
+    assert.ok(terminalMargins.length <= protocol.sampleCount, 'resume source exceeds sample target')
+    for (let sample = terminalMargins.length; sample < protocol.sampleCount; sample += 1) {
+      const result = await completeBranch(reconstructed, target, candidate, sample)
+      terminalMargins.push(result.terminalMargin)
+      terminalRanks.push(result.terminalRank)
+      terminalMoney.push(result.terminalMoney)
+      terminalCommands.push(result.terminalCommands)
+      completed.push(result.completed)
     }
     const expected = candidate.id === target.staticCandidateId
       ? source.staticTerminal : source.selectedTerminal
-    assert.equal(samples[0].terminalRank, expected.rank, `${target.rootId}/${candidate.id} rank drift`)
-    assert.equal(samples[0].terminalMoney, expected.money, `${target.rootId}/${candidate.id} money drift`)
+    assert.equal(terminalRanks[0], expected.rank, `${target.rootId}/${candidate.id} rank drift`)
+    assert.equal(terminalMoney[0], expected.money, `${target.rootId}/${candidate.id} money drift`)
     candidates.push({
       candidateId: candidate.id,
-      terminalMargins: samples.map((sample) => sample.terminalMargin),
-      terminalRanks: samples.map((sample) => sample.terminalRank),
-      terminalMoney: samples.map((sample) => sample.terminalMoney),
-      terminalCommands: samples.map((sample) => sample.terminalCommands),
-      completed: samples.map((sample) => sample.completed),
+      terminalMargins,
+      terminalRanks,
+      terminalMoney,
+      terminalCommands,
+      completed,
     })
   }
   roots.push({
     rootId: target.rootId,
     publicRootDigest: reconstructed.publicRootDigest,
+    strategicProjectionDigest: reconstructed.strategicProjectionDigest,
     sampleZeroReproduced: true,
     candidates,
   })
@@ -159,6 +187,7 @@ const report = {
   experimentId: protocol.experimentId,
   protocolDigest: digest(protocol),
   sampleCount: protocol.sampleCount,
+  resumedFromSampleCount: priorReport?.sampleCount ?? null,
   roots,
   audit: auditPairedSequentialDataset(estimatorDataset, sequentialProtocol),
   privatePayloadPersisted: false,

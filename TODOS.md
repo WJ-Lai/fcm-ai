@@ -511,7 +511,11 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     losses and two ties against the RHEA alternative; cash-advantage SE is $254/$223. The earlier
     `beneficial` label was only a same-rank cash result and flips tactical interpretation under new
     samples. Both roots correctly request seven samples. Resume only samples 3–6; never recompute the
-    verified prefix or train from it yet.
+    verified prefix or train from it yet. Iteration 36 preserves every verified prefix value and adds
+    samples 3–6 only. Both roots now show static rank wins 2, alternate wins 0 and ties 5; p=0.5 at
+    the reachable seven-sample stage. Cash-advantage SE falls to $139/$118 but remains orders above
+    the +1.4 leaf margin. Both roots request the predeclared maximum 15 samples. Resume samples 7–14
+    only and require stable strategic-projection identity; no interim rule change.
 
 - [ ] **P4.1c Evaluate belief-aware information-set search only where uncertainty warrants it.**
   - Why: hidden/simultaneous choices may justify ISMCTS/POMCP-style sampling, but naive MCTS or
