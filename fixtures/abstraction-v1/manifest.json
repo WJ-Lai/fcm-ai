@@ -1,0 +1,100 @@
+{
+  "schemaVersion": "fcm.strategic-abstraction-fixtures.v1",
+  "abstractionVersion": "fcm.strategic-abstraction.v1",
+  "common": {
+    "view": {
+      "state": {
+        "phase": 5,
+        "subphase": 1,
+        "turn": 2,
+        "bank": 100,
+        "bankBroken": 0,
+        "mySeat": 0,
+        "turnOrder": [0, 1],
+        "players": [
+          {"index": 0, "money": 30, "bankrupt": false, "resources": [3], "employees": [13], "beach": [5], "restaurants": [10], "milestones": []},
+          {"index": 1, "money": 30, "bankrupt": false, "resources": [3], "employees": [27], "beach": [], "restaurants": [20], "milestones": []}
+        ],
+        "availableEmployees": {"13": 4, "27": 4},
+        "houseDemands": [{"house": 4, "goods": [3]}, {"house": 18, "goods": [3]}],
+        "activeCampaigns": [],
+        "availableMilestones": [3],
+        "board": {"roads": [[10, 11], [11, 12]], "blockedEdges": []},
+        "decisionSupport": {
+          "economyPlayers": [
+            {"seat": 0, "freeSlots": 2, "salary": {"due": 5, "employeeIds": [13]}, "price": {"unit": 10, "discount": 0}, "capacities": {"recruiting": {"total": 1}, "training": {"total": 0}, "production": [], "marketing": []}},
+            {"seat": 1, "freeSlots": 2, "salary": {"due": 5, "employeeIds": [27]}, "price": {"unit": 10, "discount": 0}, "capacities": {"recruiting": {"total": 1}, "training": {"total": 0}, "production": [], "marketing": []}}
+          ],
+          "strategicThreats": {
+            "milestones": [{"id": 3, "claimWindowOpen": true, "status": "unclaimed", "holders": [], "seatsStillEligible": [0, 1]}],
+            "market": {"houses": [{"house": 4, "goods": [3]}, {"house": 18, "goods": [3]}]},
+            "reachability": {"houses": [
+              {"house": 4, "reachableSeats": [0, 1], "restaurantDistances": [2, 3]},
+              {"house": 18, "reachableSeats": [0, 1], "restaurantDistances": [4, 2]}
+            ]}
+          }
+        }
+      },
+      "legalActions": {"yourTurn": true, "isSimulPhase": false, "actions": [{"type": "hire"}, {"type": "next_subphase"}]}
+    },
+    "plan": {"planId": "p1", "status": "active", "commitments": [{"commitmentId": "trainee", "status": "committed", "reusableFor": ["repair-a"], "sunkValue": 5}]}
+  },
+  "cases": [
+    {
+      "id": "restaurant-blocking",
+      "axis": "restaurant-blocking",
+      "expectedRelation": "different",
+      "leftPatch": {"view": {"state": {"board": {"blockedEdges": []}}}},
+      "rightPatch": {"view": {"state": {"board": {"blockedEdges": [[11, 12]]}}}},
+      "preferredMacro": {"left": "expand-lane", "right": "reroute-manager"}
+    },
+    {
+      "id": "sequential-inventory",
+      "axis": "sequential-inventory",
+      "expectedRelation": "different",
+      "leftPatch": {"view": {"state": {"players": [{"index": 0, "money": 30, "bankrupt": false, "resources": [3], "employees": [13], "beach": [5], "restaurants": [10], "milestones": []}, {"index": 1, "money": 30, "bankrupt": false, "resources": [3], "employees": [27], "beach": [], "restaurants": [20], "milestones": []}]}}},
+      "rightPatch": {"view": {"state": {"players": [{"index": 0, "money": 30, "bankrupt": false, "resources": [3, 3], "employees": [13], "beach": [5], "restaurants": [10], "milestones": []}, {"index": 1, "money": 30, "bankrupt": false, "resources": [3], "employees": [27], "beach": [], "restaurants": [20], "milestones": []}]}}},
+      "preferredMacro": {"left": "protect-house-4", "right": "serve-both"}
+    },
+    {
+      "id": "salary-timing",
+      "axis": "salary-timing",
+      "expectedRelation": "different",
+      "leftPatch": {"view": {"state": {"decisionSupport": {"economyPlayers": [{"seat": 0, "freeSlots": 2, "salary": {"due": 5, "employeeIds": [13]}, "price": {"unit": 10, "discount": 0}, "capacities": {"recruiting": {"total": 1}, "training": {"total": 0}, "production": [], "marketing": []}}]}}}},
+      "rightPatch": {"view": {"state": {"decisionSupport": {"economyPlayers": [{"seat": 0, "freeSlots": 2, "salary": {"due": 25, "employeeIds": [13, 14, 15]}, "price": {"unit": 10, "discount": 0}, "capacities": {"recruiting": {"total": 1}, "training": {"total": 0}, "production": [], "marketing": []}}]}}}},
+      "preferredMacro": {"left": "retain-staff", "right": "reduce-payroll"}
+    },
+    {
+      "id": "milestone-closure",
+      "axis": "milestone-closure",
+      "expectedRelation": "different",
+      "leftPatch": {"view": {"state": {"decisionSupport": {"strategicThreats": {"milestones": [{"id": 3, "claimWindowOpen": true, "status": "unclaimed", "holders": [], "seatsStillEligible": [0, 1]}]}}}}},
+      "rightPatch": {"view": {"state": {"decisionSupport": {"strategicThreats": {"milestones": [{"id": 3, "claimWindowOpen": false, "status": "claimed", "holders": [1], "seatsStillEligible": []}]}}}}},
+      "preferredMacro": {"left": "race-milestone", "right": "cash-flow"}
+    },
+    {
+      "id": "bank-horizon",
+      "axis": "bank-horizon",
+      "expectedRelation": "different",
+      "leftPatch": {"view": {"state": {"bank": 100, "bankBroken": 0}}},
+      "rightPatch": {"view": {"state": {"bank": 10, "bankBroken": 1}}},
+      "preferredMacro": {"left": "invest", "right": "harvest"}
+    },
+    {
+      "id": "reusable-commitment",
+      "axis": "reusable-commitment",
+      "expectedRelation": "different",
+      "leftPatch": {"plan": {"commitments": [{"commitmentId": "trainee", "status": "reusable", "reusableFor": ["repair-a"], "sunkValue": 5}]}},
+      "rightPatch": {"plan": {"commitments": [{"commitmentId": "trainee", "status": "stranded", "reusableFor": [], "sunkValue": 5}]}},
+      "preferredMacro": {"left": "repair-a", "right": "abandon"}
+    },
+    {
+      "id": "irrelevant-text-and-hidden-state",
+      "axis": "invariance",
+      "expectedRelation": "same",
+      "leftPatch": {"view": {"state": {"version": "100", "history": ["left"], "chat": ["hello"], "hiddenState": {"reserveCards": [1]}}}},
+      "rightPatch": {"view": {"state": {"version": "999", "history": ["right"], "chat": ["different"], "hiddenState": {"reserveCards": [3]}}}},
+      "preferredMacro": {"left": "unchanged", "right": "unchanged"}
+    }
+  ]
+}

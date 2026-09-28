@@ -559,6 +559,15 @@ official legal-action layer remains authoritative. V2 does not yet decide when t
 deviate, pivot or abandon; that policy belongs to the later arbiter and must pass the frozen strategy
 fixtures before promotion.
 
+Strategic-abstraction v1 is deliberately conservative. It canonicalizes the complete seat-visible
+board, economy, market/threat, legal-action and active-plan structures, while removing transport
+version, history/chat text, display names and private engine buffers. Frozen adversarial pairs show
+that restaurant blocking, sequential inventory, salary timing, milestone closure, bank horizon and
+commitment reuse all produce distinct digests; reordered public sets and irrelevant/private
+mutations remain invariant. Trusted planner cache keys additionally require the official internal
+snapshot digest, ruleset, seat, candidate, horizon, evaluator and belief versions. This prioritizes
+correctness over cache hit rate; any future compression must repeat the collision audit.
+
 ### Reactive strategic plan graph
 
 The graph represents **capabilities and timing**, not official action legality. Initial base-game

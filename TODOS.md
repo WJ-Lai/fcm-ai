@@ -193,7 +193,7 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     labels separately encode legality, feasibility and desirability. Three abstraction pairs require
     different preferred choices, while hidden reserve-card mutations require identical policy input
     and preference. Validators reject private fields and impossible preferred candidates.
-- [ ] **P3.2d Audit strategic-abstraction fidelity before deeper search.**
+- [x] **P3.2d Audit strategic-abstraction fidelity before deeper search.**
   - Why: a compact `DecisionView`, plan capability or macro can map strategically different raw
     states to the same feature vector. Search then becomes confidently wrong because it cannot see
     the distinction, regardless of depth.
@@ -204,6 +204,13 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
   - Done when: paired states that need different preferred macros are distinguishable, equivalent
     states remain stable under irrelevant raw mutations, and no cache entry crosses a material
     abstraction boundary. If the gate fails, enrich the abstraction before expanding search.
+  - Evidence: `fcm.strategic-abstraction.v1` conservatively retains the complete public strategic
+    view and plan commitments while excluding text/version noise and private engine buffers.
+    `fixtures/abstraction-v1/manifest.json` freezes six material pairs plus one invariance pair;
+    `audit_strategic_abstraction.mjs` reports 7/7 passed, 0 collisions and 0 irrelevant leaks.
+    Trusted cache keys fail closed without an internal SHA256 snapshot digest and vary across all
+    seven required identity dimensions. Compression is deliberately deferred until held-out
+    collision evidence exists. Full Node 113, Python 109 and documentation lint pass.
 - [ ] **P3.3a Prove official-clone consequence evaluation in a bounded spike.**
   - Why: the first static evaluator completed games but could not distinguish demand it would sell
     from demand donated to a closer opponent. More static weight tuning cannot recover missing

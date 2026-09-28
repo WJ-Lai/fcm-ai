@@ -93,6 +93,13 @@ frozen, diverse policy league.
   to content-hashed official-engine fixtures and separate legality, feasibility and desirability.
   Restaurant blocking, sequential inventory and milestone closure have paired states requiring
   different choices; hidden reserve-card mutations require identical policy input and preference.
+- Strategic-abstraction v1 adds a conservative canonical projection and trusted-local cache key.
+  Seven frozen pairs cover restaurant blocking, sequential inventory, salary timing, milestone
+  closure, bank horizon, reusable commitments and irrelevant/private mutations. The machine audit
+  reports 0 material collisions and 0 irrelevant leaks. Cache identity requires ruleset, internal
+  snapshot digest, seat, candidate, horizon, evaluator version and belief version; the projection
+  intentionally retains the full public board/economy/threat structures until held-out evidence
+  justifies compression.
 - `GameMemory v2` now coexists with v1 behind an explicit migration boundary. It stores a typed,
   acyclic capability graph with activation lead times, target/deadline slack, commitments,
   assumptions with provenance, repair/fallback paths and public invalidation events. Its reducer is
