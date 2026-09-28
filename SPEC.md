@@ -709,6 +709,23 @@ single static-positive root means the candidate-wide gate would fail if signs fr
 cumulative lift is only -1/7 and can still reverse under the eight predeclared samples. Futility is
 therefore not established. Append samples 7–14 for all roots and apply the gate exactly once at 15.
 
+The maximum stage uses four process-isolated shards of two frozen roots each. Sharding changes only
+execution scheduling: each root remains internally serial with identical sample ids and opponent
+streams. A strict merger requires one common protocol digest, target indexes 0–7 exactly once,
+unique roots, complete seven-sample prefixes and 15 completed samples before recomputing the only
+global audit. All 128 new branches complete in about 23 minutes of wall time; the slowest shard, not
+partial results, determines completion.
+
+The candidate-wide rule fails its preregistered gate. Six roots favor the alternate, one ties and one
+favors static by mean lift -1/15; seven roots are decisive but the exact sign p-value is 0.125, not
+0.025, and the zero-static-positive safety condition also fails. All eight per-root sequential tests
+abstain at maximum samples. Do not deploy an unconditional alternate or reopen the same hypothesis.
+The context pattern is nevertheless coherent across the now 12 studied roots: the new static/tie
+roots have four or five exclusively reachable houses, while all new roots with zero or one exclusive
+house favor the alternate. This may support a lower-capacity `exclusive <= 1` classifier, but the
+current eight roots are now development evidence. Any such classifier must be preregistered and
+tested on another untouched root set before entering a paired league.
+
 ### 6.8 Execution, memory and learning
 
 The execution layer accepts one versioned candidate id, revalidates it against the current game

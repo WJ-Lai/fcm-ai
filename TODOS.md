@@ -568,6 +568,12 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     preserves every prefix and reaches 7 samples: 6 alternate-positive roots, 1 static-positive,
     1 tied, p=0.125; all request 15. The static-positive root is only -1/7 and can still reverse, so
     no valid futility stop exists. Append samples 7–14 for all eight roots, then apply the frozen gate.
+    Iteration 48 completes 128 new branches in four process-isolated shards and merges only after
+    exact 0–7 target coverage/prefix validation. Final: 6 alternate-positive, 1 static-positive,
+    1 tied, p=0.125; candidate-wide gate fails and all per-root tests abstain. Keep static online.
+    Across the 12 studied roots, exclusive houses <=1 now cleanly separates alternate-positive from
+    the exclusive 4–5 tie/static cases, but these roots become development data. Next preregister that
+    one-feature classifier and validate it on another untouched root set; no threshold tuning there.
 
 - [ ] **P4.1c Evaluate belief-aware information-set search only where uncertainty warrants it.**
   - Why: hidden/simultaneous choices may justify ISMCTS/POMCP-style sampling, but naive MCTS or

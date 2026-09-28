@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "fcm.rhea-training-pair-samples-protocol.v22",
+  "reportSchemaVersion": "fcm.rhea-training-pair-samples.v22",
+  "experimentId": 48,
+  "sampleCount": 15,
+  "resumeFrom": "fixtures/rhea-training-pair-samples-v21/report.json",
+  "maxCommands": 500,
+  "requireSampleZeroReproduction": false,
+  "frozenRootsReport": "fixtures/rhea-training-pair-roots-v19/report.json",
+  "trajectoryOpponentSeedPrefix": "training-pair-main",
+  "collectionShards": [[0, 1], [2, 3], [4, 5], [6, 7]],
+  "candidateWideHypothesis": {
+    "claim": "For the exact eligible action pair, CEO-to-Management-Trainee has non-negative terminal-rank lift across untouched roots more consistently than Marketing-Trainee-to-Campaign-Manager.",
+    "unitOfGeneralization": "root",
+    "pairedContinuationSamplesPerRoot": 15,
+    "integrityStages": [3, 7, 15],
+    "rootStatistic": "mean(staticTerminalRank - alternateTerminalRank)",
+    "zeroHandling": "tie",
+    "gate": {
+      "minimumFrozenRoots": 8,
+      "minimumDecisiveRoots": 7,
+      "minimumAlternatePositiveRoots": 7,
+      "maximumStaticPositiveRoots": 0,
+      "twoSidedExactSignAlpha": 0.025
+    },
+    "failurePolicy": "Keep the static action and reject the candidate-wide rule; never drop or replace an observed root after terminal sampling."
+  },
+  "targets": [
+    { "rootId": "rhea-training-pair-val-01-seat-0-index-4", "seed": "rhea-training-pair-val-01", "agentSeat": 0, "scanIndex": 4, "gameID": 9930, "staticCandidateId": "p5s2-train-1adebf1880", "alternateCandidateId": "p5s2-train-2dd5d77261" },
+    { "rootId": "rhea-training-pair-val-01-seat-1-index-4", "seed": "rhea-training-pair-val-01", "agentSeat": 1, "scanIndex": 4, "gameID": 9931, "staticCandidateId": "p5s2-train-1adebf1880", "alternateCandidateId": "p5s2-train-2dd5d77261" },
+    { "rootId": "rhea-training-pair-val-02-seat-0-index-4", "seed": "rhea-training-pair-val-02", "agentSeat": 0, "scanIndex": 4, "gameID": 9932, "staticCandidateId": "p5s2-train-1adebf1880", "alternateCandidateId": "p5s2-train-2dd5d77261" },
+    { "rootId": "rhea-training-pair-val-02-seat-1-index-4", "seed": "rhea-training-pair-val-02", "agentSeat": 1, "scanIndex": 4, "gameID": 9933, "staticCandidateId": "p5s2-train-1adebf1880", "alternateCandidateId": "p5s2-train-2dd5d77261" },
+    { "rootId": "rhea-training-pair-val-03-seat-0-index-4", "seed": "rhea-training-pair-val-03", "agentSeat": 0, "scanIndex": 4, "gameID": 9934, "staticCandidateId": "p5s2-train-1adebf1880", "alternateCandidateId": "p5s2-train-2dd5d77261" },
+    { "rootId": "rhea-training-pair-val-03-seat-1-index-4", "seed": "rhea-training-pair-val-03", "agentSeat": 1, "scanIndex": 4, "gameID": 9935, "staticCandidateId": "p5s2-train-1adebf1880", "alternateCandidateId": "p5s2-train-2dd5d77261" },
+    { "rootId": "rhea-training-pair-val-04-seat-0-index-4", "seed": "rhea-training-pair-val-04", "agentSeat": 0, "scanIndex": 4, "gameID": 9936, "staticCandidateId": "p5s2-train-1adebf1880", "alternateCandidateId": "p5s2-train-2dd5d77261" },
+    { "rootId": "rhea-training-pair-val-04-seat-1-index-4", "seed": "rhea-training-pair-val-04", "agentSeat": 1, "scanIndex": 4, "gameID": 9937, "staticCandidateId": "p5s2-train-1adebf1880", "alternateCandidateId": "p5s2-train-2dd5d77261" }
+  ],
+  "promotionHoldoutOpened": false
+}

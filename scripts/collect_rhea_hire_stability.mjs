@@ -29,9 +29,20 @@ const sourceReport = protocol.requireSampleZeroReproduction === false
   ? null : JSON.parse(await readFile(path.join(root, sourceReportPath), 'utf8'))
 const frozenRootsReport = protocol.frozenRootsReport == null ? null : JSON.parse(await readFile(
   path.join(root, protocol.frozenRootsReport), 'utf8'))
-const outputPath = path.join(fixtureDirectory, 'report.json')
+const requestedOutputName = process.env.FCM_STABILITY_OUTPUT_NAME ?? 'report.json'
+assert.match(requestedOutputName, /^report(?:-shard-[0-9]+)?\.json$/,
+  'invalid stability output name')
+const outputPath = path.join(fixtureDirectory, requestedOutputName)
 const priorReport = protocol.resumeFrom == null ? null : JSON.parse(await readFile(
   path.join(root, protocol.resumeFrom), 'utf8'))
+const targetIndices = process.env.FCM_STABILITY_TARGET_INDICES == null
+  ? protocol.targets.map((_, index) => index)
+  : process.env.FCM_STABILITY_TARGET_INDICES.split(',').map((value) => Number(value))
+assert.ok(targetIndices.length > 0, 'at least one target index is required')
+assert.ok(targetIndices.every((index) => Number.isInteger(index)
+  && index >= 0 && index < protocol.targets.length), 'target index is out of range')
+assert.equal(new Set(targetIndices).size, targetIndices.length, 'target indices must be unique')
+const selectedTargets = targetIndices.map((index) => protocol.targets[index])
 
 function digest(value) {
   return `sha256:${createHash('sha256').update(JSON.stringify(value)).digest('hex')}`
@@ -142,7 +153,7 @@ async function completeBranch(reconstructed, target, candidate, sample) {
 }
 
 const roots = []
-for (const target of protocol.targets) {
+for (const target of selectedTargets) {
   const reconstructed = await reconstructRoot(target)
   const source = sourceReport?.interventions.find((row) => (
     row.seed === target.seed && row.agentSeat === target.agentSeat && row.index === target.scanIndex
@@ -231,6 +242,8 @@ const report = {
   protocolDigest: digest(protocol),
   sampleCount: protocol.sampleCount,
   resumedFromSampleCount: priorReport?.sampleCount ?? null,
+  targetIndices,
+  partialCollection: targetIndices.length !== protocol.targets.length,
   predeclaredInteraction: protocol.predeclaredInteraction ?? null,
   roots,
   audit: auditPairedSequentialDataset(estimatorDataset, sequentialProtocol),
