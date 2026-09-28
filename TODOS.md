@@ -448,6 +448,10 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     first 24 eligible decisions on four disjoint trajectories: all 24 were `deep-incomplete` under
     the 2.4s internal envelope, so no change could be accepted. Next change only target depth 4→3;
     the known harmful root still disagrees with the depth-1 probe and remains blocked.
+    Iteration 25 repeats the same roots at depth 3: 7 complete agreements all repeat static, 4
+    disagreements block the bad skip, 13 remain incomplete and zero non-static changes are accepted.
+    Depth 3 improves liveness but not policy value. Next scan later decisions and fresh trajectories
+    before changing the gate itself.
 
 - [ ] **P4.1b Implement RHEA as an equal-budget challenger.**
   - Why: rolling-horizon evolution may discover useful macro sequences that beam pruning loses in

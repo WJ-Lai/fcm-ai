@@ -1,0 +1,347 @@
+{
+  "schemaVersion": "fcm.horizon-agreement-depth3.v7",
+  "experimentId": 25,
+  "protocolDigest": "sha256:1e4cf7f53004f542f36eeeec340a05928ea5583788f33b6e43dd47468a5deca4",
+  "summary": {
+    "scannedDecisions": 24,
+    "acceptedChanges": 0,
+    "beneficialAcceptedChanges": 0,
+    "trajectoriesCompleted": 4,
+    "violations": 0,
+    "gateReasons": {
+      "horizon-disagreement": 4,
+      "deep-incomplete": 13,
+      "horizons-agree": 7
+    },
+    "maximumDecisionMs": 2506.8533519999764
+  },
+  "trajectories": [
+    {
+      "seed": "agreement-discovery-01",
+      "agentSeat": 0,
+      "scanned": [
+        {
+          "index": 0,
+          "turn": 1,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-1dfd160273",
+          "shallowCandidateId": "p5s1-hire-1dfd160273",
+          "deepCandidateId": "p5s1-fallback-21d4f44933",
+          "selectedCandidateId": "p5s1-hire-1dfd160273",
+          "gateReason": "horizon-disagreement",
+          "elapsedMs": 1922.6817070000002
+        },
+        {
+          "index": 1,
+          "turn": 2,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-d85bc8e066",
+          "shallowCandidateId": "p5s1-hire-d85bc8e066",
+          "deepCandidateId": "p5s1-hire-d85bc8e066",
+          "selectedCandidateId": "p5s1-hire-d85bc8e066",
+          "gateReason": "deep-incomplete",
+          "elapsedMs": 2430.262857
+        },
+        {
+          "index": 2,
+          "turn": 2,
+          "phase": 5,
+          "subphase": 2,
+          "staticCandidateId": "p5s2-train-2dd5d77261",
+          "shallowCandidateId": "p5s2-train-2dd5d77261",
+          "deepCandidateId": "p5s2-train-2dd5d77261",
+          "selectedCandidateId": "p5s2-train-2dd5d77261",
+          "gateReason": "horizons-agree",
+          "elapsedMs": 2271.5771240000004
+        },
+        {
+          "index": 3,
+          "turn": 3,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-f62c499152",
+          "shallowCandidateId": "p5s1-hire-f62c499152",
+          "deepCandidateId": "p5s1-hire-f62c499152",
+          "selectedCandidateId": "p5s1-hire-f62c499152",
+          "gateReason": "deep-incomplete",
+          "elapsedMs": 2444.1798099999996
+        },
+        {
+          "index": 4,
+          "turn": 3,
+          "phase": 5,
+          "subphase": 2,
+          "staticCandidateId": "p5s2-train-1adebf1880",
+          "shallowCandidateId": "p5s2-train-1adebf1880",
+          "deepCandidateId": "p5s2-train-1adebf1880",
+          "selectedCandidateId": "p5s2-train-1adebf1880",
+          "gateReason": "deep-incomplete",
+          "elapsedMs": 2465.5844149999994
+        },
+        {
+          "index": 5,
+          "turn": 3,
+          "phase": 5,
+          "subphase": 4,
+          "staticCandidateId": "p5s4-produce-8aa223e313",
+          "shallowCandidateId": "p5s4-produce-8aa223e313",
+          "deepCandidateId": "p5s4-produce-8aa223e313",
+          "selectedCandidateId": "p5s4-produce-8aa223e313",
+          "gateReason": "horizons-agree",
+          "elapsedMs": 2297.623087
+        }
+      ],
+      "completed": true,
+      "violation": null,
+      "commands": 152
+    },
+    {
+      "seed": "agreement-discovery-01",
+      "agentSeat": 1,
+      "scanned": [
+        {
+          "index": 0,
+          "turn": 1,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-1dfd160273",
+          "shallowCandidateId": "p5s1-hire-1dfd160273",
+          "deepCandidateId": "p5s1-fallback-21d4f44933",
+          "selectedCandidateId": "p5s1-hire-1dfd160273",
+          "gateReason": "horizon-disagreement",
+          "elapsedMs": 2058.7872179999977
+        },
+        {
+          "index": 1,
+          "turn": 2,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-d85bc8e066",
+          "shallowCandidateId": "p5s1-hire-d85bc8e066",
+          "deepCandidateId": "p5s1-hire-d85bc8e066",
+          "selectedCandidateId": "p5s1-hire-d85bc8e066",
+          "gateReason": "deep-incomplete",
+          "elapsedMs": 2451.132424000003
+        },
+        {
+          "index": 2,
+          "turn": 2,
+          "phase": 5,
+          "subphase": 2,
+          "staticCandidateId": "p5s2-train-2dd5d77261",
+          "shallowCandidateId": "p5s2-train-2dd5d77261",
+          "deepCandidateId": "p5s2-train-2dd5d77261",
+          "selectedCandidateId": "p5s2-train-2dd5d77261",
+          "gateReason": "horizons-agree",
+          "elapsedMs": 2409.7663150000008
+        },
+        {
+          "index": 3,
+          "turn": 3,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-f62c499152",
+          "shallowCandidateId": "p5s1-hire-f62c499152",
+          "deepCandidateId": "p5s1-hire-f62c499152",
+          "selectedCandidateId": "p5s1-hire-f62c499152",
+          "gateReason": "deep-incomplete",
+          "elapsedMs": 2405.3602170000013
+        },
+        {
+          "index": 4,
+          "turn": 3,
+          "phase": 5,
+          "subphase": 2,
+          "staticCandidateId": "p5s2-train-1adebf1880",
+          "shallowCandidateId": "p5s2-train-1adebf1880",
+          "deepCandidateId": "p5s2-train-1adebf1880",
+          "selectedCandidateId": "p5s2-train-1adebf1880",
+          "gateReason": "deep-incomplete",
+          "elapsedMs": 2430.9796019999994
+        },
+        {
+          "index": 5,
+          "turn": 3,
+          "phase": 5,
+          "subphase": 4,
+          "staticCandidateId": "p5s4-produce-8aa223e313",
+          "shallowCandidateId": "p5s4-produce-8aa223e313",
+          "deepCandidateId": "p5s4-produce-8aa223e313",
+          "selectedCandidateId": "p5s4-produce-8aa223e313",
+          "gateReason": "horizons-agree",
+          "elapsedMs": 2455.442078999993
+        }
+      ],
+      "completed": true,
+      "violation": null,
+      "commands": 259
+    },
+    {
+      "seed": "agreement-discovery-02",
+      "agentSeat": 0,
+      "scanned": [
+        {
+          "index": 0,
+          "turn": 1,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-1dfd160273",
+          "shallowCandidateId": "p5s1-hire-1dfd160273",
+          "deepCandidateId": "p5s1-fallback-21d4f44933",
+          "selectedCandidateId": "p5s1-hire-1dfd160273",
+          "gateReason": "horizon-disagreement",
+          "elapsedMs": 1824.354303
+        },
+        {
+          "index": 1,
+          "turn": 2,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-d85bc8e066",
+          "shallowCandidateId": "p5s1-hire-d85bc8e066",
+          "deepCandidateId": "p5s1-hire-d85bc8e066",
+          "selectedCandidateId": "p5s1-hire-d85bc8e066",
+          "gateReason": "deep-incomplete",
+          "elapsedMs": 2462.159136999995
+        },
+        {
+          "index": 2,
+          "turn": 2,
+          "phase": 5,
+          "subphase": 2,
+          "staticCandidateId": "p5s2-train-2dd5d77261",
+          "shallowCandidateId": "p5s2-train-2dd5d77261",
+          "deepCandidateId": "p5s2-train-2dd5d77261",
+          "selectedCandidateId": "p5s2-train-2dd5d77261",
+          "gateReason": "horizons-agree",
+          "elapsedMs": 2259.839200000002
+        },
+        {
+          "index": 3,
+          "turn": 3,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-f62c499152",
+          "shallowCandidateId": "p5s1-hire-f62c499152",
+          "deepCandidateId": "p5s1-hire-f62c499152",
+          "selectedCandidateId": "p5s1-hire-f62c499152",
+          "gateReason": "deep-incomplete",
+          "elapsedMs": 2450.4650450000045
+        },
+        {
+          "index": 4,
+          "turn": 3,
+          "phase": 5,
+          "subphase": 2,
+          "staticCandidateId": "p5s2-train-1adebf1880",
+          "shallowCandidateId": "p5s2-train-1adebf1880",
+          "deepCandidateId": "p5s2-train-1adebf1880",
+          "selectedCandidateId": "p5s2-train-1adebf1880",
+          "gateReason": "deep-incomplete",
+          "elapsedMs": 2403.962379000004
+        },
+        {
+          "index": 5,
+          "turn": 3,
+          "phase": 5,
+          "subphase": 4,
+          "staticCandidateId": "p5s4-produce-8aa223e313",
+          "shallowCandidateId": "p5s4-produce-8aa223e313",
+          "deepCandidateId": "p5s4-produce-8aa223e313",
+          "selectedCandidateId": "p5s4-produce-8aa223e313",
+          "gateReason": "horizons-agree",
+          "elapsedMs": 2448.328364999994
+        }
+      ],
+      "completed": true,
+      "violation": null,
+      "commands": 373
+    },
+    {
+      "seed": "agreement-discovery-02",
+      "agentSeat": 1,
+      "scanned": [
+        {
+          "index": 0,
+          "turn": 1,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-1dfd160273",
+          "shallowCandidateId": "p5s1-hire-1dfd160273",
+          "deepCandidateId": "p5s1-fallback-21d4f44933",
+          "selectedCandidateId": "p5s1-hire-1dfd160273",
+          "gateReason": "horizon-disagreement",
+          "elapsedMs": 2140.385844000004
+        },
+        {
+          "index": 1,
+          "turn": 2,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-d85bc8e066",
+          "shallowCandidateId": "p5s1-hire-d85bc8e066",
+          "deepCandidateId": "p5s1-hire-d85bc8e066",
+          "selectedCandidateId": "p5s1-hire-d85bc8e066",
+          "gateReason": "deep-incomplete",
+          "elapsedMs": 2426.2650269999867
+        },
+        {
+          "index": 2,
+          "turn": 2,
+          "phase": 5,
+          "subphase": 2,
+          "staticCandidateId": "p5s2-train-2dd5d77261",
+          "shallowCandidateId": "p5s2-train-2dd5d77261",
+          "deepCandidateId": "p5s2-train-2dd5d77261",
+          "selectedCandidateId": "p5s2-train-2dd5d77261",
+          "gateReason": "horizons-agree",
+          "elapsedMs": 2480.036414000002
+        },
+        {
+          "index": 3,
+          "turn": 3,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-f62c499152",
+          "shallowCandidateId": "p5s1-hire-f62c499152",
+          "deepCandidateId": "p5s1-hire-f62c499152",
+          "selectedCandidateId": "p5s1-hire-f62c499152",
+          "gateReason": "deep-incomplete",
+          "elapsedMs": 2420.71338500001
+        },
+        {
+          "index": 4,
+          "turn": 3,
+          "phase": 5,
+          "subphase": 2,
+          "staticCandidateId": "p5s2-train-1adebf1880",
+          "shallowCandidateId": "p5s2-train-1adebf1880",
+          "deepCandidateId": "p5s2-train-1adebf1880",
+          "selectedCandidateId": "p5s2-train-1adebf1880",
+          "gateReason": "deep-incomplete",
+          "elapsedMs": 2506.8533519999764
+        },
+        {
+          "index": 5,
+          "turn": 3,
+          "phase": 5,
+          "subphase": 4,
+          "staticCandidateId": "p5s4-produce-8aa223e313",
+          "shallowCandidateId": "p5s4-produce-8aa223e313",
+          "deepCandidateId": "p5s4-produce-8aa223e313",
+          "selectedCandidateId": "p5s4-produce-8aa223e313",
+          "gateReason": "deep-incomplete",
+          "elapsedMs": 2409.639473999996
+        }
+      ],
+      "completed": true,
+      "violation": null,
+      "commands": 465
+    }
+  ],
+  "acceptedInterventions": [],
+  "privatePayloadPersisted": false,
+  "promotionHoldoutOpened": false
+}

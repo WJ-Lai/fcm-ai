@@ -1,7 +1,7 @@
 {
-  "schemaVersion": "fcm.horizon-agreement-discovery-protocol.v6",
-  "reportSchemaVersion": "fcm.horizon-agreement-discovery.v6",
-  "experimentId": 24,
+  "schemaVersion": "fcm.horizon-agreement-depth3-protocol.v7",
+  "reportSchemaVersion": "fcm.horizon-agreement-depth3.v7",
+  "experimentId": 25,
   "seeds": ["agreement-discovery-01", "agreement-discovery-02"],
   "seats": [0, 1],
   "maxScannedDecisionsPerTrajectory": 6,
@@ -11,7 +11,7 @@
     "maxRootCandidates": 2,
     "branchFactor": 2,
     "beamWidth": 2,
-    "maxOwnDepth": 4,
+    "maxOwnDepth": 3,
     "maxTransitions": 80
   },
   "promotionHoldoutOpened": false

@@ -14,11 +14,12 @@ import { buildOpponentBelief } from '../src/opponent-population.mjs'
 import { deterministicStrategy } from '../src/strategy.mjs'
 
 const root = path.resolve(new URL('..', import.meta.url).pathname)
+const fixtureName = process.argv[2] ?? 'horizon-agreement-discovery-v6'
 const protocol = JSON.parse(await readFile(
-  path.join(root, 'fixtures/horizon-agreement-discovery-v6/protocol.json'), 'utf8'))
+  path.join(root, `fixtures/${fixtureName}/protocol.json`), 'utf8'))
 const population = JSON.parse(await readFile(
   path.join(root, 'fixtures/opponent-population-v1/manifest.json'), 'utf8'))
-const outputPath = path.join(root, 'fixtures/horizon-agreement-discovery-v6/report.json')
+const outputPath = path.join(root, `fixtures/${fixtureName}/report.json`)
 
 function digest(value) {
   return `sha256:${createHash('sha256').update(JSON.stringify(value)).digest('hex')}`
@@ -171,7 +172,7 @@ const summary = {
   maximumDecisionMs: Math.max(...scannedRows.map((row) => row.elapsedMs)),
 }
 const report = {
-  schemaVersion: 'fcm.horizon-agreement-discovery.v6',
+  schemaVersion: protocol.reportSchemaVersion,
   experimentId: protocol.experimentId,
   protocolDigest: digest(protocol),
   summary,

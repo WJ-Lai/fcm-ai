@@ -502,6 +502,12 @@ does not satisfy the planner objective. The next isolated experiment reduces tar
 4 to 3 while retaining the depth-1 agreement gate; the known harmful hire/skip root disagrees at
 depths 1 and 3, so this change does not reopen that regression.
 
+That depth-3 experiment completes more roots but still does not establish improvement: 7/24
+decisions have shallow/deep agreement and all retain the static top choice; four disagreements block
+the known harmful skip; thirteen remain incomplete. No non-static action is accepted. Because the
+first six decisions on all trajectories are highly homogeneous, the next step expands to later turns
+and fresh map seeds rather than weakening the gate around one known failure.
+
 ### 6.8 Execution, memory and learning
 
 The execution layer accepts one versioned candidate id, revalidates it against the current game
