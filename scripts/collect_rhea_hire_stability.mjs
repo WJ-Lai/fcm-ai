@@ -79,12 +79,19 @@ async function reconstructRoot(target) {
           [target.staticCandidateId, target.alternateCandidateId],
           `candidate drift at ${target.rootId}`,
         )
+        const strategicDigest = strategicProjectionDigest({ view: decision.view })
+        const publicFeatures = extractTerminalValueFeatures(
+          decision.view, { seat: target.agentSeat })
         return {
           environment, names,
           candidates: [candidates[0], candidates[2]],
-          publicRootDigest: digest(decision.view),
-          strategicProjectionDigest: strategicProjectionDigest({ view: decision.view }),
-          publicFeatures: extractTerminalValueFeatures(decision.view, { seat: target.agentSeat }),
+          strategicProjectionDigest: strategicDigest,
+          publicFeatures,
+          rootIdentityDigest: digest({
+            strategicProjectionDigest: strategicDigest,
+            publicFeatures,
+            candidateIds: [candidates[0].id, candidates[2].id],
+          }),
         }
       }
       if (eligible) scanned += 1
@@ -146,6 +153,10 @@ for (const target of protocol.targets) {
         assert.equal(priorRoot.strategicProjectionDigest, reconstructed.strategicProjectionDigest,
           `resume strategic projection drift at ${target.rootId}`)
       }
+      if (priorRoot.rootIdentityDigest) {
+        assert.equal(priorRoot.rootIdentityDigest, reconstructed.rootIdentityDigest,
+          `resume root identity drift at ${target.rootId}`)
+      }
     }
     const priorCandidate = priorRoot?.candidates.find((entry) => entry.candidateId === candidate.id)
       ?? null
@@ -179,8 +190,8 @@ for (const target of protocol.targets) {
   }
   roots.push({
     rootId: target.rootId,
-    publicRootDigest: reconstructed.publicRootDigest,
     strategicProjectionDigest: reconstructed.strategicProjectionDigest,
+    rootIdentityDigest: reconstructed.rootIdentityDigest,
     publicFeatures: protocol.predeclaredInteraction == null
       ? undefined : reconstructed.publicFeatures,
     interactionMatched: matchesInteraction(

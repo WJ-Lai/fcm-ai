@@ -658,6 +658,16 @@ The favorable unmatched signal is retained as a real falsification risk: the def
 not be edited after seeing it, and the interaction fails if the unmatched root also obtains stable
 rank evidence for the alternate.
 
+At seven samples the matched root has two alternate rank wins and five ties; the unmatched root has
+three alternate wins and four ties. Exact p-values of 0.5 and 0.25 remain above the fixed 0.02 stage
+threshold, so both advance to 15 with every three-sample value preserved. The unmatched signal is now
+stronger, making falsification at the final gate plausible. A separate reproducibility check also
+finds that a legacy digest of the entire observation envelope changes across fresh processes even
+though its strategic projection, extracted features and exact candidates are stable. That full-view
+digest is demoted from identity evidence. Subsequent reports use a normalized root identity over the
+stable projection, public features and candidate ids, while the official reconstruction assertions
+continue to fail closed on candidate or projection drift.
+
 ### 6.8 Execution, memory and learning
 
 The execution layer accepts one versioned candidate id, revalidates it against the current game

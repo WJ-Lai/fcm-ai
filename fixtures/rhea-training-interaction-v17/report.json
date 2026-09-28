@@ -1,0 +1,494 @@
+{
+  "schemaVersion": "fcm.rhea-training-interaction.v17",
+  "experimentId": 43,
+  "protocolDigest": "sha256:cb7cfd45b1b9b56116b95850716d3884406f027f8f14a381b9d64c89ea2f4731",
+  "sampleCount": 7,
+  "resumedFromSampleCount": 3,
+  "predeclaredInteraction": {
+    "name": "isolated-market-disadvantage",
+    "scope": {
+      "turn": 3,
+      "phase": 5,
+      "subphase": 2,
+      "staticCandidateId": "p5s2-train-1adebf1880",
+      "alternateCandidateId": "p5s2-train-2dd5d77261"
+    },
+    "predicate": {
+      "exclusivelyReachableHouses": {
+        "equals": 0
+      },
+      "distanceDeficitTotal": {
+        "minimum": 10
+      }
+    },
+    "recommendationWhenMatched": "evaluate-alternate",
+    "recommendationWhenUnmatched": "abstain",
+    "sourceProtocol": "fixtures/rhea-training-context-v15/protocol.json"
+  },
+  "roots": [
+    {
+      "rootId": "rhea-intervention-dev-03-seat-1-index-4",
+      "publicRootDigest": "sha256:7829cfdabd5079a597ae0cec8406a4a9362a228c4d8f42e61b8b2c246d5955ea",
+      "strategicProjectionDigest": "sha256:3b84f10b05c180c5c76376c6e07c02ba0092b342b8f7bccdc2164b53e7ee6d34",
+      "publicFeatures": {
+        "version": "fcm.terminal-value-features.v2",
+        "turn": 3,
+        "turnOrderPosition": 0,
+        "turnOrderKnown": 1,
+        "bankPerPlayer": 50,
+        "cash": 0,
+        "cashLead": 0,
+        "salaryDue": 0,
+        "salaryGap": 0,
+        "unitPrice": 10,
+        "discount": 0,
+        "activeEmployees": 3,
+        "beachEmployees": 1,
+        "freeSlots": 0,
+        "recruitingCapacity": 1,
+        "salaryDiscountPoints": 0,
+        "trainingCapacity": 1,
+        "trainingLevel2Capacity": 0,
+        "trainingLevel3Capacity": 0,
+        "unlimitedTraining": 0,
+        "productionWorkers": 2,
+        "productionGoodsCoverage": 2,
+        "marketingWorkers": 0,
+        "campaignTypeCoverage": 0,
+        "restaurantBuilders": 0,
+        "beachManagement": 0,
+        "beachRecruiting": 0,
+        "beachTraining": 0,
+        "beachMarketing": 1,
+        "beachProduction": 0,
+        "beachRestaurantBuilding": 0,
+        "beachTrainable": 1,
+        "beachSalaryLiable": 0,
+        "restaurants": 1,
+        "milestonesHeld": 1,
+        "openMilestoneOptions": 17,
+        "inventoryTotal": 0,
+        "inventoryDemandFit": 0,
+        "reachableDemandUnits": 0,
+        "unreachableDemandUnits": 0,
+        "servableDemandUnits": 0,
+        "uncontestedServableUnits": 0,
+        "reachableHouses": 5,
+        "exclusivelyReachableHouses": 0,
+        "closestHouses": 2,
+        "tiedClosestHouses": 0,
+        "distanceDeficitTotal": 7,
+        "productionMarketingSynergy": 0,
+        "reachableEngineReady": 0,
+        "futureDemandSupplyEngineReady": 1,
+        "bankrupt": 0
+      },
+      "interactionMatched": false,
+      "sampleZeroReproduced": true,
+      "candidates": [
+        {
+          "candidateId": "p5s2-train-1adebf1880",
+          "terminalMargins": [
+            481,
+            -362,
+            317,
+            -353,
+            514,
+            496,
+            -151
+          ],
+          "terminalRanks": [
+            1,
+            2,
+            1,
+            2,
+            1,
+            1,
+            2
+          ],
+          "terminalMoney": [
+            496,
+            83,
+            457,
+            94,
+            524,
+            506,
+            227
+          ],
+          "terminalCommands": [
+            144,
+            190,
+            107,
+            250,
+            133,
+            144,
+            229
+          ],
+          "completed": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "candidateId": "p5s2-train-2dd5d77261",
+          "terminalMargins": [
+            531,
+            492,
+            378,
+            497,
+            699,
+            516,
+            392
+          ],
+          "terminalRanks": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "terminalMoney": [
+            531,
+            512,
+            456,
+            512,
+            704,
+            521,
+            457
+          ],
+          "terminalCommands": [
+            120,
+            108,
+            97,
+            108,
+            132,
+            120,
+            120
+          ],
+          "completed": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "rhea-intervention-dev-04-seat-1-index-4",
+      "publicRootDigest": "sha256:b5988cb8bff0b40add259be47281105d4aa1fce786840948d8e89da18f31512a",
+      "strategicProjectionDigest": "sha256:686b96adc5a63dc7119500615b8ab5c5027124a6dcea1acdb21d512d67de4cf5",
+      "publicFeatures": {
+        "version": "fcm.terminal-value-features.v2",
+        "turn": 3,
+        "turnOrderPosition": 0,
+        "turnOrderKnown": 1,
+        "bankPerPlayer": 50,
+        "cash": 0,
+        "cashLead": 0,
+        "salaryDue": 0,
+        "salaryGap": 0,
+        "unitPrice": 10,
+        "discount": 0,
+        "activeEmployees": 3,
+        "beachEmployees": 1,
+        "freeSlots": 0,
+        "recruitingCapacity": 1,
+        "salaryDiscountPoints": 0,
+        "trainingCapacity": 1,
+        "trainingLevel2Capacity": 0,
+        "trainingLevel3Capacity": 0,
+        "unlimitedTraining": 0,
+        "productionWorkers": 2,
+        "productionGoodsCoverage": 2,
+        "marketingWorkers": 0,
+        "campaignTypeCoverage": 0,
+        "restaurantBuilders": 0,
+        "beachManagement": 0,
+        "beachRecruiting": 0,
+        "beachTraining": 0,
+        "beachMarketing": 1,
+        "beachProduction": 0,
+        "beachRestaurantBuilding": 0,
+        "beachTrainable": 1,
+        "beachSalaryLiable": 0,
+        "restaurants": 1,
+        "milestonesHeld": 1,
+        "openMilestoneOptions": 17,
+        "inventoryTotal": 0,
+        "inventoryDemandFit": 0,
+        "reachableDemandUnits": 0,
+        "unreachableDemandUnits": 0,
+        "servableDemandUnits": 0,
+        "uncontestedServableUnits": 0,
+        "reachableHouses": 6,
+        "exclusivelyReachableHouses": 0,
+        "closestHouses": 3,
+        "tiedClosestHouses": 0,
+        "distanceDeficitTotal": 10,
+        "productionMarketingSynergy": 0,
+        "reachableEngineReady": 0,
+        "futureDemandSupplyEngineReady": 1,
+        "bankrupt": 0
+      },
+      "interactionMatched": true,
+      "sampleZeroReproduced": true,
+      "candidates": [
+        {
+          "candidateId": "p5s2-train-1adebf1880",
+          "terminalMargins": [
+            -4,
+            493,
+            -179,
+            -473,
+            254,
+            438,
+            388
+          ],
+          "terminalRanks": [
+            2,
+            1,
+            2,
+            2,
+            1,
+            1,
+            1
+          ],
+          "terminalMoney": [
+            259,
+            501,
+            174,
+            31,
+            386,
+            473,
+            450
+          ],
+          "terminalCommands": [
+            107,
+            127,
+            259,
+            167,
+            107,
+            116,
+            117
+          ],
+          "completed": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "candidateId": "p5s2-train-2dd5d77261",
+          "terminalMargins": [
+            421,
+            510,
+            490,
+            -55,
+            520,
+            502,
+            495
+          ],
+          "terminalRanks": [
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
+            1
+          ],
+          "terminalMoney": [
+            467,
+            547,
+            500,
+            230,
+            525,
+            507,
+            500
+          ],
+          "terminalCommands": [
+            108,
+            120,
+            109,
+            120,
+            120,
+            107,
+            109
+          ],
+          "completed": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        }
+      ]
+    }
+  ],
+  "audit": {
+    "schemaVersion": "fcm.paired-sequential-audit.v1",
+    "roots": 2,
+    "selectedRoots": 0,
+    "abstainedRoots": 0,
+    "needsMoreSamplesRoots": 2,
+    "coverage": 0,
+    "details": [
+      {
+        "rootId": "rhea-intervention-dev-03-seat-1-index-4",
+        "availableSamples": 7,
+        "status": "needs-more-samples",
+        "selectedCandidateId": null,
+        "stopSamples": null,
+        "nextSamples": 15,
+        "stages": [
+          {
+            "samples": 3,
+            "stageAlpha": 0.005,
+            "comparisonAlpha": 0.005,
+            "minimumPossiblePValue": 0.25,
+            "selectionReachable": false,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 3,
+                "positive": 0,
+                "negative": 1,
+                "ties": 2,
+                "pValue": 1,
+                "alpha": 0.005,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": -0.3333333333333333,
+                "meanMarginAdvantage": -321.6666666666667,
+                "marginAdvantageStandardError": 266.1856077585296,
+                "decisiveWinRate95CI": {
+                  "low": 0.20654931437723745,
+                  "high": 1
+                }
+              }
+            ]
+          },
+          {
+            "samples": 7,
+            "stageAlpha": 0.02,
+            "comparisonAlpha": 0.02,
+            "minimumPossiblePValue": 0.015625,
+            "selectionReachable": true,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 7,
+                "positive": 0,
+                "negative": 3,
+                "ties": 4,
+                "pValue": 0.25,
+                "alpha": 0.02,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": -0.42857142857142855,
+                "meanMarginAdvantage": -366.14285714285717,
+                "marginAdvantageStandardError": 142.1842246576483,
+                "decisiveWinRate95CI": {
+                  "low": 0.4385029682449546,
+                  "high": 1
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "rootId": "rhea-intervention-dev-04-seat-1-index-4",
+        "availableSamples": 7,
+        "status": "needs-more-samples",
+        "selectedCandidateId": null,
+        "stopSamples": null,
+        "nextSamples": 15,
+        "stages": [
+          {
+            "samples": 3,
+            "stageAlpha": 0.005,
+            "comparisonAlpha": 0.005,
+            "minimumPossiblePValue": 0.25,
+            "selectionReachable": false,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 3,
+                "positive": 0,
+                "negative": 2,
+                "ties": 1,
+                "pValue": 0.5,
+                "alpha": 0.005,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": -0.6666666666666666,
+                "meanMarginAdvantage": -370.3333333333333,
+                "marginAdvantageStandardError": 190.19054772633797,
+                "decisiveWinRate95CI": {
+                  "low": 0.34238022750665303,
+                  "high": 1
+                }
+              }
+            ]
+          },
+          {
+            "samples": 7,
+            "stageAlpha": 0.02,
+            "comparisonAlpha": 0.02,
+            "minimumPossiblePValue": 0.015625,
+            "selectionReachable": true,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 7,
+                "positive": 0,
+                "negative": 2,
+                "ties": 5,
+                "pValue": 0.5,
+                "alpha": 0.02,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": -0.2857142857142857,
+                "meanMarginAdvantage": -280.85714285714283,
+                "marginAdvantageStandardError": 89.62021152019878,
+                "decisiveWinRate95CI": {
+                  "low": 0.34238022750665303,
+                  "high": 1
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "privatePayloadPersisted": false,
+  "promotionHoldoutOpened": false
+}

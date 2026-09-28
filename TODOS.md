@@ -544,6 +544,11 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     0 losses and 1 tie; the unmatched near-boundary root (deficit 7) gives 1 win, 0 losses and 2 ties.
     Both correctly request seven samples. Preserve these arrays exactly. If the unmatched root also
     selects the alternate, reject the interaction instead of relaxing or moving its threshold.
+    Iteration 43 reaches seven with exact prefix preservation: matched root 2 alternate wins / 5 ties,
+    unmatched root 3 wins / 4 ties; both request 15. The unmatched direction is stronger, so retain
+    falsification as the expected live risk. Also replace the process-volatile whole-view digest with
+    a normalized projection+features+candidate identity in the 15-sample report; do not use the old
+    digest as reproducibility evidence.
 
 - [ ] **P4.1c Evaluate belief-aware information-set search only where uncertainty warrants it.**
   - Why: hidden/simultaneous choices may justify ISMCTS/POMCP-style sampling, but naive MCTS or
