@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "fcm.opponent-calibration-protocol.v1",
+  "populationId": "base-public-population-v1",
+  "featureVersion": "public-event-histogram-v1",
+  "developmentSeeds": [
+    "opponent-calibration-development-00",
+    "opponent-calibration-development-01",
+    "opponent-calibration-development-02",
+    "opponent-calibration-development-03",
+    "opponent-calibration-development-04",
+    "opponent-calibration-development-05"
+  ],
+  "calibrationSeeds": [
+    "opponent-calibration-calibration-00",
+    "opponent-calibration-calibration-01",
+    "opponent-calibration-calibration-02",
+    "opponent-calibration-calibration-03",
+    "opponent-calibration-calibration-04",
+    "opponent-calibration-calibration-05"
+  ],
+  "players": 4,
+  "publicCommandHorizon": 160,
+  "laplaceAlpha": 1,
+  "oodKnownQuantile": 0.95,
+  "humanPrefixEventsPerSeat": 40,
+  "minimumKnownTop1Accuracy": 0.75,
+  "minimumHumanOodRate": 0.5,
+  "promotionHoldoutOpened": false
+}

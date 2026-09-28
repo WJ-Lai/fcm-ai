@@ -338,7 +338,11 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     deterministic with 0.0137 maximum probability error. This completes the sampler contract, but
     the hand-set priors are deliberately labelled uncalibrated. Next fit/evaluate weights and OOD
     thresholds on public traces plus independent self-play, then run sensitivity against held-out
-    opponent identities before connecting the population to rollout labels or search.
+    opponent identities before connecting the population to rollout labels or search. The first
+    12-game/48-seat public-event-histogram puncture failed its frozen identification gate at 17/24
+    (70.8%) Top-1 despite flagging 82/120 human prefixes as OOD; it also over-mapped humans to the
+    official AI. Keep it disconnected. Next change only the public feature representation to
+    bounded event transitions plus phase/action context on the same splits and gates.
 - [ ] **P3.3e Enforce information-set policy consistency.**
   - Why: ordinary determinization can create strategy fusion—the planner chooses mutually
     incompatible actions in different sampled hidden worlds and behaves as if it knew which world

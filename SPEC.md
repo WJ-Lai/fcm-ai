@@ -318,6 +318,16 @@ contract and sensitivity results only: v1's prior weights remain uncalibrated un
 public trajectories and independent self-play traces, so the population is not yet connected to
 rollout labels or search.
 
+The first empirical calibration puncture used 12 four-player official-engine prefixes, with each
+archetype represented once per game and rotated across six development plus six disjoint
+calibration seeds. A public-event histogram model achieved 17/24 (70.8%) calibration Top-1, below
+the predeclared 75% gate. Its public-history OOD threshold rejected 82/120 (68.3%) human prefixes,
+but non-rejected predictions were overconfident and heavily collapsed into official built-in.
+Therefore histogram-only beliefs are rejected and cannot drive rollout or search. The next
+representation may add bounded public event order and phase/action context, but must keep the same
+seeds, horizons, policies, model capacity and thresholds so improvement cannot come from changing
+the test.
+
 ### 6.6 Value and objective
 
 The primary objective is terminal performance:

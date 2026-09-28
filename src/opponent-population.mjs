@@ -40,7 +40,7 @@ function assertSafe(value, path = '$') {
     return
   }
   if (Array.isArray(value)) {
-    assert.ok(value.length <= 128, `${path}: list is too long`)
+    assert.ok(value.length <= 4096, `${path}: list is too long`)
     value.forEach((item, index) => assertSafe(item, `${path}[${index}]`))
     return
   }
@@ -107,6 +107,7 @@ function constructOpponentBelief(rawPopulation, evidence, update) {
   assert.ok(Number.isInteger(evidence.observed.turn) && evidence.observed.turn >= 0, 'invalid public turn')
   assert.ok(Number.isInteger(evidence.observed.seat) && evidence.observed.seat >= 0, 'invalid opponent seat')
   assert.ok(Array.isArray(evidence.observed.publicEvents), 'publicEvents must be an array')
+  assert.ok(evidence.observed.publicEvents.length <= 512, 'publicEvents exceeds bounded history')
   assert.ok(CONFIDENCE.has(evidence.believed.confidence), 'invalid belief confidence')
   assert.ok(Number.isInteger(evidence.believed.sampleCount) && evidence.believed.sampleCount >= 1,
     'belief sampleCount must be positive')
