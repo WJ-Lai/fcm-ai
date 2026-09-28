@@ -369,3 +369,19 @@ Verification: **89 tests pass**, lint clean (28 pages), `verify_sources.py` OK,
   while conditional Top-1 fell to 13.4%, cleanly separating proposal gains from evaluator weakness.
 - Execution order changed: improve measured candidate coverage and independent tactical labels
   before deeper beam/MCTS or further rollout-league expansion.
+
+## [2026-09-28] experiment | candidate diversity and winner-only validation
+
+- Added action-count/pattern histograms and winner-only candidate/ranking metrics to the official
+  replay audit. The low recall persists for eventual winners, so it is not explained by copying
+  losing players.
+- Fixed two general proposal defects: repeated employee IDs now represent distinct trainable copies,
+  and per-intent pruning can no longer let early hire/train sources, marketing goods, houses or
+  manager actions starve later legal families. No development-game pattern was hard-coded.
+- Added strict marketing effect equivalence: same marketer, campaign, good, duration and publicly
+  affected house set; coordinate-only differences no longer count as a miss. Development coverage
+  is 22/62 and 50-game coverage 100/270, showing the metric generalizes.
+- On the 50-game validation corpus, hire recall improved 582→675/1337 and training 490→515/891;
+  winner-only counts improved 233→263/564 and 204→215/400. Overall working-day exact recall is now
+  1310/2730 (48.0%), still below the 75% discrete gate. Fixed workday fixtures executed 169 generated
+  candidates with zero official-engine rejects. Search/evaluator promotion remains blocked.

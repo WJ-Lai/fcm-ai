@@ -69,6 +69,19 @@ test('recruiting proposes bounded multi-hire sequences instead of only single ac
   assert.ok(candidates.length <= 32)
 })
 
+test('per-intent pruning cannot discard later advertised hire roles', () => {
+  const hireables = [0, 5, 10, 13, 17, 20, 23, 27].map((id) => ({ id, name: `employee-${id}` }))
+  const candidates = generateCandidates(view(5, 1, [
+    { type: 'hire', recruitingPoints: 1, candidates: hireables },
+    { type: 'next_subphase' },
+  ]), { totalBudget: 32, perIntentBudget: 1 })
+  assert.deepEqual(
+    candidates.filter((item) => item.actions[0].type === 'hire')
+      .map((item) => item.actions[0].employee).sort((a, b) => a - b),
+    hireables.map((item) => item.id),
+  )
+})
+
 test('training proposes bounded multi-action sequences when multiple training points exist', () => {
   const candidates = generateCandidates(view(5, 2, [
     { type: 'train', trainingPoints: 2, available: [
@@ -82,6 +95,38 @@ test('training proposes bounded multi-action sequences when multiple training po
     item.actions.at(-1).type === 'next_subphase'
   )))
   assert.ok(candidates.length <= 32)
+})
+
+test('training may use separate copies of the same employee id in one batch', () => {
+  const duplicate = { id: 5, origin: 0, upgrades: [
+    { id: 1, steps: 1 }, { id: 11, steps: 1 },
+  ] }
+  const candidates = generateCandidates(view(5, 2, [
+    { type: 'train', trainingPoints: 2, available: [duplicate, duplicate] },
+    { type: 'next_subphase' },
+  ]))
+  assert.ok(candidates.some((item) => {
+    const trained = item.actions.filter((action) => action.type === 'train')
+    return trained.length === 2 &&
+      trained.every((action) => action.employee === 5 && action.origin === 0) &&
+      new Set(trained.map((action) => action.toEmployee)).size === 2
+  }))
+})
+
+test('per-intent pruning preserves training options from every employee source', () => {
+  const candidates = generateCandidates(view(5, 2, [
+    { type: 'train', trainingPoints: 1, available: [
+      { id: 5, origin: 0, upgrades: [{ id: 6, steps: 1 }] },
+      { id: 13, origin: 0, upgrades: [{ id: 14, steps: 1 }] },
+      { id: 27, origin: 0, upgrades: [{ id: 28, steps: 1 }] },
+    ] },
+    { type: 'next_subphase' },
+  ]), { totalBudget: 32, perIntentBudget: 1 })
+  assert.deepEqual(
+    candidates.filter((item) => item.actions[0].type === 'train')
+      .map((item) => item.actions[0].employee).sort((a, b) => a - b),
+    [5, 13, 27],
+  )
 })
 
 test('marketing prioritizes demanded goods and impactful legal squares under budget', () => {
@@ -100,6 +145,57 @@ test('marketing prioritizes demanded goods and impactful legal squares under bud
   const marketing = candidates.filter((item) => item.intent === 'create-demand')
   assert.ok(marketing.every((item) => [40, 41].includes(item.actions[0].index)))
   assert.equal(marketing[0].actions[0].good, 4)
+})
+
+test('marketing diversity budget preserves at least one candidate for every advertised good', () => {
+  const candidates = generateCandidates(view(5, 3, [
+    { type: 'marketing', goods: [0, 1, 2, 3, 4], options: [{ marketer: 13, campaigns: [{
+      campaign: 14, durationInfinite: false, maxDuration: 2,
+      placements: [{ rotated: false, legalSquares: [40, 41], houseImpacts: [
+        { index: 40, houses: [1] }, { index: 41, houses: [2] },
+      ] }],
+    }] }] },
+    { type: 'next_subphase' },
+  ]), { totalBudget: 32, perIntentBudget: 2 })
+  assert.deepEqual(
+    [...new Set(candidates.flatMap((item) => item.actions
+      .filter((action) => action.type === 'marketing')
+      .map((action) => action.good)))].sort(),
+    [0, 1, 2, 3, 4],
+  )
+})
+
+test('spatial diversity does not let the first house consume the build budget', () => {
+  const candidates = generateCandidates(view(5, 5, [
+    { type: 'build_house', remainingBuilds: 1, houses: [1, 2, 3].map((house) => ({
+      house,
+      placements: [{ rotation: 0, legalSquares: [house * 10, house * 10 + 1] }],
+    })), gardens: [] },
+    { type: 'next_subphase' },
+  ]), { totalBudget: 32, perIntentBudget: 1 })
+  assert.deepEqual(
+    [...new Set(candidates.flatMap((item) => item.actions
+      .filter((action) => action.type === 'build_house')
+      .map((action) => action.house)))].sort(),
+    [1, 2, 3],
+  )
+})
+
+test('restaurant diversity preserves each manager and action family', () => {
+  const managers = [1, 2].map((manager) => ({ manager, actions: [
+    { type: 'create', placements: [{ rotation: 0, legalSquares: [manager * 10] }] },
+    { type: 'move', restaurants: [manager * 100], placements: [{ rotation: 1, legalSquares: [manager * 10 + 1] }] },
+  ] }))
+  const candidates = generateCandidates(view(5, 6, [
+    { type: 'open_restaurant', managers },
+    { type: 'next_subphase' },
+  ]), { totalBudget: 32, perIntentBudget: 1 })
+  assert.deepEqual(
+    [...new Set(candidates.flatMap((item) => item.actions
+      .filter((action) => action.type === 'open_restaurant')
+      .map((action) => `${action.manager}:${action.restaurantAction}`)))].sort(),
+    ['1:create', '1:move', '2:create', '2:move'],
+  )
 })
 
 test('production, drink collection and cleanup candidates use only advertised values', () => {

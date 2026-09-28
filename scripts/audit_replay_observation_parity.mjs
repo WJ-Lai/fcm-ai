@@ -25,7 +25,14 @@ import {
   markLabelEngineReplayed,
 } from '../src/replay-action-label.mjs'
 import { mapReplayDecisionGroup } from '../src/replay-action-mapper.mjs'
-import { exactCandidateRank } from '../src/candidate-imitation.mjs'
+import {
+  decisionBatchShape,
+  decisionPatternKey,
+  exactCandidateRank,
+  marketingEffectSignature,
+  projectedCandidateRank,
+  winnerSeatsFromPlayers,
+} from '../src/candidate-imitation.mjs'
 import { generateCandidates } from '../src/candidates.mjs'
 import { rankCandidates } from '../src/strategy.mjs'
 
@@ -213,6 +220,10 @@ const imitation = {
   candidateOffered: 0,
   staticTop1: 0,
   staticTop3: 0,
+  winnerVerifiedLabels: 0,
+  winnerCandidateOffered: 0,
+  winnerStaticTop1: 0,
+  winnerStaticTop3: 0,
   byDecision: {},
   missingExamples: [],
 }
@@ -224,6 +235,9 @@ for (const [recordIndex, record] of manifest.records.entries()) {
   const capture = validatePublicReplayCapture(JSON.parse(gunzipSync(
     await readFile(path.join(captureRoot, record.file)),
   ).toString('utf8')))
+  const winnerSeats = new Set(winnerSeatsFromPlayers(
+    decodeSimpleModel(capture.replay.states.at(-1))[1],
+  ))
   assert.equal(capture.ruleset.classification, 'base-standard', 'only base-standard is approved')
   const groups = buildDecisionGroups(capture)
   const actionTypes = new Set()
@@ -281,12 +295,46 @@ for (const [recordIndex, record] of manifest.records.entries()) {
           generateCandidates({ state, legalActions }),
         )
         const match = exactCandidateRank(ranked, comparableActions)
+        const effectMatch = group.phase === 5 && group.subphase === 3
+          ? projectedCandidateRank(
+            ranked,
+            comparableActions,
+            (candidateActions) => marketingEffectSignature(candidateActions, legalActions),
+          )
+          : null
         const decisionKey = `${group.phase}/${group.subphase}`
         const bucket = imitation.byDecision[decisionKey] ??= {
           verifiedLabels: 0, candidateOffered: 0, staticTop1: 0, staticTop3: 0,
+          effectEquivalentOffered: 0, effectEquivalentTop1: 0, effectEquivalentTop3: 0,
+          winnerVerifiedLabels: 0, winnerCandidateOffered: 0,
+          winnerStaticTop1: 0, winnerStaticTop3: 0,
+          actionCountHistogram: {}, actionTypeHistogram: {},
+          patternHistogram: {}, winnerPatternHistogram: {},
         }
+        const shape = decisionBatchShape(comparableActions)
         imitation.verifiedLabels += 1
         bucket.verifiedLabels += 1
+        const winnerDecision = winnerSeats.has(group.seat)
+        if (winnerDecision) {
+          imitation.winnerVerifiedLabels += 1
+          bucket.winnerVerifiedLabels += 1
+        }
+        bucket.actionCountHistogram[shape.actionCount] =
+          (bucket.actionCountHistogram[shape.actionCount] ?? 0) + 1
+        const actionFamily = shape.actionTypes.join('+') || 'phase-control-only'
+        const pattern = decisionPatternKey(comparableActions)
+        bucket.actionTypeHistogram[actionFamily] =
+          (bucket.actionTypeHistogram[actionFamily] ?? 0) + 1
+        bucket.patternHistogram[pattern] = (bucket.patternHistogram[pattern] ?? 0) + 1
+        if (winnerDecision) {
+          bucket.winnerPatternHistogram[pattern] =
+            (bucket.winnerPatternHistogram[pattern] ?? 0) + 1
+        }
+        if (effectMatch) {
+          bucket.effectEquivalentOffered += 1
+          if (effectMatch.rank === 1) bucket.effectEquivalentTop1 += 1
+          if (effectMatch.rank <= 3) bucket.effectEquivalentTop3 += 1
+        }
         if (match) {
           imitation.candidateOffered += 1
           bucket.candidateOffered += 1
@@ -297,6 +345,18 @@ for (const [recordIndex, record] of manifest.records.entries()) {
           if (match.rank <= 3) {
             imitation.staticTop3 += 1
             bucket.staticTop3 += 1
+          }
+          if (winnerDecision) {
+            imitation.winnerCandidateOffered += 1
+            bucket.winnerCandidateOffered += 1
+            if (match.rank === 1) {
+              imitation.winnerStaticTop1 += 1
+              bucket.winnerStaticTop1 += 1
+            }
+            if (match.rank <= 3) {
+              imitation.winnerStaticTop3 += 1
+              bucket.winnerStaticTop3 += 1
+            }
           }
         } else if (imitation.missingExamples.length < 20) {
           imitation.missingExamples.push({
@@ -366,6 +426,15 @@ const output = {
       : 0,
     staticTop3RateGivenOffered: imitation.candidateOffered
       ? imitation.staticTop3 / imitation.candidateOffered
+      : 0,
+    winnerCandidateRecall: imitation.winnerVerifiedLabels
+      ? imitation.winnerCandidateOffered / imitation.winnerVerifiedLabels
+      : 0,
+    winnerStaticTop1RateGivenOffered: imitation.winnerCandidateOffered
+      ? imitation.winnerStaticTop1 / imitation.winnerCandidateOffered
+      : 0,
+    winnerStaticTop3RateGivenOffered: imitation.winnerCandidateOffered
+      ? imitation.winnerStaticTop3 / imitation.winnerCandidateOffered
       : 0,
   },
   report,

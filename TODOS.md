@@ -130,11 +130,14 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     the latency budget, then holds on untouched games. Spatial marketing/build/restaurant choices
     use task-specific equivalence/value labels rather than requiring the exact human square. Report
     every subphase separately so high-volume hiring cannot hide missing action families.
-  - Current: bounded 2–3 action hire/train sequences passed 848 official-clone executions with zero
-    invalid actions and ~0.044 ms mean generation time. On the same 10-game development set,
-    working-day exact recall rose from 35.4% to 42.3% (hire 74→98/233; train 77→87/153), while
-    conditional static Top-1 fell from 16.0% to 13.4%. This is useful negative evidence: proposal
-    coverage improved, but the evaluator becomes less reliable as the choice set grows.
+  - Current: bounded 2–3 action sequences, duplicate employee-copy handling and per-source/product/
+    building diversity are implemented. On 10 development games, exact hire/train recall reached
+    112/233 and 94/153; marketing effect-equivalent coverage is 22/62. On the 50-game validation
+    corpus, hire/train recall improved from 582→675/1337 and 490→515/891; winner-only recall improved
+    from 233→263/564 and 204→215/400. Overall working-day exact recall is 1310/2730 (48.0%) and
+    winner-only 538/1195 (45.0%); marketing effect-equivalent coverage is 100/270 (37.0%). Fixed
+    official-engine workday fixtures executed 169 candidates with zero invalid actions. Ranking
+    quality remains poor as coverage grows, so evaluator promotion stays blocked.
 - [x] **P3.2 Implement persistent `GameMemory`.**
   - Why: plans, opponent hypotheses and prediction errors must survive LLM/tool calls.
   - Depends on: P1 schemas.

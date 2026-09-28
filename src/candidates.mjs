@@ -9,7 +9,7 @@ function unique(values) {
   return [...new Set(values)]
 }
 
-function stableCandidate(phase, subphase, intent, actions, details = {}) {
+function stableCandidate(phase, subphase, intent, actions, details = {}, diversityKey = intent) {
   assert.ok(actions.length > 0, 'candidate must contain at least one action')
   const encoded = JSON.stringify(actions)
   const digest = createHash('sha256').update(encoded).digest('hex').slice(0, 10)
@@ -18,6 +18,7 @@ function stableCandidate(phase, subphase, intent, actions, details = {}) {
     intent,
     actions: structuredClone(actions),
     details: structuredClone(details),
+    diversityKey,
   }
 }
 
@@ -102,7 +103,7 @@ function workingDayCandidates(view, actions) {
     for (const employee of hire?.candidates ?? []) {
       candidates.push(stableCandidate(phase, subphase, 'hire', [
         { type: 'hire', employee: employee.id }, finish,
-      ], { employee: employee.id, name: employee.name }))
+      ], { employee: employee.id, name: employee.name }, `hire:${employee.id}`))
     }
     const recruitingPoints = Math.min(
       hire?.recruitingPoints ?? 0,
@@ -162,37 +163,53 @@ function workingDayCandidates(view, actions) {
     }
   } else if (subphase === 2) {
     const train = actions.get('train')
-    const primitives = []
+    const primitivesByKey = new Map()
+    const sourceCounts = new Map()
     for (const employee of train?.available ?? []) {
+      const sourceKey = `${employee.origin}:${employee.id}`
+      sourceCounts.set(sourceKey, (sourceCounts.get(sourceKey) ?? 0) + 1)
       for (const upgrade of employee.upgrades ?? []) {
         const action = {
           type: 'train', employee: employee.id, toEmployee: upgrade.id,
           origin: employee.origin, steps: upgrade.steps,
         }
-        primitives.push(action)
+        primitivesByKey.set(
+          `${sourceKey}:${upgrade.id}:${upgrade.steps}`,
+          action,
+        )
         candidates.push(stableCandidate(phase, subphase, 'train', [
           action,
           finish,
-        ], { employee: employee.id, upgrade: upgrade.id }))
+        ], {
+          employee: employee.id,
+          upgrade: upgrade.id,
+        }, `train:${employee.origin}:${employee.id}`))
       }
     }
     const trainingPoints = train?.trainingPoints ?? 0
     if (trainingPoints > 1) {
-      const combinations = boundedCombinations(primitives, 2, {
-        canUse: (action, selected) => (
-          selected.reduce((total, item) => total + item.steps, 0) + action.steps <= trainingPoints &&
-          !selected.some((item) => item.employee === action.employee && item.origin === action.origin)
-        ),
-        limit: 16,
-      })
-      for (const sequence of combinations) {
-        candidates.push(stableCandidate(
-          phase,
-          subphase,
-          `train-sequence-${sequence[0].toEmployee}`,
-          [...sequence, finish],
-          { upgrades: sequence.map((action) => action.toEmployee) },
-        ))
+      const primitives = [...primitivesByKey.values()]
+      for (let length = 2; length <= Math.min(trainingPoints, 3); length += 1) {
+        const combinations = boundedCombinations(primitives, length, {
+          canUse: (action, selected) => {
+            const sourceKey = `${action.origin}:${action.employee}`
+            const sourceUses = selected.filter(
+              (item) => item.employee === action.employee && item.origin === action.origin,
+            ).length
+            return selected.reduce((total, item) => total + item.steps, 0) + action.steps <= trainingPoints &&
+              sourceUses < (sourceCounts.get(sourceKey) ?? 1)
+          },
+          limit: 16,
+        })
+        for (const sequence of combinations) {
+          candidates.push(stableCandidate(
+            phase,
+            subphase,
+            `train-sequence-${length}-${sequence[0].toEmployee}`,
+            [...sequence, finish],
+            { upgrades: sequence.map((action) => action.toEmployee) },
+          ))
+        }
       }
     }
   } else if (subphase === 3) {
@@ -201,7 +218,7 @@ function workingDayCandidates(view, actions) {
       ...demandedGoods(view.state),
       4, 3, 0, 1, 2,
       ...(marketing?.goods ?? []),
-    ]).filter((good) => marketing?.goods?.includes(good)).slice(0, 2)
+    ]).filter((good) => marketing?.goods?.includes(good))
     for (const marketer of marketing?.options ?? []) {
       for (const campaign of marketer.campaigns ?? []) {
         const durations = campaign.durationInfinite ? [9] : unique([1, campaign.maxDuration])
@@ -226,7 +243,7 @@ function workingDayCandidates(view, actions) {
                 ], {
                   affectedHouses: impactful.find((impact) => impact.index === index)?.houses?.length ?? 0,
                   affectedHouseIds: [...(impactful.find((impact) => impact.index === index)?.houses ?? [])],
-                }))
+                }, `create-demand:${good}`))
               }
             }
           }
@@ -259,7 +276,7 @@ function workingDayCandidates(view, actions) {
                 type: 'build_house', building: 'house', house: house.house,
                 rotation: placement.rotation, index,
               }, finish,
-            ]))
+            ], {}, `build-house:${house.house}`))
           }
         }
       }
@@ -270,7 +287,7 @@ function workingDayCandidates(view, actions) {
               type: 'build_house', building: 'garden', house: garden.house,
               houseIndex: garden.houseIndex, edge: edge.edge, index: edge.index,
             }, finish,
-          ]))
+          ], {}, `build-garden:${garden.house}`))
         }
       }
     }
@@ -287,10 +304,17 @@ function workingDayCandidates(view, actions) {
               for (const fromIndex of restaurantAction.restaurants ?? []) {
                 candidates.push(stableCandidate(phase, subphase, 'move-restaurant', [
                   { ...base, fromIndex }, finish,
-                ]))
+                ], {}, `move-restaurant:${manager.manager}:${fromIndex}`))
               }
             } else {
-              candidates.push(stableCandidate(phase, subphase, 'open-restaurant', [base, finish]))
+              candidates.push(stableCandidate(
+                phase,
+                subphase,
+                'open-restaurant',
+                [base, finish],
+                {},
+                `open-restaurant:${manager.manager}`,
+              ))
             }
           }
         }
@@ -307,10 +331,11 @@ function capCandidates(candidates, { totalBudget, perIntentBudget }) {
   for (const candidate of candidates) {
     const encoded = JSON.stringify(candidate.actions)
     if (seenActions.has(encoded)) continue
-    const count = intentCounts.get(candidate.intent) ?? 0
+    const diversityKey = candidate.diversityKey ?? candidate.intent
+    const count = intentCounts.get(diversityKey) ?? 0
     if (count >= perIntentBudget || kept.length >= totalBudget) continue
     seenActions.add(encoded)
-    intentCounts.set(candidate.intent, count + 1)
+    intentCounts.set(diversityKey, count + 1)
     kept.push(candidate)
   }
   return kept

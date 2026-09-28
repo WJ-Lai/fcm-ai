@@ -705,12 +705,16 @@ ranked Top-1 16.0% and Top-3 52.0%. Therefore candidate sequence coverage is now
 the rollout spike, not a later optimization. Recruit/train/marketing/build/restaurant recall must be
 reported separately under the same 32-candidate cap.
 
-The first bounded sequence expansion (multi-hire and multi-train) remained fast and legal: 848
-official clone executions, zero rejects and ~0.044 ms mean generation time. It raised working-day
-exact recall to 209/494 (42.3%), but conditional static Top-1 fell to 13.4%. This is the expected
-diagnostic separation: a better proposal set exposed a worse ranker. Exact-square imitation is not
-a valid sole target for spatial marketing/build/restaurant actions; those require equivalence or
-terminal-value labels, while discrete hire/train batches retain exact-recall gates.
+The candidate audit now reports action-count/pattern histograms, winner-only metrics and strict
+marketing-effect equivalence. Bounded multi-action sequences, duplicate employee-copy handling and
+per-source/product/building diversity raised 50-game working-day exact recall to 1310/2730 (48.0%)
+and winner-only recall to 538/1195 (45.0%). Hire improved 582→675/1337 and training 490→515/891;
+their winner-only counts improved 233→263/564 and 204→215/400. Marketing exact-coordinate recall is
+61/270, while strict same-worker/campaign/good/duration/affected-houses coverage is 100/270 (37.0%),
+close to 22/62 (35.5%) on the 10-game development slice. This confirms that exact-square imitation
+is not a valid sole target for spatial actions; build/restaurant still need official consequence or
+terminal-value labels, while discrete hire/train batches retain exact-recall gates. Ranking quality
+remains poor as proposal coverage grows, cleanly separating generator progress from evaluator work.
 
 The spike's tactical suite must cover restaurant access, marketing distance/price competition,
 production-to-demand closure, organization/salary discipline and dinner inventory consumption.
