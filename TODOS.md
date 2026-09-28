@@ -564,7 +564,10 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     never remove or replace a root based on its result. Iteration 46 completes all 48 branches:
     4 roots alternate-positive, 0 static-positive, 4 tied, root-sign p=0.125. The audit remains
     `collecting`/passed=null because only 3/15 samples exist. Preserve every array and append samples
-    3–6 for all eight roots; sample-level reversals are retained, not relabeled.
+    3–6 for all eight roots; sample-level reversals are retained, not relabeled. Iteration 47
+    preserves every prefix and reaches 7 samples: 6 alternate-positive roots, 1 static-positive,
+    1 tied, p=0.125; all request 15. The static-positive root is only -1/7 and can still reverse, so
+    no valid futility stop exists. Append samples 7–14 for all eight roots, then apply the frozen gate.
 
 - [ ] **P4.1c Evaluate belief-aware information-set search only where uncertainty warrants it.**
   - Why: hidden/simultaneous choices may justify ISMCTS/POMCP-style sampling, but naive MCTS or

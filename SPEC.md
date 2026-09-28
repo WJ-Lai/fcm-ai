@@ -702,6 +702,13 @@ per-continuation dominance. Because the preregistered gate requires 15 samples p
 explicitly `collecting` with `passed=null`, regardless of this favorable interim sign. Preserve all
 arrays and append samples 3–6 for every root; no interim root filtering or online change is allowed.
 
+At seven samples every three-sample prefix and frozen identity remains exact. Six roots now have
+positive mean rank lift for the alternate, one favors static and one is tied; seven roots are
+decisive and the root-sign p-value remains 0.125. All per-root sequential audits request 15. The
+single static-positive root means the candidate-wide gate would fail if signs froze now, but its
+cumulative lift is only -1/7 and can still reverse under the eight predeclared samples. Futility is
+therefore not established. Append samples 7–14 for all roots and apply the gate exactly once at 15.
+
 ### 6.8 Execution, memory and learning
 
 The execution layer accepts one versioned candidate id, revalidates it against the current game
