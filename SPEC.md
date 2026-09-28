@@ -508,6 +508,14 @@ the known harmful skip; thirteen remain incomplete. No non-static action is acce
 first six decisions on all trajectories are highly homogeneous, the next step expands to later turns
 and fresh map seeds rather than weakening the gate around one known failure.
 
+The expanded scan reaches 48 eligible decisions through at least turn 4 on fresh trajectories and
+still accepts zero non-static actions: nine agreements repeat static, four disagreements block the
+same bad skip and 35 deep searches are incomplete. Exact shallow/deep agreement is therefore safe
+but non-productive with the current correlated static/search evaluator. It remains a diagnostic and
+fallback guard, not a strength claim. Further threshold tuning would overfit these roots; the next
+SPEC step is the equal-budget RHEA challenger using the same candidates, belief samples and leaf
+evaluator, followed by terminal comparison rather than more Beam gate tuning.
+
 ### 6.8 Execution, memory and learning
 
 The execution layer accepts one versioned candidate id, revalidates it against the current game

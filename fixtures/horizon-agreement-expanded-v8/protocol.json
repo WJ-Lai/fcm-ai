@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "fcm.horizon-agreement-expanded-protocol.v8",
+  "reportSchemaVersion": "fcm.horizon-agreement-expanded.v8",
+  "experimentId": 26,
+  "seeds": ["agreement-discovery-03", "agreement-discovery-04"],
+  "seats": [0, 1],
+  "maxScannedDecisionsPerTrajectory": 12,
+  "maxCommands": 500,
+  "deadlineMs": 3000,
+  "beamBudget": {
+    "maxRootCandidates": 2,
+    "branchFactor": 2,
+    "beamWidth": 2,
+    "maxOwnDepth": 3,
+    "maxTransitions": 80
+  },
+  "promotionHoldoutOpened": false
+}

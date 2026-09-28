@@ -452,6 +452,10 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     disagreements block the bad skip, 13 remain incomplete and zero non-static changes are accepted.
     Depth 3 improves liveness but not policy value. Next scan later decisions and fresh trajectories
     before changing the gate itself.
+    Iteration 26 expands to 48 decisions through turn 4 on fresh seeds: 9 agreements still repeat
+    static, 4 disagreements block the same bad skip, 35 are incomplete and zero changes are accepted.
+    Exact horizon agreement is retained only as a safety diagnostic; stop tuning it for strength and
+    proceed to the equal-budget RHEA challenger under the same candidates/evaluator/beliefs.
 
 - [ ] **P4.1b Implement RHEA as an equal-budget challenger.**
   - Why: rolling-horizon evolution may discover useful macro sequences that beam pruning loses in
