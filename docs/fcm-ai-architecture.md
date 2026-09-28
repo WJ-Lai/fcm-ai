@@ -94,6 +94,25 @@ The overall direction survives engineering review, with these mandatory constrai
     moves frequently while having no viable long-term plan, or look consistent by stubbornly
     following a dead plan. Measure causal plan completion, pivot quality and oscillation in
     addition to terminal rank.
+13. **State abstraction is a testable hypothesis.** A compact `DecisionView`, capability graph or
+    macro can alias raw positions that require different strategy. Before deeper search, freeze
+    paired counterexamples and audit collisions; otherwise additional compute only amplifies an
+    information-losing representation.
+14. **Search depth is not automatically planning quality.** A biased leaf evaluator can prefer an
+    unfinished engine, overstaffing or demand donated to opponents. Measure root-choice stability
+    and terminal accuracy across multiple/randomized cutoffs, and require more compute not to make
+    held-out decisions systematically worse.
+15. **Hidden-state sampling needs information-set semantics.** Naively planning each determinized
+    private world can create strategy fusion: the final policy behaves as if it knew which sampled
+    world was real. Equivalent acting-seat observations must induce the same candidate distribution
+    within sampling tolerance.
+16. **Multiplayer FCM is general-sum, not a disguised duel.** Third-party externalities, tie-breaks,
+    shifting threats and kingmaking-like choices require 3–6 player fixtures, population evaluation
+    and rank distributions. Latest-policy self-play is not evidence of convergence.
+17. **Select algorithms by equal-budget evidence.** Scenario beam is the first receding-horizon
+    baseline, RHEA is an explicit challenger, and information-set search is a specialist for
+    measured hidden/uncertain boundaries. The simpler method remains default unless terminal league
+    results justify the added complexity.
 
 ## 1. What an FCM player actually has to understand
 
@@ -340,6 +359,46 @@ can detect an apparent opportunity, but cannot prove the opponent response. Sear
 scenarios, but cannot recover a valuable plan that the goal/candidate generator never proposed.
 The three layers must therefore retain separate contracts and promotion metrics.
 
+### 4.2 Online planning alternatives and why none is preselected
+
+The target is best described as **hierarchical belief-state model-predictive planning**, not as
+“HTN + Utility + MCTS” or any other fixed algorithm stack. The stable pieces are the observation,
+plan, belief, candidate, simulator, value and promotion contracts. The online sequence optimizer is
+replaceable and must win an equal-budget bake-off.
+
+**Scenario beam / receding-horizon search** is the first baseline because it is deterministic,
+easy to inspect, naturally preserves a small number of distinct strategic intents and can allocate
+depth by deadline. Its main risk is early pruning: a locally weak prefix may enable the strongest
+long plan.
+
+**Rolling Horizon Evolutionary Algorithms (RHEA)** evolve complete macro sequences rather than
+expanding a strict prefix tree. Mutation can recover plans that beam pruning would discard and can
+work well with irregular candidate sets. The cost is seed variance, legality repair and less
+transparent convergence. It is a challenger, not an automatic upgrade.
+
+**ISMCTS/POMCP-style belief search** is relevant only where temporary hidden or simultaneous
+choices materially affect the decision. ISMCTS highlights the strategy-fusion problem in ordinary
+determinization; POMCP provides a belief-state search pattern using a generative simulator. Neither
+solves FCM by name: multiplayer general-sum payoffs, large macro actions and opponent-policy
+misspecification remain. Such search must return an information-set-consistent policy rather than a
+different impossible plan for each sampled hidden world.
+
+**Learned policy/value priors and progressive widening** may later reduce branching. Sampled MuZero
+shows how sampling can make planning workable in complex action spaces, while Expert Iteration
+provides a pragmatic loop: search improves a policy, then the learned policy makes future search
+faster and broader. These are later stages because a learned prior can also hide simulator,
+candidate or value defects.
+
+**Population solvers** become relevant if multiplayer self-play cycles. A frozen league is the
+first guard. If it remains exploitable or cyclic, PSRO/JPSRO-style response populations and
+meta-solvers are more appropriate than pretending one latest policy is globally strong. This is a
+conditional research path, not part of the first online Agent.
+
+The bake-off holds the `DecisionView`, candidate set, belief samples, evaluator, seeds and
+one-second/three-second wall-clock budgets fixed. A method is killed or deferred if it provides no
+terminal lift, violates information-set consistency, exceeds latency, or is unstable across seeds,
+opponent populations or evaluator versions.
+
 ## 5. Recommended architecture
 
 Use a hexagonal design so live play, offline simulation, heuristics, LLMs and learned policies can
@@ -377,8 +436,9 @@ Live OBG HTTP/MCP ────▶│ Environment port         │◀────
              └──────────────────────┬─────────────────────┘
                                     ▼
                        ┌──────────────────────────┐
-                       │ Scenario beam + value    │
-                       │ official clones / beliefs│
+                       │ Online planner bake-off  │
+                       │ beam / RHEA / belief     │
+                       │ search + frozen value    │
                        └────────────┬─────────────┘
                                     ▼
                        ┌──────────────────────────┐
@@ -448,6 +508,12 @@ Every value carries one of these origins:
 
 The deterministic matrix must not call its frozen-state winner the “likely winner.” A likely
 future winner exists only after sampling one or more explicit opponent beliefs.
+
+The `DecisionView` is deliberately smaller than the internal engine state, so its sufficiency must
+be tested rather than assumed. Maintain raw-state pairs that collide under the current abstraction
+but differ in restaurant blocking, sequential inventory consumption, salary timing, milestone
+closure, bank horizon or reusable commitments. If the preferred macro differs, the abstraction or
+cache key is incomplete and must be enriched before deeper search.
 
 ### Memory and belief
 
@@ -584,6 +650,13 @@ value of continuing, repairing and switching, including reusable versus stranded
 also records uncertainty so search budget can be allocated by expected decision impact rather than
 only by a manually named “major mistake.”
 
+Leaf value is especially dangerous because search treats it as the future. Calibrate by phase,
+player count and remaining bank horizon; compare the same root candidate at several fixed and
+randomized cutoffs; and complete selected branches to terminal where affordable. A deeper search
+that reverses a good root choice solely because an unfinished engine scores well is a regression,
+not progress. Search promotion therefore reports horizon sensitivity and requires additional
+compute not to reduce held-out terminal strength systematically.
+
 ## 9. Reinforcement-learning formulation
 
 ### Observation space
@@ -651,6 +724,11 @@ Self-play against only the latest policy tends to cycle or overfit. Maintain a l
 Evaluate every seat, map seed and player count. Do not call an Agent stronger because it beats one
 fixed opponent from one seat.
 
+For 3–6 player games, also measure third-party externalities and rank distributions. A policy that
+improves against one target by gifting another opponent the win is not robust. If latest-policy
+self-play cycles or the frozen league remains predictably exploitable, evaluate PSRO/JPSRO-style
+policy populations and correlated meta-strategies before claiming strategic convergence.
+
 ### Is PPO appropriate?
 
 PPO can be a baseline after the above environment exists. It will require:
@@ -699,7 +777,7 @@ explanation—while calculators and the official engine handle exactness.
 
 ## 11. Implementation roadmap
 
-### Current implementation checkpoint (2026-09-27)
+### Current implementation checkpoint (2026-09-28)
 
 - The base-game `reset/observe/legal/step/clone` environment now executes the official JavaScript
   engine entirely in memory, including simultaneous-move aggregation and seat-specific views.
@@ -813,11 +891,16 @@ Exit criterion: clearly beats first-legal/random across seats and makes zero ill
 - Add typed capability prerequisites, earliest activation, target turns, slack, commitments,
   repair/fallback paths and invalidation rules to `GameMemory v2`. The graph expresses what must be
   achieved by when; it never decides official legality.
+- Freeze strategic-abstraction collision pairs before expanding search. The suite must distinguish
+  restaurant blocking, dinner inventory order, salary timing, milestone closure, bank horizon and
+  commitment reuse while remaining invariant to irrelevant raw-state changes.
 - Treat opponent hidden simultaneous actions as sampled `believed` inputs. A planner must produce
   the same choice when unavailable opponent reserve cards or submitted move buffers are mutated;
   those metamorphic privacy tests are a promotion gate.
 - Train a value model from completed trajectories only after deterministic rollout parity passes.
-  Freeze the model/version used to fit or test arbitration.
+  Freeze the model/version used to fit or test arbitration. Add multiple/randomized cutoff tests so
+  a biased leaf evaluator cannot make deeper search look better on its own score while worsening
+  terminal outcomes.
 - Add a plan-health/opportunity arbiter for continue/repair/tactical-deviation/pivot/abandon. Use
   switching cost, reusable commitments, confidence, separate enter/exit thresholds and cooldown.
 - Cache only inside the trusted planner. The key includes ruleset hash, internal snapshot digest,
@@ -827,8 +910,12 @@ Exit criterion: clearly beats first-legal/random across seats and makes zero ill
   subphases reach >=80% oracle Top-1, >=95% Top-3, zero illegal selections and local P95 <=3 seconds.
   A dynamic slice from one policy trajectory cannot promote the search even if it agrees perfectly
   with its same-horizon oracle. Search bounded plan macros, adapt depth to the active deadline and
-  bootstrap leaves with a frozen calibrated evaluator. Add MCTS only if measured branching,
-  latency and a frozen-case spike then justify it.
+  bootstrap leaves with a frozen calibrated evaluator.
+- Implement RHEA over the same macro candidates as an equal-budget challenger. Compare beam and
+  RHEA under identical one-second/three-second deadlines, seeds, beliefs and evaluator versions.
+- Add ISMCTS/POMCP-style belief search only for measured hidden/simultaneous or high-uncertainty
+  boundaries, and only after recommendation-distribution invariance proves information-set
+  consistency. Add progressive widening only after measured branching justifies it.
 - Sample opponent actions from versioned belief models for simultaneous and future phases.
 
 Exit criterion: search improves held-out league rank at an acceptable per-decision latency.
@@ -908,6 +995,9 @@ actions or timeouts.
 ### Phase 4 — imitation and reinforcement learning
 
 - Train candidate ranking/value models on heuristic, search and—if available—strong human games.
+  Treat human actions as proposal/value priors, not optimal labels.
+- Use Expert Iteration to distil verified search decisions into faster policy/value priors, then
+  ablate whether those priors improve subsequent equal-budget search.
 - Run self-play against a frozen policy population.
 - Compare terminal-only learning, conservative shaping and imitation initialization.
 - Try PPO as one baseline; compare it with search-guided/value-based alternatives.
@@ -932,10 +1022,13 @@ The dependency-ordered source of truth is `../TODOS.md`. In summary:
 3. Calibrate opponent beliefs and a terminal/value evaluator against held-out games.
 4. Implement plan-health/opportunity arbitration with switching cost, confidence, hysteresis and
    tactical-deviation versus strategic-pivot semantics.
-5. Add deadline-aware scenario beam search over official-engine clones. Evaluate MCTS only if that
-   measured baseline leaves value.
-6. Add the LLM only as a selector over validated near-tie candidates and require measured lift.
-7. Evaluate imitation learning and PPO/self-play only after every prior promotion gate passes.
+5. Freeze abstraction-collision, information-set-consistency and leaf-cutoff diagnostics before
+   deeper search.
+6. Run an equal-budget deadline-aware scenario-beam versus RHEA bake-off. Evaluate belief-aware
+   ISMCTS/POMCP-style search only where uncertainty leaves measured value.
+7. Add the LLM only as a selector over validated near-tie candidates and require measured lift.
+8. Distil useful search with Expert Iteration; evaluate PPO/self-play and PSRO/JPSRO-style population
+   solvers only after their respective promotion triggers occur.
 
 ## 13. What success should mean
 
@@ -950,6 +1043,9 @@ A strategy-capable FCM AI should:
 - revise its plan when predictions fail;
 - beat random/first-legal and the current built-in AI across maps and seats;
 - improve against a diverse frozen league without relying on hidden information;
+- preserve information-set consistency and avoid strategy fusion under hidden-state sampling;
+- retain strength as search budget grows rather than overfitting a biased leaf evaluator;
+- remain robust in 3–6 player games with third-party externalities and diverse opponents;
 - remain reproducible and auditable enough to diagnose why it lost.
 
 ## Research references
@@ -957,6 +1053,11 @@ A strategy-capable FCM AI should:
 - Schulman et al., [Proximal Policy Optimization Algorithms](https://arxiv.org/abs/1707.06347).
 - Lanctot et al., [OpenSpiel: A Framework for Reinforcement Learning in Games](https://arxiv.org/abs/1908.09453).
 - Brown et al., [Combining Deep Reinforcement Learning and Search for Imperfect-Information Games (ReBeL)](https://arxiv.org/abs/2007.13544).
+- Cowling, Powley and Whitehouse, [Information Set Monte Carlo Tree Search](https://eprints.whiterose.ac.uk/id/eprint/75048/1/CowlingPowleyWhitehouse2012.pdf).
+- Silver and Veness, [Monte-Carlo Planning in Large POMDPs (POMCP)](https://proceedings.neurips.cc/paper/2010/file/edfbe1afcf9246bb0d40eb4d8027d90f-Paper.pdf).
+- Gaina et al., [Rolling Horizon Evolutionary Algorithms for General Video Game Playing](https://arxiv.org/abs/2003.12331).
+- Anthony, Tian and Barber, [Thinking Fast and Slow with Deep Learning and Tree Search (Expert Iteration)](https://arxiv.org/abs/1705.08439).
 - Hubert et al., [Learning and Planning in Complex Action Spaces (Sampled MuZero)](https://arxiv.org/abs/2104.06303).
 - Schrittwieser et al., [Mastering Atari, Go, Chess and Shogi by Planning with a Learned Model (MuZero)](https://arxiv.org/abs/1911.08265).
 - Yu et al., [The Surprising Effectiveness of PPO in Cooperative, Multi-Agent Games](https://arxiv.org/abs/2103.01955).
+- Marris et al., [Multi-Agent Training beyond Zero-Sum with Correlated Equilibrium Meta-Solvers (JPSRO)](https://proceedings.mlr.press/v139/marris21a.html).

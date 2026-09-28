@@ -175,6 +175,17 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     deviations and repeated unchanged observations.
   - Done when: labels distinguish plan feasibility from desirability, use only public/seat-visible
     inputs and are frozen before arbitration parameters are fitted.
+- [ ] **P3.2d Audit strategic-abstraction fidelity before deeper search.**
+  - Why: a compact `DecisionView`, plan capability or macro can map strategically different raw
+    states to the same feature vector. Search then becomes confidently wrong because it cannot see
+    the distinction, regardless of depth.
+  - Scope: build adversarial raw-state pairs for restaurant blocking, sequential dinner inventory,
+    salary timing, milestone closure, bank horizon and reusable commitments. Report
+    raw-to-abstract collisions by schema/model version and include every strategy-relevant field in
+    trusted cache keys.
+  - Done when: paired states that need different preferred macros are distinguishable, equivalent
+    states remain stable under irrelevant raw mutations, and no cache entry crosses a material
+    abstraction boundary. If the gate fails, enrich the abstraction before expanding search.
 - [ ] **P3.3a Prove official-clone consequence evaluation in a bounded spike.**
   - Why: the first static evaluator completed games but could not distinguish demand it would sell
     from demand donated to a closer opponent. More static weight tuning cannot recover missing
@@ -216,17 +227,38 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     also lost every completed game and one game exceeded the 500-command ceiling. This falsifies
     static one-step scoring as sufficient. P3.3a is now the required spike before any beam search;
     do not tune against the recorded failure seeds or expose a remote simulation API yet.
-- [ ] **P3.3c Add versioned opponent-belief sampling.**
+- [ ] **P3.3c Freeze leaf-value and search-cutoff diagnostics.**
+  - Why: a deeper search can become worse when a biased leaf evaluator rewards unfinished engines,
+    excess staff or demand donated to opponents. More depth is not evidence of better planning.
+  - Depends on: P3.3b and completed-game outcomes.
+  - Scope: score the same root candidates at multiple fixed and randomized horizons; compare with
+    terminal completion where affordable; stratify calibration by phase, player count and remaining
+    bank horizon; report reversal and error rates rather than only aggregate score correlation.
+  - Done when: the frozen evaluator is calibrated on held-out outcomes, justified root-choice
+    reversals correlate with terminal improvement, and additional compute does not systematically
+    reduce tactical-suite or league performance.
+- [ ] **P3.3d Add versioned opponent-belief sampling.**
   - Why: future dinner outcomes depend on unrevealed simultaneous choices and opponent reactions.
   - Depends on: P1.1 observation provenance, P3.2 and validated public-replay/self-play traces. A
     consented human trace improves calibration but is not a hard dependency for the first model.
   - Done when: `observed`, official-engine `derived` and model `believed` fields are impossible to
     confuse; every belief records model id, confidence and sample count; and hidden-state mutation
     cannot change a recommendation except through an explicitly sampled public-history model.
-- [ ] **P3.3d Add plan-health and opportunity arbitration.**
+- [ ] **P3.3e Enforce information-set policy consistency.**
+  - Why: ordinary determinization can create strategy fusion—the planner chooses mutually
+    incompatible actions in different sampled hidden worlds and behaves as if it knew which world
+    was real.
+  - Depends on: P3.3d.
+  - Scope: construct states with identical acting-seat observations but different private opponent
+    buffers/reserve choices; run repeated seeded belief samples; compare returned candidate
+    distributions, not only a single top action.
+  - Done when: hidden-state mutations outside the actor's information set do not alter the policy
+    distribution beyond declared sampling tolerance, no private simulator field reaches features or
+    cache outputs, and failing planners are rejected rather than patched with more weight tuning.
+- [ ] **P3.3f Add plan-health and opportunity arbitration.**
   - Why: reacting to every locally attractive move creates thrashing, while blindly following a
     plan misses real opponent mistakes.
-  - Depends on: P3.2b–P3.2c and frozen P3.3b/P3.3c value and belief baselines.
+  - Depends on: P3.2b–P3.2c and frozen P3.3b–P3.3d value and belief baselines.
   - Scope: compare `continue`, `repair`, `tactical deviation`, `pivot` and `abandon` using estimated
     terminal value, deadline/milestone risk, salary runway, switching cost, asset reuse, confidence
     and opportunity expiry. Use separate enter/exit thresholds plus cooldown/hysteresis. Trigger a
@@ -236,27 +268,57 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     higher-value commitment, make a tactical deviation without erasing the plan, pivot when the
     goal becomes infeasible and do not oscillate on unchanged observations.
 
-## P4 — scenario search and component promotion
+## P4 — online-planner bake-off and component promotion
 
-- [ ] **P4.1 Add scenario beam search, then evaluate whether MCTS is justified.**
+- [ ] **P4.1 Establish scenario beam as the equal-budget receding-horizon baseline.**
   - Why: one-seat shallow rollout cannot verify a multi-turn plan. Full primitive MCTS is also not
     a credible first answer to FCM's branching, delayed rewards, multiple opponents and hidden
     simultaneous choices.
-  - Depends on: P3.3d.
+  - Depends on: P3.3f.
   - Scope: search bounded strategic/turn macros, sample opponent responses from versioned beliefs,
     adapt depth to the active goal's deadline and bootstrap leaf values from a frozen calibrated
     evaluator. Trigger extra budget from decision impact and uncertainty, not merely from a named
     tactical event.
-  - Done when: paired ablations show a confidence-bounded held-out rank/win lift over the same
-    policy without search, under a defined P95 deadline, with zero visibility or legality
-    violations. Add MCTS only if measured beam diversity/branching leaves material value on the
-    table and an MCTS spike improves the same frozen cases and league.
+  - Done when: the planner is anytime, has deterministic one-second/three-second budgets and legal
+    fallback, passes cutoff/abstraction/privacy suites, and produces the first held-out league
+    baseline under a declared P95 deadline.
+
+- [ ] **P4.1b Implement RHEA as an equal-budget challenger.**
+  - Why: rolling-horizon evolution may discover useful macro sequences that beam pruning loses in
+    irregular, high-branching turns; its value must be measured rather than assumed.
+  - Depends on: P4.1 contracts and the same frozen candidate/evaluator/belief versions.
+  - Scope: mutate/crossover bounded macro sequences with deterministic seeds, repair every sequence
+    through official legality, reuse the same leaf evaluator and compare at identical one-second and
+    three-second wall-clock budgets.
+  - Done when: beam and RHEA are compared on identical fixtures and held-out leagues with terminal
+    rank/win, P95 latency, fallback, horizon sensitivity and seed variance. Retain the simpler
+    planner unless RHEA provides reproducible terminal lift or materially better robustness.
+
+- [ ] **P4.1c Evaluate belief-aware information-set search only where uncertainty warrants it.**
+  - Why: hidden/simultaneous choices may justify ISMCTS/POMCP-style sampling, but naive MCTS or
+    determinization risks strategy fusion and high compute cost.
+  - Depends on: P3.3e and an observed performance gap at uncertain decision boundaries.
+  - Scope: restrict the spike to hidden/simultaneous or high-impact/high-uncertainty nodes; compare
+    against belief-sampled beam/RHEA at equal compute; consider progressive widening only after
+    measured branching demands it.
+  - Done when: information-set consistency remains intact and the specialist produces held-out
+    terminal lift beyond its latency cost. Otherwise keep it research-only and retain the simpler
+    receding-horizon planner.
 
 - [ ] **P4.2 Run component ablations.**
   - Compare no memory vs plan graph, always-continue vs opportunity arbitration, no-search vs beam,
-    deterministic opponent vs belief samples, and static horizon vs deadline-aware horizon.
+    beam vs RHEA, belief-sampled receding horizon vs information-set specialist, deterministic
+    opponent vs belief population, and static horizon vs deadline-aware horizon.
   - Promote on paired-seat terminal rank/win plus calibration, plan-completion, pivot-regret and
-    oscillation metrics; human action match is diagnostic only.
+    oscillation metrics; include 3–6 player third-party externality cases. Human action match is
+    diagnostic only.
+
+- [ ] **P4.3 Apply explicit algorithm promotion and kill criteria.**
+  - Promote only on confidence-bounded held-out terminal rank/win lift with no legality, privacy,
+    completion, reproducibility or P95-latency regression.
+  - Defer or remove an algorithm that has no equal-budget lift, leaks hidden state, is unstable
+    across seeds/evaluator versions/opponent populations, or improves shaped/development scores
+    while worsening terminal outcomes.
 
 ## P5 — hybrid LLM policy
 
@@ -275,12 +337,19 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
 
 - [ ] **P6.1 Train imitation/value models from validated trajectories.**
   - Depends on: P4.
+  - Scope: use public/human trajectories as proposal/value priors, not unquestioned optimal labels;
+    add Expert Iteration so useful search decisions can train a faster policy/value model and the
+    learned prior can guide later search.
 - [ ] **P6.2 Evaluate PPO as one masked hierarchical baseline.**
   - Depends on: P1.3, a policy league and stable terminal metrics.
   - Done when: terminal-only PPO is compared with potential-difference shaping from a frozen,
     held-out-calibrated evaluator, while promotion still uses raw win/rank metrics.
 - [ ] **P6.3 Add population self-play and promotion gates.**
   - Depends on: P6.1 or P6.2.
+  - Scope: maintain random, first-legal, built-in, scripted archetype, frozen historical and current
+    policies across seats, maps and 2–6 player counts. Detect cycling and third-party exploitation.
+    Evaluate PSRO/JPSRO-style population solvers only if a simpler frozen league remains cyclic or
+    brittle; do not claim convergence from latest-policy self-play.
 - [ ] **P6.4 Add expansions one module at a time.**
   - Depends on: base-game parity and benchmarks; every module needs its own observation/action tests.
 
