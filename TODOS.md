@@ -505,7 +505,13 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     alternatives are 1/4 beneficial; train alternatives 3/4. All predicted advantages are about 1.4,
     so the leaf value cannot separate success from failure. Do not promote or deepen RHEA. Next freeze
     contradictory roots and run paired multi-continuation stability estimates before changing value
-    features; single-continuation labels remain training-ineligible.
+    features; single-continuation labels remain training-ineligible. Iteration 35 reconstructs one
+    apparently beneficial and one harmful hire root and expands each candidate pair to three matched
+    continuations. Sample zero reproduces exactly. On both roots static has one rank win, zero rank
+    losses and two ties against the RHEA alternative; cash-advantage SE is $254/$223. The earlier
+    `beneficial` label was only a same-rank cash result and flips tactical interpretation under new
+    samples. Both roots correctly request seven samples. Resume only samples 3–6; never recompute the
+    verified prefix or train from it yet.
 
 - [ ] **P4.1c Evaluate belief-aware information-set search only where uncertainty warrants it.**
   - Why: hidden/simultaneous choices may justify ISMCTS/POMCP-style sampling, but naive MCTS or

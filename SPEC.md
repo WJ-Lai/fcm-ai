@@ -588,6 +588,16 @@ paired multi-continuation advantage distributions with the existing sequential e
 root-context interactions only if stable labels exist. Do not add generations, widen further, or
 open the promotion holdout before that gate.
 
+The first stability puncture selects two public hire roots with the same static/alternate candidate
+pair but opposite single-continuation classifications. Three matched continuations per candidate
+reproduce both original sample-zero outcomes exactly. On each root, static achieves one terminal-rank
+win, zero losses and two ties versus the RHEA alternative; cash-advantage standard errors are about
+254 and 223. The prior `beneficial` label arose from more cash while both branches ranked first, and
+an added continuation makes the alternate branch lose rank. Thus rank and cash must remain ordered
+objectives, not a scalar cash label, and one continuation is unusable supervision. The predeclared
+sequential estimator selects neither root and requests seven samples. Resume only samples 3–6 from
+the verified prefix; do not recompute it or change features before that evidence arrives.
+
 ### 6.8 Execution, memory and learning
 
 The execution layer accepts one versioned candidate id, revalidates it against the current game
