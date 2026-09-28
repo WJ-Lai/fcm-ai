@@ -467,6 +467,12 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
   - Done when: beam and RHEA are compared on identical fixtures and held-out leagues with terminal
     rank/win, P95 latency, fallback, horizon sensitivity and seed variance. Retain the simpler
     planner unless RHEA provides reproducible terminal lift or materially better robustness.
+  - Current: `RHEA v1` optimizer and official adapter are implemented. Contract tests cover seeded
+    evolution, common samples, stronger-genome discovery, static ties, malformed budgets, non-finite
+    or failed samples and deadline fallback. The official smoke completes two generations, five
+    unique genomes and ten scenario evaluations with a byte-reproducible sanitized report, but
+    selects the same known harmful skip at score 39. Mechanism passes; strength does not. Next run
+    official paired information-set audits, then one-/three-second equal-budget behavior.
 
 - [ ] **P4.1c Evaluate belief-aware information-set search only where uncertainty warrants it.**
   - Why: hidden/simultaneous choices may justify ISMCTS/POMCP-style sampling, but naive MCTS or

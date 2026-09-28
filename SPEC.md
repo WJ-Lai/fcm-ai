@@ -516,6 +516,17 @@ fallback guard, not a strength claim. Further threshold tuning would overfit the
 SPEC step is the equal-budget RHEA challenger using the same candidates, belief samples and leaf
 evaluator, followed by terminal comparison rather than more Beam gate tuning.
 
+`RHEA v1` now supplies the first executable challenger contract. A deterministic seeded population
+encodes a root choice plus later public-policy candidate indices; elites survive and bounded mutation
+produces new macro sequences. Every genome uses the same belief samples, ties retain static root
+order, and incomplete generations, deadlines, non-finite scores or sample failures fall back to the
+static legal action. Its official adapter maps genes through current public legal candidates,
+advances versioned opponent policies in official clones and scores the same public leaf evaluator as
+Beam. The official smoke completes two generations, five unique genomes and ten scenario evaluations
+with a byte-reproducible private-payload-free report. It selects the known harmful skip at score 39,
+showing optimizer diversity alone does not fix a biased leaf value. RHEA is mechanism-complete but
+strength-unpromoted pending information-set and equal-budget audits.
+
 ### 6.8 Execution, memory and learning
 
 The execution layer accepts one versioned candidate id, revalidates it against the current game

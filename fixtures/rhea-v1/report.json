@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "fcm.rhea-official-smoke.v1",
+  "experimentId": 27,
+  "protocolDigest": "sha256:8d50abbd6a30e1e96d95c6251c5636f9a90a0e0f12a79624aef70e9e03483adb",
+  "target": {
+    "turn": 1,
+    "phase": 5,
+    "subphase": 1
+  },
+  "staticCandidateId": "p5s1-hire-1dfd160273",
+  "selectedCandidateId": "p5s1-fallback-21d4f44933",
+  "bestGenome": [
+    1,
+    0,
+    0
+  ],
+  "bestMeanScore": 39,
+  "scenarios": [
+    {
+      "sampleSeed": "rhea-official-a",
+      "score": 39,
+      "trace": [
+        "p5s1-fallback-21d4f44933",
+        "p5s7-fallback-5c896494fa"
+      ]
+    },
+    {
+      "sampleSeed": "rhea-official-b",
+      "score": 39,
+      "trace": [
+        "p5s1-fallback-21d4f44933",
+        "p5s7-fallback-5c896494fa"
+      ]
+    }
+  ],
+  "metrics": {
+    "fallbackUsed": false,
+    "stopReason": "complete",
+    "completedGenerations": 2,
+    "uniqueGenomesEvaluated": 5,
+    "scenarioEvaluations": 10,
+    "budget": {
+      "populationSize": 4,
+      "eliteCount": 1,
+      "generations": 2,
+      "horizonLength": 3,
+      "geneCardinality": 3,
+      "maxEvaluations": 16,
+      "deadlineMs": 30000
+    }
+  },
+  "failures": 0,
+  "privatePayloadPersisted": false,
+  "promotionHoldoutOpened": false,
+  "strengthPromoted": false
+}

@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "fcm.rhea-protocol.v1",
+  "experimentId": 27,
+  "seed": "rhea-official-smoke-01",
+  "players": ["rhea-agent", "FcmAI"],
+  "actorSeat": 0,
+  "opponentSeat": 1,
+  "sampleSeeds": ["rhea-official-a", "rhea-official-b"],
+  "evolutionSeed": "rhea-evolution-official-v1",
+  "budget": {
+    "populationSize": 4,
+    "eliteCount": 1,
+    "generations": 2,
+    "horizonLength": 3,
+    "geneCardinality": 3,
+    "maxEvaluations": 16,
+    "deadlineMs": 30000
+  },
+  "promotionHoldoutOpened": false
+}
