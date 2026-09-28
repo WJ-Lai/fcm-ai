@@ -680,6 +680,18 @@ observations would be invalid. The next admissible hypothesis is action-pair-wid
 map-threshold-specific: preregister exact eligibility, discover untouched roots on new seeds without
 terminal peeking, and evaluate root-level generalization before any online change.
 
+Experiment 45 freezes that candidate-wide hypothesis before any new terminal branch is run. Four
+untouched seeds across both seats produce exactly eight distinct eligible turn-3 roots, all found on
+the second scanned training decision. The report is byte-reproducible and contains only public
+features, normalized root identities and the exact two action batches; terminal outcomes and private
+payloads are prohibited. The roots span reachable-house counts 2–7, exclusive-house counts 0–5 and
+distance deficits 0–5, so the set is not another copy of the rejected severe-deficit slice. The
+generalization unit is the root: after 15 paired continuations per root, compute each root's mean
+terminal-rank lift. Promotion requires at least seven decisive roots, at least seven favoring
+`CEO -> Management Trainee`, zero favoring the static choice and a two-sided exact root-sign
+`p <= 0.025`. No observed root may be dropped or replaced after sampling starts. Passing this gate
+would justify a candidate rule entering a paired league, not immediate online deployment.
+
 ### 6.8 Execution, memory and learning
 
 The execution layer accepts one versioned candidate id, revalidates it against the current game

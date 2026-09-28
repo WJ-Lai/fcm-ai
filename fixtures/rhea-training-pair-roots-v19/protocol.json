@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "fcm.rhea-training-pair-roots-protocol.v19",
+  "reportSchemaVersion": "fcm.rhea-training-pair-roots.v19",
+  "experimentId": 45,
+  "seeds": [
+    "rhea-training-pair-val-01",
+    "rhea-training-pair-val-02",
+    "rhea-training-pair-val-03",
+    "rhea-training-pair-val-04"
+  ],
+  "seats": [0, 1],
+  "gameIdStart": 9930,
+  "maxScannedDecisionsPerTrajectory": 8,
+  "maxCommands": 500,
+  "candidateLimit": 3,
+  "eligibility": {
+    "turn": 3,
+    "phase": 5,
+    "subphase": 2,
+    "staticCandidateId": "p5s2-train-1adebf1880",
+    "alternateCandidateId": "p5s2-train-2dd5d77261",
+    "staticActions": [
+      { "type": "train", "employee": 13, "toEmployee": 14, "origin": 0, "steps": 1 },
+      { "type": "next_subphase" }
+    ],
+    "alternateActions": [
+      { "type": "train", "employee": -1, "toEmployee": 28, "origin": 1, "steps": 1 },
+      { "type": "next_subphase" }
+    ]
+  },
+  "candidateWideHypothesis": {
+    "claim": "For the exact eligible action pair, CEO-to-Management-Trainee has non-negative terminal-rank lift across untouched roots more consistently than Marketing-Trainee-to-Campaign-Manager.",
+    "unitOfGeneralization": "root",
+    "pairedContinuationSamplesPerRoot": 15,
+    "integrityStages": [3, 7, 15],
+    "rootStatistic": "mean(staticTerminalRank - alternateTerminalRank)",
+    "zeroHandling": "tie",
+    "gate": {
+      "minimumFrozenRoots": 8,
+      "minimumDecisiveRoots": 7,
+      "minimumAlternatePositiveRoots": 7,
+      "maximumStaticPositiveRoots": 0,
+      "twoSidedExactSignAlpha": 0.025
+    },
+    "failurePolicy": "Keep the static action and reject the candidate-wide rule; never drop or replace an observed root after terminal sampling."
+  },
+  "terminalOutcomesAllowed": false,
+  "promotionHoldoutOpened": false
+}

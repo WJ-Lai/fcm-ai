@@ -554,7 +554,12 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     and keep static online. The four known roots together show 21 alternate rank wins vs 1 static
     win across 60 continuations, but these clustered/discovery samples may not be pooled as IID.
     Next preregister the exact action pair as a candidate-wide hypothesis and find untouched roots on
-    new seeds before observing their terminal outcomes.
+    new seeds before observing their terminal outcomes. Iteration 45 freezes 8/8 distinct roots from
+    four untouched seeds × both seats before any terminal branch. The public report is byte-stable,
+    contains no terminal/private payload, and spans exclusive houses 0–5 and distance deficit 0–5.
+    Root-level gate is fixed: at 15 continuations require >=7 decisive roots, >=7 alternate-positive,
+    0 static-positive and exact two-sided sign p<=0.025. Next collect sample 0–2 for all eight roots;
+    never remove or replace a root based on its result.
 
 - [ ] **P4.1c Evaluate belief-aware information-set search only where uncertainty warrants it.**
   - Why: hidden/simultaneous choices may justify ISMCTS/POMCP-style sampling, but naive MCTS or
