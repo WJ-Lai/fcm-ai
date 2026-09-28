@@ -420,6 +420,14 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
   - Done when: the planner is anytime, has deterministic one-second/three-second budgets and legal
     fallback, passes cutoff/abstraction/privacy suites, and produces the first held-out league
     baseline under a declared P95 deadline.
+  - Current: `ScenarioBeam v1` contract is implemented. Ten contract/adversarial checks cover a
+    multi-decision reversal, matched belief seeds, live/partial simultaneous fail-closed behavior,
+    fresh internal simultaneous resolution without strategy fusion, official-AI adapters, weak/OOD
+    belief fallback, deadline/transition fallback, stable ties and policy failure. A frozen official
+    smoke reached actor depth 4 through restructuring using 20 transitions and 4/4 completed root
+    scenarios with zero violations. It nevertheless replaced a turn-1 hire with skip (leaf score
+    35.4 vs 39), so strength is explicitly unpromoted. Next freeze one-/three-second development
+    leagues and measure terminal rank, latency, fallback, horizon sensitivity and seed variance.
 
 - [ ] **P4.1b Implement RHEA as an equal-budget challenger.**
   - Why: rolling-horizon evolution may discover useful macro sequences that beam pruning loses in

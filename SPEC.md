@@ -445,6 +445,20 @@ Search is anytime and deadline-aware. Timeout, engine error, empty branch or low
 falls back to the best officially validated static candidate. Increasing search depth must not
 systematically make decisions worse because of leaf-value bias.
 
+`ScenarioBeam v1` now implements the bounded contract but is not promoted for strength. It reuses
+matched belief seeds across root candidates, supports versioned external and official built-in
+opponent policies, branches future sequential actor macros, and resolves only fresh simultaneous
+phases reached wholly inside its own non-simultaneous trajectory. At those phases it freezes one
+actor commitment from the public information set across all samples before sampling opponents;
+per-scenario retrospective maximization is forbidden as strategy fusion. Live or partially
+submitted simultaneous roots, weak/OOD beliefs, time/transition exhaustion and scenario failure
+fall back to the static legal candidate. An official-engine smoke traversed four actor decisions,
+including a fresh restructuring boundary, across 20 official transitions with zero failures and a
+byte-reproducible private-payload-free report. However, it changed the turn-1 choice from hiring to
+skipping because the current leaf evaluator scored skip 39 versus hire 35.4. That is contract
+evidence and a warning about cutoff bias—not evidence of better play. P4.1 remains open for frozen
+one-/three-second development leagues, horizon diagnostics and terminal lift.
+
 ### 6.8 Execution, memory and learning
 
 The execution layer accepts one versioned candidate id, revalidates it against the current game

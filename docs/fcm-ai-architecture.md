@@ -371,6 +371,15 @@ easy to inspect, naturally preserves a small number of distinct strategic intent
 depth by deadline. Its main risk is early pruning: a locally weak prefix may enable the strongest
 long plan.
 
+The first executable `ScenarioBeam v1` contract now exists. It uses matched public-belief samples,
+bounded roots/branching/beam/depth/transitions/time and versioned external or official-AI opponent
+policies. A live or partially submitted simultaneous root fails closed. A fresh simultaneous phase
+reached wholly inside search freezes one public actor commitment across all samples before opponent
+sampling; allowing each sampled world to choose its own retrospective best commitment was identified
+and rejected as strategy fusion. The official smoke crosses restructuring and reaches actor depth 4,
+but currently changes a turn-1 hire to skip because the unpromoted cutoff evaluator prefers 39 to
+35.4. Therefore the mechanism passes while playing strength remains explicitly unproven.
+
 **Rolling Horizon Evolutionary Algorithms (RHEA)** evolve complete macro sequences rather than
 expanding a strict prefix tree. Mutation can recover plans that beam pruning would discard and can
 work well with irregular candidate sets. The cost is seed variance, legality repair and less
@@ -971,9 +980,10 @@ Exit criterion: clearly beats first-legal/random across seats and makes zero ill
 
 Exit criterion: search improves held-out league rank at an acceptable per-decision latency.
 
-Current boundary: bounded phase-local candidates and `GameMemory v1` are implemented and pass
-official-engine legality audits. The reactive plan graph, opportunity arbiter and opponent-response
-scenario search are not implemented. The first static heuristic evaluator is deliberately unpromoted:
+Current boundary: bounded phase-local candidates, `GameMemory v2`, plan/opportunity arbitration and
+the first opponent-response scenario-beam contract are implemented and pass their legality/privacy
+audits. Scenario search is not promoted because no one-/three-second terminal league has passed and
+the first official smoke preferred skipping a turn-1 hire. The first static heuristic evaluator is deliberately unpromoted:
 it completed games legally but lost all initial paired games to both the built-in AI and
 safe-first. The failure trace showed demand donation to closer competitors and excessive staff
 investment. The next experiment must evaluate candidate consequences in official engine clones;

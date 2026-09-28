@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "fcm.scenario-beam-protocol.v1",
+  "experimentId": 18,
+  "seed": "scenario-beam-official-smoke-01",
+  "players": ["beam-agent", "FcmAI"],
+  "actorSeat": 0,
+  "opponentSeat": 1,
+  "fixtureEpochMs": 1700000000000,
+  "sampleSeeds": ["official-smoke-01", "official-smoke-02"],
+  "budget": {
+    "maxRootCandidates": 2,
+    "branchFactor": 2,
+    "beamWidth": 2,
+    "maxOwnDepth": 4,
+    "maxTransitions": 80,
+    "deadlineMs": 10000
+  },
+  "promotionHoldoutOpened": false
+}

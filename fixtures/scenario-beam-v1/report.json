@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "fcm.scenario-beam-smoke.v1",
+  "experimentId": 18,
+  "protocolDigest": "sha256:4aeb8f9f751c6354a8ee73e8016cac3a24564b37099b754278cefc63b9a0bf1c",
+  "rulesetHash": "a171620e533a34f0c77133afac1d239a02c7600978486d09a77a20ead95d0b5e",
+  "engineProtocolVersion": "fcm-engine-v1",
+  "target": {
+    "phase": 5,
+    "subphase": 1,
+    "turn": 1
+  },
+  "staticCandidateId": "p5s1-hire-1dfd160273",
+  "selectedCandidateId": "p5s1-fallback-21d4f44933",
+  "changedStatic": true,
+  "evaluated": [
+    {
+      "candidateId": "p5s1-hire-1dfd160273",
+      "meanScore": 35.4,
+      "scenarioCount": 2,
+      "traceDepths": [
+        4,
+        4
+      ]
+    },
+    {
+      "candidateId": "p5s1-fallback-21d4f44933",
+      "meanScore": 39,
+      "scenarioCount": 2,
+      "traceDepths": [
+        2,
+        2
+      ]
+    }
+  ],
+  "metrics": {
+    "offeredCandidates": 9,
+    "rootCandidates": 2,
+    "beliefSamples": 2,
+    "completedRootScenarios": 4,
+    "officialTransitions": 20,
+    "leafEvaluations": 16,
+    "maxOwnDepthReached": 4,
+    "stopReason": "complete",
+    "fallbackUsed": false
+  },
+  "failures": 0,
+  "privatePayloadPersisted": false,
+  "promotionHoldoutOpened": false,
+  "strengthPromoted": false
+}
