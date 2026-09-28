@@ -477,8 +477,12 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     minimum official-engine budget baseline: one- and three-second tiers each complete 8/8 runs,
     evaluate both root candidates, and never fall back. The one-second P95 is 995.95ms and therefore
     too close to the cap for more work; the three-second P95 is 1096.87ms and leaves capacity. Next
-    change only the three-second arm from one to two generations, retaining all other fixtures,
-    beliefs, candidates, horizon and evaluator. This is throughput calibration, not strength proof.
+    changed only the three-second arm from one to two generations while retaining all other fixtures,
+    beliefs, candidates, horizon and evaluator. All 8 runs reported two complete generations inside
+    one second, but the second generation added zero novel genomes: every run remained at two unique
+    genomes and four scenario evaluations. Iteration 30 is rejected as cached pseudo-progress. Next
+    add a tested novelty contract to mutation, then repeat this exact fixture. This is throughput
+    calibration, not strength proof.
 
 - [ ] **P4.1c Evaluate belief-aware information-set search only where uncertainty warrants it.**
   - Why: hidden/simultaneous choices may justify ISMCTS/POMCP-style sampling, but naive MCTS or

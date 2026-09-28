@@ -15,9 +15,12 @@ import { rheaStrategy } from '../src/rhea-strategy.mjs'
 import { deterministicStrategy } from '../src/strategy.mjs'
 
 const root = path.resolve(new URL('..', import.meta.url).pathname)
-const protocol = JSON.parse(await readFile(path.join(root, 'fixtures/rhea-budget-v3/protocol.json'), 'utf8'))
+const fixtureName = process.argv[2] ?? 'rhea-budget-v3'
+assert.match(fixtureName, /^rhea-[a-z0-9-]+$/)
+const fixtureDirectory = path.join(root, 'fixtures', fixtureName)
+const protocol = JSON.parse(await readFile(path.join(fixtureDirectory, 'protocol.json'), 'utf8'))
 const population = JSON.parse(await readFile(path.join(root, 'fixtures/opponent-population-v1/manifest.json'), 'utf8'))
-const outputPath = path.join(root, 'fixtures/rhea-budget-v3/report.json')
+const outputPath = path.join(fixtureDirectory, 'report.json')
 
 function digest(value) {
   return `sha256:${createHash('sha256').update(JSON.stringify(value)).digest('hex')}`
@@ -99,7 +102,7 @@ const summary = Object.fromEntries(protocol.externalDeadlinesMs.map((deadline) =
   }]
 }))
 const report = {
-  schemaVersion: 'fcm.rhea-budget-baseline.v3',
+  schemaVersion: protocol.reportSchemaVersion ?? 'fcm.rhea-budget-baseline.v3',
   experimentId: protocol.experimentId,
   protocolDigest: digest(protocol),
   rows,

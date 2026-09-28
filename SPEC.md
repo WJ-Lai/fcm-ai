@@ -539,9 +539,14 @@ population two and one generation. Both the one-second and three-second tiers co
 runs, evaluate both roots and avoid fallback. The one-second P95 is 995.95ms, leaving no credible
 margin beyond the existing 20% internal headroom; the three-second P95 is 1096.87ms and is materially
 underused. Therefore budget tiers must not share one search shape: keep the one-second minimum as a
-latency control and test a second generation only in the three-second tier. Completion and timing are
-mechanism gates, not evidence that RHEA plays better; terminal promotion still requires paired,
-equal-budget outcomes and horizon/seed robustness.
+latency control and test a second generation only in the three-second tier. That test exposed a
+contract gap: all eight runs reported two completed generations, yet the second population contained
+only cached genomes, leaving unique genomes at two and scenario evaluations at four. A generation is
+not meaningful progress unless it evaluates at least one novel genome whenever unused genotype space
+exists. Mutation must therefore exclude both its parent and previously evaluated genomes, with a
+bounded deterministic fallback when random attempts collide. Completion and timing are mechanism
+gates, not evidence that RHEA plays better; terminal promotion still requires paired, equal-budget
+outcomes and horizon/seed robustness.
 
 ### 6.8 Execution, memory and learning
 

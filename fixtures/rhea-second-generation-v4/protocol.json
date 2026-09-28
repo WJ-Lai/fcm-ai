@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "fcm.rhea-budget-protocol.v4",
+  "reportSchemaVersion": "fcm.rhea-second-generation.v4",
+  "experimentId": 30,
+  "seed": "rhea-budget-baseline-01",
+  "players": ["rhea-agent", "FcmAI"],
+  "actorSeat": 0,
+  "opponentSeat": 1,
+  "sampleSeeds": ["rhea-budget-a", "rhea-budget-b"],
+  "evolutionSeed": "rhea-budget-evolution-v1",
+  "externalDeadlinesMs": [3000],
+  "headroomRatio": 0.2,
+  "replicates": 8,
+  "budget": {
+    "populationSize": 2,
+    "eliteCount": 1,
+    "generations": 2,
+    "horizonLength": 2,
+    "geneCardinality": 3,
+    "maxEvaluations": 8,
+    "deadlineMs": 1
+  },
+  "promotionHoldoutOpened": false
+}
