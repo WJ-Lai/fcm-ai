@@ -69,7 +69,7 @@
       "firstPlaces": 2,
       "meanAgentMoney": 261.75,
       "gateFallbacks": 4,
-      "maxDecisionMs": 1122.8225180000009
+      "maxDecisionMs": 926.5069890000013
     },
     "agreement-3000ms": {
       "games": 4,
@@ -78,7 +78,7 @@
       "firstPlaces": 2,
       "meanAgentMoney": 261.75,
       "gateFallbacks": 4,
-      "maxDecisionMs": 2909.7224609999976
+      "maxDecisionMs": 2461.9086280000047
     }
   },
   "games": [
@@ -148,238 +148,6 @@
         "decisions": 0,
         "fallbacks": 0,
         "details": []
-      }
-    },
-    {
-      "arm": "agreement-1000ms",
-      "seed": "scenario-beam-dev-01",
-      "agentSeat": 0,
-      "completed": true,
-      "violation": null,
-      "commands": 173,
-      "gameLatencyMs": 19637,
-      "agentRank": 1,
-      "agentMoney": 498,
-      "opponentMoney": 8,
-      "gate": {
-        "decisions": 1,
-        "fallbacks": 1,
-        "details": [
-          {
-            "elapsedMs": 1037.6269999999931,
-            "gateReason": "shallow-incomplete",
-            "fallbackUsed": true,
-            "staticCandidateId": "p5s1-hire-1dfd160273",
-            "shallowCandidateId": "p5s1-hire-1dfd160273",
-            "deepCandidateId": "p5s1-hire-1dfd160273",
-            "selectedCandidateId": "p5s1-hire-1dfd160273",
-            "shallowStopReason": "deadline",
-            "deepStopReason": "deadline"
-          }
-        ]
-      }
-    },
-    {
-      "arm": "agreement-1000ms",
-      "seed": "scenario-beam-dev-01",
-      "agentSeat": 1,
-      "completed": true,
-      "violation": null,
-      "commands": 407,
-      "gameLatencyMs": 50147,
-      "agentRank": 2,
-      "agentMoney": 0,
-      "opponentMoney": 554,
-      "gate": {
-        "decisions": 1,
-        "fallbacks": 1,
-        "details": [
-          {
-            "elapsedMs": 1111.9879870000004,
-            "gateReason": "shallow-incomplete",
-            "fallbackUsed": true,
-            "staticCandidateId": "p5s1-hire-1dfd160273",
-            "shallowCandidateId": "p5s1-hire-1dfd160273",
-            "deepCandidateId": "p5s1-hire-1dfd160273",
-            "selectedCandidateId": "p5s1-hire-1dfd160273",
-            "shallowStopReason": "deadline",
-            "deepStopReason": "deadline"
-          }
-        ]
-      }
-    },
-    {
-      "arm": "agreement-1000ms",
-      "seed": "scenario-beam-dev-02",
-      "agentSeat": 0,
-      "completed": true,
-      "violation": null,
-      "commands": 280,
-      "gameLatencyMs": 32628,
-      "agentRank": 2,
-      "agentMoney": 14,
-      "opponentMoney": 506,
-      "gate": {
-        "decisions": 1,
-        "fallbacks": 1,
-        "details": [
-          {
-            "elapsedMs": 1122.8225180000009,
-            "gateReason": "shallow-incomplete",
-            "fallbackUsed": true,
-            "staticCandidateId": "p5s1-hire-1dfd160273",
-            "shallowCandidateId": "p5s1-hire-1dfd160273",
-            "deepCandidateId": "p5s1-hire-1dfd160273",
-            "selectedCandidateId": "p5s1-hire-1dfd160273",
-            "shallowStopReason": "deadline",
-            "deepStopReason": "deadline"
-          }
-        ]
-      }
-    },
-    {
-      "arm": "agreement-1000ms",
-      "seed": "scenario-beam-dev-02",
-      "agentSeat": 1,
-      "completed": true,
-      "violation": null,
-      "commands": 246,
-      "gameLatencyMs": 27885,
-      "agentRank": 1,
-      "agentMoney": 535,
-      "opponentMoney": 15,
-      "gate": {
-        "decisions": 1,
-        "fallbacks": 1,
-        "details": [
-          {
-            "elapsedMs": 1028.753837999975,
-            "gateReason": "shallow-incomplete",
-            "fallbackUsed": true,
-            "staticCandidateId": "p5s1-hire-1dfd160273",
-            "shallowCandidateId": "p5s1-hire-1dfd160273",
-            "deepCandidateId": "p5s1-hire-1dfd160273",
-            "selectedCandidateId": "p5s1-hire-1dfd160273",
-            "shallowStopReason": "deadline",
-            "deepStopReason": "deadline"
-          }
-        ]
-      }
-    },
-    {
-      "arm": "agreement-3000ms",
-      "seed": "scenario-beam-dev-01",
-      "agentSeat": 0,
-      "completed": true,
-      "violation": null,
-      "commands": 173,
-      "gameLatencyMs": 21683,
-      "agentRank": 1,
-      "agentMoney": 498,
-      "opponentMoney": 8,
-      "gate": {
-        "decisions": 1,
-        "fallbacks": 1,
-        "details": [
-          {
-            "elapsedMs": 2909.7224609999976,
-            "gateReason": "horizon-disagreement",
-            "fallbackUsed": true,
-            "staticCandidateId": "p5s1-hire-1dfd160273",
-            "shallowCandidateId": "p5s1-hire-1dfd160273",
-            "deepCandidateId": "p5s1-fallback-21d4f44933",
-            "selectedCandidateId": "p5s1-hire-1dfd160273",
-            "shallowStopReason": "complete",
-            "deepStopReason": "complete"
-          }
-        ]
-      }
-    },
-    {
-      "arm": "agreement-3000ms",
-      "seed": "scenario-beam-dev-01",
-      "agentSeat": 1,
-      "completed": true,
-      "violation": null,
-      "commands": 407,
-      "gameLatencyMs": 52025,
-      "agentRank": 2,
-      "agentMoney": 0,
-      "opponentMoney": 554,
-      "gate": {
-        "decisions": 1,
-        "fallbacks": 1,
-        "details": [
-          {
-            "elapsedMs": 2755.9530969999614,
-            "gateReason": "horizon-disagreement",
-            "fallbackUsed": true,
-            "staticCandidateId": "p5s1-hire-1dfd160273",
-            "shallowCandidateId": "p5s1-hire-1dfd160273",
-            "deepCandidateId": "p5s1-fallback-21d4f44933",
-            "selectedCandidateId": "p5s1-hire-1dfd160273",
-            "shallowStopReason": "complete",
-            "deepStopReason": "complete"
-          }
-        ]
-      }
-    },
-    {
-      "arm": "agreement-3000ms",
-      "seed": "scenario-beam-dev-02",
-      "agentSeat": 0,
-      "completed": true,
-      "violation": null,
-      "commands": 280,
-      "gameLatencyMs": 35306,
-      "agentRank": 2,
-      "agentMoney": 14,
-      "opponentMoney": 506,
-      "gate": {
-        "decisions": 1,
-        "fallbacks": 1,
-        "details": [
-          {
-            "elapsedMs": 2601.5077909999527,
-            "gateReason": "horizon-disagreement",
-            "fallbackUsed": true,
-            "staticCandidateId": "p5s1-hire-1dfd160273",
-            "shallowCandidateId": "p5s1-hire-1dfd160273",
-            "deepCandidateId": "p5s1-fallback-21d4f44933",
-            "selectedCandidateId": "p5s1-hire-1dfd160273",
-            "shallowStopReason": "complete",
-            "deepStopReason": "complete"
-          }
-        ]
-      }
-    },
-    {
-      "arm": "agreement-3000ms",
-      "seed": "scenario-beam-dev-02",
-      "agentSeat": 1,
-      "completed": true,
-      "violation": null,
-      "commands": 246,
-      "gameLatencyMs": 29841,
-      "agentRank": 1,
-      "agentMoney": 535,
-      "opponentMoney": 15,
-      "gate": {
-        "decisions": 1,
-        "fallbacks": 1,
-        "details": [
-          {
-            "elapsedMs": 2427.3803490000428,
-            "gateReason": "horizon-disagreement",
-            "fallbackUsed": true,
-            "staticCandidateId": "p5s1-hire-1dfd160273",
-            "shallowCandidateId": "p5s1-hire-1dfd160273",
-            "deepCandidateId": "p5s1-fallback-21d4f44933",
-            "selectedCandidateId": "p5s1-hire-1dfd160273",
-            "shallowStopReason": "complete",
-            "deepStopReason": "complete"
-          }
-        ]
       }
     },
     {
@@ -493,6 +261,254 @@
             "deepCandidateId": "p5s1-fallback-21d4f44933",
             "selectedCandidateId": "p5s1-fallback-21d4f44933",
             "shallowStopReason": null,
+            "deepStopReason": "complete"
+          }
+        ]
+      }
+    },
+    {
+      "arm": "agreement-1000ms",
+      "seed": "scenario-beam-dev-01",
+      "agentSeat": 0,
+      "completed": true,
+      "violation": null,
+      "commands": 173,
+      "gameLatencyMs": 20200,
+      "agentRank": 1,
+      "agentMoney": 498,
+      "opponentMoney": 8,
+      "gate": {
+        "decisions": 1,
+        "fallbacks": 1,
+        "details": [
+          {
+            "elapsedMs": 870.7581569999999,
+            "planningDeadlineMs": 800,
+            "headroomRatio": 0.2,
+            "gateReason": "shallow-incomplete",
+            "fallbackUsed": true,
+            "staticCandidateId": "p5s1-hire-1dfd160273",
+            "shallowCandidateId": "p5s1-hire-1dfd160273",
+            "deepCandidateId": "p5s1-hire-1dfd160273",
+            "selectedCandidateId": "p5s1-hire-1dfd160273",
+            "shallowStopReason": "deadline",
+            "deepStopReason": "deadline"
+          }
+        ]
+      }
+    },
+    {
+      "arm": "agreement-1000ms",
+      "seed": "scenario-beam-dev-01",
+      "agentSeat": 1,
+      "completed": true,
+      "violation": null,
+      "commands": 407,
+      "gameLatencyMs": 48715,
+      "agentRank": 2,
+      "agentMoney": 0,
+      "opponentMoney": 554,
+      "gate": {
+        "decisions": 1,
+        "fallbacks": 1,
+        "details": [
+          {
+            "elapsedMs": 839.4491839999973,
+            "planningDeadlineMs": 800,
+            "headroomRatio": 0.2,
+            "gateReason": "shallow-incomplete",
+            "fallbackUsed": true,
+            "staticCandidateId": "p5s1-hire-1dfd160273",
+            "shallowCandidateId": "p5s1-hire-1dfd160273",
+            "deepCandidateId": "p5s1-hire-1dfd160273",
+            "selectedCandidateId": "p5s1-hire-1dfd160273",
+            "shallowStopReason": "deadline",
+            "deepStopReason": "deadline"
+          }
+        ]
+      }
+    },
+    {
+      "arm": "agreement-1000ms",
+      "seed": "scenario-beam-dev-02",
+      "agentSeat": 0,
+      "completed": true,
+      "violation": null,
+      "commands": 280,
+      "gameLatencyMs": 32170,
+      "agentRank": 2,
+      "agentMoney": 14,
+      "opponentMoney": 506,
+      "gate": {
+        "decisions": 1,
+        "fallbacks": 1,
+        "details": [
+          {
+            "elapsedMs": 875.006567000004,
+            "planningDeadlineMs": 800,
+            "headroomRatio": 0.2,
+            "gateReason": "shallow-incomplete",
+            "fallbackUsed": true,
+            "staticCandidateId": "p5s1-hire-1dfd160273",
+            "shallowCandidateId": "p5s1-hire-1dfd160273",
+            "deepCandidateId": "p5s1-hire-1dfd160273",
+            "selectedCandidateId": "p5s1-hire-1dfd160273",
+            "shallowStopReason": "deadline",
+            "deepStopReason": "deadline"
+          }
+        ]
+      }
+    },
+    {
+      "arm": "agreement-1000ms",
+      "seed": "scenario-beam-dev-02",
+      "agentSeat": 1,
+      "completed": true,
+      "violation": null,
+      "commands": 246,
+      "gameLatencyMs": 28745,
+      "agentRank": 1,
+      "agentMoney": 535,
+      "opponentMoney": 15,
+      "gate": {
+        "decisions": 1,
+        "fallbacks": 1,
+        "details": [
+          {
+            "elapsedMs": 926.5069890000013,
+            "planningDeadlineMs": 800,
+            "headroomRatio": 0.2,
+            "gateReason": "shallow-incomplete",
+            "fallbackUsed": true,
+            "staticCandidateId": "p5s1-hire-1dfd160273",
+            "shallowCandidateId": "p5s1-hire-1dfd160273",
+            "deepCandidateId": "p5s1-hire-1dfd160273",
+            "selectedCandidateId": "p5s1-hire-1dfd160273",
+            "shallowStopReason": "deadline",
+            "deepStopReason": "deadline"
+          }
+        ]
+      }
+    },
+    {
+      "arm": "agreement-3000ms",
+      "seed": "scenario-beam-dev-01",
+      "agentSeat": 0,
+      "completed": true,
+      "violation": null,
+      "commands": 173,
+      "gameLatencyMs": 21479,
+      "agentRank": 1,
+      "agentMoney": 498,
+      "opponentMoney": 8,
+      "gate": {
+        "decisions": 1,
+        "fallbacks": 1,
+        "details": [
+          {
+            "elapsedMs": 2403.174370000008,
+            "planningDeadlineMs": 2400,
+            "headroomRatio": 0.2,
+            "gateReason": "deep-incomplete",
+            "fallbackUsed": true,
+            "staticCandidateId": "p5s1-hire-1dfd160273",
+            "shallowCandidateId": "p5s1-hire-1dfd160273",
+            "deepCandidateId": "p5s1-hire-1dfd160273",
+            "selectedCandidateId": "p5s1-hire-1dfd160273",
+            "shallowStopReason": "complete",
+            "deepStopReason": "deadline"
+          }
+        ]
+      }
+    },
+    {
+      "arm": "agreement-3000ms",
+      "seed": "scenario-beam-dev-01",
+      "agentSeat": 1,
+      "completed": true,
+      "violation": null,
+      "commands": 407,
+      "gameLatencyMs": 51766,
+      "agentRank": 2,
+      "agentMoney": 0,
+      "opponentMoney": 554,
+      "gate": {
+        "decisions": 1,
+        "fallbacks": 1,
+        "details": [
+          {
+            "elapsedMs": 2461.9086280000047,
+            "planningDeadlineMs": 2400,
+            "headroomRatio": 0.2,
+            "gateReason": "deep-incomplete",
+            "fallbackUsed": true,
+            "staticCandidateId": "p5s1-hire-1dfd160273",
+            "shallowCandidateId": "p5s1-hire-1dfd160273",
+            "deepCandidateId": "p5s1-hire-1dfd160273",
+            "selectedCandidateId": "p5s1-hire-1dfd160273",
+            "shallowStopReason": "complete",
+            "deepStopReason": "deadline"
+          }
+        ]
+      }
+    },
+    {
+      "arm": "agreement-3000ms",
+      "seed": "scenario-beam-dev-02",
+      "agentSeat": 0,
+      "completed": true,
+      "violation": null,
+      "commands": 280,
+      "gameLatencyMs": 33692,
+      "agentRank": 2,
+      "agentMoney": 14,
+      "opponentMoney": 506,
+      "gate": {
+        "decisions": 1,
+        "fallbacks": 1,
+        "details": [
+          {
+            "elapsedMs": 2423.095013000013,
+            "planningDeadlineMs": 2400,
+            "headroomRatio": 0.2,
+            "gateReason": "deep-incomplete",
+            "fallbackUsed": true,
+            "staticCandidateId": "p5s1-hire-1dfd160273",
+            "shallowCandidateId": "p5s1-hire-1dfd160273",
+            "deepCandidateId": "p5s1-hire-1dfd160273",
+            "selectedCandidateId": "p5s1-hire-1dfd160273",
+            "shallowStopReason": "complete",
+            "deepStopReason": "deadline"
+          }
+        ]
+      }
+    },
+    {
+      "arm": "agreement-3000ms",
+      "seed": "scenario-beam-dev-02",
+      "agentSeat": 1,
+      "completed": true,
+      "violation": null,
+      "commands": 246,
+      "gameLatencyMs": 29649,
+      "agentRank": 1,
+      "agentMoney": 535,
+      "opponentMoney": 15,
+      "gate": {
+        "decisions": 1,
+        "fallbacks": 1,
+        "details": [
+          {
+            "elapsedMs": 2453.6356729999825,
+            "planningDeadlineMs": 2400,
+            "headroomRatio": 0.2,
+            "gateReason": "horizon-disagreement",
+            "fallbackUsed": true,
+            "staticCandidateId": "p5s1-hire-1dfd160273",
+            "shallowCandidateId": "p5s1-hire-1dfd160273",
+            "deepCandidateId": "p5s1-fallback-21d4f44933",
+            "selectedCandidateId": "p5s1-hire-1dfd160273",
+            "shallowStopReason": "complete",
             "deepStopReason": "complete"
           }
         ]

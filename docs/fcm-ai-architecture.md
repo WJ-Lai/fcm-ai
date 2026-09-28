@@ -390,7 +390,8 @@ The first terminal puncture found a harmful hire→skip change, but its opponent
 on the arm id and was not a valid paired estimate. Under corrected common random streams, static wins
 2/4 at mean $261.75 and one ungated three-second intervention wins 1/4 at mean $153.75. A shallow/deep
 agreement gate rejects that change and exactly reproduces static rank and money in both one-/three-
-second arms. Three seconds meets its cap (max 2.91s); one second still overshoots (max 1.12s).
+second arms. A 20% execution-headroom reserve accounts for non-preemptible official transitions and
+brings measured maxima to 0.93s and 2.46s without changing any terminal outcome.
 
 A fixed-root depth sweep confirms an intermediate-horizon investment alias. Hire is preferred at
 depths 1–2, skip at 3–5, then hire again from depth 6; its delayed payoff becomes dominant at 7–8.

@@ -441,9 +441,10 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     payoff appears at depths 7–8. Depth 8 costs about 5.38 seconds, so merely increasing the fixed
     horizon violates the target budget. Next test one conservative variable: require shallow/deep
     recommendation agreement before a completed search may override the static prior. That gate now
-    restores both budget arms exactly to static money/rank in every paired game. The one-second max
-    is still 1.12s, so P4.1 remains open for deadline headroom and proof that the gate can accept a
-    beneficial change rather than always abstaining.
+    restores both budget arms exactly to static money/rank in every paired game. A 20% cooperative-
+    deadline headroom reduces measured maxima to 0.93s and 2.46s, so both tiers now meet their caps.
+    P4.1 remains open until the gate accepts a beneficial change on disjoint development positions
+    rather than always abstaining, followed by a declared held-out league.
 
 - [ ] **P4.1b Implement RHEA as an equal-budget challenger.**
   - Why: rolling-horizon evolution may discover useful macro sequences that beam pruning loses in

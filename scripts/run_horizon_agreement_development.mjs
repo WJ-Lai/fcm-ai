@@ -84,6 +84,8 @@ async function play(arm, seed, agentSeat, gameID) {
           const agreement = arm.mode === 'agreement'
           decisions.push({
             elapsedMs: gated.metrics.elapsedMs,
+            planningDeadlineMs: agreement ? gated.metrics.planningDeadlineMs : null,
+            headroomRatio: agreement ? gated.metrics.headroomRatio : null,
             gateReason: agreement ? gated.gateReason : 'ungated',
             fallbackUsed: agreement ? gated.fallbackUsed : gated.metrics.fallbackUsed,
             staticCandidateId: gated.staticSelected.id,
@@ -125,7 +127,11 @@ async function play(arm, seed, agentSeat, gameID) {
 let games = []
 try {
   const checkpoint = JSON.parse(await readFile(outputPath, 'utf8'))
-  games = (checkpoint.games ?? []).filter((game) => protocol.arms.some((arm) => arm.id === game.arm))
+  games = (checkpoint.games ?? []).filter((game) => {
+    if (!protocol.arms.some((arm) => arm.id === game.arm)) return false
+    if (!game.arm.startsWith('agreement-')) return true
+    return game.gate?.details?.[0]?.headroomRatio === 0.2
+  })
 } catch (error) {
   if (error.code !== 'ENOENT') throw error
 }

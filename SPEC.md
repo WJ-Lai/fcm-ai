@@ -489,9 +489,11 @@ and is logged rather than silently averaged away.
 The multi-horizon gate passes its first controlled terminal safety test. Both one-second and three-
 second arms reject all four interventions and reproduce the static arm's terminal rank and both
 players' money exactly game-by-game. The three-second maximum decision latency is 2.91 seconds. The
-one-second maximum is 1.12 seconds, so that tier misses its wall-clock target and cannot yet be
-promoted. The gate has demonstrated safe abstention only; it must still accept useful changes on
-disjoint development positions before it can count as a stronger planner.
+one-second maximum was initially 1.12 seconds because official engine transitions are cooperative,
+not preemptible. Reserving 20% execution headroom changes no policy inputs or scoring and lowers the
+observed maxima to 0.93 and 2.46 seconds while preserving exact static terminal outcomes. Both tiers
+now meet their caps on this development block. The gate has demonstrated safe abstention only; it
+must still accept useful changes on disjoint positions before it can count as a stronger planner.
 
 ### 6.8 Execution, memory and learning
 

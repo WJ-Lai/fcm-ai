@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 
-import { adjudicateHorizonAgreement } from './horizon-agreement.mjs'
+import { adjudicateHorizonAgreement, reserveDeadlineHeadroom } from './horizon-agreement.mjs'
 
 const candidate = (id) => ({ id, actions: [{ type: id }] })
 const search = (id, { fallback = false } = {}) => ({
@@ -43,4 +43,11 @@ test('an incomplete shallow or deep search fails closed', () => {
     assert.equal(result.gateReason, reason)
     assert.equal(result.fallbackUsed, true)
   }
+})
+
+test('deadline headroom reserves bounded time for non-preemptible engine transitions', () => {
+  assert.equal(reserveDeadlineHeadroom(1000, 0.2), 800)
+  assert.equal(reserveDeadlineHeadroom(3000, 0.2), 2400)
+  assert.throws(() => reserveDeadlineHeadroom(1000, -0.1), /headroomRatio/)
+  assert.throws(() => reserveDeadlineHeadroom(1000, 1), /headroomRatio/)
 })
