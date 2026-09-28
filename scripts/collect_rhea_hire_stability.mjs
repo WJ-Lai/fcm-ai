@@ -13,6 +13,7 @@ import { auditPairedSequentialDataset } from '../src/paired-sequential-estimator
 import { prefilterDiverseCandidates } from '../src/rollout-planner.mjs'
 import { strategicProjectionDigest } from '../src/strategic-abstraction.mjs'
 import { deterministicStrategy } from '../src/strategy.mjs'
+import { extractTerminalValueFeatures } from '../src/terminal-value-v2.mjs'
 
 const root = path.resolve(new URL('..', import.meta.url).pathname)
 const fixtureName = process.argv[2] ?? 'rhea-hire-stability-v9'
@@ -29,6 +30,17 @@ const priorReport = protocol.resumeFrom == null ? null : JSON.parse(await readFi
 
 function digest(value) {
   return `sha256:${createHash('sha256').update(JSON.stringify(value)).digest('hex')}`
+}
+
+function matchesInteraction(features, interaction) {
+  if (interaction == null) return null
+  return Object.entries(interaction.predicate).every(([name, condition]) => {
+    const value = features[name]
+    if (Object.hasOwn(condition, 'equals') && value !== condition.equals) return false
+    if (Object.hasOwn(condition, 'minimum') && value < condition.minimum) return false
+    if (Object.hasOwn(condition, 'maximum') && value > condition.maximum) return false
+    return true
+  })
 }
 
 async function pendingSeat(environment, names) {
@@ -72,6 +84,7 @@ async function reconstructRoot(target) {
           candidates: [candidates[0], candidates[2]],
           publicRootDigest: digest(decision.view),
           strategicProjectionDigest: strategicProjectionDigest({ view: decision.view }),
+          publicFeatures: extractTerminalValueFeatures(decision.view, { seat: target.agentSeat }),
         }
       }
       if (eligible) scanned += 1
@@ -168,6 +181,10 @@ for (const target of protocol.targets) {
     rootId: target.rootId,
     publicRootDigest: reconstructed.publicRootDigest,
     strategicProjectionDigest: reconstructed.strategicProjectionDigest,
+    publicFeatures: protocol.predeclaredInteraction == null
+      ? undefined : reconstructed.publicFeatures,
+    interactionMatched: matchesInteraction(
+      reconstructed.publicFeatures, protocol.predeclaredInteraction),
     sampleZeroReproduced: true,
     candidates,
   })
@@ -188,6 +205,7 @@ const report = {
   protocolDigest: digest(protocol),
   sampleCount: protocol.sampleCount,
   resumedFromSampleCount: priorReport?.sampleCount ?? null,
+  predeclaredInteraction: protocol.predeclaredInteraction ?? null,
   roots,
   audit: auditPairedSequentialDataset(estimatorDataset, sequentialProtocol),
   privatePayloadPersisted: false,

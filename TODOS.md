@@ -540,6 +540,10 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     Freeze the exact interaction `exclusive == 0 && deficit >= 10` for this candidate pair, abstain
     otherwise, and test only the two untouched seat-1 roots through staged 3 -> 7 -> 15 sampling.
     Do not reinterpret the threshold after viewing validation contexts or open promotion holdout.
+    Iteration 42 reaches three independent samples: the matched root gives the alternate 2 rank wins,
+    0 losses and 1 tie; the unmatched near-boundary root (deficit 7) gives 1 win, 0 losses and 2 ties.
+    Both correctly request seven samples. Preserve these arrays exactly. If the unmatched root also
+    selects the alternate, reject the interaction instead of relaxing or moving its threshold.
 
 - [ ] **P4.1c Evaluate belief-aware information-set search only where uncertainty warrants it.**
   - Why: hidden/simultaneous choices may justify ISMCTS/POMCP-style sampling, but naive MCTS or

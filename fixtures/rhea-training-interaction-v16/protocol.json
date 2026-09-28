@@ -1,0 +1,46 @@
+{
+  "schemaVersion": "fcm.rhea-training-interaction-protocol.v16",
+  "reportSchemaVersion": "fcm.rhea-training-interaction.v16",
+  "experimentId": 42,
+  "sampleCount": 3,
+  "resumeFrom": null,
+  "maxCommands": 500,
+  "predeclaredInteraction": {
+    "name": "isolated-market-disadvantage",
+    "scope": {
+      "turn": 3,
+      "phase": 5,
+      "subphase": 2,
+      "staticCandidateId": "p5s2-train-1adebf1880",
+      "alternateCandidateId": "p5s2-train-2dd5d77261"
+    },
+    "predicate": {
+      "exclusivelyReachableHouses": { "equals": 0 },
+      "distanceDeficitTotal": { "minimum": 10 }
+    },
+    "recommendationWhenMatched": "evaluate-alternate",
+    "recommendationWhenUnmatched": "abstain",
+    "sourceProtocol": "fixtures/rhea-training-context-v15/protocol.json"
+  },
+  "targets": [
+    {
+      "rootId": "rhea-intervention-dev-03-seat-1-index-4",
+      "seed": "rhea-intervention-dev-03",
+      "agentSeat": 1,
+      "scanIndex": 4,
+      "gameID": 9913,
+      "staticCandidateId": "p5s2-train-1adebf1880",
+      "alternateCandidateId": "p5s2-train-2dd5d77261"
+    },
+    {
+      "rootId": "rhea-intervention-dev-04-seat-1-index-4",
+      "seed": "rhea-intervention-dev-04",
+      "agentSeat": 1,
+      "scanIndex": 4,
+      "gameID": 9915,
+      "staticCandidateId": "p5s2-train-1adebf1880",
+      "alternateCandidateId": "p5s2-train-2dd5d77261"
+    }
+  ],
+  "promotionHoldoutOpened": false
+}

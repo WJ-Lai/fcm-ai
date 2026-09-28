@@ -649,6 +649,15 @@ equal zero and distance deficit is at least 10; abstain everywhere else. This is
 validation hypothesis, not a policy. Its two independent roots must pass the same rank-primary
 3 -> 7 -> 15 paired protocol; discovery roots, promotion holdout and online actions remain excluded.
 
+At the three-sample independent gate, one root matches the preregistered interaction exactly
+(`exclusive=0`, deficit 10); the other is a near-boundary negative control (`exclusive=0`, deficit
+7). The alternate records two rank wins and one tie on the matched root, and one win plus two ties on
+the unmatched root, with no losses in either. Sample zero reproduces both prior single-continuation
+results. Selection is mathematically unreachable at three samples, so both roots advance to seven.
+The favorable unmatched signal is retained as a real falsification risk: the deficit threshold must
+not be edited after seeing it, and the interaction fails if the unmatched root also obtains stable
+rank evidence for the alternate.
+
 ### 6.8 Execution, memory and learning
 
 The execution layer accepts one versioned candidate id, revalidates it against the current game
