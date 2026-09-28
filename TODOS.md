@@ -472,7 +472,9 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     or failed samples and deadline fallback. The official smoke completes two generations, five
     unique genomes and ten scenario evaluations with a byte-reproducible sanitized report, but
     selects the same known harmful skip at score 39. Mechanism passes; strength does not. Next run
-    official paired information-set audits, then one-/three-second equal-budget behavior.
+    official paired information-set audits, then one-/three-second equal-budget behavior. Iteration
+    28 passes both official reserve and restructuring pairs: 16 matched outer seeds yield mismatch 0,
+    TV 0, no clone attempt and byte-reproducible sanitized reports. Proceed to budget calibration.
 
 - [ ] **P4.1c Evaluate belief-aware information-set search only where uncertainty warrants it.**
   - Why: hidden/simultaneous choices may justify ISMCTS/POMCP-style sampling, but naive MCTS or

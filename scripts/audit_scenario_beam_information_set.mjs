@@ -11,19 +11,27 @@ import { OfflineEnvironment } from '../../obg-server-fcm-agent-rebased/mcp-serve
 import { safeFirstLegal } from '../src/baselines.mjs'
 import { auditInformationSetPolicy } from '../src/information-set-audit.mjs'
 import { buildOpponentBelief } from '../src/opponent-population.mjs'
+import { rheaStrategy } from '../src/rhea-strategy.mjs'
 import { scenarioBeamStrategy } from '../src/scenario-beam-strategy.mjs'
 import { deterministicStrategy } from '../src/strategy.mjs'
 
 const root = path.resolve(new URL('..', import.meta.url).pathname)
+const fixtureName = process.argv[2] ?? 'scenario-beam-information-set-v2'
 const protocol = JSON.parse(await readFile(
-  path.join(root, 'fixtures/scenario-beam-information-set-v2/protocol.json'), 'utf8'))
+  path.join(root, `fixtures/${fixtureName}/protocol.json`), 'utf8'))
 const population = JSON.parse(await readFile(
   path.join(root, 'fixtures/opponent-population-v1/manifest.json'), 'utf8'))
 const reserveProtocol = JSON.parse(await readFile(
   path.join(root, 'fixtures/information-set-audit-v2/protocol.json'), 'utf8'))
 const restructuringProtocol = JSON.parse(await readFile(
   path.join(root, 'fixtures/information-set-audit-v3/protocol.json'), 'utf8'))
-const outputPath = path.join(root, 'fixtures/scenario-beam-information-set-v2/report.json')
+const outputPath = path.join(root, `fixtures/${fixtureName}/report.json`)
+const planner = protocol.planner ?? 'scenario-beam-v1'
+const reportSchemaVersion = protocol.reportSchemaVersion
+  ?? 'fcm.scenario-beam-information-set-audit.v2'
+const isScenarioBeam = planner === 'scenario-beam-v1'
+const plannerLabel = isScenarioBeam ? 'ScenarioBeam' : 'RHEA'
+const worldPrefix = isScenarioBeam ? 'beam' : 'rhea'
 
 assert.ok(Number.isSafeInteger(protocol.fixtureEpochMs), 'fixtureEpochMs must be an integer')
 Date.now = () => protocol.fixtureEpochMs
@@ -62,7 +70,7 @@ async function reserveWorlds() {
     seed: reserveProtocol.seed,
     playerNames: reserveProtocol.players,
     gameID: 9819,
-    gameName: 'ScenarioBeam reserve audit',
+    gameName: `${plannerLabel} reserve audit`,
   })
   await advanceUntil(base, 2)
   const left = base.clone()
@@ -77,8 +85,8 @@ async function reserveWorlds() {
     actorSeat: reserveProtocol.actorSeat,
     opponentSeat: reserveProtocol.opponentSubmissionOrder[0],
     worlds: [
-      { worldId: 'beam-reserve-world-a', trustedWorld: left },
-      { worldId: 'beam-reserve-world-b', trustedWorld: right },
+      { worldId: `${worldPrefix}-reserve-world-a`, trustedWorld: left },
+      { worldId: `${worldPrefix}-reserve-world-b`, trustedWorld: right },
     ],
   }
 }
@@ -88,7 +96,7 @@ async function restructuringWorlds() {
     seed: restructuringProtocol.seed,
     playerNames: restructuringProtocol.players,
     gameID: 9820,
-    gameName: 'ScenarioBeam restructuring audit',
+    gameName: `${plannerLabel} restructuring audit`,
   })
   await advanceUntil(base, 3)
   const active = base.clone()
@@ -108,8 +116,8 @@ async function restructuringWorlds() {
     actorSeat: restructuringProtocol.actorSeat,
     opponentSeat: restructuringProtocol.opponentSubmissionOrder[0],
     worlds: [
-      { worldId: 'beam-restructuring-world-a', trustedWorld: active },
-      { worldId: 'beam-restructuring-world-b', trustedWorld: beach },
+      { worldId: `${worldPrefix}-restructuring-world-a`, trustedWorld: active },
+      { worldId: `${worldPrefix}-restructuring-world-b`, trustedWorld: beach },
     ],
   }
 }
@@ -159,17 +167,20 @@ async function auditBoundary(fixture) {
       const guardedEnvironment = {
         clone() {
           cloneAttempted = true
-          throw new Error('ScenarioBeam must not clone a live simultaneous root')
+          throw new Error(`${planner} must not clone a live simultaneous root`)
         },
       }
-      const result = await scenarioBeamStrategy(view, {
+      const common = {
         env: guardedEnvironment,
         belief,
         population,
         seat: fixture.actorSeat,
         sampleSeeds: protocol.innerSampleSuffixes.map((suffix) => `${seed}-${suffix}`),
         now: () => 0,
-      })
+      }
+      const result = planner === 'rhea-v1'
+        ? await rheaStrategy(view, { ...common, evolutionSeed: `${seed}-evolution` })
+        : await scenarioBeamStrategy(view, common)
       rootFallbackReason ??= result.metrics.stopReason
       assert.equal(result.metrics.stopReason, rootFallbackReason,
         'fallback reason changed across paired worlds')
@@ -196,9 +207,9 @@ for (const fixture of [await reserveWorlds(), await restructuringWorlds()]) {
   boundaries.push(await auditBoundary(fixture))
 }
 const report = {
-  schemaVersion: 'fcm.scenario-beam-information-set-audit.v2',
+  schemaVersion: reportSchemaVersion,
   experimentId: protocol.experimentId,
-  planner: 'scenario-beam-v1',
+  planner,
   protocolDigest: digest(protocol),
   boundaries,
   privatePayloadPersisted: false,

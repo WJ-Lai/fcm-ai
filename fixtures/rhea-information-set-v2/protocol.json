@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "fcm.rhea-information-set-protocol.v2",
+  "reportSchemaVersion": "fcm.rhea-information-set-audit.v2",
+  "planner": "rhea-v1",
+  "experimentId": 28,
+  "fixtureEpochMs": 1700000000000,
+  "sampleSeeds": [
+    "rhea-is-01", "rhea-is-02", "rhea-is-03", "rhea-is-04",
+    "rhea-is-05", "rhea-is-06", "rhea-is-07", "rhea-is-08",
+    "rhea-is-09", "rhea-is-10", "rhea-is-11", "rhea-is-12",
+    "rhea-is-13", "rhea-is-14", "rhea-is-15", "rhea-is-16"
+  ],
+  "innerSampleSuffixes": ["left", "right"],
+  "maximumTotalVariation": 0,
+  "promotionHoldoutOpened": false
+}

@@ -527,6 +527,13 @@ with a byte-reproducible private-payload-free report. It selects the known harmf
 showing optimizer diversity alone does not fix a biased leaf value. RHEA is mechanism-complete but
 strength-unpromoted pending information-set and equal-budget audits.
 
+RHEA also passes the actual paired-world information-set gate. On the official reserve and
+restructuring hidden envelopes, 16 matched outer seeds produce zero per-seed mismatch and zero total
+variation over four and two legal candidates respectively. Live simultaneous roots return the same
+static public action before any clone. The generalized audit runner reproduces both the new RHEA
+report and the pre-existing ScenarioBeam report byte-for-byte. This closes safety for RHEA v1 while
+leaving latency and strength unresolved.
+
 ### 6.8 Execution, memory and learning
 
 The execution layer accepts one versioned candidate id, revalidates it against the current game

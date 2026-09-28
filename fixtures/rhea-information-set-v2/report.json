@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "fcm.rhea-information-set-audit.v2",
+  "experimentId": 28,
+  "planner": "rhea-v1",
+  "protocolDigest": "sha256:aa77fcf0cd88a12b224e1eb4f3c994d5c05e37b52e45d8fd9f2f609d0cff51c3",
+  "boundaries": [
+    {
+      "boundary": "reserve-card-simultaneous-envelope",
+      "engineProtocolVersion": "fcm-engine-v1",
+      "rulesetHash": "a171620e533a34f0c77133afac1d239a02c7600978486d09a77a20ead95d0b5e",
+      "publicViewsEqual": true,
+      "publicSnapshotsEqual": true,
+      "hiddenEnvelopesDiffer": true,
+      "rootFallbackReason": "root-simultaneous",
+      "cloneAttempted": false,
+      "audit": {
+        "schemaVersion": "fcm.information-set-audit.v1",
+        "populationId": "base-public-population-v1",
+        "publicObservationDigest": "sha256:2e4dee437bf1d2e9088e787f53d8d2fe33dfa4c66a6e18c7aa3445983647f5b4",
+        "worldIds": [
+          "rhea-reserve-world-a",
+          "rhea-reserve-world-b"
+        ],
+        "legalCandidateIds": [
+          "p2s1-reserve-card-10d125fc1a",
+          "p2s1-reserve-card-30aa34c405",
+          "p2s1-reserve-card-3e02fe4f94",
+          "p2s1-reserve-card-9108f05268"
+        ],
+        "samplesPerWorld": 16,
+        "candidateCountsByWorld": {
+          "rhea-reserve-world-a": {
+            "p2s1-reserve-card-10d125fc1a": 0,
+            "p2s1-reserve-card-30aa34c405": 16,
+            "p2s1-reserve-card-3e02fe4f94": 0,
+            "p2s1-reserve-card-9108f05268": 0
+          },
+          "rhea-reserve-world-b": {
+            "p2s1-reserve-card-10d125fc1a": 0,
+            "p2s1-reserve-card-30aa34c405": 16,
+            "p2s1-reserve-card-3e02fe4f94": 0,
+            "p2s1-reserve-card-9108f05268": 0
+          }
+        },
+        "pairwise": [
+          {
+            "leftWorldId": "rhea-reserve-world-a",
+            "rightWorldId": "rhea-reserve-world-b",
+            "totalVariation": 0
+          }
+        ],
+        "maximumPairwiseTotalVariation": 0,
+        "perSeedMismatchRate": 0,
+        "maximumTotalVariation": 0,
+        "passed": true
+      }
+    },
+    {
+      "boundary": "restructuring-simultaneous-envelope",
+      "engineProtocolVersion": "fcm-engine-v1",
+      "rulesetHash": "a171620e533a34f0c77133afac1d239a02c7600978486d09a77a20ead95d0b5e",
+      "publicViewsEqual": true,
+      "publicSnapshotsEqual": true,
+      "hiddenEnvelopesDiffer": true,
+      "rootFallbackReason": "root-simultaneous",
+      "cloneAttempted": false,
+      "audit": {
+        "schemaVersion": "fcm.information-set-audit.v1",
+        "populationId": "base-public-population-v1",
+        "publicObservationDigest": "sha256:e36c41cbece51caf199ed4b5316e4659e41f636a100f271b8723b5f68a5c326a",
+        "worldIds": [
+          "rhea-restructuring-world-a",
+          "rhea-restructuring-world-b"
+        ],
+        "legalCandidateIds": [
+          "p3s1-balanced-6e3272a0d2",
+          "p3s1-fallback-5c896494fa"
+        ],
+        "samplesPerWorld": 16,
+        "candidateCountsByWorld": {
+          "rhea-restructuring-world-a": {
+            "p3s1-balanced-6e3272a0d2": 16,
+            "p3s1-fallback-5c896494fa": 0
+          },
+          "rhea-restructuring-world-b": {
+            "p3s1-balanced-6e3272a0d2": 16,
+            "p3s1-fallback-5c896494fa": 0
+          }
+        },
+        "pairwise": [
+          {
+            "leftWorldId": "rhea-restructuring-world-a",
+            "rightWorldId": "rhea-restructuring-world-b",
+            "totalVariation": 0
+          }
+        ],
+        "maximumPairwiseTotalVariation": 0,
+        "perSeedMismatchRate": 0,
+        "maximumTotalVariation": 0,
+        "passed": true
+      }
+    }
+  ],
+  "privatePayloadPersisted": false,
+  "promotionHoldoutOpened": false
+}
