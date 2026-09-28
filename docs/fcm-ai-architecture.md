@@ -912,6 +912,12 @@ Exit criterion: clearly beats first-legal/random across seats and makes zero ill
 - Freeze strategic-abstraction collision pairs before expanding search. The suite must distinguish
   restaurant blocking, dinner inventory order, salary timing, milestone closure, bank horizon and
   commitment reuse while remaining invariant to irrelevant raw-state changes.
+- The bounded official-clone spike is now frozen in `fixtures/rollout-v1`: 13 cases across five
+  working-day subphases, three source identities and two generated seeds achieve 100% Top-1/Top-3
+  agreement with exhaustive same-horizon scoring, zero illegal selections and 1.31 s local P95.
+  The suite drift-checks the conservative public projection digest because raw compressed engine
+  blobs contain a non-semantic process-level field. This validates execution fidelity, not terminal
+  value quality; the earlier full-game loss still blocks evaluator/search promotion.
 - Treat opponent hidden simultaneous actions as sampled `believed` inputs. A planner must produce
   the same choice when unavailable opponent reserve cards or submitted move buffers are mutated;
   those metamorphic privacy tests are a promotion gate.

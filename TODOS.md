@@ -211,7 +211,7 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     Trusted cache keys fail closed without an internal SHA256 snapshot digest and vary across all
     seven required identity dimensions. Compression is deliberately deferred until held-out
     collision evidence exists. Full Node 113, Python 109 and documentation lint pass.
-- [ ] **P3.3a Prove official-clone consequence evaluation in a bounded spike.**
+- [x] **P3.3a Prove official-clone consequence evaluation in a bounded spike.**
   - Why: the first static evaluator completed games but could not distinguish demand it would sell
     from demand donated to a closer opponent. More static weight tuning cannot recover missing
     consequences.
@@ -226,15 +226,19 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     subphases achieve >=80% oracle Top-1 and >=95% Top-3, hidden-state metamorphic tests are
     invariant, every selected action is legal, and local P95 is <=3 seconds. Dynamic cases drawn
     from one self-play path are calibration evidence, not the fixed promotion suite.
-  - Current: the clone selector, strict budgets, static fallback and own-seat-only continuation are
-    implemented. A 12-case cross-seed dynamic run had 0 illegal selections, 100% agreement with the
-    exhaustive same-horizon scorer and 1.10 s local P95, but covered only working-day subphases 1/4.
-    It exposed and fixed an equal-outcome tie-break defect. The fixed >=3-subphase suite and
-    hidden-state engine fixtures remain open, so the policy is not promoted.
+  - Evidence: `fixtures/rollout-v1/manifest.json` freezes 13 source-projection digests and exhaustive
+    same-horizon oracle labels from 11 official phase fixtures plus two reproducible generated seeds.
+    Audit mode covers working-day subphases 1/2/3/4/5, selects legally in 13/13 cases, achieves
+    Top-1 13/13 and Top-3 13/13 with local P95 1.31 s, and fails on any source/oracle drift. Existing
+    simultaneous hidden-state metamorphic tests remain invariant. Discovery mode is explicitly not
+    accepted as promotion evidence. This promotes the bounded clone mechanism, not the evaluator.
+  - Historical failure retained: the earlier dynamic suite sampled only subphases 1/4 because
+    safe-first trajectories never created training/marketing choices. Merely increasing seeds to 20
+    reproduced the same two-subphase ceiling; the fixed official-fixture suite repaired coverage.
     A paired full game then scored $10 against the built-in AI's $498 versus $35/$493 for the static
     policy on the same seed. It made 34 hires, no marketing, and changed 43/66 eligible decisions.
-    This falsifies the current short-horizon score as a strategy oracle; do not expand rollout search
-    until P3.1b and an independently labelled tactical outcome suite are complete.
+    This falsifies the current short-horizon score as a terminal strategy oracle; P3.3b calibration,
+    leaf-cutoff diagnostics and held-out leagues remain mandatory before deeper search promotion.
     Official public spatial consequence labels now exist for build/open/move actions and pass a
     bounded build→restaurant engine probe (19/10 candidates, 13/3 distinct effects and zero source
     mutation). A naive current-distance build score was rejected:

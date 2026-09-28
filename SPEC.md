@@ -111,6 +111,12 @@ frozen, diverse policy league.
   same paired probe. The rollout changed 43/66 choices, hired 34 employees and placed no marketing.
   This falsifies local score agreement as a strategy oracle. No current experimental policy is
   promoted as the default strong AI.
+- The official-clone mechanism now passes a frozen bounded tactical suite: 13 cases from 11 hashed
+  engine fixtures and two reproducible seeds span working-day subphases 1–5. Against exhaustive
+  same-horizon scoring it reaches Top-1/Top-3 13/13, 0 illegal selections and local P95 1.31 s;
+  source projection and oracle labels are drift-checked. This validates clone execution and budget
+  discipline only. Because the oracle still uses the uncalibrated short-horizon evaluator, it does
+  not overturn the failed terminal-game results or promote the policy as strong.
 
 ## 5. Target architecture
 
