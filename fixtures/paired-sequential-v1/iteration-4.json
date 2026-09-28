@@ -1,0 +1,173 @@
+{
+  "schemaVersion": "fcm.paired-sequential-experiment.v1",
+  "experimentId": 4,
+  "hypothesis": "sequential paired evidence abstains instead of forcing noisy action labels",
+  "datasetDigest": "sha256:d45d3c7d80062c026f6f016ccdad2ce9d62c542a485c49b418fe2283e9722c49",
+  "protocolDigest": "sha256:a0999cb8b0491ebdebea9aec8f9d81bd06b304d582f1d9ebe329a55a261f6398",
+  "rulesetHash": "a171620e533a34f0c77133afac1d239a02c7600978486d09a77a20ead95d0b5e",
+  "protocolSummary": {
+    "stages": 3,
+    "maximumSamples": 15,
+    "spentAlpha": 0.05
+  },
+  "audit": {
+    "schemaVersion": "fcm.paired-sequential-audit.v1",
+    "roots": 4,
+    "selectedRoots": 0,
+    "abstainedRoots": 0,
+    "needsMoreSamplesRoots": 4,
+    "coverage": 0,
+    "details": [
+      {
+        "rootId": "development-00-middle-production",
+        "availableSamples": 3,
+        "status": "needs-more-samples",
+        "selectedCandidateId": null,
+        "stopSamples": null,
+        "nextSamples": 7,
+        "stages": [
+          {
+            "samples": 3,
+            "stageAlpha": 0.005,
+            "comparisonAlpha": 0.005,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s4-produce-4edc9db56b",
+                "rightCandidateId": "p5s4-fallback-21d4f44933",
+                "samples": 3,
+                "positive": 1,
+                "negative": 1,
+                "ties": 1,
+                "pValue": 1,
+                "alpha": 0.005,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": 0,
+                "meanMarginAdvantage": -215.66666666666666,
+                "marginAdvantageStandardError": 306.96380532202454,
+                "decisiveWinRate95CI": {
+                  "low": 0.09453120573423074,
+                  "high": 0.9054687942657693
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "rootId": "development-02-middle-production",
+        "availableSamples": 3,
+        "status": "needs-more-samples",
+        "selectedCandidateId": null,
+        "stopSamples": null,
+        "nextSamples": 7,
+        "stages": [
+          {
+            "samples": 3,
+            "stageAlpha": 0.005,
+            "comparisonAlpha": 0.005,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s4-produce-4edc9db56b",
+                "rightCandidateId": "p5s4-fallback-21d4f44933",
+                "samples": 3,
+                "positive": 1,
+                "negative": 1,
+                "ties": 1,
+                "pValue": 1,
+                "alpha": 0.005,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": 0,
+                "meanMarginAdvantage": 172,
+                "marginAdvantageStandardError": 264.17229226396927,
+                "decisiveWinRate95CI": {
+                  "low": 0.09453120573423074,
+                  "high": 0.9054687942657693
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "rootId": "calibration-00-middle-production",
+        "availableSamples": 3,
+        "status": "needs-more-samples",
+        "selectedCandidateId": null,
+        "stopSamples": null,
+        "nextSamples": 7,
+        "stages": [
+          {
+            "samples": 3,
+            "stageAlpha": 0.005,
+            "comparisonAlpha": 0.005,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s4-produce-4edc9db56b",
+                "rightCandidateId": "p5s4-fallback-21d4f44933",
+                "samples": 3,
+                "positive": 1,
+                "negative": 1,
+                "ties": 1,
+                "pValue": 1,
+                "alpha": 0.005,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": 0,
+                "meanMarginAdvantage": 42.333333333333336,
+                "marginAdvantageStandardError": 441.04774243964914,
+                "decisiveWinRate95CI": {
+                  "low": 0.09453120573423074,
+                  "high": 0.9054687942657693
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "rootId": "calibration-02-middle-production",
+        "availableSamples": 3,
+        "status": "needs-more-samples",
+        "selectedCandidateId": null,
+        "stopSamples": null,
+        "nextSamples": 7,
+        "stages": [
+          {
+            "samples": 3,
+            "stageAlpha": 0.005,
+            "comparisonAlpha": 0.005,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s4-produce-4edc9db56b",
+                "rightCandidateId": "p5s4-fallback-21d4f44933",
+                "samples": 3,
+                "positive": 0,
+                "negative": 1,
+                "ties": 2,
+                "pValue": 1,
+                "alpha": 0.005,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": -0.3333333333333333,
+                "meanMarginAdvantage": -173.66666666666666,
+                "marginAdvantageStandardError": 378.6583038982654,
+                "decisiveWinRate95CI": {
+                  "low": 0.20654931437723745,
+                  "high": 1
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "promotionHoldoutOpened": false,
+  "promotionStatus": "not-evaluated"
+}

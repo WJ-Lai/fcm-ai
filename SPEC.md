@@ -158,6 +158,14 @@ frozen, diverse policy league.
   a versioned continuation-policy population, with uncertainty, sequential sampling and abstention;
   only stable targets may be used to test action × observed-context representations. The result is
   specific to the production puncture until hiring and marketing receive the same audit.
+- A versioned paired sequential estimator now turns that uncertainty into an explicit safety
+  decision. It predeclares sample stages 3/7/15 and spends family-wise alpha 0.05 using exact
+  two-sided paired terminal-rank sign tests, with stage-wise Bonferroni correction for multiple
+  candidates. On the existing four production roots it selects 0/4 and requests seven samples for
+  4/4; p-values are all 1.0 and cash-advantage standard errors are $264–$441. Cash diagnostics cannot
+  override uncertain terminal rank. This is the intended fail-closed result, not a weak-policy
+  failure. Subsequent collection must resume the same paired seed streams and may export a training
+  label only when the predeclared test selects one candidate; otherwise it proceeds or abstains.
 
 ## 5. Target architecture
 

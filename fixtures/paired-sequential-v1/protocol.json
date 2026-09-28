@@ -1,0 +1,13 @@
+{
+  "schemaVersion": "fcm.paired-sequential-protocol.v1",
+  "overallAlpha": 0.05,
+  "stages": [
+    { "samples": 3, "alpha": 0.005 },
+    { "samples": 7, "alpha": 0.02 },
+    { "samples": 15, "alpha": 0.025 }
+  ],
+  "primaryOutcome": "terminal-rank-utility",
+  "secondaryOutcome": "terminal-cash-margin",
+  "multipleCandidateCorrection": "bonferroni-per-stage",
+  "promotionHoldoutOpened": false
+}

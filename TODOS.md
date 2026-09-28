@@ -304,6 +304,11 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     -$848 to +$735. Single-continuation regret labels are therefore rejected. Next implement a
     versioned paired sequential estimator (mean advantage, uncertainty/confidence, maximum samples,
     abstention), then repeat stability checks for hiring and marketing before fitting interactions.
+    The estimator core is now complete and passes its first gate: exact paired terminal-rank sign
+    tests at predeclared 3/7/15 stages spend total alpha 0.05 and correct for multiple candidates.
+    Existing three-sample data selects 0/4 roots and requests more samples for 4/4; all p-values are
+    1.0 and cash-advantage standard errors are $264–$441. Next resume the same roots to seven samples
+    without recomputing the verified first three, then either select or continue to the maximum.
 - [ ] **P3.3d Add versioned opponent-belief sampling.**
   - Why: future dinner outcomes depend on unrevealed simultaneous choices and opponent reactions.
   - Depends on: P1.1 observation provenance, P3.2 and validated public-replay/self-play traces. A

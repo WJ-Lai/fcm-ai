@@ -163,3 +163,32 @@ population. It should sample sequentially to a predeclared maximum, report the m
 standard error/confidence interval and sign stability, and abstain when uncertainty remains high.
 Only roots with stable out-of-sample preference targets may train an action-context model. The same
 stability audit must later cover hiring and marketing rather than generalizing from production.
+
+## Iteration 4 hypothesis and frozen change
+
+Iteration 4 changes only the decision rule over continuation samples. The paired outcomes remain
+unchanged. A versioned sequential protocol spends family-wise alpha 0.05 at predeclared sample
+stages 3/7/15 using exact two-sided paired sign tests. At a stage, one candidate is selected only if
+it significantly beats every alternative after stage-wise Bonferroni correction; otherwise the
+estimator requests the next stage or abstains at the maximum. Terminal-rank utility is primary;
+cash-margin mean and standard error plus a Wilson interval over decisive paired wins are diagnostic.
+
+The iteration-3 three-sample dataset is the first input. The expected safe result is zero coverage
+and four requests for more samples, not a forced recommendation. This validates the estimator's
+fail-closed semantics before spending compute on stages 7 and 15.
+
+## Iteration 4 result
+
+The fail-closed estimator hypothesis passed.
+
+- All 4/4 roots returned `needs-more-samples`; coverage is 0 rather than a forced action label.
+- At three samples, each exact paired sign test has p-value 1.0. Three roots contain one positive,
+  one negative and one terminal-rank tie; the fourth contains one negative and two ties.
+- Mean cash-margin advantages range from -$215.67 to +$172, but their standard errors range from
+  $264.17 to $441.05. These diagnostics correctly do not override terminal-rank uncertainty.
+- The versioned protocol spends family-wise alpha exactly 0.05 across stages 3/7/15. It applies a
+  per-stage Bonferroni correction when more than two candidates are compared.
+- Promotion remained sealed and no action label was exported for training.
+
+Iteration 5 changes only the available paired sample count from three to seven on the same four
+roots. It must resume samples 3–6 without recomputing or overwriting the verified first three.
