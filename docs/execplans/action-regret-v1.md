@@ -127,3 +127,39 @@ a potentially high-variance label for a local action: the same production delta 
 margin by hundreds of dollars in either direction. Iteration 3 must test label stability under a
 small, predeclared continuation-policy population before choosing a bilinear interaction, tree or
 neural model. Adding capacity before that test would fit continuation noise.
+
+## Iteration 3 hypothesis and frozen change
+
+Iteration 3 changes only continuation sampling. It freezes four production roots selected before
+execution: one positive and one negative baseline preference from each of development and
+calibration. Each original candidate is completed under three paired built-in-opponent seed streams;
+sample zero must reproduce iteration 2 terminal margins exactly. Root snapshots, candidates, the
+acting-seat deterministic policy, engine, 700-command bound and promotion seal remain fixed.
+
+Primary diagnostic: fraction of roots whose terminal-optimal candidate is identical under all three
+continuations. A flip means the original single continuation is not a stable local-action label; it
+does not mean either action is intrinsically bad. With only three samples this is a puncture, not a
+converged expectation estimate. If flips occur, iteration 4 must establish a sequential sampling
+and confidence rule before fitting action-context interactions.
+
+## Iteration 3 result
+
+The single-continuation label hypothesis was rejected.
+
+- All four roots reconstructed the same strategic projection and candidate IDs. Sample zero also
+  reproduced every iteration 2 candidate terminal margin exactly. An initial attempt correctly
+  failed because the raw engine snapshot digest was not reproducible; no output was retained. Root
+  identity now uses the canonical strategic projection, candidate set and baseline outcome checks.
+- Zero of four roots kept the same terminal-optimal candidate across three continuation samples.
+  Every root split 2–1 between production and fallback, for mean sample agreement 66.7%.
+- Paired terminal-margin differences (production minus fallback) ranged from -$848 to +$735. The
+  four sample-zero signs were therefore not robust local-action targets.
+- The three-sample means happened to preserve the original preference sign on all four selected
+  roots, but three samples are far too few for a confidence or convergence claim.
+- Promotion remained sealed; no model or policy was integrated.
+
+Iteration 4 must define a paired common-random-number estimator over a versioned continuation-policy
+population. It should sample sequentially to a predeclared maximum, report the mean action advantage,
+standard error/confidence interval and sign stability, and abstain when uncertainty remains high.
+Only roots with stable out-of-sample preference targets may train an action-context model. The same
+stability audit must later cover hiring and marketing rather than generalizing from production.

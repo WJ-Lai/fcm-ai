@@ -149,6 +149,15 @@ frozen, diverse policy league.
   No regret model is connected to play, and the promotion holdout remains sealed. Before adding
   nonlinear capacity, run a predeclared multi-continuation stability puncture; only then evaluate a
   bounded action-delta × observed-root-context representation.
+- A four-root production puncture then tested the more basic assumption that one deterministic
+  continuation gives a usable action label. Each fixed candidate was completed under three paired
+  official-built-in opponent seed streams; sample zero exactly reproduced the prior dataset.
+  Terminal-optimal action flipped in 4/4 roots, with only 2/3 sample agreement per root, and paired
+  production-minus-fallback margins ranged from -$848 to +$735. Therefore single-rollout terminal
+  regret is rejected as a supervised target. Future action values must be paired expectations over
+  a versioned continuation-policy population, with uncertainty, sequential sampling and abstention;
+  only stable targets may be used to test action × observed-context representations. The result is
+  specific to the production puncture until hiring and marketing receive the same audit.
 
 ## 5. Target architecture
 

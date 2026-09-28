@@ -298,6 +298,12 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     disconnected. Next freeze a small multi-continuation label-stability puncture; if terminal
     action preferences are stable enough, add one bounded action-delta × observed-root-context
     feature family and re-evaluate without opening promotion.
+    The next production-only stability puncture is complete: four fixed roots, two candidates and
+    three paired built-in-opponent continuations per candidate reproduced all baseline labels at
+    sample zero, but the terminal-optimal action flipped in 4/4 roots; paired action advantages span
+    -$848 to +$735. Single-continuation regret labels are therefore rejected. Next implement a
+    versioned paired sequential estimator (mean advantage, uncertainty/confidence, maximum samples,
+    abstention), then repeat stability checks for hiring and marketing before fitting interactions.
 - [ ] **P3.3d Add versioned opponent-belief sampling.**
   - Why: future dinner outcomes depend on unrevealed simultaneous choices and opponent reactions.
   - Depends on: P1.1 observation provenance, P3.2 and validated public-replay/self-play traces. A

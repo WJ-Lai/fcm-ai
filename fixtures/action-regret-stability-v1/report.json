@@ -1,0 +1,258 @@
+{
+  "schemaVersion": "fcm.action-regret-stability.v1",
+  "rulesetHash": "a171620e533a34f0c77133afac1d239a02c7600978486d09a77a20ead95d0b5e",
+  "continuationPolicy": "fcm.deterministic-vs-official-builtin-population.v1",
+  "sampleCount": 3,
+  "promotionHoldoutOpened": false,
+  "roots": [
+    {
+      "rootId": "development-00-middle-production",
+      "sourceSplit": "development",
+      "snapshotDigest": "sha256:7e96ccd8c5b95ab5d4076d59bf33dd7df9c94bc185829d70f9ad82f897e89a70",
+      "strategicProjectionDigest": "sha256:882a74b7d205c288006af0a7e16656d5b06c1bcc0c0ceff0bc8694076242011b",
+      "candidates": [
+        {
+          "candidateId": "p5s4-produce-4edc9db56b",
+          "terminalMargins": [
+            62,
+            -135,
+            195
+          ],
+          "terminalCommands": [
+            434,
+            396,
+            375
+          ]
+        },
+        {
+          "candidateId": "p5s4-fallback-21d4f44933",
+          "terminalMargins": [
+            488,
+            475,
+            -194
+          ],
+          "terminalCommands": [
+            257,
+            234,
+            295
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "development-02-middle-production",
+      "sourceSplit": "development",
+      "snapshotDigest": "sha256:7b5fa57217f05d48180be31595cce17d38ae6d88d1ae3d03b597f16bd8e8d937",
+      "strategicProjectionDigest": "sha256:540c20c7dff30dbaa30bbcd5fb402c46088845c6ccda84821bd6c6ee1db84846",
+      "candidates": [
+        {
+          "candidateId": "p5s4-produce-4edc9db56b",
+          "terminalMargins": [
+            483,
+            -60,
+            296
+          ],
+          "terminalCommands": [
+            126,
+            131,
+            128
+          ]
+        },
+        {
+          "candidateId": "p5s4-fallback-21d4f44933",
+          "terminalMargins": [
+            132,
+            288,
+            -217
+          ],
+          "terminalCommands": [
+            103,
+            113,
+            150
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "calibration-00-middle-production",
+      "sourceSplit": "calibration",
+      "snapshotDigest": "sha256:f29dfd69348e00fb01b484d5876df1f336a4af407f97e77a35c353b10ae37c58",
+      "strategicProjectionDigest": "sha256:a16bbb7e0bb4093f9559130b6ab6495b8906a36a5702cc0d0b7ff5e77cc3d34a",
+      "candidates": [
+        {
+          "candidateId": "p5s4-produce-4edc9db56b",
+          "terminalMargins": [
+            -152,
+            532,
+            -425
+          ],
+          "terminalCommands": [
+            96,
+            144,
+            141
+          ]
+        },
+        {
+          "candidateId": "p5s4-fallback-21d4f44933",
+          "terminalMargins": [
+            -321,
+            -203,
+            352
+          ],
+          "terminalCommands": [
+            173,
+            140,
+            126
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "calibration-02-middle-production",
+      "sourceSplit": "calibration",
+      "snapshotDigest": "sha256:a7644770605d2724533d224c64a3527cbde8fe925fdc0cfdf601ee40a15f7e5a",
+      "strategicProjectionDigest": "sha256:176b0d21c673891e877e3a7997a288c17685baaf30b8ef6c5a7db3147e4e6399",
+      "candidates": [
+        {
+          "candidateId": "p5s4-produce-4edc9db56b",
+          "terminalMargins": [
+            -137,
+            -47,
+            -282
+          ],
+          "terminalCommands": [
+            427,
+            437,
+            332
+          ]
+        },
+        {
+          "candidateId": "p5s4-fallback-21d4f44933",
+          "terminalMargins": [
+            -2,
+            -509,
+            566
+          ],
+          "terminalCommands": [
+            433,
+            280,
+            427
+          ]
+        }
+      ]
+    }
+  ],
+  "audit": {
+    "schemaVersion": "fcm.action-regret-stability-audit.v1",
+    "roots": 4,
+    "stableRoots": 0,
+    "flippedRoots": 4,
+    "meanSampleAgreement": 0.6666666666666666,
+    "details": [
+      {
+        "rootId": "development-00-middle-production",
+        "oraclePatterns": [
+          "p5s4-fallback-21d4f44933",
+          "p5s4-produce-4edc9db56b"
+        ],
+        "sampleAgreement": 0.6666666666666666,
+        "stable": false,
+        "meanOracleCandidateIds": [
+          "p5s4-fallback-21d4f44933"
+        ],
+        "candidates": [
+          {
+            "candidateId": "p5s4-produce-4edc9db56b",
+            "meanTerminalMargin": 40.666666666666664,
+            "minTerminalMargin": -135,
+            "maxTerminalMargin": 195
+          },
+          {
+            "candidateId": "p5s4-fallback-21d4f44933",
+            "meanTerminalMargin": 256.3333333333333,
+            "minTerminalMargin": -194,
+            "maxTerminalMargin": 488
+          }
+        ]
+      },
+      {
+        "rootId": "development-02-middle-production",
+        "oraclePatterns": [
+          "p5s4-fallback-21d4f44933",
+          "p5s4-produce-4edc9db56b"
+        ],
+        "sampleAgreement": 0.6666666666666666,
+        "stable": false,
+        "meanOracleCandidateIds": [
+          "p5s4-produce-4edc9db56b"
+        ],
+        "candidates": [
+          {
+            "candidateId": "p5s4-produce-4edc9db56b",
+            "meanTerminalMargin": 239.66666666666666,
+            "minTerminalMargin": -60,
+            "maxTerminalMargin": 483
+          },
+          {
+            "candidateId": "p5s4-fallback-21d4f44933",
+            "meanTerminalMargin": 67.66666666666667,
+            "minTerminalMargin": -217,
+            "maxTerminalMargin": 288
+          }
+        ]
+      },
+      {
+        "rootId": "calibration-00-middle-production",
+        "oraclePatterns": [
+          "p5s4-fallback-21d4f44933",
+          "p5s4-produce-4edc9db56b"
+        ],
+        "sampleAgreement": 0.6666666666666666,
+        "stable": false,
+        "meanOracleCandidateIds": [
+          "p5s4-produce-4edc9db56b"
+        ],
+        "candidates": [
+          {
+            "candidateId": "p5s4-produce-4edc9db56b",
+            "meanTerminalMargin": -15,
+            "minTerminalMargin": -425,
+            "maxTerminalMargin": 532
+          },
+          {
+            "candidateId": "p5s4-fallback-21d4f44933",
+            "meanTerminalMargin": -57.333333333333336,
+            "minTerminalMargin": -321,
+            "maxTerminalMargin": 352
+          }
+        ]
+      },
+      {
+        "rootId": "calibration-02-middle-production",
+        "oraclePatterns": [
+          "p5s4-fallback-21d4f44933",
+          "p5s4-produce-4edc9db56b"
+        ],
+        "sampleAgreement": 0.6666666666666666,
+        "stable": false,
+        "meanOracleCandidateIds": [
+          "p5s4-fallback-21d4f44933"
+        ],
+        "candidates": [
+          {
+            "candidateId": "p5s4-produce-4edc9db56b",
+            "meanTerminalMargin": -155.33333333333334,
+            "minTerminalMargin": -282,
+            "maxTerminalMargin": -47
+          },
+          {
+            "candidateId": "p5s4-fallback-21d4f44933",
+            "meanTerminalMargin": 18.333333333333332,
+            "minTerminalMargin": -509,
+            "maxTerminalMargin": 566
+          }
+        ]
+      }
+    ]
+  }
+}
