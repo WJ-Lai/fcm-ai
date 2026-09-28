@@ -479,6 +479,16 @@ therefore makes the policy strictly worse on this paired sample. The current Bea
 strength; expanding its league would only measure a known cutoff defect. Promotion data stays
 sealed while the next iteration diagnoses horizon/leaf ranking and adds a monotonic safety gate.
 
+The fixed-root horizon matrix identifies the failure mechanism. With identical root candidates,
+official opponent belief and common samples, hire beats skip by 1.4 at actor depths 1 and 2; skip
+then falsely leads by 5.0, 3.6 and 2.2 at depths 3, 4 and 5; hire recovers by 4.2 at depth 6 and by
+about 201 once its delayed revenue enters depths 7–8. Runtime rises from 0.36 seconds at depth 1 to
+5.38 seconds at depth 8. This is an intermediate-horizon investment-cost alias, not random opponent
+sampling. A fixed deeper search is therefore neither budget-compliant nor generally safe. The next
+development hypothesis is a conservative multi-horizon agreement gate: a completed deep result may
+override static only when a cheap shallow checkpoint independently agrees; disagreement falls back
+and is logged rather than silently averaged away.
+
 ### 6.8 Execution, memory and learning
 
 The execution layer accepts one versioned candidate id, revalidates it against the current game

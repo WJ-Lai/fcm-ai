@@ -1,0 +1,402 @@
+{
+  "schemaVersion": "fcm.scenario-beam-horizon-diagnostic.v3",
+  "experimentId": 21,
+  "protocolDigest": "sha256:8831b2aa58e36828b1dd16a39d86f5f1164c3e9bbbc1296442b0c3be93e9622e",
+  "target": {
+    "turn": 1,
+    "phase": 5,
+    "subphase": 1
+  },
+  "terminalReference": {
+    "staticCandidateId": "p5s1-hire-1dfd160273",
+    "skipCandidateId": "p5s1-fallback-21d4f44933",
+    "staticFirstPlaces": 4,
+    "skipFirstPlaces": 0,
+    "gamesPerArm": 4
+  },
+  "rows": [
+    {
+      "maxOwnDepth": 1,
+      "selectedCandidateId": "p5s1-hire-1dfd160273",
+      "staticCandidateId": "p5s1-hire-1dfd160273",
+      "changedStatic": false,
+      "stopReason": "complete",
+      "fallbackUsed": false,
+      "elapsedMs": 361.9090970000001,
+      "officialTransitions": 4,
+      "leafEvaluations": 4,
+      "evaluated": [
+        {
+          "candidateId": "p5s1-hire-1dfd160273",
+          "meanScore": 28.4,
+          "scenarioCount": 2,
+          "traces": [
+            [
+              "p5s1-hire-1dfd160273"
+            ],
+            [
+              "p5s1-hire-1dfd160273"
+            ]
+          ]
+        },
+        {
+          "candidateId": "p5s1-fallback-21d4f44933",
+          "meanScore": 27,
+          "scenarioCount": 2,
+          "traces": [
+            [
+              "p5s1-fallback-21d4f44933"
+            ],
+            [
+              "p5s1-fallback-21d4f44933"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "maxOwnDepth": 2,
+      "selectedCandidateId": "p5s1-hire-1dfd160273",
+      "staticCandidateId": "p5s1-hire-1dfd160273",
+      "changedStatic": false,
+      "stopReason": "complete",
+      "fallbackUsed": false,
+      "elapsedMs": 834.798978,
+      "officialTransitions": 8,
+      "leafEvaluations": 8,
+      "evaluated": [
+        {
+          "candidateId": "p5s1-hire-1dfd160273",
+          "meanScore": 40.4,
+          "scenarioCount": 2,
+          "traces": [
+            [
+              "p5s1-hire-1dfd160273",
+              "p5s7-fallback-5c896494fa"
+            ],
+            [
+              "p5s1-hire-1dfd160273",
+              "p5s7-fallback-5c896494fa"
+            ]
+          ]
+        },
+        {
+          "candidateId": "p5s1-fallback-21d4f44933",
+          "meanScore": 39,
+          "scenarioCount": 2,
+          "traces": [
+            [
+              "p5s1-fallback-21d4f44933",
+              "p5s7-fallback-5c896494fa"
+            ],
+            [
+              "p5s1-fallback-21d4f44933",
+              "p5s7-fallback-5c896494fa"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "maxOwnDepth": 3,
+      "selectedCandidateId": "p5s1-fallback-21d4f44933",
+      "staticCandidateId": "p5s1-hire-1dfd160273",
+      "changedStatic": true,
+      "stopReason": "complete",
+      "fallbackUsed": false,
+      "elapsedMs": 1358.088771,
+      "officialTransitions": 12,
+      "leafEvaluations": 10,
+      "evaluated": [
+        {
+          "candidateId": "p5s1-hire-1dfd160273",
+          "meanScore": 34,
+          "scenarioCount": 2,
+          "traces": [
+            [
+              "p5s1-hire-1dfd160273",
+              "p5s7-fallback-5c896494fa",
+              "p3s1-balanced-cc29de4bc0"
+            ],
+            [
+              "p5s1-hire-1dfd160273",
+              "p5s7-fallback-5c896494fa",
+              "p3s1-balanced-cc29de4bc0"
+            ]
+          ]
+        },
+        {
+          "candidateId": "p5s1-fallback-21d4f44933",
+          "meanScore": 39,
+          "scenarioCount": 2,
+          "traces": [
+            [
+              "p5s1-fallback-21d4f44933",
+              "p5s7-fallback-5c896494fa"
+            ],
+            [
+              "p5s1-fallback-21d4f44933",
+              "p5s7-fallback-5c896494fa"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "maxOwnDepth": 4,
+      "selectedCandidateId": "p5s1-fallback-21d4f44933",
+      "staticCandidateId": "p5s1-hire-1dfd160273",
+      "changedStatic": true,
+      "stopReason": "complete",
+      "fallbackUsed": false,
+      "elapsedMs": 2163.55701,
+      "officialTransitions": 20,
+      "leafEvaluations": 16,
+      "evaluated": [
+        {
+          "candidateId": "p5s1-hire-1dfd160273",
+          "meanScore": 35.4,
+          "scenarioCount": 2,
+          "traces": [
+            [
+              "p5s1-hire-1dfd160273",
+              "p5s7-fallback-5c896494fa",
+              "p3s1-balanced-cc29de4bc0",
+              "p5s1-hire-d85bc8e066"
+            ],
+            [
+              "p5s1-hire-1dfd160273",
+              "p5s7-fallback-5c896494fa",
+              "p3s1-balanced-cc29de4bc0",
+              "p5s1-hire-d85bc8e066"
+            ]
+          ]
+        },
+        {
+          "candidateId": "p5s1-fallback-21d4f44933",
+          "meanScore": 39,
+          "scenarioCount": 2,
+          "traces": [
+            [
+              "p5s1-fallback-21d4f44933",
+              "p5s7-fallback-5c896494fa"
+            ],
+            [
+              "p5s1-fallback-21d4f44933",
+              "p5s7-fallback-5c896494fa"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "maxOwnDepth": 5,
+      "selectedCandidateId": "p5s1-fallback-21d4f44933",
+      "staticCandidateId": "p5s1-hire-1dfd160273",
+      "changedStatic": true,
+      "stopReason": "complete",
+      "fallbackUsed": false,
+      "elapsedMs": 2928.2378560000006,
+      "officialTransitions": 28,
+      "leafEvaluations": 24,
+      "evaluated": [
+        {
+          "candidateId": "p5s1-hire-1dfd160273",
+          "meanScore": 36.8,
+          "scenarioCount": 2,
+          "traces": [
+            [
+              "p5s1-hire-1dfd160273",
+              "p5s7-fallback-5c896494fa",
+              "p3s1-balanced-cc29de4bc0",
+              "p5s1-hire-d85bc8e066",
+              "p5s2-train-2dd5d77261"
+            ],
+            [
+              "p5s1-hire-1dfd160273",
+              "p5s7-fallback-5c896494fa",
+              "p3s1-balanced-cc29de4bc0",
+              "p5s1-hire-d85bc8e066",
+              "p5s2-train-2dd5d77261"
+            ]
+          ]
+        },
+        {
+          "candidateId": "p5s1-fallback-21d4f44933",
+          "meanScore": 39,
+          "scenarioCount": 2,
+          "traces": [
+            [
+              "p5s1-fallback-21d4f44933",
+              "p5s7-fallback-5c896494fa"
+            ],
+            [
+              "p5s1-fallback-21d4f44933",
+              "p5s7-fallback-5c896494fa"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "maxOwnDepth": 6,
+      "selectedCandidateId": "p5s1-hire-1dfd160273",
+      "staticCandidateId": "p5s1-hire-1dfd160273",
+      "changedStatic": false,
+      "stopReason": "complete",
+      "fallbackUsed": false,
+      "elapsedMs": 3464.5425109999996,
+      "officialTransitions": 32,
+      "leafEvaluations": 28,
+      "evaluated": [
+        {
+          "candidateId": "p5s1-hire-1dfd160273",
+          "meanScore": 43.2,
+          "scenarioCount": 2,
+          "traces": [
+            [
+              "p5s1-hire-1dfd160273",
+              "p5s7-fallback-5c896494fa",
+              "p3s1-balanced-cc29de4bc0",
+              "p5s1-hire-d85bc8e066",
+              "p5s2-train-2dd5d77261",
+              "p5s7-fallback-5c896494fa"
+            ],
+            [
+              "p5s1-hire-1dfd160273",
+              "p5s7-fallback-5c896494fa",
+              "p3s1-balanced-cc29de4bc0",
+              "p5s1-hire-d85bc8e066",
+              "p5s2-train-2dd5d77261",
+              "p5s7-fallback-5c896494fa"
+            ]
+          ]
+        },
+        {
+          "candidateId": "p5s1-fallback-21d4f44933",
+          "meanScore": 39,
+          "scenarioCount": 2,
+          "traces": [
+            [
+              "p5s1-fallback-21d4f44933",
+              "p5s7-fallback-5c896494fa"
+            ],
+            [
+              "p5s1-fallback-21d4f44933",
+              "p5s7-fallback-5c896494fa"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "maxOwnDepth": 7,
+      "selectedCandidateId": "p5s1-hire-1dfd160273",
+      "staticCandidateId": "p5s1-hire-1dfd160273",
+      "changedStatic": false,
+      "stopReason": "complete",
+      "fallbackUsed": false,
+      "elapsedMs": 4216.546485999999,
+      "officialTransitions": 40,
+      "leafEvaluations": 32,
+      "evaluated": [
+        {
+          "candidateId": "p5s1-hire-1dfd160273",
+          "meanScore": 240,
+          "scenarioCount": 2,
+          "traces": [
+            [
+              "p5s1-hire-1dfd160273",
+              "p5s7-fallback-5c896494fa",
+              "p3s1-balanced-cc29de4bc0",
+              "p5s1-hire-d85bc8e066",
+              "p5s2-train-2dd5d77261",
+              "p5s7-fallback-5c896494fa",
+              "p3s1-operate-c079896201"
+            ],
+            [
+              "p5s1-hire-1dfd160273",
+              "p5s7-fallback-5c896494fa",
+              "p3s1-balanced-cc29de4bc0",
+              "p5s1-hire-d85bc8e066",
+              "p5s2-train-2dd5d77261",
+              "p5s7-fallback-5c896494fa",
+              "p3s1-operate-c079896201"
+            ]
+          ]
+        },
+        {
+          "candidateId": "p5s1-fallback-21d4f44933",
+          "meanScore": 39,
+          "scenarioCount": 2,
+          "traces": [
+            [
+              "p5s1-fallback-21d4f44933",
+              "p5s7-fallback-5c896494fa"
+            ],
+            [
+              "p5s1-fallback-21d4f44933",
+              "p5s7-fallback-5c896494fa"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "maxOwnDepth": 8,
+      "selectedCandidateId": "p5s1-hire-1dfd160273",
+      "staticCandidateId": "p5s1-hire-1dfd160273",
+      "changedStatic": false,
+      "stopReason": "complete",
+      "fallbackUsed": false,
+      "elapsedMs": 5375.870347000002,
+      "officialTransitions": 52,
+      "leafEvaluations": 40,
+      "evaluated": [
+        {
+          "candidateId": "p5s1-hire-1dfd160273",
+          "meanScore": 241.4,
+          "scenarioCount": 2,
+          "traces": [
+            [
+              "p5s1-hire-1dfd160273",
+              "p5s7-fallback-5c896494fa",
+              "p3s1-balanced-cc29de4bc0",
+              "p5s1-hire-d85bc8e066",
+              "p5s2-train-2dd5d77261",
+              "p5s7-fallback-5c896494fa",
+              "p3s1-operate-c079896201",
+              "p5s1-hire-f62c499152"
+            ],
+            [
+              "p5s1-hire-1dfd160273",
+              "p5s7-fallback-5c896494fa",
+              "p3s1-balanced-cc29de4bc0",
+              "p5s1-hire-d85bc8e066",
+              "p5s2-train-2dd5d77261",
+              "p5s7-fallback-5c896494fa",
+              "p3s1-operate-c079896201",
+              "p5s1-hire-f62c499152"
+            ]
+          ]
+        },
+        {
+          "candidateId": "p5s1-fallback-21d4f44933",
+          "meanScore": 39,
+          "scenarioCount": 2,
+          "traces": [
+            [
+              "p5s1-fallback-21d4f44933",
+              "p5s7-fallback-5c896494fa"
+            ],
+            [
+              "p5s1-fallback-21d4f44933",
+              "p5s7-fallback-5c896494fa"
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "promotionHoldoutOpened": false
+}

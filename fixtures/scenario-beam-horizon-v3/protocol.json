@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "fcm.scenario-beam-horizon-protocol.v3",
+  "experimentId": 21,
+  "seed": "scenario-beam-official-smoke-01",
+  "players": ["beam-agent", "FcmAI"],
+  "actorSeat": 0,
+  "opponentSeat": 1,
+  "depths": [1, 2, 3, 4, 5, 6, 7, 8],
+  "sampleSeeds": ["horizon-common-a", "horizon-common-b"],
+  "budget": {
+    "maxRootCandidates": 2,
+    "branchFactor": 2,
+    "beamWidth": 2,
+    "maxTransitions": 256,
+    "deadlineMs": 30000
+  },
+  "promotionHoldoutOpened": false
+}

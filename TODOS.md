@@ -438,6 +438,11 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     retaining 4/4 wins. The three-second arm completed 4/4 searches but always changed hire to skip,
     fell to 0/4 wins and mean $38.75. Current beam is therefore rejected for strength; do not expand
     the league or open promotion holdout until cutoff/horizon diagnostics prevent this reversal.
+    Iteration 21 isolates the horizon effect on the same root and matched samples: hire leads at actor
+    depths 1–2, skip falsely leads at depths 3–5, and hire recovers at depth 6 before its delayed
+    payoff appears at depths 7–8. Depth 8 costs about 5.38 seconds, so merely increasing the fixed
+    horizon violates the target budget. Next test one conservative variable: require shallow/deep
+    recommendation agreement before a completed search may override the static prior.
 
 - [ ] **P4.1b Implement RHEA as an equal-budget challenger.**
   - Why: rolling-horizon evolution may discover useful macro sequences that beam pruning loses in

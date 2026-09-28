@@ -393,6 +393,12 @@ four games, and produced 0/4 wins at mean $38.75. More search time is currently 
 makes the biased cutoff estimate actionable. League expansion is paused until horizon diagnostics
 and a safety gate stop completed search from overriding a stronger static prior on unstable leaves.
 
+A fixed-root depth sweep confirms an intermediate-horizon investment alias. Hire is preferred at
+depths 1–2, skip at 3–5, then hire again from depth 6; its delayed payoff becomes dominant at 7–8.
+Depth 8 takes roughly 5.38 seconds, outside the intended three-second tier. The first safety
+candidate is therefore multi-horizon agreement, not simply a larger depth or a hand-tuned hire
+bonus: shallow and target-depth recommendations must agree before search can override static.
+
 **Rolling Horizon Evolutionary Algorithms (RHEA)** evolve complete macro sequences rather than
 expanding a strict prefix tree. Mutation can recover plans that beam pruning would discard and can
 work well with irregular candidate sets. The cost is seed variance, legality repair and less
