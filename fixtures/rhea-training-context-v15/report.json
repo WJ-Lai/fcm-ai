@@ -1,0 +1,334 @@
+{
+  "schemaVersion": "fcm.rhea-training-context.v15",
+  "experimentId": 41,
+  "protocolDigest": "sha256:fdd3223d819313cc1115434db5ece84b30b2ae1956b81f4282be45dfa440ba5f",
+  "featureVersion": "fcm.terminal-value-features.v2",
+  "roots": [
+    {
+      "rootId": "rhea-intervention-dev-03-seat-0-index-4",
+      "strategicProjectionDigest": "sha256:19a45d3fcc0e065477f5236f2299ba0b21866d9a43819b02570ef72b1e5448a0",
+      "features": {
+        "version": "fcm.terminal-value-features.v2",
+        "turn": 3,
+        "turnOrderPosition": 1,
+        "turnOrderKnown": 1,
+        "bankPerPlayer": 50,
+        "cash": 0,
+        "cashLead": 0,
+        "salaryDue": 0,
+        "salaryGap": 0,
+        "unitPrice": 10,
+        "discount": 0,
+        "activeEmployees": 3,
+        "beachEmployees": 1,
+        "freeSlots": 0,
+        "recruitingCapacity": 1,
+        "salaryDiscountPoints": 0,
+        "trainingCapacity": 1,
+        "trainingLevel2Capacity": 0,
+        "trainingLevel3Capacity": 0,
+        "unlimitedTraining": 0,
+        "productionWorkers": 2,
+        "productionGoodsCoverage": 2,
+        "marketingWorkers": 0,
+        "campaignTypeCoverage": 0,
+        "restaurantBuilders": 0,
+        "beachManagement": 0,
+        "beachRecruiting": 0,
+        "beachTraining": 0,
+        "beachMarketing": 1,
+        "beachProduction": 0,
+        "beachRestaurantBuilding": 0,
+        "beachTrainable": 1,
+        "beachSalaryLiable": 0,
+        "restaurants": 1,
+        "milestonesHeld": 1,
+        "openMilestoneOptions": 17,
+        "inventoryTotal": 0,
+        "inventoryDemandFit": 0,
+        "reachableDemandUnits": 0,
+        "unreachableDemandUnits": 0,
+        "servableDemandUnits": 0,
+        "uncontestedServableUnits": 0,
+        "reachableHouses": 5,
+        "exclusivelyReachableHouses": 4,
+        "closestHouses": 4,
+        "tiedClosestHouses": 0,
+        "distanceDeficitTotal": 2,
+        "productionMarketingSynergy": 0,
+        "reachableEngineReady": 0,
+        "futureDemandSupplyEngineReady": 1,
+        "bankrupt": 0
+      },
+      "candidates": [
+        {
+          "candidateId": "p5s2-train-1adebf1880",
+          "intent": "train",
+          "actions": [
+            {
+              "type": "train",
+              "employee": 13,
+              "toEmployee": 14,
+              "origin": 0,
+              "steps": 1
+            },
+            {
+              "type": "next_subphase"
+            }
+          ],
+          "score": 263.4,
+          "scoreBreakdown": {
+            "position": {
+              "cash": 0,
+              "staff": 13.4,
+              "inventory": 0,
+              "capacity": 204,
+              "salaryRisk": 0,
+              "milestoneOptions": 24,
+              "bankruptcy": 0
+            },
+            "action": {
+              "progress": 17,
+              "intent": 5,
+              "market": 0,
+              "risk": 0
+            },
+            "planContinuity": 0,
+            "strategicPlan": null
+          }
+        },
+        {
+          "candidateId": "p5s2-train-2dd5d77261",
+          "intent": "train",
+          "actions": [
+            {
+              "type": "train",
+              "employee": -1,
+              "toEmployee": 28,
+              "origin": 1,
+              "steps": 1
+            },
+            {
+              "type": "next_subphase"
+            }
+          ],
+          "score": 263.4,
+          "scoreBreakdown": {
+            "position": {
+              "cash": 0,
+              "staff": 13.4,
+              "inventory": 0,
+              "capacity": 204,
+              "salaryRisk": 0,
+              "milestoneOptions": 24,
+              "bankruptcy": 0
+            },
+            "action": {
+              "progress": 17,
+              "intent": 5,
+              "market": 0,
+              "risk": 0
+            },
+            "planContinuity": 0,
+            "strategicPlan": null
+          }
+        }
+      ],
+      "terminalStatus": "abstain-max-samples",
+      "selectedCandidateId": null
+    },
+    {
+      "rootId": "rhea-intervention-dev-04-seat-0-index-4",
+      "strategicProjectionDigest": "sha256:1ddb0953ba2a3bb56b6805c365945cf4d969c3aab3e54f0647a5002788faf85d",
+      "features": {
+        "version": "fcm.terminal-value-features.v2",
+        "turn": 3,
+        "turnOrderPosition": 1,
+        "turnOrderKnown": 1,
+        "bankPerPlayer": 50,
+        "cash": 0,
+        "cashLead": 0,
+        "salaryDue": 0,
+        "salaryGap": 0,
+        "unitPrice": 10,
+        "discount": 0,
+        "activeEmployees": 3,
+        "beachEmployees": 1,
+        "freeSlots": 0,
+        "recruitingCapacity": 1,
+        "salaryDiscountPoints": 0,
+        "trainingCapacity": 1,
+        "trainingLevel2Capacity": 0,
+        "trainingLevel3Capacity": 0,
+        "unlimitedTraining": 0,
+        "productionWorkers": 2,
+        "productionGoodsCoverage": 2,
+        "marketingWorkers": 0,
+        "campaignTypeCoverage": 0,
+        "restaurantBuilders": 0,
+        "beachManagement": 0,
+        "beachRecruiting": 0,
+        "beachTraining": 0,
+        "beachMarketing": 1,
+        "beachProduction": 0,
+        "beachRestaurantBuilding": 0,
+        "beachTrainable": 1,
+        "beachSalaryLiable": 0,
+        "restaurants": 1,
+        "milestonesHeld": 1,
+        "openMilestoneOptions": 17,
+        "inventoryTotal": 0,
+        "inventoryDemandFit": 0,
+        "reachableDemandUnits": 0,
+        "unreachableDemandUnits": 0,
+        "servableDemandUnits": 0,
+        "uncontestedServableUnits": 0,
+        "reachableHouses": 6,
+        "exclusivelyReachableHouses": 0,
+        "closestHouses": 2,
+        "tiedClosestHouses": 0,
+        "distanceDeficitTotal": 10,
+        "productionMarketingSynergy": 0,
+        "reachableEngineReady": 0,
+        "futureDemandSupplyEngineReady": 1,
+        "bankrupt": 0
+      },
+      "candidates": [
+        {
+          "candidateId": "p5s2-train-1adebf1880",
+          "intent": "train",
+          "actions": [
+            {
+              "type": "train",
+              "employee": 13,
+              "toEmployee": 14,
+              "origin": 0,
+              "steps": 1
+            },
+            {
+              "type": "next_subphase"
+            }
+          ],
+          "score": 263.4,
+          "scoreBreakdown": {
+            "position": {
+              "cash": 0,
+              "staff": 13.4,
+              "inventory": 0,
+              "capacity": 204,
+              "salaryRisk": 0,
+              "milestoneOptions": 24,
+              "bankruptcy": 0
+            },
+            "action": {
+              "progress": 17,
+              "intent": 5,
+              "market": 0,
+              "risk": 0
+            },
+            "planContinuity": 0,
+            "strategicPlan": null
+          }
+        },
+        {
+          "candidateId": "p5s2-train-2dd5d77261",
+          "intent": "train",
+          "actions": [
+            {
+              "type": "train",
+              "employee": -1,
+              "toEmployee": 28,
+              "origin": 1,
+              "steps": 1
+            },
+            {
+              "type": "next_subphase"
+            }
+          ],
+          "score": 263.4,
+          "scoreBreakdown": {
+            "position": {
+              "cash": 0,
+              "staff": 13.4,
+              "inventory": 0,
+              "capacity": 204,
+              "salaryRisk": 0,
+              "milestoneOptions": 24,
+              "bankruptcy": 0
+            },
+            "action": {
+              "progress": 17,
+              "intent": 5,
+              "market": 0,
+              "risk": 0
+            },
+            "planContinuity": 0,
+            "strategicPlan": null
+          }
+        }
+      ],
+      "terminalStatus": "selected",
+      "selectedCandidateId": "p5s2-train-2dd5d77261"
+    }
+  ],
+  "differences": [
+    {
+      "name": "reachableHouses",
+      "left": 5,
+      "right": 6
+    },
+    {
+      "name": "exclusivelyReachableHouses",
+      "left": 4,
+      "right": 0
+    },
+    {
+      "name": "closestHouses",
+      "left": 4,
+      "right": 2
+    },
+    {
+      "name": "distanceDeficitTotal",
+      "left": 2,
+      "right": 10
+    }
+  ],
+  "predeclaredInteraction": {
+    "name": "isolated-market-disadvantage",
+    "scope": {
+      "turn": 3,
+      "phase": 5,
+      "subphase": 2,
+      "staticCandidateId": "p5s2-train-1adebf1880",
+      "alternateCandidateId": "p5s2-train-2dd5d77261"
+    },
+    "predicate": {
+      "exclusivelyReachableHouses": {
+        "equals": 0
+      },
+      "distanceDeficitTotal": {
+        "minimum": 10
+      }
+    },
+    "recommendationWhenMatched": "evaluate-alternate",
+    "recommendationWhenUnmatched": "abstain",
+    "rationale": "The only stable rank-winning discovery root had no exclusively reachable houses and a total distance deficit of 10; the candidate-matched abstention root had four exclusive houses and deficit 2. This is a narrow validation hypothesis, not an online policy.",
+    "validation": {
+      "roots": [
+        "rhea-intervention-dev-03-seat-1-index-4",
+        "rhea-intervention-dev-04-seat-1-index-4"
+      ],
+      "discoveryRootsExcluded": true,
+      "pairedSamples": [
+        3,
+        7,
+        15
+      ],
+      "primaryOutcome": "terminal-rank",
+      "secondaryOutcome": "terminal-margin",
+      "promotionHoldoutAllowed": false
+    }
+  },
+  "privatePayloadPersisted": false,
+  "promotionHoldoutOpened": false
+}

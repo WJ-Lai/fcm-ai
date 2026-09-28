@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "fcm.rhea-training-context-protocol.v15",
+  "reportSchemaVersion": "fcm.rhea-training-context.v15",
+  "experimentId": 41,
+  "sourceReport": "fixtures/rhea-training-stability-v14/report.json",
+  "sourceProtocol": "fixtures/rhea-training-stability-v14/protocol.json",
+  "candidateLimit": 3,
+  "predeclaredInteraction": {
+    "name": "isolated-market-disadvantage",
+    "scope": {
+      "turn": 3,
+      "phase": 5,
+      "subphase": 2,
+      "staticCandidateId": "p5s2-train-1adebf1880",
+      "alternateCandidateId": "p5s2-train-2dd5d77261"
+    },
+    "predicate": {
+      "exclusivelyReachableHouses": { "equals": 0 },
+      "distanceDeficitTotal": { "minimum": 10 }
+    },
+    "recommendationWhenMatched": "evaluate-alternate",
+    "recommendationWhenUnmatched": "abstain",
+    "rationale": "The only stable rank-winning discovery root had no exclusively reachable houses and a total distance deficit of 10; the candidate-matched abstention root had four exclusive houses and deficit 2. This is a narrow validation hypothesis, not an online policy.",
+    "validation": {
+      "roots": [
+        "rhea-intervention-dev-03-seat-1-index-4",
+        "rhea-intervention-dev-04-seat-1-index-4"
+      ],
+      "discoveryRootsExcluded": true,
+      "pairedSamples": [3, 7, 15],
+      "primaryOutcome": "terminal-rank",
+      "secondaryOutcome": "terminal-margin",
+      "promotionHoldoutAllowed": false
+    }
+  },
+  "promotionHoldoutOpened": false
+}

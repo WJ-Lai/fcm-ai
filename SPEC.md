@@ -639,6 +639,16 @@ reconstruct seat-visible features for roots A and B, identify a single predeclar
 interaction that distinguishes rank-critical from cash-only benefit, and evaluate it on independent
 training roots. Online RHEA and promotion holdout remain unchanged.
 
+The public context audit finds that the two roots are exactly matched on turn, order, money, staff,
+capacity, inventory, milestones, candidate actions and static score. Only four map-position features
+differ. The rank-selected root has zero exclusively reachable houses and aggregate distance deficit
+10, whereas the rank-tied root has four exclusive houses and deficit 2. Before inspecting either
+independent seat-1 context, experiment 41 therefore preregisters one deliberately narrow interaction:
+for this exact turn-3 training pair, evaluate `CEO -> Management Trainee` only when exclusive houses
+equal zero and distance deficit is at least 10; abstain everywhere else. This is an explanatory
+validation hypothesis, not a policy. Its two independent roots must pass the same rank-primary
+3 -> 7 -> 15 paired protocol; discovery roots, promotion holdout and online actions remain excluded.
+
 ### 6.8 Execution, memory and learning
 
 The execution layer accepts one versioned candidate id, revalidates it against the current game

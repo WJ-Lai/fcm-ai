@@ -534,7 +534,12 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     margin (SE $34); root B formally selects the alternate with 9 rank wins, 0 losses, 6 ties and
     p=0.003906. This is the first stable RHEA-derived action label, but only for one development root.
     Next compare seat-visible root-context features A vs B, predeclare one bounded interaction, and
-    validate it on independent training roots before any online use.
+    validate it on independent training roots before any online use. Iteration 41 completes that
+    preregistration without private state: roots differ only in four public map-position features.
+    The selected root has 0 exclusive houses and distance deficit 10; the abstained root has 4 and 2.
+    Freeze the exact interaction `exclusive == 0 && deficit >= 10` for this candidate pair, abstain
+    otherwise, and test only the two untouched seat-1 roots through staged 3 -> 7 -> 15 sampling.
+    Do not reinterpret the threshold after viewing validation contexts or open promotion holdout.
 
 - [ ] **P4.1c Evaluate belief-aware information-set search only where uncertainty warrants it.**
   - Why: hidden/simultaneous choices may justify ISMCTS/POMCP-style sampling, but naive MCTS or
