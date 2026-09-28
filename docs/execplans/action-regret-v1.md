@@ -89,3 +89,41 @@ production comparison context-sensitive without opening the promotion holdout or
 state. Before choosing the interaction, inspect which observed root-context fields distinguish the
 opposite-sign production examples. If no defensible feature is available, expand development and
 calibration roots before increasing model capacity.
+
+## Iteration 2 hypothesis and frozen change
+
+Iteration 2 changes only the number of predeclared development and calibration seeds from one to
+four per split. It keeps the v2 semantic representation, pairwise learner, candidate limit,
+root phases, continuation policy and metrics unchanged. This provides 12 roots per split and tests
+whether iteration 1's apparent production sign reversal is stable enough to justify an explicit
+interaction feature. The two promotion seeds are separate and remain sealed.
+
+Acceptance is not defined as beating the original three-root number. This iteration succeeds as a
+measurement experiment if every declared branch completes, privacy/ruleset validation passes, and
+the enlarged disjoint calibration reveals a reproducible error class. The unchanged model remains
+non-promotable unless it independently improves Top-1 and regret.
+
+## Iteration 2 result
+
+The measurement experiment completed, and the unchanged model was rejected more decisively.
+
+- Development and calibration each completed 4 seeds, 12 roots and 32 candidates on ruleset
+  `a171620e...`; they produced 26 decisive pairwise comparisons per split.
+- Candidate continuations all reached Game Over in 96–441 commands. Development P50/max was
+  190/434 and calibration P50/max was 264/441; no label was produced by truncation.
+- Static order, state-value v2 and every action-regret regularization value all selected 5/12
+  calibration roots correctly (41.7%), with mean terminal regret $255.58 and worst regret $832.
+- The selected lambda changed to 10 on log loss, but root choices did not change. More tuning cannot
+  repair the missing conditional information.
+- The 26 calibration comparisons collapse to only seven unique feature-delta vectors. Every one of
+  the seven receives contradictory terminal labels in different roots. Even an oracle that picks
+  the majority label separately for each exact context-free delta is capped at 58.3% weighted
+  pairwise accuracy on calibration. Across both splits, all 52 rows belong to conflicting deltas.
+- Promotion remained sealed. The learned model remains disconnected from live play.
+
+This establishes two separate risks. First, a context-free linear action delta is not identifiable:
+shared root state cancels from a pairwise score. Second, one deterministic full-game continuation is
+a potentially high-variance label for a local action: the same production delta can change terminal
+margin by hundreds of dollars in either direction. Iteration 3 must test label stability under a
+small, predeclared continuation-policy population before choosing a bilinear interaction, tree or
+neural model. Adding capacity before that test would fit continuation noise.

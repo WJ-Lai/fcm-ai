@@ -290,7 +290,14 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     marketing temporarily reverses at cutoff 5 from a +$235 oracle branch to -$230, then reverses
     back at cutoff 11. Immediate v2 planner integration is rejected. Next train/evaluate
     action-conditioned value deltas or regret on broader frozen roots rather than relying on
-    aggregate state-winner classification.
+    aggregate state-winner classification. That broader action-regret puncture is now complete:
+    12 development and 12 disjoint calibration roots produced 32 candidates per split. Static,
+    state-value v2 and every tested regret model all score 5/12 calibration Top-1 with $255.58 mean
+    regret. All seven exact calibration feature-delta patterns have contradictory labels, capping a
+    context-free delta oracle at 58.3% weighted pairwise accuracy. The model is rejected and remains
+    disconnected. Next freeze a small multi-continuation label-stability puncture; if terminal
+    action preferences are stable enough, add one bounded action-delta × observed-root-context
+    feature family and re-evaluate without opening promotion.
 - [ ] **P3.3d Add versioned opponent-belief sampling.**
   - Why: future dinner outcomes depend on unrevealed simultaneous choices and opponent reactions.
   - Depends on: P1.1 observation provenance, P3.2 and validated public-replay/self-play traces. A

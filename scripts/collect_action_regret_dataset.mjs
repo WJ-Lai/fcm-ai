@@ -6,7 +6,10 @@ import { readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
 
-import { validateActionRegretDataset } from '../src/action-regret-dataset.mjs'
+import {
+  validateActionRegretDataset,
+  validateActionRegretProtocol,
+} from '../src/action-regret-dataset.mjs'
 import { prefilterDiverseCandidates } from '../src/rollout-planner.mjs'
 import { strategicProjectionDigest } from '../src/strategic-abstraction.mjs'
 import { deterministicStrategy } from '../src/strategy.mjs'
@@ -40,7 +43,7 @@ const protocolPath = path.resolve(argument(
 ))
 const maxCommands = 700
 const protocol = JSON.parse(await readFile(protocolPath, 'utf8'))
-assert.equal(protocol.schemaVersion, 'fcm.action-regret-protocol.v1')
+validateActionRegretProtocol(protocol)
 assert.ok(Array.isArray(protocol.splits?.[split]) && protocol.splits[split].length > 0,
   `unknown or empty split ${split}`)
 if (split === 'promotion-holdout' && protocol.promotionHoldoutOpened !== true) {

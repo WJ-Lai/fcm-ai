@@ -21,9 +21,53 @@ function digest(value, label) {
   assert.match(value ?? '', /^sha256:[a-f0-9]{64}$/, `${label} must be a sha256 digest`)
 }
 
+export function validateActionRegretProtocol(protocol) {
+  assert.equal(protocol?.schemaVersion, 'fcm.action-regret-protocol.v1',
+    'protocol schema mismatch')
+  assert.ok(['fcm.action-regret.v1', 'fcm.action-regret.v2'].includes(protocol.protocolVersion),
+    'unsupported protocol version')
+  assert.equal(protocol.promotionHoldoutOpened, false,
+    'promotion holdout must remain sealed during development')
+  assert.ok(Number.isInteger(protocol.candidateLimit) &&
+    protocol.candidateLimit >= 2 && protocol.candidateLimit <= 8,
+  'candidate limit must be between 2 and 8')
+  assert.ok(typeof protocol.continuationPolicy === 'string' && protocol.continuationPolicy,
+    'continuation policy is required')
+
+  const splitNames = ['development', 'calibration', 'promotion-holdout']
+  const seenSeeds = new Set()
+  for (const split of splitNames) {
+    const seeds = protocol.splits?.[split]
+    assert.ok(Array.isArray(seeds) && seeds.length > 0, `${split} seeds are required`)
+    for (const seed of seeds) {
+      assert.ok(typeof seed === 'string' && seed, `${split} seed is invalid`)
+      assert.ok(!seenSeeds.has(seed), `split leakage for seed ${seed}`)
+      seenSeeds.add(seed)
+    }
+  }
+  assert.ok(Array.isArray(protocol.rootSpecs) && protocol.rootSpecs.length > 0,
+    'root specs are required')
+  const rootIds = new Set()
+  for (const root of protocol.rootSpecs) {
+    assert.ok(typeof root.id === 'string' && root.id, 'root spec id is required')
+    assert.ok(!rootIds.has(root.id), `duplicate root spec ${root.id}`)
+    rootIds.add(root.id)
+    assert.ok(Number.isInteger(root.phase) && Number.isInteger(root.subphase) &&
+      Number.isInteger(root.minimumTurn) && root.minimumTurn > 0,
+    `root spec ${root.id} is invalid`)
+  }
+  return {
+    developmentSeeds: protocol.splits.development.length,
+    calibrationSeeds: protocol.splits.calibration.length,
+    promotionSeeds: protocol.splits['promotion-holdout'].length,
+    rootSpecs: protocol.rootSpecs.length,
+  }
+}
+
 export function validateActionRegretDataset(dataset, { allowPromotionHoldout = false } = {}) {
   assert.equal(dataset?.schemaVersion, 'fcm.action-regret-dataset.v1', 'dataset schema mismatch')
-  assert.equal(dataset.protocolVersion, 'fcm.action-regret.v1', 'dataset protocol mismatch')
+  assert.ok(['fcm.action-regret.v1', 'fcm.action-regret.v2'].includes(dataset.protocolVersion),
+    'dataset protocol mismatch')
   assert.ok(['development', 'calibration', 'promotion-holdout'].includes(dataset.split),
     'unknown dataset split')
   if (dataset.split === 'promotion-holdout') {

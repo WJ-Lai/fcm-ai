@@ -138,6 +138,17 @@ frozen, diverse policy league.
   the +$235 oracle before reversing back later. Therefore v2 is not connected to the playing policy.
   The next estimator must target action-conditioned value deltas/regret and clear this fixed-root
   gate before the sealed promotion league can be opened.
+- The first action-conditioned regret experiment also failed its independent gate. On an enlarged
+  frozen protocol with 12 development and 12 calibration roots (32 candidates per split), static
+  order, state-value v2 and all pairwise action-regret regularization values each achieved only 5/12
+  calibration root Top-1, with $255.58 mean and $832 worst terminal regret. Calibration's 26
+  decisive comparisons collapse to seven exact post-action feature deltas, and all seven carry
+  contradictory terminal labels across roots; the context-free representation's weighted
+  pairwise ceiling is therefore only 58.3%. This proves that a linear absolute post-state score
+  cancels required root context. It also exposes possible single-continuation label variance.
+  No regret model is connected to play, and the promotion holdout remains sealed. Before adding
+  nonlinear capacity, run a predeclared multi-continuation stability puncture; only then evaluate a
+  bounded action-delta × observed-root-context representation.
 
 ## 5. Target architecture
 

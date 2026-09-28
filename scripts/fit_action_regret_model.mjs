@@ -6,6 +6,7 @@ import { readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 
 import { buildActionPreferenceRows, validateActionRegretDataset } from '../src/action-regret-dataset.mjs'
+import { auditActionFeatureCollisions } from '../src/action-regret-collisions.mjs'
 import { auditActionRegretRanking } from '../src/action-regret-ranking.mjs'
 import {
   auditPairwiseValueModel,
@@ -31,6 +32,12 @@ const stateModelPath = path.resolve(argument(
   'fixtures/value-calibration-v2/phase-selection.json',
 ))
 const outputPath = path.resolve(argument('--output', 'fixtures/action-regret-v1/iteration-1.json'))
+const experimentId = Number(argument('--experiment-id', '1'))
+const hypothesis = argument(
+  '--hypothesis',
+  'post-action semantic pair features improve disjoint root Top-1 accuracy',
+)
+assert.ok(Number.isInteger(experimentId) && experimentId > 0, 'experiment id must be positive')
 const developmentText = await readFile(developmentPath, 'utf8')
 const calibrationText = await readFile(calibrationPath, 'utf8')
 const stateModelText = await readFile(stateModelPath, 'utf8')
@@ -86,8 +93,8 @@ const stateValueBaseline = auditActionRegretRanking(calibration, (candidate, roo
 ))
 const report = {
   schemaVersion: 'fcm.action-regret-experiment.v1',
-  experimentId: 1,
-  hypothesis: 'post-action semantic pair features improve disjoint root Top-1 accuracy',
+  experimentId,
+  hypothesis,
   primaryMetric: 'calibrationRootTop1Accuracy',
   rulesetHash: development.rulesetHash,
   featureVersion: development.featureVersion,
@@ -107,6 +114,11 @@ const report = {
   baselines: {
     static: staticBaseline,
     stateValueV2: stateValueBaseline,
+  },
+  featureCollisions: {
+    development: auditActionFeatureCollisions(developmentRows),
+    calibration: auditActionFeatureCollisions(calibrationRows),
+    combined: auditActionFeatureCollisions([...developmentRows, ...calibrationRows]),
   },
   candidates: candidates.map((candidate) => ({
     lambda: candidate.lambda,
@@ -129,6 +141,7 @@ process.stdout.write(`${JSON.stringify({
     static: staticBaseline,
     stateValueV2: stateValueBaseline,
   },
+  featureCollisions: report.featureCollisions,
   candidateMetrics: report.candidates.map((candidate) => ({
     lambda: candidate.lambda,
     top1Accuracy: candidate.calibrationRanking.top1Accuracy,

@@ -1,7 +1,11 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 
-import { buildActionPreferenceRows, validateActionRegretDataset } from './action-regret-dataset.mjs'
+import {
+  buildActionPreferenceRows,
+  validateActionRegretDataset,
+  validateActionRegretProtocol,
+} from './action-regret-dataset.mjs'
 
 function dataset() {
   return {
@@ -68,4 +72,39 @@ test('action-regret promotion split remains sealed', () => {
   const input = dataset()
   input.split = 'promotion-holdout'
   assert.throws(() => validateActionRegretDataset(input), /promotion holdout is sealed/)
+})
+
+test('action-regret protocol requires disjoint declared seeds and a sealed holdout', () => {
+  const valid = {
+    schemaVersion: 'fcm.action-regret-protocol.v1',
+    protocolVersion: 'fcm.action-regret.v2',
+    promotionHoldoutOpened: false,
+    candidateLimit: 3,
+    continuationPolicy: 'fcm.deterministic-vs-official-builtin.v1',
+    splits: {
+      development: ['regret:development:0', 'regret:development:1'],
+      calibration: ['regret:calibration:0'],
+      'promotion-holdout': ['regret:promotion:0'],
+    },
+    rootSpecs: [
+      { id: 'middle-hiring', phase: 5, subphase: 1, minimumTurn: 4 },
+    ],
+  }
+  assert.deepEqual(validateActionRegretProtocol(valid), {
+    developmentSeeds: 2,
+    calibrationSeeds: 1,
+    promotionSeeds: 1,
+    rootSpecs: 1,
+  })
+  assert.throws(
+    () => validateActionRegretProtocol({
+      ...valid,
+      splits: { ...valid.splits, calibration: ['regret:development:1'] },
+    }),
+    /split leakage/,
+  )
+  assert.throws(
+    () => validateActionRegretProtocol({ ...valid, promotionHoldoutOpened: true }),
+    /must remain sealed/,
+  )
 })
