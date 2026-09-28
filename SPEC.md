@@ -623,6 +623,13 @@ shows a materially stronger signal than the hire override, but the three-sample 
 by construction. Resume samples 3–6 only; keep rank primary, cash secondary, and make no online
 policy change before the seven-sample gate.
 
+At seven samples, the training prefix remains exact. The first root ties terminal rank in all seven
+continuations while the alternate improves mean cash margin by about 102 with standard error 37. The
+second gives the alternate three rank wins, zero losses and four ties, with about 453 mean margin
+advantage; its exact p-value is still 0.25. Neither root is selected and both advance to the fixed
+15-sample maximum. Resume samples 7–14 only. A phase-wide training override remains prohibited even
+if one frozen root later selects; generalization requires independent training roots and a league.
+
 ### 6.8 Execution, memory and learning
 
 The execution layer accepts one versioned candidate id, revalidates it against the current game

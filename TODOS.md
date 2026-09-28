@@ -526,7 +526,10 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     reproduces exactly. On the first root all six branches rank first, while the alternate has higher
     cash in all three; on the second root the alternate has two rank wins, zero losses and one tie.
     Both request seven samples. The old own-cash-only harmful label is rejected; resume samples 3–6
-    with rank primary and no policy change.
+    with rank primary and no policy change. Iteration 39 preserves the prefix and reaches seven. Root
+    A ties rank 7/7 while the alternate improves mean margin by $102 (SE $37); root B gives alternate
+    three rank wins, zero losses and four ties (p=0.25) with about $453 mean margin advantage. Neither
+    is formally selected and both request 15. Resume samples 7–14 only; no phase-wide training gate.
 
 - [ ] **P4.1c Evaluate belief-aware information-set search only where uncertainty warrants it.**
   - Why: hidden/simultaneous choices may justify ISMCTS/POMCP-style sampling, but naive MCTS or
