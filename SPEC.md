@@ -469,15 +469,12 @@ skipping because the current leaf evaluator scored skip 39 versus hire 35.4. Tha
 evidence and a warning about cutoff bias—not evidence of better play. P4.1 remains open for frozen
 one-/three-second development leagues, horizon diagnostics and terminal lift.
 
-The first paired development puncture confirms that warning is causal, not cosmetic. On two fresh
-development seeds with both seats and exactly one eligible Beam intervention per game, all 12 games
-completed with zero violations. Static won 4/4 with mean money $517.5. The one-second planner missed
-its complete-scenario requirement in 4/4, safely retained hire, and also won 4/4 (P95 1.08 seconds).
-The three-second planner completed all four root-scenario sets in 4/4, changed hire to skip every
-time, and collapsed to 0/4 wins with mean money $38.75. Giving the current evaluator more compute
-therefore makes the policy strictly worse on this paired sample. The current Beam is rejected for
-strength; expanding its league would only measure a known cutoff defect. Promotion data stays
-sealed while the next iteration diagnoses horizon/leaf ranking and adds a monotonic safety gate.
+The first development puncture found the harmful hire→skip change, but later audit found its official
+opponent seed included the arm id; its 4/4 versus 0/4 magnitude is not a valid paired causal estimate.
+The corrected protocol shares player names, game ids and opponent random streams across arms. On two
+seeds and both seats, static wins 2/4 with mean $261.75 while one ungated three-second intervention
+wins 1/4 with mean $153.75. The controlled direction remains harmful, but this corrected effect—not
+the contaminated magnitude—is authoritative.
 
 The fixed-root horizon matrix identifies the failure mechanism. With identical root candidates,
 official opponent belief and common samples, hire beats skip by 1.4 at actor depths 1 and 2; skip
@@ -488,6 +485,13 @@ sampling. A fixed deeper search is therefore neither budget-compliant nor genera
 development hypothesis is a conservative multi-horizon agreement gate: a completed deep result may
 override static only when a cheap shallow checkpoint independently agrees; disagreement falls back
 and is logged rather than silently averaged away.
+
+The multi-horizon gate passes its first controlled terminal safety test. Both one-second and three-
+second arms reject all four interventions and reproduce the static arm's terminal rank and both
+players' money exactly game-by-game. The three-second maximum decision latency is 2.91 seconds. The
+one-second maximum is 1.12 seconds, so that tier misses its wall-clock target and cannot yet be
+promoted. The gate has demonstrated safe abstention only; it must still accept useful changes on
+disjoint development positions before it can count as a stronger planner.
 
 ### 6.8 Execution, memory and learning
 

@@ -1,5 +1,10 @@
 # ScenarioBeam development puncture v2
 
+> Superseded evidence notice: the official-opponent seed in this v2 runner included the arm id, so
+> the reported 4/4 versus 0/4 magnitude was not a common-random-number paired estimate. The harmful
+> direction was later reproduced under a corrected protocol in `horizon-agreement-development-v4`,
+> where static scored 2/4 and ungated Beam 1/4. Use v4 for causal terminal comparisons.
+
 ## Question
 
 Before paying for a large league, does a single ScenarioBeam intervention improve a complete game,

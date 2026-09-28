@@ -386,12 +386,11 @@ restructuring roots it makes no clone attempt and returns the same public static
 evidence that hidden-boundary search is strong; a future ISMCTS/POMCP-style specialist must pass its
 own information-set audit before comparison.
 
-The first terminal development puncture rejects this Beam for strength. Across two development seeds
-and both seats, static won 4/4 at mean $517.5. A one-second budget fell back safely in all four games
-and retained those wins; a three-second budget completed all searches, changed hire to skip in all
-four games, and produced 0/4 wins at mean $38.75. More search time is currently harmful because it
-makes the biased cutoff estimate actionable. League expansion is paused until horizon diagnostics
-and a safety gate stop completed search from overriding a stronger static prior on unstable leaves.
+The first terminal puncture found a harmful hire→skip change, but its opponent random seed depended
+on the arm id and was not a valid paired estimate. Under corrected common random streams, static wins
+2/4 at mean $261.75 and one ungated three-second intervention wins 1/4 at mean $153.75. A shallow/deep
+agreement gate rejects that change and exactly reproduces static rank and money in both one-/three-
+second arms. Three seconds meets its cap (max 2.91s); one second still overshoots (max 1.12s).
 
 A fixed-root depth sweep confirms an intermediate-horizon investment alias. Hire is preferred at
 depths 1–2, skip at 3–5, then hire again from depth 6; its delayed payoff becomes dominant at 7–8.

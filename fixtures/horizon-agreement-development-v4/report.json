@@ -1,0 +1,504 @@
+{
+  "schemaVersion": "fcm.horizon-agreement-development.v4",
+  "experimentId": 22,
+  "protocolDigest": "sha256:2b747ca26dfbd708327e2f4c0dfc958af26a3d92844e6c7c0cd94cecf71d4605",
+  "protocol": {
+    "schemaVersion": "fcm.horizon-agreement-development-protocol.v4",
+    "reportSchemaVersion": "fcm.horizon-agreement-development.v4",
+    "experimentId": 22,
+    "seeds": [
+      "scenario-beam-dev-01",
+      "scenario-beam-dev-02"
+    ],
+    "arms": [
+      {
+        "id": "static",
+        "mode": "static",
+        "deadlineMs": null
+      },
+      {
+        "id": "unsafe-3000ms",
+        "mode": "unsafe",
+        "deadlineMs": 3000
+      },
+      {
+        "id": "agreement-1000ms",
+        "mode": "agreement",
+        "deadlineMs": 1000
+      },
+      {
+        "id": "agreement-3000ms",
+        "mode": "agreement",
+        "deadlineMs": 3000
+      }
+    ],
+    "maxGateDecisions": 1,
+    "maxCommands": 500,
+    "beamBudget": {
+      "maxRootCandidates": 2,
+      "branchFactor": 2,
+      "beamWidth": 2,
+      "maxOwnDepth": 4,
+      "maxTransitions": 80
+    },
+    "promotionHoldoutOpened": false
+  },
+  "summary": {
+    "static": {
+      "games": 4,
+      "completed": 4,
+      "violations": 0,
+      "firstPlaces": 2,
+      "meanAgentMoney": 261.75,
+      "gateFallbacks": 0,
+      "maxDecisionMs": 0
+    },
+    "unsafe-3000ms": {
+      "games": 4,
+      "completed": 4,
+      "violations": 0,
+      "firstPlaces": 1,
+      "meanAgentMoney": 153.75,
+      "gateFallbacks": 0,
+      "maxDecisionMs": 2575.013958
+    },
+    "agreement-1000ms": {
+      "games": 4,
+      "completed": 4,
+      "violations": 0,
+      "firstPlaces": 2,
+      "meanAgentMoney": 261.75,
+      "gateFallbacks": 4,
+      "maxDecisionMs": 1122.8225180000009
+    },
+    "agreement-3000ms": {
+      "games": 4,
+      "completed": 4,
+      "violations": 0,
+      "firstPlaces": 2,
+      "meanAgentMoney": 261.75,
+      "gateFallbacks": 4,
+      "maxDecisionMs": 2909.7224609999976
+    }
+  },
+  "games": [
+    {
+      "arm": "static",
+      "seed": "scenario-beam-dev-01",
+      "agentSeat": 0,
+      "completed": true,
+      "violation": null,
+      "commands": 173,
+      "gameLatencyMs": 19248,
+      "agentRank": 1,
+      "agentMoney": 498,
+      "opponentMoney": 8,
+      "gate": {
+        "decisions": 0,
+        "fallbacks": 0,
+        "details": []
+      }
+    },
+    {
+      "arm": "static",
+      "seed": "scenario-beam-dev-01",
+      "agentSeat": 1,
+      "completed": true,
+      "violation": null,
+      "commands": 407,
+      "gameLatencyMs": 48394,
+      "agentRank": 2,
+      "agentMoney": 0,
+      "opponentMoney": 554,
+      "gate": {
+        "decisions": 0,
+        "fallbacks": 0,
+        "details": []
+      }
+    },
+    {
+      "arm": "static",
+      "seed": "scenario-beam-dev-02",
+      "agentSeat": 0,
+      "completed": true,
+      "violation": null,
+      "commands": 280,
+      "gameLatencyMs": 31002,
+      "agentRank": 2,
+      "agentMoney": 14,
+      "opponentMoney": 506,
+      "gate": {
+        "decisions": 0,
+        "fallbacks": 0,
+        "details": []
+      }
+    },
+    {
+      "arm": "static",
+      "seed": "scenario-beam-dev-02",
+      "agentSeat": 1,
+      "completed": true,
+      "violation": null,
+      "commands": 246,
+      "gameLatencyMs": 27497,
+      "agentRank": 1,
+      "agentMoney": 535,
+      "opponentMoney": 15,
+      "gate": {
+        "decisions": 0,
+        "fallbacks": 0,
+        "details": []
+      }
+    },
+    {
+      "arm": "agreement-1000ms",
+      "seed": "scenario-beam-dev-01",
+      "agentSeat": 0,
+      "completed": true,
+      "violation": null,
+      "commands": 173,
+      "gameLatencyMs": 19637,
+      "agentRank": 1,
+      "agentMoney": 498,
+      "opponentMoney": 8,
+      "gate": {
+        "decisions": 1,
+        "fallbacks": 1,
+        "details": [
+          {
+            "elapsedMs": 1037.6269999999931,
+            "gateReason": "shallow-incomplete",
+            "fallbackUsed": true,
+            "staticCandidateId": "p5s1-hire-1dfd160273",
+            "shallowCandidateId": "p5s1-hire-1dfd160273",
+            "deepCandidateId": "p5s1-hire-1dfd160273",
+            "selectedCandidateId": "p5s1-hire-1dfd160273",
+            "shallowStopReason": "deadline",
+            "deepStopReason": "deadline"
+          }
+        ]
+      }
+    },
+    {
+      "arm": "agreement-1000ms",
+      "seed": "scenario-beam-dev-01",
+      "agentSeat": 1,
+      "completed": true,
+      "violation": null,
+      "commands": 407,
+      "gameLatencyMs": 50147,
+      "agentRank": 2,
+      "agentMoney": 0,
+      "opponentMoney": 554,
+      "gate": {
+        "decisions": 1,
+        "fallbacks": 1,
+        "details": [
+          {
+            "elapsedMs": 1111.9879870000004,
+            "gateReason": "shallow-incomplete",
+            "fallbackUsed": true,
+            "staticCandidateId": "p5s1-hire-1dfd160273",
+            "shallowCandidateId": "p5s1-hire-1dfd160273",
+            "deepCandidateId": "p5s1-hire-1dfd160273",
+            "selectedCandidateId": "p5s1-hire-1dfd160273",
+            "shallowStopReason": "deadline",
+            "deepStopReason": "deadline"
+          }
+        ]
+      }
+    },
+    {
+      "arm": "agreement-1000ms",
+      "seed": "scenario-beam-dev-02",
+      "agentSeat": 0,
+      "completed": true,
+      "violation": null,
+      "commands": 280,
+      "gameLatencyMs": 32628,
+      "agentRank": 2,
+      "agentMoney": 14,
+      "opponentMoney": 506,
+      "gate": {
+        "decisions": 1,
+        "fallbacks": 1,
+        "details": [
+          {
+            "elapsedMs": 1122.8225180000009,
+            "gateReason": "shallow-incomplete",
+            "fallbackUsed": true,
+            "staticCandidateId": "p5s1-hire-1dfd160273",
+            "shallowCandidateId": "p5s1-hire-1dfd160273",
+            "deepCandidateId": "p5s1-hire-1dfd160273",
+            "selectedCandidateId": "p5s1-hire-1dfd160273",
+            "shallowStopReason": "deadline",
+            "deepStopReason": "deadline"
+          }
+        ]
+      }
+    },
+    {
+      "arm": "agreement-1000ms",
+      "seed": "scenario-beam-dev-02",
+      "agentSeat": 1,
+      "completed": true,
+      "violation": null,
+      "commands": 246,
+      "gameLatencyMs": 27885,
+      "agentRank": 1,
+      "agentMoney": 535,
+      "opponentMoney": 15,
+      "gate": {
+        "decisions": 1,
+        "fallbacks": 1,
+        "details": [
+          {
+            "elapsedMs": 1028.753837999975,
+            "gateReason": "shallow-incomplete",
+            "fallbackUsed": true,
+            "staticCandidateId": "p5s1-hire-1dfd160273",
+            "shallowCandidateId": "p5s1-hire-1dfd160273",
+            "deepCandidateId": "p5s1-hire-1dfd160273",
+            "selectedCandidateId": "p5s1-hire-1dfd160273",
+            "shallowStopReason": "deadline",
+            "deepStopReason": "deadline"
+          }
+        ]
+      }
+    },
+    {
+      "arm": "agreement-3000ms",
+      "seed": "scenario-beam-dev-01",
+      "agentSeat": 0,
+      "completed": true,
+      "violation": null,
+      "commands": 173,
+      "gameLatencyMs": 21683,
+      "agentRank": 1,
+      "agentMoney": 498,
+      "opponentMoney": 8,
+      "gate": {
+        "decisions": 1,
+        "fallbacks": 1,
+        "details": [
+          {
+            "elapsedMs": 2909.7224609999976,
+            "gateReason": "horizon-disagreement",
+            "fallbackUsed": true,
+            "staticCandidateId": "p5s1-hire-1dfd160273",
+            "shallowCandidateId": "p5s1-hire-1dfd160273",
+            "deepCandidateId": "p5s1-fallback-21d4f44933",
+            "selectedCandidateId": "p5s1-hire-1dfd160273",
+            "shallowStopReason": "complete",
+            "deepStopReason": "complete"
+          }
+        ]
+      }
+    },
+    {
+      "arm": "agreement-3000ms",
+      "seed": "scenario-beam-dev-01",
+      "agentSeat": 1,
+      "completed": true,
+      "violation": null,
+      "commands": 407,
+      "gameLatencyMs": 52025,
+      "agentRank": 2,
+      "agentMoney": 0,
+      "opponentMoney": 554,
+      "gate": {
+        "decisions": 1,
+        "fallbacks": 1,
+        "details": [
+          {
+            "elapsedMs": 2755.9530969999614,
+            "gateReason": "horizon-disagreement",
+            "fallbackUsed": true,
+            "staticCandidateId": "p5s1-hire-1dfd160273",
+            "shallowCandidateId": "p5s1-hire-1dfd160273",
+            "deepCandidateId": "p5s1-fallback-21d4f44933",
+            "selectedCandidateId": "p5s1-hire-1dfd160273",
+            "shallowStopReason": "complete",
+            "deepStopReason": "complete"
+          }
+        ]
+      }
+    },
+    {
+      "arm": "agreement-3000ms",
+      "seed": "scenario-beam-dev-02",
+      "agentSeat": 0,
+      "completed": true,
+      "violation": null,
+      "commands": 280,
+      "gameLatencyMs": 35306,
+      "agentRank": 2,
+      "agentMoney": 14,
+      "opponentMoney": 506,
+      "gate": {
+        "decisions": 1,
+        "fallbacks": 1,
+        "details": [
+          {
+            "elapsedMs": 2601.5077909999527,
+            "gateReason": "horizon-disagreement",
+            "fallbackUsed": true,
+            "staticCandidateId": "p5s1-hire-1dfd160273",
+            "shallowCandidateId": "p5s1-hire-1dfd160273",
+            "deepCandidateId": "p5s1-fallback-21d4f44933",
+            "selectedCandidateId": "p5s1-hire-1dfd160273",
+            "shallowStopReason": "complete",
+            "deepStopReason": "complete"
+          }
+        ]
+      }
+    },
+    {
+      "arm": "agreement-3000ms",
+      "seed": "scenario-beam-dev-02",
+      "agentSeat": 1,
+      "completed": true,
+      "violation": null,
+      "commands": 246,
+      "gameLatencyMs": 29841,
+      "agentRank": 1,
+      "agentMoney": 535,
+      "opponentMoney": 15,
+      "gate": {
+        "decisions": 1,
+        "fallbacks": 1,
+        "details": [
+          {
+            "elapsedMs": 2427.3803490000428,
+            "gateReason": "horizon-disagreement",
+            "fallbackUsed": true,
+            "staticCandidateId": "p5s1-hire-1dfd160273",
+            "shallowCandidateId": "p5s1-hire-1dfd160273",
+            "deepCandidateId": "p5s1-fallback-21d4f44933",
+            "selectedCandidateId": "p5s1-hire-1dfd160273",
+            "shallowStopReason": "complete",
+            "deepStopReason": "complete"
+          }
+        ]
+      }
+    },
+    {
+      "arm": "unsafe-3000ms",
+      "seed": "scenario-beam-dev-01",
+      "agentSeat": 0,
+      "completed": true,
+      "violation": null,
+      "commands": 185,
+      "gameLatencyMs": 21939,
+      "agentRank": 2,
+      "agentMoney": 0,
+      "opponentMoney": 512,
+      "gate": {
+        "decisions": 1,
+        "fallbacks": 0,
+        "details": [
+          {
+            "elapsedMs": 2575.013958,
+            "gateReason": "ungated",
+            "fallbackUsed": false,
+            "staticCandidateId": "p5s1-hire-1dfd160273",
+            "shallowCandidateId": null,
+            "deepCandidateId": "p5s1-fallback-21d4f44933",
+            "selectedCandidateId": "p5s1-fallback-21d4f44933",
+            "shallowStopReason": null,
+            "deepStopReason": "complete"
+          }
+        ]
+      }
+    },
+    {
+      "arm": "unsafe-3000ms",
+      "seed": "scenario-beam-dev-01",
+      "agentSeat": 1,
+      "completed": true,
+      "violation": null,
+      "commands": 120,
+      "gameLatencyMs": 14469,
+      "agentRank": 2,
+      "agentMoney": 0,
+      "opponentMoney": 513,
+      "gate": {
+        "decisions": 1,
+        "fallbacks": 0,
+        "details": [
+          {
+            "elapsedMs": 2404.0118449999973,
+            "gateReason": "ungated",
+            "fallbackUsed": false,
+            "staticCandidateId": "p5s1-hire-1dfd160273",
+            "shallowCandidateId": null,
+            "deepCandidateId": "p5s1-fallback-21d4f44933",
+            "selectedCandidateId": "p5s1-fallback-21d4f44933",
+            "shallowStopReason": null,
+            "deepStopReason": "complete"
+          }
+        ]
+      }
+    },
+    {
+      "arm": "unsafe-3000ms",
+      "seed": "scenario-beam-dev-02",
+      "agentSeat": 0,
+      "completed": true,
+      "violation": null,
+      "commands": 342,
+      "gameLatencyMs": 35825,
+      "agentRank": 2,
+      "agentMoney": 25,
+      "opponentMoney": 489,
+      "gate": {
+        "decisions": 1,
+        "fallbacks": 0,
+        "details": [
+          {
+            "elapsedMs": 2186.5327270000053,
+            "gateReason": "ungated",
+            "fallbackUsed": false,
+            "staticCandidateId": "p5s1-hire-1dfd160273",
+            "shallowCandidateId": null,
+            "deepCandidateId": "p5s1-fallback-21d4f44933",
+            "selectedCandidateId": "p5s1-fallback-21d4f44933",
+            "shallowStopReason": null,
+            "deepStopReason": "complete"
+          }
+        ]
+      }
+    },
+    {
+      "arm": "unsafe-3000ms",
+      "seed": "scenario-beam-dev-02",
+      "agentSeat": 1,
+      "completed": true,
+      "violation": null,
+      "commands": 360,
+      "gameLatencyMs": 45929,
+      "agentRank": 1,
+      "agentMoney": 590,
+      "opponentMoney": 20,
+      "gate": {
+        "decisions": 1,
+        "fallbacks": 0,
+        "details": [
+          {
+            "elapsedMs": 2087.074338999999,
+            "gateReason": "ungated",
+            "fallbackUsed": false,
+            "staticCandidateId": "p5s1-hire-1dfd160273",
+            "shallowCandidateId": null,
+            "deepCandidateId": "p5s1-fallback-21d4f44933",
+            "selectedCandidateId": "p5s1-fallback-21d4f44933",
+            "shallowStopReason": null,
+            "deepStopReason": "complete"
+          }
+        ]
+      }
+    }
+  ],
+  "promotionHoldoutOpened": false,
+  "strengthPromoted": false
+}

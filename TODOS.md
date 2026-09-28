@@ -432,17 +432,18 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     belief fallback, deadline/transition fallback, stable ties and policy failure. A frozen official
     smoke reached actor depth 4 through restructuring using 20 transitions and 4/4 completed root
     scenarios with zero violations. It nevertheless replaced a turn-1 hire with skip (leaf score
-    35.4 vs 39), so strength is explicitly unpromoted. Iteration 20 froze a two-seed, paired-seat,
-    single-intervention development puncture: all 12 games completed with zero violations. Static
-    won 4/4 at mean $517.5. The one-second arm timed out and legally fell back in 4/4 (P95 1.08s),
-    retaining 4/4 wins. The three-second arm completed 4/4 searches but always changed hire to skip,
-    fell to 0/4 wins and mean $38.75. Current beam is therefore rejected for strength; do not expand
-    the league or open promotion holdout until cutoff/horizon diagnostics prevent this reversal.
+    35.4 vs 39), so strength is explicitly unpromoted. Iteration 20 found a harmful hire→skip change,
+    but its opponent seed accidentally included the arm id; its 4/4 versus 0/4 magnitude is not a
+    valid paired estimate. Iteration 22 fixes player/game/opponent common randomness: static scores
+    2/4 and mean $261.75; ungated three-second Beam scores 1/4 and mean $153.75.
     Iteration 21 isolates the horizon effect on the same root and matched samples: hire leads at actor
     depths 1–2, skip falsely leads at depths 3–5, and hire recovers at depth 6 before its delayed
     payoff appears at depths 7–8. Depth 8 costs about 5.38 seconds, so merely increasing the fixed
     horizon violates the target budget. Next test one conservative variable: require shallow/deep
-    recommendation agreement before a completed search may override the static prior.
+    recommendation agreement before a completed search may override the static prior. That gate now
+    restores both budget arms exactly to static money/rank in every paired game. The one-second max
+    is still 1.12s, so P4.1 remains open for deadline headroom and proof that the gate can accept a
+    beneficial change rather than always abstaining.
 
 - [ ] **P4.1b Implement RHEA as an equal-budget challenger.**
   - Why: rolling-horizon evolution may discover useful macro sequences that beam pruning loses in

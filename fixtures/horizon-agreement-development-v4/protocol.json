@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "fcm.horizon-agreement-development-protocol.v4",
+  "reportSchemaVersion": "fcm.horizon-agreement-development.v4",
+  "experimentId": 22,
+  "seeds": ["scenario-beam-dev-01", "scenario-beam-dev-02"],
+  "arms": [
+    { "id": "static", "mode": "static", "deadlineMs": null },
+    { "id": "unsafe-3000ms", "mode": "unsafe", "deadlineMs": 3000 },
+    { "id": "agreement-1000ms", "mode": "agreement", "deadlineMs": 1000 },
+    { "id": "agreement-3000ms", "mode": "agreement", "deadlineMs": 3000 }
+  ],
+  "maxGateDecisions": 1,
+  "maxCommands": 500,
+  "beamBudget": {
+    "maxRootCandidates": 2,
+    "branchFactor": 2,
+    "beamWidth": 2,
+    "maxOwnDepth": 4,
+    "maxTransitions": 80
+  },
+  "promotionHoldoutOpened": false
+}
