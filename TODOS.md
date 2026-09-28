@@ -557,6 +557,8 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     new seeds before observing their terminal outcomes. Iteration 45 freezes 8/8 distinct roots from
     four untouched seeds × both seats before any terminal branch. The public report is byte-stable,
     contains no terminal/private payload, and spans exclusive houses 0–5 and distance deficit 0–5.
+    A pre-sampling audit fixes the coordinate contract to global scanIndex 4 plus trainingScanIndex 1;
+    root identities are unchanged and no terminal branch had started.
     Root-level gate is fixed: at 15 continuations require >=7 decisive roots, >=7 alternate-positive,
     0 static-positive and exact two-sided sign p<=0.025. Next collect sample 0–2 for all eight roots;
     never remove or replace a root based on its result.

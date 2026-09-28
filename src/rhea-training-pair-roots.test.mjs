@@ -20,6 +20,9 @@ test('candidate-wide roots are frozen on fresh seeds before terminal sampling', 
     root.turn === 3 && root.phase === 5 && root.subphase === 2
   )))
   assert.ok(report.roots.every((root) => (
+    root.scanIndex === 4 && root.trainingScanIndex === 1
+  )))
+  assert.ok(report.roots.every((root) => (
     root.candidateIds[0] === 'p5s2-train-1adebf1880'
     && root.candidateIds[1] === 'p5s2-train-2dd5d77261'
   )))

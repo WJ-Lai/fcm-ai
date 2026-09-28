@@ -41,6 +41,7 @@ async function scanTrajectory(seed, agentSeat, gameID) {
   let commands = 0
   let opponentDecision = 0
   let scanned = 0
+  let trainingScanned = 0
   while (environment.snapshot().phase !== 10 && commands < protocol.maxCommands
     && scanned < protocol.maxScannedDecisionsPerTrajectory) {
     const snapshot = environment.snapshot()
@@ -54,16 +55,18 @@ async function scanTrajectory(seed, agentSeat, gameID) {
       const view = await environment.observe(agentSeat)
       const staticResult = deterministicStrategy(view)
       const eligibleDecision = view.state.phase === protocol.eligibility.phase
-        && view.state.subphase === protocol.eligibility.subphase
         && !view.legalActions.isSimulPhase
         && staticResult.ranked.length > 1
       if (eligibleDecision) {
         const scanIndex = scanned
         scanned += 1
-        const candidates = prefilterDiverseCandidates(staticResult.ranked, {
-          limit: protocol.candidateLimit,
-        })
-        const pair = exactCandidatePair(candidates)
+        const isTrainingDecision = view.state.subphase === protocol.eligibility.subphase
+        const trainingScanIndex = isTrainingDecision ? trainingScanned : null
+        if (isTrainingDecision) trainingScanned += 1
+        const candidates = isTrainingDecision
+          ? prefilterDiverseCandidates(staticResult.ranked, { limit: protocol.candidateLimit })
+          : []
+        const pair = isTrainingDecision ? exactCandidatePair(candidates) : null
         if (view.state.turn === protocol.eligibility.turn && pair != null) {
           const publicFeatures = extractTerminalValueFeatures(view, { seat: agentSeat })
           const projectionDigest = strategicProjectionDigest({ view })
@@ -74,6 +77,7 @@ async function scanTrajectory(seed, agentSeat, gameID) {
               seed,
               agentSeat,
               scanIndex,
+              trainingScanIndex,
               gameID,
               turn: view.state.turn,
               phase: view.state.phase,
@@ -89,6 +93,7 @@ async function scanTrajectory(seed, agentSeat, gameID) {
               }),
             },
             scannedDecisions: scanned,
+            trainingScannedDecisions: trainingScanned,
             commands,
           }
         }
@@ -97,7 +102,10 @@ async function scanTrajectory(seed, agentSeat, gameID) {
     }
     commands += 1
   }
-  return { root: null, scannedDecisions: scanned, commands }
+  return {
+    root: null, scannedDecisions: scanned,
+    trainingScannedDecisions: trainingScanned, commands,
+  }
 }
 
 const roots = []
@@ -108,6 +116,7 @@ for (const seed of protocol.seeds) {
     const result = await scanTrajectory(seed, agentSeat, gameID)
     trajectories.push({
       seed, agentSeat, gameID, scannedDecisions: result.scannedDecisions,
+      trainingScannedDecisions: result.trainingScannedDecisions,
       commands: result.commands, rootFound: result.root != null,
     })
     if (result.root) roots.push(result.root)

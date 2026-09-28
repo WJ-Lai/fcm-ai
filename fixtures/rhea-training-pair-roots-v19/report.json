@@ -28,7 +28,8 @@
       "seed": "rhea-training-pair-val-01",
       "agentSeat": 0,
       "gameID": 9930,
-      "scannedDecisions": 2,
+      "scannedDecisions": 5,
+      "trainingScannedDecisions": 2,
       "commands": 20,
       "rootFound": true
     },
@@ -36,7 +37,8 @@
       "seed": "rhea-training-pair-val-01",
       "agentSeat": 1,
       "gameID": 9931,
-      "scannedDecisions": 2,
+      "scannedDecisions": 5,
+      "trainingScannedDecisions": 2,
       "commands": 18,
       "rootFound": true
     },
@@ -44,7 +46,8 @@
       "seed": "rhea-training-pair-val-02",
       "agentSeat": 0,
       "gameID": 9932,
-      "scannedDecisions": 2,
+      "scannedDecisions": 5,
+      "trainingScannedDecisions": 2,
       "commands": 20,
       "rootFound": true
     },
@@ -52,7 +55,8 @@
       "seed": "rhea-training-pair-val-02",
       "agentSeat": 1,
       "gameID": 9933,
-      "scannedDecisions": 2,
+      "scannedDecisions": 5,
+      "trainingScannedDecisions": 2,
       "commands": 18,
       "rootFound": true
     },
@@ -60,7 +64,8 @@
       "seed": "rhea-training-pair-val-03",
       "agentSeat": 0,
       "gameID": 9934,
-      "scannedDecisions": 2,
+      "scannedDecisions": 5,
+      "trainingScannedDecisions": 2,
       "commands": 20,
       "rootFound": true
     },
@@ -68,7 +73,8 @@
       "seed": "rhea-training-pair-val-03",
       "agentSeat": 1,
       "gameID": 9935,
-      "scannedDecisions": 2,
+      "scannedDecisions": 5,
+      "trainingScannedDecisions": 2,
       "commands": 18,
       "rootFound": true
     },
@@ -76,7 +82,8 @@
       "seed": "rhea-training-pair-val-04",
       "agentSeat": 0,
       "gameID": 9936,
-      "scannedDecisions": 2,
+      "scannedDecisions": 5,
+      "trainingScannedDecisions": 2,
       "commands": 20,
       "rootFound": true
     },
@@ -84,17 +91,19 @@
       "seed": "rhea-training-pair-val-04",
       "agentSeat": 1,
       "gameID": 9937,
-      "scannedDecisions": 2,
+      "scannedDecisions": 5,
+      "trainingScannedDecisions": 2,
       "commands": 18,
       "rootFound": true
     }
   ],
   "roots": [
     {
-      "rootId": "rhea-training-pair-val-01-seat-0-index-1",
+      "rootId": "rhea-training-pair-val-01-seat-0-index-4",
       "seed": "rhea-training-pair-val-01",
       "agentSeat": 0,
-      "scanIndex": 1,
+      "scanIndex": 4,
+      "trainingScanIndex": 1,
       "gameID": 9930,
       "turn": 3,
       "phase": 5,
@@ -186,10 +195,11 @@
       "rootIdentityDigest": "sha256:24a71328319cfb072d5ed9c9f70a36ab7b368e0251f9dfe347602b17cd54fded"
     },
     {
-      "rootId": "rhea-training-pair-val-01-seat-1-index-1",
+      "rootId": "rhea-training-pair-val-01-seat-1-index-4",
       "seed": "rhea-training-pair-val-01",
       "agentSeat": 1,
-      "scanIndex": 1,
+      "scanIndex": 4,
+      "trainingScanIndex": 1,
       "gameID": 9931,
       "turn": 3,
       "phase": 5,
@@ -281,10 +291,11 @@
       "rootIdentityDigest": "sha256:0c88906d0a2585258494fce04cc91a95d3706c7a4d4bc3716beb5e3a432bcf04"
     },
     {
-      "rootId": "rhea-training-pair-val-02-seat-0-index-1",
+      "rootId": "rhea-training-pair-val-02-seat-0-index-4",
       "seed": "rhea-training-pair-val-02",
       "agentSeat": 0,
-      "scanIndex": 1,
+      "scanIndex": 4,
+      "trainingScanIndex": 1,
       "gameID": 9932,
       "turn": 3,
       "phase": 5,
@@ -376,10 +387,11 @@
       "rootIdentityDigest": "sha256:cb7d5ac864f69bd512bd442e176149b0b7adc37378d01edb15564be6b23aba87"
     },
     {
-      "rootId": "rhea-training-pair-val-02-seat-1-index-1",
+      "rootId": "rhea-training-pair-val-02-seat-1-index-4",
       "seed": "rhea-training-pair-val-02",
       "agentSeat": 1,
-      "scanIndex": 1,
+      "scanIndex": 4,
+      "trainingScanIndex": 1,
       "gameID": 9933,
       "turn": 3,
       "phase": 5,
@@ -471,10 +483,11 @@
       "rootIdentityDigest": "sha256:ba86c001b790cdb10202b39893d280afb0951af5430e41b5494dc5a72c8abe6d"
     },
     {
-      "rootId": "rhea-training-pair-val-03-seat-0-index-1",
+      "rootId": "rhea-training-pair-val-03-seat-0-index-4",
       "seed": "rhea-training-pair-val-03",
       "agentSeat": 0,
-      "scanIndex": 1,
+      "scanIndex": 4,
+      "trainingScanIndex": 1,
       "gameID": 9934,
       "turn": 3,
       "phase": 5,
@@ -566,10 +579,11 @@
       "rootIdentityDigest": "sha256:a0766fa3edaa9a356bcbb7219459310cb45f5255731fb1c764449b6a8735f3fd"
     },
     {
-      "rootId": "rhea-training-pair-val-03-seat-1-index-1",
+      "rootId": "rhea-training-pair-val-03-seat-1-index-4",
       "seed": "rhea-training-pair-val-03",
       "agentSeat": 1,
-      "scanIndex": 1,
+      "scanIndex": 4,
+      "trainingScanIndex": 1,
       "gameID": 9935,
       "turn": 3,
       "phase": 5,
@@ -661,10 +675,11 @@
       "rootIdentityDigest": "sha256:f64a72ade2c5488746c2f130a10b55133020404ba6555c2b429a4295d44e2132"
     },
     {
-      "rootId": "rhea-training-pair-val-04-seat-0-index-1",
+      "rootId": "rhea-training-pair-val-04-seat-0-index-4",
       "seed": "rhea-training-pair-val-04",
       "agentSeat": 0,
-      "scanIndex": 1,
+      "scanIndex": 4,
+      "trainingScanIndex": 1,
       "gameID": 9936,
       "turn": 3,
       "phase": 5,
@@ -756,10 +771,11 @@
       "rootIdentityDigest": "sha256:09d5bcbad3bcbe4ad148ad2e7694cb867dcc96bccde1a480bcdfd9d0c82421d2"
     },
     {
-      "rootId": "rhea-training-pair-val-04-seat-1-index-1",
+      "rootId": "rhea-training-pair-val-04-seat-1-index-4",
       "seed": "rhea-training-pair-val-04",
       "agentSeat": 1,
-      "scanIndex": 1,
+      "scanIndex": 4,
+      "trainingScanIndex": 1,
       "gameID": 9937,
       "turn": 3,
       "phase": 5,

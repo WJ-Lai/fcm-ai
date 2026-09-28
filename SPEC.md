@@ -682,7 +682,9 @@ terminal peeking, and evaluate root-level generalization before any online chang
 
 Experiment 45 freezes that candidate-wide hypothesis before any new terminal branch is run. Four
 untouched seeds across both seats produce exactly eight distinct eligible turn-3 roots, all found on
-the second scanned training decision. The report is byte-reproducible and contains only public
+global working-day decision index 4, which is training-decision index 1. Both coordinates are stored
+explicitly so the generic reconstructor cannot confuse local and global indexes. The report is
+byte-reproducible and contains only public
 features, normalized root identities and the exact two action batches; terminal outcomes and private
 payloads are prohibited. The roots span reachable-house counts 2–7, exclusive-house counts 0–5 and
 distance deficits 0–5, so the set is not another copy of the rejected severe-deficit slice. The
