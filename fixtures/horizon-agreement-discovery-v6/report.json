@@ -1,0 +1,345 @@
+{
+  "schemaVersion": "fcm.horizon-agreement-discovery.v6",
+  "experimentId": 24,
+  "protocolDigest": "sha256:c3f4eb588eb277b01b428d9b61d2ec113730da833551e339ab1dac5974d8867f",
+  "summary": {
+    "scannedDecisions": 24,
+    "acceptedChanges": 0,
+    "beneficialAcceptedChanges": 0,
+    "trajectoriesCompleted": 4,
+    "violations": 0,
+    "gateReasons": {
+      "deep-incomplete": 24
+    },
+    "maximumDecisionMs": 2611.7266770000006
+  },
+  "trajectories": [
+    {
+      "seed": "agreement-discovery-01",
+      "agentSeat": 0,
+      "scanned": [
+        {
+          "index": 0,
+          "turn": 1,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-1dfd160273",
+          "shallowCandidateId": "p5s1-hire-1dfd160273",
+          "deepCandidateId": "p5s1-hire-1dfd160273",
+          "selectedCandidateId": "p5s1-hire-1dfd160273",
+          "gateReason": "deep-incomplete",
+          "elapsedMs": 2418.021064
+        },
+        {
+          "index": 1,
+          "turn": 2,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-d85bc8e066",
+          "shallowCandidateId": "p5s1-hire-d85bc8e066",
+          "deepCandidateId": "p5s1-hire-d85bc8e066",
+          "selectedCandidateId": "p5s1-hire-d85bc8e066",
+          "gateReason": "deep-incomplete",
+          "elapsedMs": 2566.9728870000004
+        },
+        {
+          "index": 2,
+          "turn": 2,
+          "phase": 5,
+          "subphase": 2,
+          "staticCandidateId": "p5s2-train-2dd5d77261",
+          "shallowCandidateId": "p5s2-train-2dd5d77261",
+          "deepCandidateId": "p5s2-train-2dd5d77261",
+          "selectedCandidateId": "p5s2-train-2dd5d77261",
+          "gateReason": "deep-incomplete",
+          "elapsedMs": 2410.9876939999995
+        },
+        {
+          "index": 3,
+          "turn": 3,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-f62c499152",
+          "shallowCandidateId": "p5s1-hire-f62c499152",
+          "deepCandidateId": "p5s1-hire-f62c499152",
+          "selectedCandidateId": "p5s1-hire-f62c499152",
+          "gateReason": "deep-incomplete",
+          "elapsedMs": 2443.186357999999
+        },
+        {
+          "index": 4,
+          "turn": 3,
+          "phase": 5,
+          "subphase": 2,
+          "staticCandidateId": "p5s2-train-1adebf1880",
+          "shallowCandidateId": "p5s2-train-1adebf1880",
+          "deepCandidateId": "p5s2-train-1adebf1880",
+          "selectedCandidateId": "p5s2-train-1adebf1880",
+          "gateReason": "deep-incomplete",
+          "elapsedMs": 2611.7266770000006
+        },
+        {
+          "index": 5,
+          "turn": 3,
+          "phase": 5,
+          "subphase": 4,
+          "staticCandidateId": "p5s4-produce-8aa223e313",
+          "shallowCandidateId": "p5s4-produce-8aa223e313",
+          "deepCandidateId": "p5s4-produce-8aa223e313",
+          "selectedCandidateId": "p5s4-produce-8aa223e313",
+          "gateReason": "deep-incomplete",
+          "elapsedMs": 2431.9922050000005
+        }
+      ],
+      "completed": true,
+      "violation": null,
+      "commands": 152
+    },
+    {
+      "seed": "agreement-discovery-01",
+      "agentSeat": 1,
+      "scanned": [
+        {
+          "index": 0,
+          "turn": 1,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-1dfd160273",
+          "shallowCandidateId": "p5s1-hire-1dfd160273",
+          "deepCandidateId": "p5s1-hire-1dfd160273",
+          "selectedCandidateId": "p5s1-hire-1dfd160273",
+          "gateReason": "deep-incomplete",
+          "elapsedMs": 2426.841564999999
+        },
+        {
+          "index": 1,
+          "turn": 2,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-d85bc8e066",
+          "shallowCandidateId": "p5s1-hire-d85bc8e066",
+          "deepCandidateId": "p5s1-hire-d85bc8e066",
+          "selectedCandidateId": "p5s1-hire-d85bc8e066",
+          "gateReason": "deep-incomplete",
+          "elapsedMs": 2422.451672999996
+        },
+        {
+          "index": 2,
+          "turn": 2,
+          "phase": 5,
+          "subphase": 2,
+          "staticCandidateId": "p5s2-train-2dd5d77261",
+          "shallowCandidateId": "p5s2-train-2dd5d77261",
+          "deepCandidateId": "p5s2-train-2dd5d77261",
+          "selectedCandidateId": "p5s2-train-2dd5d77261",
+          "gateReason": "deep-incomplete",
+          "elapsedMs": 2487.221470999997
+        },
+        {
+          "index": 3,
+          "turn": 3,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-f62c499152",
+          "shallowCandidateId": "p5s1-hire-f62c499152",
+          "deepCandidateId": "p5s1-hire-f62c499152",
+          "selectedCandidateId": "p5s1-hire-f62c499152",
+          "gateReason": "deep-incomplete",
+          "elapsedMs": 2444.945087
+        },
+        {
+          "index": 4,
+          "turn": 3,
+          "phase": 5,
+          "subphase": 2,
+          "staticCandidateId": "p5s2-train-1adebf1880",
+          "shallowCandidateId": "p5s2-train-1adebf1880",
+          "deepCandidateId": "p5s2-train-1adebf1880",
+          "selectedCandidateId": "p5s2-train-1adebf1880",
+          "gateReason": "deep-incomplete",
+          "elapsedMs": 2408.635869000005
+        },
+        {
+          "index": 5,
+          "turn": 3,
+          "phase": 5,
+          "subphase": 4,
+          "staticCandidateId": "p5s4-produce-8aa223e313",
+          "shallowCandidateId": "p5s4-produce-8aa223e313",
+          "deepCandidateId": "p5s4-produce-8aa223e313",
+          "selectedCandidateId": "p5s4-produce-8aa223e313",
+          "gateReason": "deep-incomplete",
+          "elapsedMs": 2459.9650110000002
+        }
+      ],
+      "completed": true,
+      "violation": null,
+      "commands": 259
+    },
+    {
+      "seed": "agreement-discovery-02",
+      "agentSeat": 0,
+      "scanned": [
+        {
+          "index": 0,
+          "turn": 1,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-1dfd160273",
+          "shallowCandidateId": "p5s1-hire-1dfd160273",
+          "deepCandidateId": "p5s1-hire-1dfd160273",
+          "selectedCandidateId": "p5s1-hire-1dfd160273",
+          "gateReason": "deep-incomplete",
+          "elapsedMs": 2440.581865
+        },
+        {
+          "index": 1,
+          "turn": 2,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-d85bc8e066",
+          "shallowCandidateId": "p5s1-hire-d85bc8e066",
+          "deepCandidateId": "p5s1-hire-d85bc8e066",
+          "selectedCandidateId": "p5s1-hire-d85bc8e066",
+          "gateReason": "deep-incomplete",
+          "elapsedMs": 2477.7928009999887
+        },
+        {
+          "index": 2,
+          "turn": 2,
+          "phase": 5,
+          "subphase": 2,
+          "staticCandidateId": "p5s2-train-2dd5d77261",
+          "shallowCandidateId": "p5s2-train-2dd5d77261",
+          "deepCandidateId": "p5s2-train-2dd5d77261",
+          "selectedCandidateId": "p5s2-train-2dd5d77261",
+          "gateReason": "deep-incomplete",
+          "elapsedMs": 2402.2231820000015
+        },
+        {
+          "index": 3,
+          "turn": 3,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-f62c499152",
+          "shallowCandidateId": "p5s1-hire-f62c499152",
+          "deepCandidateId": "p5s1-hire-f62c499152",
+          "selectedCandidateId": "p5s1-hire-f62c499152",
+          "gateReason": "deep-incomplete",
+          "elapsedMs": 2455.1482220000034
+        },
+        {
+          "index": 4,
+          "turn": 3,
+          "phase": 5,
+          "subphase": 2,
+          "staticCandidateId": "p5s2-train-1adebf1880",
+          "shallowCandidateId": "p5s2-train-1adebf1880",
+          "deepCandidateId": "p5s2-train-1adebf1880",
+          "selectedCandidateId": "p5s2-train-1adebf1880",
+          "gateReason": "deep-incomplete",
+          "elapsedMs": 2562.4881520000054
+        },
+        {
+          "index": 5,
+          "turn": 3,
+          "phase": 5,
+          "subphase": 4,
+          "staticCandidateId": "p5s4-produce-8aa223e313",
+          "shallowCandidateId": "p5s4-produce-8aa223e313",
+          "deepCandidateId": "p5s4-produce-8aa223e313",
+          "selectedCandidateId": "p5s4-produce-8aa223e313",
+          "gateReason": "deep-incomplete",
+          "elapsedMs": 2508.094020999997
+        }
+      ],
+      "completed": true,
+      "violation": null,
+      "commands": 373
+    },
+    {
+      "seed": "agreement-discovery-02",
+      "agentSeat": 1,
+      "scanned": [
+        {
+          "index": 0,
+          "turn": 1,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-1dfd160273",
+          "shallowCandidateId": "p5s1-hire-1dfd160273",
+          "deepCandidateId": "p5s1-hire-1dfd160273",
+          "selectedCandidateId": "p5s1-hire-1dfd160273",
+          "gateReason": "deep-incomplete",
+          "elapsedMs": 2483.9664370000246
+        },
+        {
+          "index": 1,
+          "turn": 2,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-d85bc8e066",
+          "shallowCandidateId": "p5s1-hire-d85bc8e066",
+          "deepCandidateId": "p5s1-hire-d85bc8e066",
+          "selectedCandidateId": "p5s1-hire-d85bc8e066",
+          "gateReason": "deep-incomplete",
+          "elapsedMs": 2478.769747000013
+        },
+        {
+          "index": 2,
+          "turn": 2,
+          "phase": 5,
+          "subphase": 2,
+          "staticCandidateId": "p5s2-train-2dd5d77261",
+          "shallowCandidateId": "p5s2-train-2dd5d77261",
+          "deepCandidateId": "p5s2-train-2dd5d77261",
+          "selectedCandidateId": "p5s2-train-2dd5d77261",
+          "gateReason": "deep-incomplete",
+          "elapsedMs": 2463.167494000023
+        },
+        {
+          "index": 3,
+          "turn": 3,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-f62c499152",
+          "shallowCandidateId": "p5s1-hire-f62c499152",
+          "deepCandidateId": "p5s1-hire-f62c499152",
+          "selectedCandidateId": "p5s1-hire-f62c499152",
+          "gateReason": "deep-incomplete",
+          "elapsedMs": 2418.3090720000037
+        },
+        {
+          "index": 4,
+          "turn": 3,
+          "phase": 5,
+          "subphase": 2,
+          "staticCandidateId": "p5s2-train-1adebf1880",
+          "shallowCandidateId": "p5s2-train-1adebf1880",
+          "deepCandidateId": "p5s2-train-1adebf1880",
+          "selectedCandidateId": "p5s2-train-1adebf1880",
+          "gateReason": "deep-incomplete",
+          "elapsedMs": 2462.288388999994
+        },
+        {
+          "index": 5,
+          "turn": 3,
+          "phase": 5,
+          "subphase": 4,
+          "staticCandidateId": "p5s4-produce-8aa223e313",
+          "shallowCandidateId": "p5s4-produce-8aa223e313",
+          "deepCandidateId": "p5s4-produce-8aa223e313",
+          "selectedCandidateId": "p5s4-produce-8aa223e313",
+          "gateReason": "deep-incomplete",
+          "elapsedMs": 2422.192844999983
+        }
+      ],
+      "completed": true,
+      "violation": null,
+      "commands": 465
+    }
+  ],
+  "acceptedInterventions": [],
+  "privatePayloadPersisted": false,
+  "promotionHoldoutOpened": false
+}

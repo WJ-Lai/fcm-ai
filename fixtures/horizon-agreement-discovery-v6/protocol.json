@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "fcm.horizon-agreement-discovery-protocol.v6",
+  "experimentId": 24,
+  "seeds": ["agreement-discovery-01", "agreement-discovery-02"],
+  "seats": [0, 1],
+  "maxScannedDecisionsPerTrajectory": 6,
+  "maxCommands": 500,
+  "deadlineMs": 3000,
+  "beamBudget": {
+    "maxRootCandidates": 2,
+    "branchFactor": 2,
+    "beamWidth": 2,
+    "maxOwnDepth": 4,
+    "maxTransitions": 80
+  },
+  "promotionHoldoutOpened": false
+}

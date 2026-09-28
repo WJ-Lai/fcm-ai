@@ -444,7 +444,10 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     restores both budget arms exactly to static money/rank in every paired game. A 20% cooperative-
     deadline headroom reduces measured maxima to 0.93s and 2.46s, so both tiers now meet their caps.
     P4.1 remains open until the gate accepts a beneficial change on disjoint development positions
-    rather than always abstaining, followed by a declared held-out league.
+    rather than always abstaining, followed by a declared held-out league. Iteration 24 scanned the
+    first 24 eligible decisions on four disjoint trajectories: all 24 were `deep-incomplete` under
+    the 2.4s internal envelope, so no change could be accepted. Next change only target depth 4→3;
+    the known harmful root still disagrees with the depth-1 probe and remains blocked.
 
 - [ ] **P4.1b Implement RHEA as an equal-budget challenger.**
   - Why: rolling-horizon evolution may discover useful macro sequences that beam pruning loses in

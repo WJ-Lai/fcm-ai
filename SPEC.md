@@ -495,6 +495,13 @@ observed maxima to 0.93 and 2.46 seconds while preserving exact static terminal 
 now meet their caps on this development block. The gate has demonstrated safe abstention only; it
 must still accept useful changes on disjoint positions before it can count as a stronger planner.
 
+The first disjoint acceptance scan exposes a liveness failure: 24/24 eligible decisions across four
+complete trajectories stopped as `deep-incomplete` within the headroom-adjusted 2.4-second planning
+envelope. There were zero violations but also zero accepted changes. Safety by permanent abstention
+does not satisfy the planner objective. The next isolated experiment reduces target actor depth from
+4 to 3 while retaining the depth-1 agreement gate; the known harmful hire/skip root disagrees at
+depths 1 and 3, so this change does not reopen that regression.
+
 ### 6.8 Execution, memory and learning
 
 The execution layer accepts one versioned candidate id, revalidates it against the current game
