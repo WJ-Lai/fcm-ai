@@ -28,3 +28,6 @@ index.db
 # Local scratch
 /tmp/
 scratch/
+
+# Public replay captures are local, anonymized research inputs, not repository source.
+data/public-replays/

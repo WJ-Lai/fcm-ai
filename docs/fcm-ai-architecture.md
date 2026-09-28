@@ -639,6 +639,9 @@ explanation—while calculators and the official engine handle exactness.
 - Define a consent/privacy-safe human-game import containing only seat-visible observations,
   public actions and outcomes. Preserve provenance, player-count and ruleset metadata; reject
   Tokens, private simultaneous choices and unlicensed commentary.
+- Treat public ended-game replays as quarantined evidence, not automatically approved trajectories.
+  Scale collection through explicit 2 -> 10 -> 50 -> 100 gates; require deterministic recapture,
+  anonymization, ruleset/version classification and pinned-engine replay before each promotion.
 - Record win/rank rate, illegal attempts, completion rate, decision latency and seat/map bias.
 
 Exit criterion: a result is reproducible by seed and every policy can play 100 base games without

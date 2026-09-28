@@ -54,3 +54,41 @@ cannot reconstruct exact per-step observations or prove what was hidden at decis
 capture component should record a seat-scoped DecisionView immediately before a human submits a
 normal UI action, then append the revealed action/outcome only after the authoritative transition.
 It must never export owner cookies, Tokens, opponent move buffers or reserve choices before reveal.
+
+## Public ended-game replay capture
+
+Public replay research is a separate, lower-trust input path from the consented seat exporter
+above. A successful download is **not** an approved `fcm.trajectory.v1` record. The capture tool:
+
+- opens an ended public OBG game in the site's current client and asks the official Replay code to
+  reconstruct every history event;
+- requires one replay state per history event and the official end-game event (`26`) at the end;
+- records ruleset options and map metadata, replaces player identities with `seat-N`, removes event
+  timestamps, repeated embedded history and the entire transient runtime context;
+- rejects credential-like content, incomplete games, count/digest drift and incompatible legacy
+  metadata;
+- writes `fcm.public-replay-capture.v1` files with status
+  `quarantined-pending-engine-validation`.
+
+Use a gated scale ladder: **2 -> 10 -> 50 -> 100**. Stop at each stage until every file passes a
+fresh read-back audit and observed failure classes have regression coverage. Run:
+
+```bash
+node scripts/collect_public_replays.mjs \
+  --games 35807,35732 \
+  --max-games 2 \
+  --delay-ms 1500 \
+  --require-class base-standard \
+  --output data/public-replays/pilot-2
+node scripts/audit_public_replays.mjs data/public-replays/pilot-2
+```
+
+The local browser profile owns authentication cookies. The collector never accepts a password or
+exports cookies. Capture files stay gitignored. Promotion from quarantine still requires mapping
+history events to seat-visible legal actions and re-executing them against the pinned local official
+engine; until then these files may be inspected but not used for policy training.
+
+The first trial exposed a real version boundary: game 6113 renders `startingMap` in a legacy scalar
+format, leaving the current Replay client unable to initialize its history. It is rejected quickly
+rather than coerced. Games 35807 and 35732 use current array metadata and produced deterministic,
+anonymous 177-state and 272-state captures respectively.

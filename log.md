@@ -287,3 +287,19 @@ Verification: **89 tests pass**, lint clean (28 pages), `verify_sources.py` OK,
   noise, while the built-in policy advantage survives paired seat swapping.
 - P1.4 is closed: random, first-legal and the official built-in adapter are reproducible; the
   harness reports completion, violations, rank, money, latency, seat bias and confidence bounds.
+
+## [2026-09-28] capture | two-game public replay gate
+
+- Added a CDP-based collector that asks the current OBG client to rebuild ended public games through
+  its official Replay path. Passwords and cookies never enter the command or output.
+- Added strict local capture validation: completed games only, array-format map metadata, standard
+  base-rule filtering, one state per event, terminal history code 26, content digests and create-only
+  staged output. Player names and timestamps are removed; embedded history and transient runtime
+  context are cleared before storage.
+- The first old candidate, game 6113, exposed an actual version boundary: its legacy scalar
+  `startingMap` leaves the current Replay store empty. The collector now rejects this format instead
+  of coercing it.
+- Current-format base games 35807 (2 players, 177 states) and 35732 (3 players, 272 states) were
+  captured successfully. A fresh second browser capture produced identical per-game state digests.
+  Both remain quarantined pending event-to-action mapping and pinned local-engine re-execution; the
+  10-game gate is intentionally not started.
