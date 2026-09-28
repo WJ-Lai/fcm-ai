@@ -164,7 +164,8 @@ for (const target of protocol.targets) {
   const dataset = sourceDatasets.get(target.sourceSplit)
   const source = dataset.roots.find((root) => root.rootId === target.rootId)
   assert.ok(source, `unknown source root ${target.rootId}`)
-  assert.equal(source.subphase, 4, `stability puncture expects production root ${target.rootId}`)
+  assert.ok([1, 3, 4].includes(source.subphase),
+    `stability puncture does not support subphase ${source.subphase} at ${target.rootId}`)
   rulesetHash ??= dataset.rulesetHash
   assert.equal(dataset.rulesetHash, rulesetHash, 'source ruleset drift')
   const root = await reconstructRoot(source, target.sourceSplit)

@@ -132,10 +132,20 @@ export function evaluatePairedSequentialRoot(root, protocol) {
   const protocolSummary = validatePairedSequentialProtocol(protocol)
   const availableSamples = validateRoot(root, protocol.stages[0].samples)
   const comparisonCount = root.candidates.length * (root.candidates.length - 1) / 2
+  const stageReachability = (stage) => {
+    const comparisonAlpha = stage.alpha / comparisonCount
+    const minimumPossiblePValue = 2 / (2 ** stage.samples)
+    return {
+      comparisonAlpha,
+      minimumPossiblePValue,
+      selectionReachable: minimumPossiblePValue <= comparisonAlpha,
+    }
+  }
   const stages = []
   for (const stage of protocol.stages) {
     if (stage.samples > availableSamples) break
-    const comparisonAlpha = stage.alpha / comparisonCount
+    const reachability = stageReachability(stage)
+    const { comparisonAlpha } = reachability
     const comparisons = []
     for (let leftIndex = 0; leftIndex < root.candidates.length; leftIndex += 1) {
       for (let rightIndex = leftIndex + 1; rightIndex < root.candidates.length; rightIndex += 1) {
@@ -156,11 +166,13 @@ export function evaluatePairedSequentialRoot(root, protocol) {
     const stageWinners = [...wins.entries()]
       .filter(([, count]) => count === root.candidates.length - 1)
       .map(([candidateId]) => candidateId)
-    const selectedCandidateId = stageWinners.length === 1 ? stageWinners[0] : null
+    const selectedCandidateId = reachability.selectionReachable && stageWinners.length === 1
+      ? stageWinners[0]
+      : null
     stages.push({
       samples: stage.samples,
       stageAlpha: stage.alpha,
-      comparisonAlpha,
+      ...reachability,
       selectedCandidateId,
       comparisons,
     })
@@ -179,15 +191,19 @@ export function evaluatePairedSequentialRoot(root, protocol) {
 
   const maximumSamples = protocolSummary.maximumSamples
   const exhausted = availableSamples >= maximumSamples
+  const nextReachableStage = protocol.stages.find(
+    (stage) => stage.samples > availableSamples && stageReachability(stage).selectionReachable,
+  )
+  const unreachableProtocol = !exhausted && !nextReachableStage
   return {
     rootId: root.rootId,
     availableSamples,
-    status: exhausted ? 'abstain-max-samples' : 'needs-more-samples',
+    status: exhausted
+      ? 'abstain-max-samples'
+      : (unreachableProtocol ? 'abstain-unreachable-protocol' : 'needs-more-samples'),
     selectedCandidateId: null,
     stopSamples: exhausted ? maximumSamples : null,
-    nextSamples: exhausted
-      ? null
-      : protocol.stages.find((stage) => stage.samples > availableSamples)?.samples ?? maximumSamples,
+    nextSamples: exhausted || unreachableProtocol ? null : nextReachableStage.samples,
     stages,
   }
 }
@@ -196,9 +212,7 @@ export function auditPairedSequentialDataset(dataset, protocol) {
   assert.ok(Array.isArray(dataset?.roots) && dataset.roots.length > 0, 'dataset roots are required')
   const details = dataset.roots.map((root) => evaluatePairedSequentialRoot(root, protocol))
   const selectedRoots = details.filter((detail) => detail.status === 'selected').length
-  const abstainedRoots = details.filter(
-    (detail) => detail.status === 'abstain-max-samples',
-  ).length
+  const abstainedRoots = details.filter((detail) => detail.status.startsWith('abstain-')).length
   const needsMoreSamplesRoots = details.filter(
     (detail) => detail.status === 'needs-more-samples',
   ).length

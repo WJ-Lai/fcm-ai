@@ -1,0 +1,327 @@
+{
+  "schemaVersion": "fcm.paired-sequential-experiment.v1",
+  "experimentId": 7,
+  "hypothesis": "three-sample-gate-separates-stable-hiring-and-marketing-roots",
+  "datasetDigest": "sha256:cdb467fd1d1b029c1f3b58edca1cda12a93b3c05b147b8b63e202ff2b0e86fec",
+  "protocolDigest": "sha256:a0999cb8b0491ebdebea9aec8f9d81bd06b304d582f1d9ebe329a55a261f6398",
+  "rulesetHash": "a171620e533a34f0c77133afac1d239a02c7600978486d09a77a20ead95d0b5e",
+  "protocolSummary": {
+    "stages": 3,
+    "maximumSamples": 15,
+    "spentAlpha": 0.05
+  },
+  "audit": {
+    "schemaVersion": "fcm.paired-sequential-audit.v1",
+    "roots": 4,
+    "selectedRoots": 0,
+    "abstainedRoots": 0,
+    "needsMoreSamplesRoots": 4,
+    "coverage": 0,
+    "details": [
+      {
+        "rootId": "development-00-middle-hiring",
+        "availableSamples": 3,
+        "status": "needs-more-samples",
+        "selectedCandidateId": null,
+        "stopSamples": null,
+        "nextSamples": 15,
+        "stages": [
+          {
+            "samples": 3,
+            "stageAlpha": 0.005,
+            "comparisonAlpha": 0.0016666666666666668,
+            "minimumPossiblePValue": 0.25,
+            "selectionReachable": false,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s1-hire-00073b191c",
+                "rightCandidateId": "p5s1-fallback-21d4f44933",
+                "samples": 3,
+                "positive": 1,
+                "negative": 1,
+                "ties": 1,
+                "pValue": 1,
+                "alpha": 0.0016666666666666668,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": 0,
+                "meanMarginAdvantage": -11,
+                "marginAdvantageStandardError": 182.4125361189119,
+                "decisiveWinRate95CI": {
+                  "low": 0.09453120573423074,
+                  "high": 0.9054687942657693
+                }
+              },
+              {
+                "leftCandidateId": "p5s1-hire-00073b191c",
+                "rightCandidateId": "p5s1-hire-22bab54a52",
+                "samples": 3,
+                "positive": 1,
+                "negative": 2,
+                "ties": 0,
+                "pValue": 1,
+                "alpha": 0.0016666666666666668,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": -0.3333333333333333,
+                "meanMarginAdvantage": 21.666666666666668,
+                "marginAdvantageStandardError": 202.65104106429962,
+                "decisiveWinRate95CI": {
+                  "low": 0.2076596008020477,
+                  "high": 0.9385080552796037
+                }
+              },
+              {
+                "leftCandidateId": "p5s1-fallback-21d4f44933",
+                "rightCandidateId": "p5s1-hire-22bab54a52",
+                "samples": 3,
+                "positive": 0,
+                "negative": 1,
+                "ties": 2,
+                "pValue": 1,
+                "alpha": 0.0016666666666666668,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": -0.3333333333333333,
+                "meanMarginAdvantage": 32.666666666666664,
+                "marginAdvantageStandardError": 46.048283838211,
+                "decisiveWinRate95CI": {
+                  "low": 0.20654931437723745,
+                  "high": 1
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "rootId": "calibration-00-middle-hiring",
+        "availableSamples": 3,
+        "status": "needs-more-samples",
+        "selectedCandidateId": null,
+        "stopSamples": null,
+        "nextSamples": 15,
+        "stages": [
+          {
+            "samples": 3,
+            "stageAlpha": 0.005,
+            "comparisonAlpha": 0.0016666666666666668,
+            "minimumPossiblePValue": 0.25,
+            "selectionReachable": false,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s1-hire-00073b191c",
+                "rightCandidateId": "p5s1-fallback-21d4f44933",
+                "samples": 3,
+                "positive": 1,
+                "negative": 1,
+                "ties": 1,
+                "pValue": 1,
+                "alpha": 0.0016666666666666668,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": 0,
+                "meanMarginAdvantage": 238,
+                "marginAdvantageStandardError": 393.2738655610532,
+                "decisiveWinRate95CI": {
+                  "low": 0.09453120573423074,
+                  "high": 0.9054687942657693
+                }
+              },
+              {
+                "leftCandidateId": "p5s1-hire-00073b191c",
+                "rightCandidateId": "p5s1-hire-22bab54a52",
+                "samples": 3,
+                "positive": 1,
+                "negative": 0,
+                "ties": 2,
+                "pValue": 1,
+                "alpha": 0.0016666666666666668,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": 0.3333333333333333,
+                "meanMarginAdvantage": 414,
+                "marginAdvantageStandardError": 101.11544557254017,
+                "decisiveWinRate95CI": {
+                  "low": 0.20654931437723745,
+                  "high": 1
+                }
+              },
+              {
+                "leftCandidateId": "p5s1-fallback-21d4f44933",
+                "rightCandidateId": "p5s1-hire-22bab54a52",
+                "samples": 3,
+                "positive": 1,
+                "negative": 0,
+                "ties": 2,
+                "pValue": 1,
+                "alpha": 0.0016666666666666668,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": 0.3333333333333333,
+                "meanMarginAdvantage": 176,
+                "marginAdvantageStandardError": 302.576161211245,
+                "decisiveWinRate95CI": {
+                  "low": 0.20654931437723745,
+                  "high": 1
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "rootId": "development-03-middle-marketing",
+        "availableSamples": 3,
+        "status": "needs-more-samples",
+        "selectedCandidateId": null,
+        "stopSamples": null,
+        "nextSamples": 15,
+        "stages": [
+          {
+            "samples": 3,
+            "stageAlpha": 0.005,
+            "comparisonAlpha": 0.0016666666666666668,
+            "minimumPossiblePValue": 0.25,
+            "selectionReachable": false,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s3-create-demand-08225ce256",
+                "rightCandidateId": "p5s3-fallback-21d4f44933",
+                "samples": 3,
+                "positive": 2,
+                "negative": 0,
+                "ties": 1,
+                "pValue": 0.5,
+                "alpha": 0.0016666666666666668,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": 0.6666666666666666,
+                "meanMarginAdvantage": 560.6666666666666,
+                "marginAdvantageStandardError": 220.25767737911985,
+                "decisiveWinRate95CI": {
+                  "low": 0.34238022750665303,
+                  "high": 1
+                }
+              },
+              {
+                "leftCandidateId": "p5s3-create-demand-08225ce256",
+                "rightCandidateId": "p5s3-create-demand-1864b84621",
+                "samples": 3,
+                "positive": 0,
+                "negative": 0,
+                "ties": 3,
+                "pValue": 1,
+                "alpha": 0.0016666666666666668,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": 0,
+                "meanMarginAdvantage": 32.333333333333336,
+                "marginAdvantageStandardError": 131.7881296290038,
+                "decisiveWinRate95CI": null
+              },
+              {
+                "leftCandidateId": "p5s3-fallback-21d4f44933",
+                "rightCandidateId": "p5s3-create-demand-1864b84621",
+                "samples": 3,
+                "positive": 0,
+                "negative": 2,
+                "ties": 1,
+                "pValue": 0.5,
+                "alpha": 0.0016666666666666668,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": -0.6666666666666666,
+                "meanMarginAdvantage": -528.3333333333334,
+                "marginAdvantageStandardError": 136.4029976861864,
+                "decisiveWinRate95CI": {
+                  "low": 0.34238022750665303,
+                  "high": 1
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "rootId": "calibration-00-middle-marketing",
+        "availableSamples": 3,
+        "status": "needs-more-samples",
+        "selectedCandidateId": null,
+        "stopSamples": null,
+        "nextSamples": 15,
+        "stages": [
+          {
+            "samples": 3,
+            "stageAlpha": 0.005,
+            "comparisonAlpha": 0.0016666666666666668,
+            "minimumPossiblePValue": 0.25,
+            "selectionReachable": false,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s3-create-demand-1a63639ba9",
+                "rightCandidateId": "p5s3-fallback-21d4f44933",
+                "samples": 3,
+                "positive": 2,
+                "negative": 0,
+                "ties": 1,
+                "pValue": 0.5,
+                "alpha": 0.0016666666666666668,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": 0.6666666666666666,
+                "meanMarginAdvantage": 682.3333333333334,
+                "marginAdvantageStandardError": 135.6715805825884,
+                "decisiveWinRate95CI": {
+                  "low": 0.34238022750665303,
+                  "high": 1
+                }
+              },
+              {
+                "leftCandidateId": "p5s3-create-demand-1a63639ba9",
+                "rightCandidateId": "p5s3-create-demand-52cebcf8d9",
+                "samples": 3,
+                "positive": 2,
+                "negative": 0,
+                "ties": 1,
+                "pValue": 0.5,
+                "alpha": 0.0016666666666666668,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": 0.6666666666666666,
+                "meanMarginAdvantage": 535,
+                "marginAdvantageStandardError": 237.74846652151794,
+                "decisiveWinRate95CI": {
+                  "low": 0.34238022750665303,
+                  "high": 1
+                }
+              },
+              {
+                "leftCandidateId": "p5s3-fallback-21d4f44933",
+                "rightCandidateId": "p5s3-create-demand-52cebcf8d9",
+                "samples": 3,
+                "positive": 0,
+                "negative": 0,
+                "ties": 3,
+                "pValue": 1,
+                "alpha": 0.0016666666666666668,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": 0,
+                "meanMarginAdvantage": -147.33333333333334,
+                "marginAdvantageStandardError": 105.39186137669476,
+                "decisiveWinRate95CI": null
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "promotionHoldoutOpened": false,
+  "promotionStatus": "not-evaluated"
+}

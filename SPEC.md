@@ -178,6 +178,13 @@ frozen, diverse policy league.
   The maximum must not be enlarged after seeing the result. Apply the same three-sample first gate
   to hiring and marketing, and define the versioned opponent-policy population required by P3.3d;
   repeated seeds from one weak built-in policy are not evidence of value against realistic agents.
+- The same three-sample puncture on two hiring and two marketing roots also exports 0/4 labels; a
+  naive cash winner is stable in only 1/4. Adversarial review additionally found that with three
+  candidates the 3- and 7-sample stages are mathematically unable to clear their Bonferroni-adjusted
+  alpha even under unanimous outcomes. The estimator now reports stage reachability and skips to
+  sample 15. Rather than spend 144 more complete continuations against one weak built-in policy,
+  collection is deferred until P3.3d freezes a multi-archetype opponent population. This avoids
+  optimizing labels for a stationary opponent that does not represent external-agent play.
 
 ## 5. Target architecture
 

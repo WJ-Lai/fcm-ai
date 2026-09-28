@@ -1,0 +1,335 @@
+{
+  "schemaVersion": "fcm.action-regret-stability.v1",
+  "rulesetHash": "a171620e533a34f0c77133afac1d239a02c7600978486d09a77a20ead95d0b5e",
+  "continuationPolicy": "fcm.deterministic-vs-official-builtin-population.v1",
+  "sampleCount": 3,
+  "resumedFromSampleCount": null,
+  "promotionHoldoutOpened": false,
+  "roots": [
+    {
+      "rootId": "development-00-middle-hiring",
+      "sourceSplit": "development",
+      "snapshotDigest": "sha256:6702c1a1da6bcdebf0d8e77031ad35b6f2f992c1d2491ef8b4f7beefd8eecc75",
+      "strategicProjectionDigest": "sha256:5b71be8701e07b532e320ca9993dd82e87f78fa1c9293439975449f40d9d20e8",
+      "candidates": [
+        {
+          "candidateId": "p5s1-hire-00073b191c",
+          "terminalMargins": [
+            -110,
+            289,
+            -137
+          ],
+          "terminalCommands": [
+            431,
+            305,
+            436
+          ]
+        },
+        {
+          "candidateId": "p5s1-fallback-21d4f44933",
+          "terminalMargins": [
+            -38,
+            -42,
+            155
+          ],
+          "terminalCommands": [
+            240,
+            429,
+            282
+          ]
+        },
+        {
+          "candidateId": "p5s1-hire-22bab54a52",
+          "terminalMargins": [
+            20,
+            -134,
+            91
+          ],
+          "terminalCommands": [
+            227,
+            436,
+            439
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "calibration-00-middle-hiring",
+      "sourceSplit": "calibration",
+      "snapshotDigest": "sha256:cc1fd7c27c94d73557889e38c519b0fa256797c4d084d576928375addf4f2cc7",
+      "strategicProjectionDigest": "sha256:94591579fe9717a0b78111f03263059b99727bc70c44493973f36a3665a421bc",
+      "candidates": [
+        {
+          "candidateId": "p5s1-hire-00073b191c",
+          "terminalMargins": [
+            425,
+            -192,
+            412
+          ],
+          "terminalCommands": [
+            120,
+            195,
+            123
+          ]
+        },
+        {
+          "candidateId": "p5s1-fallback-21d4f44933",
+          "terminalMargins": [
+            36,
+            314,
+            -419
+          ],
+          "terminalCommands": [
+            158,
+            158,
+            172
+          ]
+        },
+        {
+          "candidateId": "p5s1-hire-22bab54a52",
+          "terminalMargins": [
+            52,
+            -455,
+            -194
+          ],
+          "terminalCommands": [
+            144,
+            199,
+            155
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "development-03-middle-marketing",
+      "sourceSplit": "development",
+      "snapshotDigest": "sha256:bdeb9fe231b907bbf642df7e27986e00e3a84da58ea8538f329a6504360cb72a",
+      "strategicProjectionDigest": "sha256:a9541c42af5a4ed104ccf6c2697b8cb935a283f13072c084218227de94d96d39",
+      "candidates": [
+        {
+          "candidateId": "p5s3-create-demand-08225ce256",
+          "terminalMargins": [
+            244,
+            497,
+            514
+          ],
+          "terminalCommands": [
+            97,
+            155,
+            120
+          ]
+        },
+        {
+          "candidateId": "p5s3-fallback-21d4f44933",
+          "terminalMargins": [
+            107,
+            -171,
+            -363
+          ],
+          "terminalCommands": [
+            176,
+            272,
+            285
+          ]
+        },
+        {
+          "candidateId": "p5s3-create-demand-1864b84621",
+          "terminalMargins": [
+            460,
+            264,
+            434
+          ],
+          "terminalCommands": [
+            108,
+            108,
+            143
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "calibration-00-middle-marketing",
+      "sourceSplit": "calibration",
+      "snapshotDigest": "sha256:068637a6a5b72d1289972a0d953f54f21870c0e0c76fb858824c9d2d204d6f3a",
+      "strategicProjectionDigest": "sha256:cd8f6c21a97b86033234e68818b2bb86409d13ec61046b8370f5b0fade5e96ea",
+      "candidates": [
+        {
+          "candidateId": "p5s3-create-demand-1a63639ba9",
+          "terminalMargins": [
+            422,
+            371,
+            446
+          ],
+          "terminalCommands": [
+            167,
+            145,
+            131
+          ]
+        },
+        {
+          "candidateId": "p5s3-fallback-21d4f44933",
+          "terminalMargins": [
+            -394,
+            -449,
+            35
+          ],
+          "terminalCommands": [
+            264,
+            155,
+            260
+          ]
+        },
+        {
+          "candidateId": "p5s3-create-demand-52cebcf8d9",
+          "terminalMargins": [
+            -405,
+            -343,
+            382
+          ],
+          "terminalCommands": [
+            320,
+            179,
+            143
+          ]
+        }
+      ]
+    }
+  ],
+  "audit": {
+    "schemaVersion": "fcm.action-regret-stability-audit.v1",
+    "roots": 4,
+    "stableRoots": 1,
+    "flippedRoots": 3,
+    "meanSampleAgreement": 0.6666666666666666,
+    "details": [
+      {
+        "rootId": "development-00-middle-hiring",
+        "oraclePatterns": [
+          "p5s1-fallback-21d4f44933",
+          "p5s1-hire-00073b191c",
+          "p5s1-hire-22bab54a52"
+        ],
+        "sampleAgreement": 0.3333333333333333,
+        "stable": false,
+        "meanOracleCandidateIds": [
+          "p5s1-fallback-21d4f44933"
+        ],
+        "candidates": [
+          {
+            "candidateId": "p5s1-hire-00073b191c",
+            "meanTerminalMargin": 14,
+            "minTerminalMargin": -137,
+            "maxTerminalMargin": 289
+          },
+          {
+            "candidateId": "p5s1-fallback-21d4f44933",
+            "meanTerminalMargin": 25,
+            "minTerminalMargin": -42,
+            "maxTerminalMargin": 155
+          },
+          {
+            "candidateId": "p5s1-hire-22bab54a52",
+            "meanTerminalMargin": -7.666666666666667,
+            "minTerminalMargin": -134,
+            "maxTerminalMargin": 91
+          }
+        ]
+      },
+      {
+        "rootId": "calibration-00-middle-hiring",
+        "oraclePatterns": [
+          "p5s1-fallback-21d4f44933",
+          "p5s1-hire-00073b191c"
+        ],
+        "sampleAgreement": 0.6666666666666666,
+        "stable": false,
+        "meanOracleCandidateIds": [
+          "p5s1-hire-00073b191c"
+        ],
+        "candidates": [
+          {
+            "candidateId": "p5s1-hire-00073b191c",
+            "meanTerminalMargin": 215,
+            "minTerminalMargin": -192,
+            "maxTerminalMargin": 425
+          },
+          {
+            "candidateId": "p5s1-fallback-21d4f44933",
+            "meanTerminalMargin": -23,
+            "minTerminalMargin": -419,
+            "maxTerminalMargin": 314
+          },
+          {
+            "candidateId": "p5s1-hire-22bab54a52",
+            "meanTerminalMargin": -199,
+            "minTerminalMargin": -455,
+            "maxTerminalMargin": 52
+          }
+        ]
+      },
+      {
+        "rootId": "development-03-middle-marketing",
+        "oraclePatterns": [
+          "p5s3-create-demand-08225ce256",
+          "p5s3-create-demand-1864b84621"
+        ],
+        "sampleAgreement": 0.6666666666666666,
+        "stable": false,
+        "meanOracleCandidateIds": [
+          "p5s3-create-demand-08225ce256"
+        ],
+        "candidates": [
+          {
+            "candidateId": "p5s3-create-demand-08225ce256",
+            "meanTerminalMargin": 418.3333333333333,
+            "minTerminalMargin": 244,
+            "maxTerminalMargin": 514
+          },
+          {
+            "candidateId": "p5s3-fallback-21d4f44933",
+            "meanTerminalMargin": -142.33333333333334,
+            "minTerminalMargin": -363,
+            "maxTerminalMargin": 107
+          },
+          {
+            "candidateId": "p5s3-create-demand-1864b84621",
+            "meanTerminalMargin": 386,
+            "minTerminalMargin": 264,
+            "maxTerminalMargin": 460
+          }
+        ]
+      },
+      {
+        "rootId": "calibration-00-middle-marketing",
+        "oraclePatterns": [
+          "p5s3-create-demand-1a63639ba9"
+        ],
+        "sampleAgreement": 1,
+        "stable": true,
+        "meanOracleCandidateIds": [
+          "p5s3-create-demand-1a63639ba9"
+        ],
+        "candidates": [
+          {
+            "candidateId": "p5s3-create-demand-1a63639ba9",
+            "meanTerminalMargin": 413,
+            "minTerminalMargin": 371,
+            "maxTerminalMargin": 446
+          },
+          {
+            "candidateId": "p5s3-fallback-21d4f44933",
+            "meanTerminalMargin": -269.3333333333333,
+            "minTerminalMargin": -449,
+            "maxTerminalMargin": 35
+          },
+          {
+            "candidateId": "p5s3-create-demand-52cebcf8d9",
+            "meanTerminalMargin": -122,
+            "minTerminalMargin": -405,
+            "maxTerminalMargin": 382
+          }
+        ]
+      }
+    ]
+  }
+}

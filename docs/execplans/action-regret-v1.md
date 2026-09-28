@@ -239,3 +239,39 @@ the same three-sample first gate to frozen hiring and marketing roots. In parall
 a versioned opponent-policy population; repeatedly sampling one weak built-in policy cannot by
 itself establish action value against realistic external agents. Do not increase the production
 maximum post hoc.
+
+## Iteration 7 hypothesis and frozen change
+
+Iteration 7 changes only the working-day decision family. It applies the same three-sample first
+gate and continuation population to four roots frozen before execution: development/calibration
+hiring and development/calibration marketing, with one original static-order miss and one hit in
+each family. Each root retains up to three original candidates, so stage-wise Bonferroni correction
+is exercised. Candidate reconstruction and sample-zero terminal outcomes must match iteration 2.
+
+The primary metric is the number of roots selected safely at stage three. Non-selection requests
+stage seven; it is not converted to an action label. Results must remain phase-specific rather than
+being pooled with production.
+
+## Iteration 7 result
+
+The three-sample cross-phase puncture produced no trainable labels and exposed a protocol geometry
+bug before additional simulation spend.
+
+- All four roots reconstructed their strategic projections and original three-candidate sets;
+  sample zero reproduced iteration 2 terminal margins.
+- A naive terminal-cash winner is stable in only 1/4 roots. The other three flip among two or all
+  three candidates across the continuation samples.
+- The formal terminal-rank estimator selects 0/4. With three candidates, stage-three comparison
+  alpha is 0.005/3 = 0.00167, while the best possible three-sample two-sided sign p-value is 0.25.
+- Adversarial review found stage seven is also unreachable: 0.02/3 = 0.00667 is below the best
+  possible seven-sample p-value 0.015625. The estimator now records reachability and skips directly
+  to the next mathematically attainable stage, sample 15.
+- Running all four roots to 15 would require 144 additional full candidate continuations against
+  the same weak built-in policy. That spend is deferred until P3.3d freezes a useful opponent-policy
+  population. Promotion remains sealed and no label was exported.
+
+The next experiment is no longer another seed expansion. It must establish the P3.3d population and
+belief contract: distinct frozen policy archetypes, public-history-only model weights, explicit
+`observed`/`derived`/`believed` provenance, model id, confidence and sample count, deterministic
+sampling, and hidden-state invariance. Label collection can then stratify or average over that
+declared population rather than over one stationary built-in policy.

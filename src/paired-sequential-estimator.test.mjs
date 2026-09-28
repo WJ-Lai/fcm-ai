@@ -100,6 +100,21 @@ test('dataset audit reports coverage without turning abstention into a preferenc
   assert.equal(audit.details.length, 2)
 })
 
+test('multiple-candidate correction skips a stage whose best possible p-value cannot pass', () => {
+  const root = {
+    rootId: 'three-candidate-root',
+    candidates: [
+      candidate('a', [10, 10, 10]),
+      candidate('b', [-10, -10, -10]),
+      candidate('c', [-20, -20, -20]),
+    ],
+  }
+  const result = evaluatePairedSequentialRoot(root, protocol)
+  assert.equal(result.stages[0].selectionReachable, false)
+  assert.equal(result.stages[0].minimumPossiblePValue, 0.25)
+  assert.equal(result.nextSamples, 15)
+})
+
 test('protocol rejects alpha overspend and non-increasing stages', () => {
   assert.throws(
     () => validatePairedSequentialProtocol({

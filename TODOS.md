@@ -319,6 +319,11 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     standard errors remain $107–$139. Exclude these production roots from supervised labels. Next
     run the three-sample first gate on frozen hiring/marketing roots and begin P3.3d's versioned
     opponent-policy population; do not enlarge the production maximum after observing the result.
+    The hiring/marketing puncture now reconstructs 4 roots × 3 candidates and sample-zero outcomes,
+    but formal selection is 0/4 and naive cash-winner stability only 1/4. Adversarial testing found
+    three-candidate stages 3 and 7 mathematically unreachable after Bonferroni correction; the
+    estimator now skips directly to reachable stage 15. Defer the resulting 144 extra continuations
+    until P3.3d defines a useful multi-archetype opponent population instead of one weak built-in AI.
 - [ ] **P3.3d Add versioned opponent-belief sampling.**
   - Why: future dinner outcomes depend on unrevealed simultaneous choices and opponent reactions.
   - Depends on: P1.1 observation provenance, P3.2 and validated public-replay/self-play traces. A
@@ -326,6 +331,11 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
   - Done when: `observed`, official-engine `derived` and model `believed` fields are impossible to
     confuse; every belief records model id, confidence and sample count; and hidden-state mutation
     cannot change a recommendation except through an explicitly sampled public-history model.
+  - Current: production and hiring/marketing stability punctures show that repeated seeds of the
+    official built-in policy produce no safe action labels at current gates. Next freeze population
+    v1 with deterministic, safe-first, seeded-random and official-built-in archetypes; implement a
+    public-history-only belief/sampling contract and hidden-state metamorphic tests before using it
+    in rollout labels or search.
 - [ ] **P3.3e Enforce information-set policy consistency.**
   - Why: ordinary determinization can create strategy fusion—the planner chooses mutually
     incompatible actions in different sampled hidden worlds and behaves as if it knew which world

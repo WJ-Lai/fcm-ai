@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "fcm.action-regret-stability-protocol.v1",
+  "sampleCount": 3,
+  "continuationPolicy": "fcm.deterministic-vs-official-builtin-population.v1",
+  "promotionHoldoutOpened": false,
+  "targets": [
+    { "sourceSplit": "development", "rootId": "development-00-middle-hiring" },
+    { "sourceSplit": "calibration", "rootId": "calibration-00-middle-hiring" },
+    { "sourceSplit": "development", "rootId": "development-03-middle-marketing" },
+    { "sourceSplit": "calibration", "rootId": "calibration-00-middle-marketing" }
+  ]
+}
