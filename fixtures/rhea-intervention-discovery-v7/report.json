@@ -1,0 +1,1019 @@
+{
+  "schemaVersion": "fcm.rhea-intervention-discovery.v7",
+  "experimentId": 33,
+  "protocolDigest": "sha256:88e726634ad66477bc93398cb851934b393991906416bc15bdc4cd115f993529",
+  "summary": {
+    "scannedDecisions": 32,
+    "acceptedChanges": 0,
+    "terminalAudits": 0,
+    "beneficial": 0,
+    "harmful": 0,
+    "neutral": 0,
+    "fallbacks": 0,
+    "trajectoriesCompleted": 4,
+    "violations": 0,
+    "maximumDecisionMs": 1810.494452999992
+  },
+  "trajectories": [
+    {
+      "seed": "rhea-intervention-dev-03",
+      "agentSeat": 0,
+      "scanned": [
+        {
+          "index": 0,
+          "turn": 1,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-1dfd160273",
+          "selectedCandidateId": "p5s1-hire-1dfd160273",
+          "changedStatic": false,
+          "elapsedMs": 1418.7746859999997,
+          "fallbackUsed": false,
+          "stopReason": "complete",
+          "completedGenerations": 2,
+          "uniqueGenomesEvaluated": 3,
+          "scenarioEvaluations": 6,
+          "bestGenome": [
+            0,
+            0
+          ],
+          "bestMeanScore": 40.4,
+          "rootScores": [
+            {
+              "candidateId": "p5s1-hire-1dfd160273",
+              "bestMeanScore": 40.4
+            },
+            {
+              "candidateId": "p5s1-fallback-21d4f44933",
+              "bestMeanScore": 39
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "turn": 2,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-d85bc8e066",
+          "selectedCandidateId": "p5s1-hire-d85bc8e066",
+          "changedStatic": false,
+          "elapsedMs": 1258.2916059999998,
+          "fallbackUsed": false,
+          "stopReason": "complete",
+          "completedGenerations": 2,
+          "uniqueGenomesEvaluated": 3,
+          "scenarioEvaluations": 6,
+          "bestGenome": [
+            0,
+            0
+          ],
+          "bestMeanScore": 36.8,
+          "rootScores": [
+            {
+              "candidateId": "p5s1-hire-d85bc8e066",
+              "bestMeanScore": 36.8
+            },
+            {
+              "candidateId": "p5s1-fallback-21d4f44933",
+              "bestMeanScore": 35.4
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "turn": 2,
+          "phase": 5,
+          "subphase": 2,
+          "staticCandidateId": "p5s2-train-2dd5d77261",
+          "selectedCandidateId": "p5s2-train-2dd5d77261",
+          "changedStatic": false,
+          "elapsedMs": 1502.1382170000006,
+          "fallbackUsed": false,
+          "stopReason": "complete",
+          "completedGenerations": 2,
+          "uniqueGenomesEvaluated": 3,
+          "scenarioEvaluations": 6,
+          "bestGenome": [
+            0,
+            0
+          ],
+          "bestMeanScore": 43.2,
+          "rootScores": [
+            {
+              "candidateId": "p5s2-train-2dd5d77261",
+              "bestMeanScore": 43.2
+            },
+            {
+              "candidateId": "p5s2-fallback-21d4f44933",
+              "bestMeanScore": 41.8
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "turn": 3,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-f62c499152",
+          "selectedCandidateId": "p5s1-hire-f62c499152",
+          "changedStatic": false,
+          "elapsedMs": 1218.221208,
+          "fallbackUsed": false,
+          "stopReason": "complete",
+          "completedGenerations": 2,
+          "uniqueGenomesEvaluated": 3,
+          "scenarioEvaluations": 6,
+          "bestGenome": [
+            0,
+            2
+          ],
+          "bestMeanScore": 242.8,
+          "rootScores": [
+            {
+              "candidateId": "p5s1-hire-f62c499152",
+              "bestMeanScore": 242.8
+            },
+            {
+              "candidateId": "p5s1-fallback-21d4f44933",
+              "bestMeanScore": 241.4
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "turn": 3,
+          "phase": 5,
+          "subphase": 2,
+          "staticCandidateId": "p5s2-train-1adebf1880",
+          "selectedCandidateId": "p5s2-train-1adebf1880",
+          "changedStatic": false,
+          "elapsedMs": 1229.211507,
+          "fallbackUsed": false,
+          "stopReason": "complete",
+          "completedGenerations": 2,
+          "uniqueGenomesEvaluated": 3,
+          "scenarioEvaluations": 6,
+          "bestGenome": [
+            0,
+            0
+          ],
+          "bestMeanScore": 244.8,
+          "rootScores": [
+            {
+              "candidateId": "p5s2-train-1adebf1880",
+              "bestMeanScore": 244.8
+            },
+            {
+              "candidateId": "p5s2-fallback-21d4f44933",
+              "bestMeanScore": 244.8
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "turn": 3,
+          "phase": 5,
+          "subphase": 4,
+          "staticCandidateId": "p5s4-produce-8aa223e313",
+          "selectedCandidateId": "p5s4-produce-8aa223e313",
+          "changedStatic": false,
+          "elapsedMs": 1409.660081,
+          "fallbackUsed": false,
+          "stopReason": "complete",
+          "completedGenerations": 2,
+          "uniqueGenomesEvaluated": 3,
+          "scenarioEvaluations": 6,
+          "bestGenome": [
+            0,
+            0
+          ],
+          "bestMeanScore": 244.8,
+          "rootScores": [
+            {
+              "candidateId": "p5s4-produce-8aa223e313",
+              "bestMeanScore": 244.8
+            },
+            {
+              "candidateId": "p5s4-fallback-21d4f44933",
+              "bestMeanScore": 241.4
+            }
+          ]
+        },
+        {
+          "index": 6,
+          "turn": 4,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-00073b191c",
+          "selectedCandidateId": "p5s1-hire-00073b191c",
+          "changedStatic": false,
+          "elapsedMs": 1458.2937079999992,
+          "fallbackUsed": false,
+          "stopReason": "complete",
+          "completedGenerations": 2,
+          "uniqueGenomesEvaluated": 3,
+          "scenarioEvaluations": 6,
+          "bestGenome": [
+            0,
+            0
+          ],
+          "bestMeanScore": 211.2,
+          "rootScores": [
+            {
+              "candidateId": "p5s1-hire-00073b191c",
+              "bestMeanScore": 211.2
+            },
+            {
+              "candidateId": "p5s1-fallback-21d4f44933",
+              "bestMeanScore": 209.8
+            }
+          ]
+        },
+        {
+          "index": 7,
+          "turn": 4,
+          "phase": 5,
+          "subphase": 2,
+          "staticCandidateId": "p5s2-train-050591cdb5",
+          "selectedCandidateId": "p5s2-train-050591cdb5",
+          "changedStatic": false,
+          "elapsedMs": 1421.390284000001,
+          "fallbackUsed": false,
+          "stopReason": "complete",
+          "completedGenerations": 2,
+          "uniqueGenomesEvaluated": 3,
+          "scenarioEvaluations": 6,
+          "bestGenome": [
+            0,
+            0
+          ],
+          "bestMeanScore": 141.2,
+          "rootScores": [
+            {
+              "candidateId": "p5s2-train-050591cdb5",
+              "bestMeanScore": 141.2
+            },
+            {
+              "candidateId": "p5s2-fallback-21d4f44933",
+              "bestMeanScore": 141.2
+            }
+          ]
+        }
+      ],
+      "completed": true,
+      "violation": null,
+      "commands": 247
+    },
+    {
+      "seed": "rhea-intervention-dev-03",
+      "agentSeat": 1,
+      "scanned": [
+        {
+          "index": 0,
+          "turn": 1,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-1dfd160273",
+          "selectedCandidateId": "p5s1-hire-1dfd160273",
+          "changedStatic": false,
+          "elapsedMs": 1740.8610550000012,
+          "fallbackUsed": false,
+          "stopReason": "complete",
+          "completedGenerations": 2,
+          "uniqueGenomesEvaluated": 3,
+          "scenarioEvaluations": 6,
+          "bestGenome": [
+            0,
+            0
+          ],
+          "bestMeanScore": 40.4,
+          "rootScores": [
+            {
+              "candidateId": "p5s1-hire-1dfd160273",
+              "bestMeanScore": 40.4
+            },
+            {
+              "candidateId": "p5s1-fallback-21d4f44933",
+              "bestMeanScore": 39
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "turn": 2,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-d85bc8e066",
+          "selectedCandidateId": "p5s1-hire-d85bc8e066",
+          "changedStatic": false,
+          "elapsedMs": 1264.8839350000053,
+          "fallbackUsed": false,
+          "stopReason": "complete",
+          "completedGenerations": 2,
+          "uniqueGenomesEvaluated": 3,
+          "scenarioEvaluations": 6,
+          "bestGenome": [
+            0,
+            0
+          ],
+          "bestMeanScore": 36.8,
+          "rootScores": [
+            {
+              "candidateId": "p5s1-hire-d85bc8e066",
+              "bestMeanScore": 36.8
+            },
+            {
+              "candidateId": "p5s1-fallback-21d4f44933",
+              "bestMeanScore": 35.4
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "turn": 2,
+          "phase": 5,
+          "subphase": 2,
+          "staticCandidateId": "p5s2-train-2dd5d77261",
+          "selectedCandidateId": "p5s2-train-2dd5d77261",
+          "changedStatic": false,
+          "elapsedMs": 1737.7176580000014,
+          "fallbackUsed": false,
+          "stopReason": "complete",
+          "completedGenerations": 2,
+          "uniqueGenomesEvaluated": 3,
+          "scenarioEvaluations": 6,
+          "bestGenome": [
+            0,
+            0
+          ],
+          "bestMeanScore": 43.2,
+          "rootScores": [
+            {
+              "candidateId": "p5s2-train-2dd5d77261",
+              "bestMeanScore": 43.2
+            },
+            {
+              "candidateId": "p5s2-fallback-21d4f44933",
+              "bestMeanScore": 41.8
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "turn": 3,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-f62c499152",
+          "selectedCandidateId": "p5s1-hire-f62c499152",
+          "changedStatic": false,
+          "elapsedMs": 1227.3577010000008,
+          "fallbackUsed": false,
+          "stopReason": "complete",
+          "completedGenerations": 2,
+          "uniqueGenomesEvaluated": 3,
+          "scenarioEvaluations": 6,
+          "bestGenome": [
+            0,
+            0
+          ],
+          "bestMeanScore": 241.4,
+          "rootScores": [
+            {
+              "candidateId": "p5s1-hire-f62c499152",
+              "bestMeanScore": 241.4
+            },
+            {
+              "candidateId": "p5s1-fallback-21d4f44933",
+              "bestMeanScore": 241.4
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "turn": 3,
+          "phase": 5,
+          "subphase": 2,
+          "staticCandidateId": "p5s2-train-1adebf1880",
+          "selectedCandidateId": "p5s2-train-1adebf1880",
+          "changedStatic": false,
+          "elapsedMs": 1227.9697240000023,
+          "fallbackUsed": false,
+          "stopReason": "complete",
+          "completedGenerations": 2,
+          "uniqueGenomesEvaluated": 3,
+          "scenarioEvaluations": 6,
+          "bestGenome": [
+            0,
+            0
+          ],
+          "bestMeanScore": 244.8,
+          "rootScores": [
+            {
+              "candidateId": "p5s2-train-1adebf1880",
+              "bestMeanScore": 244.8
+            },
+            {
+              "candidateId": "p5s2-fallback-21d4f44933",
+              "bestMeanScore": 244.8
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "turn": 3,
+          "phase": 5,
+          "subphase": 4,
+          "staticCandidateId": "p5s4-produce-8aa223e313",
+          "selectedCandidateId": "p5s4-produce-8aa223e313",
+          "changedStatic": false,
+          "elapsedMs": 1691.2362869999997,
+          "fallbackUsed": false,
+          "stopReason": "complete",
+          "completedGenerations": 2,
+          "uniqueGenomesEvaluated": 3,
+          "scenarioEvaluations": 6,
+          "bestGenome": [
+            0,
+            0
+          ],
+          "bestMeanScore": 244.8,
+          "rootScores": [
+            {
+              "candidateId": "p5s4-produce-8aa223e313",
+              "bestMeanScore": 244.8
+            },
+            {
+              "candidateId": "p5s4-fallback-21d4f44933",
+              "bestMeanScore": 241.4
+            }
+          ]
+        },
+        {
+          "index": 6,
+          "turn": 4,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-00073b191c",
+          "selectedCandidateId": "p5s1-hire-00073b191c",
+          "changedStatic": false,
+          "elapsedMs": 1473.6522230000046,
+          "fallbackUsed": false,
+          "stopReason": "complete",
+          "completedGenerations": 2,
+          "uniqueGenomesEvaluated": 3,
+          "scenarioEvaluations": 6,
+          "bestGenome": [
+            0,
+            0
+          ],
+          "bestMeanScore": 211.2,
+          "rootScores": [
+            {
+              "candidateId": "p5s1-hire-00073b191c",
+              "bestMeanScore": 211.2
+            },
+            {
+              "candidateId": "p5s1-fallback-21d4f44933",
+              "bestMeanScore": 209.8
+            }
+          ]
+        },
+        {
+          "index": 7,
+          "turn": 4,
+          "phase": 5,
+          "subphase": 2,
+          "staticCandidateId": "p5s2-train-050591cdb5",
+          "selectedCandidateId": "p5s2-train-050591cdb5",
+          "changedStatic": false,
+          "elapsedMs": 1633.0543489999982,
+          "fallbackUsed": false,
+          "stopReason": "complete",
+          "completedGenerations": 2,
+          "uniqueGenomesEvaluated": 3,
+          "scenarioEvaluations": 6,
+          "bestGenome": [
+            0,
+            0
+          ],
+          "bestMeanScore": 141.2,
+          "rootScores": [
+            {
+              "candidateId": "p5s2-train-050591cdb5",
+              "bestMeanScore": 141.2
+            },
+            {
+              "candidateId": "p5s2-fallback-21d4f44933",
+              "bestMeanScore": 141.2
+            }
+          ]
+        }
+      ],
+      "completed": true,
+      "violation": null,
+      "commands": 326
+    },
+    {
+      "seed": "rhea-intervention-dev-04",
+      "agentSeat": 0,
+      "scanned": [
+        {
+          "index": 0,
+          "turn": 1,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-1dfd160273",
+          "selectedCandidateId": "p5s1-hire-1dfd160273",
+          "changedStatic": false,
+          "elapsedMs": 1427.9914530000096,
+          "fallbackUsed": false,
+          "stopReason": "complete",
+          "completedGenerations": 2,
+          "uniqueGenomesEvaluated": 3,
+          "scenarioEvaluations": 6,
+          "bestGenome": [
+            0,
+            0
+          ],
+          "bestMeanScore": 40.4,
+          "rootScores": [
+            {
+              "candidateId": "p5s1-hire-1dfd160273",
+              "bestMeanScore": 40.4
+            },
+            {
+              "candidateId": "p5s1-fallback-21d4f44933",
+              "bestMeanScore": 39
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "turn": 2,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-d85bc8e066",
+          "selectedCandidateId": "p5s1-hire-d85bc8e066",
+          "changedStatic": false,
+          "elapsedMs": 1274.6655420000025,
+          "fallbackUsed": false,
+          "stopReason": "complete",
+          "completedGenerations": 2,
+          "uniqueGenomesEvaluated": 3,
+          "scenarioEvaluations": 6,
+          "bestGenome": [
+            0,
+            0
+          ],
+          "bestMeanScore": 36.8,
+          "rootScores": [
+            {
+              "candidateId": "p5s1-hire-d85bc8e066",
+              "bestMeanScore": 36.8
+            },
+            {
+              "candidateId": "p5s1-fallback-21d4f44933",
+              "bestMeanScore": 35.4
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "turn": 2,
+          "phase": 5,
+          "subphase": 2,
+          "staticCandidateId": "p5s2-train-2dd5d77261",
+          "selectedCandidateId": "p5s2-train-2dd5d77261",
+          "changedStatic": false,
+          "elapsedMs": 1531.7167719999998,
+          "fallbackUsed": false,
+          "stopReason": "complete",
+          "completedGenerations": 2,
+          "uniqueGenomesEvaluated": 3,
+          "scenarioEvaluations": 6,
+          "bestGenome": [
+            0,
+            0
+          ],
+          "bestMeanScore": 43.2,
+          "rootScores": [
+            {
+              "candidateId": "p5s2-train-2dd5d77261",
+              "bestMeanScore": 43.2
+            },
+            {
+              "candidateId": "p5s2-fallback-21d4f44933",
+              "bestMeanScore": 41.8
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "turn": 3,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-f62c499152",
+          "selectedCandidateId": "p5s1-hire-f62c499152",
+          "changedStatic": false,
+          "elapsedMs": 1274.5872679999884,
+          "fallbackUsed": false,
+          "stopReason": "complete",
+          "completedGenerations": 2,
+          "uniqueGenomesEvaluated": 3,
+          "scenarioEvaluations": 6,
+          "bestGenome": [
+            0,
+            2
+          ],
+          "bestMeanScore": 242.8,
+          "rootScores": [
+            {
+              "candidateId": "p5s1-hire-f62c499152",
+              "bestMeanScore": 242.8
+            },
+            {
+              "candidateId": "p5s1-fallback-21d4f44933",
+              "bestMeanScore": 241.4
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "turn": 3,
+          "phase": 5,
+          "subphase": 2,
+          "staticCandidateId": "p5s2-train-1adebf1880",
+          "selectedCandidateId": "p5s2-train-1adebf1880",
+          "changedStatic": false,
+          "elapsedMs": 1231.8112600000022,
+          "fallbackUsed": false,
+          "stopReason": "complete",
+          "completedGenerations": 2,
+          "uniqueGenomesEvaluated": 3,
+          "scenarioEvaluations": 6,
+          "bestGenome": [
+            0,
+            0
+          ],
+          "bestMeanScore": 244.8,
+          "rootScores": [
+            {
+              "candidateId": "p5s2-train-1adebf1880",
+              "bestMeanScore": 244.8
+            },
+            {
+              "candidateId": "p5s2-fallback-21d4f44933",
+              "bestMeanScore": 244.8
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "turn": 3,
+          "phase": 5,
+          "subphase": 4,
+          "staticCandidateId": "p5s4-produce-8aa223e313",
+          "selectedCandidateId": "p5s4-produce-8aa223e313",
+          "changedStatic": false,
+          "elapsedMs": 1457.0328230000014,
+          "fallbackUsed": false,
+          "stopReason": "complete",
+          "completedGenerations": 2,
+          "uniqueGenomesEvaluated": 3,
+          "scenarioEvaluations": 6,
+          "bestGenome": [
+            0,
+            0
+          ],
+          "bestMeanScore": 244.8,
+          "rootScores": [
+            {
+              "candidateId": "p5s4-produce-8aa223e313",
+              "bestMeanScore": 244.8
+            },
+            {
+              "candidateId": "p5s4-fallback-21d4f44933",
+              "bestMeanScore": 241.4
+            }
+          ]
+        },
+        {
+          "index": 6,
+          "turn": 4,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-00073b191c",
+          "selectedCandidateId": "p5s1-hire-00073b191c",
+          "changedStatic": false,
+          "elapsedMs": 1460.2273870000063,
+          "fallbackUsed": false,
+          "stopReason": "complete",
+          "completedGenerations": 2,
+          "uniqueGenomesEvaluated": 3,
+          "scenarioEvaluations": 6,
+          "bestGenome": [
+            0,
+            0
+          ],
+          "bestMeanScore": 211.2,
+          "rootScores": [
+            {
+              "candidateId": "p5s1-hire-00073b191c",
+              "bestMeanScore": 211.2
+            },
+            {
+              "candidateId": "p5s1-fallback-21d4f44933",
+              "bestMeanScore": 209.8
+            }
+          ]
+        },
+        {
+          "index": 7,
+          "turn": 4,
+          "phase": 5,
+          "subphase": 2,
+          "staticCandidateId": "p5s2-train-050591cdb5",
+          "selectedCandidateId": "p5s2-train-050591cdb5",
+          "changedStatic": false,
+          "elapsedMs": 1735.0231480000075,
+          "fallbackUsed": false,
+          "stopReason": "complete",
+          "completedGenerations": 2,
+          "uniqueGenomesEvaluated": 3,
+          "scenarioEvaluations": 6,
+          "bestGenome": [
+            0,
+            0
+          ],
+          "bestMeanScore": 211.2,
+          "rootScores": [
+            {
+              "candidateId": "p5s2-train-050591cdb5",
+              "bestMeanScore": 211.2
+            },
+            {
+              "candidateId": "p5s2-fallback-21d4f44933",
+              "bestMeanScore": 211.2
+            }
+          ]
+        }
+      ],
+      "completed": true,
+      "violation": null,
+      "commands": 187
+    },
+    {
+      "seed": "rhea-intervention-dev-04",
+      "agentSeat": 1,
+      "scanned": [
+        {
+          "index": 0,
+          "turn": 1,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-1dfd160273",
+          "selectedCandidateId": "p5s1-hire-1dfd160273",
+          "changedStatic": false,
+          "elapsedMs": 1743.5299070000037,
+          "fallbackUsed": false,
+          "stopReason": "complete",
+          "completedGenerations": 2,
+          "uniqueGenomesEvaluated": 3,
+          "scenarioEvaluations": 6,
+          "bestGenome": [
+            0,
+            0
+          ],
+          "bestMeanScore": 40.4,
+          "rootScores": [
+            {
+              "candidateId": "p5s1-hire-1dfd160273",
+              "bestMeanScore": 40.4
+            },
+            {
+              "candidateId": "p5s1-fallback-21d4f44933",
+              "bestMeanScore": 39
+            }
+          ]
+        },
+        {
+          "index": 1,
+          "turn": 2,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-d85bc8e066",
+          "selectedCandidateId": "p5s1-hire-d85bc8e066",
+          "changedStatic": false,
+          "elapsedMs": 1253.715314000001,
+          "fallbackUsed": false,
+          "stopReason": "complete",
+          "completedGenerations": 2,
+          "uniqueGenomesEvaluated": 3,
+          "scenarioEvaluations": 6,
+          "bestGenome": [
+            0,
+            0
+          ],
+          "bestMeanScore": 36.8,
+          "rootScores": [
+            {
+              "candidateId": "p5s1-hire-d85bc8e066",
+              "bestMeanScore": 36.8
+            },
+            {
+              "candidateId": "p5s1-fallback-21d4f44933",
+              "bestMeanScore": 35.4
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "turn": 2,
+          "phase": 5,
+          "subphase": 2,
+          "staticCandidateId": "p5s2-train-2dd5d77261",
+          "selectedCandidateId": "p5s2-train-2dd5d77261",
+          "changedStatic": false,
+          "elapsedMs": 1793.5847070000018,
+          "fallbackUsed": false,
+          "stopReason": "complete",
+          "completedGenerations": 2,
+          "uniqueGenomesEvaluated": 3,
+          "scenarioEvaluations": 6,
+          "bestGenome": [
+            0,
+            0
+          ],
+          "bestMeanScore": 43.2,
+          "rootScores": [
+            {
+              "candidateId": "p5s2-train-2dd5d77261",
+              "bestMeanScore": 43.2
+            },
+            {
+              "candidateId": "p5s2-fallback-21d4f44933",
+              "bestMeanScore": 41.8
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "turn": 3,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-f62c499152",
+          "selectedCandidateId": "p5s1-hire-f62c499152",
+          "changedStatic": false,
+          "elapsedMs": 1307.8371920000063,
+          "fallbackUsed": false,
+          "stopReason": "complete",
+          "completedGenerations": 2,
+          "uniqueGenomesEvaluated": 3,
+          "scenarioEvaluations": 6,
+          "bestGenome": [
+            0,
+            2
+          ],
+          "bestMeanScore": 242.8,
+          "rootScores": [
+            {
+              "candidateId": "p5s1-hire-f62c499152",
+              "bestMeanScore": 242.8
+            },
+            {
+              "candidateId": "p5s1-fallback-21d4f44933",
+              "bestMeanScore": 241.4
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "turn": 3,
+          "phase": 5,
+          "subphase": 2,
+          "staticCandidateId": "p5s2-train-1adebf1880",
+          "selectedCandidateId": "p5s2-train-1adebf1880",
+          "changedStatic": false,
+          "elapsedMs": 1278.0234500000079,
+          "fallbackUsed": false,
+          "stopReason": "complete",
+          "completedGenerations": 2,
+          "uniqueGenomesEvaluated": 3,
+          "scenarioEvaluations": 6,
+          "bestGenome": [
+            0,
+            0
+          ],
+          "bestMeanScore": 244.8,
+          "rootScores": [
+            {
+              "candidateId": "p5s2-train-1adebf1880",
+              "bestMeanScore": 244.8
+            },
+            {
+              "candidateId": "p5s2-fallback-21d4f44933",
+              "bestMeanScore": 244.8
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "turn": 3,
+          "phase": 5,
+          "subphase": 4,
+          "staticCandidateId": "p5s4-produce-8aa223e313",
+          "selectedCandidateId": "p5s4-produce-8aa223e313",
+          "changedStatic": false,
+          "elapsedMs": 1810.494452999992,
+          "fallbackUsed": false,
+          "stopReason": "complete",
+          "completedGenerations": 2,
+          "uniqueGenomesEvaluated": 3,
+          "scenarioEvaluations": 6,
+          "bestGenome": [
+            0,
+            0
+          ],
+          "bestMeanScore": 244.8,
+          "rootScores": [
+            {
+              "candidateId": "p5s4-produce-8aa223e313",
+              "bestMeanScore": 244.8
+            },
+            {
+              "candidateId": "p5s4-fallback-21d4f44933",
+              "bestMeanScore": 241.4
+            }
+          ]
+        },
+        {
+          "index": 6,
+          "turn": 4,
+          "phase": 5,
+          "subphase": 1,
+          "staticCandidateId": "p5s1-hire-00073b191c",
+          "selectedCandidateId": "p5s1-hire-00073b191c",
+          "changedStatic": false,
+          "elapsedMs": 1556.2869829999981,
+          "fallbackUsed": false,
+          "stopReason": "complete",
+          "completedGenerations": 2,
+          "uniqueGenomesEvaluated": 3,
+          "scenarioEvaluations": 6,
+          "bestGenome": [
+            0,
+            0
+          ],
+          "bestMeanScore": 211.2,
+          "rootScores": [
+            {
+              "candidateId": "p5s1-hire-00073b191c",
+              "bestMeanScore": 211.2
+            },
+            {
+              "candidateId": "p5s1-fallback-21d4f44933",
+              "bestMeanScore": 209.8
+            }
+          ]
+        },
+        {
+          "index": 7,
+          "turn": 4,
+          "phase": 5,
+          "subphase": 2,
+          "staticCandidateId": "p5s2-train-050591cdb5",
+          "selectedCandidateId": "p5s2-train-050591cdb5",
+          "changedStatic": false,
+          "elapsedMs": 1603.0852330000052,
+          "fallbackUsed": false,
+          "stopReason": "complete",
+          "completedGenerations": 2,
+          "uniqueGenomesEvaluated": 3,
+          "scenarioEvaluations": 6,
+          "bestGenome": [
+            0,
+            1
+          ],
+          "bestMeanScore": 211.2,
+          "rootScores": [
+            {
+              "candidateId": "p5s2-train-050591cdb5",
+              "bestMeanScore": 211.2
+            },
+            {
+              "candidateId": "p5s2-fallback-21d4f44933",
+              "bestMeanScore": 141.2
+            }
+          ]
+        }
+      ],
+      "completed": true,
+      "violation": null,
+      "commands": 220
+    }
+  ],
+  "interventions": [],
+  "privatePayloadPersisted": false,
+  "promotionHoldoutOpened": false,
+  "strengthPromoted": false
+}

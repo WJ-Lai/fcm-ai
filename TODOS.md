@@ -493,6 +493,12 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     violations/fallbacks. RHEA is safer than current Beam but still changes zero static decisions, so
     strength remains unproven. Next scan later disjoint roots for non-static RHEA interventions and
     terminally audit every intervention; do not expand homogeneous first-turn games or open holdout.
+    Iteration 33 scans 32 decisions through turn 4 on two further seeds × both seats: 0 fallbacks,
+    0 violations and maximum latency 1.81s, but still 0 non-static interventions. Root-score
+    diagnostics reveal the cause: all 32 two-root sets contain the static action plus fallback/skip,
+    never a meaningful same-intent alternative; static leads in 24 and ties in 8, with median margin
+    1.4. Next change root breadth 2→3 with a breadth-first one-generation audit so the third root can
+    represent a different hire/train/produce combination before spending budget on evolution.
 
 - [ ] **P4.1c Evaluate belief-aware information-set search only where uncertainty warrants it.**
   - Why: hidden/simultaneous choices may justify ISMCTS/POMCP-style sampling, but naive MCTS or

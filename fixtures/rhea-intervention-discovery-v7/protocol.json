@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "fcm.rhea-intervention-discovery-protocol.v7",
+  "reportSchemaVersion": "fcm.rhea-intervention-discovery.v7",
+  "experimentId": 33,
+  "seeds": ["rhea-intervention-dev-03", "rhea-intervention-dev-04"],
+  "seats": [0, 1],
+  "maxScannedDecisionsPerTrajectory": 8,
+  "maxCommands": 500,
+  "externalDeadlineMs": 3000,
+  "headroomRatio": 0.2,
+  "rheaBudget": {
+    "populationSize": 2,
+    "eliteCount": 1,
+    "generations": 2,
+    "horizonLength": 2,
+    "geneCardinality": 3,
+    "maxEvaluations": 8,
+    "deadlineMs": 1
+  },
+  "promotionHoldoutOpened": false
+}

@@ -565,6 +565,16 @@ safer search challenger, but does not promote RHEA because it accepts zero non-s
 next development gate must scan later heterogeneous roots, terminally evaluate every non-static RHEA
 intervention, and measure beneficial/harmful/neutral counts before any larger league or holdout use.
 
+That later-root scan covers 32 decisions through turn four on two additional maps and both seats. It
+completes without violation, fallback or deadline breach, yet RHEA again accepts zero non-static
+actions. Score diagnostics explain why: every two-root set consists of the static action and the
+fallback/skip intent. Same-intent alternatives such as a different hire, train or production
+combination never enter search. Static beats fallback in 24 roots and ties in eight; no fallback
+leads, and the median static margin is 1.4. This is a candidate-allocation failure, not evidence that
+all available plans are equivalent. The next isolated audit widens roots from two to three and spends
+one generation on breadth, ensuring every root receives common-sample evaluation before evolutionary
+depth. Only if meaningful alternatives appear should multi-generation RHEA resume.
+
 ### 6.8 Execution, memory and learning
 
 The execution layer accepts one versioned candidate id, revalidates it against the current game
