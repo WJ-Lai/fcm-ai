@@ -161,12 +161,18 @@ export async function selectWithRhea({
   }
 
   const fallbackUsed = best == null
+  const evaluated = [...cache.values()].sort(compareGenome).map((item) => ({
+    genome: [...item.genome],
+    meanScore: item.meanScore,
+    scenarioCount: item.scenarios.length,
+  }))
   return {
     schemaVersion: RHEA_VERSION,
     selected: fallbackUsed ? rankedCandidates[0] : rankedCandidates[best.genome[0]],
     bestGenome: fallbackUsed ? null : best.genome,
     bestMeanScore: fallbackUsed ? null : best.meanScore,
     scenarios: fallbackUsed ? [] : best.scenarios,
+    evaluated,
     failures,
     metrics: {
       fallbackUsed,

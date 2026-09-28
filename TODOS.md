@@ -471,10 +471,14 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     evolution, common samples, stronger-genome discovery, static ties, malformed budgets, non-finite
     or failed samples and deadline fallback. The official smoke completes two generations, five
     unique genomes and ten scenario evaluations with a byte-reproducible sanitized report, but
-    selects the same known harmful skip at score 39. Mechanism passes; strength does not. Next run
-    official paired information-set audits, then one-/three-second equal-budget behavior. Iteration
+    selects the same known harmful skip at score 39. Mechanism passes; strength does not. Iteration
     28 passes both official reserve and restructuring pairs: 16 matched outer seeds yield mismatch 0,
-    TV 0, no clone attempt and byte-reproducible sanitized reports. Proceed to budget calibration.
+    TV 0, no clone attempt and byte-reproducible sanitized reports. Iteration 29 establishes the
+    minimum official-engine budget baseline: one- and three-second tiers each complete 8/8 runs,
+    evaluate both root candidates, and never fall back. The one-second P95 is 995.95ms and therefore
+    too close to the cap for more work; the three-second P95 is 1096.87ms and leaves capacity. Next
+    change only the three-second arm from one to two generations, retaining all other fixtures,
+    beliefs, candidates, horizon and evaluator. This is throughput calibration, not strength proof.
 
 - [ ] **P4.1c Evaluate belief-aware information-set search only where uncertainty warrants it.**
   - Why: hidden/simultaneous choices may justify ISMCTS/POMCP-style sampling, but naive MCTS or

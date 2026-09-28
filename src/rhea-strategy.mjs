@@ -5,6 +5,7 @@ import { validateOpponentBelief, dispatchOpponentPolicy, sampleOpponentModel,
 import { scorePublicPositionOutcome } from './official-rollout.mjs'
 import { prefilterDiverseCandidates } from './rollout-planner.mjs'
 import { selectWithRhea, RHEA_VERSION } from './rhea.mjs'
+import { reserveDeadlineHeadroom } from './horizon-agreement.mjs'
 import { deterministicStrategy } from './strategy.mjs'
 
 export const RHEA_STRATEGY_VERSION = 'fcm.rhea-strategy.v1'
@@ -139,6 +140,8 @@ export async function rheaStrategy(view, {
   memory = null,
   profile = 'balanced',
   rheaBudget = {},
+  deadlineMs = null,
+  headroomRatio = 0.2,
   maxRootCandidates = 2,
   branchFactor = 3,
   maxTransitionsPerScenario = 80,
@@ -155,6 +158,10 @@ export async function rheaStrategy(view, {
   }
   const roots = prefilterDiverseCandidates(staticResult.ranked, { limit: maxRootCandidates })
   const horizonLength = rheaBudget.horizonLength ?? 3
+  const effectiveBudget = deadlineMs == null ? rheaBudget : {
+    ...rheaBudget,
+    deadlineMs: reserveDeadlineHeadroom(deadlineMs, headroomRatio),
+  }
   const result = await selectWithRhea({
     rankedCandidates: roots,
     sampleSeeds,
@@ -179,8 +186,16 @@ export async function rheaStrategy(view, {
         scoreOutcome: (leafView) => scorePublicPositionOutcome(leafView, { seat, profile }),
       })
     },
-    budget: rheaBudget,
+    budget: effectiveBudget,
     ...(now == null ? {} : { now }),
   })
-  return { ...result, strategyVersion: RHEA_STRATEGY_VERSION, staticSelected: staticResult.selected }
+  return {
+    ...result,
+    strategyVersion: RHEA_STRATEGY_VERSION,
+    staticSelected: staticResult.selected,
+    evaluatedRootCandidateIds: [...new Set(result.evaluated
+      .map((item) => roots[item.genome[0]]?.id).filter(Boolean))],
+    externalDeadlineMs: deadlineMs,
+    headroomRatio: deadlineMs == null ? null : headroomRatio,
+  }
 }

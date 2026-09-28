@@ -534,6 +534,15 @@ static public action before any clone. The generalized audit runner reproduces b
 report and the pre-existing ScenarioBeam report byte-for-byte. This closes safety for RHEA v1 while
 leaving latency and strength unresolved.
 
+The first official-engine budget calibration fixes two roots, two common belief samples, horizon two,
+population two and one generation. Both the one-second and three-second tiers complete 8/8 repeated
+runs, evaluate both roots and avoid fallback. The one-second P95 is 995.95ms, leaving no credible
+margin beyond the existing 20% internal headroom; the three-second P95 is 1096.87ms and is materially
+underused. Therefore budget tiers must not share one search shape: keep the one-second minimum as a
+latency control and test a second generation only in the three-second tier. Completion and timing are
+mechanism gates, not evidence that RHEA plays better; terminal promotion still requires paired,
+equal-budget outcomes and horizon/seed robustness.
+
 ### 6.8 Execution, memory and learning
 
 The execution layer accepts one versioned candidate id, revalidates it against the current game
