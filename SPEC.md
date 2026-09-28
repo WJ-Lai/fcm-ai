@@ -614,6 +614,15 @@ directional safety evidence against the hire override but insufficient formal su
 remains the online action. The next bounded stability puncture targets the conflicting training
 override; RHEA and the promotion holdout remain unpromoted and sealed.
 
+The three-sample training puncture reconstructs one previously harmful and one beneficial root for
+the same static/alternate training pair. Both sample-zero outcomes reproduce exactly. In the first
+root, both candidates rank first in all three continuations, while the alternate finishes with more
+cash in all three. In the second, the alternate has two terminal-rank wins, zero losses and one tie,
+and ranks first in every continuation. This invalidates the earlier own-cash-only harmful label and
+shows a materially stronger signal than the hire override, but the three-sample stage cannot select
+by construction. Resume samples 3–6 only; keep rank primary, cash secondary, and make no online
+policy change before the seven-sample gate.
+
 ### 6.8 Execution, memory and learning
 
 The execution layer accepts one versioned candidate id, revalidates it against the current game

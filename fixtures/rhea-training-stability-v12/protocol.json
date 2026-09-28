@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "fcm.rhea-training-stability-protocol.v12",
+  "reportSchemaVersion": "fcm.rhea-training-stability.v12",
+  "experimentId": 38,
+  "sampleCount": 3,
+  "maxCommands": 500,
+  "targets": [
+    {
+      "rootId": "rhea-intervention-dev-03-seat-0-index-4",
+      "seed": "rhea-intervention-dev-03",
+      "agentSeat": 0,
+      "scanIndex": 4,
+      "gameID": 9912,
+      "staticCandidateId": "p5s2-train-1adebf1880",
+      "alternateCandidateId": "p5s2-train-2dd5d77261"
+    },
+    {
+      "rootId": "rhea-intervention-dev-04-seat-0-index-4",
+      "seed": "rhea-intervention-dev-04",
+      "agentSeat": 0,
+      "scanIndex": 4,
+      "gameID": 9914,
+      "staticCandidateId": "p5s2-train-1adebf1880",
+      "alternateCandidateId": "p5s2-train-2dd5d77261"
+    }
+  ],
+  "promotionHoldoutOpened": false
+}

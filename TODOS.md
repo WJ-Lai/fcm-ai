@@ -521,7 +521,12 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     `abstain-max-samples`. Cash advantages remain noisy (mean $305/$278; SE $88/$104). Stop sampling
     these hire roots and exclude them from supervised labels. The directional evidence rejects this
     RHEA hire override online. Next apply the same staged puncture to contradictory training roots,
-    which appeared 3/4 beneficial under one continuation.
+    which appeared 3/4 beneficial under one continuation. Iteration 38 reconstructs one previously
+    `harmful` and one `beneficial` training root and collects three paired continuations. Sample zero
+    reproduces exactly. On the first root all six branches rank first, while the alternate has higher
+    cash in all three; on the second root the alternate has two rank wins, zero losses and one tie.
+    Both request seven samples. The old own-cash-only harmful label is rejected; resume samples 3–6
+    with rank primary and no policy change.
 
 - [ ] **P4.1c Evaluate belief-aware information-set search only where uncertainty warrants it.**
   - Why: hidden/simultaneous choices may justify ISMCTS/POMCP-style sampling, but naive MCTS or

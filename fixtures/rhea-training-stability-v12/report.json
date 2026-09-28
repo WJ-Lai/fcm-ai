@@ -1,0 +1,224 @@
+{
+  "schemaVersion": "fcm.rhea-training-stability.v12",
+  "experimentId": 38,
+  "protocolDigest": "sha256:281ccde16ceb4dcf71a706c29e7092d90c25510fb7755497b3dd868b98b9da21",
+  "sampleCount": 3,
+  "resumedFromSampleCount": null,
+  "roots": [
+    {
+      "rootId": "rhea-intervention-dev-03-seat-0-index-4",
+      "publicRootDigest": "sha256:5afe3395579df83010c3fc3f615afe8bab2b3c9eaa6e3d31b1589b39643468fc",
+      "strategicProjectionDigest": "sha256:19a45d3fcc0e065477f5236f2299ba0b21866d9a43819b02570ef72b1e5448a0",
+      "sampleZeroReproduced": true,
+      "candidates": [
+        {
+          "candidateId": "p5s2-train-1adebf1880",
+          "terminalMargins": [
+            484,
+            251,
+            151
+          ],
+          "terminalRanks": [
+            1,
+            1,
+            1
+          ],
+          "terminalMoney": [
+            562,
+            392,
+            380
+          ],
+          "terminalCommands": [
+            300,
+            155,
+            252
+          ],
+          "completed": [
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "candidateId": "p5s2-train-2dd5d77261",
+          "terminalMargins": [
+            530,
+            471,
+            380
+          ],
+          "terminalRanks": [
+            1,
+            1,
+            1
+          ],
+          "terminalMoney": [
+            535,
+            491,
+            451
+          ],
+          "terminalCommands": [
+            143,
+            107,
+            108
+          ],
+          "completed": [
+            true,
+            true,
+            true
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "rhea-intervention-dev-04-seat-0-index-4",
+      "publicRootDigest": "sha256:88a16d5ceac8c71e8d717a87ffa5ca0255e41a39b339d96ddca37e9fde70e8de",
+      "strategicProjectionDigest": "sha256:1ddb0953ba2a3bb56b6805c365945cf4d969c3aab3e54f0647a5002788faf85d",
+      "sampleZeroReproduced": true,
+      "candidates": [
+        {
+          "candidateId": "p5s2-train-1adebf1880",
+          "terminalMargins": [
+            -235,
+            179,
+            -519
+          ],
+          "terminalRanks": [
+            2,
+            1,
+            2
+          ],
+          "terminalMoney": [
+            140,
+            340,
+            10
+          ],
+          "terminalCommands": [
+            259,
+            318,
+            174
+          ],
+          "completed": [
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "candidateId": "p5s2-train-2dd5d77261",
+          "terminalMargins": [
+            518,
+            486,
+            224
+          ],
+          "terminalRanks": [
+            1,
+            1,
+            1
+          ],
+          "terminalMoney": [
+            518,
+            506,
+            374
+          ],
+          "terminalCommands": [
+            107,
+            107,
+            96
+          ],
+          "completed": [
+            true,
+            true,
+            true
+          ]
+        }
+      ]
+    }
+  ],
+  "audit": {
+    "schemaVersion": "fcm.paired-sequential-audit.v1",
+    "roots": 2,
+    "selectedRoots": 0,
+    "abstainedRoots": 0,
+    "needsMoreSamplesRoots": 2,
+    "coverage": 0,
+    "details": [
+      {
+        "rootId": "rhea-intervention-dev-03-seat-0-index-4",
+        "availableSamples": 3,
+        "status": "needs-more-samples",
+        "selectedCandidateId": null,
+        "stopSamples": null,
+        "nextSamples": 7,
+        "stages": [
+          {
+            "samples": 3,
+            "stageAlpha": 0.005,
+            "comparisonAlpha": 0.005,
+            "minimumPossiblePValue": 0.25,
+            "selectionReachable": false,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 3,
+                "positive": 0,
+                "negative": 0,
+                "ties": 3,
+                "pValue": 1,
+                "alpha": 0.005,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": 0,
+                "meanMarginAdvantage": -165,
+                "marginAdvantageStandardError": 59.55669567731239,
+                "decisiveWinRate95CI": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "rootId": "rhea-intervention-dev-04-seat-0-index-4",
+        "availableSamples": 3,
+        "status": "needs-more-samples",
+        "selectedCandidateId": null,
+        "stopSamples": null,
+        "nextSamples": 7,
+        "stages": [
+          {
+            "samples": 3,
+            "stageAlpha": 0.005,
+            "comparisonAlpha": 0.005,
+            "minimumPossiblePValue": 0.25,
+            "selectionReachable": false,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 3,
+                "positive": 0,
+                "negative": 2,
+                "ties": 1,
+                "pValue": 0.5,
+                "alpha": 0.005,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": -0.6666666666666666,
+                "meanMarginAdvantage": -601,
+                "marginAdvantageStandardError": 147.0283419390062,
+                "decisiveWinRate95CI": {
+                  "low": 0.34238022750665303,
+                  "high": 1
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "privatePayloadPersisted": false,
+  "promotionHoldoutOpened": false
+}
