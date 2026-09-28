@@ -29,6 +29,9 @@ const probabilityValidation = JSON.parse(await readFile(
 const classConditionalValidation = JSON.parse(await readFile(
   new URL('../fixtures/opponent-calibration-v4/validation.json', import.meta.url),
 ))
+const robustValidation = JSON.parse(await readFile(
+  new URL('../fixtures/opponent-calibration-v5/validation.json', import.meta.url),
+))
 
 const development = [
   { sampleId: 'a-1', modelId: 'model-a', publicEventCodes: [1, 1, 2] },
@@ -183,5 +186,25 @@ test('class-conditional validation seeds are fresh, balanced, and public-only', 
     ...probabilityValidation.splits.validation.games.map((game) => game.seed),
   ])
   assert.equal(validated.splits.validation.samples.length, 24)
+  assert.ok(validated.splits.validation.games.every((game) => !consumedSeeds.has(game.seed)))
+})
+
+test('block-robust validation has three fresh balanced public-only blocks', () => {
+  const modelIds = new Set([
+    'deterministic-balanced-v1', 'safe-first-v1', 'seeded-random-v1', 'official-built-in-v1',
+  ])
+  const validated = validateOpponentValidationDataset(robustValidation, {
+    expectedModelIds: modelIds,
+    expectedSamplesPerModel: 18,
+    expectedCommandsPerGame: 160,
+  })
+  const consumedSeeds = new Set([
+    ...frozenDataset.splits.development.games.map((game) => game.seed),
+    ...frozenDataset.splits.calibration.games.map((game) => game.seed),
+    ...probabilityValidation.splits.validation.games.map((game) => game.seed),
+    ...classConditionalValidation.splits.validation.games.map((game) => game.seed),
+  ])
+  assert.equal(validated.splits.validation.games.length, 18)
+  assert.equal(validated.splits.validation.samples.length, 72)
   assert.ok(validated.splits.validation.games.every((game) => !consumedSeeds.has(game.seed)))
 })

@@ -324,7 +324,7 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     three-candidate stages 3 and 7 mathematically unreachable after Bonferroni correction; the
     estimator now skips directly to reachable stage 15. Defer the resulting 144 extra continuations
     until P3.3d defines a useful multi-archetype opponent population instead of one weak built-in AI.
-- [ ] **P3.3d Add versioned opponent-belief sampling.**
+- [x] **P3.3d Add versioned opponent-belief sampling.**
   - Why: future dinner outcomes depend on unrevealed simultaneous choices and opponent reactions.
   - Depends on: P1.1 observation provenance, P3.2 and validated public-replay/self-play traces. A
     consented human trace improves calibration but is not a hard dependency for the first model.
@@ -357,7 +357,11 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     0.0947→0.1649 on the second fresh block. The result is rejected. Both validation blocks are now
     consumed. Next predeclare a block-robust calibration fitter over consumed development blocks and
     assess it once on multiple untouched blocks with per-block gates; do not choose temperature 1
-    post hoc or connect beliefs to search.
+    post hoc or connect beliefs to search. Iteration 13 completed that independent check: the frozen
+    worst-block fitter selected identity temperature 1 and threshold 0.8189, then all three fresh
+    six-game blocks passed independently (Top-1 24/24, 23/24, 22/24; coverage 17/24, 19/24, 15/24;
+    accepted correct 17/17, 18/19, 15/15; ECE 0.030–0.059). Calibration v5 is frozen. Advance to
+    P3.3e information-set consistency before any rollout/search connection.
 - [ ] **P3.3e Enforce information-set policy consistency.**
   - Why: ordinary determinization can create strategy fusion—the planner chooses mutually
     incompatible actions in different sampled hidden worlds and behaves as if it knew which world

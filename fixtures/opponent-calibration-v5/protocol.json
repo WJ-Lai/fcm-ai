@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "fcm.opponent-block-robust-calibration-protocol.v5",
+  "populationId": "base-public-population-v1",
+  "baseDatasetSha256": "b2587f646af1dd799df04f0377527e672cc07c4432b6584937f949818db8a132",
+  "baseReportSha256": "99fbb493d25486e392ba6920d4220cdac2b4a97e0ab1367730c7bb04a15b1300",
+  "consumedValidationSha256": [
+    "d0e9f46a7d09409c11283a2051ccd0390e33fa5f8efd072505a1cbee47d408ff",
+    "319536c51e67a3359b50a2e0693edc0ba41c8e643082885b777a3c2fc4fd426a"
+  ],
+  "featureVersion": "public-event-unigram-bigram-v2",
+  "validationSeeds": [
+    "opponent-calibration-validation3-00",
+    "opponent-calibration-validation3-01",
+    "opponent-calibration-validation3-02",
+    "opponent-calibration-validation3-03",
+    "opponent-calibration-validation3-04",
+    "opponent-calibration-validation3-05",
+    "opponent-calibration-validation3-06",
+    "opponent-calibration-validation3-07",
+    "opponent-calibration-validation3-08",
+    "opponent-calibration-validation3-09",
+    "opponent-calibration-validation3-10",
+    "opponent-calibration-validation3-11",
+    "opponent-calibration-validation3-12",
+    "opponent-calibration-validation3-13",
+    "opponent-calibration-validation3-14",
+    "opponent-calibration-validation3-15",
+    "opponent-calibration-validation3-16",
+    "opponent-calibration-validation3-17"
+  ],
+  "validationBlockSize": 6,
+  "players": 4,
+  "publicCommandHorizon": 160,
+  "temperatureGrid": [0.5, 0.75, 1, 1.5, 2, 3, 4, 6, 8],
+  "classConditionalOodQuantile": 0.95,
+  "fittingGates": {
+    "minimumPerBlockCoverage": 0.5,
+    "minimumPerBlockSelectiveAccuracy": 0.9,
+    "requirePerBlockLogLossNonInferiority": true
+  },
+  "validationGates": {
+    "minimumPerBlockTop1Accuracy": 0.75,
+    "maximumPerBlockExpectedCalibrationError": 0.15,
+    "minimumPerBlockSelectiveCoverage": 0.5,
+    "minimumPerBlockSelectiveAccuracy": 0.9,
+    "requirePerBlockLogLossNonInferiority": true
+  },
+  "promotionHoldoutOpened": false
+}

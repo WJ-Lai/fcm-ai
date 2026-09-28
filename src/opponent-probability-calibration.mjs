@@ -172,6 +172,101 @@ export function fitClassConditionalOodThresholds(rows, { quantile }) {
   return { quantile, thresholdsByPredictedModel, samplesByPredictedModel }
 }
 
+export function fitBlockRobustProbabilityCalibration(blocks, {
+  temperatureGrid,
+  minimumPerBlockCoverage,
+  minimumPerBlockSelectiveAccuracy,
+  requirePerBlockLogLossNonInferiority,
+  oodMeanNllThresholdByPredictedModel,
+}) {
+  assert.ok(Array.isArray(blocks) && blocks.length >= 2, 'at least two blocks are required')
+  assert.ok(Array.isArray(temperatureGrid) && temperatureGrid.length > 0,
+    'temperatureGrid must be non-empty')
+  assert.equal(new Set(temperatureGrid).size, temperatureGrid.length,
+    'temperatureGrid values must be unique')
+  temperatureGrid.forEach((value) => assert.ok(Number.isFinite(value) && value > 0,
+    'temperatureGrid values must be positive'))
+  assert.ok(Number.isFinite(minimumPerBlockCoverage)
+    && minimumPerBlockCoverage >= 0 && minimumPerBlockCoverage <= 1,
+  'minimumPerBlockCoverage must be in [0, 1]')
+  assert.ok(Number.isFinite(minimumPerBlockSelectiveAccuracy)
+    && minimumPerBlockSelectiveAccuracy >= 0 && minimumPerBlockSelectiveAccuracy <= 1,
+  'minimumPerBlockSelectiveAccuracy must be in [0, 1]')
+  assert.equal(typeof requirePerBlockLogLossNonInferiority, 'boolean',
+    'requirePerBlockLogLossNonInferiority must be boolean')
+  const blockIds = new Set()
+  let modelIds = null
+  for (const block of blocks) {
+    assert.match(block?.blockId, /^[a-z0-9]+(?:[-_:][a-z0-9]+)*$/, 'invalid blockId')
+    assert.equal(blockIds.has(block.blockId), false, `duplicate blockId ${block.blockId}`)
+    blockIds.add(block.blockId)
+    const ids = validatePredictionRows(block.rows)
+    if (modelIds == null) modelIds = ids
+    else assert.deepEqual(ids, modelIds, 'block probability model ids differ')
+  }
+  assert.deepEqual(Object.keys(oodMeanNllThresholdByPredictedModel).sort(), modelIds,
+    'class-conditional OOD threshold models differ')
+  const oodCalibration = { oodMeanNllThresholdByPredictedModel }
+  const rawByBlock = blocks.map((block) => scoreRows(block.rows, 1))
+  const configurations = []
+  for (const temperature of temperatureGrid) {
+    const scoredByBlock = blocks.map((block) => scoreRows(block.rows, temperature))
+    const thresholds = [0, ...new Set(scoredByBlock.flatMap((scored) => (
+      scored.rows.map((row) => row.confidence)
+    )))].sort((left, right) => left - right)
+    for (const threshold of thresholds) {
+      const developmentBlocks = blocks.map((block, index) => {
+        const selective = selectiveMetrics(scoredByBlock[index].rows, threshold, oodCalibration)
+        return {
+          blockId: block.blockId,
+          samples: block.rows.length,
+          coverage: selective.coverage,
+          selectiveAccuracy: selective.accuracy,
+          uncalibratedLogLoss: rawByBlock[index].logLoss,
+          calibratedLogLoss: scoredByBlock[index].logLoss,
+        }
+      })
+      const eligible = developmentBlocks.every((block) => (
+        block.coverage >= minimumPerBlockCoverage
+        && block.selectiveAccuracy != null
+        && block.selectiveAccuracy >= minimumPerBlockSelectiveAccuracy
+        && (!requirePerBlockLogLossNonInferiority
+          || block.calibratedLogLoss <= block.uncalibratedLogLoss + 1e-12)
+      ))
+      if (!eligible) continue
+      configurations.push({
+        temperature,
+        abstentionThreshold: threshold,
+        developmentBlocks,
+        worstBlockCoverage: Math.min(...developmentBlocks.map((block) => block.coverage)),
+        meanBlockCoverage: developmentBlocks.reduce((sum, block) => sum + block.coverage, 0)
+          / developmentBlocks.length,
+        aggregateCalibratedLogLoss: developmentBlocks.reduce(
+          (sum, block) => sum + block.calibratedLogLoss * block.samples, 0,
+        ) / developmentBlocks.reduce((sum, block) => sum + block.samples, 0),
+      })
+    }
+  }
+  assert.ok(configurations.length > 0, 'no block-robust calibration satisfies fitting gates')
+  configurations.sort((left, right) => (
+    right.worstBlockCoverage - left.worstBlockCoverage
+    || right.meanBlockCoverage - left.meanBlockCoverage
+    || left.aggregateCalibratedLogLoss - right.aggregateCalibratedLogLoss
+    || left.temperature - right.temperature
+    || left.abstentionThreshold - right.abstentionThreshold
+  ))
+  return {
+    schemaVersion: OPPONENT_PROBABILITY_CALIBRATION_VERSION,
+    temperature: configurations[0].temperature,
+    abstentionThreshold: configurations[0].abstentionThreshold,
+    oodMeanNllThresholdByPredictedModel,
+    developmentBlocks: configurations[0].developmentBlocks,
+    worstBlockCoverage: configurations[0].worstBlockCoverage,
+    meanBlockCoverage: configurations[0].meanBlockCoverage,
+    aggregateCalibratedLogLoss: configurations[0].aggregateCalibratedLogLoss,
+  }
+}
+
 export function fitProbabilityCalibration(rows, {
   temperatureGrid,
   minimumSelectiveAccuracy,

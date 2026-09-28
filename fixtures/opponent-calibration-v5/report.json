@@ -1,0 +1,1488 @@
+{
+  "schemaVersion": "fcm.opponent-block-robust-calibration-report.v5",
+  "experimentId": 13,
+  "hypothesis": "worst-block-constrained-calibration-generalizes-across-fresh-seed-blocks",
+  "protocolDigest": "sha256:238aba721853fcce86e4ebfb0a10f6cfb890349e226edd41e96fd13e9c72cb88",
+  "validationDigest": "sha256:c2abe1b37430401786b24d6cf3acc49fe400208f858eaf115868d46ed05484f6",
+  "rulesetHash": "a171620e533a34f0c77133afac1d239a02c7600978486d09a77a20ead95d0b5e",
+  "calibration": {
+    "schemaVersion": "fcm.opponent-probability-calibration.v1",
+    "temperature": 1,
+    "abstentionThreshold": 0.8189104590182994,
+    "oodMeanNllThresholdByPredictedModel": {
+      "deterministic-balanced-v1": 3.488844756748997,
+      "official-built-in-v1": 3.452365960067149,
+      "safe-first-v1": 3.2249693158966477,
+      "seeded-random-v1": 3.4340536892609657
+    },
+    "developmentBlocks": [
+      {
+        "blockId": "base-calibration",
+        "samples": 24,
+        "coverage": 0.8333333333333334,
+        "selectiveAccuracy": 0.9,
+        "uncalibratedLogLoss": 0.2960561295050082,
+        "calibratedLogLoss": 0.2960561295050082
+      },
+      {
+        "blockId": "consumed-1",
+        "samples": 24,
+        "coverage": 0.5833333333333334,
+        "selectiveAccuracy": 0.9285714285714286,
+        "uncalibratedLogLoss": 0.43937703129133904,
+        "calibratedLogLoss": 0.43937703129133904
+      },
+      {
+        "blockId": "consumed-2",
+        "samples": 24,
+        "coverage": 0.6666666666666666,
+        "selectiveAccuracy": 1,
+        "uncalibratedLogLoss": 0.09471210808765489,
+        "calibratedLogLoss": 0.09471210808765489
+      }
+    ],
+    "worstBlockCoverage": 0.5833333333333334,
+    "meanBlockCoverage": 0.6944444444444445,
+    "aggregateCalibratedLogLoss": 0.27671508962800073,
+    "classConditionalOodFit": {
+      "quantile": 0.95,
+      "thresholdsByPredictedModel": {
+        "deterministic-balanced-v1": 3.488844756748997,
+        "official-built-in-v1": 3.452365960067149,
+        "safe-first-v1": 3.2249693158966477,
+        "seeded-random-v1": 3.4340536892609657
+      },
+      "samplesByPredictedModel": {
+        "deterministic-balanced-v1": 6,
+        "official-built-in-v1": 6,
+        "safe-first-v1": 8,
+        "seeded-random-v1": 4
+      }
+    }
+  },
+  "validationBlocks": [
+    {
+      "blockId": "fresh-1",
+      "gameIndexes": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "evaluation": {
+        "samples": 24,
+        "top1Accuracy": 1,
+        "uncalibratedLogLoss": 0.033600974786581965,
+        "calibratedLogLoss": 0.033600974786581965,
+        "uncalibratedBrierScore": 0.012120595453735636,
+        "calibratedBrierScore": 0.012120595453735636,
+        "expectedCalibrationError": 0.029876534598455854,
+        "confidenceBins": [
+          {
+            "lower": 0,
+            "upper": 0.2,
+            "count": 0,
+            "accuracy": null,
+            "meanConfidence": null
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.4,
+            "count": 0,
+            "accuracy": null,
+            "meanConfidence": null
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.6,
+            "count": 0,
+            "accuracy": null,
+            "meanConfidence": null
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.8,
+            "count": 1,
+            "accuracy": 1,
+            "meanConfidence": 0.677857192265417
+          },
+          {
+            "lower": 0.8,
+            "upper": 1,
+            "count": 23,
+            "accuracy": 1,
+            "meanConfidence": 0.9828306946683323
+          }
+        ],
+        "oodCount": 7,
+        "oodRate": 0.2916666666666667,
+        "accepted": 17,
+        "selectiveCoverage": 0.7083333333333334,
+        "selectiveAccuracy": 1,
+        "predictions": [
+          {
+            "sampleId": "fresh-validation-00-seat-0",
+            "actualModelId": "deterministic-balanced-v1",
+            "predictedModelId": "deterministic-balanced-v1",
+            "confidence": 1,
+            "outOfDistribution": true,
+            "accepted": false
+          },
+          {
+            "sampleId": "fresh-validation-00-seat-1",
+            "actualModelId": "safe-first-v1",
+            "predictedModelId": "safe-first-v1",
+            "confidence": 0.677857192265417,
+            "outOfDistribution": true,
+            "accepted": false
+          },
+          {
+            "sampleId": "fresh-validation-00-seat-2",
+            "actualModelId": "seeded-random-v1",
+            "predictedModelId": "seeded-random-v1",
+            "confidence": 0.999665718073645,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-00-seat-3",
+            "actualModelId": "official-built-in-v1",
+            "predictedModelId": "official-built-in-v1",
+            "confidence": 0.9999999584733876,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-01-seat-0",
+            "actualModelId": "safe-first-v1",
+            "predictedModelId": "safe-first-v1",
+            "confidence": 0.9854534777335681,
+            "outOfDistribution": true,
+            "accepted": false
+          },
+          {
+            "sampleId": "fresh-validation-01-seat-1",
+            "actualModelId": "seeded-random-v1",
+            "predictedModelId": "seeded-random-v1",
+            "confidence": 0.9998519972623057,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-01-seat-2",
+            "actualModelId": "official-built-in-v1",
+            "predictedModelId": "official-built-in-v1",
+            "confidence": 0.9999999999983922,
+            "outOfDistribution": true,
+            "accepted": false
+          },
+          {
+            "sampleId": "fresh-validation-01-seat-3",
+            "actualModelId": "deterministic-balanced-v1",
+            "predictedModelId": "deterministic-balanced-v1",
+            "confidence": 0.9999986258898718,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-02-seat-0",
+            "actualModelId": "seeded-random-v1",
+            "predictedModelId": "seeded-random-v1",
+            "confidence": 0.9988018239128845,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-02-seat-1",
+            "actualModelId": "official-built-in-v1",
+            "predictedModelId": "official-built-in-v1",
+            "confidence": 1,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-02-seat-2",
+            "actualModelId": "deterministic-balanced-v1",
+            "predictedModelId": "deterministic-balanced-v1",
+            "confidence": 0.9999384052063633,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-02-seat-3",
+            "actualModelId": "safe-first-v1",
+            "predictedModelId": "safe-first-v1",
+            "confidence": 0.9990794656712954,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-03-seat-0",
+            "actualModelId": "official-built-in-v1",
+            "predictedModelId": "official-built-in-v1",
+            "confidence": 1,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-03-seat-1",
+            "actualModelId": "deterministic-balanced-v1",
+            "predictedModelId": "deterministic-balanced-v1",
+            "confidence": 1,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-03-seat-2",
+            "actualModelId": "safe-first-v1",
+            "predictedModelId": "safe-first-v1",
+            "confidence": 0.8582755514737055,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-03-seat-3",
+            "actualModelId": "seeded-random-v1",
+            "predictedModelId": "seeded-random-v1",
+            "confidence": 0.9059004907623105,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-04-seat-0",
+            "actualModelId": "deterministic-balanced-v1",
+            "predictedModelId": "deterministic-balanced-v1",
+            "confidence": 0.999445558271378,
+            "outOfDistribution": true,
+            "accepted": false
+          },
+          {
+            "sampleId": "fresh-validation-04-seat-1",
+            "actualModelId": "safe-first-v1",
+            "predictedModelId": "safe-first-v1",
+            "confidence": 0.9988423085055057,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-04-seat-2",
+            "actualModelId": "seeded-random-v1",
+            "predictedModelId": "seeded-random-v1",
+            "confidence": 0.8925409787256449,
+            "outOfDistribution": true,
+            "accepted": false
+          },
+          {
+            "sampleId": "fresh-validation-04-seat-3",
+            "actualModelId": "official-built-in-v1",
+            "predictedModelId": "official-built-in-v1",
+            "confidence": 0.999999998573779,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-05-seat-0",
+            "actualModelId": "safe-first-v1",
+            "predictedModelId": "safe-first-v1",
+            "confidence": 0.9673147938202639,
+            "outOfDistribution": true,
+            "accepted": false
+          },
+          {
+            "sampleId": "fresh-validation-05-seat-1",
+            "actualModelId": "seeded-random-v1",
+            "predictedModelId": "seeded-random-v1",
+            "confidence": 0.9999968250180932,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-05-seat-2",
+            "actualModelId": "official-built-in-v1",
+            "predictedModelId": "official-built-in-v1",
+            "confidence": 0.9999999999992514,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-05-seat-3",
+            "actualModelId": "deterministic-balanced-v1",
+            "predictedModelId": "deterministic-balanced-v1",
+            "confidence": 1,
+            "outOfDistribution": false,
+            "accepted": true
+          }
+        ]
+      },
+      "gates": {
+        "top1Passed": true,
+        "logLossPassed": true,
+        "ecePassed": true,
+        "selectiveCoveragePassed": true,
+        "selectiveAccuracyPassed": true
+      },
+      "passed": true
+    },
+    {
+      "blockId": "fresh-2",
+      "gameIndexes": [
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "evaluation": {
+        "samples": 24,
+        "top1Accuracy": 0.9583333333333334,
+        "uncalibratedLogLoss": 0.27726418755910115,
+        "calibratedLogLoss": 0.27726418755910115,
+        "uncalibratedBrierScore": 0.08509970477740507,
+        "calibratedBrierScore": 0.08509970477740507,
+        "expectedCalibrationError": 0.0314897233887661,
+        "confidenceBins": [
+          {
+            "lower": 0,
+            "upper": 0.2,
+            "count": 0,
+            "accuracy": null,
+            "meanConfidence": null
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.4,
+            "count": 0,
+            "accuracy": null,
+            "meanConfidence": null
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.6,
+            "count": 0,
+            "accuracy": null,
+            "meanConfidence": null
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.8,
+            "count": 0,
+            "accuracy": null,
+            "meanConfidence": null
+          },
+          {
+            "lower": 0.8,
+            "upper": 1,
+            "count": 24,
+            "accuracy": 0.9583333333333334,
+            "meanConfidence": 0.9898230567220995
+          }
+        ],
+        "oodCount": 5,
+        "oodRate": 0.20833333333333334,
+        "accepted": 19,
+        "selectiveCoverage": 0.7916666666666666,
+        "selectiveAccuracy": 0.9473684210526315,
+        "predictions": [
+          {
+            "sampleId": "fresh-validation-06-seat-0",
+            "actualModelId": "seeded-random-v1",
+            "predictedModelId": "seeded-random-v1",
+            "confidence": 0.9994345165547381,
+            "outOfDistribution": true,
+            "accepted": false
+          },
+          {
+            "sampleId": "fresh-validation-06-seat-1",
+            "actualModelId": "official-built-in-v1",
+            "predictedModelId": "official-built-in-v1",
+            "confidence": 0.9999999999897513,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-06-seat-2",
+            "actualModelId": "deterministic-balanced-v1",
+            "predictedModelId": "deterministic-balanced-v1",
+            "confidence": 0.9997105369830639,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-06-seat-3",
+            "actualModelId": "safe-first-v1",
+            "predictedModelId": "safe-first-v1",
+            "confidence": 0.9991308793799719,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-07-seat-0",
+            "actualModelId": "official-built-in-v1",
+            "predictedModelId": "official-built-in-v1",
+            "confidence": 1,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-07-seat-1",
+            "actualModelId": "deterministic-balanced-v1",
+            "predictedModelId": "deterministic-balanced-v1",
+            "confidence": 0.9991711116746903,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-07-seat-2",
+            "actualModelId": "safe-first-v1",
+            "predictedModelId": "safe-first-v1",
+            "confidence": 0.9222976240490183,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-07-seat-3",
+            "actualModelId": "seeded-random-v1",
+            "predictedModelId": "seeded-random-v1",
+            "confidence": 0.9994265717985941,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-08-seat-0",
+            "actualModelId": "deterministic-balanced-v1",
+            "predictedModelId": "deterministic-balanced-v1",
+            "confidence": 0.9999999999996196,
+            "outOfDistribution": true,
+            "accepted": false
+          },
+          {
+            "sampleId": "fresh-validation-08-seat-1",
+            "actualModelId": "safe-first-v1",
+            "predictedModelId": "safe-first-v1",
+            "confidence": 0.9976016360150333,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-08-seat-2",
+            "actualModelId": "seeded-random-v1",
+            "predictedModelId": "safe-first-v1",
+            "confidence": 0.9983358158180308,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-08-seat-3",
+            "actualModelId": "official-built-in-v1",
+            "predictedModelId": "official-built-in-v1",
+            "confidence": 0.9999999991215704,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-09-seat-0",
+            "actualModelId": "safe-first-v1",
+            "predictedModelId": "safe-first-v1",
+            "confidence": 0.9854534777335681,
+            "outOfDistribution": true,
+            "accepted": false
+          },
+          {
+            "sampleId": "fresh-validation-09-seat-1",
+            "actualModelId": "seeded-random-v1",
+            "predictedModelId": "seeded-random-v1",
+            "confidence": 0.9999931260162143,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-09-seat-2",
+            "actualModelId": "official-built-in-v1",
+            "predictedModelId": "official-built-in-v1",
+            "confidence": 0.9999999999966571,
+            "outOfDistribution": true,
+            "accepted": false
+          },
+          {
+            "sampleId": "fresh-validation-09-seat-3",
+            "actualModelId": "deterministic-balanced-v1",
+            "predictedModelId": "deterministic-balanced-v1",
+            "confidence": 0.999999893596945,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-10-seat-0",
+            "actualModelId": "seeded-random-v1",
+            "predictedModelId": "seeded-random-v1",
+            "confidence": 0.9998366374618843,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-10-seat-1",
+            "actualModelId": "official-built-in-v1",
+            "predictedModelId": "official-built-in-v1",
+            "confidence": 1,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-10-seat-2",
+            "actualModelId": "deterministic-balanced-v1",
+            "predictedModelId": "deterministic-balanced-v1",
+            "confidence": 0.9999999999999991,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-10-seat-3",
+            "actualModelId": "safe-first-v1",
+            "predictedModelId": "safe-first-v1",
+            "confidence": 0.8651886883263538,
+            "outOfDistribution": true,
+            "accepted": false
+          },
+          {
+            "sampleId": "fresh-validation-11-seat-0",
+            "actualModelId": "official-built-in-v1",
+            "predictedModelId": "official-built-in-v1",
+            "confidence": 1,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-11-seat-1",
+            "actualModelId": "deterministic-balanced-v1",
+            "predictedModelId": "deterministic-balanced-v1",
+            "confidence": 0.9999993111033986,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-11-seat-2",
+            "actualModelId": "safe-first-v1",
+            "predictedModelId": "safe-first-v1",
+            "confidence": 0.9996979947989146,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-11-seat-3",
+            "actualModelId": "seeded-random-v1",
+            "predictedModelId": "seeded-random-v1",
+            "confidence": 0.9904755409123753,
+            "outOfDistribution": false,
+            "accepted": true
+          }
+        ]
+      },
+      "gates": {
+        "top1Passed": true,
+        "logLossPassed": true,
+        "ecePassed": true,
+        "selectiveCoveragePassed": true,
+        "selectiveAccuracyPassed": true
+      },
+      "passed": true
+    },
+    {
+      "blockId": "fresh-3",
+      "gameIndexes": [
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "evaluation": {
+        "samples": 24,
+        "top1Accuracy": 0.9166666666666666,
+        "uncalibratedLogLoss": 0.09200053999874093,
+        "calibratedLogLoss": 0.09200053999874093,
+        "uncalibratedBrierScore": 0.06671320860836345,
+        "calibratedBrierScore": 0.06671320860836345,
+        "expectedCalibrationError": 0.05894340151555728,
+        "confidenceBins": [
+          {
+            "lower": 0,
+            "upper": 0.2,
+            "count": 0,
+            "accuracy": null,
+            "meanConfidence": null
+          },
+          {
+            "lower": 0.2,
+            "upper": 0.4,
+            "count": 0,
+            "accuracy": null,
+            "meanConfidence": null
+          },
+          {
+            "lower": 0.4,
+            "upper": 0.6,
+            "count": 1,
+            "accuracy": 0,
+            "meanConfidence": 0.5002930070057842
+          },
+          {
+            "lower": 0.6,
+            "upper": 0.8,
+            "count": 1,
+            "accuracy": 0,
+            "meanConfidence": 0.7357840183723768
+          },
+          {
+            "lower": 0.8,
+            "upper": 1,
+            "count": 22,
+            "accuracy": 1,
+            "meanConfidence": 0.9918834267729448
+          }
+        ],
+        "oodCount": 9,
+        "oodRate": 0.375,
+        "accepted": 15,
+        "selectiveCoverage": 0.625,
+        "selectiveAccuracy": 1,
+        "predictions": [
+          {
+            "sampleId": "fresh-validation-12-seat-0",
+            "actualModelId": "deterministic-balanced-v1",
+            "predictedModelId": "deterministic-balanced-v1",
+            "confidence": 0.9991756687884843,
+            "outOfDistribution": true,
+            "accepted": false
+          },
+          {
+            "sampleId": "fresh-validation-12-seat-1",
+            "actualModelId": "safe-first-v1",
+            "predictedModelId": "safe-first-v1",
+            "confidence": 0.9991308793799719,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-12-seat-2",
+            "actualModelId": "seeded-random-v1",
+            "predictedModelId": "seeded-random-v1",
+            "confidence": 0.9700492233815885,
+            "outOfDistribution": true,
+            "accepted": false
+          },
+          {
+            "sampleId": "fresh-validation-12-seat-3",
+            "actualModelId": "official-built-in-v1",
+            "predictedModelId": "official-built-in-v1",
+            "confidence": 0.9999999999561744,
+            "outOfDistribution": true,
+            "accepted": false
+          },
+          {
+            "sampleId": "fresh-validation-13-seat-0",
+            "actualModelId": "safe-first-v1",
+            "predictedModelId": "safe-first-v1",
+            "confidence": 0.9718818097449682,
+            "outOfDistribution": true,
+            "accepted": false
+          },
+          {
+            "sampleId": "fresh-validation-13-seat-1",
+            "actualModelId": "seeded-random-v1",
+            "predictedModelId": "safe-first-v1",
+            "confidence": 0.7357840183723768,
+            "outOfDistribution": true,
+            "accepted": false
+          },
+          {
+            "sampleId": "fresh-validation-13-seat-2",
+            "actualModelId": "official-built-in-v1",
+            "predictedModelId": "official-built-in-v1",
+            "confidence": 0.9999999999999997,
+            "outOfDistribution": true,
+            "accepted": false
+          },
+          {
+            "sampleId": "fresh-validation-13-seat-3",
+            "actualModelId": "deterministic-balanced-v1",
+            "predictedModelId": "deterministic-balanced-v1",
+            "confidence": 1,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-14-seat-0",
+            "actualModelId": "seeded-random-v1",
+            "predictedModelId": "seeded-random-v1",
+            "confidence": 0.9911287902975249,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-14-seat-1",
+            "actualModelId": "official-built-in-v1",
+            "predictedModelId": "official-built-in-v1",
+            "confidence": 1,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-14-seat-2",
+            "actualModelId": "deterministic-balanced-v1",
+            "predictedModelId": "deterministic-balanced-v1",
+            "confidence": 1,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-14-seat-3",
+            "actualModelId": "safe-first-v1",
+            "predictedModelId": "safe-first-v1",
+            "confidence": 0.9999797566742165,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-15-seat-0",
+            "actualModelId": "official-built-in-v1",
+            "predictedModelId": "official-built-in-v1",
+            "confidence": 1,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-15-seat-1",
+            "actualModelId": "deterministic-balanced-v1",
+            "predictedModelId": "deterministic-balanced-v1",
+            "confidence": 0.9999921314353416,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-15-seat-2",
+            "actualModelId": "safe-first-v1",
+            "predictedModelId": "safe-first-v1",
+            "confidence": 0.9988423085055057,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-15-seat-3",
+            "actualModelId": "seeded-random-v1",
+            "predictedModelId": "seeded-random-v1",
+            "confidence": 0.9999999440962517,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-16-seat-0",
+            "actualModelId": "deterministic-balanced-v1",
+            "predictedModelId": "deterministic-balanced-v1",
+            "confidence": 0.999775385744066,
+            "outOfDistribution": true,
+            "accepted": false
+          },
+          {
+            "sampleId": "fresh-validation-16-seat-1",
+            "actualModelId": "safe-first-v1",
+            "predictedModelId": "safe-first-v1",
+            "confidence": 0.9990794656712954,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-16-seat-2",
+            "actualModelId": "seeded-random-v1",
+            "predictedModelId": "seeded-random-v1",
+            "confidence": 0.9205182158767145,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-16-seat-3",
+            "actualModelId": "official-built-in-v1",
+            "predictedModelId": "official-built-in-v1",
+            "confidence": 0.9999999997077147,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-17-seat-0",
+            "actualModelId": "safe-first-v1",
+            "predictedModelId": "safe-first-v1",
+            "confidence": 0.9718818097449682,
+            "outOfDistribution": true,
+            "accepted": false
+          },
+          {
+            "sampleId": "fresh-validation-17-seat-1",
+            "actualModelId": "seeded-random-v1",
+            "predictedModelId": "safe-first-v1",
+            "confidence": 0.5002930070057842,
+            "outOfDistribution": true,
+            "accepted": false
+          },
+          {
+            "sampleId": "fresh-validation-17-seat-2",
+            "actualModelId": "official-built-in-v1",
+            "predictedModelId": "official-built-in-v1",
+            "confidence": 1,
+            "outOfDistribution": false,
+            "accepted": true
+          },
+          {
+            "sampleId": "fresh-validation-17-seat-3",
+            "actualModelId": "deterministic-balanced-v1",
+            "predictedModelId": "deterministic-balanced-v1",
+            "confidence": 1,
+            "outOfDistribution": false,
+            "accepted": true
+          }
+        ]
+      },
+      "gates": {
+        "top1Passed": true,
+        "logLossPassed": true,
+        "ecePassed": true,
+        "selectiveCoveragePassed": true,
+        "selectiveAccuracyPassed": true
+      },
+      "passed": true
+    }
+  ],
+  "aggregateEvaluation": {
+    "samples": 72,
+    "top1Accuracy": 0.9583333333333334,
+    "uncalibratedLogLoss": 0.13428856744814135,
+    "calibratedLogLoss": 0.13428856744814135,
+    "uncalibratedBrierScore": 0.05464450294650139,
+    "calibratedBrierScore": 0.05464450294650139,
+    "expectedCalibrationError": 0.015225402018755654,
+    "confidenceBins": [
+      {
+        "lower": 0,
+        "upper": 0.2,
+        "count": 0,
+        "accuracy": null,
+        "meanConfidence": null
+      },
+      {
+        "lower": 0.2,
+        "upper": 0.4,
+        "count": 0,
+        "accuracy": null,
+        "meanConfidence": null
+      },
+      {
+        "lower": 0.4,
+        "upper": 0.6,
+        "count": 1,
+        "accuracy": 0,
+        "meanConfidence": 0.5002930070057842
+      },
+      {
+        "lower": 0.6,
+        "upper": 0.8,
+        "count": 2,
+        "accuracy": 0.5,
+        "meanConfidence": 0.7068206053188969
+      },
+      {
+        "lower": 0.8,
+        "upper": 1,
+        "count": 69,
+        "accuracy": 0.9855072463768116,
+        "meanConfidence": 0.9881491989522729
+      }
+    ],
+    "oodCount": 21,
+    "oodRate": 0.2916666666666667,
+    "accepted": 51,
+    "selectiveCoverage": 0.7083333333333334,
+    "selectiveAccuracy": 0.9803921568627451,
+    "predictions": [
+      {
+        "sampleId": "fresh-validation-00-seat-0",
+        "actualModelId": "deterministic-balanced-v1",
+        "predictedModelId": "deterministic-balanced-v1",
+        "confidence": 1,
+        "outOfDistribution": true,
+        "accepted": false
+      },
+      {
+        "sampleId": "fresh-validation-00-seat-1",
+        "actualModelId": "safe-first-v1",
+        "predictedModelId": "safe-first-v1",
+        "confidence": 0.677857192265417,
+        "outOfDistribution": true,
+        "accepted": false
+      },
+      {
+        "sampleId": "fresh-validation-00-seat-2",
+        "actualModelId": "seeded-random-v1",
+        "predictedModelId": "seeded-random-v1",
+        "confidence": 0.999665718073645,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-00-seat-3",
+        "actualModelId": "official-built-in-v1",
+        "predictedModelId": "official-built-in-v1",
+        "confidence": 0.9999999584733876,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-01-seat-0",
+        "actualModelId": "safe-first-v1",
+        "predictedModelId": "safe-first-v1",
+        "confidence": 0.9854534777335681,
+        "outOfDistribution": true,
+        "accepted": false
+      },
+      {
+        "sampleId": "fresh-validation-01-seat-1",
+        "actualModelId": "seeded-random-v1",
+        "predictedModelId": "seeded-random-v1",
+        "confidence": 0.9998519972623057,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-01-seat-2",
+        "actualModelId": "official-built-in-v1",
+        "predictedModelId": "official-built-in-v1",
+        "confidence": 0.9999999999983922,
+        "outOfDistribution": true,
+        "accepted": false
+      },
+      {
+        "sampleId": "fresh-validation-01-seat-3",
+        "actualModelId": "deterministic-balanced-v1",
+        "predictedModelId": "deterministic-balanced-v1",
+        "confidence": 0.9999986258898718,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-02-seat-0",
+        "actualModelId": "seeded-random-v1",
+        "predictedModelId": "seeded-random-v1",
+        "confidence": 0.9988018239128845,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-02-seat-1",
+        "actualModelId": "official-built-in-v1",
+        "predictedModelId": "official-built-in-v1",
+        "confidence": 1,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-02-seat-2",
+        "actualModelId": "deterministic-balanced-v1",
+        "predictedModelId": "deterministic-balanced-v1",
+        "confidence": 0.9999384052063633,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-02-seat-3",
+        "actualModelId": "safe-first-v1",
+        "predictedModelId": "safe-first-v1",
+        "confidence": 0.9990794656712954,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-03-seat-0",
+        "actualModelId": "official-built-in-v1",
+        "predictedModelId": "official-built-in-v1",
+        "confidence": 1,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-03-seat-1",
+        "actualModelId": "deterministic-balanced-v1",
+        "predictedModelId": "deterministic-balanced-v1",
+        "confidence": 1,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-03-seat-2",
+        "actualModelId": "safe-first-v1",
+        "predictedModelId": "safe-first-v1",
+        "confidence": 0.8582755514737055,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-03-seat-3",
+        "actualModelId": "seeded-random-v1",
+        "predictedModelId": "seeded-random-v1",
+        "confidence": 0.9059004907623105,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-04-seat-0",
+        "actualModelId": "deterministic-balanced-v1",
+        "predictedModelId": "deterministic-balanced-v1",
+        "confidence": 0.999445558271378,
+        "outOfDistribution": true,
+        "accepted": false
+      },
+      {
+        "sampleId": "fresh-validation-04-seat-1",
+        "actualModelId": "safe-first-v1",
+        "predictedModelId": "safe-first-v1",
+        "confidence": 0.9988423085055057,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-04-seat-2",
+        "actualModelId": "seeded-random-v1",
+        "predictedModelId": "seeded-random-v1",
+        "confidence": 0.8925409787256449,
+        "outOfDistribution": true,
+        "accepted": false
+      },
+      {
+        "sampleId": "fresh-validation-04-seat-3",
+        "actualModelId": "official-built-in-v1",
+        "predictedModelId": "official-built-in-v1",
+        "confidence": 0.999999998573779,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-05-seat-0",
+        "actualModelId": "safe-first-v1",
+        "predictedModelId": "safe-first-v1",
+        "confidence": 0.9673147938202639,
+        "outOfDistribution": true,
+        "accepted": false
+      },
+      {
+        "sampleId": "fresh-validation-05-seat-1",
+        "actualModelId": "seeded-random-v1",
+        "predictedModelId": "seeded-random-v1",
+        "confidence": 0.9999968250180932,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-05-seat-2",
+        "actualModelId": "official-built-in-v1",
+        "predictedModelId": "official-built-in-v1",
+        "confidence": 0.9999999999992514,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-05-seat-3",
+        "actualModelId": "deterministic-balanced-v1",
+        "predictedModelId": "deterministic-balanced-v1",
+        "confidence": 1,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-06-seat-0",
+        "actualModelId": "seeded-random-v1",
+        "predictedModelId": "seeded-random-v1",
+        "confidence": 0.9994345165547381,
+        "outOfDistribution": true,
+        "accepted": false
+      },
+      {
+        "sampleId": "fresh-validation-06-seat-1",
+        "actualModelId": "official-built-in-v1",
+        "predictedModelId": "official-built-in-v1",
+        "confidence": 0.9999999999897513,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-06-seat-2",
+        "actualModelId": "deterministic-balanced-v1",
+        "predictedModelId": "deterministic-balanced-v1",
+        "confidence": 0.9997105369830639,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-06-seat-3",
+        "actualModelId": "safe-first-v1",
+        "predictedModelId": "safe-first-v1",
+        "confidence": 0.9991308793799719,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-07-seat-0",
+        "actualModelId": "official-built-in-v1",
+        "predictedModelId": "official-built-in-v1",
+        "confidence": 1,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-07-seat-1",
+        "actualModelId": "deterministic-balanced-v1",
+        "predictedModelId": "deterministic-balanced-v1",
+        "confidence": 0.9991711116746903,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-07-seat-2",
+        "actualModelId": "safe-first-v1",
+        "predictedModelId": "safe-first-v1",
+        "confidence": 0.9222976240490183,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-07-seat-3",
+        "actualModelId": "seeded-random-v1",
+        "predictedModelId": "seeded-random-v1",
+        "confidence": 0.9994265717985941,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-08-seat-0",
+        "actualModelId": "deterministic-balanced-v1",
+        "predictedModelId": "deterministic-balanced-v1",
+        "confidence": 0.9999999999996196,
+        "outOfDistribution": true,
+        "accepted": false
+      },
+      {
+        "sampleId": "fresh-validation-08-seat-1",
+        "actualModelId": "safe-first-v1",
+        "predictedModelId": "safe-first-v1",
+        "confidence": 0.9976016360150333,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-08-seat-2",
+        "actualModelId": "seeded-random-v1",
+        "predictedModelId": "safe-first-v1",
+        "confidence": 0.9983358158180308,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-08-seat-3",
+        "actualModelId": "official-built-in-v1",
+        "predictedModelId": "official-built-in-v1",
+        "confidence": 0.9999999991215704,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-09-seat-0",
+        "actualModelId": "safe-first-v1",
+        "predictedModelId": "safe-first-v1",
+        "confidence": 0.9854534777335681,
+        "outOfDistribution": true,
+        "accepted": false
+      },
+      {
+        "sampleId": "fresh-validation-09-seat-1",
+        "actualModelId": "seeded-random-v1",
+        "predictedModelId": "seeded-random-v1",
+        "confidence": 0.9999931260162143,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-09-seat-2",
+        "actualModelId": "official-built-in-v1",
+        "predictedModelId": "official-built-in-v1",
+        "confidence": 0.9999999999966571,
+        "outOfDistribution": true,
+        "accepted": false
+      },
+      {
+        "sampleId": "fresh-validation-09-seat-3",
+        "actualModelId": "deterministic-balanced-v1",
+        "predictedModelId": "deterministic-balanced-v1",
+        "confidence": 0.999999893596945,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-10-seat-0",
+        "actualModelId": "seeded-random-v1",
+        "predictedModelId": "seeded-random-v1",
+        "confidence": 0.9998366374618843,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-10-seat-1",
+        "actualModelId": "official-built-in-v1",
+        "predictedModelId": "official-built-in-v1",
+        "confidence": 1,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-10-seat-2",
+        "actualModelId": "deterministic-balanced-v1",
+        "predictedModelId": "deterministic-balanced-v1",
+        "confidence": 0.9999999999999991,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-10-seat-3",
+        "actualModelId": "safe-first-v1",
+        "predictedModelId": "safe-first-v1",
+        "confidence": 0.8651886883263538,
+        "outOfDistribution": true,
+        "accepted": false
+      },
+      {
+        "sampleId": "fresh-validation-11-seat-0",
+        "actualModelId": "official-built-in-v1",
+        "predictedModelId": "official-built-in-v1",
+        "confidence": 1,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-11-seat-1",
+        "actualModelId": "deterministic-balanced-v1",
+        "predictedModelId": "deterministic-balanced-v1",
+        "confidence": 0.9999993111033986,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-11-seat-2",
+        "actualModelId": "safe-first-v1",
+        "predictedModelId": "safe-first-v1",
+        "confidence": 0.9996979947989146,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-11-seat-3",
+        "actualModelId": "seeded-random-v1",
+        "predictedModelId": "seeded-random-v1",
+        "confidence": 0.9904755409123753,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-12-seat-0",
+        "actualModelId": "deterministic-balanced-v1",
+        "predictedModelId": "deterministic-balanced-v1",
+        "confidence": 0.9991756687884843,
+        "outOfDistribution": true,
+        "accepted": false
+      },
+      {
+        "sampleId": "fresh-validation-12-seat-1",
+        "actualModelId": "safe-first-v1",
+        "predictedModelId": "safe-first-v1",
+        "confidence": 0.9991308793799719,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-12-seat-2",
+        "actualModelId": "seeded-random-v1",
+        "predictedModelId": "seeded-random-v1",
+        "confidence": 0.9700492233815885,
+        "outOfDistribution": true,
+        "accepted": false
+      },
+      {
+        "sampleId": "fresh-validation-12-seat-3",
+        "actualModelId": "official-built-in-v1",
+        "predictedModelId": "official-built-in-v1",
+        "confidence": 0.9999999999561744,
+        "outOfDistribution": true,
+        "accepted": false
+      },
+      {
+        "sampleId": "fresh-validation-13-seat-0",
+        "actualModelId": "safe-first-v1",
+        "predictedModelId": "safe-first-v1",
+        "confidence": 0.9718818097449682,
+        "outOfDistribution": true,
+        "accepted": false
+      },
+      {
+        "sampleId": "fresh-validation-13-seat-1",
+        "actualModelId": "seeded-random-v1",
+        "predictedModelId": "safe-first-v1",
+        "confidence": 0.7357840183723768,
+        "outOfDistribution": true,
+        "accepted": false
+      },
+      {
+        "sampleId": "fresh-validation-13-seat-2",
+        "actualModelId": "official-built-in-v1",
+        "predictedModelId": "official-built-in-v1",
+        "confidence": 0.9999999999999997,
+        "outOfDistribution": true,
+        "accepted": false
+      },
+      {
+        "sampleId": "fresh-validation-13-seat-3",
+        "actualModelId": "deterministic-balanced-v1",
+        "predictedModelId": "deterministic-balanced-v1",
+        "confidence": 1,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-14-seat-0",
+        "actualModelId": "seeded-random-v1",
+        "predictedModelId": "seeded-random-v1",
+        "confidence": 0.9911287902975249,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-14-seat-1",
+        "actualModelId": "official-built-in-v1",
+        "predictedModelId": "official-built-in-v1",
+        "confidence": 1,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-14-seat-2",
+        "actualModelId": "deterministic-balanced-v1",
+        "predictedModelId": "deterministic-balanced-v1",
+        "confidence": 1,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-14-seat-3",
+        "actualModelId": "safe-first-v1",
+        "predictedModelId": "safe-first-v1",
+        "confidence": 0.9999797566742165,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-15-seat-0",
+        "actualModelId": "official-built-in-v1",
+        "predictedModelId": "official-built-in-v1",
+        "confidence": 1,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-15-seat-1",
+        "actualModelId": "deterministic-balanced-v1",
+        "predictedModelId": "deterministic-balanced-v1",
+        "confidence": 0.9999921314353416,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-15-seat-2",
+        "actualModelId": "safe-first-v1",
+        "predictedModelId": "safe-first-v1",
+        "confidence": 0.9988423085055057,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-15-seat-3",
+        "actualModelId": "seeded-random-v1",
+        "predictedModelId": "seeded-random-v1",
+        "confidence": 0.9999999440962517,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-16-seat-0",
+        "actualModelId": "deterministic-balanced-v1",
+        "predictedModelId": "deterministic-balanced-v1",
+        "confidence": 0.999775385744066,
+        "outOfDistribution": true,
+        "accepted": false
+      },
+      {
+        "sampleId": "fresh-validation-16-seat-1",
+        "actualModelId": "safe-first-v1",
+        "predictedModelId": "safe-first-v1",
+        "confidence": 0.9990794656712954,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-16-seat-2",
+        "actualModelId": "seeded-random-v1",
+        "predictedModelId": "seeded-random-v1",
+        "confidence": 0.9205182158767145,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-16-seat-3",
+        "actualModelId": "official-built-in-v1",
+        "predictedModelId": "official-built-in-v1",
+        "confidence": 0.9999999997077147,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-17-seat-0",
+        "actualModelId": "safe-first-v1",
+        "predictedModelId": "safe-first-v1",
+        "confidence": 0.9718818097449682,
+        "outOfDistribution": true,
+        "accepted": false
+      },
+      {
+        "sampleId": "fresh-validation-17-seat-1",
+        "actualModelId": "seeded-random-v1",
+        "predictedModelId": "safe-first-v1",
+        "confidence": 0.5002930070057842,
+        "outOfDistribution": true,
+        "accepted": false
+      },
+      {
+        "sampleId": "fresh-validation-17-seat-2",
+        "actualModelId": "official-built-in-v1",
+        "predictedModelId": "official-built-in-v1",
+        "confidence": 1,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "fresh-validation-17-seat-3",
+        "actualModelId": "deterministic-balanced-v1",
+        "predictedModelId": "deterministic-balanced-v1",
+        "confidence": 1,
+        "outOfDistribution": false,
+        "accepted": true
+      }
+    ]
+  },
+  "passed": true,
+  "promotionHoldoutOpened": false
+}

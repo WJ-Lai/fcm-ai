@@ -357,6 +357,14 @@ a block-robust fitting rule using consumed blocks only as development, use multi
 blocks for a single final assessment, and retain per-block metrics so aggregate success cannot hide
 a failed subgroup. Until then, beliefs remain disconnected from rollout labels and search.
 
+Iteration 13 applied that rule to three consumed development blocks. Worst-block constraints chose
+identity temperature 1 and confidence threshold 0.8189, rather than chasing either prior validation
+block. On three predeclared fresh six-game blocks, Top-1 was 24/24, 23/24 and 22/24; accepted
+coverage was 17/24, 19/24 and 15/24; accepted accuracy was 17/17, 18/19 and 15/15; ECE was 0.030,
+0.031 and 0.059. Every per-block gate passed and the promotion holdout stayed sealed. This freezes
+opponent-belief calibration v5 for the next information-set consistency audit only. It does not by
+itself prove search lift or authorize reading hidden simulator state.
+
 ### 6.6 Value and objective
 
 The primary objective is terminal performance:

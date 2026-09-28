@@ -4,6 +4,7 @@ import test from 'node:test'
 
 import {
   evaluateProbabilityCalibration,
+  fitBlockRobustProbabilityCalibration,
   fitClassConditionalOodThresholds,
   fitProbabilityCalibration,
   temperatureScaleProbabilities,
@@ -14,6 +15,9 @@ const frozenReport = JSON.parse(await readFile(
 ))
 const classConditionalReport = JSON.parse(await readFile(
   new URL('../fixtures/opponent-calibration-v4/report.json', import.meta.url),
+))
+const robustReport = JSON.parse(await readFile(
+  new URL('../fixtures/opponent-calibration-v5/report.json', import.meta.url),
 ))
 
 const calibrationPredictions = [
@@ -110,6 +114,35 @@ test('evaluation applies the threshold belonging to the predicted model', () => 
   assert.equal(report.accepted, 1)
 })
 
+test('block-robust fit rejects temperatures that harm any development block', () => {
+  const blocks = [
+    {
+      blockId: 'left',
+      rows: [
+        { actualModelId: 'a', probabilities: { a: 0.9, b: 0.1 }, meanNegativeLogLikelihood: 1 },
+        { actualModelId: 'b', probabilities: { a: 0.2, b: 0.8 }, meanNegativeLogLikelihood: 1 },
+      ],
+    },
+    {
+      blockId: 'right',
+      rows: [
+        { actualModelId: 'a', probabilities: { a: 0.9, b: 0.1 }, meanNegativeLogLikelihood: 1 },
+        { actualModelId: 'b', probabilities: { a: 0.6, b: 0.4 }, meanNegativeLogLikelihood: 1 },
+      ],
+    },
+  ]
+  const fitted = fitBlockRobustProbabilityCalibration(blocks, {
+    temperatureGrid: [0.5, 1, 2],
+    minimumPerBlockCoverage: 0.5,
+    minimumPerBlockSelectiveAccuracy: 1,
+    requirePerBlockLogLossNonInferiority: true,
+    oodMeanNllThresholdByPredictedModel: { a: 2, b: 2 },
+  })
+  assert.equal(fitted.temperature, 1)
+  assert.ok(fitted.abstentionThreshold >= 0 && fitted.abstentionThreshold <= 1)
+  assert.ok(fitted.developmentBlocks.every((block) => block.coverage >= 0.5))
+})
+
 test('frozen new-seed calibration failure is explicit and holdout remains sealed', () => {
   assert.equal(frozenReport.calibration.temperature, 3)
   assert.equal(frozenReport.evaluation.top1Accuracy, 21 / 24)
@@ -132,4 +165,17 @@ test('frozen class-conditional OOD result recovers coverage but fails log-loss s
   assert.equal(classConditionalReport.gates.logLossPassed, false)
   assert.equal(classConditionalReport.passed, false)
   assert.equal(classConditionalReport.promotionHoldoutOpened, false)
+})
+
+test('frozen block-robust calibration passes every fresh validation block', () => {
+  assert.equal(robustReport.calibration.temperature, 1)
+  assert.equal(robustReport.calibration.abstentionThreshold, 0.8189104590182994)
+  assert.equal(robustReport.validationBlocks.length, 3)
+  assert.ok(robustReport.validationBlocks.every((block) => block.passed))
+  assert.deepEqual(robustReport.validationBlocks.map((block) => block.evaluation.accepted),
+    [17, 19, 15])
+  assert.deepEqual(robustReport.validationBlocks.map((block) => block.evaluation.top1Accuracy),
+    [1, 23 / 24, 22 / 24])
+  assert.equal(robustReport.passed, true)
+  assert.equal(robustReport.promotionHoldoutOpened, false)
 })
