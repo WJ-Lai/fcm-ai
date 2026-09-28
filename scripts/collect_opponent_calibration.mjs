@@ -47,8 +47,9 @@ const population = validateOpponentPopulation(JSON.parse(await readFile(
 )))
 assert.equal(protocol.populationId, population.populationId, 'population id differs from protocol')
 assert.equal(protocol.promotionHoldoutOpened, false, 'promotion holdout must remain sealed')
-assert.equal(new Set([...protocol.developmentSeeds, ...protocol.calibrationSeeds]).size,
-  protocol.developmentSeeds.length + protocol.calibrationSeeds.length, 'protocol seeds overlap')
+const declaredSeeds = protocol.validationSeeds
+  ?? [...protocol.developmentSeeds, ...protocol.calibrationSeeds]
+assert.equal(new Set(declaredSeeds).size, declaredSeeds.length, 'protocol seeds overlap')
 
 await import(pathToFileURL(path.join(serverRoot, 'mcp-server/register-hook.mjs')).href)
 const { OfflineEnvironment } = await import(
@@ -58,10 +59,13 @@ const { OfflineEnvironment } = await import(
 const maxCommands = protocol.publicCommandHorizon
 let rulesetHash = null
 const splits = {}
-for (const [split, seeds] of [
-  ['development', protocol.developmentSeeds],
-  ['calibration', protocol.calibrationSeeds],
-]) {
+const splitDefinitions = protocol.validationSeeds
+  ? [['validation', protocol.validationSeeds]]
+  : [
+      ['development', protocol.developmentSeeds],
+      ['calibration', protocol.calibrationSeeds],
+    ]
+for (const [split, seeds] of splitDefinitions) {
   const samples = []
   const games = []
   for (const [seedIndex, seed] of seeds.entries()) {
@@ -75,7 +79,8 @@ for (const [split, seeds] of [
     const env = OfflineEnvironment.fromSeed({
       seed,
       playerNames: names,
-      gameID: split === 'development' ? seedIndex + 1 : seedIndex + 101,
+      gameID: split === 'development' ? seedIndex + 1
+        : split === 'calibration' ? seedIndex + 101 : seedIndex + 201,
     })
     let commands = 0
     while (env.snapshot().phase !== 10 && commands < maxCommands) {
@@ -124,9 +129,11 @@ for (const [split, seeds] of [
 }
 
 const dataset = {
-  schemaVersion: protocol.featureVersion === 'public-event-unigram-bigram-v2'
-    ? 'fcm.opponent-calibration-dataset.v2'
-    : 'fcm.opponent-calibration-dataset.v1',
+  schemaVersion: protocol.validationSeeds
+    ? 'fcm.opponent-validation-dataset.v3'
+    : protocol.featureVersion === 'public-event-unigram-bigram-v2'
+      ? 'fcm.opponent-calibration-dataset.v2'
+      : 'fcm.opponent-calibration-dataset.v1',
   protocolDigest: digest(protocol),
   populationDigest: digest(population),
   rulesetHash,
@@ -135,4 +142,9 @@ const dataset = {
   splits,
 }
 await writeFile(outputPath, `${JSON.stringify(dataset, null, 2)}\n`)
-process.stdout.write(`${JSON.stringify({ output: outputPath, games: 12, samples: 48, rulesetHash }, null, 2)}\n`)
+process.stdout.write(`${JSON.stringify({
+  output: outputPath,
+  games: splitDefinitions.reduce((sum, [, seeds]) => sum + seeds.length, 0),
+  samples: Object.values(splits).reduce((sum, split) => sum + split.samples.length, 0),
+  rulesetHash,
+}, null, 2)}\n`)

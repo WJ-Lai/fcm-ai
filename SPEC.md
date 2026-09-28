@@ -336,6 +336,16 @@ known-policy samples received over 0.8 confidence (mean 0.981) while two seeded-
 wrongly called safe-first. V2 therefore advances only to a new-seed temperature/abstention
 calibration stage. It remains disconnected from rollout labels and search.
 
+Independent probability calibration then selected temperature 3 on the old calibration split and
+evaluated once on six new official-engine seeds. New-seed Top-1 was 21/24 (87.5%); temperature
+scaling improved log loss from 0.439 to 0.264 and achieved 0.055 five-bin ECE. Accepted predictions
+were 10/11 correct (90.9%), but combined confidence/OOD coverage was only 11/24 (45.8%), below the
+predeclared 50% gate. The global NLL OOD threshold rejected six correctly classified samples and is
+not style-calibrated. Iteration 11 is therefore rejected despite improved probabilities. The
+validation set is now consumed: the next experiment may fit class-conditional OOD thresholds on
+old calibration data, but must use another untouched validation seed block and may not loosen the
+failed gate post hoc.
+
 ### 6.6 Value and objective
 
 The primary objective is terminal performance:

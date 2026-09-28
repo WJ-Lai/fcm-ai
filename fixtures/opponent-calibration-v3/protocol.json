@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "fcm.opponent-probability-calibration-protocol.v3",
+  "populationId": "base-public-population-v1",
+  "baseDatasetSha256": "b2587f646af1dd799df04f0377527e672cc07c4432b6584937f949818db8a132",
+  "featureVersion": "public-event-unigram-bigram-v2",
+  "validationSeeds": [
+    "opponent-calibration-validation-00",
+    "opponent-calibration-validation-01",
+    "opponent-calibration-validation-02",
+    "opponent-calibration-validation-03",
+    "opponent-calibration-validation-04",
+    "opponent-calibration-validation-05"
+  ],
+  "players": 4,
+  "publicCommandHorizon": 160,
+  "temperatureGrid": [0.5, 0.75, 1, 1.5, 2, 3, 4, 6, 8],
+  "minimumCalibrationSelectiveAccuracy": 0.95,
+  "minimumCalibrationCoverage": 0.25,
+  "validationGates": {
+    "minimumTop1Accuracy": 0.75,
+    "maximumExpectedCalibrationError": 0.15,
+    "minimumSelectiveCoverage": 0.5,
+    "minimumSelectiveAccuracy": 0.9
+  },
+  "promotionHoldoutOpened": false
+}

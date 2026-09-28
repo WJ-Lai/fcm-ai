@@ -347,6 +347,11 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     and 102/120 (85%) human OOD. However mean confidence was 0.981 with two errors, so probabilities
     are overconfident. Next fit temperature/abstention on the existing calibration split and evaluate
     once on newly frozen validation seeds; do not connect v2 beliefs to rollout/search before that.
+    Iteration 11 did so: temperature 3 improved new-seed log loss 0.439→0.264, ECE reached 0.055,
+    Top-1 was 21/24 and accepted accuracy 10/11. It still failed because coverage was 11/24 (45.8%)
+    versus the frozen 50% gate; a global OOD threshold rejected six correct style-specific samples.
+    The validation block is consumed. Next change only to class-conditional OOD thresholds fitted on
+    old calibration data and evaluate on another fresh seed block; keep beliefs disconnected.
 - [ ] **P3.3e Enforce information-set policy consistency.**
   - Why: ordinary determinization can create strategy fusion—the planner chooses mutually
     incompatible actions in different sampled hidden worlds and behaves as if it knew which world

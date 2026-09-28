@@ -1,0 +1,223 @@
+import assert from 'node:assert/strict'
+
+export const OPPONENT_PROBABILITY_CALIBRATION_VERSION = 'fcm.opponent-probability-calibration.v1'
+
+function validateProbabilities(probabilities) {
+  assert.ok(probabilities && typeof probabilities === 'object' && !Array.isArray(probabilities),
+    'probabilities must be an object')
+  const entries = Object.entries(probabilities)
+  assert.ok(entries.length >= 2, 'at least two model probabilities are required')
+  let total = 0
+  for (const [modelId, probability] of entries) {
+    assert.match(modelId, /^[a-z0-9]+(?:[-_:][a-z0-9]+)*$/, 'invalid model id')
+    assert.ok(Number.isFinite(probability) && probability >= 0 && probability <= 1,
+      `invalid probability for ${modelId}`)
+    total += probability
+  }
+  assert.ok(Math.abs(total - 1) <= 1e-9, 'probabilities must sum to 1')
+  return entries.map(([modelId]) => modelId).sort()
+}
+
+function predictionFrom(probabilities) {
+  const modelIds = validateProbabilities(probabilities)
+  return modelIds.sort((left, right) => (
+    probabilities[right] - probabilities[left] || left.localeCompare(right)
+  ))[0]
+}
+
+export function temperatureScaleProbabilities(probabilities, temperature) {
+  validateProbabilities(probabilities)
+  assert.ok(Number.isFinite(temperature) && temperature > 0, 'temperature must be positive')
+  const masses = Object.fromEntries(Object.entries(probabilities).map(([modelId, probability]) => [
+    modelId,
+    probability === 0 ? 0 : Math.exp(Math.log(probability) / temperature),
+  ]))
+  const total = Object.values(masses).reduce((sum, value) => sum + value, 0)
+  assert.ok(Number.isFinite(total) && total > 0, 'temperature scaling has no finite mass')
+  return Object.fromEntries(Object.entries(masses).map(([modelId, mass]) => [modelId, mass / total]))
+}
+
+function validatePredictionRows(rows, { requireSampleId = false } = {}) {
+  assert.ok(Array.isArray(rows) && rows.length > 0, 'predictions must be non-empty')
+  let modelIds = null
+  const sampleIds = new Set()
+  for (const row of rows) {
+    assert.ok(row && typeof row === 'object' && !Array.isArray(row), 'prediction must be an object')
+    if (requireSampleId) {
+      assert.match(row.sampleId, /^[a-z0-9]+(?:[-_:][a-z0-9]+)*$/, 'invalid sampleId')
+      assert.equal(sampleIds.has(row.sampleId), false, `duplicate sampleId ${row.sampleId}`)
+      sampleIds.add(row.sampleId)
+    }
+    assert.equal(typeof row.actualModelId, 'string', 'actualModelId is required')
+    const ids = validateProbabilities(row.probabilities)
+    assert.ok(ids.includes(row.actualModelId), `unknown actualModelId ${row.actualModelId}`)
+    if (modelIds == null) modelIds = ids
+    else assert.deepEqual(ids, modelIds, 'probability model ids differ')
+    assert.ok(Number.isFinite(row.meanNegativeLogLikelihood) && row.meanNegativeLogLikelihood >= 0,
+      'meanNegativeLogLikelihood must be non-negative')
+    if (row.unknownEventFraction != null) {
+      assert.ok(Number.isFinite(row.unknownEventFraction)
+        && row.unknownEventFraction >= 0 && row.unknownEventFraction <= 1,
+      'unknownEventFraction must be in [0, 1]')
+    }
+  }
+  return modelIds
+}
+
+function scoreRows(rows, temperature) {
+  let correct = 0
+  let logLoss = 0
+  let brier = 0
+  const scored = rows.map((row) => {
+    const probabilities = temperatureScaleProbabilities(row.probabilities, temperature)
+    const predictedModelId = predictionFrom(probabilities)
+    const confidence = probabilities[predictedModelId]
+    const isCorrect = predictedModelId === row.actualModelId
+    if (isCorrect) correct += 1
+    logLoss -= Math.log(Math.max(Number.EPSILON, probabilities[row.actualModelId]))
+    brier += Object.keys(probabilities).reduce((sum, modelId) => (
+      sum + (probabilities[modelId] - Number(modelId === row.actualModelId)) ** 2
+    ), 0)
+    return { ...row, probabilities, predictedModelId, confidence, isCorrect }
+  })
+  return {
+    rows: scored,
+    top1Accuracy: correct / rows.length,
+    logLoss: logLoss / rows.length,
+    brierScore: brier / rows.length,
+  }
+}
+
+function calibrationBins(rows) {
+  return Array.from({ length: 5 }, (_, index) => {
+    const lower = index / 5
+    const upper = (index + 1) / 5
+    const members = rows.filter((row) => row.confidence >= lower
+      && (index === 4 ? row.confidence <= upper : row.confidence < upper))
+    return {
+      lower,
+      upper,
+      count: members.length,
+      accuracy: members.length
+        ? members.filter((row) => row.isCorrect).length / members.length
+        : null,
+      meanConfidence: members.length
+        ? members.reduce((sum, row) => sum + row.confidence, 0) / members.length
+        : null,
+    }
+  })
+}
+
+function ece(bins, total) {
+  return bins.reduce((sum, bin) => sum + (bin.count === 0 ? 0
+    : (bin.count / total) * Math.abs(bin.accuracy - bin.meanConfidence)), 0)
+}
+
+function isOod(row, threshold) {
+  return (row.unknownEventFraction ?? 0) > 0 || row.meanNegativeLogLikelihood > threshold
+}
+
+function selectiveMetrics(rows, threshold, oodThreshold) {
+  const accepted = rows.filter((row) => !isOod(row, oodThreshold) && row.confidence >= threshold)
+  return {
+    accepted: accepted.length,
+    coverage: accepted.length / rows.length,
+    accuracy: accepted.length
+      ? accepted.filter((row) => row.isCorrect).length / accepted.length
+      : null,
+  }
+}
+
+export function fitProbabilityCalibration(rows, {
+  temperatureGrid,
+  minimumSelectiveAccuracy,
+  minimumCoverage,
+  oodMeanNllThreshold,
+}) {
+  validatePredictionRows(rows)
+  assert.ok(Array.isArray(temperatureGrid) && temperatureGrid.length > 0,
+    'temperatureGrid must be non-empty')
+  assert.equal(new Set(temperatureGrid).size, temperatureGrid.length,
+    'temperatureGrid values must be unique')
+  temperatureGrid.forEach((value) => assert.ok(Number.isFinite(value) && value > 0,
+    'temperatureGrid values must be positive'))
+  assert.ok(Number.isFinite(minimumSelectiveAccuracy)
+    && minimumSelectiveAccuracy >= 0 && minimumSelectiveAccuracy <= 1,
+  'minimumSelectiveAccuracy must be in [0, 1]')
+  assert.ok(Number.isFinite(minimumCoverage) && minimumCoverage >= 0 && minimumCoverage <= 1,
+    'minimumCoverage must be in [0, 1]')
+  assert.ok(Number.isFinite(oodMeanNllThreshold) && oodMeanNllThreshold >= 0,
+    'oodMeanNllThreshold must be non-negative')
+
+  const trials = temperatureGrid.map((temperature) => ({
+    temperature,
+    ...scoreRows(rows, temperature),
+  })).sort((left, right) => left.logLoss - right.logLoss || left.temperature - right.temperature)
+  const selected = trials[0]
+  const thresholds = [0, ...new Set(selected.rows.map((row) => row.confidence))]
+    .sort((left, right) => left - right)
+  const eligible = thresholds.map((threshold) => ({
+    threshold,
+    ...selectiveMetrics(selected.rows, threshold, oodMeanNllThreshold),
+  })).filter((item) => item.coverage >= minimumCoverage
+    && item.accuracy != null && item.accuracy >= minimumSelectiveAccuracy)
+    .sort((left, right) => right.coverage - left.coverage || left.threshold - right.threshold)
+  const abstention = eligible[0] ?? {
+    threshold: 1,
+    ...selectiveMetrics(selected.rows, 1, oodMeanNllThreshold),
+  }
+  const uncalibrated = scoreRows(rows, 1)
+  return {
+    schemaVersion: OPPONENT_PROBABILITY_CALIBRATION_VERSION,
+    temperature: selected.temperature,
+    abstentionThreshold: abstention.threshold,
+    oodMeanNllThreshold,
+    calibration: {
+      samples: rows.length,
+      uncalibratedLogLoss: uncalibrated.logLoss,
+      calibratedLogLoss: selected.logLoss,
+      uncalibratedBrierScore: uncalibrated.brierScore,
+      calibratedBrierScore: selected.brierScore,
+      top1Accuracy: selected.top1Accuracy,
+      selectiveCoverage: abstention.coverage,
+      selectiveAccuracy: abstention.accuracy,
+    },
+  }
+}
+
+export function evaluateProbabilityCalibration(rows, calibration) {
+  validatePredictionRows(rows, { requireSampleId: true })
+  assert.equal(calibration?.schemaVersion ?? OPPONENT_PROBABILITY_CALIBRATION_VERSION,
+    OPPONENT_PROBABILITY_CALIBRATION_VERSION, 'unsupported probability calibration version')
+  const scored = scoreRows(rows, calibration.temperature)
+  const uncalibrated = scoreRows(rows, 1)
+  const bins = calibrationBins(scored.rows)
+  const oodCount = scored.rows.filter((row) => isOod(row, calibration.oodMeanNllThreshold)).length
+  const selective = selectiveMetrics(
+    scored.rows, calibration.abstentionThreshold, calibration.oodMeanNllThreshold,
+  )
+  return {
+    samples: rows.length,
+    top1Accuracy: scored.top1Accuracy,
+    uncalibratedLogLoss: uncalibrated.logLoss,
+    calibratedLogLoss: scored.logLoss,
+    uncalibratedBrierScore: uncalibrated.brierScore,
+    calibratedBrierScore: scored.brierScore,
+    expectedCalibrationError: ece(bins, rows.length),
+    confidenceBins: bins,
+    oodCount,
+    oodRate: oodCount / rows.length,
+    accepted: selective.accepted,
+    selectiveCoverage: selective.coverage,
+    selectiveAccuracy: selective.accuracy,
+    predictions: scored.rows.map((row) => ({
+      sampleId: row.sampleId,
+      actualModelId: row.actualModelId,
+      predictedModelId: row.predictedModelId,
+      confidence: row.confidence,
+      outOfDistribution: isOod(row, calibration.oodMeanNllThreshold),
+      accepted: !isOod(row, calibration.oodMeanNllThreshold)
+        && row.confidence >= calibration.abstentionThreshold,
+    })),
+  }
+}

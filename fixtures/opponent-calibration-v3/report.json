@@ -1,0 +1,279 @@
+{
+  "schemaVersion": "fcm.opponent-probability-calibration-report.v3",
+  "experimentId": 11,
+  "hypothesis": "temperature-and-abstention-calibrate-temporal-opponent-beliefs-on-new-seeds",
+  "protocolDigest": "sha256:09b5421447e0e283dfa66bdc26cf34818b79698d5dc9dd071ca3efcb6549c0c4",
+  "baseDatasetSha256": "b2587f646af1dd799df04f0377527e672cc07c4432b6584937f949818db8a132",
+  "validationDigest": "sha256:ff5dc7c742b4b968c1b117dbc56853a230ade62d39274920408145e684327a8d",
+  "rulesetHash": "a171620e533a34f0c77133afac1d239a02c7600978486d09a77a20ead95d0b5e",
+  "calibration": {
+    "schemaVersion": "fcm.opponent-probability-calibration.v1",
+    "temperature": 3,
+    "abstentionThreshold": 0.8627888116824795,
+    "oodMeanNllThreshold": 3.477849463389933,
+    "calibration": {
+      "samples": 24,
+      "uncalibratedLogLoss": 0.2960561295050082,
+      "calibratedLogLoss": 0.19894403183707043,
+      "uncalibratedBrierScore": 0.15917776080268822,
+      "calibratedBrierScore": 0.12825056545034758,
+      "top1Accuracy": 0.9166666666666666,
+      "selectiveCoverage": 0.7083333333333334,
+      "selectiveAccuracy": 1
+    }
+  },
+  "evaluation": {
+    "samples": 24,
+    "top1Accuracy": 0.875,
+    "uncalibratedLogLoss": 0.43937703129133904,
+    "calibratedLogLoss": 0.263549728842548,
+    "uncalibratedBrierScore": 0.2129954181232052,
+    "calibratedBrierScore": 0.17300582873844975,
+    "expectedCalibrationError": 0.05503936818786329,
+    "confidenceBins": [
+      {
+        "lower": 0,
+        "upper": 0.2,
+        "count": 0,
+        "accuracy": null,
+        "meanConfidence": null
+      },
+      {
+        "lower": 0.2,
+        "upper": 0.4,
+        "count": 0,
+        "accuracy": null,
+        "meanConfidence": null
+      },
+      {
+        "lower": 0.4,
+        "upper": 0.6,
+        "count": 1,
+        "accuracy": 1,
+        "meanConfidence": 0.5034430249802044
+      },
+      {
+        "lower": 0.6,
+        "upper": 0.8,
+        "count": 4,
+        "accuracy": 0.5,
+        "meanConfidence": 0.6687626383358358
+      },
+      {
+        "lower": 0.8,
+        "upper": 1,
+        "count": 19,
+        "accuracy": 0.9473684210526315,
+        "meanConfidence": 0.9552282793760831
+      }
+    ],
+    "oodCount": 6,
+    "oodRate": 0.25,
+    "accepted": 11,
+    "selectiveCoverage": 0.4583333333333333,
+    "selectiveAccuracy": 0.9090909090909091,
+    "predictions": [
+      {
+        "sampleId": "validation-00-seat-0",
+        "actualModelId": "deterministic-balanced-v1",
+        "predictedModelId": "deterministic-balanced-v1",
+        "confidence": 0.9999960124175622,
+        "outOfDistribution": true,
+        "accepted": false
+      },
+      {
+        "sampleId": "validation-00-seat-1",
+        "actualModelId": "safe-first-v1",
+        "predictedModelId": "safe-first-v1",
+        "confidence": 0.8043598816555071,
+        "outOfDistribution": false,
+        "accepted": false
+      },
+      {
+        "sampleId": "validation-00-seat-2",
+        "actualModelId": "seeded-random-v1",
+        "predictedModelId": "safe-first-v1",
+        "confidence": 0.893862212482737,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "validation-00-seat-3",
+        "actualModelId": "official-built-in-v1",
+        "predictedModelId": "official-built-in-v1",
+        "confidence": 0.9984660595195195,
+        "outOfDistribution": true,
+        "accepted": false
+      },
+      {
+        "sampleId": "validation-01-seat-0",
+        "actualModelId": "safe-first-v1",
+        "predictedModelId": "safe-first-v1",
+        "confidence": 0.9764876851096209,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "validation-01-seat-1",
+        "actualModelId": "seeded-random-v1",
+        "predictedModelId": "seeded-random-v1",
+        "confidence": 0.5034430249802044,
+        "outOfDistribution": false,
+        "accepted": false
+      },
+      {
+        "sampleId": "validation-01-seat-2",
+        "actualModelId": "official-built-in-v1",
+        "predictedModelId": "official-built-in-v1",
+        "confidence": 0.9999938121997275,
+        "outOfDistribution": true,
+        "accepted": false
+      },
+      {
+        "sampleId": "validation-01-seat-3",
+        "actualModelId": "deterministic-balanced-v1",
+        "predictedModelId": "deterministic-balanced-v1",
+        "confidence": 0.9999997796196752,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "validation-02-seat-0",
+        "actualModelId": "seeded-random-v1",
+        "predictedModelId": "seeded-random-v1",
+        "confidence": 0.9253230467542037,
+        "outOfDistribution": true,
+        "accepted": false
+      },
+      {
+        "sampleId": "validation-02-seat-1",
+        "actualModelId": "official-built-in-v1",
+        "predictedModelId": "official-built-in-v1",
+        "confidence": 0.9999993246989836,
+        "outOfDistribution": true,
+        "accepted": false
+      },
+      {
+        "sampleId": "validation-02-seat-2",
+        "actualModelId": "deterministic-balanced-v1",
+        "predictedModelId": "deterministic-balanced-v1",
+        "confidence": 0.9985663361318637,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "validation-02-seat-3",
+        "actualModelId": "safe-first-v1",
+        "predictedModelId": "safe-first-v1",
+        "confidence": 0.8043598816555071,
+        "outOfDistribution": false,
+        "accepted": false
+      },
+      {
+        "sampleId": "validation-03-seat-0",
+        "actualModelId": "official-built-in-v1",
+        "predictedModelId": "official-built-in-v1",
+        "confidence": 0.9999999713422366,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "validation-03-seat-1",
+        "actualModelId": "deterministic-balanced-v1",
+        "predictedModelId": "deterministic-balanced-v1",
+        "confidence": 0.9870630132327525,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "validation-03-seat-2",
+        "actualModelId": "safe-first-v1",
+        "predictedModelId": "safe-first-v1",
+        "confidence": 0.6923404166957606,
+        "outOfDistribution": false,
+        "accepted": false
+      },
+      {
+        "sampleId": "validation-03-seat-3",
+        "actualModelId": "seeded-random-v1",
+        "predictedModelId": "safe-first-v1",
+        "confidence": 0.6137671150952118,
+        "outOfDistribution": false,
+        "accepted": false
+      },
+      {
+        "sampleId": "validation-04-seat-0",
+        "actualModelId": "deterministic-balanced-v1",
+        "predictedModelId": "deterministic-balanced-v1",
+        "confidence": 0.9825999005935753,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "validation-04-seat-1",
+        "actualModelId": "safe-first-v1",
+        "predictedModelId": "safe-first-v1",
+        "confidence": 0.9046966702917204,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "validation-04-seat-2",
+        "actualModelId": "seeded-random-v1",
+        "predictedModelId": "safe-first-v1",
+        "confidence": 0.6230352921452124,
+        "outOfDistribution": false,
+        "accepted": false
+      },
+      {
+        "sampleId": "validation-04-seat-3",
+        "actualModelId": "official-built-in-v1",
+        "predictedModelId": "official-built-in-v1",
+        "confidence": 0.9999952456772514,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "validation-05-seat-0",
+        "actualModelId": "safe-first-v1",
+        "predictedModelId": "safe-first-v1",
+        "confidence": 0.8735724611553126,
+        "outOfDistribution": false,
+        "accepted": true
+      },
+      {
+        "sampleId": "validation-05-seat-1",
+        "actualModelId": "seeded-random-v1",
+        "predictedModelId": "seeded-random-v1",
+        "confidence": 0.7459077294071585,
+        "outOfDistribution": false,
+        "accepted": false
+      },
+      {
+        "sampleId": "validation-05-seat-2",
+        "actualModelId": "official-built-in-v1",
+        "predictedModelId": "official-built-in-v1",
+        "confidence": 0.9999962186780887,
+        "outOfDistribution": true,
+        "accepted": false
+      },
+      {
+        "sampleId": "validation-05-seat-3",
+        "actualModelId": "deterministic-balanced-v1",
+        "predictedModelId": "deterministic-balanced-v1",
+        "confidence": 0.9999997949297353,
+        "outOfDistribution": false,
+        "accepted": true
+      }
+    ]
+  },
+  "gates": {
+    "top1Passed": true,
+    "logLossPassed": true,
+    "ecePassed": true,
+    "selectiveCoveragePassed": false,
+    "selectiveAccuracyPassed": true
+  },
+  "passed": false,
+  "promotionHoldoutOpened": false
+}

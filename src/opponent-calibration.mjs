@@ -123,6 +123,73 @@ export function validateOpponentCalibrationDataset(dataset, {
   return dataset
 }
 
+export function validateOpponentValidationDataset(dataset, {
+  expectedModelIds,
+  expectedSamplesPerModel,
+  expectedCommandsPerGame,
+}) {
+  exactKeys(dataset, new Set([
+    'schemaVersion', 'protocolDigest', 'populationDigest', 'rulesetHash', 'featureVersion',
+    'promotionHoldoutOpened', 'splits',
+  ]), 'validation dataset')
+  assert.equal(dataset.schemaVersion, 'fcm.opponent-validation-dataset.v3')
+  assert.match(dataset.protocolDigest, /^sha256:[a-f0-9]{64}$/)
+  assert.match(dataset.populationDigest, /^sha256:[a-f0-9]{64}$/)
+  assert.match(dataset.rulesetHash, /^[a-f0-9]{64}$/)
+  assert.equal(dataset.featureVersion, 'public-event-unigram-bigram-v2')
+  assert.equal(dataset.promotionHoldoutOpened, false, 'promotion holdout must remain sealed')
+  exactKeys(dataset.splits, new Set(['validation']), 'validation splits')
+  const split = dataset.splits.validation
+  exactKeys(split, new Set(['games', 'samples']), 'validation split')
+  assert.ok(Array.isArray(split.games) && split.games.length > 0, 'validation has no games')
+  const gameIndexes = new Set()
+  for (const game of split.games) {
+    exactKeys(game, new Set(['gameIndex', 'seed', 'commands', 'terminal']), 'validation game')
+    assert.ok(Number.isInteger(game.gameIndex) && game.gameIndex >= 0, 'invalid gameIndex')
+    assert.equal(gameIndexes.has(game.gameIndex), false, `duplicate gameIndex ${game.gameIndex}`)
+    gameIndexes.add(game.gameIndex)
+    stableId(game.seed, 'validation seed')
+    assert.equal(game.commands, expectedCommandsPerGame, 'validation command horizon differs')
+    assert.equal(typeof game.terminal, 'boolean', 'terminal marker must be boolean')
+  }
+  const sampleIds = new Set()
+  const countsByModel = Object.fromEntries([...expectedModelIds].map((modelId) => [modelId, 0]))
+  for (const sample of split.samples) {
+    exactKeys(sample, new Set([
+      'sampleId', 'gameIndex', 'seat', 'modelId', 'publicEventCounts',
+      'publicEventSequence', 'totalEvents',
+    ]), 'validation sample')
+    stableId(sample.sampleId, 'validation sampleId')
+    assert.equal(sampleIds.has(sample.sampleId), false, `duplicate sampleId ${sample.sampleId}`)
+    sampleIds.add(sample.sampleId)
+    assert.ok(gameIndexes.has(sample.gameIndex), 'sample references unknown validation game')
+    assert.ok(Number.isInteger(sample.seat) && sample.seat >= 0, 'invalid sample seat')
+    assert.ok(expectedModelIds.has(sample.modelId), `unknown modelId ${sample.modelId}`)
+    assert.ok(Array.isArray(sample.publicEventSequence), 'publicEventSequence must be an array')
+    assert.equal(sample.publicEventSequence.length, sample.totalEvents,
+      'public event sequence length differs')
+    const counts = {}
+    for (const code of sample.publicEventSequence) {
+      assert.ok(Number.isInteger(code) && code >= 0 && code <= 255,
+        'invalid public event sequence code')
+      counts[code] = (counts[code] ?? 0) + 1
+    }
+    assert.deepEqual(
+      Object.fromEntries(Object.entries(counts).sort(
+        (left, right) => Number(left[0]) - Number(right[0]),
+      )),
+      sample.publicEventCounts,
+      'public event sequence does not reproduce counts',
+    )
+    countsByModel[sample.modelId] += 1
+  }
+  for (const modelId of expectedModelIds) {
+    assert.equal(countsByModel[modelId], expectedSamplesPerModel,
+      `validation sample count differs for ${modelId}`)
+  }
+  return dataset
+}
+
 export function encodePublicEventFeatures(publicEventCodes, { includeTransitions = false } = {}) {
   assert.ok(Array.isArray(publicEventCodes) && publicEventCodes.length > 0,
     'publicEventCodes must be non-empty')

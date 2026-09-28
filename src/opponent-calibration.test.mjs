@@ -8,6 +8,7 @@ import {
   fitPublicActionModel,
   predictPublicActionModel,
   validateOpponentCalibrationDataset,
+  validateOpponentValidationDataset,
 } from './opponent-calibration.mjs'
 
 const frozenDataset = JSON.parse(await readFile(
@@ -21,6 +22,9 @@ const temporalDataset = JSON.parse(await readFile(
 ))
 const temporalReport = JSON.parse(await readFile(
   new URL('../fixtures/opponent-calibration-v2/report.json', import.meta.url),
+))
+const probabilityValidation = JSON.parse(await readFile(
+  new URL('../fixtures/opponent-calibration-v3/validation.json', import.meta.url),
 ))
 
 const development = [
@@ -142,4 +146,21 @@ test('temporal representation passes selection gates but remains overconfident',
   assert.equal(temporalReport.calibration.confidenceBins[4].count, 24)
   assert.ok(temporalReport.calibration.confidenceBins[4].meanConfidence > 0.98)
   assert.equal(temporalReport.promotionHoldoutOpened, false)
+})
+
+test('new probability-validation seeds are balanced, public-only and isolated', () => {
+  const modelIds = new Set([
+    'deterministic-balanced-v1', 'safe-first-v1', 'seeded-random-v1', 'official-built-in-v1',
+  ])
+  const validated = validateOpponentValidationDataset(probabilityValidation, {
+    expectedModelIds: modelIds,
+    expectedSamplesPerModel: 6,
+    expectedCommandsPerGame: 160,
+  })
+  assert.equal(validated.splits.validation.samples.length, 24)
+  const oldSeeds = new Set([
+    ...frozenDataset.splits.development.games.map((game) => game.seed),
+    ...frozenDataset.splits.calibration.games.map((game) => game.seed),
+  ])
+  assert.ok(validated.splits.validation.games.every((game) => !oldSeeds.has(game.seed)))
 })
