@@ -113,12 +113,39 @@ function ece(bins, total) {
     : (bin.count / total) * Math.abs(bin.accuracy - bin.meanConfidence)), 0)
 }
 
-function isOod(row, threshold) {
-  return (row.unknownEventFraction ?? 0) > 0 || row.meanNegativeLogLikelihood > threshold
+function linearQuantile(values, fraction) {
+  assert.ok(Array.isArray(values) && values.length > 0, 'quantile values must be non-empty')
+  assert.ok(Number.isFinite(fraction) && fraction >= 0 && fraction <= 1,
+    'quantile must be in [0, 1]')
+  const sorted = [...values].sort((left, right) => left - right)
+  const index = (sorted.length - 1) * fraction
+  const lower = Math.floor(index)
+  const upper = Math.ceil(index)
+  return sorted[lower] + (sorted[upper] - sorted[lower]) * (index - lower)
 }
 
-function selectiveMetrics(rows, threshold, oodThreshold) {
-  const accepted = rows.filter((row) => !isOod(row, oodThreshold) && row.confidence >= threshold)
+function oodThresholdFor(row, calibration) {
+  const byModel = calibration.oodMeanNllThresholdByPredictedModel
+  if (byModel != null) {
+    assert.ok(Object.hasOwn(byModel, row.predictedModelId),
+      `missing OOD threshold for ${row.predictedModelId}`)
+    const threshold = byModel[row.predictedModelId]
+    assert.ok(Number.isFinite(threshold) && threshold >= 0,
+      `invalid OOD threshold for ${row.predictedModelId}`)
+    return threshold
+  }
+  assert.ok(Number.isFinite(calibration.oodMeanNllThreshold)
+    && calibration.oodMeanNllThreshold >= 0, 'oodMeanNllThreshold must be non-negative')
+  return calibration.oodMeanNllThreshold
+}
+
+function isOod(row, calibration) {
+  return (row.unknownEventFraction ?? 0) > 0
+    || row.meanNegativeLogLikelihood > oodThresholdFor(row, calibration)
+}
+
+function selectiveMetrics(rows, threshold, calibration) {
+  const accepted = rows.filter((row) => !isOod(row, calibration) && row.confidence >= threshold)
   return {
     accepted: accepted.length,
     coverage: accepted.length / rows.length,
@@ -126,6 +153,23 @@ function selectiveMetrics(rows, threshold, oodThreshold) {
       ? accepted.filter((row) => row.isCorrect).length / accepted.length
       : null,
   }
+}
+
+export function fitClassConditionalOodThresholds(rows, { quantile }) {
+  const modelIds = validatePredictionRows(rows)
+  assert.ok(Number.isFinite(quantile) && quantile >= 0 && quantile <= 1,
+    'quantile must be in [0, 1]')
+  const scored = scoreRows(rows, 1).rows
+  const thresholdsByPredictedModel = {}
+  const samplesByPredictedModel = {}
+  for (const modelId of modelIds) {
+    const nlls = scored.filter((row) => row.predictedModelId === modelId)
+      .map((row) => row.meanNegativeLogLikelihood)
+    assert.ok(nlls.length > 0, `no calibration rows predicted as ${modelId}`)
+    thresholdsByPredictedModel[modelId] = linearQuantile(nlls, quantile)
+    samplesByPredictedModel[modelId] = nlls.length
+  }
+  return { quantile, thresholdsByPredictedModel, samplesByPredictedModel }
 }
 
 export function fitProbabilityCalibration(rows, {
@@ -158,13 +202,13 @@ export function fitProbabilityCalibration(rows, {
     .sort((left, right) => left - right)
   const eligible = thresholds.map((threshold) => ({
     threshold,
-    ...selectiveMetrics(selected.rows, threshold, oodMeanNllThreshold),
+    ...selectiveMetrics(selected.rows, threshold, { oodMeanNllThreshold }),
   })).filter((item) => item.coverage >= minimumCoverage
     && item.accuracy != null && item.accuracy >= minimumSelectiveAccuracy)
     .sort((left, right) => right.coverage - left.coverage || left.threshold - right.threshold)
   const abstention = eligible[0] ?? {
     threshold: 1,
-    ...selectiveMetrics(selected.rows, 1, oodMeanNllThreshold),
+    ...selectiveMetrics(selected.rows, 1, { oodMeanNllThreshold }),
   }
   const uncalibrated = scoreRows(rows, 1)
   return {
@@ -192,9 +236,9 @@ export function evaluateProbabilityCalibration(rows, calibration) {
   const scored = scoreRows(rows, calibration.temperature)
   const uncalibrated = scoreRows(rows, 1)
   const bins = calibrationBins(scored.rows)
-  const oodCount = scored.rows.filter((row) => isOod(row, calibration.oodMeanNllThreshold)).length
+  const oodCount = scored.rows.filter((row) => isOod(row, calibration)).length
   const selective = selectiveMetrics(
-    scored.rows, calibration.abstentionThreshold, calibration.oodMeanNllThreshold,
+    scored.rows, calibration.abstentionThreshold, calibration,
   )
   return {
     samples: rows.length,
@@ -215,8 +259,8 @@ export function evaluateProbabilityCalibration(rows, calibration) {
       actualModelId: row.actualModelId,
       predictedModelId: row.predictedModelId,
       confidence: row.confidence,
-      outOfDistribution: isOod(row, calibration.oodMeanNllThreshold),
-      accepted: !isOod(row, calibration.oodMeanNllThreshold)
+      outOfDistribution: isOod(row, calibration),
+      accepted: !isOod(row, calibration)
         && row.confidence >= calibration.abstentionThreshold,
     })),
   }

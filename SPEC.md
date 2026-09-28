@@ -346,6 +346,17 @@ validation set is now consumed: the next experiment may fit class-conditional OO
 old calibration data, but must use another untouched validation seed block and may not loosen the
 failed gate post hoc.
 
+That class-conditional experiment used a second fresh six-game block. Thresholds were selected by
+the predicted model (never the true label), and restored accepted coverage to 12/24 (50%) with
+12/12 accepted predictions correct; Top-1 reached 23/24 and ECE was 0.081. However, the frozen
+temperature 3 worsened log loss from 0.0947 to 0.1649 on this block, failing the predeclared
+non-inferiority gate. Iteration 12 is also rejected. Together, iterations 11–12 show that style-
+specific OOD filtering is useful but one small calibration block does not identify a stable scalar
+temperature. Both validation blocks are consumed. The next calibration experiment must predeclare
+a block-robust fitting rule using consumed blocks only as development, use multiple untouched seed
+blocks for a single final assessment, and retain per-block metrics so aggregate success cannot hide
+a failed subgroup. Until then, beliefs remain disconnected from rollout labels and search.
+
 ### 6.6 Value and objective
 
 The primary objective is terminal performance:

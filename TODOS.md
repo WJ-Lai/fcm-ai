@@ -352,6 +352,12 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     versus the frozen 50% gate; a global OOD threshold rejected six correct style-specific samples.
     The validation block is consumed. Next change only to class-conditional OOD thresholds fitted on
     old calibration data and evaluate on another fresh seed block; keep beliefs disconnected.
+    Iteration 12 completed that test: predicted-class thresholds recovered 12/24 (50%) coverage with
+    12/12 accepted correct, 23/24 Top-1 and 0.081 ECE, but frozen temperature 3 worsened log loss
+    0.0947→0.1649 on the second fresh block. The result is rejected. Both validation blocks are now
+    consumed. Next predeclare a block-robust calibration fitter over consumed development blocks and
+    assess it once on multiple untouched blocks with per-block gates; do not choose temperature 1
+    post hoc or connect beliefs to search.
 - [ ] **P3.3e Enforce information-set policy consistency.**
   - Why: ordinary determinization can create strategy fusion—the planner chooses mutually
     incompatible actions in different sampled hidden worlds and behaves as if it knew which world

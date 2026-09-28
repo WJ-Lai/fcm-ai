@@ -26,6 +26,9 @@ const temporalReport = JSON.parse(await readFile(
 const probabilityValidation = JSON.parse(await readFile(
   new URL('../fixtures/opponent-calibration-v3/validation.json', import.meta.url),
 ))
+const classConditionalValidation = JSON.parse(await readFile(
+  new URL('../fixtures/opponent-calibration-v4/validation.json', import.meta.url),
+))
 
 const development = [
   { sampleId: 'a-1', modelId: 'model-a', publicEventCodes: [1, 1, 2] },
@@ -163,4 +166,22 @@ test('new probability-validation seeds are balanced, public-only and isolated', 
     ...frozenDataset.splits.calibration.games.map((game) => game.seed),
   ])
   assert.ok(validated.splits.validation.games.every((game) => !oldSeeds.has(game.seed)))
+})
+
+test('class-conditional validation seeds are fresh, balanced, and public-only', () => {
+  const modelIds = new Set([
+    'deterministic-balanced-v1', 'safe-first-v1', 'seeded-random-v1', 'official-built-in-v1',
+  ])
+  const validated = validateOpponentValidationDataset(classConditionalValidation, {
+    expectedModelIds: modelIds,
+    expectedSamplesPerModel: 6,
+    expectedCommandsPerGame: 160,
+  })
+  const consumedSeeds = new Set([
+    ...frozenDataset.splits.development.games.map((game) => game.seed),
+    ...frozenDataset.splits.calibration.games.map((game) => game.seed),
+    ...probabilityValidation.splits.validation.games.map((game) => game.seed),
+  ])
+  assert.equal(validated.splits.validation.samples.length, 24)
+  assert.ok(validated.splits.validation.games.every((game) => !consumedSeeds.has(game.seed)))
 })

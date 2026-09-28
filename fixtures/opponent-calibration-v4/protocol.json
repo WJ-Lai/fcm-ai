@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "fcm.opponent-class-conditional-ood-protocol.v4",
+  "populationId": "base-public-population-v1",
+  "baseDatasetSha256": "b2587f646af1dd799df04f0377527e672cc07c4432b6584937f949818db8a132",
+  "baseReportSha256": "99fbb493d25486e392ba6920d4220cdac2b4a97e0ab1367730c7bb04a15b1300",
+  "probabilityReportSha256": "86f6be91dd1e0bb0b0c39827929a6a9866e2b2d04ad0ad52097d25b5ab07c666",
+  "featureVersion": "public-event-unigram-bigram-v2",
+  "validationSeeds": [
+    "opponent-calibration-validation2-00",
+    "opponent-calibration-validation2-01",
+    "opponent-calibration-validation2-02",
+    "opponent-calibration-validation2-03",
+    "opponent-calibration-validation2-04",
+    "opponent-calibration-validation2-05"
+  ],
+  "players": 4,
+  "publicCommandHorizon": 160,
+  "frozenTemperature": 3,
+  "frozenAbstentionThreshold": 0.8627888116824795,
+  "classConditionalOodQuantile": 0.95,
+  "validationGates": {
+    "minimumTop1Accuracy": 0.75,
+    "maximumExpectedCalibrationError": 0.15,
+    "minimumSelectiveCoverage": 0.5,
+    "minimumSelectiveAccuracy": 0.9
+  },
+  "promotionHoldoutOpened": false
+}
