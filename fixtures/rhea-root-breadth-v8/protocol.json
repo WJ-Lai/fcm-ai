@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "fcm.rhea-root-breadth-protocol.v8",
+  "reportSchemaVersion": "fcm.rhea-root-breadth.v8",
+  "experimentId": 34,
+  "seeds": ["rhea-intervention-dev-03", "rhea-intervention-dev-04"],
+  "seats": [0, 1],
+  "maxScannedDecisionsPerTrajectory": 8,
+  "maxCommands": 500,
+  "externalDeadlineMs": 3000,
+  "headroomRatio": 0.2,
+  "maxRootCandidates": 3,
+  "rheaBudget": {
+    "populationSize": 3,
+    "eliteCount": 1,
+    "generations": 1,
+    "horizonLength": 2,
+    "geneCardinality": 3,
+    "maxEvaluations": 6,
+    "deadlineMs": 1
+  },
+  "promotionHoldoutOpened": false
+}

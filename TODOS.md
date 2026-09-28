@@ -499,6 +499,13 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     never a meaningful same-intent alternative; static leads in 24 and ties in 8, with median margin
     1.4. Next change root breadth 2→3 with a breadth-first one-generation audit so the third root can
     represent a different hire/train/produce combination before spending budget on evolution.
+    Iteration 34 repeats the identical 32 roots with exactly that breadth change. It exposes eight
+    non-static same-intent choices and audits all eight to Game Over: 4 beneficial, 4 harmful, with
+    money deltas from -$380 to +$378 and two rank improvements versus two rank regressions. Hire
+    alternatives are 1/4 beneficial; train alternatives 3/4. All predicted advantages are about 1.4,
+    so the leaf value cannot separate success from failure. Do not promote or deepen RHEA. Next freeze
+    contradictory roots and run paired multi-continuation stability estimates before changing value
+    features; single-continuation labels remain training-ineligible.
 
 - [ ] **P4.1c Evaluate belief-aware information-set search only where uncertainty warrants it.**
   - Why: hidden/simultaneous choices may justify ISMCTS/POMCP-style sampling, but naive MCTS or

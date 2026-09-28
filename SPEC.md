@@ -575,6 +575,19 @@ all available plans are equivalent. The next isolated audit widens roots from tw
 one generation on breadth, ensuring every root receives common-sample evaluation before evolutionary
 depth. Only if meaningful alternatives appear should multi-generation RHEA resume.
 
+The three-root breadth audit repeats those exact 32 roots and evaluates every root on the same two
+belief samples before any evolution. It exposes eight non-static same-intent choices, proving the
+candidate-allocation diagnosis, but terminal outcomes split exactly: four beneficial and four
+harmful, with cash deltas from -380 to +378 and two rank improvements versus two rank regressions.
+The recurring hire alternative is beneficial in one of four contexts and the recurring training
+alternative in three of four. Yet every search override is driven by approximately the same +1.4
+leaf-value margin. Root breadth therefore restores liveness but the current value contract cannot
+calibrate intervention risk. No phase-specific allowlist is justified by four observations, and
+these single-continuation labels must not enter training. Freeze contradictory public roots, obtain
+paired multi-continuation advantage distributions with the existing sequential estimator, then add
+root-context interactions only if stable labels exist. Do not add generations, widen further, or
+open the promotion holdout before that gate.
+
 ### 6.8 Execution, memory and learning
 
 The execution layer accepts one versioned candidate id, revalidates it against the current game

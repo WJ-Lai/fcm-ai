@@ -15,7 +15,8 @@ import { prefilterDiverseCandidates } from '../src/rollout-planner.mjs'
 import { deterministicStrategy } from '../src/strategy.mjs'
 
 const root = path.resolve(new URL('..', import.meta.url).pathname)
-const fixtureName = 'rhea-intervention-discovery-v7'
+const fixtureName = process.argv[2] ?? 'rhea-intervention-discovery-v7'
+assert.match(fixtureName, /^rhea-[a-z0-9-]+$/)
 const fixtureDirectory = path.join(root, 'fixtures', fixtureName)
 const protocol = JSON.parse(await readFile(path.join(fixtureDirectory, 'protocol.json'), 'utf8'))
 const population = JSON.parse(await readFile(
@@ -113,7 +114,9 @@ for (const seed of protocol.seeds) {
             && staticResult.ranked.length > 1) {
             const index = scanned.length
             const decisionKey = `rhea-discovery:${seed}:${agentSeat}:${index}`
-            const roots = prefilterDiverseCandidates(staticResult.ranked, { limit: 2 })
+            const roots = prefilterDiverseCandidates(staticResult.ranked, {
+              limit: protocol.maxRootCandidates ?? 2,
+            })
             const planned = await rheaStrategy(view, {
               env, seat: agentSeat, population,
               belief: officialBelief(view, opponentSeat),
@@ -122,6 +125,7 @@ for (const seed of protocol.seeds) {
               rheaBudget: protocol.rheaBudget,
               deadlineMs: protocol.externalDeadlineMs,
               headroomRatio: protocol.headroomRatio,
+              maxRootCandidates: protocol.maxRootCandidates ?? 2,
             })
             const row = {
               index,
