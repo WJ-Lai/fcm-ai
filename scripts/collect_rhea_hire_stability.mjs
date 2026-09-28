@@ -14,6 +14,7 @@ import { prefilterDiverseCandidates } from '../src/rollout-planner.mjs'
 import { strategicProjectionDigest } from '../src/strategic-abstraction.mjs'
 import { deterministicStrategy } from '../src/strategy.mjs'
 import { extractTerminalValueFeatures } from '../src/terminal-value-v2.mjs'
+import { auditRootGeneralization } from '../src/root-generalization.mjs'
 
 const root = path.resolve(new URL('..', import.meta.url).pathname)
 const fixtureName = process.argv[2] ?? 'rhea-hire-stability-v9'
@@ -22,8 +23,12 @@ const fixtureDirectory = path.join(root, 'fixtures', fixtureName)
 const protocol = JSON.parse(await readFile(path.join(fixtureDirectory, 'protocol.json'), 'utf8'))
 const sequentialProtocol = JSON.parse(await readFile(
   path.join(root, 'fixtures/paired-sequential-v1/protocol.json'), 'utf8'))
-const sourceReport = JSON.parse(await readFile(
-  path.join(root, 'fixtures/rhea-root-breadth-v8/report.json'), 'utf8'))
+const sourceReportPath = protocol.sourceInterventionsReport
+  ?? 'fixtures/rhea-root-breadth-v8/report.json'
+const sourceReport = protocol.requireSampleZeroReproduction === false
+  ? null : JSON.parse(await readFile(path.join(root, sourceReportPath), 'utf8'))
+const frozenRootsReport = protocol.frozenRootsReport == null ? null : JSON.parse(await readFile(
+  path.join(root, protocol.frozenRootsReport), 'utf8'))
 const outputPath = path.join(fixtureDirectory, 'report.json')
 const priorReport = protocol.resumeFrom == null ? null : JSON.parse(await readFile(
   path.join(root, protocol.resumeFrom), 'utf8'))
@@ -64,7 +69,7 @@ async function reconstructRoot(target) {
     if (decision.seat === 1 - target.agentSeat) {
       await environment.stepBuiltinAI(
         decision.seat,
-        `discovery-main:${target.seed}:${target.agentSeat}:${opponentDecision}`,
+        `${protocol.trajectoryOpponentSeedPrefix ?? 'discovery-main'}:${target.seed}:${target.agentSeat}:${opponentDecision}`,
       )
       opponentDecision += 1
     } else {
@@ -139,11 +144,18 @@ async function completeBranch(reconstructed, target, candidate, sample) {
 const roots = []
 for (const target of protocol.targets) {
   const reconstructed = await reconstructRoot(target)
-  const source = sourceReport.interventions.find((row) => (
-    row.seed === target.seed && row.agentSeat === target.agentSeat &&
-    row.index === target.scanIndex
-  ))
-  assert.ok(source, `missing source intervention ${target.rootId}`)
+  const source = sourceReport?.interventions.find((row) => (
+    row.seed === target.seed && row.agentSeat === target.agentSeat && row.index === target.scanIndex
+  )) ?? null
+  if (protocol.requireSampleZeroReproduction !== false) {
+    assert.ok(source, `missing source intervention ${target.rootId}`)
+  }
+  if (frozenRootsReport) {
+    const frozenRoot = frozenRootsReport.roots.find((entry) => entry.rootId === target.rootId)
+    assert.ok(frozenRoot, `missing frozen root ${target.rootId}`)
+    assert.equal(reconstructed.rootIdentityDigest, frozenRoot.rootIdentityDigest,
+      `frozen root identity drift at ${target.rootId}`)
+  }
   const candidates = []
   for (const candidate of reconstructed.candidates) {
     const priorRoot = priorReport?.roots.find((entry) => entry.rootId === target.rootId) ?? null
@@ -175,10 +187,12 @@ for (const target of protocol.targets) {
       terminalCommands.push(result.terminalCommands)
       completed.push(result.completed)
     }
-    const expected = candidate.id === target.staticCandidateId
-      ? source.staticTerminal : source.selectedTerminal
-    assert.equal(terminalRanks[0], expected.rank, `${target.rootId}/${candidate.id} rank drift`)
-    assert.equal(terminalMoney[0], expected.money, `${target.rootId}/${candidate.id} money drift`)
+    if (source) {
+      const expected = candidate.id === target.staticCandidateId
+        ? source.staticTerminal : source.selectedTerminal
+      assert.equal(terminalRanks[0], expected.rank, `${target.rootId}/${candidate.id} rank drift`)
+      assert.equal(terminalMoney[0], expected.money, `${target.rootId}/${candidate.id} money drift`)
+    }
     candidates.push({
       candidateId: candidate.id,
       terminalMargins,
@@ -196,7 +210,8 @@ for (const target of protocol.targets) {
       ? undefined : reconstructed.publicFeatures,
     interactionMatched: matchesInteraction(
       reconstructed.publicFeatures, protocol.predeclaredInteraction),
-    sampleZeroReproduced: true,
+    sampleZeroReferenceAvailable: source != null,
+    sampleZeroReproduced: source == null ? null : true,
     candidates,
   })
 }
@@ -219,6 +234,8 @@ const report = {
   predeclaredInteraction: protocol.predeclaredInteraction ?? null,
   roots,
   audit: auditPairedSequentialDataset(estimatorDataset, sequentialProtocol),
+  rootGeneralizationAudit: protocol.candidateWideHypothesis == null
+    ? null : auditRootGeneralization(roots, protocol.candidateWideHypothesis),
   privatePayloadPersisted: false,
   promotionHoldoutOpened: protocol.promotionHoldoutOpened,
 }

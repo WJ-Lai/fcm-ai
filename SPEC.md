@@ -694,6 +694,14 @@ terminal-rank lift. Promotion requires at least seven decisive roots, at least s
 `p <= 0.025`. No observed root may be dropped or replaced after sampling starts. Passing this gate
 would justify a candidate rule entering a paired league, not immediate online deployment.
 
+At the three-sample integrity checkpoint, all 48 terminal branches complete and all eight normalized
+root identities match the frozen artifact. Four roots have positive mean rank lift for the alternate,
+none favor static, and four are tied; the root-level exact sign p-value is 0.125. Individual paired
+samples do include reversals in both directions, so the aggregate direction must not be mistaken for
+per-continuation dominance. Because the preregistered gate requires 15 samples per root, the audit is
+explicitly `collecting` with `passed=null`, regardless of this favorable interim sign. Preserve all
+arrays and append samples 3–6 for every root; no interim root filtering or online change is allowed.
+
 ### 6.8 Execution, memory and learning
 
 The execution layer accepts one versioned candidate id, revalidates it against the current game

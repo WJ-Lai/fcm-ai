@@ -561,7 +561,10 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     root identities are unchanged and no terminal branch had started.
     Root-level gate is fixed: at 15 continuations require >=7 decisive roots, >=7 alternate-positive,
     0 static-positive and exact two-sided sign p<=0.025. Next collect sample 0–2 for all eight roots;
-    never remove or replace a root based on its result.
+    never remove or replace a root based on its result. Iteration 46 completes all 48 branches:
+    4 roots alternate-positive, 0 static-positive, 4 tied, root-sign p=0.125. The audit remains
+    `collecting`/passed=null because only 3/15 samples exist. Preserve every array and append samples
+    3–6 for all eight roots; sample-level reversals are retained, not relabeled.
 
 - [ ] **P4.1c Evaluate belief-aware information-set search only where uncertainty warrants it.**
   - Why: hidden/simultaneous choices may justify ISMCTS/POMCP-style sampling, but naive MCTS or
