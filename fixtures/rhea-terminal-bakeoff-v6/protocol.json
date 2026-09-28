@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "fcm.rhea-terminal-bakeoff-protocol.v6",
+  "reportSchemaVersion": "fcm.rhea-terminal-bakeoff.v6",
+  "experimentId": 32,
+  "seeds": ["rhea-bakeoff-dev-01", "rhea-bakeoff-dev-02"],
+  "seats": [0, 1],
+  "arms": ["static", "beam-3000ms", "rhea-3000ms"],
+  "externalDeadlineMs": 3000,
+  "headroomRatio": 0.2,
+  "maxPlannerDecisions": 1,
+  "maxCommands": 500,
+  "beamBudget": {
+    "maxRootCandidates": 2,
+    "branchFactor": 2,
+    "beamWidth": 2,
+    "maxOwnDepth": 3,
+    "maxTransitions": 80
+  },
+  "rheaBudget": {
+    "populationSize": 2,
+    "eliteCount": 1,
+    "generations": 2,
+    "horizonLength": 2,
+    "geneCardinality": 3,
+    "maxEvaluations": 8,
+    "deadlineMs": 1
+  },
+  "promotionHoldoutOpened": false
+}

@@ -486,8 +486,13 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     the exact fixture in iteration 31 yields 8/8 real two-generation runs, three unique genomes, six
     scenario evaluations and 1.71s P95 under the three-second cap. The action remains the correct
     static hire. Next freeze this optimizer and compare Beam/RHEA/static on disjoint development
-    roots with terminal continuations before opening any promotion holdout. This is throughput
-    calibration, not strength proof.
+    roots with terminal continuations before opening any promotion holdout. Iteration 32 completes
+    that first terminal bake-off on two new seeds × both seats: static and RHEA are exactly equal
+    game-by-game (2/4 first places, mean $226.25), while Beam changes all four roots to skip and falls
+    to 0/4 first places and mean $61.25. Planner P95s are 1.62s Beam and 1.76s RHEA, with zero
+    violations/fallbacks. RHEA is safer than current Beam but still changes zero static decisions, so
+    strength remains unproven. Next scan later disjoint roots for non-static RHEA interventions and
+    terminally audit every intervention; do not expand homogeneous first-turn games or open holdout.
 
 - [ ] **P4.1c Evaluate belief-aware information-set search only where uncertainty warrants it.**
   - Why: hidden/simultaneous choices may justify ISMCTS/POMCP-style sampling, but naive MCTS or

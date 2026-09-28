@@ -556,6 +556,15 @@ optimizer contract and available throughput, while the unchanged static hire cho
 that the known root is no longer regressed. Freeze the mutation rule here: subsequent work must use
 disjoint development roots and paired terminal continuations rather than further fitting this root.
 
+The first disjoint terminal bake-off uses two fresh development maps, both seats and common opponent
+random streams. Static and three-second RHEA match exactly in all four games: two first places and
+mean money 226.25. Three-second Beam changes all four roots to the known skip family, falls to zero
+first places and mean money 61.25. Decision P95 is 1619.96ms for Beam and 1756.62ms for RHEA, with no
+violations or fallback. This rejects current Beam as a strength candidate and establishes RHEA as the
+safer search challenger, but does not promote RHEA because it accepts zero non-static actions. The
+next development gate must scan later heterogeneous roots, terminally evaluate every non-static RHEA
+intervention, and measure beneficial/harmful/neutral counts before any larger league or holdout use.
+
 ### 6.8 Execution, memory and learning
 
 The execution layer accepts one versioned candidate id, revalidates it against the current game

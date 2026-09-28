@@ -1,0 +1,358 @@
+{
+  "schemaVersion": "fcm.rhea-terminal-bakeoff.v6",
+  "experimentId": 32,
+  "protocolDigest": "sha256:2c642dd2022b9f5d076631d378c917321c0657eeef96160983a39177363da3e3",
+  "arms": [
+    "static",
+    "beam-3000ms",
+    "rhea-3000ms"
+  ],
+  "summary": {
+    "static": {
+      "games": 4,
+      "completed": 4,
+      "violations": 0,
+      "firstPlaces": 2,
+      "meanAgentMoney": 226.25,
+      "plannerDecisions": 0,
+      "changedStatic": 0,
+      "fallbacks": 0,
+      "decisionP95Ms": 0
+    },
+    "beam-3000ms": {
+      "games": 4,
+      "completed": 4,
+      "violations": 0,
+      "firstPlaces": 0,
+      "meanAgentMoney": 61.25,
+      "plannerDecisions": 4,
+      "changedStatic": 4,
+      "fallbacks": 0,
+      "decisionP95Ms": 1619.9639310000057
+    },
+    "rhea-3000ms": {
+      "games": 4,
+      "completed": 4,
+      "violations": 0,
+      "firstPlaces": 2,
+      "meanAgentMoney": 226.25,
+      "plannerDecisions": 4,
+      "changedStatic": 0,
+      "fallbacks": 0,
+      "decisionP95Ms": 1756.6167000000132
+    }
+  },
+  "games": [
+    {
+      "arm": "static",
+      "seed": "rhea-bakeoff-dev-01",
+      "agentSeat": 0,
+      "completed": true,
+      "violation": null,
+      "commands": 441,
+      "gameLatencyMs": 47314,
+      "agentRank": 2,
+      "agentMoney": 0,
+      "opponentMoney": 159,
+      "planner": {
+        "decisions": 0,
+        "changedStatic": 0,
+        "fallbacks": 0,
+        "decisionP95Ms": 0,
+        "metrics": []
+      }
+    },
+    {
+      "arm": "static",
+      "seed": "rhea-bakeoff-dev-01",
+      "agentSeat": 1,
+      "completed": true,
+      "violation": null,
+      "commands": 397,
+      "gameLatencyMs": 42060,
+      "agentRank": 2,
+      "agentMoney": 38,
+      "opponentMoney": 468,
+      "planner": {
+        "decisions": 0,
+        "changedStatic": 0,
+        "fallbacks": 0,
+        "decisionP95Ms": 0,
+        "metrics": []
+      }
+    },
+    {
+      "arm": "static",
+      "seed": "rhea-bakeoff-dev-02",
+      "agentSeat": 0,
+      "completed": true,
+      "violation": null,
+      "commands": 187,
+      "gameLatencyMs": 17499,
+      "agentRank": 1,
+      "agentMoney": 453,
+      "opponentMoney": 75,
+      "planner": {
+        "decisions": 0,
+        "changedStatic": 0,
+        "fallbacks": 0,
+        "decisionP95Ms": 0,
+        "metrics": []
+      }
+    },
+    {
+      "arm": "static",
+      "seed": "rhea-bakeoff-dev-02",
+      "agentSeat": 1,
+      "completed": true,
+      "violation": null,
+      "commands": 188,
+      "gameLatencyMs": 18554,
+      "agentRank": 1,
+      "agentMoney": 414,
+      "opponentMoney": 136,
+      "planner": {
+        "decisions": 0,
+        "changedStatic": 0,
+        "fallbacks": 0,
+        "decisionP95Ms": 0,
+        "metrics": []
+      }
+    },
+    {
+      "arm": "beam-3000ms",
+      "seed": "rhea-bakeoff-dev-01",
+      "agentSeat": 0,
+      "completed": true,
+      "violation": null,
+      "commands": 143,
+      "gameLatencyMs": 13115,
+      "agentRank": 2,
+      "agentMoney": 155,
+      "opponentMoney": 355,
+      "planner": {
+        "decisions": 1,
+        "changedStatic": 1,
+        "fallbacks": 0,
+        "decisionP95Ms": 1277.0160850000102,
+        "metrics": [
+          {
+            "elapsedMs": 1277.0160850000102,
+            "fallbackUsed": false,
+            "stopReason": "complete",
+            "changedStatic": true,
+            "staticCandidateId": "p5s1-hire-1dfd160273",
+            "selectedCandidateId": "p5s1-fallback-21d4f44933",
+            "work": 12
+          }
+        ]
+      }
+    },
+    {
+      "arm": "beam-3000ms",
+      "seed": "rhea-bakeoff-dev-01",
+      "agentSeat": 1,
+      "completed": true,
+      "violation": null,
+      "commands": 213,
+      "gameLatencyMs": 20628,
+      "agentRank": 2,
+      "agentMoney": 0,
+      "opponentMoney": 505,
+      "planner": {
+        "decisions": 1,
+        "changedStatic": 1,
+        "fallbacks": 0,
+        "decisionP95Ms": 1505.7167740000004,
+        "metrics": [
+          {
+            "elapsedMs": 1505.7167740000004,
+            "fallbackUsed": false,
+            "stopReason": "complete",
+            "changedStatic": true,
+            "staticCandidateId": "p5s1-hire-1dfd160273",
+            "selectedCandidateId": "p5s1-fallback-21d4f44933",
+            "work": 16
+          }
+        ]
+      }
+    },
+    {
+      "arm": "beam-3000ms",
+      "seed": "rhea-bakeoff-dev-02",
+      "agentSeat": 0,
+      "completed": true,
+      "violation": null,
+      "commands": 128,
+      "gameLatencyMs": 12771,
+      "agentRank": 2,
+      "agentMoney": 0,
+      "opponentMoney": 525,
+      "planner": {
+        "decisions": 1,
+        "changedStatic": 1,
+        "fallbacks": 0,
+        "decisionP95Ms": 1452.3277269999962,
+        "metrics": [
+          {
+            "elapsedMs": 1452.3277269999962,
+            "fallbackUsed": false,
+            "stopReason": "complete",
+            "changedStatic": true,
+            "staticCandidateId": "p5s1-hire-1dfd160273",
+            "selectedCandidateId": "p5s1-fallback-21d4f44933",
+            "work": 12
+          }
+        ]
+      }
+    },
+    {
+      "arm": "beam-3000ms",
+      "seed": "rhea-bakeoff-dev-02",
+      "agentSeat": 1,
+      "completed": true,
+      "violation": null,
+      "commands": 150,
+      "gameLatencyMs": 15116,
+      "agentRank": 2,
+      "agentMoney": 90,
+      "opponentMoney": 427,
+      "planner": {
+        "decisions": 1,
+        "changedStatic": 1,
+        "fallbacks": 0,
+        "decisionP95Ms": 1619.9639310000057,
+        "metrics": [
+          {
+            "elapsedMs": 1619.9639310000057,
+            "fallbackUsed": false,
+            "stopReason": "complete",
+            "changedStatic": true,
+            "staticCandidateId": "p5s1-hire-1dfd160273",
+            "selectedCandidateId": "p5s1-fallback-21d4f44933",
+            "work": 16
+          }
+        ]
+      }
+    },
+    {
+      "arm": "rhea-3000ms",
+      "seed": "rhea-bakeoff-dev-01",
+      "agentSeat": 0,
+      "completed": true,
+      "violation": null,
+      "commands": 441,
+      "gameLatencyMs": 48666,
+      "agentRank": 2,
+      "agentMoney": 0,
+      "opponentMoney": 159,
+      "planner": {
+        "decisions": 1,
+        "changedStatic": 0,
+        "fallbacks": 0,
+        "decisionP95Ms": 1383.0657530000026,
+        "metrics": [
+          {
+            "elapsedMs": 1383.0657530000026,
+            "fallbackUsed": false,
+            "stopReason": "complete",
+            "changedStatic": false,
+            "staticCandidateId": "p5s1-hire-1dfd160273",
+            "selectedCandidateId": "p5s1-hire-1dfd160273",
+            "work": 6
+          }
+        ]
+      }
+    },
+    {
+      "arm": "rhea-3000ms",
+      "seed": "rhea-bakeoff-dev-01",
+      "agentSeat": 1,
+      "completed": true,
+      "violation": null,
+      "commands": 397,
+      "gameLatencyMs": 43985,
+      "agentRank": 2,
+      "agentMoney": 38,
+      "opponentMoney": 468,
+      "planner": {
+        "decisions": 1,
+        "changedStatic": 0,
+        "fallbacks": 0,
+        "decisionP95Ms": 1752.8731960000005,
+        "metrics": [
+          {
+            "elapsedMs": 1752.8731960000005,
+            "fallbackUsed": false,
+            "stopReason": "complete",
+            "changedStatic": false,
+            "staticCandidateId": "p5s1-hire-1dfd160273",
+            "selectedCandidateId": "p5s1-hire-1dfd160273",
+            "work": 6
+          }
+        ]
+      }
+    },
+    {
+      "arm": "rhea-3000ms",
+      "seed": "rhea-bakeoff-dev-02",
+      "agentSeat": 0,
+      "completed": true,
+      "violation": null,
+      "commands": 187,
+      "gameLatencyMs": 19176,
+      "agentRank": 1,
+      "agentMoney": 453,
+      "opponentMoney": 75,
+      "planner": {
+        "decisions": 1,
+        "changedStatic": 0,
+        "fallbacks": 0,
+        "decisionP95Ms": 1420.1526869999943,
+        "metrics": [
+          {
+            "elapsedMs": 1420.1526869999943,
+            "fallbackUsed": false,
+            "stopReason": "complete",
+            "changedStatic": false,
+            "staticCandidateId": "p5s1-hire-1dfd160273",
+            "selectedCandidateId": "p5s1-hire-1dfd160273",
+            "work": 6
+          }
+        ]
+      }
+    },
+    {
+      "arm": "rhea-3000ms",
+      "seed": "rhea-bakeoff-dev-02",
+      "agentSeat": 1,
+      "completed": true,
+      "violation": null,
+      "commands": 188,
+      "gameLatencyMs": 20592,
+      "agentRank": 1,
+      "agentMoney": 414,
+      "opponentMoney": 136,
+      "planner": {
+        "decisions": 1,
+        "changedStatic": 0,
+        "fallbacks": 0,
+        "decisionP95Ms": 1756.6167000000132,
+        "metrics": [
+          {
+            "elapsedMs": 1756.6167000000132,
+            "fallbackUsed": false,
+            "stopReason": "complete",
+            "changedStatic": false,
+            "staticCandidateId": "p5s1-hire-1dfd160273",
+            "selectedCandidateId": "p5s1-hire-1dfd160273",
+            "work": 6
+          }
+        ]
+      }
+    }
+  ],
+  "privatePayloadPersisted": false,
+  "promotionHoldoutOpened": false,
+  "strengthPromoted": false
+}
