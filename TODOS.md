@@ -373,6 +373,11 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
   - Done when: hidden-state mutations outside the actor's information set do not alter the policy
     distribution beyond declared sampling tolerance, no private simulator field reaches features or
     cache outputs, and failing planners are rejected rather than patched with more weight tuning.
+  - Current: audit primitive v1 is complete. It validates equal public digests/legal candidates,
+    reuses identical frozen belief samples, measures both per-seed mismatch and pairwise total
+    variation, omits trusted-world payloads from reports, and adversarially detects a private-reserve
+    leak at total variation 1 while a public-only policy scores 0. P3.3e remains open until official-
+    engine paired hidden-world fixtures and the actual belief-aware planner pass this gate.
 - [ ] **P3.3f Add plan-health and opportunity arbitration.**
   - Why: reacting to every locally attractive move creates thrashing, while blindly following a
     plan misses real opponent mistakes.

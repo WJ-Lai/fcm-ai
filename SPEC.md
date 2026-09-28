@@ -365,6 +365,14 @@ coverage was 17/24, 19/24 and 15/24; accepted accuracy was 17/17, 18/19 and 15/1
 opponent-belief calibration v5 for the next information-set consistency audit only. It does not by
 itself prove search lift or authorize reading hidden simulator state.
 
+Information-set audit v1 is now the mandatory next gate. It reuses identical belief-sampling seeds
+across trusted simulator worlds that share a public-observation digest and legal candidate set,
+then compares per-seed choices and pairwise candidate-distribution total variation. Adversarial unit
+tests prove that a public-only recommender passes with zero variation while a recommender reading a
+private reserve choice fails with total variation 1. Reports contain only ids/counts, never trusted
+world payloads. This is audit infrastructure, not completion of the gate: official-engine paired
+hidden-world fixtures and the eventual belief-aware planner must still pass before integration.
+
 ### 6.6 Value and objective
 
 The primary objective is terminal performance:
