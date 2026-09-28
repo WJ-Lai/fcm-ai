@@ -74,6 +74,19 @@ test('builds a quarantined capture with anonymous players and no embedded histor
 })
 
 
+test('identity scan inspects decoded text instead of compressed-base64 coincidences', () => {
+  const source = raw({
+    playerNames: ['Eri', 'Bob'],
+    replayData: [encodeSimpleModel(model('Eri')), encodeSimpleModel(model('Eri'))],
+    clientBundle: 'https://example.test/Eri/main.js',
+  })
+  const capture = buildPublicReplayCapture(source, { capturedAt: '2026-09-28T01:00:00.000Z' })
+  validatePublicReplayCapture(capture)
+  assert.equal(capture.source.clientBundle.includes('Eri'), false)
+  assert.equal(decodeSimpleModel(capture.replay.states[0])[1][0].name, 'seat-0')
+})
+
+
 test('rejects incomplete, mismatched and credential-bearing captures', () => {
   assert.throws(
     () => buildPublicReplayCapture(raw({ finishedGame: false }), { capturedAt: '2026-09-28T01:00:00.000Z' }),

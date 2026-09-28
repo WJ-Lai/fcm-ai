@@ -320,3 +320,20 @@ Verification: **89 tests pass**, lint clean (28 pages), `verify_sources.py` OK,
   restaurant, while the Agent action only advertised the current orientation. The clean server
   branch now exposes all four placement rotations and validates/applies the requested rotation.
   It was rebased onto upstream `baebcba`, rebuilt, and passed 99 MCP plus 51 Django Agent tests.
+
+## [2026-09-28] audit | 100-game public replay promotion gate
+
+- Added exact event-to-Agent-action mapping for setup, reserve cards, restructuring, turn order,
+  hiring, all three training origins, marketing, houses, gardens, restaurant actions and cleanup.
+  Airplane histories are converted back to the human click coordinate before official execution.
+- Every behavior label now passes the current legal-action gate and official controller before
+  promotion. Production/payday remain value-only; historical mismatches have five stable tested
+  quarantine classes, while unknown failures stay fail-closed.
+- Completed the staged 2 -> 10 -> 50 -> 100 base-standard collection. The final corpus has 14,078
+  seat decisions and 5,339 simultaneous pre-choice observations: 10,001 exact-engine labels,
+  3,541 outcome-only labels and 536 quarantined legacy labels, with zero pending/unclassified.
+- Real histories exposed two MCP parity gaps: an atomic restructuring command must allow manager
+  slots created earlier in that command, and training must expose the UI's hire-and-train source
+  only while recruiting points remain. Both are fixed with adversarial tests. The identity audit
+  now scans decoded text before compression, avoiding Base64 coincidences without weakening
+  anonymization.

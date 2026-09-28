@@ -650,6 +650,12 @@ explanation—while calculators and the official engine handle exactness.
 Exit criterion: a result is reproducible by seed and every policy can play 100 base games without
 rules corruption.
 
+Current evidence: the public-replay ladder is complete at 100 base-standard games. All 14,078
+seat-scoped observations pass the current MCP visibility/parity audit. The pinned official action
+layer exactly replays 10,001 labels; 3,541 lossy production/payday records are value-only and 536
+known legacy-engine mismatches are quarantined. Public replays remain lower-trust evidence and do
+not close the separate consented live-export requirement.
+
 ### Phase 1 — offline engine, weak baselines and deterministic decision support
 
 - Extract a fast cloneable environment from the official JS engine early; online parity fixtures

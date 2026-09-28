@@ -17,7 +17,14 @@ import {
   toDecisionObservation,
   validateDecisionObservation,
 } from '../src/replay-observation.mjs'
-import { classifyReplayDecisionGroup } from '../src/replay-action-label.mjs'
+import {
+  ACTION_LABEL_STATUS,
+  classifyEngineReplayFailure,
+  classifyReplayDecisionGroup,
+  markLabelEngineIncompatible,
+  markLabelEngineReplayed,
+} from '../src/replay-action-label.mjs'
+import { mapReplayDecisionGroup } from '../src/replay-action-mapper.mjs'
 
 
 function argument(name, fallback = null) {
@@ -128,11 +135,69 @@ function hydrateActorView(capture, group, source) {
   adapter.actorName = names[seat]
   adapter.currentGameID = capture.source.gameId
   adapter.currentVersion = String(group.sourceIndex)
+  adapter.rebindActions()
   store.gameName = `Public replay ${capture.source.gameId}`
   modules.controller.startPlayerTurn(group.phase === 5)
   return {
     state: adapter.getState(),
     legalActions: adapter.getLegalActions(seat),
+    adapter,
+    store,
+  }
+}
+
+
+function plain(value) {
+  return JSON.parse(JSON.stringify(value))
+}
+
+
+function verifyActionEffects(group, store, target) {
+  const seat = group.seat
+  const codes = new Set(group.events.map((event) => event.eventCode))
+  const actualPlayer = plain(store.players[seat])
+  const targetPlayer = target[1][seat]
+  if (codes.has(1) || codes.has(14) || codes.has(15)) {
+    assert.deepEqual(actualPlayer.restaurants, targetPlayer.restaurants, 'restaurant effect differs')
+  }
+  if (codes.has(2)) {
+    const choice = group.events.find((event) => event.eventCode === 2).payload[0]
+    assert.equal(store.reserveCards[seat], choice, 'reserve card differs')
+  }
+  if (codes.has(3)) {
+    assert.deepEqual(
+      actualPlayer.employees.filter((employee) => employee !== modules.reference.BLANK_EMPLOYEE_SPACE),
+      targetPlayer.employees,
+      'structure employees differ',
+    )
+    assert.deepEqual(
+      [...actualPlayer.beach].sort((left, right) => left - right),
+      [...targetPlayer.beach].sort((left, right) => left - right),
+      'structure beach differs',
+    )
+  }
+  if (codes.has(5)) {
+    const position = group.events.find((event) => event.eventCode === 5).payload[0]
+    assert.equal(store.gameflow.newTurnOrder[position], seat, 'turn-order choice differs')
+  }
+  if (codes.has(7) || codes.has(8)) {
+    assert.deepEqual(actualPlayer.employees, targetPlayer.employees, 'employee structure differs')
+    assert.deepEqual(actualPlayer.beach, targetPlayer.beach, 'employee beach differs')
+    assert.deepEqual(plain(store.availableEmployees), target[3], 'employee supply differs')
+  }
+  if (codes.has(9)) {
+    assert.deepEqual(plain(store.campaigns), target[7], 'marketing campaign effect differs')
+    assert.deepEqual(actualPlayer.marketers, targetPlayer.marketers, 'marketer effect differs')
+    assert.deepEqual(plain(store.availableMarketingCampaigns), target[2], 'campaign supply differs')
+  }
+  if (codes.has(12)) assert.deepEqual(plain(store.gardens), target[8], 'garden effect differs')
+  if (codes.has(13)) assert.deepEqual(plain(store.houses), target[9], 'house effect differs')
+  if (codes.has(24)) {
+    assert.deepEqual(
+      [...actualPlayer.resources].sort((left, right) => left - right),
+      [...targetPlayer.resources].sort((left, right) => left - right),
+      'cleanup resources differ',
+    )
   }
 }
 
@@ -141,7 +206,10 @@ const manifest = JSON.parse(await readFile(path.join(captureRoot, 'manifest.json
 assert.equal(manifest.schemaVersion, 'fcm.public-replay-manifest.v1', 'unsupported manifest')
 const report = []
 
-for (const record of manifest.records) {
+for (const [recordIndex, record] of manifest.records.entries()) {
+  process.stderr.write(
+    `auditing game ${record.gameId} (${recordIndex + 1}/${manifest.records.length})\n`,
+  )
   const capture = validatePublicReplayCapture(JSON.parse(gunzipSync(
     await readFile(path.join(captureRoot, record.file)),
   ).toString('utf8')))
@@ -150,13 +218,13 @@ for (const record of manifest.records) {
   const actionTypes = new Set()
   const labelStatusCounts = {}
   const informationLoss = new Map()
+  const engineReplayFailures = []
   let simultaneous = 0
   for (const group of groups) {
-    const label = classifyReplayDecisionGroup(group)
-    labelStatusCounts[label.status] = (labelStatusCounts[label.status] ?? 0) + 1
+    let label = classifyReplayDecisionGroup(group)
     for (const item of label.informationLoss) informationLoss.set(item.eventCode, item.reason)
     const source = prepareSourceModel(capture, group)
-    const { state, legalActions } = hydrateActorView(capture, group, source)
+    const { state, legalActions, adapter, store } = hydrateActorView(capture, group, source)
     const observation = toDecisionObservation({
       state,
       legalActions,
@@ -180,6 +248,33 @@ for (const record of manifest.records) {
     }
     validateDecisionObservation(observation, { playerCount: capture.participants.length })
     assertReplayParity(observation, source)
+    if (label.status === ACTION_LABEL_STATUS.CANDIDATE) {
+      try {
+        const actions = mapReplayDecisionGroup(group, {
+          legalActions,
+          state,
+          importIndex: modules.funcs.importIndex,
+          reference: modules.reference,
+        })
+        for (const action of actions) {
+          await adapter.doAction(action, { playerIndex: group.seat, save: false })
+        }
+        const target = decodeSimpleModel(capture.replay.states[Math.max(...group.eventIndexes)])
+        verifyActionEffects(group, store, target)
+        label = markLabelEngineReplayed(label, actions)
+      } catch (error) {
+        const failure = {
+          sourceStateIndex: group.sourceIndex,
+          seat: group.seat,
+          eventCodes: group.events.map((event) => event.eventCode),
+          reason: error.message,
+          failureClass: classifyEngineReplayFailure(error.message),
+        }
+        engineReplayFailures.push(failure)
+        label = markLabelEngineIncompatible(label, error.message)
+      }
+    }
+    labelStatusCounts[label.status] = (labelStatusCounts[label.status] ?? 0) + 1
     for (const action of legalActions.actions) actionTypes.add(action.type)
     if (group.simultaneous) simultaneous += 1
   }
@@ -190,18 +285,31 @@ for (const record of manifest.records) {
     simultaneousBoundaries: simultaneous,
     labelStatusCounts,
     informationLoss: [...informationLoss].map(([eventCode, reason]) => ({ eventCode, reason })),
+    engineReplayFailures,
     actionTypes: [...actionTypes].sort(),
     omittedPublicFields: ['chat'],
     hiddenFieldsRejected: [
       'reserveCards', 'context', 'preMoveData', 'moveData', 'chosenResCard',
     ],
-    status: 'observation-parity-passed-labels-quarantined',
+    status: engineReplayFailures.length > 0
+      ? 'observation-parity-passed-incompatible-labels-quarantined'
+      : 'observation-parity-and-exact-action-replay-passed',
   })
 }
 
-process.stdout.write(JSON.stringify({
-  schemaVersion: 'fcm.public-replay-observation-audit-report.v1',
+const unclassifiedEngineReplayFailures = report.reduce(
+  (total, game) => total + game.engineReplayFailures.filter(
+    (failure) => failure.failureClass === 'unclassified-engine-replay-failure',
+  ).length,
+  0,
+)
+const output = {
+  schemaVersion: 'fcm.public-replay-observation-audit-report.v2',
   auditedGames: report.length,
   mcpProjection: 'FCMAdapter.getState + FCMAdapter.getLegalActions',
+  scaleGatePassed: unclassifiedEngineReplayFailures === 0,
+  unclassifiedEngineReplayFailures,
   report,
-}, null, 2) + '\n')
+}
+process.stdout.write(`${JSON.stringify(output, null, 2)}\n`)
+if (!output.scaleGatePassed) process.exitCode = 2

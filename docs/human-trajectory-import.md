@@ -76,14 +76,14 @@ fresh read-back audit and observed failure classes have regression coverage. Run
 
 ```bash
 node scripts/collect_public_replays.mjs \
-  --games 35807,35732 \
+  --games GAME_ID_1,GAME_ID_2 \
   --max-games 2 \
-  --delay-ms 1500 \
+  --delay-ms 500 \
   --require-class base-standard \
-  --output data/public-replays/pilot-2-parity-v2
-node scripts/audit_public_replays.mjs data/public-replays/pilot-2-parity-v2
+  --output data/public-replays/pilot-2
+node scripts/audit_public_replays.mjs data/public-replays/pilot-2
 node scripts/audit_replay_observation_parity.mjs \
-  --captures data/public-replays/pilot-2-parity-v2 \
+  --captures data/public-replays/pilot-2 \
   --server ../obg-server-fcm-agent-rebased
 ```
 
@@ -98,14 +98,22 @@ move buffers.
 Public history is not a lossless action log. Production records producer ids and resulting totals
 but not drink routes; payday records fired employees and only the number of food payments, not the
 resource identities. Those decisions are permanently `outcome-only`: useful for state/value
-learning, never for behavior cloning. All other labels remain
-`candidate-pending-engine-replay`; a fail-closed code gate refuses behavior cloning until an exact
-action has been executed successfully by the pinned official action layer.
+learning, never for behavior cloning. Other labels begin as `candidate-pending-engine-replay` and
+become `exact-engine-replayed` only after the mapped command is accepted by the current legal-action
+gate, executed through the official controller and its state effect matches the replay. Historical
+UI or rule drift becomes `engine-replay-incompatible`; stable failure classes remain excluded. Any
+new/unclassified failure stops promotion for review. The parity audit reports
+`scaleGatePassed: false` and exits with status 2 whenever such a failure exists, so an unattended
+collection job cannot silently advance the sample ladder.
 
 The first trial exposed a real version boundary: game 6113 renders `startingMap` in a legacy scalar
 format, leaving the current Replay client unable to initialize its history. It is rejected quickly
 rather than coerced. An earlier two-game capture is superseded because its sanitizer left the
 private reserve-card array at model index 19 intact; the strengthened validator now rejects it.
-The canonical v2 recapture of games 35807 and 35732 is deterministic and anonymous, with 177 and
-272 states. It contains 281 MCP decision boundaries: all pass observation parity, 214 are action
-candidates awaiting engine replay and 67 are outcome-only. The 10-game gate remains closed.
+The ladder completed at 100 base-standard games. The corpus contains 14,078 MCP decision
+boundaries, including 5,339 simultaneous boundaries built from pre-choice public frames. Exact
+official-action replay passed for 10,001 labels. Another 3,541 labels are outcome-only and 536 are
+quarantined legacy-engine incompatibilities: 362 organization-capacity records, 168 marketing
+context/duration records, two cleanup-state records, two organization-state records and two
+restaurant-placement records. There are zero pending or unclassified labels. Captures remain
+gitignored local research data; rerun both audits before using any label after an engine change.

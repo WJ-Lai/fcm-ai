@@ -154,9 +154,9 @@ functions. The supplier view intentionally treats each house independently; use 
 python3 -m unittest discover -s tests -p 'test_*.py' -q  # 109 tests, stdlib only
 python3 scripts/lint.py         # links / orphans / frontmatter / tags / secrets / index
 python3 scripts/human_trajectory.py --help
-node scripts/audit_public_replays.mjs data/public-replays/pilot-2-parity-v2
-node scripts/audit_replay_observation_parity.mjs --captures data/public-replays/pilot-2-parity-v2
-node --test src/baselines.test.mjs
+node scripts/audit_public_replays.mjs data/public-replays/pilot-100
+node scripts/audit_replay_observation_parity.mjs --captures data/public-replays/pilot-100
+node --test src/*.test.mjs
 node scripts/run_offline_benchmark.mjs --players 2 --episodes 1 --max-commands 250
 node scripts/run_offline_benchmark.mjs --policy random-legal --players 2 --episodes 1 --max-commands 500
 node scripts/run_offline_benchmark.mjs --policy safe-first-legal --opponent official-builtin --builtin-seat 1 --players 2 --episodes 1

@@ -151,6 +151,25 @@ function sanitizeHistory(history, aliases) {
 }
 
 
+function assertNoIdentityText(value, aliases, path = '$') {
+  if (typeof value === 'string') {
+    for (const [name] of aliases) {
+      assert(!value.includes(name), `${path}: capture contains a player identity`)
+    }
+    return
+  }
+  if (Array.isArray(value)) {
+    value.forEach((item, index) => assertNoIdentityText(item, aliases, `${path}[${index}]`))
+    return
+  }
+  if (value && typeof value === 'object') {
+    for (const [key, item] of Object.entries(value)) {
+      assertNoIdentityText(item, aliases, `${path}.${key}`)
+    }
+  }
+}
+
+
 function digest(value) {
   return `sha256:${createHash('sha256').update(value).digest('hex')}`
 }
@@ -175,7 +194,10 @@ export function buildPublicReplayCapture(raw, { capturedAt }) {
   const aliases = aliasesFromModels(raw.playerNames ?? [], models)
   const history = sanitizeHistory(raw.history, aliases)
   assert(history.at(-1).eventCode === HIST_END_GAME, 'history does not end with the official game-over event')
-  const replayStates = models.map((model) => encodeSimpleModel(sanitizeModel(model, aliases)))
+  const sanitizedModels = models.map((model) => sanitizeModel(model, aliases))
+  assertNoIdentityText(history, aliases, '$.history')
+  assertNoIdentityText(sanitizedModels, aliases, '$.replay.models')
+  const replayStates = sanitizedModels.map(encodeSimpleModel)
   const serializedStates = replayStates.join('\n')
 
   const capture = {
@@ -185,7 +207,9 @@ export function buildPublicReplayCapture(raw, { capturedAt }) {
       gameId: raw.gameId,
       publicUrl: `https://www.onlineboardgamers.com/FCM/${raw.gameId}/show/`,
       capturedAt,
-      clientBundle: typeof raw.clientBundle === 'string' ? raw.clientBundle : null,
+      clientBundle: typeof raw.clientBundle === 'string'
+        ? sanitizeValue(raw.clientBundle, aliases, '$.source.clientBundle')
+        : null,
       publicEndedGame: true,
     },
     ruleset: {
@@ -208,7 +232,6 @@ export function buildPublicReplayCapture(raw, { capturedAt }) {
   }
   const serialized = JSON.stringify(capture)
   assert(!CREDENTIAL_TEXT.test(serialized), 'capture contains credential-like text')
-  for (const [name] of aliases) assert(!serialized.includes(name), 'capture contains a player identity')
   return capture
 }
 

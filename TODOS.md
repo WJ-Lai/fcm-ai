@@ -69,15 +69,16 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     explicit three-attestation approval are implemented. Cross-seat observations, unadvertised
     actions, beliefs, temporary choices and free text fail closed. A trusted live-human UI exporter
     and the first consented sample remain; prose reports are intentionally not accepted as traces.
-    A corrected public-ended-game v2 capture passes 2/2 on current-format base games 35807 and
-    35732 (449 events/states total). Player names, timestamps, embedded history, reserve-card
-    storage and transient engine context are removed. Its 281 seat-scoped decision observations
-    contain every current MCP field and legal action, share a pre-choice frame across simultaneous
-    actors, and pass pinned-engine projection parity. Of these, 214 action labels are candidates
-    awaiting exact action-layer replay; 67 production/payday labels are permanently outcome-only
-    because public history omits drink routes or paid resource identities. A code gate forbids both
-    classes from behavior cloning. Legacy game 6113 still fails fast. Do not advance to 10 games
-    until the 214 candidates have exact engine-replay status or an explicit exclusion.
+    The public-ended-game ladder is complete at 2 -> 10 -> 50 -> 100 current-format base games.
+    The 100-game corpus contains 14,078 seat-scoped decision observations, including 5,339
+    simultaneous decisions that all use the public pre-choice frame. Player names, timestamps,
+    embedded history, reserve cards and transient engine context are removed. All observations
+    contain every current MCP field/legal action and pass pinned-engine projection parity. The
+    current official action layer exactly replays 10,001 labels. Another 3,541 production/payday
+    records are outcome/value-only because public history omits routes or paid resource identities;
+    536 legacy labels are quarantined into five tested engine-drift classes. No pending or
+    unclassified label enters behavior cloning. The remaining P1.5 work is a trusted live-human UI
+    exporter and the first explicitly consented seat export; public replays do not substitute for it.
 
 ## P2 — deterministic decision support
 
