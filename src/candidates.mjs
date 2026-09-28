@@ -9,6 +9,14 @@ function unique(values) {
   return [...new Set(values)]
 }
 
+function spreadSample(values, limit) {
+  if (values.length <= limit) return [...values]
+  if (limit === 1) return [values[0]]
+  return unique(Array.from({ length: limit }, (_, index) => (
+    values[Math.round(index * (values.length - 1) / (limit - 1))]
+  )))
+}
+
 function stableCandidate(phase, subphase, intent, actions, details = {}, diversityKey = intent) {
   assert.ok(actions.length > 0, 'candidate must contain at least one action')
   const encoded = JSON.stringify(actions)
@@ -35,21 +43,38 @@ function demandedGoods(state) {
 }
 
 function boundedCombinations(items, length, { canUse = () => true, limit = 20 } = {}) {
-  const result = []
-  const visit = (selected, start) => {
-    if (result.length >= limit) return
+  const buckets = []
+  const visit = (selected, start, bucket) => {
+    if (bucket.length >= limit) return
     if (selected.length === length) {
-      result.push([...selected])
+      bucket.push([...selected])
       return
     }
-    for (let index = start; index < items.length && result.length < limit; index += 1) {
+    for (let index = start; index < items.length && bucket.length < limit; index += 1) {
       if (!canUse(items[index], selected)) continue
       selected.push(items[index])
-      visit(selected, index)
+      visit(selected, index, bucket)
       selected.pop()
     }
   }
-  visit([], 0)
+  for (let root = 0; root < items.length; root += 1) {
+    if (!canUse(items[root], [])) continue
+    const bucket = []
+    visit([items[root]], root, bucket)
+    if (bucket.length) buckets.push(bucket)
+  }
+  const result = []
+  for (let rank = 0; result.length < limit; rank += 1) {
+    let added = false
+    for (const bucket of buckets) {
+      if (bucket[rank]) {
+        result.push(bucket[rank])
+        added = true
+      }
+      if (result.length >= limit) break
+    }
+    if (!added) break
+  }
   return result
 }
 
@@ -142,6 +167,24 @@ function workingDayCandidates(view, actions) {
         return (leftRank < 0 ? priorityTitles.length : leftRank) -
           (rightRank < 0 ? priorityTitles.length : rightRank) || left.id - right.id
       })
+      const managementTrainee = sequencePool.find((employee) => employee.id === 5)
+      if (managementTrainee) {
+        for (const partner of sequencePool) {
+          const requiredCopies = partner.id === managementTrainee.id ? 2 : 1
+          if ((view.state.availableEmployees?.[partner.id] ?? 1) < requiredCopies) continue
+          candidates.push(stableCandidate(
+            phase,
+            subphase,
+            `hire-foundation-pair-${partner.id}`,
+            [
+              { type: 'hire', employee: managementTrainee.id },
+              { type: 'hire', employee: partner.id },
+              finish,
+            ],
+            { employees: [managementTrainee.id, partner.id] },
+          ))
+        }
+      }
       for (let length = 2; length <= Math.min(recruitingPoints, 3); length += 1) {
         const sequences = boundedCombinations(sequencePool, length, {
           canUse: (employee, selected) => {
@@ -183,7 +226,7 @@ function workingDayCandidates(view, actions) {
         ], {
           employee: employee.id,
           upgrade: upgrade.id,
-        }, `train:${employee.origin}:${employee.id}`))
+        }, `train:${employee.origin}:${employee.id}:${upgrade.id}`))
       }
     }
     const trainingPoints = train?.trainingPoints ?? 0
@@ -270,7 +313,7 @@ function workingDayCandidates(view, actions) {
     if ((build?.remainingBuilds ?? 0) > 0) {
       for (const house of build.houses ?? []) {
         for (const placement of house.placements ?? []) {
-          for (const index of (placement.legalSquares ?? []).slice(0, 3)) {
+          for (const index of spreadSample(placement.legalSquares ?? [], 3)) {
             candidates.push(stableCandidate(phase, subphase, 'build-house', [
               {
                 type: 'build_house', building: 'house', house: house.house,
@@ -295,7 +338,7 @@ function workingDayCandidates(view, actions) {
     for (const manager of actions.get('open_restaurant')?.managers ?? []) {
       for (const restaurantAction of manager.actions ?? []) {
         for (const placement of restaurantAction.placements ?? []) {
-          for (const index of (placement.legalSquares ?? []).slice(0, 3)) {
+          for (const index of spreadSample(placement.legalSquares ?? [], 3)) {
             const base = {
               type: 'open_restaurant', restaurantAction: restaurantAction.type,
               manager: manager.manager, rotation: placement.rotation, index,
@@ -326,17 +369,23 @@ function workingDayCandidates(view, actions) {
 
 function capCandidates(candidates, { totalBudget, perIntentBudget }) {
   const seenActions = new Set()
-  const intentCounts = new Map()
-  const kept = []
+  const buckets = new Map()
   for (const candidate of candidates) {
     const encoded = JSON.stringify(candidate.actions)
     if (seenActions.has(encoded)) continue
     const diversityKey = candidate.diversityKey ?? candidate.intent
-    const count = intentCounts.get(diversityKey) ?? 0
-    if (count >= perIntentBudget || kept.length >= totalBudget) continue
+    const bucket = buckets.get(diversityKey) ?? []
+    if (bucket.length >= perIntentBudget) continue
     seenActions.add(encoded)
-    intentCounts.set(diversityKey, count + 1)
-    kept.push(candidate)
+    bucket.push(candidate)
+    buckets.set(diversityKey, bucket)
+  }
+  const kept = []
+  for (let rank = 0; rank < perIntentBudget && kept.length < totalBudget; rank += 1) {
+    for (const bucket of buckets.values()) {
+      if (bucket[rank]) kept.push(bucket[rank])
+      if (kept.length >= totalBudget) break
+    }
   }
   return kept
 }

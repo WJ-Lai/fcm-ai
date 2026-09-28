@@ -385,3 +385,41 @@ Verification: **89 tests pass**, lint clean (28 pages), `verify_sources.py` OK,
   winner-only counts improved 233→263/564 and 204→215/400. Overall working-day exact recall is now
   1310/2730 (48.0%), still below the 75% discrete gate. Fixed workday fixtures executed 169 generated
   candidates with zero official-engine rejects. Search/evaluator promotion remains blocked.
+
+## [2026-09-28] experiment | official spatial consequences and prefix-bias removal
+
+- Added public pre/post consequence signatures for build, garden, open and move-restaurant actions.
+  Every label comes from an isolated authoritative-engine clone; it distinguishes reach gains,
+  losses and finite distance changes without treating `-99` as a numeric reward or reading hidden
+  simultaneous choices.
+- Added a reproducible build→restaurant probe. It executes 19 build and 10 restaurant candidates,
+  proves distinct and equivalent official outcomes, checks clone isolation, and explicitly reports
+  that long-horizon board-blocking value is not included.
+- Replaced prefix coordinate truncation with range-spanning samples and changed the global bounded
+  cap to round-robin across diversity keys. On 10 development games build exact/effect coverage rose
+  7/7→25/27 of 36 with no hire/train/marketing regression.
+- On the untouched 50-game corpus, working-day exact coverage rose 1310→1349/2730 and winner-only
+  538→565/1195. Build exact coverage rose 45→86/147; official consequence coverage is 103/147 and
+  67/94 for eventual winners. Restaurant consequence coverage is 82/85 and 32/33 for winners even
+  though exact coordinates cover only 12/85 and 7/33.
+- Falsified and removed a naive distance-based build score. On the development slice, build effect
+  Top-3 fell 12/27→1/27 and winner Top-3 9/22→1/22. Current reachability is useful as a label but is
+  not a sufficient value function for blocking, house order or future expansion.
+
+## [2026-09-28] experiment | source-fair discrete combination coverage
+
+- Added separate exact-sequence and order-insensitive pattern metrics for hire/train batches. The
+  latter diagnoses proposal omissions but does not bypass official exact replay or claim that every
+  permutation is equivalent.
+- Reworked bounded combination enumeration so early employees cannot consume the scan prefix,
+  added legal management-trainee engine pairs, and keyed single training proposals by upgrade target
+  rather than collapsing all upgrades from one source.
+- On 10 development games, hire exact/pattern coverage rose 112/113→131/154 of 233 and training
+  94/100→102/108 of 153. Marketing/build/restaurant coverage was unchanged.
+- On the untouched 50-game corpus, hire exact/pattern coverage is 795/935 of 1337 and training is
+  562/605 of 891. Working-day exact coverage rose 1349→1516/2730 (55.5%); winner-only exact coverage
+  rose 565→645/1195 (54.0%). The 75% gate remains open.
+- A two-seed official-clone audit executed 2,141 generated candidates with zero rejects at about
+  0.039ms generation time per candidate. More hand-written combinations are now lower priority than
+  a versioned proposal prior learned only from the development split and validated unchanged on the
+  held-out split.

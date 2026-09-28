@@ -35,6 +35,7 @@ import {
 } from '../src/candidate-imitation.mjs'
 import { generateCandidates } from '../src/candidates.mjs'
 import { rankCandidates } from '../src/strategy.mjs'
+import { spatialConsequenceSignature } from '../src/spatial-consequence.mjs'
 
 
 function argument(name, fallback = null) {
@@ -162,6 +163,36 @@ function plain(value) {
 }
 
 
+async function spatialEffectRank({ capture, group, source, beforeState, afterState, actions, ranked }) {
+  if (group.phase !== 5 || ![5, 6].includes(group.subphase)) return null
+  const target = spatialConsequenceSignature(
+    { state: beforeState },
+    { state: afterState },
+    actions,
+  )
+  if (target == null) return null
+  const encodedTarget = JSON.stringify(target)
+  for (const [index, candidate] of ranked.entries()) {
+    if (!candidate.actions.some((action) => ['build_house', 'open_restaurant'].includes(action.type))) {
+      continue
+    }
+    const fresh = hydrateActorView(capture, group, structuredClone(source))
+    for (const action of candidate.actions) {
+      await fresh.adapter.doAction(action, { playerIndex: group.seat, save: false })
+    }
+    const signature = spatialConsequenceSignature(
+      { state: fresh.state },
+      { state: fresh.adapter.getState() },
+      candidate.actions,
+    )
+    if (JSON.stringify(signature) === encodedTarget) {
+      return { candidateId: candidate.id, rank: index + 1 }
+    }
+  }
+  return null
+}
+
+
 function verifyActionEffects(group, store, target) {
   const seat = group.seat
   const codes = new Set(group.events.map((event) => event.eventCode))
@@ -284,6 +315,7 @@ for (const [recordIndex, record] of manifest.records.entries()) {
         for (const action of actions) {
           await adapter.doAction(action, { playerIndex: group.seat, save: false })
         }
+        const humanAfterState = adapter.getState()
         const target = decodeSimpleModel(capture.replay.states[Math.max(...group.eventIndexes)])
         verifyActionEffects(group, store, target)
         label = markLabelEngineReplayed(label, actions)
@@ -295,17 +327,36 @@ for (const [recordIndex, record] of manifest.records.entries()) {
           generateCandidates({ state, legalActions }),
         )
         const match = exactCandidateRank(ranked, comparableActions)
-        const effectMatch = group.phase === 5 && group.subphase === 3
+        let effectMatch = group.phase === 5 && group.subphase === 3
           ? projectedCandidateRank(
             ranked,
             comparableActions,
             (candidateActions) => marketingEffectSignature(candidateActions, legalActions),
           )
           : null
+        const patternMatch = group.phase === 5 && [1, 2].includes(group.subphase)
+          ? projectedCandidateRank(ranked, comparableActions, decisionPatternKey)
+          : null
+        if ([5, 6].includes(group.subphase)) {
+          effectMatch = await spatialEffectRank({
+            capture, group, source,
+            beforeState: state,
+            afterState: humanAfterState,
+            actions: comparableActions,
+            ranked,
+          })
+        }
         const decisionKey = `${group.phase}/${group.subphase}`
         const bucket = imitation.byDecision[decisionKey] ??= {
           verifiedLabels: 0, candidateOffered: 0, staticTop1: 0, staticTop3: 0,
           effectEquivalentOffered: 0, effectEquivalentTop1: 0, effectEquivalentTop3: 0,
+          winnerEffectEquivalentOffered: 0,
+          winnerEffectEquivalentTop1: 0, winnerEffectEquivalentTop3: 0,
+          patternEquivalentOffered: 0,
+          patternEquivalentTop1: 0, patternEquivalentTop3: 0,
+          winnerPatternEquivalentOffered: 0,
+          winnerPatternEquivalentTop1: 0, winnerPatternEquivalentTop3: 0,
+          missingPatternHistogram: {},
           winnerVerifiedLabels: 0, winnerCandidateOffered: 0,
           winnerStaticTop1: 0, winnerStaticTop3: 0,
           actionCountHistogram: {}, actionTypeHistogram: {},
@@ -334,6 +385,24 @@ for (const [recordIndex, record] of manifest.records.entries()) {
           bucket.effectEquivalentOffered += 1
           if (effectMatch.rank === 1) bucket.effectEquivalentTop1 += 1
           if (effectMatch.rank <= 3) bucket.effectEquivalentTop3 += 1
+          if (winnerDecision) {
+            bucket.winnerEffectEquivalentOffered += 1
+            if (effectMatch.rank === 1) bucket.winnerEffectEquivalentTop1 += 1
+            if (effectMatch.rank <= 3) bucket.winnerEffectEquivalentTop3 += 1
+          }
+        }
+        if (patternMatch) {
+          bucket.patternEquivalentOffered += 1
+          if (patternMatch.rank === 1) bucket.patternEquivalentTop1 += 1
+          if (patternMatch.rank <= 3) bucket.patternEquivalentTop3 += 1
+          if (winnerDecision) {
+            bucket.winnerPatternEquivalentOffered += 1
+            if (patternMatch.rank === 1) bucket.winnerPatternEquivalentTop1 += 1
+            if (patternMatch.rank <= 3) bucket.winnerPatternEquivalentTop3 += 1
+          }
+        } else if (group.phase === 5 && [1, 2].includes(group.subphase)) {
+          bucket.missingPatternHistogram[pattern] =
+            (bucket.missingPatternHistogram[pattern] ?? 0) + 1
         }
         if (match) {
           imitation.candidateOffered += 1

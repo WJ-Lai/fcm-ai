@@ -2,7 +2,7 @@
 
 Status: recommended design and implementation roadmap
 
-Updated: 2026-09-27
+Updated: 2026-09-28
 
 Scope: base-game Food Chain Magnate on the OBG Agent API; 2–6 players; human/AI mixed games
 
@@ -705,16 +705,35 @@ ranked Top-1 16.0% and Top-3 52.0%. Therefore candidate sequence coverage is now
 the rollout spike, not a later optimization. Recruit/train/marketing/build/restaurant recall must be
 reported separately under the same 32-candidate cap.
 
-The candidate audit now reports action-count/pattern histograms, winner-only metrics and strict
-marketing-effect equivalence. Bounded multi-action sequences, duplicate employee-copy handling and
-per-source/product/building diversity raised 50-game working-day exact recall to 1310/2730 (48.0%)
-and winner-only recall to 538/1195 (45.0%). Hire improved 582→675/1337 and training 490→515/891;
-their winner-only counts improved 233→263/564 and 204→215/400. Marketing exact-coordinate recall is
-61/270, while strict same-worker/campaign/good/duration/affected-houses coverage is 100/270 (37.0%),
-close to 22/62 (35.5%) on the 10-game development slice. This confirms that exact-square imitation
-is not a valid sole target for spatial actions; build/restaurant still need official consequence or
-terminal-value labels, while discrete hire/train batches retain exact-recall gates. Ranking quality
-remains poor as proposal coverage grows, cleanly separating generator progress from evaluator work.
+The candidate audit now reports action-count/pattern histograms, winner-only metrics and official
+effect equivalence. Bounded multi-action sequences, duplicate employee-copy handling, round-robin
+source allocation and range-spanning spatial sampling first raised 50-game working-day exact recall
+to 1349/2730. A second pass removed depth-first combination prefix bias, added explicit
+management-trainee engine pairs, and preserved every distinct training upgrade. Current exact recall
+is 1516/2730 (55.5%) and winner-only recall is 645/1195 (54.0%). Hire exact and order-insensitive
+pattern coverage is 795/935 of 1337; training is 562/605 of 891. Eventual-winner exact/pattern counts
+are 320/379 of 564 for hire and 238/255 of 400 for training. The pattern metric is a proposal
+diagnostic only until permutation effects receive an official-engine equivalence suite; it does not
+weaken the exact action-replay gate. Marketing exact-coordinate recall is 61/270, while strict
+same-worker/campaign/good/duration/affected-houses coverage is 100/270 (37.0%).
+
+Build/open/move labels are now produced by executing each candidate on an isolated official-engine
+clone and comparing only public pre/post `DecisionView` reachability. Raw coordinates are excluded;
+unreachable sentinels are categorical rather than large numeric distances. This raised build exact
+coverage from 45 to 86/147 and measured 103/147 (70.1%) public-consequence coverage; eventual-winner
+coverage is 67/94 (71.3%). Restaurant exact-coordinate coverage is only 12/85, while consequence
+coverage is 82/85 (96.5%) and 32/33 for winners. A fixed build→restaurant probe confirms both
+distinct and equivalent effects, isolated clones and no source mutation. These results show that
+exact-square imitation is the wrong primary target for spatial actions, while discrete hire/train
+batches retain exact-recall gates.
+
+The consequence label is deliberately tactical, not a complete value target. It records current
+reach and route changes but excludes future map blocking, demand order, expansion space and opponent
+reactions. A simple “closer to us/farther from opponents” score was tested and rejected before
+shipping: on the 10-game development slice build consequence Top-3 fell from 12/27 under the existing
+ordering to 1/27, and eventual-winner Top-3 fell from 9/22 to 1/22. The implementation was removed.
+Build ranking therefore needs independently labelled multi-turn fixtures or bounded search, not more
+unvalidated distance weights. Ranking quality remains the promotion blocker.
 
 The spike's tactical suite must cover restaurant access, marketing distance/price competition,
 production-to-demand closure, organization/salary discipline and dinner inventory consumption.

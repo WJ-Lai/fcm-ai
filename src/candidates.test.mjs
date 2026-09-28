@@ -82,6 +82,27 @@ test('per-intent pruning cannot discard later advertised hire roles', () => {
   )
 })
 
+test('multi-hire search does not starve management-trainee engine pairs behind early roles', () => {
+  const candidates = generateCandidates(view(5, 1, [
+    { type: 'hire', recruitingPoints: 2, candidates: [
+      { id: 17, name: 'Recruiting Girl' },
+      { id: 20, name: 'Trainer' },
+      { id: 5, name: 'Management Trainee' },
+      { id: 13, name: 'Marketing Trainee' },
+      { id: 27, name: 'Kitchen Trainee' },
+      { id: 0, name: 'Errand Boy' },
+      { id: 10, name: 'Waitress' },
+      { id: 23, name: 'Pricing Manager' },
+    ] },
+    { type: 'next_subphase' },
+  ], { availableEmployees: { 0: 4, 5: 4, 10: 4, 13: 4, 17: 4, 20: 4, 23: 4, 27: 4 } }))
+  assert.ok(candidates.some((candidate) => {
+    const hired = candidate.actions.filter((action) => action.type === 'hire')
+      .map((action) => action.employee).sort((left, right) => left - right)
+    return JSON.stringify(hired) === JSON.stringify([5, 13])
+  }))
+})
+
 test('training proposes bounded multi-action sequences when multiple training points exist', () => {
   const candidates = generateCandidates(view(5, 2, [
     { type: 'train', trainingPoints: 2, available: [
@@ -126,6 +147,19 @@ test('per-intent pruning preserves training options from every employee source',
     candidates.filter((item) => item.actions[0].type === 'train')
       .map((item) => item.actions[0].employee).sort((a, b) => a - b),
     [5, 13, 27],
+  )
+})
+
+test('training diversity keeps distinct upgrades from one flexible source', () => {
+  const upgrades = [1, 2, 3, 6, 7, 8, 11, 12].map((id) => ({ id, steps: 1 }))
+  const candidates = generateCandidates(view(5, 2, [
+    { type: 'train', trainingPoints: 1, available: [{ id: 5, origin: 0, upgrades }] },
+    { type: 'next_subphase' },
+  ]), { totalBudget: 32, perIntentBudget: 1 })
+  assert.deepEqual(
+    candidates.filter((candidate) => candidate.actions[0].type === 'train')
+      .map((candidate) => candidate.actions[0].toEmployee).sort((left, right) => left - right),
+    upgrades.map((upgrade) => upgrade.id),
   )
 })
 
@@ -178,6 +212,37 @@ test('spatial diversity does not let the first house consume the build budget', 
       .filter((action) => action.type === 'build_house')
       .map((action) => action.house)))].sort(),
     [1, 2, 3],
+  )
+})
+
+test('tight build budget round-robins across houses before taking second coordinates', () => {
+  const candidates = generateCandidates(view(5, 5, [
+    { type: 'build_house', remainingBuilds: 1, houses: [1, 2, 3].map((house) => ({
+      house,
+      placements: [{ rotation: 0, legalSquares: [house * 10, house * 10 + 1] }],
+    })), gardens: [] },
+    { type: 'next_subphase' },
+  ]), { totalBudget: 4, perIntentBudget: 6 })
+  assert.deepEqual(
+    candidates.flatMap((item) => item.actions
+      .filter((action) => action.type === 'build_house')
+      .map((action) => action.house)),
+    [1, 2, 3],
+  )
+})
+
+test('restaurant coordinate sampling spans the advertised range instead of taking a prefix', () => {
+  const candidates = generateCandidates(view(5, 6, [
+    { type: 'open_restaurant', managers: [{ manager: 2, actions: [{
+      type: 'create', placements: [{ rotation: 0, legalSquares: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] }],
+    }] }] },
+    { type: 'next_subphase' },
+  ]), { totalBudget: 4, perIntentBudget: 6 })
+  assert.deepEqual(
+    candidates.flatMap((item) => item.actions
+      .filter((action) => action.type === 'open_restaurant')
+      .map((action) => action.index)),
+    [0, 5, 9],
   )
 })
 

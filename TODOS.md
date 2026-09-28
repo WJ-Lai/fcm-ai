@@ -130,14 +130,22 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     the latency budget, then holds on untouched games. Spatial marketing/build/restaurant choices
     use task-specific equivalence/value labels rather than requiring the exact human square. Report
     every subphase separately so high-volume hiring cannot hide missing action families.
-  - Current: bounded 2–3 action sequences, duplicate employee-copy handling and per-source/product/
-    building diversity are implemented. On 10 development games, exact hire/train recall reached
-    112/233 and 94/153; marketing effect-equivalent coverage is 22/62. On the 50-game validation
-    corpus, hire/train recall improved from 582→675/1337 and 490→515/891; winner-only recall improved
-    from 233→263/564 and 204→215/400. Overall working-day exact recall is 1310/2730 (48.0%) and
-    winner-only 538/1195 (45.0%); marketing effect-equivalent coverage is 100/270 (37.0%). Fixed
-    official-engine workday fixtures executed 169 candidates with zero invalid actions. Ranking
-    quality remains poor as coverage grows, so evaluator promotion stays blocked.
+  - Current: bounded 2–3 action sequences, duplicate employee-copy handling, round-robin source
+    allocation and range-spanning spatial sampling are implemented. On 10 development games,
+    exact hire/train recall is 112/233 and 94/153; marketing effect-equivalent coverage is 22/62.
+    Build exact/effect coverage rose from 7/7 to 25/27 of 36 after removing prefix bias.
+    A subsequent source-fair combination pass raised development hire exact/pattern coverage to
+    131/154 of 233 and training to 102/108 of 153. On the untouched 50-game corpus, working-day
+    exact recall is now 1516/2730 (55.5%) and winner-only 645/1195 (54.0%). Hire exact/pattern
+    coverage is 795/935 of 1337 and training is 562/605 of 891; eventual-winner exact/pattern counts
+    are 320/379 of 564 and 238/255 of 400. Pattern equivalence is currently a diagnostic for
+    order-insensitive proposal coverage, not a substitute for official consequence validation.
+    Build exact coverage rose
+    45→86/147 and official public-consequence coverage is 103/147 (70.1%); winner consequence
+    coverage is 67/94 (71.3%). Restaurant exact coordinates cover only 12/85, but official
+    consequence equivalence covers 82/85 (96.5%) and 32/33 winner decisions. Marketing effect
+    equivalence remains 100/270 (37.0%). Ranking quality remains poor as coverage grows, so
+    evaluator promotion stays blocked.
 - [x] **P3.2 Implement persistent `GameMemory`.**
   - Why: plans, opponent hypotheses and prediction errors must survive LLM/tool calls.
   - Depends on: P1 schemas.
@@ -169,6 +177,12 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     policy on the same seed. It made 34 hires, no marketing, and changed 43/66 eligible decisions.
     This falsifies the current short-horizon score as a strategy oracle; do not expand rollout search
     until P3.1b and an independently labelled tactical outcome suite are complete.
+    Official public spatial consequence labels now exist for build/open/move actions and pass a
+    bounded build→restaurant engine probe (19/10 candidates, 13/3 distinct effects and zero source
+    mutation). A naive current-distance build score was rejected:
+    on the 10-game development slice its effect Top-3 fell from 12/27 to 1/27, including 9/22→1/22
+    for eventual winners. Long-horizon blocking, demand order and expansion space therefore need
+    independently labelled fixtures or search; the rejected score is not shipped.
 - [ ] **P3.3b Calibrate the explainable evaluator and strategy profiles.**
   - Why: this creates the first meaningful opponent and training-data generator.
   - Depends on: P3.3a.
