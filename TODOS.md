@@ -530,6 +530,11 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     A ties rank 7/7 while the alternate improves mean margin by $102 (SE $37); root B gives alternate
     three rank wins, zero losses and four ties (p=0.25) with about $453 mean margin advantage. Neither
     is formally selected and both request 15. Resume samples 7–14 only; no phase-wide training gate.
+    Iteration 40 closes the maximum: root A ties rank 15/15 and abstains despite +$138 mean alternate
+    margin (SE $34); root B formally selects the alternate with 9 rank wins, 0 losses, 6 ties and
+    p=0.003906. This is the first stable RHEA-derived action label, but only for one development root.
+    Next compare seat-visible root-context features A vs B, predeclare one bounded interaction, and
+    validate it on independent training roots before any online use.
 
 - [ ] **P4.1c Evaluate belief-aware information-set search only where uncertainty warrants it.**
   - Why: hidden/simultaneous choices may justify ISMCTS/POMCP-style sampling, but naive MCTS or

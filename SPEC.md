@@ -630,6 +630,15 @@ advantage; its exact p-value is still 0.25. Neither root is selected and both ad
 15-sample maximum. Resume samples 7–14 only. A phase-wide training override remains prohibited even
 if one frozen root later selects; generalization requires independent training roots and a league.
 
+At the 15-sample maximum, the two training roots separate cleanly. Root A ties terminal rank in all
+15 continuations and abstains, although the alternate improves mean cash margin by about 138 with SE
+34. Root B formally selects the alternate training candidate: nine rank wins, zero losses, six ties,
+exact p=0.003906 below alpha 0.025. This is the first statistically stable RHEA-derived action label,
+but it licenses only the frozen root, not a training-phase allowlist. The next step is explanatory:
+reconstruct seat-visible features for roots A and B, identify a single predeclared contextual
+interaction that distinguishes rank-critical from cash-only benefit, and evaluate it on independent
+training roots. Online RHEA and promotion holdout remain unchanged.
+
 ### 6.8 Execution, memory and learning
 
 The execution layer accepts one versioned candidate id, revalidates it against the current game
