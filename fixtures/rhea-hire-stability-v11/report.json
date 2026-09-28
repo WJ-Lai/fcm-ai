@@ -1,0 +1,583 @@
+{
+  "schemaVersion": "fcm.rhea-hire-stability.v11",
+  "experimentId": 37,
+  "protocolDigest": "sha256:5f16a24ae42d7b1820495089a79976b757a94dea5420560d3864875f3a3b666f",
+  "sampleCount": 15,
+  "resumedFromSampleCount": 7,
+  "roots": [
+    {
+      "rootId": "rhea-intervention-dev-03-seat-0-index-3",
+      "publicRootDigest": "sha256:2053a50edb8647130afd644da899587950737437390b2ac66cd234309dba74e0",
+      "strategicProjectionDigest": "sha256:3061b99b69473467533639aefb004c789d4a895d6cb3cb30f71ad08fa6485cbd",
+      "sampleZeroReproduced": true,
+      "candidates": [
+        {
+          "candidateId": "p5s1-hire-f62c499152",
+          "terminalMargins": [
+            65,
+            497,
+            492,
+            154,
+            418,
+            362,
+            260,
+            515,
+            518,
+            191,
+            257,
+            487,
+            487,
+            509,
+            526
+          ],
+          "terminalRanks": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "terminalMoney": [
+            93,
+            517,
+            517,
+            347,
+            473,
+            448,
+            293,
+            558,
+            540,
+            206,
+            383,
+            517,
+            527,
+            529,
+            526
+          ],
+          "terminalCommands": [
+            452,
+            155,
+            155,
+            157,
+            253,
+            265,
+            447,
+            277,
+            426,
+            447,
+            180,
+            155,
+            155,
+            332,
+            250
+          ],
+          "completed": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "candidateId": "p5s1-hire-00073b191c",
+          "terminalMargins": [
+            318,
+            -76,
+            70,
+            330,
+            440,
+            72,
+            -416,
+            -203,
+            235,
+            -70,
+            515,
+            -290,
+            105,
+            5,
+            135
+          ],
+          "terminalRanks": [
+            1,
+            2,
+            1,
+            1,
+            1,
+            1,
+            2,
+            2,
+            1,
+            2,
+            1,
+            2,
+            1,
+            1,
+            1
+          ],
+          "terminalMoney": [
+            420,
+            235,
+            75,
+            335,
+            445,
+            215,
+            95,
+            70,
+            420,
+            0,
+            535,
+            35,
+            105,
+            15,
+            155
+          ],
+          "terminalCommands": [
+            350,
+            303,
+            422,
+            450,
+            454,
+            440,
+            401,
+            444,
+            285,
+            428,
+            402,
+            447,
+            422,
+            422,
+            447
+          ],
+          "completed": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "rhea-intervention-dev-04-seat-0-index-3",
+      "publicRootDigest": "sha256:36921dd4f93a549c47a0c87543b635d9d5cfeace06ca82e292f0dd121ad718ba",
+      "strategicProjectionDigest": "sha256:b3ee6d9ba5d34d3622d95590cc80fd31d32379f47dd875b5bc2de47041f4c13a",
+      "sampleZeroReproduced": true,
+      "candidates": [
+        {
+          "candidateId": "p5s1-hire-f62c499152",
+          "terminalMargins": [
+            268,
+            -389,
+            -274,
+            -408,
+            -415,
+            -324,
+            246,
+            -481,
+            -281,
+            -356,
+            535,
+            -352,
+            435,
+            521,
+            -485
+          ],
+          "terminalRanks": [
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            1,
+            2,
+            2,
+            2,
+            1,
+            2,
+            1,
+            1,
+            2
+          ],
+          "terminalMoney": [
+            390,
+            70,
+            200,
+            50,
+            60,
+            95,
+            375,
+            10,
+            145,
+            100,
+            550,
+            80,
+            475,
+            570,
+            30
+          ],
+          "terminalCommands": [
+            257,
+            247,
+            260,
+            388,
+            225,
+            109,
+            305,
+            221,
+            380,
+            269,
+            320,
+            222,
+            168,
+            260,
+            199
+          ],
+          "completed": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "candidateId": "p5s1-hire-00073b191c",
+          "terminalMargins": [
+            -541,
+            -471,
+            -491,
+            -502,
+            -525,
+            -323,
+            -384,
+            -506,
+            -307,
+            -371,
+            -315,
+            -461,
+            -102,
+            -534,
+            -92
+          ],
+          "terminalRanks": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "terminalMoney": [
+            10,
+            70,
+            50,
+            5,
+            10,
+            105,
+            90,
+            25,
+            120,
+            30,
+            95,
+            20,
+            200,
+            5,
+            205
+          ],
+          "terminalCommands": [
+            151,
+            301,
+            185,
+            145,
+            235,
+            255,
+            270,
+            211,
+            198,
+            438,
+            234,
+            230,
+            311,
+            231,
+            281
+          ],
+          "completed": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        }
+      ]
+    }
+  ],
+  "audit": {
+    "schemaVersion": "fcm.paired-sequential-audit.v1",
+    "roots": 2,
+    "selectedRoots": 0,
+    "abstainedRoots": 2,
+    "needsMoreSamplesRoots": 0,
+    "coverage": 0,
+    "details": [
+      {
+        "rootId": "rhea-intervention-dev-03-seat-0-index-3",
+        "availableSamples": 15,
+        "status": "abstain-max-samples",
+        "selectedCandidateId": null,
+        "stopSamples": 15,
+        "nextSamples": null,
+        "stages": [
+          {
+            "samples": 3,
+            "stageAlpha": 0.005,
+            "comparisonAlpha": 0.005,
+            "minimumPossiblePValue": 0.25,
+            "selectionReachable": false,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s1-hire-f62c499152",
+                "rightCandidateId": "p5s1-hire-00073b191c",
+                "samples": 3,
+                "positive": 1,
+                "negative": 0,
+                "ties": 2,
+                "pValue": 1,
+                "alpha": 0.005,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": 0.3333333333333333,
+                "meanMarginAdvantage": 247.33333333333334,
+                "marginAdvantageStandardError": 253.9359061740668,
+                "decisiveWinRate95CI": {
+                  "low": 0.20654931437723745,
+                  "high": 1
+                }
+              }
+            ]
+          },
+          {
+            "samples": 7,
+            "stageAlpha": 0.02,
+            "comparisonAlpha": 0.02,
+            "minimumPossiblePValue": 0.015625,
+            "selectionReachable": true,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s1-hire-f62c499152",
+                "rightCandidateId": "p5s1-hire-00073b191c",
+                "samples": 7,
+                "positive": 2,
+                "negative": 0,
+                "ties": 5,
+                "pValue": 0.5,
+                "alpha": 0.02,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": 0.2857142857142857,
+                "meanMarginAdvantage": 215.71428571428572,
+                "marginAdvantageStandardError": 139.49137441940618,
+                "decisiveWinRate95CI": {
+                  "low": 0.34238022750665303,
+                  "high": 1
+                }
+              }
+            ]
+          },
+          {
+            "samples": 15,
+            "stageAlpha": 0.025,
+            "comparisonAlpha": 0.025,
+            "minimumPossiblePValue": 0.00006103515625,
+            "selectionReachable": true,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s1-hire-f62c499152",
+                "rightCandidateId": "p5s1-hire-00073b191c",
+                "samples": 15,
+                "positive": 5,
+                "negative": 0,
+                "ties": 10,
+                "pValue": 0.0625,
+                "alpha": 0.025,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": 0.3333333333333333,
+                "meanMarginAdvantage": 304.53333333333336,
+                "marginAdvantageStandardError": 88.33641683746596,
+                "decisiveWinRate95CI": {
+                  "low": 0.5655175352168251,
+                  "high": 1
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "rootId": "rhea-intervention-dev-04-seat-0-index-3",
+        "availableSamples": 15,
+        "status": "abstain-max-samples",
+        "selectedCandidateId": null,
+        "stopSamples": 15,
+        "nextSamples": null,
+        "stages": [
+          {
+            "samples": 3,
+            "stageAlpha": 0.005,
+            "comparisonAlpha": 0.005,
+            "minimumPossiblePValue": 0.25,
+            "selectionReachable": false,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s1-hire-f62c499152",
+                "rightCandidateId": "p5s1-hire-00073b191c",
+                "samples": 3,
+                "positive": 1,
+                "negative": 0,
+                "ties": 2,
+                "pValue": 1,
+                "alpha": 0.005,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": 0.3333333333333333,
+                "meanMarginAdvantage": 369.3333333333333,
+                "marginAdvantageStandardError": 223.26093353841475,
+                "decisiveWinRate95CI": {
+                  "low": 0.20654931437723745,
+                  "high": 1
+                }
+              }
+            ]
+          },
+          {
+            "samples": 7,
+            "stageAlpha": 0.02,
+            "comparisonAlpha": 0.02,
+            "minimumPossiblePValue": 0.015625,
+            "selectionReachable": true,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s1-hire-f62c499152",
+                "rightCandidateId": "p5s1-hire-00073b191c",
+                "samples": 7,
+                "positive": 2,
+                "negative": 0,
+                "ties": 5,
+                "pValue": 0.5,
+                "alpha": 0.02,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": 0.2857142857142857,
+                "meanMarginAdvantage": 277.2857142857143,
+                "marginAdvantageStandardError": 118.31348880264271,
+                "decisiveWinRate95CI": {
+                  "low": 0.34238022750665303,
+                  "high": 1
+                }
+              }
+            ]
+          },
+          {
+            "samples": 15,
+            "stageAlpha": 0.025,
+            "comparisonAlpha": 0.025,
+            "minimumPossiblePValue": 0.00006103515625,
+            "selectionReachable": true,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s1-hire-f62c499152",
+                "rightCandidateId": "p5s1-hire-00073b191c",
+                "samples": 15,
+                "positive": 5,
+                "negative": 0,
+                "ties": 10,
+                "pValue": 0.0625,
+                "alpha": 0.025,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": 0.3333333333333333,
+                "meanMarginAdvantage": 277.6666666666667,
+                "marginAdvantageStandardError": 103.77171220505255,
+                "decisiveWinRate95CI": {
+                  "low": 0.5655175352168251,
+                  "high": 1
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "privatePayloadPersisted": false,
+  "promotionHoldoutOpened": false
+}

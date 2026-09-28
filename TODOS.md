@@ -515,7 +515,13 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     samples 3–6 only. Both roots now show static rank wins 2, alternate wins 0 and ties 5; p=0.5 at
     the reachable seven-sample stage. Cash-advantage SE falls to $139/$118 but remains orders above
     the +1.4 leaf margin. Both roots request the predeclared maximum 15 samples. Resume samples 7–14
-    only and require stable strategic-projection identity; no interim rule change.
+    only and require stable strategic-projection identity; no interim rule change. Iteration 37
+    preserves all seven samples and closes both roots at 15: static rank wins 5, alternate wins 0,
+    ties 10 on each root, but exact p=0.0625 exceeds α=0.025, so both correctly become
+    `abstain-max-samples`. Cash advantages remain noisy (mean $305/$278; SE $88/$104). Stop sampling
+    these hire roots and exclude them from supervised labels. The directional evidence rejects this
+    RHEA hire override online. Next apply the same staged puncture to contradictory training roots,
+    which appeared 3/4 beneficial under one continuation.
 
 - [ ] **P4.1c Evaluate belief-aware information-set search only where uncertainty warrants it.**
   - Why: hidden/simultaneous choices may justify ISMCTS/POMCP-style sampling, but naive MCTS or

@@ -605,6 +605,15 @@ sign-test p-value is 0.5, so neither root is selected; cash-advantage standard e
 predeclared maximum of 15. Resume samples 7–14 only, require the stable strategic-projection digest
 in addition to candidates and preserved arrays, and make no interim phase or action allowlist.
 
+At the 15-sample maximum, both roots preserve the seven-sample prefix and converge to the same sign
+pattern: static has five terminal-rank wins, the RHEA hire alternate has zero, and ten samples tie.
+The exact p-value is 0.0625 versus the predeclared 0.025 threshold, so both roots correctly close as
+`abstain-max-samples` rather than being converted into labels. Mean cash advantages for static are
+about 305 and 278 with standard errors 88 and 104. Stop sampling these roots. They provide strong
+directional safety evidence against the hire override but insufficient formal supervision. Static
+remains the online action. The next bounded stability puncture targets the conflicting training
+override; RHEA and the promotion holdout remain unpromoted and sealed.
+
 ### 6.8 Execution, memory and learning
 
 The execution layer accepts one versioned candidate id, revalidates it against the current game
