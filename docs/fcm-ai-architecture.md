@@ -929,6 +929,14 @@ Exit criterion: clearly beats first-legal/random across seats and makes zero ill
   abstain instead of exporting a misleading value; middle and late remain experimental inputs.
   The 24-game paired promotion holdout is still sealed. None of these fit metrics promotes a policy;
   leaf/cutoff diagnostics and a one-shot terminal league remain required.
+- The first fixed-root leaf puncture rejects direct policy integration despite those aggregate
+  metrics. Three middle-game roots freeze hiring, marketing and production candidate sets; nine
+  legal branches are evaluated after 0/2/5/11 official transitions and completed to terminal. Only
+  3/12 cutoff choices match the terminal-best candidate. A marketing choice is correct at cutoffs
+  0/2, reverses at 5 from the +$235 oracle branch to -$230, then returns at 11. This demonstrates
+  non-monotonic cutoff bias and a mismatch between state-winner classification and adjacent-action
+  ranking. The next learned target is action-conditioned value delta/regret, not another direct
+  rollout depth increase.
 - Treat opponent hidden simultaneous actions as sampled `believed` inputs. A planner must produce
   the same choice when unavailable opponent reserve cards or submitted move buffers are mutated;
   those metamorphic privacy tests are a promotion gate.

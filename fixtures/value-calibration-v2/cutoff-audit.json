@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "fcm.value-cutoff-audit.v1",
+  "games": 12,
+  "observations": 293,
+  "overall": {
+    "observations": 293,
+    "games": 12,
+    "totalWeight": 11.999999999999908,
+    "weightedAccuracy": 0.7217375821043929,
+    "weightedLogLoss": 0.5555604628280272,
+    "abstentionRate": 0.14753858758028282
+  },
+  "byPhase": {
+    "early": {
+      "observations": 36,
+      "games": 12,
+      "totalWeight": 12.000000000000004,
+      "weightedAccuracy": 0.5,
+      "weightedLogLoss": 0.6931471805599448,
+      "abstentionRate": 1
+    },
+    "middle": {
+      "observations": 36,
+      "games": 12,
+      "totalWeight": 12.000000000000004,
+      "weightedAccuracy": 0.6111111111111107,
+      "weightedLogLoss": 0.6783294651523928,
+      "abstentionRate": 0
+    },
+    "late": {
+      "observations": 221,
+      "games": 12,
+      "totalWeight": 11.999999999999988,
+      "weightedAccuracy": 0.7970790502827113,
+      "weightedLogLoss": 0.49597038606518273,
+      "abstentionRate": 0
+    }
+  },
+  "byRemainingTurns": {
+    "far": {
+      "observations": 209,
+      "games": 12,
+      "totalWeight": 11.999999999999998,
+      "weightedAccuracy": 0.651651745585568,
+      "weightedLogLoss": 0.6587653711320317,
+      "abstentionRate": 0.27468605740664565
+    },
+    "medium": {
+      "observations": 36,
+      "games": 12,
+      "totalWeight": 12.000000000000004,
+      "weightedAccuracy": 0.8055555555555552,
+      "weightedLogLoss": 0.37792876589529895,
+      "abstentionRate": 0
+    },
+    "near": {
+      "observations": 36,
+      "games": 12,
+      "totalWeight": 12.000000000000004,
+      "weightedAccuracy": 0.8611111111111109,
+      "weightedLogLoss": 0.27428351290236536,
+      "abstentionRate": 0
+    },
+    "boundary": {
+      "observations": 12,
+      "games": 12,
+      "totalWeight": 12,
+      "weightedAccuracy": 1,
+      "weightedLogLoss": 0.1863206889594068,
+      "abstentionRate": 0
+    }
+  },
+  "reversals": {
+    "total": 12,
+    "towardOutcome": 9,
+    "awayFromOutcome": 3,
+    "other": 0
+  },
+  "rulesetHash": "a171620e533a34f0c77133afac1d239a02c7600978486d09a77a20ead95d0b5e",
+  "featureVersion": "fcm.terminal-value-features.v2",
+  "modelSchemaVersion": "fcm.phase-routed-value-model.v1",
+  "modelTrainingBoundary": "development-only-selected-on-disjoint-calibration",
+  "modelPath": "fixtures/value-calibration-v2/phase-selection.json",
+  "modelDigest": "sha256:725a66d1909b1d9df59274fb2a2b1be47c41b165170fcc908828981a8b2f6684",
+  "datasetPath": "fixtures/value-calibration-v2/calibration.json",
+  "datasetDigest": "sha256:5a4d0ff9eb8896cc86a7c8256c0653ef0947524102a69e14302784d19db6a0ef",
+  "horizonSemantics": "retrospective-realized-remaining-observed-turns-not-policy-input",
+  "promotionHoldoutOpened": false
+}

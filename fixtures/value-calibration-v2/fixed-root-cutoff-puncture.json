@@ -1,0 +1,501 @@
+{
+  "schemaVersion": "fcm.fixed-root-cutoff-puncture.v1",
+  "status": "diagnostic-not-promotion-evidence",
+  "seed": "fcm.fixed-root-cutoff.v1:0",
+  "rulesetHash": "a171620e533a34f0c77133afac1d239a02c7600978486d09a77a20ead95d0b5e",
+  "modelPath": "fixtures/value-calibration-v2/phase-selection.json",
+  "modelDigest": "sha256:725a66d1909b1d9df59274fb2a2b1be47c41b165170fcc908828981a8b2f6684",
+  "evaluatorVersion": "fcm.phase-routed-value-model.v1",
+  "continuationPolicy": "fcm.deterministic-strategy.v1",
+  "candidateGenerator": "fcm.phase-candidates.v1",
+  "rootSpecs": [
+    {
+      "id": "middle-hiring",
+      "minimumTurn": 4,
+      "subphase": 1
+    },
+    {
+      "id": "middle-marketing",
+      "minimumTurn": 4,
+      "subphase": 3
+    },
+    {
+      "id": "middle-production",
+      "minimumTurn": 4,
+      "subphase": 4
+    }
+  ],
+  "cutoffs": [
+    0,
+    2,
+    5,
+    11
+  ],
+  "candidateLimit": 3,
+  "promotionHoldoutOpened": false,
+  "aggregateReversals": {
+    "total": 2,
+    "towardOracle": 1,
+    "awayFromOracle": 1,
+    "lateral": 0
+  },
+  "roots": [
+    {
+      "id": "middle-hiring",
+      "minimumTurn": 4,
+      "actualTurn": 4,
+      "phase": 5,
+      "subphase": 1,
+      "seat": 1,
+      "rulesetHash": "a171620e533a34f0c77133afac1d239a02c7600978486d09a77a20ead95d0b5e",
+      "snapshotDigest": "sha256:ca407a909cf128204edd81232ef7f156c374ba864f252fdaec8e9eed59cab6f0",
+      "strategicProjectionDigest": "sha256:b2a955284a698084d584dbf4659a30613d694cb08abf60297de6b7f72c5a55b4",
+      "staticOrder": [
+        "p5s1-hire-00073b191c",
+        "p5s1-fallback-21d4f44933",
+        "p5s1-hire-22bab54a52"
+      ],
+      "candidates": [
+        {
+          "candidateId": "p5s1-hire-00073b191c",
+          "intent": "hire",
+          "leafScores": {
+            "0": -0.28061720895455183,
+            "2": -0.1832489315818377,
+            "5": -0.15896026909249428,
+            "11": -0.1631565416168242
+          },
+          "leafDetails": {
+            "0": {
+              "phase": "middle",
+              "abstained": false
+            },
+            "2": {
+              "phase": "middle",
+              "abstained": false
+            },
+            "5": {
+              "phase": "middle",
+              "abstained": false
+            },
+            "11": {
+              "phase": "middle",
+              "abstained": false
+            }
+          },
+          "terminalMargin": 235,
+          "terminalMoney": [
+            45,
+            280
+          ],
+          "terminalTransitions": 85
+        },
+        {
+          "candidateId": "p5s1-fallback-21d4f44933",
+          "intent": "fallback",
+          "leafScores": {
+            "0": -0.29567683110132276,
+            "2": -0.19830855372860862,
+            "5": -0.1740198912392652,
+            "11": -0.17821616376359523
+          },
+          "leafDetails": {
+            "0": {
+              "phase": "middle",
+              "abstained": false
+            },
+            "2": {
+              "phase": "middle",
+              "abstained": false
+            },
+            "5": {
+              "phase": "middle",
+              "abstained": false
+            },
+            "11": {
+              "phase": "middle",
+              "abstained": false
+            }
+          },
+          "terminalMargin": 220,
+          "terminalMoney": [
+            45,
+            265
+          ],
+          "terminalTransitions": 86
+        },
+        {
+          "candidateId": "p5s1-hire-22bab54a52",
+          "intent": "hire",
+          "leafScores": {
+            "0": -0.42168421241138837,
+            "2": -0.32431593503867423,
+            "5": -0.30002727254933076,
+            "11": -0.30422354507366073
+          },
+          "leafDetails": {
+            "0": {
+              "phase": "middle",
+              "abstained": false
+            },
+            "2": {
+              "phase": "middle",
+              "abstained": false
+            },
+            "5": {
+              "phase": "middle",
+              "abstained": false
+            },
+            "11": {
+              "phase": "middle",
+              "abstained": false
+            }
+          },
+          "terminalMargin": 255,
+          "terminalMoney": [
+            45,
+            300
+          ],
+          "terminalTransitions": 84
+        }
+      ],
+      "summary": {
+        "oracleCandidate": "p5s1-hire-22bab54a52",
+        "oracleTerminalMargin": 255,
+        "cutoffs": [
+          {
+            "cutoff": 0,
+            "selectedCandidate": "p5s1-hire-00073b191c",
+            "selectedLeafScore": -0.28061720895455183,
+            "selectedTerminalMargin": 235,
+            "matchesOracle": false,
+            "allAbstained": false
+          },
+          {
+            "cutoff": 2,
+            "selectedCandidate": "p5s1-hire-00073b191c",
+            "selectedLeafScore": -0.1832489315818377,
+            "selectedTerminalMargin": 235,
+            "matchesOracle": false,
+            "allAbstained": false
+          },
+          {
+            "cutoff": 5,
+            "selectedCandidate": "p5s1-hire-00073b191c",
+            "selectedLeafScore": -0.15896026909249428,
+            "selectedTerminalMargin": 235,
+            "matchesOracle": false,
+            "allAbstained": false
+          },
+          {
+            "cutoff": 11,
+            "selectedCandidate": "p5s1-hire-00073b191c",
+            "selectedLeafScore": -0.1631565416168242,
+            "selectedTerminalMargin": 235,
+            "matchesOracle": false,
+            "allAbstained": false
+          }
+        ],
+        "reversals": {
+          "total": 0,
+          "towardOracle": 0,
+          "awayFromOracle": 0,
+          "lateral": 0
+        }
+      }
+    },
+    {
+      "id": "middle-marketing",
+      "minimumTurn": 4,
+      "actualTurn": 4,
+      "phase": 5,
+      "subphase": 3,
+      "seat": 1,
+      "rulesetHash": "a171620e533a34f0c77133afac1d239a02c7600978486d09a77a20ead95d0b5e",
+      "snapshotDigest": "sha256:e61883584c8c7b7c41129053b7239ce3bb3ed8a35edffc0635a25d2ff17e0d8b",
+      "strategicProjectionDigest": "sha256:243d461f8b1f15d89184fd176265287b1430f9aaa8d6ce09f677e4d32ec7c929",
+      "staticOrder": [
+        "p5s3-create-demand-4e6d900e48",
+        "p5s3-fallback-21d4f44933",
+        "p5s3-create-demand-63920c162a"
+      ],
+      "candidates": [
+        {
+          "candidateId": "p5s3-create-demand-4e6d900e48",
+          "intent": "create-demand",
+          "leafScores": {
+            "0": -0.1832489315818377,
+            "2": -0.14390064694572338,
+            "5": -0.3077797140835294,
+            "11": -0.1631565416168242
+          },
+          "leafDetails": {
+            "0": {
+              "phase": "middle",
+              "abstained": false
+            },
+            "2": {
+              "phase": "middle",
+              "abstained": false
+            },
+            "5": {
+              "phase": "middle",
+              "abstained": false
+            },
+            "11": {
+              "phase": "middle",
+              "abstained": false
+            }
+          },
+          "terminalMargin": 235,
+          "terminalMoney": [
+            45,
+            280
+          ],
+          "terminalTransitions": 83
+        },
+        {
+          "candidateId": "p5s3-fallback-21d4f44933",
+          "intent": "fallback",
+          "leafScores": {
+            "0": -0.28061720895455183,
+            "2": -0.24126892431843744,
+            "5": -0.06613450546787636,
+            "11": -0.6767796173710445
+          },
+          "leafDetails": {
+            "0": {
+              "phase": "middle",
+              "abstained": false
+            },
+            "2": {
+              "phase": "middle",
+              "abstained": false
+            },
+            "5": {
+              "phase": "middle",
+              "abstained": false
+            },
+            "11": {
+              "phase": "middle",
+              "abstained": false
+            }
+          },
+          "terminalMargin": -230,
+          "terminalMoney": [
+            270,
+            40
+          ],
+          "terminalTransitions": 320
+        },
+        {
+          "candidateId": "p5s3-create-demand-63920c162a",
+          "intent": "create-demand",
+          "leafScores": {
+            "0": -0.1832489315818377,
+            "2": -0.14390064694572338,
+            "5": -0.3077797140835294,
+            "11": -0.3471279987196438
+          },
+          "leafDetails": {
+            "0": {
+              "phase": "middle",
+              "abstained": false
+            },
+            "2": {
+              "phase": "middle",
+              "abstained": false
+            },
+            "5": {
+              "phase": "middle",
+              "abstained": false
+            },
+            "11": {
+              "phase": "middle",
+              "abstained": false
+            }
+          },
+          "terminalMargin": 195,
+          "terminalMoney": [
+            95,
+            290
+          ],
+          "terminalTransitions": 110
+        }
+      ],
+      "summary": {
+        "oracleCandidate": "p5s3-create-demand-4e6d900e48",
+        "oracleTerminalMargin": 235,
+        "cutoffs": [
+          {
+            "cutoff": 0,
+            "selectedCandidate": "p5s3-create-demand-4e6d900e48",
+            "selectedLeafScore": -0.1832489315818377,
+            "selectedTerminalMargin": 235,
+            "matchesOracle": true,
+            "allAbstained": false
+          },
+          {
+            "cutoff": 2,
+            "selectedCandidate": "p5s3-create-demand-4e6d900e48",
+            "selectedLeafScore": -0.14390064694572338,
+            "selectedTerminalMargin": 235,
+            "matchesOracle": true,
+            "allAbstained": false
+          },
+          {
+            "cutoff": 5,
+            "selectedCandidate": "p5s3-fallback-21d4f44933",
+            "selectedLeafScore": -0.06613450546787636,
+            "selectedTerminalMargin": -230,
+            "matchesOracle": false,
+            "allAbstained": false
+          },
+          {
+            "cutoff": 11,
+            "selectedCandidate": "p5s3-create-demand-4e6d900e48",
+            "selectedLeafScore": -0.1631565416168242,
+            "selectedTerminalMargin": 235,
+            "matchesOracle": true,
+            "allAbstained": false
+          }
+        ],
+        "reversals": {
+          "total": 2,
+          "towardOracle": 1,
+          "awayFromOracle": 1,
+          "lateral": 0
+        }
+      }
+    },
+    {
+      "id": "middle-production",
+      "minimumTurn": 4,
+      "actualTurn": 4,
+      "phase": 5,
+      "subphase": 4,
+      "seat": 1,
+      "rulesetHash": "a171620e533a34f0c77133afac1d239a02c7600978486d09a77a20ead95d0b5e",
+      "snapshotDigest": "sha256:81e6c2fca8ab22c35fc085d0eebded759339cbc985fc994ed9eb92392dbe7597",
+      "strategicProjectionDigest": "sha256:4297c18709e9749a84fc2447a7f5331fed405e8f68696a3b2c270014aa256927",
+      "staticOrder": [
+        "p5s4-produce-4edc9db56b",
+        "p5s4-fallback-21d4f44933"
+      ],
+      "candidates": [
+        {
+          "candidateId": "p5s4-produce-4edc9db56b",
+          "intent": "produce",
+          "leafScores": {
+            "0": -0.14390064694572338,
+            "2": -0.15896026909249428,
+            "5": -0.3471279987196438,
+            "11": -0.1631565416168242
+          },
+          "leafDetails": {
+            "0": {
+              "phase": "middle",
+              "abstained": false
+            },
+            "2": {
+              "phase": "middle",
+              "abstained": false
+            },
+            "5": {
+              "phase": "middle",
+              "abstained": false
+            },
+            "11": {
+              "phase": "middle",
+              "abstained": false
+            }
+          },
+          "terminalMargin": 235,
+          "terminalMoney": [
+            45,
+            280
+          ],
+          "terminalTransitions": 82
+        },
+        {
+          "candidateId": "p5s4-fallback-21d4f44933",
+          "intent": "fallback",
+          "leafScores": {
+            "0": -0.1832489315818377,
+            "2": -0.19830855372860862,
+            "5": -0.3864762833557582,
+            "11": -0.36002002043646625
+          },
+          "leafDetails": {
+            "0": {
+              "phase": "middle",
+              "abstained": false
+            },
+            "2": {
+              "phase": "middle",
+              "abstained": false
+            },
+            "5": {
+              "phase": "middle",
+              "abstained": false
+            },
+            "11": {
+              "phase": "middle",
+              "abstained": false
+            }
+          },
+          "terminalMargin": 240,
+          "terminalMoney": [
+            80,
+            320
+          ],
+          "terminalTransitions": 95
+        }
+      ],
+      "summary": {
+        "oracleCandidate": "p5s4-fallback-21d4f44933",
+        "oracleTerminalMargin": 240,
+        "cutoffs": [
+          {
+            "cutoff": 0,
+            "selectedCandidate": "p5s4-produce-4edc9db56b",
+            "selectedLeafScore": -0.14390064694572338,
+            "selectedTerminalMargin": 235,
+            "matchesOracle": false,
+            "allAbstained": false
+          },
+          {
+            "cutoff": 2,
+            "selectedCandidate": "p5s4-produce-4edc9db56b",
+            "selectedLeafScore": -0.15896026909249428,
+            "selectedTerminalMargin": 235,
+            "matchesOracle": false,
+            "allAbstained": false
+          },
+          {
+            "cutoff": 5,
+            "selectedCandidate": "p5s4-produce-4edc9db56b",
+            "selectedLeafScore": -0.3471279987196438,
+            "selectedTerminalMargin": 235,
+            "matchesOracle": false,
+            "allAbstained": false
+          },
+          {
+            "cutoff": 11,
+            "selectedCandidate": "p5s4-produce-4edc9db56b",
+            "selectedLeafScore": -0.1631565416168242,
+            "selectedTerminalMargin": 235,
+            "matchesOracle": false,
+            "allAbstained": false
+          }
+        ],
+        "reversals": {
+          "total": 0,
+          "towardOracle": 0,
+          "awayFromOracle": 0,
+          "lateral": 0
+        }
+      }
+    }
+  ]
+}

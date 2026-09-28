@@ -131,6 +131,13 @@ frozen, diverse policy league.
   accuracy/log loss is 46.9%/0.692 early, 63.6%/0.626 middle and 78.6%/0.512 late. The predeclared
   gate therefore rejects the early model and exports a neutral abstention there, while middle/late
   remain experimental. The promotion holdout has not been opened and no policy is promoted.
+- A fixed-root cutoff puncture prevents those promising aggregate metrics from being overread. At
+  three reproducible middle-game hiring/marketing/production roots, three legal candidates were
+  scored after 0/2/5/11 official transitions and every branch was completed to Game Over. V2 chose
+  the terminal-best action only 3/12 times; one deeper marketing cutoff selected a -$230 branch over
+  the +$235 oracle before reversing back later. Therefore v2 is not connected to the playing policy.
+  The next estimator must target action-conditioned value deltas/regret and clear this fixed-root
+  gate before the sealed promotion league can be opened.
 
 ## 5. Target architecture
 

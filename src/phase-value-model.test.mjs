@@ -25,9 +25,11 @@ test('phase-routed model selects on disjoint calibration and refits all three ph
   assert.deepEqual(Object.keys(result.selectedLambdas), ['early', 'middle', 'late'])
   assert.equal(result.calibrationAudit.gameAccuracy, 1)
   assert.equal(result.frozenModel.schemaVersion, 'fcm.phase-routed-value-model.v1')
+  assert.equal(result.calibrationModel.schemaVersion, 'fcm.phase-routed-value-model.v1')
   for (const phase of ['early', 'middle', 'late']) {
     assert.equal(result.phaseStatus[phase].calibrated, true)
     assert.equal(result.selection[phase].developmentGames, 2)
+    assert.equal(result.calibrationModel.phaseModels[phase].trainingGames, 2)
     assert.equal(result.frozenModel.phaseModels[phase].trainingGames, 4)
   }
   assert.ok(scorePhaseRoutedDifference(result.frozenModel, { turn: 2, difference: [2] }) > 0)

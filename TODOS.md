@@ -278,6 +278,19 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
   - Done when: the frozen evaluator is calibrated on held-out outcomes, justified root-choice
     reversals correlate with terminal improvement, and additional compute does not systematically
     reduce tactical-suite or league performance.
+  - Current: the development-only phase model has been audited on the disjoint 12-game calibration
+    trajectories without refit leakage. Equal-game accuracy/log loss is early 0.500/0.693 (100%
+    abstention), middle 0.611/0.678 and late 0.797/0.496. Far/medium/near/boundary realized-horizon
+    accuracy is 0.652/0.806/0.861/1.000; 9/12 sign reversals move toward the terminal winner and
+    3/12 move away. This is retrospective temporal calibration only. Fixed-root multi-cutoff
+    official-clone diagnostics remain required before P3.3c can close. The first fixed-root puncture
+    now holds three middle-game hiring/marketing/production roots and three legal candidates constant
+    while varying 0/2/5/11 official transitions, then completes all nine branches to Game Over. Only
+    3/12 recommendations match the terminal oracle. Hiring and production miss at every cutoff;
+    marketing temporarily reverses at cutoff 5 from a +$235 oracle branch to -$230, then reverses
+    back at cutoff 11. Immediate v2 planner integration is rejected. Next train/evaluate
+    action-conditioned value deltas or regret on broader frozen roots rather than relying on
+    aggregate state-winner classification.
 - [ ] **P3.3d Add versioned opponent-belief sampling.**
   - Why: future dinner outcomes depend on unrevealed simultaneous choices and opponent reactions.
   - Depends on: P1.1 observation provenance, P3.2 and validated public-replay/self-play traces. A

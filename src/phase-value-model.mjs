@@ -165,13 +165,14 @@ export function fitPhaseRoutedValueModel(developmentRows, calibrationRows, {
     }
   }
 
-  const calibrationModel = {
+  const rawCalibrationModel = {
     schemaVersion: 'fcm.phase-routed-value-model.v1',
     featureNames: [...featureNames],
     selectedLambdas,
     phaseModels: calibrationPhaseModels,
     phaseStatus: Object.fromEntries(PHASES.map((phase) => [phase, { calibrated: true }])),
   }
+  const calibrationModel = { ...rawCalibrationModel, phaseStatus }
   const frozenModel = {
     schemaVersion: 'fcm.phase-routed-value-model.v1',
     featureNames: [...featureNames],
@@ -184,8 +185,9 @@ export function fitPhaseRoutedValueModel(developmentRows, calibrationRows, {
     selectedLambdas,
     selection,
     phaseStatus,
-    calibrationAudit: auditRouted(calibrationModel, calibrationRows),
-    gatedCalibrationAudit: auditRouted({ ...calibrationModel, phaseStatus }, calibrationRows),
+    calibrationAudit: auditRouted(rawCalibrationModel, calibrationRows),
+    gatedCalibrationAudit: auditRouted(calibrationModel, calibrationRows),
+    calibrationModel,
     frozenModel,
     promotionStatus: 'not-evaluated',
   }
