@@ -27,10 +27,20 @@ function countEvents(history, seat) {
   return Object.fromEntries(Object.entries(counts).sort((left, right) => Number(left[0]) - Number(right[0])))
 }
 
+function sequenceEvents(history, seat) {
+  return history.filter((event) => event[1] === seat).map((event) => event[0])
+}
+
 const root = path.resolve(new URL('..', import.meta.url).pathname)
 const serverRoot = path.resolve(argument('--server', '../obg-server-fcm-agent-rebased'))
+const protocolPath = path.resolve(argument(
+  '--protocol', 'fixtures/opponent-calibration-v1/protocol.json',
+))
+const outputPath = path.resolve(argument(
+  '--output', 'fixtures/opponent-calibration-v1/dataset.json',
+))
 const protocol = JSON.parse(await readFile(
-  path.join(root, 'fixtures/opponent-calibration-v1/protocol.json'), 'utf8',
+  protocolPath, 'utf8',
 ))
 const population = validateOpponentPopulation(JSON.parse(await readFile(
   path.join(root, 'fixtures/opponent-population-v1/manifest.json'), 'utf8',
@@ -101,6 +111,9 @@ for (const [split, seeds] of [
         seat,
         modelId: model.modelId,
         publicEventCounts,
+        ...(protocol.featureVersion === 'public-event-unigram-bigram-v2'
+          ? { publicEventSequence: sequenceEvents(terminal.state.history, seat) }
+          : {}),
         totalEvents,
       })
     }
@@ -111,7 +124,9 @@ for (const [split, seeds] of [
 }
 
 const dataset = {
-  schemaVersion: 'fcm.opponent-calibration-dataset.v1',
+  schemaVersion: protocol.featureVersion === 'public-event-unigram-bigram-v2'
+    ? 'fcm.opponent-calibration-dataset.v2'
+    : 'fcm.opponent-calibration-dataset.v1',
   protocolDigest: digest(protocol),
   populationDigest: digest(population),
   rulesetHash,
@@ -119,6 +134,5 @@ const dataset = {
   promotionHoldoutOpened: false,
   splits,
 }
-const output = path.join(root, 'fixtures/opponent-calibration-v1/dataset.json')
-await writeFile(output, `${JSON.stringify(dataset, null, 2)}\n`)
-process.stdout.write(`${JSON.stringify({ output, games: 12, samples: 48, rulesetHash }, null, 2)}\n`)
+await writeFile(outputPath, `${JSON.stringify(dataset, null, 2)}\n`)
+process.stdout.write(`${JSON.stringify({ output: outputPath, games: 12, samples: 48, rulesetHash }, null, 2)}\n`)

@@ -342,7 +342,11 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     12-game/48-seat public-event-histogram puncture failed its frozen identification gate at 17/24
     (70.8%) Top-1 despite flagging 82/120 human prefixes as OOD; it also over-mapped humans to the
     official AI. Keep it disconnected. Next change only the public feature representation to
-    bounded event transitions plus phase/action context on the same splits and gates.
+    bounded event transitions plus phase/action context on the same splits and gates. The temporal
+    v2 puncture passed those representation gates: 22/24 (91.7%) Top-1, 0.296 log loss, 0.159 Brier
+    and 102/120 (85%) human OOD. However mean confidence was 0.981 with two errors, so probabilities
+    are overconfident. Next fit temperature/abstention on the existing calibration split and evaluate
+    once on newly frozen validation seeds; do not connect v2 beliefs to rollout/search before that.
 - [ ] **P3.3e Enforce information-set policy consistency.**
   - Why: ordinary determinization can create strategy fusion—the planner chooses mutually
     incompatible actions in different sampled hidden worlds and behaves as if it knew which world

@@ -8,6 +8,7 @@ import { gunzipSync } from 'node:zlib'
 
 import {
   calibratePublicActionModel,
+  encodePublicEventFeatures,
   fitPublicActionModel,
   predictPublicActionModel,
   validateOpponentCalibrationDataset,
@@ -15,6 +16,11 @@ import {
 import { validatePublicReplayCapture } from '../src/public-replay.mjs'
 
 const root = path.resolve(new URL('..', import.meta.url).pathname)
+
+function argument(name, fallback = null) {
+  const index = process.argv.indexOf(name)
+  return index >= 0 ? process.argv[index + 1] : fallback
+}
 
 function digest(value) {
   return `sha256:${createHash('sha256').update(JSON.stringify(value)).digest('hex')}`
@@ -26,21 +32,35 @@ function expandCounts(counts) {
     .flatMap(([code, count]) => Array.from({ length: count }, () => Number(code)))
 }
 
-function trainingSamples(rows) {
+function trainingSamples(rows, featureVersion) {
   return rows.map((row) => ({
     sampleId: row.sampleId,
     modelId: row.modelId,
-    publicEventCodes: expandCounts(row.publicEventCounts),
+    publicEventCodes: featureVersion === 'public-event-unigram-bigram-v2'
+      ? encodePublicEventFeatures(row.publicEventSequence, { includeTransitions: true })
+      : expandCounts(row.publicEventCounts),
   }))
 }
 
+const protocolPath = path.resolve(argument(
+  '--protocol', 'fixtures/opponent-calibration-v1/protocol.json',
+))
+const datasetPath = path.resolve(argument(
+  '--dataset', 'fixtures/opponent-calibration-v1/dataset.json',
+))
+const outputPath = path.resolve(argument(
+  '--output', 'fixtures/opponent-calibration-v1/report.json',
+))
 const protocol = JSON.parse(await readFile(
-  path.join(root, 'fixtures/opponent-calibration-v1/protocol.json'), 'utf8',
+  protocolPath, 'utf8',
 ))
 const dataset = JSON.parse(await readFile(
-  path.join(root, 'fixtures/opponent-calibration-v1/dataset.json'), 'utf8',
+  datasetPath, 'utf8',
 ))
-assert.equal(dataset.schemaVersion, 'fcm.opponent-calibration-dataset.v1')
+const temporal = protocol.featureVersion === 'public-event-unigram-bigram-v2'
+assert.equal(dataset.schemaVersion, temporal
+  ? 'fcm.opponent-calibration-dataset.v2'
+  : 'fcm.opponent-calibration-dataset.v1')
 assert.equal(dataset.protocolDigest, digest(protocol), 'dataset protocol digest differs')
 assert.equal(dataset.promotionHoldoutOpened, false, 'promotion holdout must remain sealed')
 validateOpponentCalibrationDataset(dataset, {
@@ -49,19 +69,23 @@ validateOpponentCalibrationDataset(dataset, {
   ]),
   expectedSamplesPerModel: protocol.developmentSeeds.length,
   expectedCommandsPerGame: protocol.publicCommandHorizon,
+  expectedFeatureVersion: protocol.featureVersion,
 })
 
-const model = fitPublicActionModel(trainingSamples(dataset.splits.development.samples), {
+const model = fitPublicActionModel(trainingSamples(
+  dataset.splits.development.samples, protocol.featureVersion,
+), {
   alpha: protocol.laplaceAlpha,
+  featureVersion: protocol.featureVersion,
 })
 const calibration = calibratePublicActionModel(
   model,
-  trainingSamples(dataset.splits.calibration.samples),
+  trainingSamples(dataset.splits.calibration.samples, protocol.featureVersion),
   { knownQuantile: protocol.oodKnownQuantile },
 )
 const calibratedModel = {
   ...model,
-  calibrationId: 'opponent-public-events-v1',
+  calibrationId: temporal ? 'opponent-public-transitions-v2' : 'opponent-public-events-v1',
   oodMeanNllThreshold: calibration.oodMeanNllThreshold,
 }
 
@@ -82,10 +106,10 @@ for (const record of humanRecords) {
       excludedHumanPrefixes.push({ gameId: record.gameId, seat: participant.seat, events: events.length })
       continue
     }
-    const prediction = predictPublicActionModel(
-      calibratedModel,
-      events.slice(0, protocol.humanPrefixEventsPerSeat),
-    )
+    const prefix = events.slice(0, protocol.humanPrefixEventsPerSeat)
+    const prediction = predictPublicActionModel(calibratedModel, temporal
+      ? encodePublicEventFeatures(prefix, { includeTransitions: true })
+      : prefix)
     humanPredictions.push({
       sampleId: `human-${record.gameId}-seat-${participant.seat}`,
       ...prediction,
@@ -115,9 +139,13 @@ const gates = {
   humanOodPassed: human.oodRate >= protocol.minimumHumanOodRate,
 }
 const report = {
-  schemaVersion: 'fcm.opponent-calibration-report.v1',
-  experimentId: 9,
-  hypothesis: 'public-event-prefixes-identify-frozen-policies-and-reject-unmodelled-human-play',
+  schemaVersion: temporal
+    ? 'fcm.opponent-calibration-report.v2'
+    : 'fcm.opponent-calibration-report.v1',
+  experimentId: temporal ? 10 : 9,
+  hypothesis: temporal
+    ? 'public-event-transitions-improve-policy-identification-without-weakening-human-ood'
+    : 'public-event-prefixes-identify-frozen-policies-and-reject-unmodelled-human-play',
   protocolDigest: digest(protocol),
   datasetDigest: digest(dataset),
   rulesetHash: dataset.rulesetHash,
@@ -128,10 +156,9 @@ const report = {
   passed: Object.values(gates).every(Boolean),
   promotionHoldoutOpened: false,
 }
-const output = path.join(root, 'fixtures/opponent-calibration-v1/report.json')
-await writeFile(output, `${JSON.stringify(report, null, 2)}\n`)
+await writeFile(outputPath, `${JSON.stringify(report, null, 2)}\n`)
 process.stdout.write(`${JSON.stringify({
-  output,
+  output: outputPath,
   knownTop1Accuracy: calibration.top1Accuracy,
   logLoss: calibration.logLoss,
   brierScore: calibration.brierScore,

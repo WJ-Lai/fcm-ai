@@ -4,6 +4,7 @@ import test from 'node:test'
 
 import {
   calibratePublicActionModel,
+  encodePublicEventFeatures,
   fitPublicActionModel,
   predictPublicActionModel,
   validateOpponentCalibrationDataset,
@@ -14,6 +15,12 @@ const frozenDataset = JSON.parse(await readFile(
 ))
 const frozenReport = JSON.parse(await readFile(
   new URL('../fixtures/opponent-calibration-v1/report.json', import.meta.url),
+))
+const temporalDataset = JSON.parse(await readFile(
+  new URL('../fixtures/opponent-calibration-v2/dataset.json', import.meta.url),
+))
+const temporalReport = JSON.parse(await readFile(
+  new URL('../fixtures/opponent-calibration-v2/report.json', import.meta.url),
 ))
 
 const development = [
@@ -52,6 +59,18 @@ test('unknown public events are OOD instead of silently entering the vocabulary'
   const prediction = predictPublicActionModel(model, [99, 99])
   assert.equal(prediction.unknownEventFraction, 1)
   assert.equal(prediction.outOfDistribution, true)
+})
+
+test('v2 public temporal encoding separates equal histograms with different order', () => {
+  const left = encodePublicEventFeatures([1, 2, 1, 2], { includeTransitions: true })
+  const right = encodePublicEventFeatures([1, 1, 2, 2], { includeTransitions: true })
+  assert.notDeepEqual(left.sort((a, b) => a - b), right.sort((a, b) => a - b))
+  const model = fitPublicActionModel([
+    { sampleId: 'left-1', modelId: 'left', publicEventCodes: left },
+    { sampleId: 'right-1', modelId: 'right', publicEventCodes: right },
+  ], { alpha: 1, featureVersion: 'public-event-unigram-bigram-v2' })
+  assert.equal(predictPublicActionModel(model, left).predictedModelId, 'left')
+  assert.equal(model.featureVersion, 'public-event-unigram-bigram-v2')
 })
 
 test('training fails closed on split duplication, unknown labels, and hidden-shaped fields', () => {
@@ -96,4 +115,31 @@ test('frozen calibration failure remains explicit and promotion holdout stays se
   assert.equal(frozenReport.gates.knownTop1Passed, false)
   assert.equal(frozenReport.passed, false)
   assert.equal(frozenReport.promotionHoldoutOpened, false)
+})
+
+test('temporal dataset adds only public sequences over the identical frozen prefixes', () => {
+  const modelIds = new Set([
+    'deterministic-balanced-v1', 'safe-first-v1', 'seeded-random-v1', 'official-built-in-v1',
+  ])
+  validateOpponentCalibrationDataset(temporalDataset, {
+    expectedModelIds: modelIds,
+    expectedSamplesPerModel: 6,
+    expectedCommandsPerGame: 160,
+    expectedFeatureVersion: 'public-event-unigram-bigram-v2',
+  })
+  for (const split of ['development', 'calibration']) {
+    for (const [index, sample] of temporalDataset.splits[split].samples.entries()) {
+      assert.deepEqual(sample.publicEventCounts,
+        frozenDataset.splits[split].samples[index].publicEventCounts)
+    }
+  }
+})
+
+test('temporal representation passes selection gates but remains overconfident', () => {
+  assert.equal(temporalReport.calibration.top1Accuracy, 22 / 24)
+  assert.equal(temporalReport.human.oodRate, 102 / 120)
+  assert.equal(temporalReport.passed, true)
+  assert.equal(temporalReport.calibration.confidenceBins[4].count, 24)
+  assert.ok(temporalReport.calibration.confidenceBins[4].meanConfidence > 0.98)
+  assert.equal(temporalReport.promotionHoldoutOpened, false)
 })

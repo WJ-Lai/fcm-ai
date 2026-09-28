@@ -1,0 +1,791 @@
+{
+  "schemaVersion": "fcm.opponent-calibration-report.v2",
+  "experimentId": 10,
+  "hypothesis": "public-event-transitions-improve-policy-identification-without-weakening-human-ood",
+  "protocolDigest": "sha256:b2b89b7107150c2cdb4b5da86a9a504aa20bfae354b17c0afeda15e15d454313",
+  "datasetDigest": "sha256:5add8844e84bca2746612316c41bed8c3f7f5231ea706e9b8cb91dad03113680",
+  "rulesetHash": "a171620e533a34f0c77133afac1d239a02c7600978486d09a77a20ead95d0b5e",
+  "model": {
+    "schemaVersion": "fcm.opponent-public-action-model.v1",
+    "featureVersion": "public-event-unigram-bigram-v2",
+    "alpha": 1,
+    "modelIds": [
+      "deterministic-balanced-v1",
+      "official-built-in-v1",
+      "safe-first-v1",
+      "seeded-random-v1"
+    ],
+    "vocabulary": [
+      1,
+      2,
+      3,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      21,
+      23,
+      24,
+      514,
+      773,
+      774,
+      775,
+      1029,
+      1030,
+      1031,
+      1045,
+      1543,
+      1557,
+      1799,
+      1813,
+      2051,
+      2056,
+      2057,
+      2058,
+      2069,
+      2071,
+      2307,
+      2313,
+      2314,
+      2327,
+      2570,
+      2581,
+      2583,
+      2837,
+      2839,
+      5635,
+      5637,
+      5638,
+      5639,
+      5640,
+      5642,
+      5653,
+      5655,
+      6147,
+      6165,
+      6168,
+      6403,
+      6405
+    ],
+    "sampleCounts": {
+      "deterministic-balanced-v1": 6,
+      "official-built-in-v1": 6,
+      "safe-first-v1": 6,
+      "seeded-random-v1": 6
+    },
+    "eventCounts": {
+      "deterministic-balanced-v1": {
+        "1": 6,
+        "2": 6,
+        "3": 41,
+        "5": 39,
+        "6": 4,
+        "7": 44,
+        "8": 29,
+        "9": 21,
+        "10": 28,
+        "21": 22,
+        "23": 30,
+        "24": 16,
+        "514": 6,
+        "773": 4,
+        "774": 2,
+        "775": 0,
+        "1029": 34,
+        "1030": 2,
+        "1031": 4,
+        "1045": 0,
+        "1543": 36,
+        "1557": 0,
+        "1799": 4,
+        "1813": 0,
+        "2051": 6,
+        "2056": 23,
+        "2057": 8,
+        "2058": 0,
+        "2069": 6,
+        "2071": 1,
+        "2307": 6,
+        "2313": 13,
+        "2314": 10,
+        "2327": 0,
+        "2570": 16,
+        "2581": 2,
+        "2583": 3,
+        "2837": 10,
+        "2839": 16,
+        "5635": 4,
+        "5637": 0,
+        "5638": 0,
+        "5639": 0,
+        "5640": 6,
+        "5642": 2,
+        "5653": 0,
+        "5655": 10,
+        "6147": 10,
+        "6165": 4,
+        "6168": 16,
+        "6403": 15,
+        "6405": 1
+      },
+      "official-built-in-v1": {
+        "1": 6,
+        "2": 6,
+        "3": 42,
+        "5": 30,
+        "6": 16,
+        "7": 42,
+        "8": 26,
+        "9": 17,
+        "10": 23,
+        "21": 33,
+        "23": 30,
+        "24": 0,
+        "514": 6,
+        "773": 5,
+        "774": 1,
+        "775": 0,
+        "1029": 17,
+        "1030": 10,
+        "1031": 0,
+        "1045": 13,
+        "1543": 24,
+        "1557": 2,
+        "1799": 12,
+        "1813": 4,
+        "2051": 12,
+        "2056": 26,
+        "2057": 4,
+        "2058": 0,
+        "2069": 0,
+        "2071": 0,
+        "2307": 0,
+        "2313": 13,
+        "2314": 7,
+        "2327": 6,
+        "2570": 5,
+        "2581": 11,
+        "2583": 1,
+        "2837": 1,
+        "2839": 22,
+        "5635": 0,
+        "5637": 8,
+        "5638": 5,
+        "5639": 6,
+        "5640": 0,
+        "5642": 11,
+        "5653": 2,
+        "5655": 1,
+        "6147": 30,
+        "6165": 0,
+        "6168": 0,
+        "6403": 0,
+        "6405": 0
+      },
+      "safe-first-v1": {
+        "1": 6,
+        "2": 6,
+        "3": 41,
+        "5": 45,
+        "6": 3,
+        "7": 45,
+        "8": 0,
+        "9": 17,
+        "10": 28,
+        "21": 15,
+        "23": 30,
+        "24": 2,
+        "514": 6,
+        "773": 4,
+        "774": 2,
+        "775": 0,
+        "1029": 38,
+        "1030": 1,
+        "1031": 0,
+        "1045": 2,
+        "1543": 42,
+        "1557": 0,
+        "1799": 3,
+        "1813": 0,
+        "2051": 12,
+        "2056": 0,
+        "2057": 17,
+        "2058": 11,
+        "2069": 0,
+        "2071": 2,
+        "2307": 0,
+        "2313": 0,
+        "2314": 0,
+        "2327": 0,
+        "2570": 15,
+        "2581": 2,
+        "2583": 0,
+        "2837": 8,
+        "2839": 20,
+        "5635": 0,
+        "5637": 3,
+        "5638": 0,
+        "5639": 0,
+        "5640": 0,
+        "5642": 2,
+        "5653": 2,
+        "5655": 8,
+        "6147": 27,
+        "6165": 1,
+        "6168": 2,
+        "6403": 2,
+        "6405": 0
+      },
+      "seeded-random-v1": {
+        "1": 6,
+        "2": 6,
+        "3": 40,
+        "5": 27,
+        "6": 1,
+        "7": 42,
+        "8": 0,
+        "9": 14,
+        "10": 23,
+        "21": 17,
+        "23": 32,
+        "24": 4,
+        "514": 6,
+        "773": 5,
+        "774": 0,
+        "775": 1,
+        "1029": 20,
+        "1030": 1,
+        "1031": 13,
+        "1045": 0,
+        "1543": 27,
+        "1557": 0,
+        "1799": 1,
+        "1813": 0,
+        "2051": 6,
+        "2056": 0,
+        "2057": 14,
+        "2058": 16,
+        "2069": 0,
+        "2071": 6,
+        "2307": 0,
+        "2313": 0,
+        "2314": 0,
+        "2327": 0,
+        "2570": 7,
+        "2581": 5,
+        "2583": 2,
+        "2837": 5,
+        "2839": 18,
+        "5635": 4,
+        "5637": 2,
+        "5638": 0,
+        "5639": 0,
+        "5640": 0,
+        "5642": 0,
+        "5653": 5,
+        "5655": 6,
+        "6147": 26,
+        "6165": 2,
+        "6168": 4,
+        "6403": 4,
+        "6405": 0
+      }
+    },
+    "priors": {
+      "deterministic-balanced-v1": 0.25,
+      "official-built-in-v1": 0.25,
+      "safe-first-v1": 0.25,
+      "seeded-random-v1": 0.25
+    },
+    "developmentSampleIds": [
+      "development-00-seat-0",
+      "development-00-seat-1",
+      "development-00-seat-2",
+      "development-00-seat-3",
+      "development-01-seat-0",
+      "development-01-seat-1",
+      "development-01-seat-2",
+      "development-01-seat-3",
+      "development-02-seat-0",
+      "development-02-seat-1",
+      "development-02-seat-2",
+      "development-02-seat-3",
+      "development-03-seat-0",
+      "development-03-seat-1",
+      "development-03-seat-2",
+      "development-03-seat-3",
+      "development-04-seat-0",
+      "development-04-seat-1",
+      "development-04-seat-2",
+      "development-04-seat-3",
+      "development-05-seat-0",
+      "development-05-seat-1",
+      "development-05-seat-2",
+      "development-05-seat-3"
+    ],
+    "calibrationId": "opponent-public-transitions-v2",
+    "oodMeanNllThreshold": 3.477849463389933
+  },
+  "calibration": {
+    "samples": 24,
+    "top1Accuracy": 0.9166666666666666,
+    "logLoss": 0.29605612950500826,
+    "brierScore": 0.15917776080268822,
+    "oodMeanNllThreshold": 3.477849463389933,
+    "confusion": {
+      "deterministic-balanced-v1": {
+        "deterministic-balanced-v1": 6,
+        "official-built-in-v1": 0,
+        "safe-first-v1": 0,
+        "seeded-random-v1": 0
+      },
+      "official-built-in-v1": {
+        "deterministic-balanced-v1": 0,
+        "official-built-in-v1": 6,
+        "safe-first-v1": 0,
+        "seeded-random-v1": 0
+      },
+      "safe-first-v1": {
+        "deterministic-balanced-v1": 0,
+        "official-built-in-v1": 0,
+        "safe-first-v1": 6,
+        "seeded-random-v1": 0
+      },
+      "seeded-random-v1": {
+        "deterministic-balanced-v1": 0,
+        "official-built-in-v1": 0,
+        "safe-first-v1": 2,
+        "seeded-random-v1": 4
+      }
+    },
+    "confidenceBins": [
+      {
+        "lower": 0,
+        "upper": 0.2,
+        "count": 0,
+        "accuracy": null,
+        "meanConfidence": null
+      },
+      {
+        "lower": 0.2,
+        "upper": 0.4,
+        "count": 0,
+        "accuracy": null,
+        "meanConfidence": null
+      },
+      {
+        "lower": 0.4,
+        "upper": 0.6,
+        "count": 0,
+        "accuracy": null,
+        "meanConfidence": null
+      },
+      {
+        "lower": 0.6,
+        "upper": 0.8,
+        "count": 0,
+        "accuracy": null,
+        "meanConfidence": null
+      },
+      {
+        "lower": 0.8,
+        "upper": 1,
+        "count": 24,
+        "accuracy": 0.9166666666666666,
+        "meanConfidence": 0.981325268427509
+      }
+    ],
+    "predictions": [
+      {
+        "sampleId": "calibration-00-seat-0",
+        "actualModelId": "deterministic-balanced-v1",
+        "predictedModelId": "deterministic-balanced-v1",
+        "probabilities": {
+          "deterministic-balanced-v1": 0.9960001682151066,
+          "official-built-in-v1": 0.0039998317847379046,
+          "safe-first-v1": 1.209757889025631e-13,
+          "seeded-random-v1": 3.441785475679483e-14
+        },
+        "confidence": 0.9960001682151066,
+        "meanNegativeLogLikelihood": 3.492509854535352,
+        "unknownEventFraction": 0,
+        "outOfDistribution": false
+      },
+      {
+        "sampleId": "calibration-00-seat-1",
+        "actualModelId": "safe-first-v1",
+        "predictedModelId": "safe-first-v1",
+        "probabilities": {
+          "deterministic-balanced-v1": 2.1128951725321577e-15,
+          "official-built-in-v1": 2.372542778049272e-11,
+          "safe-first-v1": 0.9988423085055059,
+          "seeded-random-v1": 0.0011576914707666505
+        },
+        "confidence": 0.9988423085055059,
+        "meanNegativeLogLikelihood": 3.0614320960905426,
+        "unknownEventFraction": 0,
+        "outOfDistribution": false
+      },
+      {
+        "sampleId": "calibration-00-seat-2",
+        "actualModelId": "seeded-random-v1",
+        "predictedModelId": "seeded-random-v1",
+        "probabilities": {
+          "deterministic-balanced-v1": 2.1033362070986603e-7,
+          "official-built-in-v1": 7.920924191952614e-21,
+          "safe-first-v1": 0.08871330753043256,
+          "seeded-random-v1": 0.9112864821359468
+        },
+        "confidence": 0.9112864821359468,
+        "meanNegativeLogLikelihood": 3.3064288052437343,
+        "unknownEventFraction": 0,
+        "outOfDistribution": false
+      },
+      {
+        "sampleId": "calibration-00-seat-3",
+        "actualModelId": "official-built-in-v1",
+        "predictedModelId": "official-built-in-v1",
+        "probabilities": {
+          "deterministic-balanced-v1": 1.8089003417226675e-17,
+          "official-built-in-v1": 1,
+          "safe-first-v1": 2.421058639467091e-21,
+          "seeded-random-v1": 2.369377540369868e-23
+        },
+        "confidence": 1,
+        "meanNegativeLogLikelihood": 3.3852764406029596,
+        "unknownEventFraction": 0,
+        "outOfDistribution": false
+      },
+      {
+        "sampleId": "calibration-01-seat-0",
+        "actualModelId": "safe-first-v1",
+        "predictedModelId": "safe-first-v1",
+        "probabilities": {
+          "deterministic-balanced-v1": 1.541468522119795e-14,
+          "official-built-in-v1": 1.9538435331196529e-7,
+          "safe-first-v1": 0.9997619914993607,
+          "seeded-random-v1": 0.00023781311627049808
+        },
+        "confidence": 0.9997619914993607,
+        "meanNegativeLogLikelihood": 3.231766455431081,
+        "unknownEventFraction": 0,
+        "outOfDistribution": false
+      },
+      {
+        "sampleId": "calibration-01-seat-1",
+        "actualModelId": "seeded-random-v1",
+        "predictedModelId": "seeded-random-v1",
+        "probabilities": {
+          "deterministic-balanced-v1": 3.41159364826623e-7,
+          "official-built-in-v1": 4.7368959063233295e-25,
+          "safe-first-v1": 0.00000920165674562634,
+          "seeded-random-v1": 0.9999904571838895
+        },
+        "confidence": 0.9999904571838895,
+        "meanNegativeLogLikelihood": 3.3593238835807213,
+        "unknownEventFraction": 0,
+        "outOfDistribution": false
+      },
+      {
+        "sampleId": "calibration-01-seat-2",
+        "actualModelId": "official-built-in-v1",
+        "predictedModelId": "official-built-in-v1",
+        "probabilities": {
+          "deterministic-balanced-v1": 4.9300161491610823e-17,
+          "official-built-in-v1": 1,
+          "safe-first-v1": 2.2918249184686546e-20,
+          "seeded-random-v1": 2.479392322580136e-22
+        },
+        "confidence": 1,
+        "meanNegativeLogLikelihood": 3.4609932413446955,
+        "unknownEventFraction": 0.03296703296703297,
+        "outOfDistribution": true
+      },
+      {
+        "sampleId": "calibration-01-seat-3",
+        "actualModelId": "deterministic-balanced-v1",
+        "predictedModelId": "deterministic-balanced-v1",
+        "probabilities": {
+          "deterministic-balanced-v1": 0.9999921314353416,
+          "official-built-in-v1": 0.000007868468292596007,
+          "safe-first-v1": 9.631873489910836e-11,
+          "seeded-random-v1": 4.717466319343802e-14
+        },
+        "confidence": 0.9999921314353416,
+        "meanNegativeLogLikelihood": 3.30026858744506,
+        "unknownEventFraction": 0,
+        "outOfDistribution": false
+      },
+      {
+        "sampleId": "calibration-02-seat-0",
+        "actualModelId": "seeded-random-v1",
+        "predictedModelId": "seeded-random-v1",
+        "probabilities": {
+          "deterministic-balanced-v1": 2.8333993055641285e-11,
+          "official-built-in-v1": 4.251563929190271e-20,
+          "safe-first-v1": 0.000004087055863477661,
+          "seeded-random-v1": 0.9999959129158026
+        },
+        "confidence": 0.9999959129158026,
+        "meanNegativeLogLikelihood": 3.3297054421518237,
+        "unknownEventFraction": 0,
+        "outOfDistribution": false
+      },
+      {
+        "sampleId": "calibration-02-seat-1",
+        "actualModelId": "official-built-in-v1",
+        "predictedModelId": "official-built-in-v1",
+        "probabilities": {
+          "deterministic-balanced-v1": 1.806971388136797e-18,
+          "official-built-in-v1": 1,
+          "safe-first-v1": 5.499303097818039e-23,
+          "seeded-random-v1": 5.991400406792021e-25
+        },
+        "confidence": 1,
+        "meanNegativeLogLikelihood": 3.38242045323735,
+        "unknownEventFraction": 0,
+        "outOfDistribution": false
+      },
+      {
+        "sampleId": "calibration-02-seat-2",
+        "actualModelId": "deterministic-balanced-v1",
+        "predictedModelId": "deterministic-balanced-v1",
+        "probabilities": {
+          "deterministic-balanced-v1": 0.9999995312094158,
+          "official-built-in-v1": 9.590324189702671e-8,
+          "safe-first-v1": 3.7282018586706613e-7,
+          "seeded-random-v1": 6.715637683990779e-11
+        },
+        "confidence": 0.9999995312094158,
+        "meanNegativeLogLikelihood": 3.3344102551332595,
+        "unknownEventFraction": 0,
+        "outOfDistribution": false
+      },
+      {
+        "sampleId": "calibration-02-seat-3",
+        "actualModelId": "safe-first-v1",
+        "predictedModelId": "safe-first-v1",
+        "probabilities": {
+          "deterministic-balanced-v1": 7.552419635491653e-17,
+          "official-built-in-v1": 5.52752990266704e-13,
+          "safe-first-v1": 0.998744101974868,
+          "seeded-random-v1": 0.0012558980245790821
+        },
+        "confidence": 0.998744101974868,
+        "meanNegativeLogLikelihood": 3.053414237818202,
+        "unknownEventFraction": 0,
+        "outOfDistribution": false
+      },
+      {
+        "sampleId": "calibration-03-seat-0",
+        "actualModelId": "official-built-in-v1",
+        "predictedModelId": "official-built-in-v1",
+        "probabilities": {
+          "deterministic-balanced-v1": 1.0282651088388797e-19,
+          "official-built-in-v1": 1,
+          "safe-first-v1": 7.8898106412230965e-25,
+          "seeded-random-v1": 1.137711744758293e-27
+        },
+        "confidence": 1,
+        "meanNegativeLogLikelihood": 3.4264841162345077,
+        "unknownEventFraction": 0,
+        "outOfDistribution": false
+      },
+      {
+        "sampleId": "calibration-03-seat-1",
+        "actualModelId": "deterministic-balanced-v1",
+        "predictedModelId": "deterministic-balanced-v1",
+        "probabilities": {
+          "deterministic-balanced-v1": 0.9999995312094158,
+          "official-built-in-v1": 9.590324189702671e-8,
+          "safe-first-v1": 3.7282018586706613e-7,
+          "seeded-random-v1": 6.715637683990779e-11
+        },
+        "confidence": 0.9999995312094158,
+        "meanNegativeLogLikelihood": 3.3344102551332595,
+        "unknownEventFraction": 0,
+        "outOfDistribution": false
+      },
+      {
+        "sampleId": "calibration-03-seat-2",
+        "actualModelId": "safe-first-v1",
+        "predictedModelId": "safe-first-v1",
+        "probabilities": {
+          "deterministic-balanced-v1": 2.4054231803682716e-15,
+          "official-built-in-v1": 7.683693336173488e-13,
+          "safe-first-v1": 0.9993089626816866,
+          "seeded-random-v1": 0.0006910373175425715
+        },
+        "confidence": 0.9993089626816866,
+        "meanNegativeLogLikelihood": 3.0747683988130876,
+        "unknownEventFraction": 0,
+        "outOfDistribution": false
+      },
+      {
+        "sampleId": "calibration-03-seat-3",
+        "actualModelId": "seeded-random-v1",
+        "predictedModelId": "seeded-random-v1",
+        "probabilities": {
+          "deterministic-balanced-v1": 0.11938527047490817,
+          "official-built-in-v1": 2.0049128277798232e-19,
+          "safe-first-v1": 0.0004950397023310673,
+          "seeded-random-v1": 0.8801196898227608
+        },
+        "confidence": 0.8801196898227608,
+        "meanNegativeLogLikelihood": 3.4472413020280674,
+        "unknownEventFraction": 0,
+        "outOfDistribution": false
+      },
+      {
+        "sampleId": "calibration-04-seat-0",
+        "actualModelId": "deterministic-balanced-v1",
+        "predictedModelId": "deterministic-balanced-v1",
+        "probabilities": {
+          "deterministic-balanced-v1": 1,
+          "official-built-in-v1": 2.280702881206953e-21,
+          "safe-first-v1": 4.358925965819272e-25,
+          "seeded-random-v1": 1.4889637515351454e-21
+        },
+        "confidence": 1,
+        "meanNegativeLogLikelihood": 3.477849463389933,
+        "unknownEventFraction": 0,
+        "outOfDistribution": false
+      },
+      {
+        "sampleId": "calibration-04-seat-1",
+        "actualModelId": "safe-first-v1",
+        "predictedModelId": "safe-first-v1",
+        "probabilities": {
+          "deterministic-balanced-v1": 5.450141985363521e-7,
+          "official-built-in-v1": 1.4267852315346925e-17,
+          "safe-first-v1": 0.8383283614439009,
+          "seeded-random-v1": 0.16167109354190048
+        },
+        "confidence": 0.8383283614439009,
+        "meanNegativeLogLikelihood": 3.209051226717767,
+        "unknownEventFraction": 0,
+        "outOfDistribution": false
+      },
+      {
+        "sampleId": "calibration-04-seat-2",
+        "actualModelId": "seeded-random-v1",
+        "predictedModelId": "safe-first-v1",
+        "probabilities": {
+          "deterministic-balanced-v1": 5.950569731884482e-13,
+          "official-built-in-v1": 2.880845346653209e-16,
+          "safe-first-v1": 0.9675259526940112,
+          "seeded-random-v1": 0.03247404730539345
+        },
+        "confidence": 0.9675259526940112,
+        "meanNegativeLogLikelihood": 3.0911489825992216,
+        "unknownEventFraction": 0,
+        "outOfDistribution": false
+      },
+      {
+        "sampleId": "calibration-04-seat-3",
+        "actualModelId": "official-built-in-v1",
+        "predictedModelId": "official-built-in-v1",
+        "probabilities": {
+          "deterministic-balanced-v1": 5.224149320905018e-19,
+          "official-built-in-v1": 1,
+          "safe-first-v1": 1.0148069104450747e-27,
+          "seeded-random-v1": 4.172939365906688e-30
+        },
+        "confidence": 1,
+        "meanNegativeLogLikelihood": 3.358589483773852,
+        "unknownEventFraction": 0,
+        "outOfDistribution": false
+      },
+      {
+        "sampleId": "calibration-05-seat-0",
+        "actualModelId": "safe-first-v1",
+        "predictedModelId": "safe-first-v1",
+        "probabilities": {
+          "deterministic-balanced-v1": 9.26340190074774e-15,
+          "official-built-in-v1": 8.372797019801971e-8,
+          "safe-first-v1": 0.9998214223703183,
+          "seeded-random-v1": 0.0001784939017020422
+        },
+        "confidence": 0.9998214223703183,
+        "meanNegativeLogLikelihood": 3.212346056761272,
+        "unknownEventFraction": 0,
+        "outOfDistribution": false
+      },
+      {
+        "sampleId": "calibration-05-seat-1",
+        "actualModelId": "seeded-random-v1",
+        "predictedModelId": "safe-first-v1",
+        "probabilities": {
+          "deterministic-balanced-v1": 1.4332708651046229e-13,
+          "official-built-in-v1": 3.536725099153326e-16,
+          "safe-first-v1": 0.962126440886931,
+          "seeded-random-v1": 0.03787355911292526
+        },
+        "confidence": 0.962126440886931,
+        "meanNegativeLogLikelihood": 3.1328239749172875,
+        "unknownEventFraction": 0,
+        "outOfDistribution": false
+      },
+      {
+        "sampleId": "calibration-05-seat-2",
+        "actualModelId": "official-built-in-v1",
+        "predictedModelId": "official-built-in-v1",
+        "probabilities": {
+          "deterministic-balanced-v1": 2.3509905764454432e-21,
+          "official-built-in-v1": 1,
+          "safe-first-v1": 2.9184204026417956e-27,
+          "seeded-random-v1": 2.0480243765914225e-29
+        },
+        "confidence": 1,
+        "meanNegativeLogLikelihood": 3.3989753803262923,
+        "unknownEventFraction": 0,
+        "outOfDistribution": false
+      },
+      {
+        "sampleId": "calibration-05-seat-3",
+        "actualModelId": "deterministic-balanced-v1",
+        "predictedModelId": "deterministic-balanced-v1",
+        "probabilities": {
+          "deterministic-balanced-v1": 0.9999629960759626,
+          "official-built-in-v1": 0.00003700392403677812,
+          "safe-first-v1": 7.648876540965915e-16,
+          "seeded-random-v1": 6.609565738415394e-18
+        },
+        "confidence": 0.9999629960759626,
+        "meanNegativeLogLikelihood": 3.321040409325576,
+        "unknownEventFraction": 0,
+        "outOfDistribution": false
+      }
+    ]
+  },
+  "human": {
+    "games": 50,
+    "prefixes": 120,
+    "excludedPrefixes": [
+      {
+        "gameId": 34005,
+        "seat": 3,
+        "events": 34
+      }
+    ],
+    "prefixEvents": 40,
+    "oodPrefixes": 102,
+    "oodRate": 0.85,
+    "meanConfidence": 0.9457795324041315,
+    "meanNegativeLogLikelihood": 3.7235268566024877,
+    "predictedModels": {
+      "deterministic-balanced-v1": 36,
+      "official-built-in-v1": 79,
+      "safe-first-v1": 2,
+      "seeded-random-v1": 3
+    }
+  },
+  "gates": {
+    "knownTop1Passed": true,
+    "humanOodPassed": true
+  },
+  "passed": true,
+  "promotionHoldoutOpened": false
+}

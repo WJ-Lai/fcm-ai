@@ -328,6 +328,14 @@ representation may add bounded public event order and phase/action context, but 
 seeds, horizons, policies, model capacity and thresholds so improvement cannot come from changing
 the test.
 
+Holding that protocol fixed, adding only adjacent within-seat public event transitions improved
+calibration Top-1 to 22/24 (91.7%), log loss to 0.296 and Brier score to 0.159; human OOD rose to
+102/120 (85%). This passes the representation-selection gates and confirms that action order carries
+material style information absent from histograms. It does not yet calibrate probabilities: all 24
+known-policy samples received over 0.8 confidence (mean 0.981) while two seeded-random samples were
+wrongly called safe-first. V2 therefore advances only to a new-seed temperature/abstention
+calibration stage. It remains disconnected from rollout labels and search.
+
 ### 6.6 Value and objective
 
 The primary objective is terminal performance:
