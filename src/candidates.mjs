@@ -2,6 +2,10 @@ import assert from 'node:assert/strict'
 import { createHash } from 'node:crypto'
 
 import { PROPOSAL_PRIOR } from './proposal-prior.mjs'
+import {
+  STRATEGIC_MEMORY_VERSION,
+  compileCandidatePlanFeatures,
+} from './game-memory-v2.mjs'
 
 function legalByType(view) {
   return new Map((view.legalActions?.actions ?? []).map((action) => [action.type, action]))
@@ -483,7 +487,7 @@ function workingDayCandidates(view, actions) {
   return candidates
 }
 
-function capCandidates(candidates, { totalBudget, perIntentBudget }) {
+function diverseCandidates(candidates, perIntentBudget) {
   const seenActions = new Set()
   const buckets = new Map()
   for (const candidate of candidates) {
@@ -497,13 +501,39 @@ function capCandidates(candidates, { totalBudget, perIntentBudget }) {
     buckets.set(diversityKey, bucket)
   }
   const kept = []
-  for (let rank = 0; rank < perIntentBudget && kept.length < totalBudget; rank += 1) {
+  for (let rank = 0; rank < perIntentBudget; rank += 1) {
     for (const bucket of buckets.values()) {
       if (bucket[rank]) kept.push(bucket[rank])
-      if (kept.length >= totalBudget) break
     }
   }
   return kept
+}
+
+function capCandidates(candidates, { totalBudget, perIntentBudget, memory = null }) {
+  const diverse = diverseCandidates(candidates, perIntentBudget)
+  if (memory?.schemaVersion !== STRATEGIC_MEMORY_VERSION) return diverse.slice(0, totalBudget)
+
+  const annotated = diverse.map((candidate) => ({
+    candidate,
+    feature: compileCandidatePlanFeatures(memory, candidate),
+  }))
+  const reserved = []
+  const reserve = (predicate) => {
+    const match = annotated.find(({ candidate, feature }) => (
+      !reserved.includes(candidate) && predicate(feature)
+    ))
+    if (match && reserved.length < totalBudget) reserved.push(match.candidate)
+  }
+  reserve((feature) => feature.relation === 'plan-consistent')
+  reserve((feature) => feature.relation === 'repair')
+  reserve((feature) => feature.relation === 'tactical-deviation')
+  reserve((feature) => feature.relation === 'pivot')
+  reserve((feature) => ['off-plan', 'fallback'].includes(feature.relation))
+  for (const candidate of diverse) {
+    if (reserved.length >= totalBudget) break
+    if (!reserved.includes(candidate)) reserved.push(candidate)
+  }
+  return reserved
 }
 
 /**
@@ -603,19 +633,25 @@ function validateBudgets(totalBudget, perIntentBudget) {
   assert.ok(Number.isInteger(perIntentBudget) && perIntentBudget > 0, 'perIntentBudget must be positive')
 }
 
-export function generateCandidates(view, { totalBudget = 32, perIntentBudget = 6 } = {}) {
+export function generateCandidates(view, {
+  totalBudget = 32, perIntentBudget = 6, memory = null,
+} = {}) {
   validateBudgets(totalBudget, perIntentBudget)
-  const bounded = capCandidates(enumerateCandidates(view), { totalBudget, perIntentBudget })
+  const bounded = capCandidates(enumerateCandidates(view), { totalBudget, perIntentBudget, memory })
   const { phase, subphase } = view.state
   assert.ok(bounded.length > 0, `no safe candidate for phase ${phase}/${subphase}`)
   return bounded
 }
 
 /** Audit-only view of candidates before and after diversity/budget pruning. */
-export function auditCandidateGeneration(view, { totalBudget = 32, perIntentBudget = 6 } = {}) {
+export function auditCandidateGeneration(view, {
+  totalBudget = 32, perIntentBudget = 6, memory = null,
+} = {}) {
   validateBudgets(totalBudget, perIntentBudget)
   const enumeratedCandidates = enumerateCandidates(view)
-  const boundedCandidates = capCandidates(enumeratedCandidates, { totalBudget, perIntentBudget })
+  const boundedCandidates = capCandidates(
+    enumeratedCandidates, { totalBudget, perIntentBudget, memory },
+  )
   const { phase, subphase } = view.state
   assert.ok(boundedCandidates.length > 0, `no safe candidate for phase ${phase}/${subphase}`)
   return { enumeratedCandidates, boundedCandidates }

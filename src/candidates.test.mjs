@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import test from 'node:test'
 
 import { auditCandidateGeneration, generateCandidates } from './candidates.mjs'
+import { createStrategicMemory, updateStrategicMemory } from './game-memory-v2.mjs'
 
 function view(phase, subphase, actions, state = {}) {
   return {
@@ -405,4 +406,34 @@ test('candidate generation fails closed when it is not the seat turn', () => {
   const input = view(4, 1, [{ type: 'choose_turn_order', positions: [0] }])
   input.legalActions.yourTurn = false
   assert.throws(() => generateCandidates(input), /outside this seat turn/)
+})
+
+test('v2 candidate budgeting reserves both a critical plan step and an off-plan option', () => {
+  let memory = createStrategicMemory({ gameId: 12, seat: 0, rulesetHash: 'sha256:rules' })
+  memory = updateStrategicMemory(memory, {
+    type: 'plan-created', currentTurn: 1,
+    plan: {
+      planId: 'staff-r2',
+      goal: { goalId: 'staff-ready', kind: 'capability', requiredCapabilities: ['hire-now'] },
+      targetTurn: 2, deadlineTurn: 2, expectedValue: 10, confidence: 'medium',
+      capabilities: [{
+        capabilityId: 'hire-now', status: 'pending', leadTurns: 1, prerequisites: [],
+        candidateIntents: ['balanced'],
+      }],
+      commitments: [], assumptions: [], repairOptions: [], fallbackPlanIds: [],
+      invalidationRules: [],
+    },
+  })
+  const input = view(5, 1, [
+    { type: 'hire', recruitingPoints: 2, candidates: [
+      { id: 5, name: 'Management Trainee' },
+      { id: 13, name: 'Marketing Trainee' },
+      { id: 17, name: 'Recruiting Girl' },
+    ] },
+    { type: 'next_subphase' },
+  ])
+  const candidates = generateCandidates(input, { totalBudget: 2, perIntentBudget: 6, memory })
+  assert.equal(candidates.length, 2)
+  assert.ok(candidates.some((candidate) => candidate.intent === 'balanced'))
+  assert.ok(candidates.some((candidate) => candidate.intent !== 'balanced'))
 })

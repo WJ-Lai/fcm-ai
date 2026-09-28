@@ -93,9 +93,13 @@ frozen, diverse policy league.
   to content-hashed official-engine fixtures and separate legality, feasibility and desirability.
   Restaurant blocking, sequential inventory and milestone closure have paired states requiring
   different choices; hidden reserve-card mutations require identical policy input and preference.
-- `GameMemory v1` stores only coarse intent, a 1–5 turn horizon, confidence and evidence. The current
-  shallow rollout evaluates at most six candidates, 24 official transitions and three seconds, and
-  stops at opponent/simultaneous boundaries.
+- `GameMemory v2` now coexists with v1 behind an explicit migration boundary. It stores a typed,
+  acyclic capability graph with activation lead times, target/deadline slack, commitments,
+  assumptions with provenance, repair/fallback paths and public invalidation events. Its reducer is
+  byte-for-byte rebuildable from events, rejects private engine fields, and compiles critical plan
+  steps into candidate features while reserving an off-plan slot. It does not yet generate plans or
+  arbitrate continue/repair/deviate/pivot/abandon; those remain separate promotion gates. The current
+  shallow rollout still stops at opponent/simultaneous boundaries.
 - The static policy lost $35–$493 and the shallow rollout lost $10–$498 to the built-in AI on the
   same paired probe. The rollout changed 43/66 choices, hired 34 employees and placed no marketing.
   This falsifies local score agreement as a strategy oracle. No current experimental policy is
@@ -272,6 +276,10 @@ failure; a behavior tree must not duplicate official legality.
 
 `GameMemory v2` is schema-versioned, bounded and event-rebuildable. It stores plans, public evidence,
 belief summaries, prediction errors and decisions, but no credentials or hidden opponent state.
+The implemented v2 schema lives alongside v1 rather than silently reinterpreting old records. Its
+timing analysis detects cyclic/impossible prerequisites and missed deadlines; plan-aware candidate
+budgeting retains both critical plan steps and an off-plan alternative. The current numeric plan
+priority is provisional infrastructure, not a promoted strategy or substitute for the arbiter.
 
 After a search policy is measurably useful, Expert Iteration may distil search choices and values
 into faster proposal/ranking models, which in turn guide later search. PPO is one later masked
@@ -407,9 +415,9 @@ policy-population method such as PSRO/JPSRO before claiming convergence.
 
 ## 11. Execution order
 
-1. Implement `GameMemory v2`, the typed plan graph and event-rebuild tests against the frozen
-   strategy-fixture v1 suite.
-2. Calibrate terminal/value evaluation and a versioned opponent-population belief sampler.
+1. **Completed:** implement `GameMemory v2`, the typed plan graph and event-rebuild tests against
+   the frozen strategy-fixture v1 suite.
+2. **Next:** calibrate terminal/value evaluation and a versioned opponent-population belief sampler.
 3. Implement plan-health/opportunity arbitration with switching cost and hysteresis.
 4. Run the equal-budget scenario-beam versus RHEA bake-off; add belief-aware search only at
    hidden/uncertain boundaries after privacy semantics pass.

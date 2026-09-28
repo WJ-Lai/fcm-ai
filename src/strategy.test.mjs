@@ -2,6 +2,7 @@ import assert from 'node:assert/strict'
 import test from 'node:test'
 
 import { deterministicStrategy, evaluatePosition, rankCandidates } from './strategy.mjs'
+import { createStrategicMemory, updateStrategicMemory } from './game-memory-v2.mjs'
 
 function view(phase, subphase, actions, player = {}) {
   return {
@@ -81,4 +82,34 @@ test('memory can bias a near-tie but cannot introduce an unoffered candidate', (
   })
   assert.equal(ranked[0].id, 'b')
   assert.deepEqual(new Set(ranked.map((item) => item.id)), new Set(['a', 'b']))
+})
+
+test('v2 deadline-critical plan features affect ranking without removing off-plan candidates', () => {
+  let memory = createStrategicMemory({ gameId: 12, seat: 0, rulesetHash: 'sha256:rules' })
+  memory = updateStrategicMemory(memory, {
+    type: 'plan-created', currentTurn: 1,
+    plan: {
+      planId: 'demand-r2',
+      goal: { goalId: 'create-demand', kind: 'cash-flow', requiredCapabilities: ['demand-ready'] },
+      targetTurn: 2, deadlineTurn: 2, expectedValue: 20, confidence: 'high',
+      capabilities: [
+        { capabilityId: 'demand-ready', status: 'pending', leadTurns: 1, prerequisites: [] },
+      ],
+      commitments: [], assumptions: [], repairOptions: [], fallbackPlanIds: [],
+      invalidationRules: [],
+    },
+  })
+  const input = view(4, 1, [{ type: 'choose_turn_order', positions: [0, 1] }])
+  const candidates = [
+    { id: 'off-plan', intent: 'novel', actions: [{ type: 'choose_turn_order', turnOrderPosition: 1 }], details: {} },
+    {
+      id: 'plan-step', intent: 'foundation',
+      actions: [{ type: 'choose_turn_order', turnOrderPosition: 1 }],
+      details: { providesCapabilities: ['demand-ready'] },
+    },
+  ]
+  const ranked = rankCandidates(input, candidates, { memory })
+  assert.equal(ranked[0].id, 'plan-step')
+  assert.equal(ranked[0].scoreBreakdown.strategicPlan.relation, 'plan-consistent')
+  assert.deepEqual(new Set(ranked.map((item) => item.id)), new Set(['off-plan', 'plan-step']))
 })

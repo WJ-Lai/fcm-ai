@@ -160,7 +160,7 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     trajectory without storing credentials.
   - Evidence: `fcm.game-memory.v1` bounds plans, beliefs, errors and decisions; rejects credential
     keys/text; and is byte-for-byte rebuildable from its event stream in tests.
-- [ ] **P3.2b Upgrade memory into a reactive strategic plan graph.**
+- [x] **P3.2b Upgrade memory into a reactive strategic plan graph.**
   - Why: `GameMemory v1` remembers a coarse intent but cannot represent “hire now so a trained
     capability is active by turn 3,” deadline slack, sunk commitments, repair paths or plan
     invalidation. A continuity bonus is not long-horizon planning.
@@ -173,6 +173,12 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     for a turn-3 goal, detects an impossible/missed deadline, repairs a partially reusable plan and
     still offers a valuable off-plan pivot. Memory rebuilds byte-for-byte from the event stream
     without hidden-state fields.
+  - Evidence: `fcm.game-memory.v2` is implemented alongside v1 with explicit migration; nine v2
+    causal/adversarial tests cover zero-slack activation, missed/impossible prerequisites, reusable
+    repair, off-plan opportunity retention, public invalidation, cycle rejection, deterministic
+    rebuild and private-state rejection. Candidate budgeting reserves a critical plan intent and an
+    off-plan candidate under a two-slot stress case; ranking consumes the auditable feature without
+    inventing actions. Full Node 110, Python 109 and documentation lint pass.
 - [x] **P3.2c Freeze long-horizon and reactive promotion fixtures.**
   - Why: plan/arbitration weights fitted before independent examples exist will encode anecdotes
     and make every later comparison circular.

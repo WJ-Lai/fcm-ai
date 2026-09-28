@@ -546,9 +546,18 @@ Store a small `GameMemory` record outside the LLM:
 Update it after every revealed simultaneous phase and dinner result. Never treat a hypothesis as
 an observed fact.
 
-`GameMemory v1` currently implements only a bounded coarse `intent`, `horizonTurns`, confidence and
-evidence. That is useful persistence infrastructure, not yet the plan graph above. `GameMemory v2`
-must remain event-rebuildable and schema-versioned rather than silently changing v1 semantics.
+`GameMemory v1` remains a bounded coarse `intent`, `horizonTurns`, confidence and evidence record.
+`GameMemory v2` is now implemented beside it with an explicit migration function rather than a
+silent schema reinterpretation. V2 stores typed goals, acyclic capability prerequisites, activation
+lead times, deadlines/slack, provenance-labelled assumptions, reusable/stranded commitments,
+repair/fallback paths and public invalidation history. It is event-rebuildable and bounded, rejects
+hidden engine fields and credentials, and derives critical-path feasibility deterministically.
+
+Candidate generation consumes v2 features only as a proposal prior: under a tight budget it reserves
+a critical plan step when available and separately retains an off-plan/fallback option. The existing
+official legal-action layer remains authoritative. V2 does not yet decide when to continue, repair,
+deviate, pivot or abandon; that policy belongs to the later arbiter and must pass the frozen strategy
+fixtures before promotion.
 
 ### Reactive strategic plan graph
 
@@ -1029,10 +1038,9 @@ observation fields, action candidates, simulator parity tests and benchmark scen
 
 The dependency-ordered source of truth is `../TODOS.md`. In summary:
 
-1. Implement `GameMemory v2` as a typed reactive plan graph with prerequisite timing, slack,
-   commitments, repair/fallback paths and invalidation events; freeze causal long-horizon and
-   reactive adversarial suites, including bait and no-oscillation cases.
-2. Calibrate opponent beliefs and a terminal/value evaluator against held-out games.
+1. **Completed:** implement `GameMemory v2` as a typed reactive plan graph with prerequisite timing,
+   slack, commitments, repair/fallback paths, invalidation events and an explicit v1 migration path.
+2. **Next:** calibrate opponent beliefs and a terminal/value evaluator against held-out games.
 3. Implement plan-health/opportunity arbitration with switching cost, confidence, hysteresis and
    tactical-deviation versus strategic-pivot semantics.
 4. Execute the frozen abstraction-collision, information-set-consistency and leaf-cutoff cases

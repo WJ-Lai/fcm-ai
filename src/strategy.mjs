@@ -1,6 +1,10 @@
 import assert from 'node:assert/strict'
 
 import { generateCandidates } from './candidates.mjs'
+import {
+  STRATEGIC_MEMORY_VERSION,
+  compileCandidatePlanFeatures,
+} from './game-memory-v2.mjs'
 
 const PROFILES = Object.freeze({
   balanced: { cash: 1, staff: 4, inventory: 2, capacity: 3, milestone: 6 },
@@ -164,21 +168,35 @@ export function rankCandidates(view, candidates, { profile = 'balanced', memory 
   const position = evaluatePosition(view, { profile })
   return candidates.map((candidate) => {
     const action = actionHeuristic(view, candidate, profile)
-    const planContinuity = memory?.strategicPlan?.intent === candidate.intent
+    const isStrategicV2 = memory?.schemaVersion === STRATEGIC_MEMORY_VERSION
+    const strategicPlan = isStrategicV2
+      ? compileCandidatePlanFeatures(memory, candidate)
+      : null
+    const planContinuity = !isStrategicV2 && memory?.strategicPlan?.intent === candidate.intent
       ? ({ low: 1, medium: 3, high: 6 }[memory.strategicPlan.confidence] ?? 0)
       : 0
-    const score = position.score + Object.values(action).reduce((sum, value) => sum + value, 0) + planContinuity
+    const strategicPlanScore = (strategicPlan?.priority ?? 0) * 2
+    const score = position.score + Object.values(action).reduce((sum, value) => sum + value, 0) +
+      planContinuity + strategicPlanScore
     return {
       ...candidate,
       score,
-      scoreBreakdown: { position: position.breakdown, action, planContinuity },
+      scoreBreakdown: {
+        position: position.breakdown,
+        action,
+        planContinuity,
+        strategicPlan: strategicPlan ? { ...strategicPlan, score: strategicPlanScore } : null,
+      },
     }
   }).sort((left, right) => right.score - left.score || left.id.localeCompare(right.id))
 }
 
 /** First deterministic strategy policy: generate, score, and return one validated candidate. */
 export function deterministicStrategy(view, options = {}) {
-  const candidates = generateCandidates(view, options.candidateBudget)
+  const candidates = generateCandidates(view, {
+    ...(options.candidateBudget ?? {}),
+    memory: options.memory ?? null,
+  })
   const ranked = rankCandidates(view, candidates, options)
   return { selected: ranked[0], ranked }
 }
