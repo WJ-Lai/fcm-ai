@@ -1,0 +1,807 @@
+{
+  "schemaVersion": "fcm.action-regret-experiment.v1",
+  "experimentId": 1,
+  "hypothesis": "post-action semantic pair features improve disjoint root Top-1 accuracy",
+  "primaryMetric": "calibrationRootTop1Accuracy",
+  "rulesetHash": "a171620e533a34f0c77133afac1d239a02c7600978486d09a77a20ead95d0b5e",
+  "featureVersion": "fcm.terminal-value-features.v2",
+  "continuationPolicy": "fcm.deterministic-vs-official-builtin.v1",
+  "development": {
+    "path": "fixtures/action-regret-v1/development.json",
+    "digest": "sha256:3eeef8099a847e21d013dc9e26dd911b3db94ef8571993b50a901ba90a95a59d",
+    "roots": 3,
+    "comparisons": 7
+  },
+  "calibration": {
+    "path": "fixtures/action-regret-v1/calibration.json",
+    "digest": "sha256:3668022e51eaf5ecccb16de2b26e043a8d51795d23fb788e2f8d1124e81d7bb2",
+    "roots": 3,
+    "comparisons": 5
+  },
+  "baselines": {
+    "static": {
+      "schemaVersion": "fcm.action-regret-ranking-audit.v1",
+      "roots": 3,
+      "top1Correct": 2,
+      "top1Accuracy": 0.6666666666666666,
+      "meanTerminalRegret": 3.3333333333333335,
+      "worstTerminalRegret": 10,
+      "details": [
+        {
+          "rootId": "calibration-00-middle-hiring",
+          "selectedCandidateId": "p5s1-hire-00073b191c",
+          "selectedScore": 0,
+          "selectedTerminalMargin": -13,
+          "oracleCandidateIds": [
+            "p5s1-hire-00073b191c"
+          ],
+          "oracleTerminalMargin": -13,
+          "correct": true,
+          "terminalRegret": 0
+        },
+        {
+          "rootId": "calibration-00-middle-marketing",
+          "selectedCandidateId": "p5s3-create-demand-3c4a417875",
+          "selectedScore": 0,
+          "selectedTerminalMargin": -5,
+          "oracleCandidateIds": [
+            "p5s3-create-demand-3c4a417875",
+            "p5s3-create-demand-4ee68cbef6"
+          ],
+          "oracleTerminalMargin": -5,
+          "correct": true,
+          "terminalRegret": 0
+        },
+        {
+          "rootId": "calibration-00-middle-production",
+          "selectedCandidateId": "p5s4-produce-4edc9db56b",
+          "selectedScore": 0,
+          "selectedTerminalMargin": -20,
+          "oracleCandidateIds": [
+            "p5s4-fallback-21d4f44933"
+          ],
+          "oracleTerminalMargin": -10,
+          "correct": false,
+          "terminalRegret": 10
+        }
+      ]
+    },
+    "stateValueV2": {
+      "schemaVersion": "fcm.action-regret-ranking-audit.v1",
+      "roots": 3,
+      "top1Correct": 2,
+      "top1Accuracy": 0.6666666666666666,
+      "meanTerminalRegret": 3.3333333333333335,
+      "worstTerminalRegret": 10,
+      "details": [
+        {
+          "rootId": "calibration-00-middle-hiring",
+          "selectedCandidateId": "p5s1-hire-00073b191c",
+          "selectedScore": 0.2216656042862857,
+          "selectedTerminalMargin": -13,
+          "oracleCandidateIds": [
+            "p5s1-hire-00073b191c"
+          ],
+          "oracleTerminalMargin": -13,
+          "correct": true,
+          "terminalRegret": 0
+        },
+        {
+          "rootId": "calibration-00-middle-marketing",
+          "selectedCandidateId": "p5s3-create-demand-3c4a417875",
+          "selectedScore": 0.3416814197607325,
+          "selectedTerminalMargin": -5,
+          "oracleCandidateIds": [
+            "p5s3-create-demand-3c4a417875",
+            "p5s3-create-demand-4ee68cbef6"
+          ],
+          "oracleTerminalMargin": -5,
+          "correct": true,
+          "terminalRegret": 0
+        },
+        {
+          "rootId": "calibration-00-middle-production",
+          "selectedCandidateId": "p5s4-produce-4edc9db56b",
+          "selectedScore": 0.3810297043968469,
+          "selectedTerminalMargin": -20,
+          "oracleCandidateIds": [
+            "p5s4-fallback-21d4f44933"
+          ],
+          "oracleTerminalMargin": -10,
+          "correct": false,
+          "terminalRegret": 10
+        }
+      ]
+    }
+  },
+  "candidates": [
+    {
+      "lambda": 1,
+      "developmentPairwise": {
+        "schemaVersion": "fcm.pairwise-value-audit.v1",
+        "turns": 7,
+        "totalWeight": 3,
+        "correctTurns": 6.5,
+        "weightedAccuracy": 0.9444444444444443,
+        "weightedLogLoss": 0.43603331990689503,
+        "games": 7,
+        "gameCorrect": 6.5,
+        "gameAccuracy": 0.9285714285714286,
+        "byPhase": {
+          "early": null,
+          "middle": {
+            "turns": 7,
+            "totalWeight": 3,
+            "correctTurns": 6.5,
+            "weightedAccuracy": 0.9444444444444443,
+            "weightedLogLoss": 0.43603331990689503
+          },
+          "late": null
+        }
+      },
+      "calibrationPairwise": {
+        "schemaVersion": "fcm.pairwise-value-audit.v1",
+        "turns": 5,
+        "totalWeight": 3,
+        "correctTurns": 4,
+        "weightedAccuracy": 0.6666666666666666,
+        "weightedLogLoss": 0.5115216311424478,
+        "games": 5,
+        "gameCorrect": 4,
+        "gameAccuracy": 0.8,
+        "byPhase": {
+          "early": null,
+          "middle": {
+            "turns": 5,
+            "totalWeight": 3,
+            "correctTurns": 4,
+            "weightedAccuracy": 0.6666666666666666,
+            "weightedLogLoss": 0.5115216311424478
+          },
+          "late": null
+        }
+      },
+      "calibrationRanking": {
+        "schemaVersion": "fcm.action-regret-ranking-audit.v1",
+        "roots": 3,
+        "top1Correct": 2,
+        "top1Accuracy": 0.6666666666666666,
+        "meanTerminalRegret": 3.3333333333333335,
+        "worstTerminalRegret": 10,
+        "details": [
+          {
+            "rootId": "calibration-00-middle-hiring",
+            "selectedCandidateId": "p5s1-hire-00073b191c",
+            "selectedScore": -1.2207067911187004,
+            "selectedTerminalMargin": -13,
+            "oracleCandidateIds": [
+              "p5s1-hire-00073b191c"
+            ],
+            "oracleTerminalMargin": -13,
+            "correct": true,
+            "terminalRegret": 0
+          },
+          {
+            "rootId": "calibration-00-middle-marketing",
+            "selectedCandidateId": "p5s3-create-demand-3c4a417875",
+            "selectedScore": 0.07564839674033874,
+            "selectedTerminalMargin": -5,
+            "oracleCandidateIds": [
+              "p5s3-create-demand-3c4a417875",
+              "p5s3-create-demand-4ee68cbef6"
+            ],
+            "oracleTerminalMargin": -5,
+            "correct": true,
+            "terminalRegret": 0
+          },
+          {
+            "rootId": "calibration-00-middle-production",
+            "selectedCandidateId": "p5s4-produce-4edc9db56b",
+            "selectedScore": 0.4767065342818857,
+            "selectedTerminalMargin": -20,
+            "oracleCandidateIds": [
+              "p5s4-fallback-21d4f44933"
+            ],
+            "oracleTerminalMargin": -10,
+            "correct": false,
+            "terminalRegret": 10
+          }
+        ]
+      }
+    },
+    {
+      "lambda": 10,
+      "developmentPairwise": {
+        "schemaVersion": "fcm.pairwise-value-audit.v1",
+        "turns": 7,
+        "totalWeight": 3,
+        "correctTurns": 6.5,
+        "weightedAccuracy": 0.9444444444444443,
+        "weightedLogLoss": 0.6357862377207368,
+        "games": 7,
+        "gameCorrect": 6.5,
+        "gameAccuracy": 0.9285714285714286,
+        "byPhase": {
+          "early": null,
+          "middle": {
+            "turns": 7,
+            "totalWeight": 3,
+            "correctTurns": 6.5,
+            "weightedAccuracy": 0.9444444444444443,
+            "weightedLogLoss": 0.6357862377207368
+          },
+          "late": null
+        }
+      },
+      "calibrationPairwise": {
+        "schemaVersion": "fcm.pairwise-value-audit.v1",
+        "turns": 5,
+        "totalWeight": 3,
+        "correctTurns": 4,
+        "weightedAccuracy": 0.6666666666666666,
+        "weightedLogLoss": 0.6372248940215174,
+        "games": 5,
+        "gameCorrect": 4,
+        "gameAccuracy": 0.8,
+        "byPhase": {
+          "early": null,
+          "middle": {
+            "turns": 5,
+            "totalWeight": 3,
+            "correctTurns": 4,
+            "weightedAccuracy": 0.6666666666666666,
+            "weightedLogLoss": 0.6372248940215174
+          },
+          "late": null
+        }
+      },
+      "calibrationRanking": {
+        "schemaVersion": "fcm.action-regret-ranking-audit.v1",
+        "roots": 3,
+        "top1Correct": 2,
+        "top1Accuracy": 0.6666666666666666,
+        "meanTerminalRegret": 3.3333333333333335,
+        "worstTerminalRegret": 10,
+        "details": [
+          {
+            "rootId": "calibration-00-middle-hiring",
+            "selectedCandidateId": "p5s1-hire-00073b191c",
+            "selectedScore": -0.24173954723592914,
+            "selectedTerminalMargin": -13,
+            "oracleCandidateIds": [
+              "p5s1-hire-00073b191c"
+            ],
+            "oracleTerminalMargin": -13,
+            "correct": true,
+            "terminalRegret": 0
+          },
+          {
+            "rootId": "calibration-00-middle-marketing",
+            "selectedCandidateId": "p5s3-create-demand-3c4a417875",
+            "selectedScore": 0.05037431242630972,
+            "selectedTerminalMargin": -5,
+            "oracleCandidateIds": [
+              "p5s3-create-demand-3c4a417875",
+              "p5s3-create-demand-4ee68cbef6"
+            ],
+            "oracleTerminalMargin": -5,
+            "correct": true,
+            "terminalRegret": 0
+          },
+          {
+            "rootId": "calibration-00-middle-production",
+            "selectedCandidateId": "p5s4-produce-4edc9db56b",
+            "selectedScore": 0.09915503610313026,
+            "selectedTerminalMargin": -20,
+            "oracleCandidateIds": [
+              "p5s4-fallback-21d4f44933"
+            ],
+            "oracleTerminalMargin": -10,
+            "correct": false,
+            "terminalRegret": 10
+          }
+        ]
+      }
+    },
+    {
+      "lambda": 0.1,
+      "developmentPairwise": {
+        "schemaVersion": "fcm.pairwise-value-audit.v1",
+        "turns": 7,
+        "totalWeight": 3,
+        "correctTurns": 6.5,
+        "weightedAccuracy": 0.9444444444444443,
+        "weightedLogLoss": 0.19282655731523765,
+        "games": 7,
+        "gameCorrect": 6.5,
+        "gameAccuracy": 0.9285714285714286,
+        "byPhase": {
+          "early": null,
+          "middle": {
+            "turns": 7,
+            "totalWeight": 3,
+            "correctTurns": 6.5,
+            "weightedAccuracy": 0.9444444444444443,
+            "weightedLogLoss": 0.19282655731523765
+          },
+          "late": null
+        }
+      },
+      "calibrationPairwise": {
+        "schemaVersion": "fcm.pairwise-value-audit.v1",
+        "turns": 5,
+        "totalWeight": 3,
+        "correctTurns": 4,
+        "weightedAccuracy": 0.6666666666666666,
+        "weightedLogLoss": 0.6585273398356565,
+        "games": 5,
+        "gameCorrect": 4,
+        "gameAccuracy": 0.8,
+        "byPhase": {
+          "early": null,
+          "middle": {
+            "turns": 5,
+            "totalWeight": 3,
+            "correctTurns": 4,
+            "weightedAccuracy": 0.6666666666666666,
+            "weightedLogLoss": 0.6585273398356565
+          },
+          "late": null
+        }
+      },
+      "calibrationRanking": {
+        "schemaVersion": "fcm.action-regret-ranking-audit.v1",
+        "roots": 3,
+        "top1Correct": 2,
+        "top1Accuracy": 0.6666666666666666,
+        "meanTerminalRegret": 3.3333333333333335,
+        "worstTerminalRegret": 10,
+        "details": [
+          {
+            "rootId": "calibration-00-middle-hiring",
+            "selectedCandidateId": "p5s1-hire-00073b191c",
+            "selectedScore": -3.299172920106688,
+            "selectedTerminalMargin": -13,
+            "oracleCandidateIds": [
+              "p5s1-hire-00073b191c"
+            ],
+            "oracleTerminalMargin": -13,
+            "correct": true,
+            "terminalRegret": 0
+          },
+          {
+            "rootId": "calibration-00-middle-marketing",
+            "selectedCandidateId": "p5s3-create-demand-3c4a417875",
+            "selectedScore": -0.5136511390140678,
+            "selectedTerminalMargin": -5,
+            "oracleCandidateIds": [
+              "p5s3-create-demand-3c4a417875",
+              "p5s3-create-demand-4ee68cbef6"
+            ],
+            "oracleTerminalMargin": -5,
+            "correct": true,
+            "terminalRegret": 0
+          },
+          {
+            "rootId": "calibration-00-middle-production",
+            "selectedCandidateId": "p5s4-produce-4edc9db56b",
+            "selectedScore": 1.1198550311417765,
+            "selectedTerminalMargin": -20,
+            "oracleCandidateIds": [
+              "p5s4-fallback-21d4f44933"
+            ],
+            "oracleTerminalMargin": -10,
+            "correct": false,
+            "terminalRegret": 10
+          }
+        ]
+      }
+    },
+    {
+      "lambda": 100,
+      "developmentPairwise": {
+        "schemaVersion": "fcm.pairwise-value-audit.v1",
+        "turns": 7,
+        "totalWeight": 3,
+        "correctTurns": 6.5,
+        "weightedAccuracy": 0.9444444444444443,
+        "weightedLogLoss": 0.6863501695573628,
+        "games": 7,
+        "gameCorrect": 6.5,
+        "gameAccuracy": 0.9285714285714286,
+        "byPhase": {
+          "early": null,
+          "middle": {
+            "turns": 7,
+            "totalWeight": 3,
+            "correctTurns": 6.5,
+            "weightedAccuracy": 0.9444444444444443,
+            "weightedLogLoss": 0.6863501695573628
+          },
+          "late": null
+        }
+      },
+      "calibrationPairwise": {
+        "schemaVersion": "fcm.pairwise-value-audit.v1",
+        "turns": 5,
+        "totalWeight": 3,
+        "correctTurns": 4,
+        "weightedAccuracy": 0.6666666666666666,
+        "weightedLogLoss": 0.6862458557728232,
+        "games": 5,
+        "gameCorrect": 4,
+        "gameAccuracy": 0.8,
+        "byPhase": {
+          "early": null,
+          "middle": {
+            "turns": 5,
+            "totalWeight": 3,
+            "correctTurns": 4,
+            "weightedAccuracy": 0.6666666666666666,
+            "weightedLogLoss": 0.6862458557728232
+          },
+          "late": null
+        }
+      },
+      "calibrationRanking": {
+        "schemaVersion": "fcm.action-regret-ranking-audit.v1",
+        "roots": 3,
+        "top1Correct": 2,
+        "top1Accuracy": 0.6666666666666666,
+        "meanTerminalRegret": 3.3333333333333335,
+        "worstTerminalRegret": 10,
+        "details": [
+          {
+            "rootId": "calibration-00-middle-hiring",
+            "selectedCandidateId": "p5s1-hire-00073b191c",
+            "selectedScore": -0.027841074187759687,
+            "selectedTerminalMargin": -13,
+            "oracleCandidateIds": [
+              "p5s1-hire-00073b191c"
+            ],
+            "oracleTerminalMargin": -13,
+            "correct": true,
+            "terminalRegret": 0
+          },
+          {
+            "rootId": "calibration-00-middle-marketing",
+            "selectedCandidateId": "p5s3-create-demand-3c4a417875",
+            "selectedScore": 0.006472737515400917,
+            "selectedTerminalMargin": -5,
+            "oracleCandidateIds": [
+              "p5s3-create-demand-3c4a417875",
+              "p5s3-create-demand-4ee68cbef6"
+            ],
+            "oracleTerminalMargin": -5,
+            "correct": true,
+            "terminalRegret": 0
+          },
+          {
+            "rootId": "calibration-00-middle-production",
+            "selectedCandidateId": "p5s4-produce-4edc9db56b",
+            "selectedScore": 0.011460268713253549,
+            "selectedTerminalMargin": -20,
+            "oracleCandidateIds": [
+              "p5s4-fallback-21d4f44933"
+            ],
+            "oracleTerminalMargin": -10,
+            "correct": false,
+            "terminalRegret": 10
+          }
+        ]
+      }
+    },
+    {
+      "lambda": 0.01,
+      "developmentPairwise": {
+        "schemaVersion": "fcm.pairwise-value-audit.v1",
+        "turns": 7,
+        "totalWeight": 3,
+        "correctTurns": 6.5,
+        "weightedAccuracy": 0.9444444444444443,
+        "weightedLogLoss": 0.09952154176765453,
+        "games": 7,
+        "gameCorrect": 6.5,
+        "gameAccuracy": 0.9285714285714286,
+        "byPhase": {
+          "early": null,
+          "middle": {
+            "turns": 7,
+            "totalWeight": 3,
+            "correctTurns": 6.5,
+            "weightedAccuracy": 0.9444444444444443,
+            "weightedLogLoss": 0.09952154176765453
+          },
+          "late": null
+        }
+      },
+      "calibrationPairwise": {
+        "schemaVersion": "fcm.pairwise-value-audit.v1",
+        "turns": 5,
+        "totalWeight": 3,
+        "correctTurns": 4,
+        "weightedAccuracy": 0.6666666666666666,
+        "weightedLogLoss": 1.1415843814666535,
+        "games": 5,
+        "gameCorrect": 4,
+        "gameAccuracy": 0.8,
+        "byPhase": {
+          "early": null,
+          "middle": {
+            "turns": 5,
+            "totalWeight": 3,
+            "correctTurns": 4,
+            "weightedAccuracy": 0.6666666666666666,
+            "weightedLogLoss": 1.1415843814666535
+          },
+          "late": null
+        }
+      },
+      "calibrationRanking": {
+        "schemaVersion": "fcm.action-regret-ranking-audit.v1",
+        "roots": 3,
+        "top1Correct": 2,
+        "top1Accuracy": 0.6666666666666666,
+        "meanTerminalRegret": 3.3333333333333335,
+        "worstTerminalRegret": 10,
+        "details": [
+          {
+            "rootId": "calibration-00-middle-hiring",
+            "selectedCandidateId": "p5s1-hire-00073b191c",
+            "selectedScore": -5.94621639794286,
+            "selectedTerminalMargin": -13,
+            "oracleCandidateIds": [
+              "p5s1-hire-00073b191c"
+            ],
+            "oracleTerminalMargin": -13,
+            "correct": true,
+            "terminalRegret": 0
+          },
+          {
+            "rootId": "calibration-00-middle-marketing",
+            "selectedCandidateId": "p5s3-create-demand-3c4a417875",
+            "selectedScore": -1.5209792498787769,
+            "selectedTerminalMargin": -5,
+            "oracleCandidateIds": [
+              "p5s3-create-demand-3c4a417875",
+              "p5s3-create-demand-4ee68cbef6"
+            ],
+            "oracleTerminalMargin": -5,
+            "correct": true,
+            "terminalRegret": 0
+          },
+          {
+            "rootId": "calibration-00-middle-production",
+            "selectedCandidateId": "p5s4-produce-4edc9db56b",
+            "selectedScore": 1.8382458987331225,
+            "selectedTerminalMargin": -20,
+            "oracleCandidateIds": [
+              "p5s4-fallback-21d4f44933"
+            ],
+            "oracleTerminalMargin": -10,
+            "correct": false,
+            "terminalRegret": 10
+          }
+        ]
+      }
+    }
+  ],
+  "selectedLambda": 1,
+  "selectedModel": {
+    "schemaVersion": "fcm.pairwise-value-model.v1",
+    "featureNames": [
+      "turn",
+      "turnOrderPosition",
+      "turnOrderKnown",
+      "bankPerPlayer",
+      "cash",
+      "cashLead",
+      "salaryDue",
+      "salaryGap",
+      "unitPrice",
+      "discount",
+      "activeEmployees",
+      "beachEmployees",
+      "freeSlots",
+      "recruitingCapacity",
+      "salaryDiscountPoints",
+      "trainingCapacity",
+      "trainingLevel2Capacity",
+      "trainingLevel3Capacity",
+      "unlimitedTraining",
+      "productionWorkers",
+      "productionGoodsCoverage",
+      "marketingWorkers",
+      "campaignTypeCoverage",
+      "restaurantBuilders",
+      "beachManagement",
+      "beachRecruiting",
+      "beachTraining",
+      "beachMarketing",
+      "beachProduction",
+      "beachRestaurantBuilding",
+      "beachTrainable",
+      "beachSalaryLiable",
+      "restaurants",
+      "milestonesHeld",
+      "openMilestoneOptions",
+      "inventoryTotal",
+      "inventoryDemandFit",
+      "reachableDemandUnits",
+      "unreachableDemandUnits",
+      "servableDemandUnits",
+      "uncontestedServableUnits",
+      "reachableHouses",
+      "exclusivelyReachableHouses",
+      "closestHouses",
+      "tiedClosestHouses",
+      "distanceDeficitTotal",
+      "productionMarketingSynergy",
+      "reachableEngineReady",
+      "futureDemandSupplyEngineReady",
+      "bankrupt"
+    ],
+    "scales": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0.4714045207910317,
+      0.4714045207910317,
+      0.4714045207910317,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0.4714045207910317,
+      0.9428090415820634,
+      1,
+      0.4714045207910317,
+      0.4714045207910317,
+      1,
+      1,
+      1,
+      1,
+      0.4714045207910317,
+      1,
+      1,
+      0.4714045207910317,
+      0.4714045207910317,
+      1.7320508075688772,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      0.4714045207910317,
+      1,
+      0.4714045207910317,
+      1
+    ],
+    "standardizedWeights": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.08730109944395119,
+      0.1611078110693494,
+      0.08730109944395119,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.08730109944395119,
+      -0.08730109944395119,
+      0,
+      0.14820702115351403,
+      0.012900789915835377,
+      0,
+      0,
+      0,
+      0,
+      0.14820702115351403,
+      0,
+      0,
+      0.08730109944395119,
+      -0.08730109944395119,
+      0.23155102367030206,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -0.08730109944395119,
+      0,
+      -0.08730109944395119,
+      0
+    ],
+    "lambda": 1,
+    "iterations": 1200,
+    "learningRate": 0.2,
+    "optimizerStep": 0.1,
+    "trainingRows": 7,
+    "trainingGames": 7,
+    "objective": 0.5283535857479711,
+    "dataLoss": 0.43603331990689503,
+    "regularizationLoss": 0.09232026584107603
+  },
+  "selectedCalibrationRanking": {
+    "schemaVersion": "fcm.action-regret-ranking-audit.v1",
+    "roots": 3,
+    "top1Correct": 2,
+    "top1Accuracy": 0.6666666666666666,
+    "meanTerminalRegret": 3.3333333333333335,
+    "worstTerminalRegret": 10,
+    "details": [
+      {
+        "rootId": "calibration-00-middle-hiring",
+        "selectedCandidateId": "p5s1-hire-00073b191c",
+        "selectedScore": -1.2207067911187004,
+        "selectedTerminalMargin": -13,
+        "oracleCandidateIds": [
+          "p5s1-hire-00073b191c"
+        ],
+        "oracleTerminalMargin": -13,
+        "correct": true,
+        "terminalRegret": 0
+      },
+      {
+        "rootId": "calibration-00-middle-marketing",
+        "selectedCandidateId": "p5s3-create-demand-3c4a417875",
+        "selectedScore": 0.07564839674033874,
+        "selectedTerminalMargin": -5,
+        "oracleCandidateIds": [
+          "p5s3-create-demand-3c4a417875",
+          "p5s3-create-demand-4ee68cbef6"
+        ],
+        "oracleTerminalMargin": -5,
+        "correct": true,
+        "terminalRegret": 0
+      },
+      {
+        "rootId": "calibration-00-middle-production",
+        "selectedCandidateId": "p5s4-produce-4edc9db56b",
+        "selectedScore": 0.4767065342818857,
+        "selectedTerminalMargin": -20,
+        "oracleCandidateIds": [
+          "p5s4-fallback-21d4f44933"
+        ],
+        "oracleTerminalMargin": -10,
+        "correct": false,
+        "terminalRegret": 10
+      }
+    ]
+  },
+  "promotionHoldoutOpened": false,
+  "promotionStatus": "not-evaluated"
+}

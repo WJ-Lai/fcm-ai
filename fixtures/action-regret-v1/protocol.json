@@ -1,0 +1,17 @@
+{
+  "schemaVersion": "fcm.action-regret-protocol.v1",
+  "protocolVersion": "fcm.action-regret.v1",
+  "candidateLimit": 3,
+  "continuationPolicy": "fcm.deterministic-vs-official-builtin.v1",
+  "rootSpecs": [
+    {"id": "middle-hiring", "minimumTurn": 4, "phase": 5, "subphase": 1},
+    {"id": "middle-marketing", "minimumTurn": 4, "phase": 5, "subphase": 3},
+    {"id": "middle-production", "minimumTurn": 4, "phase": 5, "subphase": 4}
+  ],
+  "splits": {
+    "development": ["fcm.action-regret.v1:development:0"],
+    "calibration": ["fcm.action-regret.v1:calibration:0"],
+    "promotion-holdout": ["fcm.action-regret.v1:promotion:0", "fcm.action-regret.v1:promotion:1"]
+  },
+  "promotionHoldoutOpened": false
+}
