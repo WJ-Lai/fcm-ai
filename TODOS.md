@@ -157,9 +157,16 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     training labels: 245 single / 25 multi; exhaustive single coverage 245/245; production
     enumeration 180/245; bounded coverage 138/245. The 65 enumeration misses are 58 spatial
     selection losses and 7 intermediate-duration losses; another 42 are budget-pruning losses.
-    Next change only spatial selection to three effect-distinct spread representatives per
-    orientation, freeze it before opening games 51–100, and reject it if bounded validation effect
-    coverage or other action-family coverage regresses.
+    Iteration 54 changes only spatial selection to three effect-distinct representatives. Training
+    bounded/enumerated coverage rises 138→157 and 180→212. On the exact same disjoint 50-game slice,
+    old versus new is 127→138 bounded and 170→187 enumerated; the two-seed official audit executes
+    2,099 candidates with zero invalid actions at about 0.040 ms each and retains the 32-candidate
+    cap. The original preregistered gate is invalid because its 109/208 and 138/208 baseline came
+    from 40 games while validation contained 50 games and 277 labels. Therefore this remains an
+    experimental diversity improvement, not strategy promotion. Stop further candidate tuning for
+    now; next freeze representative counterfactual roots and policy-consistent continuations for an
+    uncertainty-aware action-value puncture. Reopen durations/batches only when search diagnostics
+    show a high-value proposal miss.
 - [x] **P3.2 Implement persistent `GameMemory`.**
   - Why: plans, opponent hypotheses and prediction errors must survive LLM/tool calls.
   - Depends on: P1 schemas.

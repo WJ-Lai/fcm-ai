@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "fcm.marketing-effect-spread-validation.v28",
+  "experimentId": 54,
+  "candidateVersion": "fcm.marketing-spatial-spread.v1",
+  "auditedGames": 50,
+  "excludedTrainingGames": 50,
+  "marketingLabels": 277,
+  "newSelector": {
+    "boundedEffectEquivalentOffered": 138,
+    "enumeratedEffectEquivalentOffered": 187,
+    "singleVerifiedLabels": 251,
+    "singleExhaustiveEffectEquivalentOffered": 251,
+    "unexpectedExhaustiveMiss": 0
+  },
+  "sameSliceOldSelector": {
+    "sourceCommit": "27c5dbc",
+    "boundedEffectEquivalentOffered": 127,
+    "enumeratedEffectEquivalentOffered": 170,
+    "singleVerifiedLabels": 251,
+    "singleExhaustiveEffectEquivalentOffered": 251,
+    "unexpectedExhaustiveMiss": 0
+  },
+  "pairedDescriptiveDelta": {
+    "boundedEffectEquivalentOffered": 11,
+    "enumeratedEffectEquivalentOffered": 17
+  },
+  "preregisteredGate": {
+    "status": "invalid",
+    "reason": "The protocol's 109/208 and 138/208 baseline came from an earlier 40-game slice, while this validation contains 50 games and 277 marketing labels. Its raw minimums cannot prove improvement on this slice."
+  },
+  "officialExecutionAudit": {
+    "seeds": 2,
+    "totalCandidates": 2099,
+    "invalid": 0,
+    "meanGenerationMsPerCandidate": 0.03980436874693043,
+    "maximumCandidatesPerDecision": 32
+  },
+  "decision": "retain-as-experimental-candidate-diversity-change-not-strategy-promotion",
+  "scaleGatePassed": true,
+  "unclassifiedEngineReplayFailures": 0,
+  "promotionHoldoutOpened": false
+}

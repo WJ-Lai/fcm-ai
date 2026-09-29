@@ -7,6 +7,8 @@ import { MARKETING_PROPOSAL_VERSION } from './candidates.mjs'
 const protocolUrl = new URL('../fixtures/marketing-effect-spread-v28/protocol.json', import.meta.url)
 const trainingUrl = new URL(
   '../fixtures/marketing-effect-spread-v28/training-report.json', import.meta.url)
+const validationUrl = new URL(
+  '../fixtures/marketing-effect-spread-v28/validation-report.json', import.meta.url)
 
 test('effect-spread validation gates are frozen before opening the disjoint slice', async () => {
   const protocol = JSON.parse(await readFile(protocolUrl, 'utf8'))
@@ -24,4 +26,21 @@ test('effect-spread validation gates are frozen before opening the disjoint slic
   assert.equal(protocol.validationOpened, false)
   assert.equal(training.validationOpened, false)
   assert.equal(protocol.promotionHoldoutOpened, false)
+})
+
+test('same-slice A/B is descriptive and cannot masquerade as a valid preregistered promotion', async () => {
+  const report = JSON.parse(await readFile(validationUrl, 'utf8'))
+  assert.equal(report.preregisteredGate.status, 'invalid')
+  assert.equal(report.pairedDescriptiveDelta.boundedEffectEquivalentOffered,
+    report.newSelector.boundedEffectEquivalentOffered
+      - report.sameSliceOldSelector.boundedEffectEquivalentOffered)
+  assert.equal(report.pairedDescriptiveDelta.enumeratedEffectEquivalentOffered,
+    report.newSelector.enumeratedEffectEquivalentOffered
+      - report.sameSliceOldSelector.enumeratedEffectEquivalentOffered)
+  assert.ok(report.pairedDescriptiveDelta.boundedEffectEquivalentOffered > 0)
+  assert.ok(report.pairedDescriptiveDelta.enumeratedEffectEquivalentOffered > 0)
+  assert.equal(report.officialExecutionAudit.invalid, 0)
+  assert.ok(report.officialExecutionAudit.maximumCandidatesPerDecision <= 32)
+  assert.match(report.decision, /not-strategy-promotion$/)
+  assert.equal(report.promotionHoldoutOpened, false)
 })

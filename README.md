@@ -130,6 +130,10 @@ To build an Agent that does more than select legal moves, read
 [`docs/fcm-ai-architecture.md`](docs/fcm-ai-architecture.md). It explains why the current MCP is a
 control layer rather than a winning policy, and lays out the recommended deterministic planner,
 LLM, search and reinforcement-learning roadmap.
+The latest evidence-driven course correction is recorded in
+[`docs/technical-direction-review-2026-09-29.md`](docs/technical-direction-review-2026-09-29.md):
+keep the engine/privacy/candidate foundation, but replace local intervention mining with a
+representative, policy-consistent counterfactual learning loop.
 
 The authoritative state now includes `decisionSupport.economyPlayers`: decoded company slots,
 salary, effective price and phase-independent recruiting/training/production/marketing capacity.

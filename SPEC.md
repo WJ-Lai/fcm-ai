@@ -1,12 +1,14 @@
 # FCM AI specification
 
-Updated: 2026-09-28
+Updated: 2026-09-29
 
 This file is the normative system specification for the base-game FCM AI. It defines the product
 boundary, architecture, component contracts, safety invariants, algorithm-selection process and
 promotion gates. Detailed reasoning lives in
 [`docs/fcm-ai-architecture.md`](docs/fcm-ai-architecture.md), dependency-ordered work lives in
-[`TODOS.md`](TODOS.md), and experiment evidence lives in [`log.md`](log.md).
+[`TODOS.md`](TODOS.md), experiment evidence lives in [`log.md`](log.md), and the latest
+evidence-driven course correction lives in
+[`docs/technical-direction-review-2026-09-29.md`](docs/technical-direction-review-2026-09-29.md).
 
 ## 1. Goal and success definition
 
@@ -96,6 +98,15 @@ frozen, diverse policy league.
   138 bounded effects; all 25 multi-marketing batches remain unsupported. Spatial selection is the
   dominant isolated enumeration loss. Test one fixed-width effect-distinct spread selector next;
   do not simultaneously add durations or batches, and keep games 51–100 sealed until it is frozen.
+- Experiment 54 tests that single fixed-width spatial selector. On the 50-game training corpus it
+  raises bounded effect-equivalent coverage from 138 to 157 and enumerated coverage from 180 to
+  212. On the exact same disjoint 50-game slice, the old selector scores 127/277 bounded and
+  170/277 enumerated while the new selector scores 138/277 and 187/277: descriptive lifts of 11
+  and 17 with the candidate cap still at 32. The official audit executes 2,099 candidates with zero
+  invalid actions at about 0.040 ms per candidate. This is retained as experimental proposal
+  infrastructure, not strategy promotion. Its preregistered raw gate is invalid because the
+  protocol copied a 40-game baseline (208 labels) but validation contained 50 games (277 labels);
+  future protocols must bind exact manifest hashes and mechanically derive paired denominators.
 - Strategy fixture v1 freezes 15 policy-independent cases across long-horizon, reactive, tactical,
   abstraction, information-set and leaf-cutoff axes. Cases cover six working-day subphases, anchor
   to content-hashed official-engine fixtures and separate legality, feasibility and desirability.
@@ -908,6 +919,12 @@ policy-population method such as PSRO/JPSRO before claiming convergence.
 - **Opponent-model overconfidence:** keep diverse populations, confidence and out-of-distribution
   flags; allocate robust scenarios rather than one assumed response.
 - **Multiplayer overfitting:** use 3–6 player leagues, frozen opponents and rank-based metrics.
+- **Continuation-policy mismatch:** version every target by the policies controlling all later
+  decisions; do not treat one-deviation-then-static outcomes as values under repeated replanning.
+- **Intervention-root selection bias:** freeze representative roots by seed, seat, phase, action
+  family and player count before outcomes; intervention-triggered roots are diagnostics only.
+- **Manifest/denominator drift:** bind exact manifest hashes and compute paired baselines on the
+  identical slice; invalidate rather than reinterpret a gate when the experimental unit changes.
 - **Human-data bias:** stratify by version/skill/player count; never equate winner action with oracle.
 - **Self-play cycling:** retain historical league snapshots and later consider PSRO/JPSRO.
 - **Latency collapse:** compare equal wall-clock budgets and always keep a deterministic fallback.
@@ -918,17 +935,30 @@ policy-population method such as PSRO/JPSRO before claiming convergence.
 
 ## 11. Execution order
 
-1. **Completed:** implement `GameMemory v2`, the typed plan graph and event-rebuild tests against
-   the frozen strategy-fixture v1 suite.
-2. **Next:** calibrate terminal/value evaluation and a versioned opponent-population belief sampler.
-3. Implement plan-health/opportunity arbitration with switching cost and hysteresis.
-4. Run the equal-budget scenario-beam versus RHEA bake-off; add belief-aware search only at
-   hidden/uncertain boundaries after privacy semantics pass.
-5. Run held-out leagues and component ablations; promote only on terminal lift.
-6. Evaluate an LLM selector only on deterministic near-ties and remove it if it adds no lift.
-7. Distil useful search through Expert Iteration; evaluate masked PPO and potential shaping only
-   after the simulator, value and policy-population gates pass.
-8. Add expansions one module at a time after base-game strength and parity stabilize.
+1. **Completed foundation:** keep the official-engine simulator, seat-safe `DecisionView`, replay
+   audits, bounded legal candidates, reproducible experiments and `GameMemory v2` plan graph.
+2. **Close proposal work:** retain Experiment 54 as candidate-diversity infrastructure only. Defer
+   intermediate marketing durations and multi-marketing batches unless a measured search miss
+   shows they block a high-value action. Stop threshold mining on Experiment 52's action pairs.
+3. **Freeze Counterfactual Root Suite v1:** select representative roots before outcomes across
+   seed, seat, map, early/middle/late phase and action family; include 2-player roots plus a smaller
+   3-player stratum. Keep intervention-triggered roots as a separate diagnostic suite.
+4. **Freeze Rollout Policy Population v1:** include static, safe/scripted archetypes, the official
+   AI where valid, and at least one actor policy that replans at every later decision. Version the
+   complete continuation policy and common-random-number streams in every target.
+5. **Run a bounded puncture:** initially 24 roots × at most six diverse candidates × three paired
+   continuations. Audit observation leakage, official legality, label stability, throughput,
+   action-family balance and target provenance before scaling.
+6. **Fit an uncertainty-aware action value:** learn pairwise/distributional value from observed root
+   context × candidate delta, split by whole seed/game/map, and calibrate abstention. Kill it if it
+   cannot beat static candidate ordering on disjoint counterfactual roots.
+7. **Reconnect planning/search only after that gate:** compare RHEA and scenario beam under equal
+   wall-clock budgets, with the plan graph supplying commitments, deadlines and repair options.
+8. **Promote only through frozen leagues and ablations:** measure rank/win lift across paired seats,
+   opponent populations and 2/3/4-player games. Retain historical policies to detect cycling.
+9. Evaluate LLM intent proposals/explanations, Expert Iteration, PPO or PSRO only after the preceding
+   evidence identifies a specific benefit; add expansions one module at a time after base-game
+   strength and parity stabilize.
 
 ## 12. Non-goals for the current stage
 
