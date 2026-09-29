@@ -36,6 +36,8 @@ const outputPath = path.resolve(argument(
   '--output', 'fixtures/counterfactual-root-suite-v1/report.json',
 ))
 const explore = process.argv.includes('--explore')
+const availabilityOnly = process.argv.includes('--audit-collection-availability')
+assert.ok(!(explore && availabilityOnly), 'choose exploration or collection availability, not both')
 const maxCommands = Number(argument('--max-commands', '700'))
 assert.ok(Number.isInteger(maxCommands) && maxCommands >= 100, 'max commands must be >= 100')
 
@@ -147,9 +149,23 @@ function histogram(values) {
   ))
 }
 
-if (explore) {
+if (explore || availabilityOnly) {
+  const slotAvailability = availabilityOnly
+    ? protocol.slots.map((slot) => ({
+      slotId: slot.id,
+      seed: slot.seed,
+      playerCount: slot.playerCount,
+      seat: slot.seat,
+      phaseBucket: slot.phaseBucket,
+      actionFamily: slot.actionFamily,
+      matches: pool.filter((root) =>
+        root.seed === slot.seed && root.playerCount === slot.playerCount &&
+        root.seat === slot.seat && root.phaseBucket === slot.phaseBucket &&
+        root.actionFamily === slot.actionFamily).length,
+    }))
+    : null
   process.stdout.write(`${JSON.stringify({
-    mode: 'exploration-only',
+    mode: explore ? 'exploration-only' : 'collection-availability-only',
     games: scans.map((scan) => ({
       ...scan.game,
       commands: scan.commands,
@@ -163,6 +179,8 @@ if (explore) {
     byJointStratum: histogram(pool.map((root) => [
       root.playerCount, root.seat, root.phaseBucket, root.actionFamily,
     ].join('/'))),
+    slotAvailability,
+    unavailableSlots: slotAvailability?.filter((slot) => slot.matches === 0) ?? null,
     terminalOutcomeFieldsRead: false,
     reportWritten: false,
   }, null, 2)}\n`)

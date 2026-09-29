@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "fcm.counterfactual-root-suite-availability-failure.v1",
+  "experimentId": 55,
+  "protocolCommit": "6df0af6",
+  "poolRoots": 892,
+  "scannedGames": 7,
+  "completedGames": 7,
+  "byPlayerCount": {"2": 501, "3": 391},
+  "byPhaseBucket": {"early": 155, "middle": 217, "late": 520},
+  "byActionFamily": {
+    "hiring": 218,
+    "marketing": 102,
+    "production": 162,
+    "restructure": 195,
+    "training": 90,
+    "turn-order": 125
+  },
+  "unavailableSlots": [
+    {"slotId":"root-17","playerCount":2,"seat":0,"phaseBucket":"late","actionFamily":"training"},
+    {"slotId":"root-18","playerCount":2,"seat":1,"phaseBucket":"late","actionFamily":"turn-order"},
+    {"slotId":"root-24","playerCount":3,"seat":2,"phaseBucket":"late","actionFamily":"training"}
+  ],
+  "selectionUsesOutcomeFields": false,
+  "terminalOutcomeFieldsRead": false,
+  "terminalOutcomeFieldsPersisted": false,
+  "privatePayloadPersisted": false,
+  "reportWritten": false,
+  "promotionHoldoutOpened": false,
+  "decision": "reject-exact-slot-protocol-and-preregister-fresh-seed-revision"
+}

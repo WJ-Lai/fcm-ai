@@ -50,3 +50,17 @@ strategy result and contains no terminal labels.
   candidate digests, reject the suite.
 - If a persisted report contains terminal money/rank, raw snapshot/gameData/moveData, hidden state
   or credentials, reject the suite.
+
+## Availability revision record
+
+Experiment 55 froze seven collection games and 24 exact slots before scanning. The selector
+correctly rejected the suite because three exact slots were absent: two-player late training,
+two-player late turn-order and three-player late training for their assigned seed/seat. The scan
+contained 892 otherwise eligible public roots and read no terminal outcome fields. No result report
+was produced.
+
+Experiment 56 is a new protocol with new collection seeds. It preserves 24 roots, 18/6 player-count
+balance, 8/8/8 phase balance, all seats, seven maps and all six action families. It changes only
+fragile late-phase training/turn-order assignments to strata repeatedly observed in the outcome-
+blind exploration and availability scans. Experiment 55's failed games are now exploration-only
+evidence and cannot enter Experiment 56.
