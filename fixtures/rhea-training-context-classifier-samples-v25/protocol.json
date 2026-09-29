@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "fcm.rhea-training-context-classifier-samples-protocol.v25",
+  "reportSchemaVersion": "fcm.rhea-training-context-classifier-samples.v25",
+  "experimentId": 51,
+  "frozenRootsReport": "fixtures/rhea-training-context-classifier-roots-v23/report.json",
+  "resumeFrom": "fixtures/rhea-training-context-classifier-samples-v24/report.json",
+  "sampleCount": 7,
+  "maxCommands": 500,
+  "trajectoryOpponentSeedPrefix": "training-pair-main",
+  "requireSampleZeroReproduction": false,
+  "collectionShards": [[0, 1, 2], [3, 4, 5], [6, 7, 8], [9, 10, 11]],
+  "contextClassifier": {
+    "name": "low-exclusive-reach",
+    "feature": "exclusivelyReachableHouses",
+    "operator": "<=",
+    "threshold": 1,
+    "matchedRecommendation": "p5s2-train-2dd5d77261",
+    "unmatchedRecommendation": "p5s2-train-1adebf1880",
+    "developmentRoots": 12,
+    "validation": {
+      "minimumMatchedRoots": 8,
+      "minimumUnmatchedRoots": 2,
+      "pairedContinuationSamplesPerRoot": 15,
+      "integrityStages": [3, 7, 15],
+      "matchedGate": {
+        "minimumDecisiveRoots": 7,
+        "minimumAlternatePositiveRoots": 7,
+        "maximumStaticPositiveRoots": 0,
+        "twoSidedExactSignAlpha": 0.025
+      },
+      "unmatchedGate": { "maximumAlternatePositiveRoots": 0 }
+    },
+    "failurePolicy": "Reject the classifier and keep the static action; never change threshold, feature, roots, or class membership after this freeze."
+  },
+  "targets": [
+    {"rootId":"rhea-training-context-val-05-seat-0-index-4","seed":"rhea-training-context-val-05","agentSeat":0,"gameID":9940,"scanIndex":4,"staticCandidateId":"p5s2-train-1adebf1880","alternateCandidateId":"p5s2-train-2dd5d77261"},
+    {"rootId":"rhea-training-context-val-05-seat-1-index-4","seed":"rhea-training-context-val-05","agentSeat":1,"gameID":9941,"scanIndex":4,"staticCandidateId":"p5s2-train-1adebf1880","alternateCandidateId":"p5s2-train-2dd5d77261"},
+    {"rootId":"rhea-training-context-val-06-seat-0-index-4","seed":"rhea-training-context-val-06","agentSeat":0,"gameID":9942,"scanIndex":4,"staticCandidateId":"p5s2-train-1adebf1880","alternateCandidateId":"p5s2-train-2dd5d77261"},
+    {"rootId":"rhea-training-context-val-06-seat-1-index-4","seed":"rhea-training-context-val-06","agentSeat":1,"gameID":9943,"scanIndex":4,"staticCandidateId":"p5s2-train-1adebf1880","alternateCandidateId":"p5s2-train-2dd5d77261"},
+    {"rootId":"rhea-training-context-val-07-seat-0-index-4","seed":"rhea-training-context-val-07","agentSeat":0,"gameID":9944,"scanIndex":4,"staticCandidateId":"p5s2-train-1adebf1880","alternateCandidateId":"p5s2-train-2dd5d77261"},
+    {"rootId":"rhea-training-context-val-07-seat-1-index-4","seed":"rhea-training-context-val-07","agentSeat":1,"gameID":9945,"scanIndex":4,"staticCandidateId":"p5s2-train-1adebf1880","alternateCandidateId":"p5s2-train-2dd5d77261"},
+    {"rootId":"rhea-training-context-val-08-seat-0-index-4","seed":"rhea-training-context-val-08","agentSeat":0,"gameID":9946,"scanIndex":4,"staticCandidateId":"p5s2-train-1adebf1880","alternateCandidateId":"p5s2-train-2dd5d77261"},
+    {"rootId":"rhea-training-context-val-08-seat-1-index-4","seed":"rhea-training-context-val-08","agentSeat":1,"gameID":9947,"scanIndex":4,"staticCandidateId":"p5s2-train-1adebf1880","alternateCandidateId":"p5s2-train-2dd5d77261"},
+    {"rootId":"rhea-training-context-val-09-seat-0-index-4","seed":"rhea-training-context-val-09","agentSeat":0,"gameID":9948,"scanIndex":4,"staticCandidateId":"p5s2-train-1adebf1880","alternateCandidateId":"p5s2-train-2dd5d77261"},
+    {"rootId":"rhea-training-context-val-09-seat-1-index-4","seed":"rhea-training-context-val-09","agentSeat":1,"gameID":9949,"scanIndex":4,"staticCandidateId":"p5s2-train-1adebf1880","alternateCandidateId":"p5s2-train-2dd5d77261"},
+    {"rootId":"rhea-training-context-val-10-seat-0-index-4","seed":"rhea-training-context-val-10","agentSeat":0,"gameID":9950,"scanIndex":4,"staticCandidateId":"p5s2-train-1adebf1880","alternateCandidateId":"p5s2-train-2dd5d77261"},
+    {"rootId":"rhea-training-context-val-10-seat-1-index-4","seed":"rhea-training-context-val-10","agentSeat":1,"gameID":9951,"scanIndex":4,"staticCandidateId":"p5s2-train-1adebf1880","alternateCandidateId":"p5s2-train-2dd5d77261"}
+  ],
+  "promotionHoldoutOpened": false
+}
