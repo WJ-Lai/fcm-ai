@@ -126,3 +126,71 @@ Keep the existing layered design, but change the learning/evaluation center:
 This is a course correction, not a rewrite. The hard engineering foundation is reusable; the next
 stage must turn it into a representative, policy-consistent learning loop instead of continuing to
 polish isolated action rules.
+
+## Post-validation correction: rollout population and multiplayer
+
+The Rollout Policy Population validation found two issues that materially sharpen this verdict.
+
+First, the previous RHEA adapter sampled one opponent model and reused it for every opponent in a
+multiplayer game. That silently modeled a three-player game as “the same opponent twice.” The
+adapter now requires exact per-seat beliefs/distributions, rejects missing or extra seats and derives
+independent reproducible samples from the common stream. This was a real multiplayer architecture
+bug, not a tuning issue.
+
+Second, the initial population manifest called its offline continuation mixture a calibrated online
+opponent belief. Those are different objects:
+
+- a **continuation distribution** is chosen by the experimenter and defines the `Q` target being
+  measured;
+- an **online opponent belief** is inferred from the current opponent's public history and may be
+  uncertain or out of distribution.
+
+The manifest now freezes the former explicitly. Online calibration remains a separate search input.
+This matters because the existing v5 classifier was calibrated on four synthetic policy identities
+and rejects most human prefixes as out of distribution; it is not a general human-style model.
+
+The official-engine smoke now proves only that 2p/3p roots reconstruct, all actions are legal,
+RHEA is called again at successive decisions, per-seat mixtures execute, and no fallback/private
+payload occurs. It does **not** prove that a strategic intent survives replanning or that RHEA is
+strong.
+
+## Second-pass verdict: what is still missing for a genuinely strong FCM AI
+
+The architecture direction remains defensible, but the current agent cannot yet meet the user's
+long-horizon requirement. Three concrete gaps remain:
+
+1. `GameMemory v2` stores commitments but does not yet generate a plan or force later proposals to
+   complete one. RHEA's current genome horizon is three decision boundaries, not three FCM rounds.
+2. RHEA and Beam still optimize the leaf evaluator already shown to confuse delayed investment with
+   loss. Search depth and optimizer choice cannot repair that bias.
+3. A forced root action followed by a replanner can abandon the very sequence that gives the action
+   value. Such labels are policy-consistent but may still systematically undervalue coordinated
+   long-term plans.
+
+Therefore the next expensive step is no longer the full 24 × 6 × 3 collection. First run a bounded
+coordination puncture (at most four roots, three candidates and two streams) that records whether a
+candidate's intent/commitment is still active and feasible at subsequent actor decisions. If this
+fails, add a goal-conditioned continuation controller driven by the typed plan graph, while keeping
+an off-plan opportunity quota. Only after that probe should representative counterfactual labels be
+scaled.
+
+The preferred learning route remains search-guided policy iteration / Expert Iteration, not PPO as
+the first remedy. PPO would inherit the same weak reward, huge branching factor and sparse terminal
+signal. HTN-like plan templates are useful proposal priors; they should not become an untested
+strategic oracle. MCTS/ISMCTS is justified only at measured uncertain boundaries after a usable
+value prior exists. The deciding metric stays held-out terminal rank across paired seats and
+2/3/4-player policy leagues—not human-action imitation, local evaluator score or cash alone.
+
+## Additional risks now made explicit
+
+- The 24 roots come from deterministic-policy trajectories and only seven maps; later training must
+  add on-policy/DAgger-style roots or it will inherit state-distribution bias.
+- The frozen external mixture contains three simple policies. It is sufficient for an engineering
+  puncture, not for a strength claim. Historical policy snapshots and stronger scripted/search
+  policies must enter later leagues.
+- The 18/6 split is intentionally 2p-heavy. Multiplayer is represented for contract validation but
+  not yet statistically powered; 3p/4p must become first-class before promotion.
+- Candidate-family balance is not strategic-situation balance. Future manifests should also measure
+  bank horizon, milestone races, salary pressure, map topology and demand/route contention.
+- A small counterfactual puncture can validate data semantics and throughput; it cannot train a
+  broadly reliable value model. Scale only after those gates pass.

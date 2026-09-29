@@ -4,7 +4,7 @@
   "ruleset": "base-game",
   "candidateGenerator": "fcm.phase-candidates.v1+marketing-spatial-spread.v1",
   "opponentPopulationId": "base-public-population-v1",
-  "opponentCalibrationVersion": "fcm.opponent-calibration.v5",
+  "continuationDistributionId": "external-mixture-v1",
   "policies": [
     {
       "policyId": "deterministic-replan-v1",
@@ -56,7 +56,7 @@
       "frozen": true,
       "options": {
         "profile":"balanced",
-        "beliefSampleCount":2,
+        "scenarioSampleCount":2,
         "maxRootCandidates":2,
         "branchFactor":3,
         "populationSize":4,
@@ -74,8 +74,9 @@
   "targetScenario": {
     "scenarioId":"rhea-actor-calibrated-opponents-v1",
     "actorPolicyId":"rhea-replan-v1",
-    "opponentSelector":"calibrated-external-public-population-v5",
+    "opponentSelector":"frozen-independent-mixture-v1",
     "opponentModelIds":["deterministic-balanced-v1","safe-first-v1","seeded-random-v1"],
+    "opponentModelWeights":{"deterministic-balanced-v1":0.4117647058823529,"safe-first-v1":0.29411764705882354,"seeded-random-v1":0.29411764705882354},
     "commonRandomStreams":["stream-0","stream-1","stream-2"],
     "candidateComparison":"paired-within-root-stream",
     "terminalTarget":"lexicographic-rank-then-public-margin-v1"

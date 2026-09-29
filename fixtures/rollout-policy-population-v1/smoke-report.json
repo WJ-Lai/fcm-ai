@@ -1,0 +1,118 @@
+{
+  "schemaVersion": "fcm.rollout-policy-population-smoke.v1",
+  "populationId": "base-rollout-population-v1",
+  "continuationDistributionId": "external-mixture-v1",
+  "rootSuiteVersion": "fcm.counterfactual-root-suite.v1",
+  "roots": [
+    {
+      "slotId": "root-07",
+      "playerCount": 2,
+      "phaseBucket": "middle",
+      "actionFamily": "marketing",
+      "diagnosticResults": [
+        {
+          "policyId": "deterministic-replan-v1",
+          "actionTypes": [
+            "marketing",
+            "next_subphase"
+          ],
+          "legal": true
+        },
+        {
+          "policyId": "safe-first-reactive-v1",
+          "actionTypes": [
+            "marketing",
+            "next_subphase"
+          ],
+          "legal": true
+        }
+      ],
+      "targetPolicyId": "rhea-replan-v1",
+      "targetDecisionCalls": 2,
+      "targetActionTypes": [
+        [
+          "next_subphase"
+        ],
+        [
+          "produce",
+          "next_subphase"
+        ]
+      ],
+      "targetFallbacks": [
+        {
+          "fallbackUsed": false,
+          "stopReason": "complete"
+        },
+        {
+          "fallbackUsed": false,
+          "stopReason": "complete"
+        }
+      ],
+      "continuationOpponentModels": [
+        "deterministic-balanced-v1",
+        "safe-first-v1",
+        "seeded-random-v1"
+      ],
+      "officialAdapterSampled": false
+    },
+    {
+      "slotId": "root-21",
+      "playerCount": 3,
+      "phaseBucket": "middle",
+      "actionFamily": "training",
+      "diagnosticResults": [
+        {
+          "policyId": "deterministic-replan-v1",
+          "actionTypes": [
+            "train",
+            "next_subphase"
+          ],
+          "legal": true
+        },
+        {
+          "policyId": "safe-first-reactive-v1",
+          "actionTypes": [
+            "next_subphase"
+          ],
+          "legal": true
+        }
+      ],
+      "targetPolicyId": "rhea-replan-v1",
+      "targetDecisionCalls": 2,
+      "targetActionTypes": [
+        [
+          "train",
+          "next_subphase"
+        ],
+        [
+          "next_subphase"
+        ]
+      ],
+      "targetFallbacks": [
+        {
+          "fallbackUsed": false,
+          "stopReason": "complete"
+        },
+        {
+          "fallbackUsed": false,
+          "stopReason": "complete"
+        }
+      ],
+      "continuationOpponentModels": [
+        "deterministic-balanced-v1",
+        "safe-first-v1",
+        "seeded-random-v1"
+      ],
+      "officialAdapterSampled": false
+    }
+  ],
+  "twoPlayerRoots": 1,
+  "threePlayerRoots": 1,
+  "targetDecisionCalls": 4,
+  "diagnosticPolicyCalls": 4,
+  "invalidActions": 0,
+  "officialAdapterExcludedOnOrdinarySeats": true,
+  "terminalTargetsCollected": false,
+  "privatePayloadPersisted": false,
+  "promotionHoldoutOpened": false
+}

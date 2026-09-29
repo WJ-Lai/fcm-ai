@@ -344,8 +344,14 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     Suite v1 with 24 roots: 18 two-player / 6 three-player, phase buckets 8/8/8, every seat, seven
     maps and six action families. A second replay is byte-identical, and official reconstruction
     executes all 106 bounded candidates with zero invalid actions. These roots remain label-free.
-    Next freeze Rollout Policy Population v1—including a repeatedly replanning actor—before the
-    24-root × <=6-candidate × 3-continuation puncture; do not fall back to one-deviation-then-static.
+    Rollout Policy Population v1 is now mechanically frozen. It separates the explicit external
+    continuation mixture from online calibrated beliefs, fixes multiplayer RHEA to require and
+    independently sample one distribution per opponent seat, and smoke-tests four successive RHEA
+    decisions plus four diagnostic decisions on reconstructed 2p/3p roots with zero invalid action
+    or fallback. This is not strength evidence: RHEA still uses the rejected leaf value and has no
+    demonstrated persistent strategic commitment. Next run a <=24-branch coordination/throughput
+    puncture before authorizing the full 24-root × <=6-candidate × 3-stream collection. If an
+    intended long-range plan is lost on the next decision, add plan-conditioned continuation first.
 - [x] **P3.3d Add versioned opponent-belief sampling.**
   - Why: future dinner outcomes depend on unrevealed simultaneous choices and opponent reactions.
   - Depends on: P1.1 observation provenance, P3.2 and validated public-replay/self-play traces. A

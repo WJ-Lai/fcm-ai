@@ -423,3 +423,19 @@ Verification: **89 tests pass**, lint clean (28 pages), `verify_sources.py` OK,
   0.039ms generation time per candidate. More hand-written combinations are now lower priority than
   a versioned proposal prior learned only from the development split and validated unchanged on the
   held-out split.
+
+## [2026-09-29] experiment | representative roots and rollout-policy semantics
+
+- Froze 24 outcome-blind roots from seven fresh maps: 18 two-player / 6 three-player, phase buckets
+  8/8/8, all seats and six action families. Full replay is byte-identical; 106 reconstructed
+  candidates execute through official clones with zero invalid action.
+- Froze an explicit external continuation mixture, three common-random streams, diagnostic controls
+  and a repeatedly replanning RHEA actor. The mixture defines an offline counterfactual target; it
+  is no longer mislabeled as a history-calibrated online opponent belief.
+- Fixed a multiplayer RHEA defect: every opponent seat now requires its own distribution and receives
+  an independent reproducible model sample. Missing, extra or aggregate multiplayer beliefs fail.
+- Official-engine smoke reconstructed one 2p and one 3p root, made four consecutive RHEA decisions
+  and four diagnostic decisions, and observed zero invalid actions and zero fallback. It collected
+  no terminal label and opened no holdout.
+- Technical review keeps the engine/observation/candidate/testing foundation but blocks bulk label
+  collection until a <=24-branch probe shows that strategic intent survives later replanning.

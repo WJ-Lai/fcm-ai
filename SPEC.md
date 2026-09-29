@@ -117,6 +117,16 @@ frozen, diverse policy league.
   invalid actions. The suite contains only seat-visible projection/candidate hashes and
   reconstruction coordinates—no snapshot, hidden payload or terminal result. It is a sampling
   frame, not value labels or policy-strength evidence.
+- `Rollout Policy Population v1` now freezes a repeatedly replanning RHEA actor, deterministic and
+  safe diagnostic controls, an explicit three-model external continuation mixture and three common
+  random streams. Its official-engine smoke reconstructs one two-player and one three-player root,
+  executes four consecutive target decisions plus four diagnostic decisions with zero invalid
+  actions and zero RHEA fallback, and persists no terminal/private payload. Multiplayer RHEA now
+  requires exactly one seat-scoped distribution per opponent and samples every opponent
+  independently and reproducibly; the old implementation incorrectly reused one sampled model for
+  every opponent. The continuation mixture is an experiment design, not an online calibrated
+  opponent belief. This closes the mechanical population contract only—current RHEA still has a
+  weak leaf value, horizon-three decision genes and no verified multi-turn plan commitment.
 - Strategy fixture v1 freezes 15 policy-independent cases across long-horizon, reactive, tactical,
   abstraction, information-set and leaf-cutoff axes. Cases cover six working-day subphases, anchor
   to content-hashed official-engine fixtures and separate legality, feasibility and desirability.
@@ -953,20 +963,27 @@ policy-population method such as PSRO/JPSRO before claiming convergence.
 3. **Completed — freeze Counterfactual Root Suite v1:** select representative roots before outcomes across
    seed, seat, map, early/middle/late phase and action family; include 2-player roots plus a smaller
    3-player stratum. Keep intervention-triggered roots as a separate diagnostic suite.
-4. **Next — freeze Rollout Policy Population v1:** include static, safe/scripted archetypes, the official
-   AI where valid, and at least one actor policy that replans at every later decision. Version the
-   complete continuation policy and common-random-number streams in every target.
-5. **Run a bounded puncture:** initially 24 roots × at most six diverse candidates × three paired
-   continuations. Audit observation leakage, official legality, label stability, throughput,
-   action-family balance and target provenance before scaling.
-6. **Fit an uncertainty-aware action value:** learn pairwise/distributional value from observed root
+4. **Completed mechanically — freeze Rollout Policy Population v1:** the external continuation
+   mixture, repeatedly replanning RHEA actor, diagnostics, per-seat multiplayer sampling and common
+   streams are versioned and smoke-tested. Keep designed continuation distributions separate from
+   online history-conditioned opponent beliefs. The official adapter remains excluded from these
+   reconstructed ordinary-name seats rather than being emulated illegally.
+5. **Next — prove continuation semantics before bulk labels:** add a small coordination probe showing
+   whether a forced strategic action can carry an intent/commitment through later actor decisions.
+   Run at most four roots × three candidates × two streams first. If repeated replanning immediately
+   destroys the intended plan, fix plan-conditioned continuation before spending the full
+   24-root × at-most-six-candidate × three-stream budget.
+6. **Then run the representative puncture:** audit leakage, legality, common-random pairing, label
+   stability, throughput, action-family/player-count balance and provenance. Treat it as a dataset
+   feasibility test, not evidence of AI strength.
+7. **Fit an uncertainty-aware action value:** learn pairwise/distributional value from observed root
    context × candidate delta, split by whole seed/game/map, and calibrate abstention. Kill it if it
    cannot beat static candidate ordering on disjoint counterfactual roots.
-7. **Reconnect planning/search only after that gate:** compare RHEA and scenario beam under equal
+8. **Reconnect planning/search only after that gate:** compare RHEA and scenario beam under equal
    wall-clock budgets, with the plan graph supplying commitments, deadlines and repair options.
-8. **Promote only through frozen leagues and ablations:** measure rank/win lift across paired seats,
+9. **Promote only through frozen leagues and ablations:** measure rank/win lift across paired seats,
    opponent populations and 2/3/4-player games. Retain historical policies to detect cycling.
-9. Evaluate LLM intent proposals/explanations, Expert Iteration, PPO or PSRO only after the preceding
+10. Evaluate LLM intent proposals/explanations, Expert Iteration, PPO or PSRO only after the preceding
    evidence identifies a specific benefit; add expansions one module at a time after base-game
    strength and parity stabilize.
 

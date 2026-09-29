@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 
 import { randomLegal, safeFirstLegal, seededPolicyRandom } from './baselines.mjs'
+import { validateOpponentBelief } from './opponent-population.mjs'
 import { deterministicStrategy } from './strategy.mjs'
 
 export const ROLLOUT_POLICY_POPULATION_VERSION = 'fcm.rollout-policy-population.v1'
@@ -53,18 +54,18 @@ function validateOptions(policy) {
     assert.equal(options.requiresSeatName, 'FcmAI')
   } else if (policy.implementation === 'fcm.rhea-strategy.v1') {
     exactKeys(options, new Set([
-      'profile', 'beliefSampleCount', 'maxRootCandidates', 'branchFactor', 'populationSize',
+      'profile', 'scenarioSampleCount', 'maxRootCandidates', 'branchFactor', 'populationSize',
       'eliteCount', 'generations', 'horizonLength', 'geneCardinality', 'maxEvaluations',
       'maxTransitionsPerScenario', 'deadlineMs', 'fallbackPolicyId',
     ]), `${policy.policyId} options`)
     for (const key of [
-      'beliefSampleCount', 'maxRootCandidates', 'branchFactor', 'populationSize', 'eliteCount',
+      'scenarioSampleCount', 'maxRootCandidates', 'branchFactor', 'populationSize', 'eliteCount',
       'generations', 'horizonLength', 'geneCardinality', 'maxEvaluations',
       'maxTransitionsPerScenario', 'deadlineMs',
     ]) assert.ok(Number.isSafeInteger(options[key]) && options[key] > 0,
       `${policy.policyId}.${key} must be positive`)
     assert.ok(options.eliteCount < options.populationSize, 'RHEA elite count must be smaller')
-    assert.ok(options.maxEvaluations >= options.beliefSampleCount,
+    assert.ok(options.maxEvaluations >= options.scenarioSampleCount,
       'RHEA evaluation budget is smaller than one paired sample set')
     stableId(options.fallbackPolicyId, 'fallback policy id')
   }
@@ -73,14 +74,14 @@ function validateOptions(policy) {
 export function validateRolloutPolicyPopulation(manifest) {
   exactKeys(manifest, new Set([
     'schemaVersion', 'populationId', 'ruleset', 'candidateGenerator', 'opponentPopulationId',
-    'opponentCalibrationVersion', 'policies', 'targetScenario', 'promotionHoldoutOpened',
+    'continuationDistributionId', 'policies', 'targetScenario', 'promotionHoldoutOpened',
   ]), 'rollout population')
   assert.equal(manifest.schemaVersion, ROLLOUT_POLICY_POPULATION_VERSION)
   stableId(manifest.populationId, 'population id')
   assert.equal(manifest.ruleset, 'base-game')
   stableId(manifest.candidateGenerator, 'candidate generator')
   stableId(manifest.opponentPopulationId, 'opponent population id')
-  stableId(manifest.opponentCalibrationVersion, 'opponent calibration version')
+  stableId(manifest.continuationDistributionId, 'continuation distribution id')
   assert.equal(manifest.promotionHoldoutOpened, false)
   assert.ok(Array.isArray(manifest.policies) && manifest.policies.length >= 5,
     'rollout population requires target, diagnostic, and opponent policies')
@@ -121,11 +122,11 @@ export function validateRolloutPolicyPopulation(manifest) {
     'exactly one target actor is required')
   const scenario = manifest.targetScenario
   exactKeys(scenario, new Set([
-    'scenarioId', 'actorPolicyId', 'opponentSelector', 'opponentModelIds', 'commonRandomStreams',
-    'candidateComparison', 'terminalTarget',
+    'scenarioId', 'actorPolicyId', 'opponentSelector', 'opponentModelIds',
+    'opponentModelWeights', 'commonRandomStreams', 'candidateComparison', 'terminalTarget',
   ]), 'target scenario')
   for (const [key, value] of Object.entries(scenario)) {
-    if (!['commonRandomStreams', 'opponentModelIds'].includes(key)) {
+    if (!['commonRandomStreams', 'opponentModelIds', 'opponentModelWeights'].includes(key)) {
       stableId(value, `target scenario ${key}`)
     }
   }
@@ -138,6 +139,15 @@ export function validateRolloutPolicyPopulation(manifest) {
   assert.deepEqual(scenario.opponentModelIds, [
     'deterministic-balanced-v1', 'safe-first-v1', 'seeded-random-v1',
   ], 'reconstructed roots must exclude the incompatible official environment adapter')
+  assert.deepEqual(Object.keys(scenario.opponentModelWeights), scenario.opponentModelIds,
+    'opponent mixture weights must follow the frozen model order')
+  for (const weight of Object.values(scenario.opponentModelWeights)) {
+    assert.ok(Number.isFinite(weight) && weight > 0 && weight < 1,
+      'opponent mixture weights must be finite probabilities')
+  }
+  assert.ok(Math.abs(Object.values(scenario.opponentModelWeights).reduce(
+    (total, weight) => total + weight, 0,
+  ) - 1) <= 1e-12, 'opponent mixture weights must sum to one')
   const target = manifest.policies.find((policy) => policy.role === 'target-actor')
   assert.ok(ids.has(target.options.fallbackPolicyId), 'target fallback policy is missing')
   assert.equal(manifest.policies.find(
@@ -148,30 +158,68 @@ export function validateRolloutPolicyPopulation(manifest) {
 }
 
 export function continuationTargetProvenance(manifest, {
-  rootId, candidateId, streamId, sampledOpponentModels,
+  rootId, candidateId, streamId, actorSeat, playerCount, sampledOpponentModelsBySeat,
 }) {
   const validated = validateRolloutPolicyPopulation(manifest)
   stableId(rootId, 'root id')
   stableId(candidateId, 'candidate id')
   assert.ok(validated.targetScenario.commonRandomStreams.includes(streamId),
     'stream is outside the frozen scenario')
-  assert.ok(Array.isArray(sampledOpponentModels) && sampledOpponentModels.length > 0,
-    'sampled opponent models are required')
-  sampledOpponentModels.forEach((model) => stableId(model, 'sampled opponent model'))
-  assert.ok(sampledOpponentModels.every(
-    (model) => validated.targetScenario.opponentModelIds.includes(model),
-  ), 'sampled opponent model is outside the frozen compatible subset')
+  assert.ok(Number.isInteger(playerCount) && playerCount >= 2 && playerCount <= 6,
+    'playerCount must be between two and six')
+  assert.ok(Number.isInteger(actorSeat) && actorSeat >= 0 && actorSeat < playerCount,
+    'actorSeat is outside the player range')
+  assert.ok(sampledOpponentModelsBySeat && typeof sampledOpponentModelsBySeat === 'object'
+    && !Array.isArray(sampledOpponentModelsBySeat),
+  'sampled opponent models by seat are required')
+  const opponentSeats = Array.from({ length: playerCount }, (_, seat) => seat)
+    .filter((seat) => seat !== actorSeat)
+  const suppliedSeats = Object.keys(sampledOpponentModelsBySeat).map(Number)
+    .sort((left, right) => left - right)
+  assert.deepEqual(suppliedSeats, opponentSeats,
+    'sampled opponent models must cover exactly every opponent seat')
+  const sampled = Object.fromEntries(opponentSeats.map((seat) => {
+    const model = sampledOpponentModelsBySeat[seat]
+    stableId(model, 'sampled opponent model')
+    assert.ok(validated.targetScenario.opponentModelIds.includes(model),
+      'sampled opponent model is outside the frozen compatible subset')
+    return [seat, model]
+  }))
   return {
     rolloutPopulationId: validated.populationId,
     targetScenarioId: validated.targetScenario.scenarioId,
     actorPolicyId: validated.targetScenario.actorPolicyId,
     opponentPopulationId: validated.opponentPopulationId,
-    opponentCalibrationVersion: validated.opponentCalibrationVersion,
+    continuationDistributionId: validated.continuationDistributionId,
     rootId,
     candidateId,
     streamId,
-    sampledOpponentModels: [...sampledOpponentModels],
+    actorSeat,
+    playerCount,
+    sampledOpponentModelsBySeat: sampled,
   }
+}
+
+export function continuationOpponentBelief(manifest, baseBelief) {
+  const validated = validateRolloutPolicyPopulation(manifest)
+  const base = validateOpponentBelief(structuredClone(baseBelief))
+  assert.equal(base.populationId, validated.opponentPopulationId,
+    'opponent population id differs from the frozen rollout manifest')
+  const allowed = new Set(validated.targetScenario.opponentModelIds)
+  const models = base.believed.models.filter((model) => allowed.has(model.modelId))
+  assert.equal(models.length, allowed.size, 'compatible opponent subset is incomplete')
+  return validateOpponentBelief({
+    ...base,
+    believed: {
+      ...base.believed,
+      models: models.map((model) => ({
+        ...model,
+        probability: validated.targetScenario.opponentModelWeights[model.modelId],
+        confidence: validated.targetScenario.opponentModelWeights[model.modelId] >= 0.4
+          ? 'medium' : 'low',
+      })),
+    },
+  })
 }
 
 export async function dispatchRolloutPolicy(policy, {
@@ -190,7 +238,7 @@ export async function dispatchRolloutPolicy(policy, {
     assert.ok(Array.isArray(result?.selected?.actions) && result.selected.actions.length > 0,
       'search policy returned no selected actions')
     return { kind: 'actions', policyId: policy.policyId, actions: result.selected.actions,
-      decisionMode: policy.decisionMode }
+      decisionMode: policy.decisionMode, searchMetrics: structuredClone(result.metrics ?? {}) }
   }
   let actions
   if (policy.implementation === 'deterministic-strategy-v1') {

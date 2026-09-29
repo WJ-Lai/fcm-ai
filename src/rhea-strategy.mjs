@@ -31,7 +31,7 @@ async function evaluateOfficialGenome({
   seat,
   genome,
   sampleSeed,
-  sampledModel,
+  sampledModelsBySeat,
   roots,
   horizonLength,
   branchFactor,
@@ -77,7 +77,7 @@ async function evaluateOfficialGenome({
           env,
           actor: opponent,
           view: await env.observe(opponent),
-          model: sampledModel,
+          model: sampledModelsBySeat.get(opponent),
           seed: sampleSeed,
           depth,
         })
@@ -97,7 +97,7 @@ async function evaluateOfficialGenome({
       trace.push(candidate.id)
     } else {
       await applyOpponent({
-        env, actor, view: actorView, model: sampledModel, seed: sampleSeed, depth,
+        env, actor, view: actorView, model: sampledModelsBySeat.get(actor), seed: sampleSeed, depth,
       })
       transitions += 1
     }
@@ -106,6 +106,44 @@ async function evaluateOfficialGenome({
   const score = scoreOutcome(await env.observe(seat))
   assert.ok(Number.isFinite(score), 'official genome leaf score must be finite')
   return { score, trace, transitions, depth }
+}
+
+export function normalizeRheaOpponentBeliefs({ view, seat, belief = null, beliefBySeat = null }) {
+  const playerCount = view?.state?.players?.length
+  assert.ok(Number.isInteger(playerCount) && playerCount >= 2,
+    'RHEA requires at least two visible players')
+  assert.ok(Number.isInteger(seat) && seat >= 0 && seat < playerCount, 'invalid actor seat')
+  const opponentSeats = Array.from({ length: playerCount }, (_, index) => index)
+    .filter((index) => index !== seat)
+  if (beliefBySeat == null) {
+    assert.equal(opponentSeats.length, 1,
+      'multiplayer RHEA requires beliefBySeat')
+    return new Map([[opponentSeats[0], validateOpponentBelief(belief)]])
+  }
+  assert.ok(beliefBySeat && typeof beliefBySeat === 'object' && !Array.isArray(beliefBySeat),
+    'beliefBySeat must be an object')
+  assert.equal(belief, null,
+    'RHEA must not combine one aggregate belief with per-seat beliefs')
+  const suppliedSeats = Object.keys(beliefBySeat).map(Number).sort((left, right) => left - right)
+  assert.deepEqual(suppliedSeats, opponentSeats, 'beliefBySeat must cover exactly every opponent')
+  return new Map(opponentSeats.map((opponentSeat) => [
+    opponentSeat, validateOpponentBelief(beliefBySeat[opponentSeat]),
+  ]))
+}
+
+export function sampleRheaOpponentModels({ beliefsBySeat, population, sampleSeed }) {
+  const validatedPopulation = validateOpponentPopulation(population)
+  const models = new Map(validatedPopulation.models.map((model) => [model.modelId, model]))
+  assert.ok(beliefsBySeat instanceof Map && beliefsBySeat.size > 0,
+    'opponent beliefs map is required')
+  return new Map([...beliefsBySeat].map(([opponentSeat, opponentBelief]) => {
+    assert.equal(opponentBelief.populationId, validatedPopulation.populationId,
+      `seat ${opponentSeat} belief population differs from rollout population`)
+    const sampled = sampleOpponentModel(opponentBelief, `${sampleSeed}:seat-${opponentSeat}`)
+    const model = models.get(sampled.modelId)
+    assert.ok(model, `belief references missing model ${sampled.modelId}`)
+    return [opponentSeat, model]
+  }))
 }
 
 function fallback(staticResult, reason, budget) {
@@ -133,6 +171,7 @@ function fallback(staticResult, reason, budget) {
 export async function rheaStrategy(view, {
   env,
   belief,
+  beliefBySeat = null,
   population,
   sampleSeeds,
   evolutionSeed,
@@ -148,12 +187,13 @@ export async function rheaStrategy(view, {
   now,
 } = {}) {
   assert.ok(env?.clone, 'cloneable official environment is required')
-  validateOpponentBelief(belief)
   const validatedPopulation = validateOpponentPopulation(population)
-  const models = new Map(validatedPopulation.models.map((model) => [model.modelId, model]))
+  const beliefsBySeat = normalizeRheaOpponentBeliefs({ view, seat, belief, beliefBySeat })
   const staticResult = deterministicStrategy(view, { memory, profile })
   if (view.legalActions?.isSimulPhase) return fallback(staticResult, 'root-simultaneous', rheaBudget)
-  if (belief.believed.outOfDistribution || belief.believed.confidence === 'low') {
+  if ([...beliefsBySeat.values()].some(
+    (item) => item.believed.outOfDistribution || item.believed.confidence === 'low',
+  )) {
     return fallback(staticResult, 'weak-belief', rheaBudget)
   }
   const roots = prefilterDiverseCandidates(staticResult.ranked, { limit: maxRootCandidates })
@@ -167,15 +207,15 @@ export async function rheaStrategy(view, {
     sampleSeeds,
     evolutionSeed,
     evaluateGenome: async ({ genome, sampleSeed }) => {
-      const sampled = sampleOpponentModel(belief, sampleSeed)
-      const model = models.get(sampled.modelId)
-      assert.ok(model, `belief references missing model ${sampled.modelId}`)
+      const sampledModelsBySeat = sampleRheaOpponentModels({
+        beliefsBySeat, population: validatedPopulation, sampleSeed,
+      })
       return evaluateOfficialGenome({
         sourceEnv: env,
         seat,
         genome,
         sampleSeed,
-        sampledModel: model,
+        sampledModelsBySeat,
         roots,
         horizonLength,
         branchFactor,

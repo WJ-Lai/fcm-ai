@@ -2,7 +2,10 @@ import assert from 'node:assert/strict'
 import { readFile } from 'node:fs/promises'
 import test from 'node:test'
 
+import { buildOpponentBelief } from './opponent-population.mjs'
+
 import {
+  continuationOpponentBelief,
   continuationTargetProvenance,
   dispatchRolloutPolicy,
   validateRolloutPolicyPopulation,
@@ -10,6 +13,10 @@ import {
 
 const manifestUrl = new URL(
   '../fixtures/rollout-policy-population-v1/manifest.json', import.meta.url)
+const opponentPopulationUrl = new URL(
+  '../fixtures/opponent-population-v1/manifest.json', import.meta.url)
+const smokeReportUrl = new URL(
+  '../fixtures/rollout-policy-population-v1/smoke-report.json', import.meta.url)
 
 async function manifest() {
   return JSON.parse(await readFile(manifestUrl, 'utf8'))
@@ -49,6 +56,9 @@ test('manifest rejects hidden state, mutable target, missing fallback, and unbou
   const drift = structuredClone(value)
   drift.policies.find((policy) => policy.role === 'target-actor').options.maxDepth = 999
   assert.throws(() => validateRolloutPolicyPopulation(drift), /fields changed/)
+  const mixture = structuredClone(value)
+  mixture.targetScenario.opponentModelWeights['safe-first-v1'] = 0.9
+  assert.throws(() => validateRolloutPolicyPopulation(mixture), /sum to one/)
 })
 
 test('official adapter cannot run on a renamed ordinary seat', async () => {
@@ -61,6 +71,32 @@ test('official adapter cannot run on a renamed ordinary seat', async () => {
     legalView: legalView(), decisionSeed: 'seed-0', environmentSeatName: 'FcmAI',
   })
   assert.equal(result.kind, 'environment-adapter')
+})
+
+test('reconstructed roots use the frozen experimental mixture, not an online calibrated belief', async () => {
+  const value = await manifest()
+  const base = JSON.parse(await readFile(opponentPopulationUrl, 'utf8'))
+  const belief = buildOpponentBelief(base, {
+    observed: {
+      publicHistoryDigest: `sha256:${'a'.repeat(64)}`,
+      turn: 1,
+      seat: 1,
+      publicEvents: [],
+    },
+    derived: { actionFamilyCounts: {} },
+    believed: { confidence: 'medium', sampleCount: 1, outOfDistribution: false },
+  })
+  const conditioned = continuationOpponentBelief(value, belief)
+  assert.deepEqual(conditioned.believed.models.map((model) => model.modelId), [
+    'deterministic-balanced-v1', 'safe-first-v1', 'seeded-random-v1',
+  ])
+  assert.ok(Math.abs(conditioned.believed.models.reduce(
+    (total, model) => total + model.probability, 0,
+  ) - 1) < 1e-12)
+  assert.deepEqual(Object.fromEntries(conditioned.believed.models.map(
+    (model) => [model.modelId, model.probability],
+  )), value.targetScenario.opponentModelWeights)
+  assert.equal(base.models.length, 4, 'conditioning mutated the base population')
 })
 
 test('search dispatch invokes the injected replanner on every call and preserves its legal action', async () => {
@@ -84,22 +120,47 @@ test('search dispatch invokes the injected replanner on every call and preserves
   assert.deepEqual(first.actions, second.actions)
 })
 
-test('target provenance prevents mixing streams, actors, or opponent calibration', async () => {
+test('target provenance prevents mixing streams, actors, or continuation distributions', async () => {
   const value = await manifest()
   const provenance = continuationTargetProvenance(value, {
     rootId: 'root-01',
     candidateId: 'candidate-01',
     streamId: 'stream-1',
-    sampledOpponentModels: ['safe-first-v1', 'seeded-random-v1'],
+    actorSeat: 0,
+    playerCount: 3,
+    sampledOpponentModelsBySeat: { 1: 'safe-first-v1', 2: 'seeded-random-v1' },
   })
   assert.equal(provenance.actorPolicyId, 'rhea-replan-v1')
-  assert.equal(provenance.opponentCalibrationVersion, 'fcm.opponent-calibration.v5')
+  assert.equal(provenance.continuationDistributionId, 'external-mixture-v1')
   assert.throws(() => continuationTargetProvenance(value, {
     rootId: 'root-01', candidateId: 'candidate-01', streamId: 'post-hoc-stream',
-    sampledOpponentModels: ['safe-first-v1'],
+    actorSeat: 0, playerCount: 2, sampledOpponentModelsBySeat: { 1: 'safe-first-v1' },
   }), /outside the frozen scenario/)
   assert.throws(() => continuationTargetProvenance(value, {
     rootId: 'root-01', candidateId: 'candidate-01', streamId: 'stream-0',
-    sampledOpponentModels: ['official-built-in-v1'],
+    actorSeat: 0, playerCount: 2, sampledOpponentModelsBySeat: { 1: 'official-built-in-v1' },
   }), /outside the frozen compatible subset/)
+  assert.throws(() => continuationTargetProvenance(value, {
+    rootId: 'root-01', candidateId: 'candidate-01', streamId: 'stream-0',
+    actorSeat: 0, playerCount: 3, sampledOpponentModelsBySeat: { 1: 'safe-first-v1' },
+  }), /exactly every opponent seat/)
+})
+
+test('official-engine population smoke replans without fallback on 2p and 3p roots', async () => {
+  const report = JSON.parse(await readFile(smokeReportUrl, 'utf8'))
+  assert.equal(report.schemaVersion, 'fcm.rollout-policy-population-smoke.v1')
+  assert.equal(report.continuationDistributionId, 'external-mixture-v1')
+  assert.equal(report.twoPlayerRoots, 1)
+  assert.equal(report.threePlayerRoots, 1)
+  assert.equal(report.targetDecisionCalls, 4)
+  assert.equal(report.diagnosticPolicyCalls, 4)
+  assert.equal(report.invalidActions, 0)
+  assert.equal(report.officialAdapterExcludedOnOrdinarySeats, true)
+  assert.ok(report.roots.every((root) => root.continuationOpponentModels.length === 3))
+  assert.ok(report.roots.every((root) => root.targetFallbacks.every(
+    (result) => result.fallbackUsed === false && result.stopReason === 'complete',
+  )))
+  assert.equal(report.terminalTargetsCollected, false)
+  assert.equal(report.privatePayloadPersisted, false)
+  assert.equal(report.promotionHoldoutOpened, false)
 })
