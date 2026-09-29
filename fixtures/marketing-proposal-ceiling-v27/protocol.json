@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "fcm.marketing-proposal-ceiling-protocol.v27",
+  "experimentId": 53,
+  "trainingManifest": "data/public-replays/pilot-50/manifest.json",
+  "validationCaptureRoot": "data/public-replays/pilot-100",
+  "validationExclusionManifest": "data/public-replays/pilot-50/manifest.json",
+  "validationOpened": false,
+  "productionCandidateBudget": 32,
+  "productionPerIntentBudget": 6,
+  "diagnosticOnly": true,
+  "promotionHoldoutOpened": false
+}

@@ -28,6 +28,7 @@ import { mapReplayDecisionGroup } from '../src/replay-action-mapper.mjs'
 import {
   decisionBatchShape,
   decisionPatternKey,
+  enumerateLegalSingleMarketingActions,
   exactCandidateRank,
   marketingEffectSignature,
   projectedCandidateRank,
@@ -353,6 +354,16 @@ for (const [recordIndex, record] of manifest.records.entries()) {
             (candidateActions) => marketingEffectSignature(candidateActions, legalActions),
           )
           : null
+        const exhaustiveSingleEffectMatch = group.phase === 5 && group.subphase === 3
+          ? projectedCandidateRank(
+            enumerateLegalSingleMarketingActions(legalActions).map((action, index) => ({
+              id: `audit-exhaustive-marketing-${index}`,
+              actions: [action],
+            })),
+            comparableActions,
+            (candidateActions) => marketingEffectSignature(candidateActions, legalActions),
+          )
+          : null
         const patternMatch = group.phase === 5 && [1, 2].includes(group.subphase)
           ? projectedCandidateRank(ranked, comparableActions, decisionPatternKey)
           : null
@@ -387,6 +398,21 @@ for (const [recordIndex, record] of manifest.records.entries()) {
           winnerPatternEquivalentTop1: 0, winnerPatternEquivalentTop3: 0,
           missingPatternHistogram: {}, marketingBatchHistogram: {},
           missingMarketingBatchHistogram: {},
+          marketingSingleVerifiedLabels: 0,
+          marketingSingleBoundedEffectEquivalentOffered: 0,
+          marketingSingleEnumeratedEffectEquivalentOffered: 0,
+          marketingSingleExhaustiveEffectEquivalentOffered: 0,
+          marketingSingleBudgetPruningLoss: 0,
+          marketingSingleEnumerationSelectionLoss: 0,
+          marketingSingleUnexpectedExhaustiveMiss: 0,
+          marketingSingleIntermediateDurationLabels: 0,
+          marketingSingleIntermediateDurationEnumerated: 0,
+          marketingSingleEndpointDurationLabels: 0,
+          marketingSingleEndpointDurationEnumerated: 0,
+          marketingSingleEndpointSpatialSelectionLoss: 0,
+          marketingMultiVerifiedLabels: 0,
+          marketingMultiBoundedEffectEquivalentOffered: 0,
+          marketingMultiEnumeratedEffectEquivalentOffered: 0,
           winnerVerifiedLabels: 0, winnerCandidateOffered: 0,
           winnerStaticTop1: 0, winnerStaticTop3: 0,
           actionCountHistogram: {}, actionTypeHistogram: {},
@@ -423,6 +449,51 @@ for (const [recordIndex, record] of manifest.records.entries()) {
           if (!effectMatch) {
             bucket.missingMarketingBatchHistogram[marketingBatch] =
               (bucket.missingMarketingBatchHistogram[marketingBatch] ?? 0) + 1
+          }
+          const marketingActionCount = comparableActions.filter(
+            (action) => action.type === 'marketing').length
+          if (marketingActionCount === 1) {
+            bucket.marketingSingleVerifiedLabels += 1
+            if (effectMatch) bucket.marketingSingleBoundedEffectEquivalentOffered += 1
+            if (enumeratedEffectMatch) {
+              bucket.marketingSingleEnumeratedEffectEquivalentOffered += 1
+            }
+            if (exhaustiveSingleEffectMatch) {
+              bucket.marketingSingleExhaustiveEffectEquivalentOffered += 1
+            }
+            if (!effectMatch && enumeratedEffectMatch) bucket.marketingSingleBudgetPruningLoss += 1
+            if (!enumeratedEffectMatch && exhaustiveSingleEffectMatch) {
+              bucket.marketingSingleEnumerationSelectionLoss += 1
+            }
+            if (!exhaustiveSingleEffectMatch) bucket.marketingSingleUnexpectedExhaustiveMiss += 1
+            const targetAction = comparableActions.find((action) => action.type === 'marketing')
+            const legalMarketing = legalActions.actions.find((action) => action.type === 'marketing')
+            const legalMarketer = legalMarketing?.options?.find(
+              (option) => option.marketer === targetAction.marketer)
+            const legalCampaign = legalMarketer?.campaigns?.find(
+              (campaign) => campaign.campaign === targetAction.campaign)
+            const intermediateDuration = legalCampaign?.durationInfinite === false
+              && targetAction.duration > 1
+              && targetAction.duration < legalCampaign.maxDuration
+            if (intermediateDuration) {
+              bucket.marketingSingleIntermediateDurationLabels += 1
+              if (enumeratedEffectMatch) {
+                bucket.marketingSingleIntermediateDurationEnumerated += 1
+              }
+            } else {
+              bucket.marketingSingleEndpointDurationLabels += 1
+              if (enumeratedEffectMatch) {
+                bucket.marketingSingleEndpointDurationEnumerated += 1
+              } else if (exhaustiveSingleEffectMatch) {
+                bucket.marketingSingleEndpointSpatialSelectionLoss += 1
+              }
+            }
+          } else {
+            bucket.marketingMultiVerifiedLabels += 1
+            if (effectMatch) bucket.marketingMultiBoundedEffectEquivalentOffered += 1
+            if (enumeratedEffectMatch) {
+              bucket.marketingMultiEnumeratedEffectEquivalentOffered += 1
+            }
           }
         }
         if (winnerDecision) {

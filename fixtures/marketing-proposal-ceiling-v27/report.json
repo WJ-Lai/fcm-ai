@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "fcm.marketing-proposal-ceiling.v27",
+  "experimentId": 53,
+  "auditedTrainingGames": 50,
+  "verifiedMarketingLabels": 270,
+  "boundedEffectEquivalentOffered": 138,
+  "enumeratedEffectEquivalentOffered": 180,
+  "single": {
+    "verifiedLabels": 245,
+    "boundedEffectEquivalentOffered": 138,
+    "enumeratedEffectEquivalentOffered": 180,
+    "exhaustiveEffectEquivalentOffered": 245,
+    "budgetPruningLoss": 42,
+    "enumerationSelectionLoss": 65,
+    "unexpectedExhaustiveMiss": 0,
+    "intermediateDurationLabels": 7,
+    "intermediateDurationEnumerated": 0,
+    "endpointDurationLabels": 238,
+    "endpointDurationEnumerated": 180,
+    "endpointSpatialSelectionLoss": 58
+  },
+  "multi": {
+    "verifiedLabels": 25,
+    "boundedEffectEquivalentOffered": 0,
+    "enumeratedEffectEquivalentOffered": 0
+  },
+  "diagnosis": "spatial-selection-dominates-single-action-enumeration-loss",
+  "nextSingleVariable": "replace top-impact-plus-first-coordinate selection with three effect-distinct spread representatives per placement orientation",
+  "validationOpened": false,
+  "promotionHoldoutOpened": false
+}

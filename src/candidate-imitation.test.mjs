@@ -4,6 +4,7 @@ import test from 'node:test'
 import {
   decisionBatchShape,
   decisionPatternKey,
+  enumerateLegalSingleMarketingActions,
   exactCandidateRank,
   marketingEffectSignature,
   projectedCandidateRank,
@@ -119,6 +120,30 @@ test('marketing effect signature canonicalizes a complete multi-campaign batch',
     { ...batch(40, 50)[0] },
     { type: 'next_subphase' },
   ], legalActions), null)
+})
+
+test('exhaustive marketing diagnostic includes intermediate durations and every distinct effect', () => {
+  const legalActions = { actions: [{
+    type: 'marketing', goods: [3, 4], options: [{ marketer: 13, campaigns: [{
+      campaign: 14, maxDuration: 3, durationInfinite: false,
+      placements: [{ rotated: false, houseImpacts: [
+        { index: 40, houses: [1, 2] },
+        { index: 41, houses: [1, 2] },
+        { index: 42, houses: [3] },
+        { index: 43, houses: [4] },
+      ] }],
+    }, {
+      campaign: 15, maxDuration: 9, durationInfinite: true,
+      placements: [{ rotated: true, houseImpacts: [{ index: 50, houses: [5] }] }],
+    }] }],
+  }] }
+  const actions = enumerateLegalSingleMarketingActions(legalActions)
+  assert.equal(actions.length, 20)
+  assert.ok(actions.some((action) => (
+    action.campaign === 14 && action.duration === 2 && action.index === 43
+  )))
+  assert.deepEqual([...new Set(actions.filter((action) => action.campaign === 15)
+    .map((action) => action.duration))], [9])
 })
 
 test('winner seats are derived from terminal public money and preserve ties', () => {

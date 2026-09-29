@@ -78,6 +78,45 @@ export function marketingEffectSignature(actions, legalActions) {
   return signatures.length === 1 ? signatures[0] : signatures
 }
 
+/**
+ * Audit-only exhaustive single-action ceiling. Enumerate every legal public marketing effect,
+ * including intermediate finite durations, while collapsing coordinate aliases that affect the
+ * same houses. This is deliberately not the bounded production proposal policy.
+ */
+export function enumerateLegalSingleMarketingActions(legalActions) {
+  const legal = legalActions.actions.find((item) => item.type === 'marketing')
+  if (!legal) return []
+  const result = []
+  const seenEffects = new Set()
+  for (const marketer of legal.options ?? []) {
+    for (const campaign of marketer.campaigns ?? []) {
+      const durations = campaign.durationInfinite
+        ? [9]
+        : Array.from({ length: campaign.maxDuration ?? 0 }, (_, index) => index + 1)
+      for (const placement of campaign.placements ?? []) {
+        for (const impact of placement.houseImpacts ?? []) {
+          for (const good of legal.goods ?? []) {
+            for (const duration of durations) {
+              const action = {
+                type: 'marketing', marketer: marketer.marketer,
+                campaign: campaign.campaign, good, duration,
+                rotated: placement.rotated, index: impact.index,
+              }
+              const signature = marketingEffectSignature([action], legalActions)
+              if (signature == null) continue
+              const encoded = JSON.stringify(signature)
+              if (seenEffects.has(encoded)) continue
+              seenEffects.add(encoded)
+              result.push(action)
+            }
+          }
+        }
+      }
+    }
+  }
+  return result
+}
+
 /** Return every tied first-place seat from terminal public player state. */
 export function winnerSeatsFromPlayers(players) {
   if (!players.length) return []

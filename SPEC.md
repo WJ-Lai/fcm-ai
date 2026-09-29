@@ -88,6 +88,14 @@ frozen, diverse policy league.
   proposal slots and reduced development coverage from 29/62 to 24–26/62. Production generation
   remains on the better single-campaign policy until a learned/versioned proposal can demonstrate
   lift. This is a measured combinatorial blocker, not an unimplemented legality path.
+- Experiment 53 decomposes the complete 50-game marketing ceiling without opening validation.
+  Of 270 labels, 245 are single-marketing and 25 are multi-marketing. The audit-only exhaustive
+  public legality enumerator covers all 245 single effects. Production enumeration covers 180:
+  58 endpoint-duration labels are lost by the current spatial Top-2/first-coordinate selector and
+  seven use omitted intermediate durations. The 32-candidate cap then removes another 42, leaving
+  138 bounded effects; all 25 multi-marketing batches remain unsupported. Spatial selection is the
+  dominant isolated enumeration loss. Test one fixed-width effect-distinct spread selector next;
+  do not simultaneously add durations or batches, and keep games 51–100 sealed until it is frozen.
 - Strategy fixture v1 freezes 15 policy-independent cases across long-horizon, reactive, tactical,
   abstraction, information-set and leaf-cutoff axes. Cases cover six working-day subphases, anchor
   to content-hashed official-engine fixtures and separate legality, feasibility and desirability.

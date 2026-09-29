@@ -153,6 +153,13 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     consequence equivalence covers 82/85 (96.5%) and 32/33 winner decisions. Marketing effect
     equivalence is now 138/270 (51.1%) across the 50 training games. Ranking quality remains poor as coverage grows, so
     evaluator promotion stays blocked.
+    Iteration 53 adds an audit-only exhaustive single-marketing ceiling and decomposes all 270
+    training labels: 245 single / 25 multi; exhaustive single coverage 245/245; production
+    enumeration 180/245; bounded coverage 138/245. The 65 enumeration misses are 58 spatial
+    selection losses and 7 intermediate-duration losses; another 42 are budget-pruning losses.
+    Next change only spatial selection to three effect-distinct spread representatives per
+    orientation, freeze it before opening games 51–100, and reject it if bounded validation effect
+    coverage or other action-family coverage regresses.
 - [x] **P3.2 Implement persistent `GameMemory`.**
   - Why: plans, opponent hypotheses and prediction errors must survive LLM/tool calls.
   - Depends on: P1 schemas.
