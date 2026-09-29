@@ -582,6 +582,11 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     Interim matched signs are 5 alternate / 0 static / 3 tied; unmatched signs are 1 alternate /
     0 static / 3 tied. The audit is still `collecting`/passed=null at 3/15, so preserve all prefixes
     and append samples 3–6 for every root; do not tune the threshold or drop the unmatched exception.
+    Iteration 51 preserves all prefixes and reaches 7 samples: matched is 7 alternate-positive /
+    0 static / 1 tied (p=0.015625), while unmatched is 3 alternate-positive / 0 static / 1 tied.
+    The unmatched safety gate is at high risk, but every positive mean can still reverse over the
+    eight remaining samples. Append samples 7–14 for all 12 roots and apply both frozen gates once;
+    no post-hoc futility rule, gate relaxation or classifier retuning is allowed.
 
 - [ ] **P4.1c Evaluate belief-aware information-set search only where uncertainty warrants it.**
   - Why: hidden/simultaneous choices may justify ISMCTS/POMCP-style sampling, but naive MCTS or

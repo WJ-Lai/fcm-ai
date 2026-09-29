@@ -745,6 +745,14 @@ gate if it persisted, but three samples are not an eligible decision stage: the 
 `collecting` with `passed=null`. Preserve every root and sample prefix, append samples 3–6, and do
 not change the classifier in response to this interim result.
 
+Experiment 51 appends samples 3–6 without changing any frozen input. All 96 new terminal branches
+complete and all three-sample rank/margin prefixes remain exact. The matched class reaches seven
+alternate-positive, zero static-positive and one tied root (`p=0.015625`), but three of four
+unmatched roots are now alternate-positive and one is tied. The unmatched safety hypothesis is
+therefore under strong pressure. It is not yet a valid failure verdict because eight predeclared
+continuations can still reverse each small cumulative mean. Append samples 7–14 for every root and
+apply both gates once at 15; do not weaken the unmatched gate or retrofit a new threshold.
+
 ### 6.8 Execution, memory and learning
 
 The execution layer accepts one versioned candidate id, revalidates it against the current game
