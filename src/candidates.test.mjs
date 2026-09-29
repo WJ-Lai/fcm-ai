@@ -319,6 +319,32 @@ test('marketing diversity does not let the first campaign starve later workers',
   )
 })
 
+test('marketing spatial sampling spans distinct public effects instead of only top impacts', () => {
+  const input = view(5, 3, [
+    { type: 'marketing', goods: [4], options: [{ marketer: 13, campaigns: [{
+      campaign: 14, durationInfinite: false, maxDuration: 1,
+      placements: [{
+        rotated: false,
+        legalSquares: [40, 41, 42, 43, 44, 45, 46],
+        houseImpacts: [
+          { index: 40, houses: [1, 2, 3, 4, 5, 6] },
+          { index: 41, houses: [1, 2, 3, 4, 5] },
+          { index: 42, houses: [1, 2, 3, 4] },
+          { index: 43, houses: [1, 2, 3] },
+          { index: 44, houses: [1, 2] },
+          { index: 45, houses: [1, 2] },
+          { index: 46, houses: [1] },
+        ],
+      }],
+    }] }] },
+    { type: 'next_subphase' },
+  ])
+  const indexes = auditCandidateGeneration(input).enumeratedCandidates
+    .filter((candidate) => candidate.intent === 'create-demand')
+    .map((candidate) => candidate.actions[0].index)
+  assert.deepEqual(indexes, [40, 43, 46])
+})
+
 test('spatial diversity does not let the first house consume the build budget', () => {
   const candidates = generateCandidates(view(5, 5, [
     { type: 'build_house', remainingBuilds: 1, houses: [1, 2, 3].map((house) => ({

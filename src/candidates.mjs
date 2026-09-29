@@ -7,6 +7,8 @@ import {
   compileCandidatePlanFeatures,
 } from './game-memory-v2.mjs'
 
+export const MARKETING_PROPOSAL_VERSION = 'fcm.marketing-spatial-spread.v1'
+
 function legalByType(view) {
   return new Map((view.legalActions?.actions ?? []).map((action) => [action.type, action]))
 }
@@ -46,6 +48,17 @@ function demandedGoods(state) {
     for (const good of house.goods ?? []) counts.set(good, (counts.get(good) ?? 0) + 1)
   }
   return [...counts].sort((a, b) => b[1] - a[1] || a[0] - b[0]).map(([good]) => good)
+}
+
+function spreadDistinctMarketingEffects(houseImpacts, limit = 3) {
+  const byEffect = new Map()
+  for (const impact of [...houseImpacts]
+    .filter((entry) => entry.houses?.length)
+    .sort((left, right) => right.houses.length - left.houses.length || left.index - right.index)) {
+    const effect = JSON.stringify([...impact.houses].sort((left, right) => left - right))
+    if (!byEffect.has(effect)) byEffect.set(effect, impact)
+  }
+  return spreadSample([...byEffect.values()], limit)
 }
 
 function boundedCombinations(items, length, { canUse = () => true, limit = 20 } = {}) {
@@ -386,13 +399,8 @@ function workingDayCandidates(view, actions) {
       for (const campaign of marketer.campaigns ?? []) {
         const durations = campaign.durationInfinite ? [9] : unique([1, campaign.maxDuration])
         for (const placement of campaign.placements ?? []) {
-          const impactful = (placement.houseImpacts ?? [])
-            .filter((impact) => impact.houses?.length)
-            .sort((a, b) => b.houses.length - a.houses.length || a.index - b.index)
-          const indexes = unique([
-            ...impactful.slice(0, 2).map((impact) => impact.index),
-            ...(placement.legalSquares ?? []).slice(0, 1),
-          ])
+          const impactful = spreadDistinctMarketingEffects(placement.houseImpacts ?? [])
+          const indexes = impactful.map((impact) => impact.index)
           for (const good of goods) {
             for (const duration of durations) {
               for (const index of indexes) {
@@ -406,6 +414,7 @@ function workingDayCandidates(view, actions) {
                 ], {
                   affectedHouses: impactful.find((impact) => impact.index === index)?.houses?.length ?? 0,
                   affectedHouseIds: [...(impactful.find((impact) => impact.index === index)?.houses ?? [])],
+                  marketingProposalVersion: MARKETING_PROPOSAL_VERSION,
                 }, `create-demand:${marketer.marketer}:${campaign.campaign}:${good}:${duration}`))
               }
             }

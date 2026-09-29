@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "fcm.marketing-effect-spread-training.v28",
+  "experimentId": 54,
+  "candidateVersion": "fcm.marketing-spatial-spread.v1",
+  "auditedGames": 50,
+  "marketingLabels": 270,
+  "boundedEffectEquivalentOffered": 157,
+  "enumeratedEffectEquivalentOffered": 212,
+  "single": {
+    "verifiedLabels": 245,
+    "boundedEffectEquivalentOffered": 157,
+    "enumeratedEffectEquivalentOffered": 212,
+    "budgetPruningLoss": 55,
+    "enumerationSelectionLoss": 33
+  },
+  "multiVerifiedLabels": 25,
+  "validationOpened": false,
+  "promotionHoldoutOpened": false
+}

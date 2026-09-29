@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "fcm.marketing-effect-spread-protocol.v28",
+  "experimentId": 54,
+  "candidateVersion": "fcm.marketing-spatial-spread.v1",
+  "singleVariable": "Within each marketer/campaign orientation, replace top-impact-plus-first-coordinate selection with three effect-distinct spread representatives; retain endpoint durations, single-action batches, diversity keys and budgets.",
+  "trainingManifest": "data/public-replays/pilot-50/manifest.json",
+  "validationCaptureRoot": "data/public-replays/pilot-100",
+  "validationExclusionManifest": "data/public-replays/pilot-50/manifest.json",
+  "trainingResult": {
+    "marketingLabels": 270,
+    "boundedEffectEquivalentOffered": 157,
+    "enumeratedEffectEquivalentOffered": 212,
+    "previousBounded": 138,
+    "previousEnumerated": 180
+  },
+  "validationBaseline": {
+    "marketingLabels": 208,
+    "boundedEffectEquivalentOffered": 109,
+    "enumeratedEffectEquivalentOffered": 138
+  },
+  "validationGate": {
+    "minimumBoundedEffectEquivalentOffered": 120,
+    "minimumEnumeratedEffectEquivalentOffered": 155,
+    "maximumUnexpectedExhaustiveMiss": 0,
+    "maximumCandidatesPerDecision": 32,
+    "maximumOfficialExecutionViolations": 0
+  },
+  "validationOpened": false,
+  "promotionHoldoutOpened": false
+}
