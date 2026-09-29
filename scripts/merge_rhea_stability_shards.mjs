@@ -7,6 +7,7 @@ import path from 'node:path'
 
 import { auditPairedSequentialDataset } from '../src/paired-sequential-estimator.mjs'
 import { auditRootGeneralization } from '../src/root-generalization.mjs'
+import { auditContextClassifier } from '../src/context-classifier-audit.mjs'
 
 const root = path.resolve(new URL('..', import.meta.url).pathname)
 const fixtureName = process.argv[2]
@@ -67,7 +68,11 @@ const report = {
   collectionShards: protocol.collectionShards,
   roots,
   audit: auditPairedSequentialDataset(estimatorDataset, sequentialProtocol),
-  rootGeneralizationAudit: auditRootGeneralization(roots, protocol.candidateWideHypothesis),
+  rootGeneralizationAudit: protocol.candidateWideHypothesis == null
+    ? null : auditRootGeneralization(roots, protocol.candidateWideHypothesis),
+  contextClassifier: protocol.contextClassifier ?? null,
+  contextClassifierAudit: protocol.contextClassifier == null
+    ? null : auditContextClassifier(roots, protocol.contextClassifier),
   predeclaredInteraction: null,
   privatePayloadPersisted: false,
   promotionHoldoutOpened: protocol.promotionHoldoutOpened,
@@ -83,5 +88,5 @@ await writeFile(outputPath, serialized)
 process.stdout.write(`${JSON.stringify({
   output: outputPath,
   roots: roots.length,
-  audit: report.rootGeneralizationAudit,
+  audit: report.contextClassifierAudit ?? report.rootGeneralizationAudit,
 }, null, 2)}\n`)

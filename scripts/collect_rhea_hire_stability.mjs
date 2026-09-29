@@ -15,6 +15,7 @@ import { strategicProjectionDigest } from '../src/strategic-abstraction.mjs'
 import { deterministicStrategy } from '../src/strategy.mjs'
 import { extractTerminalValueFeatures } from '../src/terminal-value-v2.mjs'
 import { auditRootGeneralization } from '../src/root-generalization.mjs'
+import { auditContextClassifier } from '../src/context-classifier-audit.mjs'
 
 const root = path.resolve(new URL('..', import.meta.url).pathname)
 const fixtureName = process.argv[2] ?? 'rhea-hire-stability-v9'
@@ -155,6 +156,7 @@ async function completeBranch(reconstructed, target, candidate, sample) {
 const roots = []
 for (const target of selectedTargets) {
   const reconstructed = await reconstructRoot(target)
+  let frozenRoot = null
   const source = sourceReport?.interventions.find((row) => (
     row.seed === target.seed && row.agentSeat === target.agentSeat && row.index === target.scanIndex
   )) ?? null
@@ -162,7 +164,7 @@ for (const target of selectedTargets) {
     assert.ok(source, `missing source intervention ${target.rootId}`)
   }
   if (frozenRootsReport) {
-    const frozenRoot = frozenRootsReport.roots.find((entry) => entry.rootId === target.rootId)
+    frozenRoot = frozenRootsReport.roots.find((entry) => entry.rootId === target.rootId)
     assert.ok(frozenRoot, `missing frozen root ${target.rootId}`)
     assert.equal(reconstructed.rootIdentityDigest, frozenRoot.rootIdentityDigest,
       `frozen root identity drift at ${target.rootId}`)
@@ -221,6 +223,7 @@ for (const target of selectedTargets) {
       ? undefined : reconstructed.publicFeatures,
     interactionMatched: matchesInteraction(
       reconstructed.publicFeatures, protocol.predeclaredInteraction),
+    classifierMatched: frozenRoot?.classifierMatched ?? null,
     sampleZeroReferenceAvailable: source != null,
     sampleZeroReproduced: source == null ? null : true,
     candidates,
@@ -249,6 +252,9 @@ const report = {
   audit: auditPairedSequentialDataset(estimatorDataset, sequentialProtocol),
   rootGeneralizationAudit: protocol.candidateWideHypothesis == null
     ? null : auditRootGeneralization(roots, protocol.candidateWideHypothesis),
+  contextClassifier: protocol.contextClassifier ?? null,
+  contextClassifierAudit: protocol.contextClassifier == null
+    ? null : auditContextClassifier(roots, protocol.contextClassifier),
   privatePayloadPersisted: false,
   promotionHoldoutOpened: protocol.promotionHoldoutOpened,
 }
