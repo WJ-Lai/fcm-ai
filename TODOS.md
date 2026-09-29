@@ -587,6 +587,11 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     The unmatched safety gate is at high risk, but every positive mean can still reverse over the
     eight remaining samples. Append samples 7–14 for all 12 roots and apply both frozen gates once;
     no post-hoc futility rule, gate relaxation or classifier retuning is allowed.
+    Iteration 52 completes all 192 new branches with exact seven-sample prefixes. Final matched:
+    6 alternate-positive / 0 static / 2 tied, p=0.03125, missing its frozen thresholds. Final
+    unmatched: 3 alternate-positive / 0 static / 1 tied, violating the zero-positive safety gate.
+    Reject the classifier and keep static online. Do not mine these validation roots for a new
+    cutoff or revive the previously rejected unconditional rule from the post-hoc 9/0/3 aggregate.
 
 - [ ] **P4.1c Evaluate belief-aware information-set search only where uncertainty warrants it.**
   - Why: hidden/simultaneous choices may justify ISMCTS/POMCP-style sampling, but naive MCTS or

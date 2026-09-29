@@ -1,0 +1,3589 @@
+{
+  "schemaVersion": "fcm.rhea-training-context-classifier-samples.v26",
+  "experimentId": 52,
+  "protocolDigest": "sha256:5d287263355c24db18cf5ede1e7a1163ef1e5dd36adb1331b13c8fb698158a1d",
+  "sampleCount": 15,
+  "resumedFromSampleCount": 7,
+  "targetIndices": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11
+  ],
+  "partialCollection": false,
+  "collectionShards": [
+    [
+      0,
+      1,
+      2
+    ],
+    [
+      3,
+      4,
+      5
+    ],
+    [
+      6,
+      7,
+      8
+    ],
+    [
+      9,
+      10,
+      11
+    ]
+  ],
+  "roots": [
+    {
+      "rootId": "rhea-training-context-val-05-seat-0-index-4",
+      "strategicProjectionDigest": "sha256:5f33617bdb1f1f7ffad11a43bffd7cc422bf0522582a998ba70d2a7445f6a5f3",
+      "rootIdentityDigest": "sha256:1212b6f5fa72d87340ec3d5c13c8f450f8544c287718a163017ad194b4f4a53f",
+      "interactionMatched": null,
+      "classifierMatched": true,
+      "sampleZeroReferenceAvailable": false,
+      "sampleZeroReproduced": null,
+      "candidates": [
+        {
+          "candidateId": "p5s2-train-1adebf1880",
+          "terminalMargins": [
+            -300,
+            -173,
+            -77,
+            -569,
+            -173,
+            -492,
+            -598,
+            30,
+            -396,
+            -170,
+            -40,
+            -510,
+            -506,
+            -334,
+            -161
+          ],
+          "terminalRanks": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "terminalMoney": [
+            10,
+            125,
+            3,
+            0,
+            96,
+            10,
+            0,
+            35,
+            0,
+            140,
+            0,
+            1,
+            0,
+            5,
+            11
+          ],
+          "terminalCommands": [
+            437,
+            433,
+            427,
+            275,
+            439,
+            170,
+            203,
+            423,
+            416,
+            433,
+            422,
+            295,
+            340,
+            420,
+            439
+          ],
+          "completed": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "candidateId": "p5s2-train-2dd5d77261",
+          "terminalMargins": [
+            -100,
+            -11,
+            -404,
+            -512,
+            -474,
+            428,
+            -588,
+            -574,
+            -470,
+            -31,
+            -239,
+            -95,
+            -250,
+            -50,
+            -169
+          ],
+          "terminalRanks": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "terminalMoney": [
+            5,
+            0,
+            65,
+            10,
+            0,
+            473,
+            5,
+            0,
+            50,
+            0,
+            157,
+            15,
+            149,
+            0,
+            170
+          ],
+          "terminalCommands": [
+            445,
+            441,
+            352,
+            284,
+            447,
+            267,
+            165,
+            319,
+            214,
+            443,
+            343,
+            435,
+            307,
+            440,
+            247
+          ],
+          "completed": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "rhea-training-context-val-05-seat-1-index-4",
+      "strategicProjectionDigest": "sha256:4699a348756f6b881b4ee62ccc0886ec85c8455ee2188d435f5394a74daa6053",
+      "rootIdentityDigest": "sha256:d1d808bf8a411ad279918a822e369dd0ec89ac76226b099a436a604da0681802",
+      "interactionMatched": null,
+      "classifierMatched": true,
+      "sampleZeroReferenceAvailable": false,
+      "sampleZeroReproduced": null,
+      "candidates": [
+        {
+          "candidateId": "p5s2-train-1adebf1880",
+          "terminalMargins": [
+            533,
+            -136,
+            -302,
+            -293,
+            -454,
+            -11,
+            -306,
+            501,
+            -158,
+            457,
+            452,
+            495,
+            524,
+            -131,
+            -202
+          ],
+          "terminalRanks": [
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            1,
+            2,
+            1,
+            1,
+            1,
+            1,
+            2,
+            2
+          ],
+          "terminalMoney": [
+            538,
+            187,
+            100,
+            112,
+            48,
+            263,
+            112,
+            501,
+            177,
+            493,
+            460,
+            505,
+            529,
+            187,
+            273
+          ],
+          "terminalCommands": [
+            110,
+            239,
+            206,
+            122,
+            238,
+            226,
+            212,
+            127,
+            218,
+            129,
+            453,
+            158,
+            241,
+            218,
+            262
+          ],
+          "completed": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "candidateId": "p5s2-train-2dd5d77261",
+          "terminalMargins": [
+            440,
+            586,
+            564,
+            50,
+            266,
+            476,
+            445,
+            519,
+            440,
+            508,
+            388,
+            595,
+            515,
+            455,
+            389
+          ],
+          "terminalRanks": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "terminalMoney": [
+            480,
+            586,
+            569,
+            305,
+            384,
+            496,
+            475,
+            545,
+            480,
+            523,
+            451,
+            600,
+            515,
+            480,
+            474
+          ],
+          "terminalCommands": [
+            108,
+            169,
+            169,
+            121,
+            133,
+            108,
+            109,
+            121,
+            108,
+            121,
+            107,
+            97,
+            121,
+            108,
+            109
+          ],
+          "completed": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "rhea-training-context-val-06-seat-0-index-4",
+      "strategicProjectionDigest": "sha256:f66b9efa52aded33697d538693bb9b093b59aebe91cab5a430e4121c611e5985",
+      "rootIdentityDigest": "sha256:b9f55f895ca4d45af1e6f6cd804285d888f008fcc58d99f1baca285dd532e749",
+      "interactionMatched": null,
+      "classifierMatched": true,
+      "sampleZeroReferenceAvailable": false,
+      "sampleZeroReproduced": null,
+      "candidates": [
+        {
+          "candidateId": "p5s2-train-1adebf1880",
+          "terminalMargins": [
+            65,
+            -535,
+            -522,
+            -107,
+            -385,
+            -63,
+            -368,
+            29,
+            19,
+            -336,
+            -70,
+            -366,
+            -254,
+            502,
+            -492
+          ],
+          "terminalRanks": [
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            1,
+            1,
+            2,
+            2,
+            2,
+            2,
+            1,
+            2
+          ],
+          "terminalMoney": [
+            163,
+            5,
+            0,
+            217,
+            90,
+            220,
+            67,
+            234,
+            114,
+            105,
+            10,
+            93,
+            138,
+            512,
+            13
+          ],
+          "terminalCommands": [
+            447,
+            249,
+            219,
+            309,
+            210,
+            261,
+            245,
+            450,
+            450,
+            333,
+            459,
+            272,
+            332,
+            156,
+            259
+          ],
+          "completed": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "candidateId": "p5s2-train-2dd5d77261",
+          "terminalMargins": [
+            503,
+            497,
+            -503,
+            -297,
+            -171,
+            498,
+            481,
+            485,
+            -551,
+            -367,
+            476,
+            264,
+            201,
+            501,
+            467
+          ],
+          "terminalRanks": [
+            1,
+            1,
+            2,
+            2,
+            2,
+            1,
+            1,
+            1,
+            2,
+            2,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "terminalMoney": [
+            503,
+            502,
+            6,
+            150,
+            186,
+            503,
+            496,
+            500,
+            10,
+            70,
+            506,
+            408,
+            375,
+            511,
+            492
+          ],
+          "terminalCommands": [
+            107,
+            167,
+            250,
+            321,
+            216,
+            107,
+            168,
+            144,
+            189,
+            251,
+            132,
+            204,
+            168,
+            131,
+            156
+          ],
+          "completed": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "rhea-training-context-val-06-seat-1-index-4",
+      "strategicProjectionDigest": "sha256:dcbad6503ef768acb0ca78af57abb736ad03ec2f5ab3398acb134e9a7a0726f5",
+      "rootIdentityDigest": "sha256:d2b0ea06ed0f44bc8239c2fb3b3bdf06636fc519064024b92b2753be1608c9cb",
+      "interactionMatched": null,
+      "classifierMatched": true,
+      "sampleZeroReferenceAvailable": false,
+      "sampleZeroReproduced": null,
+      "candidates": [
+        {
+          "candidateId": "p5s2-train-1adebf1880",
+          "terminalMargins": [
+            -423,
+            -251,
+            -478,
+            506,
+            -527,
+            510,
+            -513,
+            -8,
+            -178,
+            156,
+            483,
+            447,
+            -378,
+            1,
+            135
+          ],
+          "terminalRanks": [
+            2,
+            2,
+            2,
+            1,
+            2,
+            1,
+            2,
+            2,
+            2,
+            1,
+            1,
+            1,
+            2,
+            1,
+            1
+          ],
+          "terminalMoney": [
+            59,
+            133,
+            61,
+            511,
+            3,
+            515,
+            5,
+            274,
+            59,
+            354,
+            508,
+            477,
+            68,
+            274,
+            336
+          ],
+          "terminalCommands": [
+            345,
+            238,
+            307,
+            336,
+            307,
+            192,
+            142,
+            250,
+            451,
+            273,
+            252,
+            181,
+            274,
+            215,
+            250
+          ],
+          "completed": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "candidateId": "p5s2-train-2dd5d77261",
+          "terminalMargins": [
+            468,
+            231,
+            498,
+            503,
+            354,
+            500,
+            -402,
+            503,
+            483,
+            103,
+            500,
+            510,
+            -90,
+            407,
+            137
+          ],
+          "terminalRanks": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
+            1,
+            1,
+            1,
+            2,
+            1,
+            1
+          ],
+          "terminalMoney": [
+            503,
+            383,
+            503,
+            503,
+            454,
+            505,
+            60,
+            508,
+            498,
+            318,
+            505,
+            510,
+            249,
+            455,
+            330
+          ],
+          "terminalCommands": [
+            108,
+            169,
+            108,
+            108,
+            193,
+            120,
+            129,
+            108,
+            157,
+            193,
+            120,
+            120,
+            169,
+            145,
+            181
+          ],
+          "completed": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "rhea-training-context-val-07-seat-0-index-4",
+      "strategicProjectionDigest": "sha256:3161dce89310f9c03535105ad56bb37b28b60530d693c9e7c251d12d8679e7e8",
+      "rootIdentityDigest": "sha256:034b2d84aaac8ee7a956cd20be7e371a1a5f21dc915d70be5deb062fad59d09c",
+      "interactionMatched": null,
+      "classifierMatched": false,
+      "sampleZeroReferenceAvailable": false,
+      "sampleZeroReproduced": null,
+      "candidates": [
+        {
+          "candidateId": "p5s2-train-1adebf1880",
+          "terminalMargins": [
+            471,
+            469,
+            507,
+            524,
+            485,
+            474,
+            497,
+            526,
+            526,
+            523,
+            505,
+            485,
+            474,
+            501,
+            535
+          ],
+          "terminalRanks": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "terminalMoney": [
+            491,
+            489,
+            512,
+            534,
+            495,
+            489,
+            512,
+            536,
+            536,
+            528,
+            525,
+            495,
+            489,
+            506,
+            550
+          ],
+          "terminalCommands": [
+            132,
+            144,
+            156,
+            144,
+            118,
+            144,
+            156,
+            132,
+            132,
+            132,
+            108,
+            118,
+            144,
+            132,
+            131
+          ],
+          "completed": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "candidateId": "p5s2-train-2dd5d77261",
+          "terminalMargins": [
+            498,
+            498,
+            538,
+            503,
+            483,
+            493,
+            315,
+            498,
+            498,
+            503,
+            493,
+            503,
+            493,
+            488,
+            402
+          ],
+          "terminalRanks": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "terminalMoney": [
+            503,
+            503,
+            548,
+            503,
+            503,
+            503,
+            329,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            503,
+            480
+          ],
+          "terminalCommands": [
+            107,
+            107,
+            107,
+            107,
+            107,
+            107,
+            453,
+            107,
+            107,
+            107,
+            107,
+            107,
+            107,
+            107,
+            96
+          ],
+          "completed": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "rhea-training-context-val-07-seat-1-index-4",
+      "strategicProjectionDigest": "sha256:8e3c92f73dafd070fe98c1edac9d2fadd6ed7da18f8571a57cbe27070421eb72",
+      "rootIdentityDigest": "sha256:970599885d7d10c5663f0001c3eb6fa1117c2445abe164ad6d4f7078b187d7e1",
+      "interactionMatched": null,
+      "classifierMatched": false,
+      "sampleZeroReferenceAvailable": false,
+      "sampleZeroReproduced": null,
+      "candidates": [
+        {
+          "candidateId": "p5s2-train-1adebf1880",
+          "terminalMargins": [
+            117,
+            -93,
+            -344,
+            1,
+            484,
+            -77,
+            175,
+            80,
+            -130,
+            -364,
+            70,
+            406,
+            544,
+            -442,
+            -119
+          ],
+          "terminalRanks": [
+            1,
+            2,
+            2,
+            1,
+            1,
+            2,
+            1,
+            1,
+            2,
+            2,
+            1,
+            1,
+            1,
+            2,
+            2
+          ],
+          "terminalMoney": [
+            123,
+            10,
+            70,
+            16,
+            504,
+            0,
+            184,
+            304,
+            20,
+            45,
+            90,
+            469,
+            544,
+            40,
+            6
+          ],
+          "terminalCommands": [
+            448,
+            440,
+            430,
+            448,
+            288,
+            439,
+            453,
+            340,
+            431,
+            444,
+            425,
+            312,
+            285,
+            398,
+            444
+          ],
+          "completed": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "candidateId": "p5s2-train-2dd5d77261",
+          "terminalMargins": [
+            486,
+            623,
+            534,
+            342,
+            379,
+            476,
+            554,
+            549,
+            450,
+            274,
+            497,
+            544,
+            494,
+            203,
+            497
+          ],
+          "terminalRanks": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "terminalMoney": [
+            496,
+            628,
+            539,
+            422,
+            444,
+            491,
+            554,
+            549,
+            480,
+            396,
+            502,
+            554,
+            509,
+            354,
+            511
+          ],
+          "terminalCommands": [
+            109,
+            301,
+            120,
+            265,
+            192,
+            107,
+            119,
+            119,
+            336,
+            97,
+            241,
+            119,
+            373,
+            181,
+            204
+          ],
+          "completed": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "rhea-training-context-val-08-seat-0-index-4",
+      "strategicProjectionDigest": "sha256:4ee7a317967cc98e2db276dbc21d41917573928017493fa9bfc520de311855db",
+      "rootIdentityDigest": "sha256:20fb3d522d1dbfc43cc0171ec510950b9576c721bcfb97b67e18d596274a3fd9",
+      "interactionMatched": null,
+      "classifierMatched": true,
+      "sampleZeroReferenceAvailable": false,
+      "sampleZeroReproduced": null,
+      "candidates": [
+        {
+          "candidateId": "p5s2-train-1adebf1880",
+          "terminalMargins": [
+            -507,
+            -275,
+            -24,
+            -387,
+            -90,
+            -10,
+            -89,
+            -519,
+            -5,
+            -388,
+            -606,
+            -204,
+            -466,
+            -66,
+            -325
+          ],
+          "terminalRanks": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "terminalMoney": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            65,
+            0,
+            40,
+            0,
+            0
+          ],
+          "terminalCommands": [
+            408,
+            424,
+            423,
+            421,
+            423,
+            419,
+            423,
+            276,
+            423,
+            424,
+            325,
+            421,
+            391,
+            421,
+            421
+          ],
+          "completed": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "candidateId": "p5s2-train-2dd5d77261",
+          "terminalMargins": [
+            -552,
+            -285,
+            -56,
+            -451,
+            -92,
+            -531,
+            -44,
+            -9,
+            -365,
+            -501,
+            -70,
+            -236,
+            -222,
+            -57,
+            -502
+          ],
+          "terminalRanks": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "terminalMoney": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            75,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "terminalCommands": [
+            393,
+            433,
+            423,
+            439,
+            423,
+            296,
+            423,
+            423,
+            429,
+            275,
+            423,
+            426,
+            428,
+            435,
+            289
+          ],
+          "completed": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "rhea-training-context-val-08-seat-1-index-4",
+      "strategicProjectionDigest": "sha256:34e9668e0c264a7929e5de566f8a050f5b1fb43038d5a64c5b6ef996b2fb4e4d",
+      "rootIdentityDigest": "sha256:1cb5a23be82de125b3ba485895a447aa3accd31fd2748d14198744748d9cfa3f",
+      "interactionMatched": null,
+      "classifierMatched": true,
+      "sampleZeroReferenceAvailable": false,
+      "sampleZeroReproduced": null,
+      "candidates": [
+        {
+          "candidateId": "p5s2-train-1adebf1880",
+          "terminalMargins": [
+            -167,
+            -175,
+            -333,
+            -96,
+            -54,
+            65,
+            -217,
+            121,
+            91,
+            102,
+            5,
+            -176,
+            -454,
+            -243,
+            -109
+          ],
+          "terminalRanks": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            1,
+            2,
+            1,
+            1,
+            1,
+            1,
+            2,
+            2,
+            2,
+            2
+          ],
+          "terminalMoney": [
+            0,
+            0,
+            0,
+            30,
+            283,
+            85,
+            5,
+            165,
+            105,
+            179,
+            25,
+            0,
+            25,
+            135,
+            20
+          ],
+          "terminalCommands": [
+            432,
+            421,
+            426,
+            440,
+            402,
+            434,
+            432,
+            441,
+            439,
+            438,
+            421,
+            426,
+            402,
+            284,
+            436
+          ],
+          "completed": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "candidateId": "p5s2-train-2dd5d77261",
+          "terminalMargins": [
+            80,
+            -360,
+            -40,
+            92,
+            110,
+            -475,
+            -66,
+            136,
+            512,
+            17,
+            -268,
+            -78,
+            278,
+            -165,
+            -14
+          ],
+          "terminalRanks": [
+            1,
+            2,
+            2,
+            1,
+            1,
+            2,
+            2,
+            1,
+            1,
+            1,
+            2,
+            2,
+            1,
+            2,
+            2
+          ],
+          "terminalMoney": [
+            85,
+            90,
+            15,
+            124,
+            310,
+            30,
+            30,
+            320,
+            520,
+            38,
+            90,
+            0,
+            400,
+            180,
+            178
+          ],
+          "terminalCommands": [
+            437,
+            386,
+            424,
+            444,
+            311,
+            324,
+            442,
+            270,
+            306,
+            443,
+            448,
+            424,
+            325,
+            270,
+            447
+          ],
+          "completed": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "rhea-training-context-val-09-seat-0-index-4",
+      "strategicProjectionDigest": "sha256:70b6fc285e898804b238d99473c6fd6b81f0fca0e948f43635912b27f7f34e4e",
+      "rootIdentityDigest": "sha256:6a19199c18b6bedbbbb2a4e6317d725d80b32fd03970cfd4b27aa4b298d61ca1",
+      "interactionMatched": null,
+      "classifierMatched": false,
+      "sampleZeroReferenceAvailable": false,
+      "sampleZeroReproduced": null,
+      "candidates": [
+        {
+          "candidateId": "p5s2-train-1adebf1880",
+          "terminalMargins": [
+            427,
+            0,
+            137,
+            -433,
+            249,
+            168,
+            -5,
+            -23,
+            14,
+            -353,
+            385,
+            188,
+            512,
+            507,
+            262
+          ],
+          "terminalRanks": [
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
+            2,
+            2,
+            1,
+            2,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "terminalMoney": [
+            482,
+            5,
+            188,
+            55,
+            301,
+            172,
+            9,
+            14,
+            24,
+            7,
+            445,
+            360,
+            522,
+            518,
+            267
+          ],
+          "terminalCommands": [
+            331,
+            441,
+            448,
+            356,
+            448,
+            448,
+            438,
+            440,
+            437,
+            440,
+            379,
+            406,
+            416,
+            436,
+            448
+          ],
+          "completed": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "candidateId": "p5s2-train-2dd5d77261",
+          "terminalMargins": [
+            568,
+            516,
+            501,
+            -83,
+            252,
+            358,
+            69,
+            561,
+            380,
+            446,
+            145,
+            498,
+            482,
+            487,
+            507
+          ],
+          "terminalRanks": [
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "terminalMoney": [
+            583,
+            516,
+            510,
+            21,
+            282,
+            469,
+            301,
+            561,
+            395,
+            510,
+            447,
+            503,
+            509,
+            530,
+            512
+          ],
+          "terminalCommands": [
+            299,
+            322,
+            296,
+            451,
+            454,
+            238,
+            346,
+            190,
+            451,
+            226,
+            275,
+            238,
+            154,
+            394,
+            214
+          ],
+          "completed": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "rhea-training-context-val-09-seat-1-index-4",
+      "strategicProjectionDigest": "sha256:6d6d0154688f3251ecdfc0c953542c99bf83bdef9fda9e5a4e8e246a2edf44bd",
+      "rootIdentityDigest": "sha256:7a3f7907d36e36ffb1177646f8d5548e4542b269d16dc3b6e7b38b0aaf8b13ef",
+      "interactionMatched": null,
+      "classifierMatched": true,
+      "sampleZeroReferenceAvailable": false,
+      "sampleZeroReproduced": null,
+      "candidates": [
+        {
+          "candidateId": "p5s2-train-1adebf1880",
+          "terminalMargins": [
+            34,
+            -120,
+            -509,
+            409,
+            -274,
+            -30,
+            482,
+            506,
+            -18,
+            -1,
+            -255,
+            343,
+            487,
+            -222,
+            -48
+          ],
+          "terminalRanks": [
+            1,
+            2,
+            2,
+            1,
+            2,
+            2,
+            1,
+            1,
+            2,
+            2,
+            2,
+            1,
+            1,
+            2,
+            2
+          ],
+          "terminalMoney": [
+            34,
+            15,
+            28,
+            469,
+            128,
+            12,
+            497,
+            511,
+            10,
+            9,
+            214,
+            428,
+            497,
+            216,
+            246
+          ],
+          "terminalCommands": [
+            451,
+            448,
+            262,
+            226,
+            286,
+            446,
+            157,
+            133,
+            448,
+            445,
+            334,
+            181,
+            157,
+            190,
+            157
+          ],
+          "completed": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "candidateId": "p5s2-train-2dd5d77261",
+          "terminalMargins": [
+            -274,
+            482,
+            381,
+            456,
+            500,
+            -443,
+            485,
+            525,
+            -481,
+            -421,
+            495,
+            455,
+            505,
+            -457,
+            440
+          ],
+          "terminalRanks": [
+            2,
+            1,
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
+            2,
+            2,
+            1,
+            1,
+            1,
+            2,
+            1
+          ],
+          "terminalMoney": [
+            165,
+            528,
+            460,
+            491,
+            505,
+            30,
+            505,
+            535,
+            15,
+            88,
+            505,
+            480,
+            505,
+            25,
+            480
+          ],
+          "terminalCommands": [
+            297,
+            120,
+            121,
+            382,
+            120,
+            250,
+            120,
+            120,
+            274,
+            262,
+            120,
+            108,
+            120,
+            226,
+            108
+          ],
+          "completed": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "rhea-training-context-val-10-seat-0-index-4",
+      "strategicProjectionDigest": "sha256:aa9e4af5e7e21ae79e923d07869827064895aa5881b48bf7fbcf04021091df28",
+      "rootIdentityDigest": "sha256:a6dcd19eeed47ef2519b56502af62572da5e02f25a9a6e3661a75d05db0d33c7",
+      "interactionMatched": null,
+      "classifierMatched": true,
+      "sampleZeroReferenceAvailable": false,
+      "sampleZeroReproduced": null,
+      "candidates": [
+        {
+          "candidateId": "p5s2-train-1adebf1880",
+          "terminalMargins": [
+            -481,
+            588,
+            -418,
+            -6,
+            -311,
+            228,
+            -30,
+            -457,
+            -394,
+            -6,
+            -59,
+            -472,
+            507,
+            -390,
+            -187
+          ],
+          "terminalRanks": [
+            2,
+            1,
+            2,
+            2,
+            2,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            1,
+            2,
+            2
+          ],
+          "terminalMoney": [
+            50,
+            590,
+            47,
+            5,
+            3,
+            265,
+            0,
+            44,
+            75,
+            265,
+            5,
+            25,
+            517,
+            50,
+            75
+          ],
+          "terminalCommands": [
+            172,
+            206,
+            320,
+            441,
+            433,
+            439,
+            439,
+            308,
+            253,
+            315,
+            424,
+            307,
+            179,
+            446,
+            449
+          ],
+          "completed": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "candidateId": "p5s2-train-2dd5d77261",
+          "terminalMargins": [
+            -521,
+            562,
+            -246,
+            31,
+            238,
+            -224,
+            -42,
+            506,
+            -221,
+            -455,
+            338,
+            466,
+            470,
+            -318,
+            58
+          ],
+          "terminalRanks": [
+            2,
+            1,
+            2,
+            1,
+            1,
+            2,
+            2,
+            1,
+            2,
+            2,
+            1,
+            1,
+            1,
+            2,
+            1
+          ],
+          "terminalMoney": [
+            0,
+            572,
+            149,
+            295,
+            472,
+            157,
+            117,
+            526,
+            185,
+            45,
+            343,
+            486,
+            490,
+            92,
+            345
+          ],
+          "terminalCommands": [
+            183,
+            130,
+            274,
+            198,
+            168,
+            235,
+            445,
+            131,
+            246,
+            259,
+            439,
+            154,
+            154,
+            239,
+            286
+          ],
+          "completed": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        }
+      ]
+    },
+    {
+      "rootId": "rhea-training-context-val-10-seat-1-index-4",
+      "strategicProjectionDigest": "sha256:3550ef7a00e86a7efaf59878e8adff786aa48eec2a49edd18dc5713305820bef",
+      "rootIdentityDigest": "sha256:a17803ee95e0c1538896aac540ffe31a9e71b4c013a43f62e28c39f99bad1ce9",
+      "interactionMatched": null,
+      "classifierMatched": false,
+      "sampleZeroReferenceAvailable": false,
+      "sampleZeroReproduced": null,
+      "candidates": [
+        {
+          "candidateId": "p5s2-train-1adebf1880",
+          "terminalMargins": [
+            499,
+            449,
+            200,
+            -10,
+            513,
+            -51,
+            146,
+            -12,
+            -3,
+            140,
+            -29,
+            -8,
+            209,
+            85,
+            484
+          ],
+          "terminalRanks": [
+            1,
+            1,
+            1,
+            2,
+            1,
+            2,
+            1,
+            2,
+            2,
+            1,
+            2,
+            2,
+            1,
+            1,
+            1
+          ],
+          "terminalMoney": [
+            509,
+            475,
+            208,
+            0,
+            523,
+            30,
+            151,
+            8,
+            7,
+            185,
+            1,
+            8,
+            224,
+            105,
+            494
+          ],
+          "terminalCommands": [
+            438,
+            190,
+            449,
+            444,
+            371,
+            443,
+            450,
+            455,
+            450,
+            447,
+            446,
+            439,
+            452,
+            449,
+            285
+          ],
+          "completed": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        },
+        {
+          "candidateId": "p5s2-train-2dd5d77261",
+          "terminalMargins": [
+            432,
+            52,
+            577,
+            503,
+            432,
+            -21,
+            700,
+            500,
+            2,
+            506,
+            410,
+            130,
+            184,
+            312,
+            492
+          ],
+          "terminalRanks": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "terminalMoney": [
+            467,
+            104,
+            582,
+            508,
+            467,
+            4,
+            735,
+            510,
+            7,
+            511,
+            465,
+            154,
+            204,
+            437,
+            517
+          ],
+          "terminalCommands": [
+            155,
+            451,
+            143,
+            155,
+            155,
+            442,
+            311,
+            167,
+            449,
+            178,
+            155,
+            450,
+            450,
+            428,
+            167
+          ],
+          "completed": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ]
+        }
+      ]
+    }
+  ],
+  "audit": {
+    "schemaVersion": "fcm.paired-sequential-audit.v1",
+    "roots": 12,
+    "selectedRoots": 2,
+    "abstainedRoots": 10,
+    "needsMoreSamplesRoots": 0,
+    "coverage": 0.16666666666666666,
+    "details": [
+      {
+        "rootId": "rhea-training-context-val-05-seat-0-index-4",
+        "availableSamples": 15,
+        "status": "abstain-max-samples",
+        "selectedCandidateId": null,
+        "stopSamples": 15,
+        "nextSamples": null,
+        "stages": [
+          {
+            "samples": 3,
+            "stageAlpha": 0.005,
+            "comparisonAlpha": 0.005,
+            "minimumPossiblePValue": 0.25,
+            "selectionReachable": false,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 3,
+                "positive": 0,
+                "negative": 0,
+                "ties": 3,
+                "pValue": 1,
+                "alpha": 0.005,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": 0,
+                "meanMarginAdvantage": -11.666666666666666,
+                "marginAdvantageStandardError": 169.68827629247434,
+                "decisiveWinRate95CI": null
+              }
+            ]
+          },
+          {
+            "samples": 7,
+            "stageAlpha": 0.02,
+            "comparisonAlpha": 0.02,
+            "minimumPossiblePValue": 0.015625,
+            "selectionReachable": true,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 7,
+                "positive": 0,
+                "negative": 1,
+                "ties": 6,
+                "pValue": 1,
+                "alpha": 0.02,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": -0.14285714285714285,
+                "meanMarginAdvantage": -103,
+                "marginAdvantageStandardError": 157.30316498496055,
+                "decisiveWinRate95CI": {
+                  "low": 0.20654931437723745,
+                  "high": 1
+                }
+              }
+            ]
+          },
+          {
+            "samples": 15,
+            "stageAlpha": 0.025,
+            "comparisonAlpha": 0.025,
+            "minimumPossiblePValue": 0.00006103515625,
+            "selectionReachable": true,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 15,
+                "positive": 1,
+                "negative": 1,
+                "ties": 13,
+                "pValue": 1,
+                "alpha": 0.025,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": 0,
+                "meanMarginAdvantage": -62,
+                "marginAdvantageStandardError": 92.67346669123492,
+                "decisiveWinRate95CI": {
+                  "low": 0.09453120573423074,
+                  "high": 0.9054687942657693
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "rootId": "rhea-training-context-val-05-seat-1-index-4",
+        "availableSamples": 15,
+        "status": "selected",
+        "selectedCandidateId": "p5s2-train-2dd5d77261",
+        "stopSamples": 15,
+        "nextSamples": null,
+        "stages": [
+          {
+            "samples": 3,
+            "stageAlpha": 0.005,
+            "comparisonAlpha": 0.005,
+            "minimumPossiblePValue": 0.25,
+            "selectionReachable": false,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 3,
+                "positive": 0,
+                "negative": 2,
+                "ties": 1,
+                "pValue": 0.5,
+                "alpha": 0.005,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": -0.6666666666666666,
+                "meanMarginAdvantage": -498.3333333333333,
+                "marginAdvantageStandardError": 298.574576576402,
+                "decisiveWinRate95CI": {
+                  "low": 0.34238022750665303,
+                  "high": 1
+                }
+              }
+            ]
+          },
+          {
+            "samples": 7,
+            "stageAlpha": 0.02,
+            "comparisonAlpha": 0.02,
+            "minimumPossiblePValue": 0.015625,
+            "selectionReachable": true,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 7,
+                "positive": 0,
+                "negative": 6,
+                "ties": 1,
+                "pValue": 0.03125,
+                "alpha": 0.02,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": -0.8571428571428571,
+                "meanMarginAdvantage": -542.2857142857143,
+                "marginAdvantageStandardError": 125.22279464745917,
+                "decisiveWinRate95CI": {
+                  "low": 0.6096657120978346,
+                  "high": 1
+                }
+              }
+            ]
+          },
+          {
+            "samples": 15,
+            "stageAlpha": 0.025,
+            "comparisonAlpha": 0.025,
+            "minimumPossiblePValue": 0.00006103515625,
+            "selectionReachable": true,
+            "selectedCandidateId": "p5s2-train-2dd5d77261",
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 15,
+                "positive": 0,
+                "negative": 9,
+                "ties": 6,
+                "pValue": 0.00390625,
+                "alpha": 0.025,
+                "significant": true,
+                "winnerCandidateId": "p5s2-train-2dd5d77261",
+                "meanRankLift": -0.6,
+                "meanMarginAdvantage": -377.8,
+                "marginAdvantageStandardError": 88.46571571599281,
+                "decisiveWinRate95CI": {
+                  "low": 0.7008549515804559,
+                  "high": 1
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "rootId": "rhea-training-context-val-06-seat-0-index-4",
+        "availableSamples": 15,
+        "status": "abstain-max-samples",
+        "selectedCandidateId": null,
+        "stopSamples": 15,
+        "nextSamples": null,
+        "stages": [
+          {
+            "samples": 3,
+            "stageAlpha": 0.005,
+            "comparisonAlpha": 0.005,
+            "minimumPossiblePValue": 0.25,
+            "selectionReachable": false,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 3,
+                "positive": 0,
+                "negative": 1,
+                "ties": 2,
+                "pValue": 1,
+                "alpha": 0.005,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": -0.3333333333333333,
+                "meanMarginAdvantage": -496.3333333333333,
+                "marginAdvantageStandardError": 293.87884880980766,
+                "decisiveWinRate95CI": {
+                  "low": 0.20654931437723745,
+                  "high": 1
+                }
+              }
+            ]
+          },
+          {
+            "samples": 7,
+            "stageAlpha": 0.02,
+            "comparisonAlpha": 0.02,
+            "minimumPossiblePValue": 0.015625,
+            "selectionReachable": true,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 7,
+                "positive": 0,
+                "negative": 3,
+                "ties": 4,
+                "pValue": 0.25,
+                "alpha": 0.02,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": -0.42857142857142855,
+                "meanMarginAdvantage": -417.57142857142856,
+                "marginAdvantageStandardError": 165.76559140098107,
+                "decisiveWinRate95CI": {
+                  "low": 0.4385029682449546,
+                  "high": 1
+                }
+              }
+            ]
+          },
+          {
+            "samples": 15,
+            "stageAlpha": 0.025,
+            "comparisonAlpha": 0.025,
+            "minimumPossiblePValue": 0.00006103515625,
+            "selectionReachable": true,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 15,
+                "positive": 1,
+                "negative": 7,
+                "ties": 7,
+                "pValue": 0.0703125,
+                "alpha": 0.025,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": -0.4,
+                "meanMarginAdvantage": -357.8,
+                "marginAdvantageStandardError": 115.67306967319163,
+                "decisiveWinRate95CI": {
+                  "low": 0.5291118177871464,
+                  "high": 0.9775825085499433
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "rootId": "rhea-training-context-val-06-seat-1-index-4",
+        "availableSamples": 15,
+        "status": "abstain-max-samples",
+        "selectedCandidateId": null,
+        "stopSamples": 15,
+        "nextSamples": null,
+        "stages": [
+          {
+            "samples": 3,
+            "stageAlpha": 0.005,
+            "comparisonAlpha": 0.005,
+            "minimumPossiblePValue": 0.25,
+            "selectionReachable": false,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 3,
+                "positive": 0,
+                "negative": 3,
+                "ties": 0,
+                "pValue": 0.25,
+                "alpha": 0.005,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": -1,
+                "meanMarginAdvantage": -783,
+                "marginAdvantageStandardError": 152.48715792922803,
+                "decisiveWinRate95CI": {
+                  "low": 0.4385029682449546,
+                  "high": 1
+                }
+              }
+            ]
+          },
+          {
+            "samples": 7,
+            "stageAlpha": 0.02,
+            "comparisonAlpha": 0.02,
+            "minimumPossiblePValue": 0.015625,
+            "selectionReachable": true,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 7,
+                "positive": 0,
+                "negative": 4,
+                "ties": 3,
+                "pValue": 0.125,
+                "alpha": 0.02,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": -0.5714285714285714,
+                "meanMarginAdvantage": -475.42857142857144,
+                "marginAdvantageStandardError": 167.98141296596125,
+                "decisiveWinRate95CI": {
+                  "low": 0.5101091635454027,
+                  "high": 1
+                }
+              }
+            ]
+          },
+          {
+            "samples": 15,
+            "stageAlpha": 0.025,
+            "comparisonAlpha": 0.025,
+            "minimumPossiblePValue": 0.00006103515625,
+            "selectionReachable": true,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 15,
+                "positive": 0,
+                "negative": 6,
+                "ties": 9,
+                "pValue": 0.03125,
+                "alpha": 0.025,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": -0.4,
+                "meanMarginAdvantage": -348.2,
+                "marginAdvantageStandardError": 95.15942512686902,
+                "decisiveWinRate95CI": {
+                  "low": 0.6096657120978346,
+                  "high": 1
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "rootId": "rhea-training-context-val-07-seat-0-index-4",
+        "availableSamples": 15,
+        "status": "abstain-max-samples",
+        "selectedCandidateId": null,
+        "stopSamples": 15,
+        "nextSamples": null,
+        "stages": [
+          {
+            "samples": 3,
+            "stageAlpha": 0.005,
+            "comparisonAlpha": 0.005,
+            "minimumPossiblePValue": 0.25,
+            "selectionReachable": false,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 3,
+                "positive": 0,
+                "negative": 0,
+                "ties": 3,
+                "pValue": 1,
+                "alpha": 0.005,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": 0,
+                "meanMarginAdvantage": -29,
+                "marginAdvantageStandardError": 1.1547005383792515,
+                "decisiveWinRate95CI": null
+              }
+            ]
+          },
+          {
+            "samples": 7,
+            "stageAlpha": 0.02,
+            "comparisonAlpha": 0.02,
+            "minimumPossiblePValue": 0.015625,
+            "selectionReachable": true,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 7,
+                "positive": 0,
+                "negative": 0,
+                "ties": 7,
+                "pValue": 1,
+                "alpha": 0.02,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": 0,
+                "meanMarginAdvantage": 14.142857142857142,
+                "marginAdvantageStandardError": 28.89259962213802,
+                "decisiveWinRate95CI": null
+              }
+            ]
+          },
+          {
+            "samples": 15,
+            "stageAlpha": 0.025,
+            "comparisonAlpha": 0.025,
+            "minimumPossiblePValue": 0.00006103515625,
+            "selectionReachable": true,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 15,
+                "positive": 0,
+                "negative": 0,
+                "ties": 15,
+                "pValue": 1,
+                "alpha": 0.025,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": 0,
+                "meanMarginAdvantage": 19.733333333333334,
+                "marginAdvantageStandardError": 15.625823152920592,
+                "decisiveWinRate95CI": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "rootId": "rhea-training-context-val-07-seat-1-index-4",
+        "availableSamples": 15,
+        "status": "selected",
+        "selectedCandidateId": "p5s2-train-2dd5d77261",
+        "stopSamples": 15,
+        "nextSamples": null,
+        "stages": [
+          {
+            "samples": 3,
+            "stageAlpha": 0.005,
+            "comparisonAlpha": 0.005,
+            "minimumPossiblePValue": 0.25,
+            "selectionReachable": false,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 3,
+                "positive": 0,
+                "negative": 2,
+                "ties": 1,
+                "pValue": 0.5,
+                "alpha": 0.005,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": -0.6666666666666666,
+                "meanMarginAdvantage": -654.3333333333334,
+                "marginAdvantageStandardError": 150.1358643954794,
+                "decisiveWinRate95CI": {
+                  "low": 0.34238022750665303,
+                  "high": 1
+                }
+              }
+            ]
+          },
+          {
+            "samples": 7,
+            "stageAlpha": 0.02,
+            "comparisonAlpha": 0.02,
+            "minimumPossiblePValue": 0.015625,
+            "selectionReachable": true,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 7,
+                "positive": 0,
+                "negative": 3,
+                "ties": 4,
+                "pValue": 0.25,
+                "alpha": 0.02,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": -0.42857142857142855,
+                "meanMarginAdvantage": -447.2857142857143,
+                "marginAdvantageStandardError": 119.1243276672606,
+                "decisiveWinRate95CI": {
+                  "low": 0.4385029682449546,
+                  "high": 1
+                }
+              }
+            ]
+          },
+          {
+            "samples": 15,
+            "stageAlpha": 0.025,
+            "comparisonAlpha": 0.025,
+            "minimumPossiblePValue": 0.00006103515625,
+            "selectionReachable": true,
+            "selectedCandidateId": "p5s2-train-2dd5d77261",
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 15,
+                "positive": 0,
+                "negative": 7,
+                "ties": 8,
+                "pValue": 0.015625,
+                "alpha": 0.025,
+                "significant": true,
+                "winnerCandidateId": "p5s2-train-2dd5d77261",
+                "meanRankLift": -0.4666666666666667,
+                "meanMarginAdvantage": -439.6,
+                "marginAdvantageStandardError": 71.06313758770806,
+                "decisiveWinRate95CI": {
+                  "low": 0.6456695649333126,
+                  "high": 1
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "rootId": "rhea-training-context-val-08-seat-0-index-4",
+        "availableSamples": 15,
+        "status": "abstain-max-samples",
+        "selectedCandidateId": null,
+        "stopSamples": 15,
+        "nextSamples": null,
+        "stages": [
+          {
+            "samples": 3,
+            "stageAlpha": 0.005,
+            "comparisonAlpha": 0.005,
+            "minimumPossiblePValue": 0.25,
+            "selectionReachable": false,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 3,
+                "positive": 0,
+                "negative": 0,
+                "ties": 3,
+                "pValue": 1,
+                "alpha": 0.005,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": 0,
+                "meanMarginAdvantage": 29,
+                "marginAdvantageStandardError": 10.214368964029708,
+                "decisiveWinRate95CI": null
+              }
+            ]
+          },
+          {
+            "samples": 7,
+            "stageAlpha": 0.02,
+            "comparisonAlpha": 0.02,
+            "minimumPossiblePValue": 0.015625,
+            "selectionReachable": true,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 7,
+                "positive": 0,
+                "negative": 0,
+                "ties": 7,
+                "pValue": 1,
+                "alpha": 0.02,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": 0,
+                "meanMarginAdvantage": 89.85714285714286,
+                "marginAdvantageStandardError": 73.06143161145725,
+                "decisiveWinRate95CI": null
+              }
+            ]
+          },
+          {
+            "samples": 15,
+            "stageAlpha": 0.025,
+            "comparisonAlpha": 0.025,
+            "minimumPossiblePValue": 0.00006103515625,
+            "selectionReachable": true,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 15,
+                "positive": 0,
+                "negative": 0,
+                "ties": 15,
+                "pValue": 1,
+                "alpha": 0.025,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": 0,
+                "meanMarginAdvantage": 0.8,
+                "marginAdvantageStandardError": 71.1283347197163,
+                "decisiveWinRate95CI": null
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "rootId": "rhea-training-context-val-08-seat-1-index-4",
+        "availableSamples": 15,
+        "status": "abstain-max-samples",
+        "selectedCandidateId": null,
+        "stopSamples": 15,
+        "nextSamples": null,
+        "stages": [
+          {
+            "samples": 3,
+            "stageAlpha": 0.005,
+            "comparisonAlpha": 0.005,
+            "minimumPossiblePValue": 0.25,
+            "selectionReachable": false,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 3,
+                "positive": 0,
+                "negative": 1,
+                "ties": 2,
+                "pValue": 1,
+                "alpha": 0.005,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": -0.3333333333333333,
+                "meanMarginAdvantage": -118.33333333333333,
+                "marginAdvantageStandardError": 152.24687553809147,
+                "decisiveWinRate95CI": {
+                  "low": 0.20654931437723745,
+                  "high": 1
+                }
+              }
+            ]
+          },
+          {
+            "samples": 7,
+            "stageAlpha": 0.02,
+            "comparisonAlpha": 0.02,
+            "minimumPossiblePValue": 0.015625,
+            "selectionReachable": true,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 7,
+                "positive": 1,
+                "negative": 3,
+                "ties": 3,
+                "pValue": 0.625,
+                "alpha": 0.02,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": -0.2857142857142857,
+                "meanMarginAdvantage": -45.42857142857143,
+                "marginAdvantageStandardError": 113.73294893507942,
+                "decisiveWinRate95CI": {
+                  "low": 0.30064184258240184,
+                  "high": 0.9544127391902995
+                }
+              }
+            ]
+          },
+          {
+            "samples": 15,
+            "stageAlpha": 0.025,
+            "comparisonAlpha": 0.025,
+            "minimumPossiblePValue": 0.00006103515625,
+            "selectionReachable": true,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 15,
+                "positive": 2,
+                "negative": 4,
+                "ties": 9,
+                "pValue": 0.6875,
+                "alpha": 0.025,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": -0.13333333333333333,
+                "meanMarginAdvantage": -93.26666666666667,
+                "marginAdvantageStandardError": 77.0590661930164,
+                "decisiveWinRate95CI": {
+                  "low": 0.299993315138392,
+                  "high": 0.9032285888942195
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "rootId": "rhea-training-context-val-09-seat-0-index-4",
+        "availableSamples": 15,
+        "status": "abstain-max-samples",
+        "selectedCandidateId": null,
+        "stopSamples": 15,
+        "nextSamples": null,
+        "stages": [
+          {
+            "samples": 3,
+            "stageAlpha": 0.005,
+            "comparisonAlpha": 0.005,
+            "minimumPossiblePValue": 0.25,
+            "selectionReachable": false,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 3,
+                "positive": 0,
+                "negative": 1,
+                "ties": 2,
+                "pValue": 1,
+                "alpha": 0.005,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": -0.16666666666666666,
+                "meanMarginAdvantage": -340.3333333333333,
+                "marginAdvantageStandardError": 108.89801549053949,
+                "decisiveWinRate95CI": {
+                  "low": 0.20654931437723745,
+                  "high": 1
+                }
+              }
+            ]
+          },
+          {
+            "samples": 7,
+            "stageAlpha": 0.02,
+            "comparisonAlpha": 0.02,
+            "minimumPossiblePValue": 0.015625,
+            "selectionReachable": true,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 7,
+                "positive": 0,
+                "negative": 2,
+                "ties": 5,
+                "pValue": 0.5,
+                "alpha": 0.02,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": -0.21428571428571427,
+                "meanMarginAdvantage": -234,
+                "marginAdvantageStandardError": 68.9074603743172,
+                "decisiveWinRate95CI": {
+                  "low": 0.34238022750665303,
+                  "high": 1
+                }
+              }
+            ]
+          },
+          {
+            "samples": 15,
+            "stageAlpha": 0.025,
+            "comparisonAlpha": 0.025,
+            "minimumPossiblePValue": 0.00006103515625,
+            "selectionReachable": true,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 15,
+                "positive": 0,
+                "negative": 4,
+                "ties": 11,
+                "pValue": 0.125,
+                "alpha": 0.025,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": -0.23333333333333334,
+                "meanMarginAdvantage": -243.46666666666667,
+                "marginAdvantageStandardError": 69.76203542974923,
+                "decisiveWinRate95CI": {
+                  "low": 0.5101091635454027,
+                  "high": 1
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "rootId": "rhea-training-context-val-09-seat-1-index-4",
+        "availableSamples": 15,
+        "status": "abstain-max-samples",
+        "selectedCandidateId": null,
+        "stopSamples": 15,
+        "nextSamples": null,
+        "stages": [
+          {
+            "samples": 3,
+            "stageAlpha": 0.005,
+            "comparisonAlpha": 0.005,
+            "minimumPossiblePValue": 0.25,
+            "selectionReachable": false,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 3,
+                "positive": 1,
+                "negative": 2,
+                "ties": 0,
+                "pValue": 1,
+                "alpha": 0.005,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": -0.3333333333333333,
+                "meanMarginAdvantage": -394.6666666666667,
+                "marginAdvantageStandardError": 361.03616316251635,
+                "decisiveWinRate95CI": {
+                  "low": 0.2076596008020477,
+                  "high": 0.9385080552796037
+                }
+              }
+            ]
+          },
+          {
+            "samples": 7,
+            "stageAlpha": 0.02,
+            "comparisonAlpha": 0.02,
+            "minimumPossiblePValue": 0.015625,
+            "selectionReachable": true,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 7,
+                "positive": 1,
+                "negative": 3,
+                "ties": 3,
+                "pValue": 0.625,
+                "alpha": 0.02,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": -0.2857142857142857,
+                "meanMarginAdvantage": -227.85714285714286,
+                "marginAdvantageStandardError": 198.67410843022355,
+                "decisiveWinRate95CI": {
+                  "low": 0.30064184258240184,
+                  "high": 0.9544127391902995
+                }
+              }
+            ]
+          },
+          {
+            "samples": 15,
+            "stageAlpha": 0.025,
+            "comparisonAlpha": 0.025,
+            "minimumPossiblePValue": 0.00006103515625,
+            "selectionReachable": true,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 15,
+                "positive": 1,
+                "negative": 5,
+                "ties": 9,
+                "pValue": 0.21875,
+                "alpha": 0.025,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": -0.26666666666666666,
+                "meanMarginAdvantage": -124.26666666666667,
+                "marginAdvantageStandardError": 120.50419738457904,
+                "decisiveWinRate95CI": {
+                  "low": 0.43649717781352987,
+                  "high": 0.9699466302516935
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "rootId": "rhea-training-context-val-10-seat-0-index-4",
+        "availableSamples": 15,
+        "status": "abstain-max-samples",
+        "selectedCandidateId": null,
+        "stopSamples": 15,
+        "nextSamples": null,
+        "stages": [
+          {
+            "samples": 3,
+            "stageAlpha": 0.005,
+            "comparisonAlpha": 0.005,
+            "minimumPossiblePValue": 0.25,
+            "selectionReachable": false,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 3,
+                "positive": 0,
+                "negative": 0,
+                "ties": 3,
+                "pValue": 1,
+                "alpha": 0.005,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": 0,
+                "meanMarginAdvantage": -35.333333333333336,
+                "marginAdvantageStandardError": 68.45274119988021,
+                "decisiveWinRate95CI": null
+              }
+            ]
+          },
+          {
+            "samples": 7,
+            "stageAlpha": 0.02,
+            "comparisonAlpha": 0.02,
+            "minimumPossiblePValue": 0.015625,
+            "selectionReachable": true,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 7,
+                "positive": 1,
+                "negative": 2,
+                "ties": 4,
+                "pValue": 1,
+                "alpha": 0.02,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": -0.14285714285714285,
+                "meanMarginAdvantage": -32.57142857142857,
+                "marginAdvantageStandardError": 112.50944026907193,
+                "decisiveWinRate95CI": {
+                  "low": 0.2076596008020477,
+                  "high": 0.9385080552796037
+                }
+              }
+            ]
+          },
+          {
+            "samples": 15,
+            "stageAlpha": 0.025,
+            "comparisonAlpha": 0.025,
+            "minimumPossiblePValue": 0.00006103515625,
+            "selectionReachable": true,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 15,
+                "positive": 1,
+                "negative": 6,
+                "ties": 8,
+                "pValue": 0.125,
+                "alpha": 0.025,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": -0.3333333333333333,
+                "meanMarginAdvantage": -168.66666666666666,
+                "marginAdvantageStandardError": 106.3525434207546,
+                "decisiveWinRate95CI": {
+                  "low": 0.4868721707256811,
+                  "high": 0.9743203756552565
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "rootId": "rhea-training-context-val-10-seat-1-index-4",
+        "availableSamples": 15,
+        "status": "abstain-max-samples",
+        "selectedCandidateId": null,
+        "stopSamples": 15,
+        "nextSamples": null,
+        "stages": [
+          {
+            "samples": 3,
+            "stageAlpha": 0.005,
+            "comparisonAlpha": 0.005,
+            "minimumPossiblePValue": 0.25,
+            "selectionReachable": false,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 3,
+                "positive": 0,
+                "negative": 0,
+                "ties": 3,
+                "pValue": 1,
+                "alpha": 0.005,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": 0,
+                "meanMarginAdvantage": 29,
+                "marginAdvantageStandardError": 224.24094184604203,
+                "decisiveWinRate95CI": null
+              }
+            ]
+          },
+          {
+            "samples": 7,
+            "stageAlpha": 0.02,
+            "comparisonAlpha": 0.02,
+            "minimumPossiblePValue": 0.015625,
+            "selectionReachable": true,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 7,
+                "positive": 0,
+                "negative": 1,
+                "ties": 6,
+                "pValue": 1,
+                "alpha": 0.02,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": -0.14285714285714285,
+                "meanMarginAdvantage": -132.71428571428572,
+                "marginAdvantageStandardError": 134.3840825122271,
+                "decisiveWinRate95CI": {
+                  "low": 0.20654931437723745,
+                  "high": 1
+                }
+              }
+            ]
+          },
+          {
+            "samples": 15,
+            "stageAlpha": 0.025,
+            "comparisonAlpha": 0.025,
+            "minimumPossiblePValue": 0.00006103515625,
+            "selectionReachable": true,
+            "selectedCandidateId": null,
+            "comparisons": [
+              {
+                "leftCandidateId": "p5s2-train-1adebf1880",
+                "rightCandidateId": "p5s2-train-2dd5d77261",
+                "samples": 15,
+                "positive": 0,
+                "negative": 5,
+                "ties": 10,
+                "pValue": 0.0625,
+                "alpha": 0.025,
+                "significant": false,
+                "winnerCandidateId": null,
+                "meanRankLift": -0.3333333333333333,
+                "meanMarginAdvantage": -173.26666666666668,
+                "marginAdvantageStandardError": 72.0965270061548,
+                "decisiveWinRate95CI": {
+                  "low": 0.5655175352168251,
+                  "high": 1
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "rootGeneralizationAudit": null,
+  "contextClassifier": {
+    "name": "low-exclusive-reach",
+    "feature": "exclusivelyReachableHouses",
+    "operator": "<=",
+    "threshold": 1,
+    "matchedRecommendation": "p5s2-train-2dd5d77261",
+    "unmatchedRecommendation": "p5s2-train-1adebf1880",
+    "developmentRoots": 12,
+    "validation": {
+      "minimumMatchedRoots": 8,
+      "minimumUnmatchedRoots": 2,
+      "pairedContinuationSamplesPerRoot": 15,
+      "integrityStages": [
+        3,
+        7,
+        15
+      ],
+      "matchedGate": {
+        "minimumDecisiveRoots": 7,
+        "minimumAlternatePositiveRoots": 7,
+        "maximumStaticPositiveRoots": 0,
+        "twoSidedExactSignAlpha": 0.025
+      },
+      "unmatchedGate": {
+        "maximumAlternatePositiveRoots": 0
+      }
+    },
+    "failurePolicy": "Reject the classifier and keep the static action; never change threshold, feature, roots, or class membership after this freeze."
+  },
+  "contextClassifierAudit": {
+    "schemaVersion": "fcm.context-classifier-audit.v1",
+    "status": "failed",
+    "eligibleForGate": true,
+    "passed": false,
+    "availableSamplesPerRoot": 15,
+    "requiredSamplesPerRoot": 15,
+    "matched": {
+      "roots": 8,
+      "alternatePositiveRoots": 6,
+      "staticPositiveRoots": 0,
+      "tiedRoots": 2,
+      "decisiveRoots": 6,
+      "twoSidedExactSignPValue": 0.03125,
+      "gate": {
+        "minimumDecisiveRoots": 7,
+        "minimumAlternatePositiveRoots": 7,
+        "maximumStaticPositiveRoots": 0,
+        "twoSidedExactSignAlpha": 0.025
+      }
+    },
+    "unmatched": {
+      "roots": 4,
+      "alternatePositiveRoots": 3,
+      "staticPositiveRoots": 0,
+      "tiedRoots": 1,
+      "decisiveRoots": 3,
+      "twoSidedExactSignPValue": 0.25,
+      "gate": {
+        "maximumAlternatePositiveRoots": 0
+      }
+    },
+    "details": [
+      {
+        "rootId": "rhea-training-context-val-05-seat-0-index-4",
+        "classifierMatched": true,
+        "samples": 15,
+        "meanRankLift": 0,
+        "sign": "tie"
+      },
+      {
+        "rootId": "rhea-training-context-val-05-seat-1-index-4",
+        "classifierMatched": true,
+        "samples": 15,
+        "meanRankLift": 0.6,
+        "sign": "alternate-positive"
+      },
+      {
+        "rootId": "rhea-training-context-val-06-seat-0-index-4",
+        "classifierMatched": true,
+        "samples": 15,
+        "meanRankLift": 0.4,
+        "sign": "alternate-positive"
+      },
+      {
+        "rootId": "rhea-training-context-val-06-seat-1-index-4",
+        "classifierMatched": true,
+        "samples": 15,
+        "meanRankLift": 0.4,
+        "sign": "alternate-positive"
+      },
+      {
+        "rootId": "rhea-training-context-val-07-seat-0-index-4",
+        "classifierMatched": false,
+        "samples": 15,
+        "meanRankLift": 0,
+        "sign": "tie"
+      },
+      {
+        "rootId": "rhea-training-context-val-07-seat-1-index-4",
+        "classifierMatched": false,
+        "samples": 15,
+        "meanRankLift": 0.4666666666666667,
+        "sign": "alternate-positive"
+      },
+      {
+        "rootId": "rhea-training-context-val-08-seat-0-index-4",
+        "classifierMatched": true,
+        "samples": 15,
+        "meanRankLift": 0,
+        "sign": "tie"
+      },
+      {
+        "rootId": "rhea-training-context-val-08-seat-1-index-4",
+        "classifierMatched": true,
+        "samples": 15,
+        "meanRankLift": 0.13333333333333333,
+        "sign": "alternate-positive"
+      },
+      {
+        "rootId": "rhea-training-context-val-09-seat-0-index-4",
+        "classifierMatched": false,
+        "samples": 15,
+        "meanRankLift": 0.2,
+        "sign": "alternate-positive"
+      },
+      {
+        "rootId": "rhea-training-context-val-09-seat-1-index-4",
+        "classifierMatched": true,
+        "samples": 15,
+        "meanRankLift": 0.26666666666666666,
+        "sign": "alternate-positive"
+      },
+      {
+        "rootId": "rhea-training-context-val-10-seat-0-index-4",
+        "classifierMatched": true,
+        "samples": 15,
+        "meanRankLift": 0.3333333333333333,
+        "sign": "alternate-positive"
+      },
+      {
+        "rootId": "rhea-training-context-val-10-seat-1-index-4",
+        "classifierMatched": false,
+        "samples": 15,
+        "meanRankLift": 0.3333333333333333,
+        "sign": "alternate-positive"
+      }
+    ]
+  },
+  "predeclaredInteraction": null,
+  "privatePayloadPersisted": false,
+  "promotionHoldoutOpened": false
+}

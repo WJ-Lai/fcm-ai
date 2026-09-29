@@ -753,6 +753,16 @@ therefore under strong pressure. It is not yet a valid failure verdict because e
 continuations can still reverse each small cumulative mean. Append samples 7–14 for every root and
 apply both gates once at 15; do not weaken the unmatched gate or retrofit a new threshold.
 
+Experiment 52 completes the maximum stage with 192 new terminal branches. Exact target coverage,
+all seven-sample prefixes, identities and classifier memberships remain intact. The classifier
+fails both frozen class gates: matched roots finish six alternate-positive, zero static-positive and
+two tied (`p=0.03125`), missing the seven-decisive/seven-positive and `p<=0.025` requirements;
+unmatched roots finish three alternate-positive and one tied, violating the zero-positive safety
+condition. Reject `exclusivelyReachableHouses <= 1`, keep the static online action, and do not search
+these roots for another threshold. Although nine of all 12 validation roots favor the alternate and
+none favor static, that candidate-wide observation is post-hoc after its earlier preregistered
+rejection and cannot justify deployment or reopening the promotion holdout.
+
 ### 6.8 Execution, memory and learning
 
 The execution layer accepts one versioned candidate id, revalidates it against the current game
