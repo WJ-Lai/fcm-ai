@@ -1,0 +1,84 @@
+{
+  "schemaVersion": "fcm.rollout-policy-population.v1",
+  "populationId": "base-rollout-population-v1",
+  "ruleset": "base-game",
+  "candidateGenerator": "fcm.phase-candidates.v1+marketing-spatial-spread.v1",
+  "opponentPopulationId": "base-public-population-v1",
+  "opponentCalibrationVersion": "fcm.opponent-calibration.v5",
+  "policies": [
+    {
+      "policyId": "deterministic-replan-v1",
+      "role": "diagnostic-actor",
+      "kind": "external",
+      "implementation": "deterministic-strategy-v1",
+      "decisionMode": "replan-every-decision",
+      "stochastic": false,
+      "frozen": true,
+      "options": {"profile":"balanced"}
+    },
+    {
+      "policyId": "safe-first-reactive-v1",
+      "role": "diagnostic-actor",
+      "kind": "external",
+      "implementation": "safe-first-legal-v1",
+      "decisionMode": "react-every-decision",
+      "stochastic": false,
+      "frozen": true,
+      "options": {}
+    },
+    {
+      "policyId": "seeded-random-reactive-v1",
+      "role": "opponent",
+      "kind": "external",
+      "implementation": "seeded-random-legal-v1",
+      "decisionMode": "react-every-decision",
+      "stochastic": true,
+      "frozen": true,
+      "options": {"seedNamespace":"fcm.rollout-policy-population.v1"}
+    },
+    {
+      "policyId": "official-built-in-v1",
+      "role": "opponent",
+      "kind": "environment-adapter",
+      "implementation": "official-built-in-v1",
+      "decisionMode": "environment-every-decision",
+      "stochastic": true,
+      "frozen": true,
+      "options": {"requiresSeatName":"FcmAI"}
+    },
+    {
+      "policyId": "rhea-replan-v1",
+      "role": "target-actor",
+      "kind": "search",
+      "implementation": "fcm.rhea-strategy.v1",
+      "decisionMode": "replan-every-decision",
+      "stochastic": false,
+      "frozen": true,
+      "options": {
+        "profile":"balanced",
+        "beliefSampleCount":2,
+        "maxRootCandidates":2,
+        "branchFactor":3,
+        "populationSize":4,
+        "eliteCount":1,
+        "generations":2,
+        "horizonLength":3,
+        "geneCardinality":3,
+        "maxEvaluations":16,
+        "maxTransitionsPerScenario":80,
+        "deadlineMs":30000,
+        "fallbackPolicyId":"deterministic-replan-v1"
+      }
+    }
+  ],
+  "targetScenario": {
+    "scenarioId":"rhea-actor-calibrated-opponents-v1",
+    "actorPolicyId":"rhea-replan-v1",
+    "opponentSelector":"calibrated-external-public-population-v5",
+    "opponentModelIds":["deterministic-balanced-v1","safe-first-v1","seeded-random-v1"],
+    "commonRandomStreams":["stream-0","stream-1","stream-2"],
+    "candidateComparison":"paired-within-root-stream",
+    "terminalTarget":"lexicographic-rank-then-public-margin-v1"
+  },
+  "promotionHoldoutOpened": false
+}
