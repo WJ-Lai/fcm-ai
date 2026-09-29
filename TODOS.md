@@ -577,7 +577,11 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     Iteration 49 freezes 12/12 new roots before outcomes with byte reproducibility and exact class
     balance 8 matched / 4 unmatched. Final matched gate requires >=7 decisive, >=7 alternate-positive,
     0 static-positive and p<=0.025; unmatched permits 0 alternate-positive. Next collect three paired
-    samples on every root without changing `exclusive <= 1` or class membership.
+    samples on every root without changing `exclusive <= 1` or class membership. Iteration 50
+    completes all 72 branches in four isolated shards with exact frozen identities and memberships.
+    Interim matched signs are 5 alternate / 0 static / 3 tied; unmatched signs are 1 alternate /
+    0 static / 3 tied. The audit is still `collecting`/passed=null at 3/15, so preserve all prefixes
+    and append samples 3–6 for every root; do not tune the threshold or drop the unmatched exception.
 
 - [ ] **P4.1c Evaluate belief-aware information-set search only where uncertainty warrants it.**
   - Why: hidden/simultaneous choices may justify ISMCTS/POMCP-style sampling, but naive MCTS or

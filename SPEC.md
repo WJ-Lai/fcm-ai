@@ -736,6 +736,15 @@ at least seven decisive and seven alternate-positive roots, zero static-positive
 root-sign `p <= 0.025`; the unmatched class may contain zero alternate-positive roots. Both class
 gates are mandatory, and the feature, threshold, roots and membership are immutable after freeze.
 
+Experiment 50 completes the three-sample integrity stage in four process-isolated shards. All 72
+terminal branches finish, target indices 0–11 occur exactly once, and every frozen identity and
+class membership is preserved. The matched class currently has five alternate-positive roots,
+zero static-positive roots and three ties (`p=0.0625`). The unmatched class has one
+alternate-positive root and three ties. That unmatched observation would violate the final safety
+gate if it persisted, but three samples are not an eligible decision stage: the audit remains
+`collecting` with `passed=null`. Preserve every root and sample prefix, append samples 3–6, and do
+not change the classifier in response to this interim result.
+
 ### 6.8 Execution, memory and learning
 
 The execution layer accepts one versioned candidate id, revalidates it against the current game

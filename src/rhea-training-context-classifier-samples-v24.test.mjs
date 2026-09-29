@@ -25,7 +25,7 @@ test('three-sample classifier validation preserves the blind frozen roots', asyn
   assert.equal(report.contextClassifierAudit.eligibleForGate, false)
   assert.equal(report.contextClassifierAudit.passed, null)
   assert.equal(report.contextClassifierAudit.availableSamplesPerRoot, 3)
-  assert.equal(report.audit.summary.needsMore, 12)
+  assert.equal(report.audit.needsMoreSamplesRoots, 12)
   assert.equal(report.promotionHoldoutOpened, false)
   assert.equal(report.privatePayloadPersisted, false)
 })
