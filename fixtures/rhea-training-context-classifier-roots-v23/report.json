@@ -1,0 +1,1318 @@
+{
+  "schemaVersion": "fcm.rhea-training-context-classifier-roots.v23",
+  "experimentId": 49,
+  "protocolDigest": "sha256:05d2b0b78480fc7ba57001fb4c810789ee456ed25aa70e6bcd4ced5243679deb",
+  "frozenBeforeTerminalSampling": true,
+  "contextClassifier": {
+    "name": "low-exclusive-reach",
+    "feature": "exclusivelyReachableHouses",
+    "operator": "<=",
+    "threshold": 1,
+    "matchedRecommendation": "p5s2-train-2dd5d77261",
+    "unmatchedRecommendation": "p5s2-train-1adebf1880",
+    "developmentRoots": 12,
+    "validation": {
+      "minimumMatchedRoots": 8,
+      "minimumUnmatchedRoots": 2,
+      "pairedContinuationSamplesPerRoot": 15,
+      "integrityStages": [
+        3,
+        7,
+        15
+      ],
+      "matchedGate": {
+        "minimumDecisiveRoots": 7,
+        "minimumAlternatePositiveRoots": 7,
+        "maximumStaticPositiveRoots": 0,
+        "twoSidedExactSignAlpha": 0.025
+      },
+      "unmatchedGate": {
+        "maximumAlternatePositiveRoots": 0
+      }
+    },
+    "failurePolicy": "Reject the classifier and keep the static action; never change threshold, feature, roots, or class membership after this freeze."
+  },
+  "trajectories": [
+    {
+      "seed": "rhea-training-context-val-05",
+      "agentSeat": 0,
+      "gameID": 9940,
+      "scannedDecisions": 5,
+      "trainingScannedDecisions": 2,
+      "commands": 20,
+      "rootFound": true
+    },
+    {
+      "seed": "rhea-training-context-val-05",
+      "agentSeat": 1,
+      "gameID": 9941,
+      "scannedDecisions": 5,
+      "trainingScannedDecisions": 2,
+      "commands": 18,
+      "rootFound": true
+    },
+    {
+      "seed": "rhea-training-context-val-06",
+      "agentSeat": 0,
+      "gameID": 9942,
+      "scannedDecisions": 5,
+      "trainingScannedDecisions": 2,
+      "commands": 20,
+      "rootFound": true
+    },
+    {
+      "seed": "rhea-training-context-val-06",
+      "agentSeat": 1,
+      "gameID": 9943,
+      "scannedDecisions": 5,
+      "trainingScannedDecisions": 2,
+      "commands": 18,
+      "rootFound": true
+    },
+    {
+      "seed": "rhea-training-context-val-07",
+      "agentSeat": 0,
+      "gameID": 9944,
+      "scannedDecisions": 5,
+      "trainingScannedDecisions": 2,
+      "commands": 20,
+      "rootFound": true
+    },
+    {
+      "seed": "rhea-training-context-val-07",
+      "agentSeat": 1,
+      "gameID": 9945,
+      "scannedDecisions": 5,
+      "trainingScannedDecisions": 2,
+      "commands": 18,
+      "rootFound": true
+    },
+    {
+      "seed": "rhea-training-context-val-08",
+      "agentSeat": 0,
+      "gameID": 9946,
+      "scannedDecisions": 5,
+      "trainingScannedDecisions": 2,
+      "commands": 20,
+      "rootFound": true
+    },
+    {
+      "seed": "rhea-training-context-val-08",
+      "agentSeat": 1,
+      "gameID": 9947,
+      "scannedDecisions": 5,
+      "trainingScannedDecisions": 2,
+      "commands": 18,
+      "rootFound": true
+    },
+    {
+      "seed": "rhea-training-context-val-09",
+      "agentSeat": 0,
+      "gameID": 9948,
+      "scannedDecisions": 5,
+      "trainingScannedDecisions": 2,
+      "commands": 20,
+      "rootFound": true
+    },
+    {
+      "seed": "rhea-training-context-val-09",
+      "agentSeat": 1,
+      "gameID": 9949,
+      "scannedDecisions": 5,
+      "trainingScannedDecisions": 2,
+      "commands": 18,
+      "rootFound": true
+    },
+    {
+      "seed": "rhea-training-context-val-10",
+      "agentSeat": 0,
+      "gameID": 9950,
+      "scannedDecisions": 5,
+      "trainingScannedDecisions": 2,
+      "commands": 20,
+      "rootFound": true
+    },
+    {
+      "seed": "rhea-training-context-val-10",
+      "agentSeat": 1,
+      "gameID": 9951,
+      "scannedDecisions": 5,
+      "trainingScannedDecisions": 2,
+      "commands": 18,
+      "rootFound": true
+    }
+  ],
+  "roots": [
+    {
+      "rootId": "rhea-training-context-val-05-seat-0-index-4",
+      "seed": "rhea-training-context-val-05",
+      "agentSeat": 0,
+      "scanIndex": 4,
+      "trainingScanIndex": 1,
+      "gameID": 9940,
+      "turn": 3,
+      "phase": 5,
+      "subphase": 2,
+      "strategicProjectionDigest": "sha256:5f33617bdb1f1f7ffad11a43bffd7cc422bf0522582a998ba70d2a7445f6a5f3",
+      "publicFeatures": {
+        "version": "fcm.terminal-value-features.v2",
+        "turn": 3,
+        "turnOrderPosition": 1,
+        "turnOrderKnown": 1,
+        "bankPerPlayer": 50,
+        "cash": 0,
+        "cashLead": 0,
+        "salaryDue": 0,
+        "salaryGap": 0,
+        "unitPrice": 10,
+        "discount": 0,
+        "activeEmployees": 3,
+        "beachEmployees": 1,
+        "freeSlots": 0,
+        "recruitingCapacity": 1,
+        "salaryDiscountPoints": 0,
+        "trainingCapacity": 1,
+        "trainingLevel2Capacity": 0,
+        "trainingLevel3Capacity": 0,
+        "unlimitedTraining": 0,
+        "productionWorkers": 2,
+        "productionGoodsCoverage": 2,
+        "marketingWorkers": 0,
+        "campaignTypeCoverage": 0,
+        "restaurantBuilders": 0,
+        "beachManagement": 0,
+        "beachRecruiting": 0,
+        "beachTraining": 0,
+        "beachMarketing": 1,
+        "beachProduction": 0,
+        "beachRestaurantBuilding": 0,
+        "beachTrainable": 1,
+        "beachSalaryLiable": 0,
+        "restaurants": 1,
+        "milestonesHeld": 1,
+        "openMilestoneOptions": 17,
+        "inventoryTotal": 0,
+        "inventoryDemandFit": 0,
+        "reachableDemandUnits": 0,
+        "unreachableDemandUnits": 0,
+        "servableDemandUnits": 0,
+        "uncontestedServableUnits": 0,
+        "reachableHouses": 1,
+        "exclusivelyReachableHouses": 0,
+        "closestHouses": 1,
+        "tiedClosestHouses": 0,
+        "distanceDeficitTotal": 0,
+        "productionMarketingSynergy": 0,
+        "reachableEngineReady": 0,
+        "futureDemandSupplyEngineReady": 1,
+        "bankrupt": 0
+      },
+      "classifierMatched": true,
+      "candidateIds": [
+        "p5s2-train-1adebf1880",
+        "p5s2-train-2dd5d77261"
+      ],
+      "candidateActions": [
+        [
+          {
+            "type": "train",
+            "employee": 13,
+            "toEmployee": 14,
+            "origin": 0,
+            "steps": 1
+          },
+          {
+            "type": "next_subphase"
+          }
+        ],
+        [
+          {
+            "type": "train",
+            "employee": -1,
+            "toEmployee": 28,
+            "origin": 1,
+            "steps": 1
+          },
+          {
+            "type": "next_subphase"
+          }
+        ]
+      ],
+      "rootIdentityDigest": "sha256:1212b6f5fa72d87340ec3d5c13c8f450f8544c287718a163017ad194b4f4a53f"
+    },
+    {
+      "rootId": "rhea-training-context-val-05-seat-1-index-4",
+      "seed": "rhea-training-context-val-05",
+      "agentSeat": 1,
+      "scanIndex": 4,
+      "trainingScanIndex": 1,
+      "gameID": 9941,
+      "turn": 3,
+      "phase": 5,
+      "subphase": 2,
+      "strategicProjectionDigest": "sha256:4699a348756f6b881b4ee62ccc0886ec85c8455ee2188d435f5394a74daa6053",
+      "publicFeatures": {
+        "version": "fcm.terminal-value-features.v2",
+        "turn": 3,
+        "turnOrderPosition": 0,
+        "turnOrderKnown": 1,
+        "bankPerPlayer": 50,
+        "cash": 0,
+        "cashLead": 0,
+        "salaryDue": 0,
+        "salaryGap": 0,
+        "unitPrice": 10,
+        "discount": 0,
+        "activeEmployees": 3,
+        "beachEmployees": 1,
+        "freeSlots": 0,
+        "recruitingCapacity": 1,
+        "salaryDiscountPoints": 0,
+        "trainingCapacity": 1,
+        "trainingLevel2Capacity": 0,
+        "trainingLevel3Capacity": 0,
+        "unlimitedTraining": 0,
+        "productionWorkers": 2,
+        "productionGoodsCoverage": 2,
+        "marketingWorkers": 0,
+        "campaignTypeCoverage": 0,
+        "restaurantBuilders": 0,
+        "beachManagement": 0,
+        "beachRecruiting": 0,
+        "beachTraining": 0,
+        "beachMarketing": 1,
+        "beachProduction": 0,
+        "beachRestaurantBuilding": 0,
+        "beachTrainable": 1,
+        "beachSalaryLiable": 0,
+        "restaurants": 1,
+        "milestonesHeld": 1,
+        "openMilestoneOptions": 17,
+        "inventoryTotal": 0,
+        "inventoryDemandFit": 0,
+        "reachableDemandUnits": 0,
+        "unreachableDemandUnits": 0,
+        "servableDemandUnits": 0,
+        "uncontestedServableUnits": 0,
+        "reachableHouses": 5,
+        "exclusivelyReachableHouses": 0,
+        "closestHouses": 3,
+        "tiedClosestHouses": 1,
+        "distanceDeficitTotal": 6,
+        "productionMarketingSynergy": 0,
+        "reachableEngineReady": 0,
+        "futureDemandSupplyEngineReady": 1,
+        "bankrupt": 0
+      },
+      "classifierMatched": true,
+      "candidateIds": [
+        "p5s2-train-1adebf1880",
+        "p5s2-train-2dd5d77261"
+      ],
+      "candidateActions": [
+        [
+          {
+            "type": "train",
+            "employee": 13,
+            "toEmployee": 14,
+            "origin": 0,
+            "steps": 1
+          },
+          {
+            "type": "next_subphase"
+          }
+        ],
+        [
+          {
+            "type": "train",
+            "employee": -1,
+            "toEmployee": 28,
+            "origin": 1,
+            "steps": 1
+          },
+          {
+            "type": "next_subphase"
+          }
+        ]
+      ],
+      "rootIdentityDigest": "sha256:d1d808bf8a411ad279918a822e369dd0ec89ac76226b099a436a604da0681802"
+    },
+    {
+      "rootId": "rhea-training-context-val-06-seat-0-index-4",
+      "seed": "rhea-training-context-val-06",
+      "agentSeat": 0,
+      "scanIndex": 4,
+      "trainingScanIndex": 1,
+      "gameID": 9942,
+      "turn": 3,
+      "phase": 5,
+      "subphase": 2,
+      "strategicProjectionDigest": "sha256:f66b9efa52aded33697d538693bb9b093b59aebe91cab5a430e4121c611e5985",
+      "publicFeatures": {
+        "version": "fcm.terminal-value-features.v2",
+        "turn": 3,
+        "turnOrderPosition": 1,
+        "turnOrderKnown": 1,
+        "bankPerPlayer": 50,
+        "cash": 0,
+        "cashLead": 0,
+        "salaryDue": 0,
+        "salaryGap": 0,
+        "unitPrice": 10,
+        "discount": 0,
+        "activeEmployees": 3,
+        "beachEmployees": 1,
+        "freeSlots": 0,
+        "recruitingCapacity": 1,
+        "salaryDiscountPoints": 0,
+        "trainingCapacity": 1,
+        "trainingLevel2Capacity": 0,
+        "trainingLevel3Capacity": 0,
+        "unlimitedTraining": 0,
+        "productionWorkers": 2,
+        "productionGoodsCoverage": 2,
+        "marketingWorkers": 0,
+        "campaignTypeCoverage": 0,
+        "restaurantBuilders": 0,
+        "beachManagement": 0,
+        "beachRecruiting": 0,
+        "beachTraining": 0,
+        "beachMarketing": 1,
+        "beachProduction": 0,
+        "beachRestaurantBuilding": 0,
+        "beachTrainable": 1,
+        "beachSalaryLiable": 0,
+        "restaurants": 1,
+        "milestonesHeld": 1,
+        "openMilestoneOptions": 17,
+        "inventoryTotal": 0,
+        "inventoryDemandFit": 0,
+        "reachableDemandUnits": 0,
+        "unreachableDemandUnits": 0,
+        "servableDemandUnits": 0,
+        "uncontestedServableUnits": 0,
+        "reachableHouses": 3,
+        "exclusivelyReachableHouses": 0,
+        "closestHouses": 0,
+        "tiedClosestHouses": 0,
+        "distanceDeficitTotal": 3,
+        "productionMarketingSynergy": 0,
+        "reachableEngineReady": 0,
+        "futureDemandSupplyEngineReady": 1,
+        "bankrupt": 0
+      },
+      "classifierMatched": true,
+      "candidateIds": [
+        "p5s2-train-1adebf1880",
+        "p5s2-train-2dd5d77261"
+      ],
+      "candidateActions": [
+        [
+          {
+            "type": "train",
+            "employee": 13,
+            "toEmployee": 14,
+            "origin": 0,
+            "steps": 1
+          },
+          {
+            "type": "next_subphase"
+          }
+        ],
+        [
+          {
+            "type": "train",
+            "employee": -1,
+            "toEmployee": 28,
+            "origin": 1,
+            "steps": 1
+          },
+          {
+            "type": "next_subphase"
+          }
+        ]
+      ],
+      "rootIdentityDigest": "sha256:b9f55f895ca4d45af1e6f6cd804285d888f008fcc58d99f1baca285dd532e749"
+    },
+    {
+      "rootId": "rhea-training-context-val-06-seat-1-index-4",
+      "seed": "rhea-training-context-val-06",
+      "agentSeat": 1,
+      "scanIndex": 4,
+      "trainingScanIndex": 1,
+      "gameID": 9943,
+      "turn": 3,
+      "phase": 5,
+      "subphase": 2,
+      "strategicProjectionDigest": "sha256:dcbad6503ef768acb0ca78af57abb736ad03ec2f5ab3398acb134e9a7a0726f5",
+      "publicFeatures": {
+        "version": "fcm.terminal-value-features.v2",
+        "turn": 3,
+        "turnOrderPosition": 0,
+        "turnOrderKnown": 1,
+        "bankPerPlayer": 50,
+        "cash": 0,
+        "cashLead": 0,
+        "salaryDue": 0,
+        "salaryGap": 0,
+        "unitPrice": 10,
+        "discount": 0,
+        "activeEmployees": 3,
+        "beachEmployees": 1,
+        "freeSlots": 0,
+        "recruitingCapacity": 1,
+        "salaryDiscountPoints": 0,
+        "trainingCapacity": 1,
+        "trainingLevel2Capacity": 0,
+        "trainingLevel3Capacity": 0,
+        "unlimitedTraining": 0,
+        "productionWorkers": 2,
+        "productionGoodsCoverage": 2,
+        "marketingWorkers": 0,
+        "campaignTypeCoverage": 0,
+        "restaurantBuilders": 0,
+        "beachManagement": 0,
+        "beachRecruiting": 0,
+        "beachTraining": 0,
+        "beachMarketing": 1,
+        "beachProduction": 0,
+        "beachRestaurantBuilding": 0,
+        "beachTrainable": 1,
+        "beachSalaryLiable": 0,
+        "restaurants": 1,
+        "milestonesHeld": 1,
+        "openMilestoneOptions": 17,
+        "inventoryTotal": 0,
+        "inventoryDemandFit": 0,
+        "reachableDemandUnits": 0,
+        "unreachableDemandUnits": 0,
+        "servableDemandUnits": 0,
+        "uncontestedServableUnits": 0,
+        "reachableHouses": 3,
+        "exclusivelyReachableHouses": 0,
+        "closestHouses": 3,
+        "tiedClosestHouses": 0,
+        "distanceDeficitTotal": 0,
+        "productionMarketingSynergy": 0,
+        "reachableEngineReady": 0,
+        "futureDemandSupplyEngineReady": 1,
+        "bankrupt": 0
+      },
+      "classifierMatched": true,
+      "candidateIds": [
+        "p5s2-train-1adebf1880",
+        "p5s2-train-2dd5d77261"
+      ],
+      "candidateActions": [
+        [
+          {
+            "type": "train",
+            "employee": 13,
+            "toEmployee": 14,
+            "origin": 0,
+            "steps": 1
+          },
+          {
+            "type": "next_subphase"
+          }
+        ],
+        [
+          {
+            "type": "train",
+            "employee": -1,
+            "toEmployee": 28,
+            "origin": 1,
+            "steps": 1
+          },
+          {
+            "type": "next_subphase"
+          }
+        ]
+      ],
+      "rootIdentityDigest": "sha256:d2b0ea06ed0f44bc8239c2fb3b3bdf06636fc519064024b92b2753be1608c9cb"
+    },
+    {
+      "rootId": "rhea-training-context-val-07-seat-0-index-4",
+      "seed": "rhea-training-context-val-07",
+      "agentSeat": 0,
+      "scanIndex": 4,
+      "trainingScanIndex": 1,
+      "gameID": 9944,
+      "turn": 3,
+      "phase": 5,
+      "subphase": 2,
+      "strategicProjectionDigest": "sha256:3161dce89310f9c03535105ad56bb37b28b60530d693c9e7c251d12d8679e7e8",
+      "publicFeatures": {
+        "version": "fcm.terminal-value-features.v2",
+        "turn": 3,
+        "turnOrderPosition": 1,
+        "turnOrderKnown": 1,
+        "bankPerPlayer": 50,
+        "cash": 0,
+        "cashLead": 0,
+        "salaryDue": 0,
+        "salaryGap": 0,
+        "unitPrice": 10,
+        "discount": 0,
+        "activeEmployees": 3,
+        "beachEmployees": 1,
+        "freeSlots": 0,
+        "recruitingCapacity": 1,
+        "salaryDiscountPoints": 0,
+        "trainingCapacity": 1,
+        "trainingLevel2Capacity": 0,
+        "trainingLevel3Capacity": 0,
+        "unlimitedTraining": 0,
+        "productionWorkers": 2,
+        "productionGoodsCoverage": 2,
+        "marketingWorkers": 0,
+        "campaignTypeCoverage": 0,
+        "restaurantBuilders": 0,
+        "beachManagement": 0,
+        "beachRecruiting": 0,
+        "beachTraining": 0,
+        "beachMarketing": 1,
+        "beachProduction": 0,
+        "beachRestaurantBuilding": 0,
+        "beachTrainable": 1,
+        "beachSalaryLiable": 0,
+        "restaurants": 1,
+        "milestonesHeld": 1,
+        "openMilestoneOptions": 17,
+        "inventoryTotal": 0,
+        "inventoryDemandFit": 0,
+        "reachableDemandUnits": 0,
+        "unreachableDemandUnits": 0,
+        "servableDemandUnits": 0,
+        "uncontestedServableUnits": 0,
+        "reachableHouses": 5,
+        "exclusivelyReachableHouses": 4,
+        "closestHouses": 4,
+        "tiedClosestHouses": 0,
+        "distanceDeficitTotal": 2,
+        "productionMarketingSynergy": 0,
+        "reachableEngineReady": 0,
+        "futureDemandSupplyEngineReady": 1,
+        "bankrupt": 0
+      },
+      "classifierMatched": false,
+      "candidateIds": [
+        "p5s2-train-1adebf1880",
+        "p5s2-train-2dd5d77261"
+      ],
+      "candidateActions": [
+        [
+          {
+            "type": "train",
+            "employee": 13,
+            "toEmployee": 14,
+            "origin": 0,
+            "steps": 1
+          },
+          {
+            "type": "next_subphase"
+          }
+        ],
+        [
+          {
+            "type": "train",
+            "employee": -1,
+            "toEmployee": 28,
+            "origin": 1,
+            "steps": 1
+          },
+          {
+            "type": "next_subphase"
+          }
+        ]
+      ],
+      "rootIdentityDigest": "sha256:034b2d84aaac8ee7a956cd20be7e371a1a5f21dc915d70be5deb062fad59d09c"
+    },
+    {
+      "rootId": "rhea-training-context-val-07-seat-1-index-4",
+      "seed": "rhea-training-context-val-07",
+      "agentSeat": 1,
+      "scanIndex": 4,
+      "trainingScanIndex": 1,
+      "gameID": 9945,
+      "turn": 3,
+      "phase": 5,
+      "subphase": 2,
+      "strategicProjectionDigest": "sha256:8e3c92f73dafd070fe98c1edac9d2fadd6ed7da18f8571a57cbe27070421eb72",
+      "publicFeatures": {
+        "version": "fcm.terminal-value-features.v2",
+        "turn": 3,
+        "turnOrderPosition": 0,
+        "turnOrderKnown": 1,
+        "bankPerPlayer": 50,
+        "cash": 0,
+        "cashLead": 0,
+        "salaryDue": 0,
+        "salaryGap": 0,
+        "unitPrice": 10,
+        "discount": 0,
+        "activeEmployees": 3,
+        "beachEmployees": 1,
+        "freeSlots": 0,
+        "recruitingCapacity": 1,
+        "salaryDiscountPoints": 0,
+        "trainingCapacity": 1,
+        "trainingLevel2Capacity": 0,
+        "trainingLevel3Capacity": 0,
+        "unlimitedTraining": 0,
+        "productionWorkers": 2,
+        "productionGoodsCoverage": 2,
+        "marketingWorkers": 0,
+        "campaignTypeCoverage": 0,
+        "restaurantBuilders": 0,
+        "beachManagement": 0,
+        "beachRecruiting": 0,
+        "beachTraining": 0,
+        "beachMarketing": 1,
+        "beachProduction": 0,
+        "beachRestaurantBuilding": 0,
+        "beachTrainable": 1,
+        "beachSalaryLiable": 0,
+        "restaurants": 1,
+        "milestonesHeld": 1,
+        "openMilestoneOptions": 17,
+        "inventoryTotal": 0,
+        "inventoryDemandFit": 0,
+        "reachableDemandUnits": 0,
+        "unreachableDemandUnits": 0,
+        "servableDemandUnits": 0,
+        "uncontestedServableUnits": 0,
+        "reachableHouses": 5,
+        "exclusivelyReachableHouses": 4,
+        "closestHouses": 4,
+        "tiedClosestHouses": 0,
+        "distanceDeficitTotal": 2,
+        "productionMarketingSynergy": 0,
+        "reachableEngineReady": 0,
+        "futureDemandSupplyEngineReady": 1,
+        "bankrupt": 0
+      },
+      "classifierMatched": false,
+      "candidateIds": [
+        "p5s2-train-1adebf1880",
+        "p5s2-train-2dd5d77261"
+      ],
+      "candidateActions": [
+        [
+          {
+            "type": "train",
+            "employee": 13,
+            "toEmployee": 14,
+            "origin": 0,
+            "steps": 1
+          },
+          {
+            "type": "next_subphase"
+          }
+        ],
+        [
+          {
+            "type": "train",
+            "employee": -1,
+            "toEmployee": 28,
+            "origin": 1,
+            "steps": 1
+          },
+          {
+            "type": "next_subphase"
+          }
+        ]
+      ],
+      "rootIdentityDigest": "sha256:970599885d7d10c5663f0001c3eb6fa1117c2445abe164ad6d4f7078b187d7e1"
+    },
+    {
+      "rootId": "rhea-training-context-val-08-seat-0-index-4",
+      "seed": "rhea-training-context-val-08",
+      "agentSeat": 0,
+      "scanIndex": 4,
+      "trainingScanIndex": 1,
+      "gameID": 9946,
+      "turn": 3,
+      "phase": 5,
+      "subphase": 2,
+      "strategicProjectionDigest": "sha256:4ee7a317967cc98e2db276dbc21d41917573928017493fa9bfc520de311855db",
+      "publicFeatures": {
+        "version": "fcm.terminal-value-features.v2",
+        "turn": 3,
+        "turnOrderPosition": 1,
+        "turnOrderKnown": 1,
+        "bankPerPlayer": 50,
+        "cash": 0,
+        "cashLead": 0,
+        "salaryDue": 0,
+        "salaryGap": 0,
+        "unitPrice": 10,
+        "discount": 0,
+        "activeEmployees": 3,
+        "beachEmployees": 1,
+        "freeSlots": 0,
+        "recruitingCapacity": 1,
+        "salaryDiscountPoints": 0,
+        "trainingCapacity": 1,
+        "trainingLevel2Capacity": 0,
+        "trainingLevel3Capacity": 0,
+        "unlimitedTraining": 0,
+        "productionWorkers": 2,
+        "productionGoodsCoverage": 2,
+        "marketingWorkers": 0,
+        "campaignTypeCoverage": 0,
+        "restaurantBuilders": 0,
+        "beachManagement": 0,
+        "beachRecruiting": 0,
+        "beachTraining": 0,
+        "beachMarketing": 1,
+        "beachProduction": 0,
+        "beachRestaurantBuilding": 0,
+        "beachTrainable": 1,
+        "beachSalaryLiable": 0,
+        "restaurants": 1,
+        "milestonesHeld": 1,
+        "openMilestoneOptions": 17,
+        "inventoryTotal": 0,
+        "inventoryDemandFit": 0,
+        "reachableDemandUnits": 0,
+        "unreachableDemandUnits": 0,
+        "servableDemandUnits": 0,
+        "uncontestedServableUnits": 0,
+        "reachableHouses": 0,
+        "exclusivelyReachableHouses": 0,
+        "closestHouses": 0,
+        "tiedClosestHouses": 0,
+        "distanceDeficitTotal": 0,
+        "productionMarketingSynergy": 0,
+        "reachableEngineReady": 0,
+        "futureDemandSupplyEngineReady": 0,
+        "bankrupt": 0
+      },
+      "classifierMatched": true,
+      "candidateIds": [
+        "p5s2-train-1adebf1880",
+        "p5s2-train-2dd5d77261"
+      ],
+      "candidateActions": [
+        [
+          {
+            "type": "train",
+            "employee": 13,
+            "toEmployee": 14,
+            "origin": 0,
+            "steps": 1
+          },
+          {
+            "type": "next_subphase"
+          }
+        ],
+        [
+          {
+            "type": "train",
+            "employee": -1,
+            "toEmployee": 28,
+            "origin": 1,
+            "steps": 1
+          },
+          {
+            "type": "next_subphase"
+          }
+        ]
+      ],
+      "rootIdentityDigest": "sha256:20fb3d522d1dbfc43cc0171ec510950b9576c721bcfb97b67e18d596274a3fd9"
+    },
+    {
+      "rootId": "rhea-training-context-val-08-seat-1-index-4",
+      "seed": "rhea-training-context-val-08",
+      "agentSeat": 1,
+      "scanIndex": 4,
+      "trainingScanIndex": 1,
+      "gameID": 9947,
+      "turn": 3,
+      "phase": 5,
+      "subphase": 2,
+      "strategicProjectionDigest": "sha256:34e9668e0c264a7929e5de566f8a050f5b1fb43038d5a64c5b6ef996b2fb4e4d",
+      "publicFeatures": {
+        "version": "fcm.terminal-value-features.v2",
+        "turn": 3,
+        "turnOrderPosition": 0,
+        "turnOrderKnown": 1,
+        "bankPerPlayer": 50,
+        "cash": 0,
+        "cashLead": 0,
+        "salaryDue": 0,
+        "salaryGap": 0,
+        "unitPrice": 10,
+        "discount": 0,
+        "activeEmployees": 3,
+        "beachEmployees": 1,
+        "freeSlots": 0,
+        "recruitingCapacity": 1,
+        "salaryDiscountPoints": 0,
+        "trainingCapacity": 1,
+        "trainingLevel2Capacity": 0,
+        "trainingLevel3Capacity": 0,
+        "unlimitedTraining": 0,
+        "productionWorkers": 2,
+        "productionGoodsCoverage": 2,
+        "marketingWorkers": 0,
+        "campaignTypeCoverage": 0,
+        "restaurantBuilders": 0,
+        "beachManagement": 0,
+        "beachRecruiting": 0,
+        "beachTraining": 0,
+        "beachMarketing": 1,
+        "beachProduction": 0,
+        "beachRestaurantBuilding": 0,
+        "beachTrainable": 1,
+        "beachSalaryLiable": 0,
+        "restaurants": 1,
+        "milestonesHeld": 1,
+        "openMilestoneOptions": 17,
+        "inventoryTotal": 0,
+        "inventoryDemandFit": 0,
+        "reachableDemandUnits": 0,
+        "unreachableDemandUnits": 0,
+        "servableDemandUnits": 0,
+        "uncontestedServableUnits": 0,
+        "reachableHouses": 2,
+        "exclusivelyReachableHouses": 0,
+        "closestHouses": 0,
+        "tiedClosestHouses": 0,
+        "distanceDeficitTotal": 6,
+        "productionMarketingSynergy": 0,
+        "reachableEngineReady": 0,
+        "futureDemandSupplyEngineReady": 1,
+        "bankrupt": 0
+      },
+      "classifierMatched": true,
+      "candidateIds": [
+        "p5s2-train-1adebf1880",
+        "p5s2-train-2dd5d77261"
+      ],
+      "candidateActions": [
+        [
+          {
+            "type": "train",
+            "employee": 13,
+            "toEmployee": 14,
+            "origin": 0,
+            "steps": 1
+          },
+          {
+            "type": "next_subphase"
+          }
+        ],
+        [
+          {
+            "type": "train",
+            "employee": -1,
+            "toEmployee": 28,
+            "origin": 1,
+            "steps": 1
+          },
+          {
+            "type": "next_subphase"
+          }
+        ]
+      ],
+      "rootIdentityDigest": "sha256:1cb5a23be82de125b3ba485895a447aa3accd31fd2748d14198744748d9cfa3f"
+    },
+    {
+      "rootId": "rhea-training-context-val-09-seat-0-index-4",
+      "seed": "rhea-training-context-val-09",
+      "agentSeat": 0,
+      "scanIndex": 4,
+      "trainingScanIndex": 1,
+      "gameID": 9948,
+      "turn": 3,
+      "phase": 5,
+      "subphase": 2,
+      "strategicProjectionDigest": "sha256:70b6fc285e898804b238d99473c6fd6b81f0fca0e948f43635912b27f7f34e4e",
+      "publicFeatures": {
+        "version": "fcm.terminal-value-features.v2",
+        "turn": 3,
+        "turnOrderPosition": 1,
+        "turnOrderKnown": 1,
+        "bankPerPlayer": 50,
+        "cash": 0,
+        "cashLead": 0,
+        "salaryDue": 0,
+        "salaryGap": 0,
+        "unitPrice": 10,
+        "discount": 0,
+        "activeEmployees": 3,
+        "beachEmployees": 1,
+        "freeSlots": 0,
+        "recruitingCapacity": 1,
+        "salaryDiscountPoints": 0,
+        "trainingCapacity": 1,
+        "trainingLevel2Capacity": 0,
+        "trainingLevel3Capacity": 0,
+        "unlimitedTraining": 0,
+        "productionWorkers": 2,
+        "productionGoodsCoverage": 2,
+        "marketingWorkers": 0,
+        "campaignTypeCoverage": 0,
+        "restaurantBuilders": 0,
+        "beachManagement": 0,
+        "beachRecruiting": 0,
+        "beachTraining": 0,
+        "beachMarketing": 1,
+        "beachProduction": 0,
+        "beachRestaurantBuilding": 0,
+        "beachTrainable": 1,
+        "beachSalaryLiable": 0,
+        "restaurants": 1,
+        "milestonesHeld": 1,
+        "openMilestoneOptions": 17,
+        "inventoryTotal": 0,
+        "inventoryDemandFit": 0,
+        "reachableDemandUnits": 0,
+        "unreachableDemandUnits": 0,
+        "servableDemandUnits": 0,
+        "uncontestedServableUnits": 0,
+        "reachableHouses": 3,
+        "exclusivelyReachableHouses": 3,
+        "closestHouses": 3,
+        "tiedClosestHouses": 0,
+        "distanceDeficitTotal": 0,
+        "productionMarketingSynergy": 0,
+        "reachableEngineReady": 0,
+        "futureDemandSupplyEngineReady": 1,
+        "bankrupt": 0
+      },
+      "classifierMatched": false,
+      "candidateIds": [
+        "p5s2-train-1adebf1880",
+        "p5s2-train-2dd5d77261"
+      ],
+      "candidateActions": [
+        [
+          {
+            "type": "train",
+            "employee": 13,
+            "toEmployee": 14,
+            "origin": 0,
+            "steps": 1
+          },
+          {
+            "type": "next_subphase"
+          }
+        ],
+        [
+          {
+            "type": "train",
+            "employee": -1,
+            "toEmployee": 28,
+            "origin": 1,
+            "steps": 1
+          },
+          {
+            "type": "next_subphase"
+          }
+        ]
+      ],
+      "rootIdentityDigest": "sha256:6a19199c18b6bedbbbb2a4e6317d725d80b32fd03970cfd4b27aa4b298d61ca1"
+    },
+    {
+      "rootId": "rhea-training-context-val-09-seat-1-index-4",
+      "seed": "rhea-training-context-val-09",
+      "agentSeat": 1,
+      "scanIndex": 4,
+      "trainingScanIndex": 1,
+      "gameID": 9949,
+      "turn": 3,
+      "phase": 5,
+      "subphase": 2,
+      "strategicProjectionDigest": "sha256:6d6d0154688f3251ecdfc0c953542c99bf83bdef9fda9e5a4e8e246a2edf44bd",
+      "publicFeatures": {
+        "version": "fcm.terminal-value-features.v2",
+        "turn": 3,
+        "turnOrderPosition": 0,
+        "turnOrderKnown": 1,
+        "bankPerPlayer": 50,
+        "cash": 0,
+        "cashLead": 0,
+        "salaryDue": 0,
+        "salaryGap": 0,
+        "unitPrice": 10,
+        "discount": 0,
+        "activeEmployees": 3,
+        "beachEmployees": 1,
+        "freeSlots": 0,
+        "recruitingCapacity": 1,
+        "salaryDiscountPoints": 0,
+        "trainingCapacity": 1,
+        "trainingLevel2Capacity": 0,
+        "trainingLevel3Capacity": 0,
+        "unlimitedTraining": 0,
+        "productionWorkers": 2,
+        "productionGoodsCoverage": 2,
+        "marketingWorkers": 0,
+        "campaignTypeCoverage": 0,
+        "restaurantBuilders": 0,
+        "beachManagement": 0,
+        "beachRecruiting": 0,
+        "beachTraining": 0,
+        "beachMarketing": 1,
+        "beachProduction": 0,
+        "beachRestaurantBuilding": 0,
+        "beachTrainable": 1,
+        "beachSalaryLiable": 0,
+        "restaurants": 1,
+        "milestonesHeld": 1,
+        "openMilestoneOptions": 17,
+        "inventoryTotal": 0,
+        "inventoryDemandFit": 0,
+        "reachableDemandUnits": 0,
+        "unreachableDemandUnits": 0,
+        "servableDemandUnits": 0,
+        "uncontestedServableUnits": 0,
+        "reachableHouses": 2,
+        "exclusivelyReachableHouses": 0,
+        "closestHouses": 2,
+        "tiedClosestHouses": 0,
+        "distanceDeficitTotal": 0,
+        "productionMarketingSynergy": 0,
+        "reachableEngineReady": 0,
+        "futureDemandSupplyEngineReady": 1,
+        "bankrupt": 0
+      },
+      "classifierMatched": true,
+      "candidateIds": [
+        "p5s2-train-1adebf1880",
+        "p5s2-train-2dd5d77261"
+      ],
+      "candidateActions": [
+        [
+          {
+            "type": "train",
+            "employee": 13,
+            "toEmployee": 14,
+            "origin": 0,
+            "steps": 1
+          },
+          {
+            "type": "next_subphase"
+          }
+        ],
+        [
+          {
+            "type": "train",
+            "employee": -1,
+            "toEmployee": 28,
+            "origin": 1,
+            "steps": 1
+          },
+          {
+            "type": "next_subphase"
+          }
+        ]
+      ],
+      "rootIdentityDigest": "sha256:7a3f7907d36e36ffb1177646f8d5548e4542b269d16dc3b6e7b38b0aaf8b13ef"
+    },
+    {
+      "rootId": "rhea-training-context-val-10-seat-0-index-4",
+      "seed": "rhea-training-context-val-10",
+      "agentSeat": 0,
+      "scanIndex": 4,
+      "trainingScanIndex": 1,
+      "gameID": 9950,
+      "turn": 3,
+      "phase": 5,
+      "subphase": 2,
+      "strategicProjectionDigest": "sha256:aa9e4af5e7e21ae79e923d07869827064895aa5881b48bf7fbcf04021091df28",
+      "publicFeatures": {
+        "version": "fcm.terminal-value-features.v2",
+        "turn": 3,
+        "turnOrderPosition": 1,
+        "turnOrderKnown": 1,
+        "bankPerPlayer": 50,
+        "cash": 0,
+        "cashLead": 0,
+        "salaryDue": 0,
+        "salaryGap": 0,
+        "unitPrice": 10,
+        "discount": 0,
+        "activeEmployees": 3,
+        "beachEmployees": 1,
+        "freeSlots": 0,
+        "recruitingCapacity": 1,
+        "salaryDiscountPoints": 0,
+        "trainingCapacity": 1,
+        "trainingLevel2Capacity": 0,
+        "trainingLevel3Capacity": 0,
+        "unlimitedTraining": 0,
+        "productionWorkers": 2,
+        "productionGoodsCoverage": 2,
+        "marketingWorkers": 0,
+        "campaignTypeCoverage": 0,
+        "restaurantBuilders": 0,
+        "beachManagement": 0,
+        "beachRecruiting": 0,
+        "beachTraining": 0,
+        "beachMarketing": 1,
+        "beachProduction": 0,
+        "beachRestaurantBuilding": 0,
+        "beachTrainable": 1,
+        "beachSalaryLiable": 0,
+        "restaurants": 1,
+        "milestonesHeld": 1,
+        "openMilestoneOptions": 17,
+        "inventoryTotal": 0,
+        "inventoryDemandFit": 0,
+        "reachableDemandUnits": 0,
+        "unreachableDemandUnits": 0,
+        "servableDemandUnits": 0,
+        "uncontestedServableUnits": 0,
+        "reachableHouses": 3,
+        "exclusivelyReachableHouses": 0,
+        "closestHouses": 2,
+        "tiedClosestHouses": 0,
+        "distanceDeficitTotal": 1,
+        "productionMarketingSynergy": 0,
+        "reachableEngineReady": 0,
+        "futureDemandSupplyEngineReady": 1,
+        "bankrupt": 0
+      },
+      "classifierMatched": true,
+      "candidateIds": [
+        "p5s2-train-1adebf1880",
+        "p5s2-train-2dd5d77261"
+      ],
+      "candidateActions": [
+        [
+          {
+            "type": "train",
+            "employee": 13,
+            "toEmployee": 14,
+            "origin": 0,
+            "steps": 1
+          },
+          {
+            "type": "next_subphase"
+          }
+        ],
+        [
+          {
+            "type": "train",
+            "employee": -1,
+            "toEmployee": 28,
+            "origin": 1,
+            "steps": 1
+          },
+          {
+            "type": "next_subphase"
+          }
+        ]
+      ],
+      "rootIdentityDigest": "sha256:a6dcd19eeed47ef2519b56502af62572da5e02f25a9a6e3661a75d05db0d33c7"
+    },
+    {
+      "rootId": "rhea-training-context-val-10-seat-1-index-4",
+      "seed": "rhea-training-context-val-10",
+      "agentSeat": 1,
+      "scanIndex": 4,
+      "trainingScanIndex": 1,
+      "gameID": 9951,
+      "turn": 3,
+      "phase": 5,
+      "subphase": 2,
+      "strategicProjectionDigest": "sha256:3550ef7a00e86a7efaf59878e8adff786aa48eec2a49edd18dc5713305820bef",
+      "publicFeatures": {
+        "version": "fcm.terminal-value-features.v2",
+        "turn": 3,
+        "turnOrderPosition": 0,
+        "turnOrderKnown": 1,
+        "bankPerPlayer": 50,
+        "cash": 0,
+        "cashLead": 0,
+        "salaryDue": 0,
+        "salaryGap": 0,
+        "unitPrice": 10,
+        "discount": 0,
+        "activeEmployees": 3,
+        "beachEmployees": 1,
+        "freeSlots": 0,
+        "recruitingCapacity": 1,
+        "salaryDiscountPoints": 0,
+        "trainingCapacity": 1,
+        "trainingLevel2Capacity": 0,
+        "trainingLevel3Capacity": 0,
+        "unlimitedTraining": 0,
+        "productionWorkers": 2,
+        "productionGoodsCoverage": 2,
+        "marketingWorkers": 0,
+        "campaignTypeCoverage": 0,
+        "restaurantBuilders": 0,
+        "beachManagement": 0,
+        "beachRecruiting": 0,
+        "beachTraining": 0,
+        "beachMarketing": 1,
+        "beachProduction": 0,
+        "beachRestaurantBuilding": 0,
+        "beachTrainable": 1,
+        "beachSalaryLiable": 0,
+        "restaurants": 1,
+        "milestonesHeld": 1,
+        "openMilestoneOptions": 17,
+        "inventoryTotal": 0,
+        "inventoryDemandFit": 0,
+        "reachableDemandUnits": 0,
+        "unreachableDemandUnits": 0,
+        "servableDemandUnits": 0,
+        "uncontestedServableUnits": 0,
+        "reachableHouses": 3,
+        "exclusivelyReachableHouses": 2,
+        "closestHouses": 2,
+        "tiedClosestHouses": 0,
+        "distanceDeficitTotal": 3,
+        "productionMarketingSynergy": 0,
+        "reachableEngineReady": 0,
+        "futureDemandSupplyEngineReady": 1,
+        "bankrupt": 0
+      },
+      "classifierMatched": false,
+      "candidateIds": [
+        "p5s2-train-1adebf1880",
+        "p5s2-train-2dd5d77261"
+      ],
+      "candidateActions": [
+        [
+          {
+            "type": "train",
+            "employee": 13,
+            "toEmployee": 14,
+            "origin": 0,
+            "steps": 1
+          },
+          {
+            "type": "next_subphase"
+          }
+        ],
+        [
+          {
+            "type": "train",
+            "employee": -1,
+            "toEmployee": 28,
+            "origin": 1,
+            "steps": 1
+          },
+          {
+            "type": "next_subphase"
+          }
+        ]
+      ],
+      "rootIdentityDigest": "sha256:a17803ee95e0c1538896aac540ffe31a9e71b4c013a43f62e28c39f99bad1ce9"
+    }
+  ],
+  "terminalOutcomeFieldsPersisted": false,
+  "privatePayloadPersisted": false,
+  "promotionHoldoutOpened": false,
+  "classBalance": {
+    "matchedRoots": 8,
+    "unmatchedRoots": 4
+  }
+}

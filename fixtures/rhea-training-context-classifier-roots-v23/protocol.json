@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "fcm.rhea-training-context-classifier-roots-protocol.v23",
+  "reportSchemaVersion": "fcm.rhea-training-context-classifier-roots.v23",
+  "experimentId": 49,
+  "seeds": [
+    "rhea-training-context-val-05",
+    "rhea-training-context-val-06",
+    "rhea-training-context-val-07",
+    "rhea-training-context-val-08",
+    "rhea-training-context-val-09",
+    "rhea-training-context-val-10"
+  ],
+  "seats": [0, 1],
+  "gameIdStart": 9940,
+  "expectedFrozenRoots": 12,
+  "maxScannedDecisionsPerTrajectory": 8,
+  "maxCommands": 500,
+  "candidateLimit": 3,
+  "eligibility": {
+    "turn": 3,
+    "phase": 5,
+    "subphase": 2,
+    "staticCandidateId": "p5s2-train-1adebf1880",
+    "alternateCandidateId": "p5s2-train-2dd5d77261",
+    "staticActions": [
+      { "type": "train", "employee": 13, "toEmployee": 14, "origin": 0, "steps": 1 },
+      { "type": "next_subphase" }
+    ],
+    "alternateActions": [
+      { "type": "train", "employee": -1, "toEmployee": 28, "origin": 1, "steps": 1 },
+      { "type": "next_subphase" }
+    ]
+  },
+  "contextClassifier": {
+    "name": "low-exclusive-reach",
+    "feature": "exclusivelyReachableHouses",
+    "operator": "<=",
+    "threshold": 1,
+    "matchedRecommendation": "p5s2-train-2dd5d77261",
+    "unmatchedRecommendation": "p5s2-train-1adebf1880",
+    "developmentRoots": 12,
+    "validation": {
+      "minimumMatchedRoots": 8,
+      "minimumUnmatchedRoots": 2,
+      "pairedContinuationSamplesPerRoot": 15,
+      "integrityStages": [3, 7, 15],
+      "matchedGate": {
+        "minimumDecisiveRoots": 7,
+        "minimumAlternatePositiveRoots": 7,
+        "maximumStaticPositiveRoots": 0,
+        "twoSidedExactSignAlpha": 0.025
+      },
+      "unmatchedGate": {
+        "maximumAlternatePositiveRoots": 0
+      }
+    },
+    "failurePolicy": "Reject the classifier and keep the static action; never change threshold, feature, roots, or class membership after this freeze."
+  },
+  "terminalOutcomesAllowed": false,
+  "promotionHoldoutOpened": false
+}

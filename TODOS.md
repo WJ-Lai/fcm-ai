@@ -574,6 +574,10 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     Across the 12 studied roots, exclusive houses <=1 now cleanly separates alternate-positive from
     the exclusive 4–5 tie/static cases, but these roots become development data. Next preregister that
     one-feature classifier and validate it on another untouched root set; no threshold tuning there.
+    Iteration 49 freezes 12/12 new roots before outcomes with byte reproducibility and exact class
+    balance 8 matched / 4 unmatched. Final matched gate requires >=7 decisive, >=7 alternate-positive,
+    0 static-positive and p<=0.025; unmatched permits 0 alternate-positive. Next collect three paired
+    samples on every root without changing `exclusive <= 1` or class membership.
 
 - [ ] **P4.1c Evaluate belief-aware information-set search only where uncertainty warrants it.**
   - Why: hidden/simultaneous choices may justify ISMCTS/POMCP-style sampling, but naive MCTS or

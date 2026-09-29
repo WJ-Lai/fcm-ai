@@ -15,7 +15,9 @@ import { deterministicStrategy } from '../src/strategy.mjs'
 import { extractTerminalValueFeatures } from '../src/terminal-value-v2.mjs'
 
 const root = path.resolve(new URL('..', import.meta.url).pathname)
-const fixtureDirectory = path.join(root, 'fixtures/rhea-training-pair-roots-v19')
+const fixtureName = process.argv[2] ?? 'rhea-training-pair-roots-v19'
+assert.match(fixtureName, /^rhea-[a-z0-9-]+$/, 'invalid fixture name')
+const fixtureDirectory = path.join(root, 'fixtures', fixtureName)
 const protocol = JSON.parse(await readFile(path.join(fixtureDirectory, 'protocol.json'), 'utf8'))
 const outputPath = path.join(fixtureDirectory, 'report.json')
 
@@ -31,6 +33,16 @@ function exactCandidatePair(candidates) {
   assert.deepEqual(staticCandidate.actions, protocol.eligibility.staticActions)
   assert.deepEqual(alternateCandidate.actions, protocol.eligibility.alternateActions)
   return [staticCandidate, alternateCandidate]
+}
+
+function classifierMatch(features) {
+  const classifier = protocol.contextClassifier
+  if (classifier == null) return null
+  const value = features[classifier.feature]
+  assert.ok(Number.isFinite(value), `classifier feature ${classifier.feature} is unavailable`)
+  if (classifier.operator === '<=') return value <= classifier.threshold
+  if (classifier.operator === '==') return value === classifier.threshold
+  throw new Error(`unsupported classifier operator ${classifier.operator}`)
 }
 
 async function scanTrajectory(seed, agentSeat, gameID) {
@@ -84,6 +96,7 @@ async function scanTrajectory(seed, agentSeat, gameID) {
               subphase: view.state.subphase,
               strategicProjectionDigest: projectionDigest,
               publicFeatures,
+              classifierMatched: classifierMatch(publicFeatures),
               candidateIds,
               candidateActions: pair.map((candidate) => candidate.actions),
               rootIdentityDigest: digest({
@@ -130,6 +143,7 @@ const report = {
   protocolDigest: digest(protocol),
   frozenBeforeTerminalSampling: true,
   candidateWideHypothesis: protocol.candidateWideHypothesis,
+  contextClassifier: protocol.contextClassifier ?? null,
   trajectories,
   roots,
   terminalOutcomeFieldsPersisted: false,
@@ -137,10 +151,20 @@ const report = {
   promotionHoldoutOpened: protocol.promotionHoldoutOpened,
 }
 assert.equal(protocol.terminalOutcomesAllowed, false)
-assert.equal(roots.length, protocol.candidateWideHypothesis.gate.minimumFrozenRoots,
+assert.equal(roots.length, protocol.expectedFrozenRoots
+  ?? protocol.candidateWideHypothesis?.gate.minimumFrozenRoots,
   'fresh root discovery did not meet the preregistered root count')
 assert.equal(new Set(roots.map((entry) => entry.rootIdentityDigest)).size, roots.length,
   'duplicate normalized root identity')
+if (protocol.contextClassifier) {
+  const matchedRoots = roots.filter((entry) => entry.classifierMatched).length
+  const unmatchedRoots = roots.length - matchedRoots
+  assert.ok(matchedRoots >= protocol.contextClassifier.validation.minimumMatchedRoots,
+    'classifier-matched root count is below the preregistered minimum')
+  assert.ok(unmatchedRoots >= protocol.contextClassifier.validation.minimumUnmatchedRoots,
+    'classifier-unmatched root count is below the preregistered minimum')
+  report.classBalance = { matchedRoots, unmatchedRoots }
+}
 const serialized = `${JSON.stringify(report, null, 2)}\n`
 for (const forbidden of [
   '_moves', 'trustedWorld', 'preMoveData', 'hiddenState', 'moveData',

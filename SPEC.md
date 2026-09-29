@@ -726,6 +726,16 @@ house favor the alternate. This may support a lower-capacity `exclusive <= 1` cl
 current eight roots are now development evidence. Any such classifier must be preregistered and
 tested on another untouched root set before entering a paired league.
 
+Experiment 49 freezes that one-feature classifier before any new terminal branch. Six untouched
+seeds across both seats yield 12 distinct roots, all at the exact candidate pair and normalized
+identity. The naturally observed class balance is exactly the preregistered minimum: eight roots
+match `exclusivelyReachableHouses <= 1`, and four do not. Matched roots all have zero exclusive
+houses in this set; unmatched roots have two to four. The byte-reproducible artifact contains no
+terminal outcome or private payload. After 15 paired continuations, the matched class must contain
+at least seven decisive and seven alternate-positive roots, zero static-positive roots and exact
+root-sign `p <= 0.025`; the unmatched class may contain zero alternate-positive roots. Both class
+gates are mandatory, and the feature, threshold, roots and membership are immutable after freeze.
+
 ### 6.8 Execution, memory and learning
 
 The execution layer accepts one versioned candidate id, revalidates it against the current game
