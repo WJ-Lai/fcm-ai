@@ -1,0 +1,729 @@
+{
+  "schemaVersion": "fcm.counterfactual-root-suite-report.v1",
+  "suiteVersion": "fcm.counterfactual-root-suite.v1",
+  "experimentId": 56,
+  "protocolDigest": "sha256:5a37376ffd1d36d4603d4654370115685fe0f3eeaf22e5c16176ab686b7ab2ef",
+  "rulesetHash": "a171620e533a34f0c77133afac1d239a02c7600978486d09a77a20ead95d0b5e",
+  "candidateGenerator": "fcm.phase-candidates.v1+marketing-spatial-spread.v1",
+  "candidateLimit": 6,
+  "discoveryPolicy": "fcm.deterministic-root-discovery.v1",
+  "frozenBeforeTerminalSampling": true,
+  "selectionUsesOutcomeFields": false,
+  "terminalOutcomeFieldsPersisted": false,
+  "privatePayloadPersisted": false,
+  "promotionHoldoutOpened": false,
+  "roots": [
+    {
+      "seed": "fcm.root-suite.collect.v2:2p:0",
+      "playerCount": 2,
+      "seat": 0,
+      "decisionIndex": 7,
+      "turn": 1,
+      "phase": 5,
+      "subphase": 1,
+      "phaseBucket": "early",
+      "actionFamily": "hiring",
+      "mapDigest": "sha256:7abaede8dae98ac62286398f830b060c75825792ae9c42c3c555304ce3ec5c2c",
+      "publicProjectionDigest": "sha256:fe5a9f1deaa30bbd8e0302b284dd5b8a000c3d1496397c1c36f7e7ad0362cf28",
+      "candidateSetDigest": "sha256:0dc64dd81564cc01da7e8e4b5e0d5f02f02b22e9ce0c4309fba4ac0b3ff6de43",
+      "rootIdentityDigest": "sha256:ef2abe8906a14cf2967ad94d31af70c663cd731ca88a48992c40ccb177de9b5c",
+      "candidateIds": [
+        "p5s1-hire-1dfd160273",
+        "p5s1-fallback-21d4f44933",
+        "p5s1-hire-d85bc8e066",
+        "p5s1-hire-f62c499152",
+        "p5s1-hire-00073b191c",
+        "p5s1-hire-22bab54a52"
+      ],
+      "candidateIntents": [
+        "hire",
+        "fallback",
+        "hire",
+        "hire",
+        "hire",
+        "hire"
+      ],
+      "slotId": "root-01"
+    },
+    {
+      "seed": "fcm.root-suite.collect.v2:2p:0",
+      "playerCount": 2,
+      "seat": 1,
+      "decisionIndex": 13,
+      "turn": 2,
+      "phase": 5,
+      "subphase": 2,
+      "phaseBucket": "early",
+      "actionFamily": "training",
+      "mapDigest": "sha256:7abaede8dae98ac62286398f830b060c75825792ae9c42c3c555304ce3ec5c2c",
+      "publicProjectionDigest": "sha256:14e040467ec8af60a6c293a0a46f7f8fef3f811381e525ab0649387752cdc437",
+      "candidateSetDigest": "sha256:b2da9330caf973a9f3c4d2152aeae2d1ec03786d6a6f13f74daaf59d0c99f9ef",
+      "rootIdentityDigest": "sha256:5622a4910a211cd416636a003486b1960762a0ac7e23f6a09fe4f0c875fe31cc",
+      "candidateIds": [
+        "p5s2-train-2dd5d77261",
+        "p5s2-fallback-21d4f44933",
+        "p5s2-train-5faf56c369",
+        "p5s2-train-aeb7f63704",
+        "p5s2-train-cf004f11eb",
+        "p5s2-train-f63eccf074"
+      ],
+      "candidateIntents": [
+        "train",
+        "fallback",
+        "train",
+        "train",
+        "train",
+        "train"
+      ],
+      "slotId": "root-02"
+    },
+    {
+      "seed": "fcm.root-suite.collect.v2:2p:0",
+      "playerCount": 2,
+      "seat": 0,
+      "decisionIndex": 27,
+      "turn": 3,
+      "phase": 5,
+      "subphase": 4,
+      "phaseBucket": "early",
+      "actionFamily": "production",
+      "mapDigest": "sha256:7abaede8dae98ac62286398f830b060c75825792ae9c42c3c555304ce3ec5c2c",
+      "publicProjectionDigest": "sha256:5c17cb12f1ae401e4fcdea121de91253ab445e9fa045187b822a4b7ea70d75dd",
+      "candidateSetDigest": "sha256:e4304a88b1b0e419e7f8e87e5771b2633d11c6c42d169414494cf23dfd07a127",
+      "rootIdentityDigest": "sha256:1a60b7f69e87f3042f0c33512ad98eeb6726c308b3ed266e70dc78153fbcbdaa",
+      "candidateIds": [
+        "p5s4-produce-8aa223e313",
+        "p5s4-fallback-21d4f44933",
+        "p5s4-produce-99b38f8808",
+        "p5s4-produce-aa79eb7c4e"
+      ],
+      "candidateIntents": [
+        "produce",
+        "fallback",
+        "produce",
+        "produce"
+      ],
+      "slotId": "root-03"
+    },
+    {
+      "seed": "fcm.root-suite.collect.v2:2p:0",
+      "playerCount": 2,
+      "seat": 1,
+      "decisionIndex": 9,
+      "turn": 2,
+      "phase": 3,
+      "subphase": 1,
+      "phaseBucket": "early",
+      "actionFamily": "restructure",
+      "mapDigest": "sha256:7abaede8dae98ac62286398f830b060c75825792ae9c42c3c555304ce3ec5c2c",
+      "publicProjectionDigest": "sha256:c4f90ac9648126dfe70c814547193ddd93db0b46f0ce04c77ca665bf45181033",
+      "candidateSetDigest": "sha256:167d7a8338d68df67bd09fd6c167cbe0a6ca7ce74cfcd761c5468b4829e4c8e9",
+      "rootIdentityDigest": "sha256:624837d41d3574ead4f7408f7ee19d7622ef4532d615add6495f8e265082ebd0",
+      "candidateIds": [
+        "p3s1-balanced-cc29de4bc0",
+        "p3s1-fallback-5c896494fa"
+      ],
+      "candidateIntents": [
+        "balanced",
+        "fallback"
+      ],
+      "slotId": "root-04"
+    },
+    {
+      "seed": "fcm.root-suite.collect.v2:2p:1",
+      "playerCount": 2,
+      "seat": 0,
+      "decisionIndex": 16,
+      "turn": 2,
+      "phase": 5,
+      "subphase": 2,
+      "phaseBucket": "early",
+      "actionFamily": "training",
+      "mapDigest": "sha256:ab30f73707bec11ab046ea3a38573c025f5f6515d2921e0e4c32f3b43b6ef026",
+      "publicProjectionDigest": "sha256:8f1cf97a04f6da5addca7d690a42efba5346747e71d8043c0639cf11048972cf",
+      "candidateSetDigest": "sha256:b2da9330caf973a9f3c4d2152aeae2d1ec03786d6a6f13f74daaf59d0c99f9ef",
+      "rootIdentityDigest": "sha256:22ed8f6c522a65fe9ac17a1afbbecd0e53903689e85e2602fbf4a23435ee5825",
+      "candidateIds": [
+        "p5s2-train-2dd5d77261",
+        "p5s2-fallback-21d4f44933",
+        "p5s2-train-5faf56c369",
+        "p5s2-train-aeb7f63704",
+        "p5s2-train-cf004f11eb",
+        "p5s2-train-f63eccf074"
+      ],
+      "candidateIntents": [
+        "train",
+        "fallback",
+        "train",
+        "train",
+        "train",
+        "train"
+      ],
+      "slotId": "root-05"
+    },
+    {
+      "seed": "fcm.root-suite.collect.v2:2p:1",
+      "playerCount": 2,
+      "seat": 1,
+      "decisionIndex": 4,
+      "turn": 1,
+      "phase": 4,
+      "subphase": 1,
+      "phaseBucket": "early",
+      "actionFamily": "turn-order",
+      "mapDigest": "sha256:ab30f73707bec11ab046ea3a38573c025f5f6515d2921e0e4c32f3b43b6ef026",
+      "publicProjectionDigest": "sha256:cc45d1f3a0043d8be73eadf00c8276f264afad8c2f214e248c806256eb61dec8",
+      "candidateSetDigest": "sha256:efccfcb2dca1067cdc7f9eba061ee7aebcc3123442aad1a2a1d16d0ca2ef5a1d",
+      "rootIdentityDigest": "sha256:c907a2ae0671886a51d720fc6bf89264bd1a53c188e62653f809ae1d30dd572c",
+      "candidateIds": [
+        "p4s1-turn-order-d33d310a18",
+        "p4s1-turn-order-caad4ff630"
+      ],
+      "candidateIntents": [
+        "turn-order",
+        "turn-order"
+      ],
+      "slotId": "root-06"
+    },
+    {
+      "seed": "fcm.root-suite.collect.v2:2p:1",
+      "playerCount": 2,
+      "seat": 0,
+      "decisionIndex": 41,
+      "turn": 4,
+      "phase": 5,
+      "subphase": 3,
+      "phaseBucket": "middle",
+      "actionFamily": "marketing",
+      "mapDigest": "sha256:ab30f73707bec11ab046ea3a38573c025f5f6515d2921e0e4c32f3b43b6ef026",
+      "publicProjectionDigest": "sha256:a6a059f6deab317693e2cb7fe8dbc9dd33bf26e6160a2898fab501c8d6c18792",
+      "candidateSetDigest": "sha256:fa97d877d9b6ecee40bfa0f66e0e4402ee86413af6efbb39f44a6056388f342a",
+      "rootIdentityDigest": "sha256:a726f51bee47b5590a0856f765737b3cb0a1b571442790100af1b4f4c47d0d35",
+      "candidateIds": [
+        "p5s3-create-demand-4668352cc8",
+        "p5s3-fallback-21d4f44933",
+        "p5s3-create-demand-83ed099d98",
+        "p5s3-create-demand-9965092169",
+        "p5s3-create-demand-db7ad39ab1",
+        "p5s3-create-demand-f18efa5a8c"
+      ],
+      "candidateIntents": [
+        "create-demand",
+        "fallback",
+        "create-demand",
+        "create-demand",
+        "create-demand",
+        "create-demand"
+      ],
+      "slotId": "root-07"
+    },
+    {
+      "seed": "fcm.root-suite.collect.v2:2p:1",
+      "playerCount": 2,
+      "seat": 1,
+      "decisionIndex": 37,
+      "turn": 4,
+      "phase": 5,
+      "subphase": 4,
+      "phaseBucket": "middle",
+      "actionFamily": "production",
+      "mapDigest": "sha256:ab30f73707bec11ab046ea3a38573c025f5f6515d2921e0e4c32f3b43b6ef026",
+      "publicProjectionDigest": "sha256:0910d50c8e53d4fda0c3417a9ea6b9ee5119c779c15a22e87fe72241132d8c77",
+      "candidateSetDigest": "sha256:735a62cea1bb1669adbdd1080d59c41b3409d1d3dbb67f9c8949fa2bbdbc4eda",
+      "rootIdentityDigest": "sha256:2bcbdf87a43d8c7b61c48866425e17c6726a0dab1e3daa2b8ac91acd2b8efb61",
+      "candidateIds": [
+        "p5s4-produce-4edc9db56b",
+        "p5s4-fallback-21d4f44933"
+      ],
+      "candidateIntents": [
+        "produce",
+        "fallback"
+      ],
+      "slotId": "root-08"
+    },
+    {
+      "seed": "fcm.root-suite.collect.v2:2p:2",
+      "playerCount": 2,
+      "seat": 0,
+      "decisionIndex": 32,
+      "turn": 4,
+      "phase": 3,
+      "subphase": 1,
+      "phaseBucket": "middle",
+      "actionFamily": "restructure",
+      "mapDigest": "sha256:46404ea8f670b39542a23ae28cc678639a0d5f0a651412f2a67775ca0632bb1d",
+      "publicProjectionDigest": "sha256:2949f9a1f1d8d61bbf1929937d60f8149e90a63228046491334ecdfdc2f149db",
+      "candidateSetDigest": "sha256:9cfe8d5f347dfdff33125e3f5dedf60b889dfdd91972d23bf478e651227d56aa",
+      "rootIdentityDigest": "sha256:4f0d48bcd520814dfd8c9d92e546b5d75532ad98bb28bbe900e8933e9e9f0dd9",
+      "candidateIds": [
+        "p3s1-operate-766c0bb7e6",
+        "p3s1-balanced-e804c7e350",
+        "p3s1-demand-engine-18ecc8b263",
+        "p3s1-recruiting-engine-cf6c1107c2",
+        "p3s1-supply-engine-b8ee8c6eb6",
+        "p3s1-fallback-5c896494fa"
+      ],
+      "candidateIntents": [
+        "operate",
+        "balanced",
+        "demand-engine",
+        "recruiting-engine",
+        "supply-engine",
+        "fallback"
+      ],
+      "slotId": "root-09"
+    },
+    {
+      "seed": "fcm.root-suite.collect.v2:2p:2",
+      "playerCount": 2,
+      "seat": 1,
+      "decisionIndex": 34,
+      "turn": 4,
+      "phase": 5,
+      "subphase": 1,
+      "phaseBucket": "middle",
+      "actionFamily": "hiring",
+      "mapDigest": "sha256:46404ea8f670b39542a23ae28cc678639a0d5f0a651412f2a67775ca0632bb1d",
+      "publicProjectionDigest": "sha256:fe3ef0e726be9e07d377ce20d542dcfb512f556cea8cf092f9d78b8a8ca75ff2",
+      "candidateSetDigest": "sha256:101975a6736f77ab2f60a84c7cbe40d6ad04c34fa8aa12f6451258059fd6c51c",
+      "rootIdentityDigest": "sha256:0405a976f700f40af37a7de2468409c0cd13ed16a95203aeafe5f57450007674",
+      "candidateIds": [
+        "p5s1-hire-00073b191c",
+        "p5s1-fallback-21d4f44933",
+        "p5s1-hire-22bab54a52",
+        "p5s1-hire-f62c499152",
+        "p5s1-hire-822026fee8",
+        "p5s1-hire-9c0f44d924"
+      ],
+      "candidateIntents": [
+        "hire",
+        "fallback",
+        "hire",
+        "hire",
+        "hire",
+        "hire"
+      ],
+      "slotId": "root-10"
+    },
+    {
+      "seed": "fcm.root-suite.collect.v2:2p:2",
+      "playerCount": 2,
+      "seat": 0,
+      "decisionIndex": 49,
+      "turn": 5,
+      "phase": 4,
+      "subphase": 1,
+      "phaseBucket": "middle",
+      "actionFamily": "turn-order",
+      "mapDigest": "sha256:46404ea8f670b39542a23ae28cc678639a0d5f0a651412f2a67775ca0632bb1d",
+      "publicProjectionDigest": "sha256:66ddb1dbd7bd53629b4c201ae083893f54f18480e2e6a24a1e2989ca3cdb4f62",
+      "candidateSetDigest": "sha256:efccfcb2dca1067cdc7f9eba061ee7aebcc3123442aad1a2a1d16d0ca2ef5a1d",
+      "rootIdentityDigest": "sha256:72360acbcf48050998bc70996f8c5de2e4ffa558872f6651dcb4f74ccdf1e491",
+      "candidateIds": [
+        "p4s1-turn-order-d33d310a18",
+        "p4s1-turn-order-caad4ff630"
+      ],
+      "candidateIntents": [
+        "turn-order",
+        "turn-order"
+      ],
+      "slotId": "root-11"
+    },
+    {
+      "seed": "fcm.root-suite.collect.v2:2p:2",
+      "playerCount": 2,
+      "seat": 1,
+      "decisionIndex": 35,
+      "turn": 4,
+      "phase": 5,
+      "subphase": 2,
+      "phaseBucket": "middle",
+      "actionFamily": "training",
+      "mapDigest": "sha256:46404ea8f670b39542a23ae28cc678639a0d5f0a651412f2a67775ca0632bb1d",
+      "publicProjectionDigest": "sha256:a0e20b812bb98c03f2443bb5469076c638ad0e05579c4605738619a46923b147",
+      "candidateSetDigest": "sha256:dfcb571b23ba5155c36531fccebe3393c8b586b8d632d4ba167945699bc1ab0b",
+      "rootIdentityDigest": "sha256:a1781a0ae31c146d318a568be89e377eddef0a95ff110b872164f3c887a6c1ef",
+      "candidateIds": [
+        "p5s2-train-050591cdb5",
+        "p5s2-fallback-21d4f44933",
+        "p5s2-train-2dd5d77261",
+        "p5s2-train-5faf56c369",
+        "p5s2-train-aeb7f63704",
+        "p5s2-train-cf004f11eb"
+      ],
+      "candidateIntents": [
+        "train",
+        "fallback",
+        "train",
+        "train",
+        "train",
+        "train"
+      ],
+      "slotId": "root-12"
+    },
+    {
+      "seed": "fcm.root-suite.collect.v2:2p:3",
+      "playerCount": 2,
+      "seat": 0,
+      "decisionIndex": 82,
+      "turn": 7,
+      "phase": 5,
+      "subphase": 3,
+      "phaseBucket": "late",
+      "actionFamily": "marketing",
+      "mapDigest": "sha256:74bb2501fd7cfac66de4ed0b143553820f7e381a5d93f9918f7b2732d14931df",
+      "publicProjectionDigest": "sha256:b784c3939421d32cfb2f48cb75b81e04ee06857ad15764818f484e622d19fc09",
+      "candidateSetDigest": "sha256:628d62650b80161afaee8aae73beda98f018e19eaafe725e903a6b7c63759399",
+      "rootIdentityDigest": "sha256:228e472c1c577941e86b5c98f39ec696ba8468058bf672c1e9a7082182e02ee5",
+      "candidateIds": [
+        "p5s3-create-demand-24732c52bb",
+        "p5s3-fallback-21d4f44933",
+        "p5s3-create-demand-412a9e9281",
+        "p5s3-create-demand-577529efac",
+        "p5s3-create-demand-9c2a72bbf9",
+        "p5s3-create-demand-b54f5be1ce"
+      ],
+      "candidateIntents": [
+        "create-demand",
+        "fallback",
+        "create-demand",
+        "create-demand",
+        "create-demand",
+        "create-demand"
+      ],
+      "slotId": "root-13"
+    },
+    {
+      "seed": "fcm.root-suite.collect.v2:2p:3",
+      "playerCount": 2,
+      "seat": 1,
+      "decisionIndex": 87,
+      "turn": 7,
+      "phase": 5,
+      "subphase": 4,
+      "phaseBucket": "late",
+      "actionFamily": "production",
+      "mapDigest": "sha256:74bb2501fd7cfac66de4ed0b143553820f7e381a5d93f9918f7b2732d14931df",
+      "publicProjectionDigest": "sha256:dccee91c875522467fe5106f5003d296e0687d12b239a7996112aad8dd2f09eb",
+      "candidateSetDigest": "sha256:735a62cea1bb1669adbdd1080d59c41b3409d1d3dbb67f9c8949fa2bbdbc4eda",
+      "rootIdentityDigest": "sha256:06084bf662e46474b61647007139773ecbed90f0955e37e5e1c9372c9855535a",
+      "candidateIds": [
+        "p5s4-produce-4edc9db56b",
+        "p5s4-fallback-21d4f44933"
+      ],
+      "candidateIntents": [
+        "produce",
+        "fallback"
+      ],
+      "slotId": "root-14"
+    },
+    {
+      "seed": "fcm.root-suite.collect.v2:2p:3",
+      "playerCount": 2,
+      "seat": 0,
+      "decisionIndex": 78,
+      "turn": 7,
+      "phase": 3,
+      "subphase": 1,
+      "phaseBucket": "late",
+      "actionFamily": "restructure",
+      "mapDigest": "sha256:74bb2501fd7cfac66de4ed0b143553820f7e381a5d93f9918f7b2732d14931df",
+      "publicProjectionDigest": "sha256:ac16c41005f8f30303dce6cfabcc8332a5fb113812557ddc9be2c042addb9c28",
+      "candidateSetDigest": "sha256:808ac69c3a72eb1a09b6dd9a2ab8d7475b4bcbcddbff813893821d7e3a12d8cd",
+      "rootIdentityDigest": "sha256:e4bbf9269e4a075baa72232b633a27798b49de1af7b7b0c95e2d628e83c70228",
+      "candidateIds": [
+        "p3s1-operate-87f3cd2120",
+        "p3s1-balanced-cbab2a51e3",
+        "p3s1-demand-engine-508bd933f7",
+        "p3s1-recruiting-engine-a4b21b36ef",
+        "p3s1-supply-engine-4da823a1cc",
+        "p3s1-fallback-5c896494fa"
+      ],
+      "candidateIntents": [
+        "operate",
+        "balanced",
+        "demand-engine",
+        "recruiting-engine",
+        "supply-engine",
+        "fallback"
+      ],
+      "slotId": "root-15"
+    },
+    {
+      "seed": "fcm.root-suite.collect.v2:2p:4",
+      "playerCount": 2,
+      "seat": 1,
+      "decisionIndex": 85,
+      "turn": 7,
+      "phase": 5,
+      "subphase": 1,
+      "phaseBucket": "late",
+      "actionFamily": "hiring",
+      "mapDigest": "sha256:4a750a7b0dcf2c4431c86c3000a1835d95506d52122a165b9193747285b20062",
+      "publicProjectionDigest": "sha256:c99fc77b1cd3b0045d258741cdee8ac1ae24912b01526005df6952eb22bd44dd",
+      "candidateSetDigest": "sha256:98951232ce01a8f711dc36ae4385acba425a36d672b387f61e4ff30e0c727e5b",
+      "rootIdentityDigest": "sha256:d466387494694802deb35efcc4baa6e0d804220a5a6e095d26f178490f7813b7",
+      "candidateIds": [
+        "p5s1-hire-f62c499152",
+        "p5s1-fallback-21d4f44933",
+        "p5s1-hire-822026fee8",
+        "p5s1-hire-9c0f44d924",
+        "p5s1-hire-eb961c9237",
+        "p5s1-hire-1dfd160273"
+      ],
+      "candidateIntents": [
+        "hire",
+        "fallback",
+        "hire",
+        "hire",
+        "hire",
+        "hire"
+      ],
+      "slotId": "root-16"
+    },
+    {
+      "seed": "fcm.root-suite.collect.v2:2p:4",
+      "playerCount": 2,
+      "seat": 0,
+      "decisionIndex": 82,
+      "turn": 7,
+      "phase": 5,
+      "subphase": 3,
+      "phaseBucket": "late",
+      "actionFamily": "marketing",
+      "mapDigest": "sha256:4a750a7b0dcf2c4431c86c3000a1835d95506d52122a165b9193747285b20062",
+      "publicProjectionDigest": "sha256:4384868f9eacf0a59257a8f8689f025dc1b41ebd993a5ae1d3f87da8ee48d4d3",
+      "candidateSetDigest": "sha256:16aadf2af961c64e8c93a35268f5fa4a99ba7fc8d5c5f252ca89bf0dcd2cc101",
+      "rootIdentityDigest": "sha256:3539ccf4b3c3354c1d4ebccd1f5040aca0489cf03a8adf22b5e2a855f0923112",
+      "candidateIds": [
+        "p5s3-create-demand-2700f1d665",
+        "p5s3-fallback-21d4f44933",
+        "p5s3-create-demand-2a79d00757",
+        "p5s3-create-demand-95aa098339",
+        "p5s3-create-demand-b5937cdace",
+        "p5s3-create-demand-d6a29d1f94"
+      ],
+      "candidateIntents": [
+        "create-demand",
+        "fallback",
+        "create-demand",
+        "create-demand",
+        "create-demand",
+        "create-demand"
+      ],
+      "slotId": "root-17"
+    },
+    {
+      "seed": "fcm.root-suite.collect.v2:2p:4",
+      "playerCount": 2,
+      "seat": 1,
+      "decisionIndex": 87,
+      "turn": 7,
+      "phase": 5,
+      "subphase": 4,
+      "phaseBucket": "late",
+      "actionFamily": "production",
+      "mapDigest": "sha256:4a750a7b0dcf2c4431c86c3000a1835d95506d52122a165b9193747285b20062",
+      "publicProjectionDigest": "sha256:81fc1f29ed86d941072095b98fce7f8d6656a614845c7255f6a624b709e70f7d",
+      "candidateSetDigest": "sha256:735a62cea1bb1669adbdd1080d59c41b3409d1d3dbb67f9c8949fa2bbdbc4eda",
+      "rootIdentityDigest": "sha256:2788224cd790a919edef1869ec3629219f563343b6e4148097014b1d492aae68",
+      "candidateIds": [
+        "p5s4-produce-4edc9db56b",
+        "p5s4-fallback-21d4f44933"
+      ],
+      "candidateIntents": [
+        "produce",
+        "fallback"
+      ],
+      "slotId": "root-18"
+    },
+    {
+      "seed": "fcm.root-suite.collect.v2:3p:0",
+      "playerCount": 3,
+      "seat": 0,
+      "decisionIndex": 12,
+      "turn": 1,
+      "phase": 5,
+      "subphase": 1,
+      "phaseBucket": "early",
+      "actionFamily": "hiring",
+      "mapDigest": "sha256:1f35bd03595079c75f5ca63c4672148129eacc905dd1c919b776d4ed16923c1a",
+      "publicProjectionDigest": "sha256:0ea48fd52b818dd2d9e09133545e9c33de4538a8f78a384ed592506ae6b32cb9",
+      "candidateSetDigest": "sha256:0dc64dd81564cc01da7e8e4b5e0d5f02f02b22e9ce0c4309fba4ac0b3ff6de43",
+      "rootIdentityDigest": "sha256:0f096bf8eb9062908b80017e35ec7b0daff8381ae1b71200aef3b770d2f5795d",
+      "candidateIds": [
+        "p5s1-hire-1dfd160273",
+        "p5s1-fallback-21d4f44933",
+        "p5s1-hire-d85bc8e066",
+        "p5s1-hire-f62c499152",
+        "p5s1-hire-00073b191c",
+        "p5s1-hire-22bab54a52"
+      ],
+      "candidateIntents": [
+        "hire",
+        "fallback",
+        "hire",
+        "hire",
+        "hire",
+        "hire"
+      ],
+      "slotId": "root-19"
+    },
+    {
+      "seed": "fcm.root-suite.collect.v2:3p:0",
+      "playerCount": 3,
+      "seat": 1,
+      "decisionIndex": 15,
+      "turn": 2,
+      "phase": 3,
+      "subphase": 1,
+      "phaseBucket": "early",
+      "actionFamily": "restructure",
+      "mapDigest": "sha256:1f35bd03595079c75f5ca63c4672148129eacc905dd1c919b776d4ed16923c1a",
+      "publicProjectionDigest": "sha256:7623297e3b2dd334f4613815dbb31e2da77f16c0d89b951c41e5f1a1bb335fdd",
+      "candidateSetDigest": "sha256:167d7a8338d68df67bd09fd6c167cbe0a6ca7ce74cfcd761c5468b4829e4c8e9",
+      "rootIdentityDigest": "sha256:b3946f1864fc154dc90b3ddc2c97e5d39bbe2ca91e9642879e216566f8b5085c",
+      "candidateIds": [
+        "p3s1-balanced-cc29de4bc0",
+        "p3s1-fallback-5c896494fa"
+      ],
+      "candidateIntents": [
+        "balanced",
+        "fallback"
+      ],
+      "slotId": "root-20"
+    },
+    {
+      "seed": "fcm.root-suite.collect.v2:3p:0",
+      "playerCount": 3,
+      "seat": 2,
+      "decisionIndex": 54,
+      "turn": 4,
+      "phase": 5,
+      "subphase": 2,
+      "phaseBucket": "middle",
+      "actionFamily": "training",
+      "mapDigest": "sha256:1f35bd03595079c75f5ca63c4672148129eacc905dd1c919b776d4ed16923c1a",
+      "publicProjectionDigest": "sha256:6f3a761de59c760c415eac58478004aed02b834ef64d11dd32185cd92a592042",
+      "candidateSetDigest": "sha256:dfcb571b23ba5155c36531fccebe3393c8b586b8d632d4ba167945699bc1ab0b",
+      "rootIdentityDigest": "sha256:e2641d906c3712a7c5a2f3fda73461f40dd472f0e732b858c1994bb822711420",
+      "candidateIds": [
+        "p5s2-train-050591cdb5",
+        "p5s2-fallback-21d4f44933",
+        "p5s2-train-2dd5d77261",
+        "p5s2-train-5faf56c369",
+        "p5s2-train-aeb7f63704",
+        "p5s2-train-cf004f11eb"
+      ],
+      "candidateIntents": [
+        "train",
+        "fallback",
+        "train",
+        "train",
+        "train",
+        "train"
+      ],
+      "slotId": "root-21"
+    },
+    {
+      "seed": "fcm.root-suite.collect.v2:3p:1",
+      "playerCount": 3,
+      "seat": 0,
+      "decisionIndex": 66,
+      "turn": 4,
+      "phase": 5,
+      "subphase": 4,
+      "phaseBucket": "middle",
+      "actionFamily": "production",
+      "mapDigest": "sha256:f0d7adc7473053b087f97a5c5b671aa2f92b1c23262e3846b8e6f09aaf866d17",
+      "publicProjectionDigest": "sha256:b75652d1560768ad956b5dab163e8d059d488a613a629e0b4ea4efef2c290837",
+      "candidateSetDigest": "sha256:735a62cea1bb1669adbdd1080d59c41b3409d1d3dbb67f9c8949fa2bbdbc4eda",
+      "rootIdentityDigest": "sha256:34fd60b27434a579bbbd95669bcb14f2145eca8c9a179e8be0f3ce9c5e836193",
+      "candidateIds": [
+        "p5s4-produce-4edc9db56b",
+        "p5s4-fallback-21d4f44933"
+      ],
+      "candidateIntents": [
+        "produce",
+        "fallback"
+      ],
+      "slotId": "root-22"
+    },
+    {
+      "seed": "fcm.root-suite.collect.v2:3p:1",
+      "playerCount": 3,
+      "seat": 1,
+      "decisionIndex": 117,
+      "turn": 7,
+      "phase": 4,
+      "subphase": 1,
+      "phaseBucket": "late",
+      "actionFamily": "turn-order",
+      "mapDigest": "sha256:f0d7adc7473053b087f97a5c5b671aa2f92b1c23262e3846b8e6f09aaf866d17",
+      "publicProjectionDigest": "sha256:cee2cdba477f2a998e4be43035a6d387dae4d2dbbe07f011db27fec937886cdb",
+      "candidateSetDigest": "sha256:5e9149c554d4b6d5c7fc3079a9b5c08f80e7a584c8f49fa7a859a73278f1c334",
+      "rootIdentityDigest": "sha256:48aeaec1dc6e4bd92bd7f0028feb3e52ac3fbe0b9471257ba5e01e0cc59ada71",
+      "candidateIds": [
+        "p4s1-turn-order-caad4ff630",
+        "p4s1-turn-order-fc36196426"
+      ],
+      "candidateIntents": [
+        "turn-order",
+        "turn-order"
+      ],
+      "slotId": "root-23"
+    },
+    {
+      "seed": "fcm.root-suite.collect.v2:3p:1",
+      "playerCount": 3,
+      "seat": 2,
+      "decisionIndex": 120,
+      "turn": 7,
+      "phase": 5,
+      "subphase": 3,
+      "phaseBucket": "late",
+      "actionFamily": "marketing",
+      "mapDigest": "sha256:f0d7adc7473053b087f97a5c5b671aa2f92b1c23262e3846b8e6f09aaf866d17",
+      "publicProjectionDigest": "sha256:cb8e0b055dc60a98e65936c5079f445f9b4ee48b12335645759b809e13a47388",
+      "candidateSetDigest": "sha256:8b7b0e0fdb9457162663918d40f265d15578ef70eddcdc0f9d896f2e22e664af",
+      "rootIdentityDigest": "sha256:f89ee34cd33061a20a1a35d7a3779994a9410a6fb5c6228c30ee939f3d6378d2",
+      "candidateIds": [
+        "p5s3-create-demand-17354f6ce1",
+        "p5s3-fallback-21d4f44933",
+        "p5s3-create-demand-82d564419a",
+        "p5s3-create-demand-8353a4ef91",
+        "p5s3-create-demand-b588a31307",
+        "p5s3-create-demand-b7bcb41a48"
+      ],
+      "candidateIntents": [
+        "create-demand",
+        "fallback",
+        "create-demand",
+        "create-demand",
+        "create-demand",
+        "create-demand"
+      ],
+      "slotId": "root-24"
+    }
+  ],
+  "summary": {
+    "roots": 24,
+    "twoPlayerRoots": 18,
+    "threePlayerRoots": 6,
+    "uniqueSeeds": 7,
+    "uniqueMaps": 7,
+    "phaseBuckets": {
+      "early": 8,
+      "middle": 8,
+      "late": 8
+    },
+    "actionFamilies": {
+      "hiring": 4,
+      "marketing": 4,
+      "production": 5,
+      "restructure": 4,
+      "training": 4,
+      "turn-order": 3
+    }
+  }
+}

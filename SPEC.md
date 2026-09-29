@@ -107,6 +107,16 @@ frozen, diverse policy league.
   infrastructure, not strategy promotion. Its preregistered raw gate is invalid because the
   protocol copied a 40-game baseline (208 labels) but validation contained 50 games (277 labels);
   future protocols must bind exact manifest hashes and mechanically derive paired denominators.
+- `Counterfactual Root Suite v1` is now frozen without terminal labels. Its first exact-slot
+  protocol failed closed on three unavailable late-phase assignments despite finding 892 eligible
+  roots; it produced no result report and was not repaired in place. A fresh-seed revision then
+  froze 24 roots from a 1,229-root pool: 18 two-player and six three-player roots, early/middle/late
+  8/8/8, all seats, seven seeds/maps and six action families (hiring, training, production,
+  marketing, restructuring and turn order). A second full replay is byte-identical, and an
+  independent reconstruction executes all 106 frozen candidates through official clones with zero
+  invalid actions. The suite contains only seat-visible projection/candidate hashes and
+  reconstruction coordinates—no snapshot, hidden payload or terminal result. It is a sampling
+  frame, not value labels or policy-strength evidence.
 - Strategy fixture v1 freezes 15 policy-independent cases across long-horizon, reactive, tactical,
   abstraction, information-set and leaf-cutoff axes. Cases cover six working-day subphases, anchor
   to content-hashed official-engine fixtures and separate legality, feasibility and desirability.
@@ -940,10 +950,10 @@ policy-population method such as PSRO/JPSRO before claiming convergence.
 2. **Close proposal work:** retain Experiment 54 as candidate-diversity infrastructure only. Defer
    intermediate marketing durations and multi-marketing batches unless a measured search miss
    shows they block a high-value action. Stop threshold mining on Experiment 52's action pairs.
-3. **Freeze Counterfactual Root Suite v1:** select representative roots before outcomes across
+3. **Completed — freeze Counterfactual Root Suite v1:** select representative roots before outcomes across
    seed, seat, map, early/middle/late phase and action family; include 2-player roots plus a smaller
    3-player stratum. Keep intervention-triggered roots as a separate diagnostic suite.
-4. **Freeze Rollout Policy Population v1:** include static, safe/scripted archetypes, the official
+4. **Next — freeze Rollout Policy Population v1:** include static, safe/scripted archetypes, the official
    AI where valid, and at least one actor policy that replans at every later decision. Version the
    complete continuation policy and common-random-number streams in every target.
 5. **Run a bounded puncture:** initially 24 roots × at most six diverse candidates × three paired

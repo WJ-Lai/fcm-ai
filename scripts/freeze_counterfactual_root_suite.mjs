@@ -35,14 +35,20 @@ const protocolPath = path.resolve(argument(
 const outputPath = path.resolve(argument(
   '--output', 'fixtures/counterfactual-root-suite-v1/report.json',
 ))
+const auditReportPath = argument('--audit-report')
 const explore = process.argv.includes('--explore')
 const availabilityOnly = process.argv.includes('--audit-collection-availability')
-assert.ok(!(explore && availabilityOnly), 'choose exploration or collection availability, not both')
+assert.ok([explore, availabilityOnly, auditReportPath != null].filter(Boolean).length <= 1,
+  'choose exactly one optional exploration/availability/audit mode')
 const maxCommands = Number(argument('--max-commands', '700'))
 assert.ok(Number.isInteger(maxCommands) && maxCommands >= 100, 'max commands must be >= 100')
 
 const protocol = JSON.parse(await readFile(protocolPath, 'utf8'))
 validateCounterfactualRootProtocol(protocol)
+const auditReport = auditReportPath
+  ? JSON.parse(await readFile(path.resolve(auditReportPath), 'utf8'))
+  : null
+if (auditReport) validateCounterfactualRootReport(auditReport, protocol)
 
 console.log = () => {}
 await import(pathToFileURL(path.join(serverRoot, 'mcp-server/register-hook.mjs')).href)
@@ -65,6 +71,11 @@ async function scanGame(game, gameIndex) {
   let commands = 0
   let decisionIndex = 0
   let rulesetHash = null
+  let auditedCandidates = 0
+  const auditTargets = new Map((auditReport?.roots ?? [])
+    .filter((root) => root.seed === game.seed && root.playerCount === game.playerCount)
+    .map((root) => [root.rootIdentityDigest, root]))
+  const auditedIdentities = new Set()
   while (environment.snapshot().phase !== 10 && commands < maxCommands) {
     const snapshot = environment.snapshot()
     const actorName = snapshot.currentPlayers?.[0]
@@ -95,7 +106,7 @@ async function scanGame(game, gameIndex) {
           intent: candidate.intent,
           actions: candidate.actions,
         })))
-        roots.push({
+        const root = {
           seed: game.seed,
           playerCount: game.playerCount,
           seat,
@@ -118,7 +129,19 @@ async function scanGame(game, gameIndex) {
           }),
           candidateIds,
           candidateIntents,
-        })
+        }
+        roots.push(root)
+        const target = auditTargets.get(root.rootIdentityDigest)
+        if (target) {
+          const { slotId: _slotId, ...expected } = target
+          assert.deepEqual(root, expected, `root reconstruction drift for ${target.slotId}`)
+          for (const candidate of candidates) {
+            const clone = environment.clone()
+            await clone.step(seat, candidate.actions)
+            auditedCandidates += 1
+          }
+          auditedIdentities.add(root.rootIdentityDigest)
+        }
       } catch (error) {
         if (!/no substantive legal action family/.test(error.message)) throw error
       }
@@ -126,13 +149,18 @@ async function scanGame(game, gameIndex) {
     await environment.step(seat, strategy.selected.actions)
     commands += 1
     decisionIndex += 1
+    if (auditReport && auditedIdentities.size === auditTargets.size) break
   }
+  if (auditReport) assert.equal(auditedIdentities.size, auditTargets.size,
+    `failed to reconstruct every audit root in ${game.seed}`)
   return {
     game,
     rulesetHash,
     roots,
     commands,
     reachedGameOver: environment.snapshot().phase === 10,
+    auditedRoots: auditedIdentities.size,
+    auditedCandidates,
   }
 }
 
@@ -147,6 +175,27 @@ function histogram(values) {
   return Object.fromEntries([...new Set(values)].sort().map(
     (value) => [value, values.filter((entry) => entry === value).length],
   ))
+}
+
+if (auditReport) {
+  assert.equal(scans.reduce((total, scan) => total + scan.auditedRoots, 0), auditReport.roots.length)
+  process.stdout.write(`${JSON.stringify({
+    mode: 'root-reconstruction-and-official-candidate-audit',
+    report: path.relative(repositoryRoot, path.resolve(auditReportPath)),
+    auditedRoots: scans.reduce((total, scan) => total + scan.auditedRoots, 0),
+    auditedCandidates: scans.reduce((total, scan) => total + scan.auditedCandidates, 0),
+    invalidCandidates: 0,
+    games: scans.map((scan) => ({
+      ...scan.game,
+      commandsToLastRoot: scan.commands,
+      auditedRoots: scan.auditedRoots,
+      auditedCandidates: scan.auditedCandidates,
+    })),
+    terminalOutcomeFieldsRead: false,
+    privatePayloadPersisted: false,
+    promotionHoldoutOpened: false,
+  }, null, 2)}\n`)
+  process.exit(0)
 }
 
 if (explore || availabilityOnly) {

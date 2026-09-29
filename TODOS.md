@@ -338,6 +338,14 @@ The official OBG FCM JavaScript remains the sole rule and transition authority.
     three-candidate stages 3 and 7 mathematically unreachable after Bonferroni correction; the
     estimator now skips directly to reachable stage 15. Defer the resulting 144 extra continuations
     until P3.3d defines a useful multi-archetype opponent population instead of one weak built-in AI.
+    The representative-root prerequisite is now complete. Experiment 55 failed closed because
+    three preregistered exact late-phase slots were unavailable; it read no outcome fields and
+    wrote no suite. Experiment 56 used seven entirely fresh games and froze Counterfactual Root
+    Suite v1 with 24 roots: 18 two-player / 6 three-player, phase buckets 8/8/8, every seat, seven
+    maps and six action families. A second replay is byte-identical, and official reconstruction
+    executes all 106 bounded candidates with zero invalid actions. These roots remain label-free.
+    Next freeze Rollout Policy Population v1—including a repeatedly replanning actor—before the
+    24-root × <=6-candidate × 3-continuation puncture; do not fall back to one-deviation-then-static.
 - [x] **P3.3d Add versioned opponent-belief sampling.**
   - Why: future dinner outcomes depend on unrevealed simultaneous choices and opponent reactions.
   - Depends on: P1.1 observation provenance, P3.2 and validated public-replay/self-play traces. A

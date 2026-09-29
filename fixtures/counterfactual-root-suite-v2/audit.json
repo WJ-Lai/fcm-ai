@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "fcm.counterfactual-root-suite-audit.v1",
+  "experimentId": 56,
+  "protocolCommit": "e9bc19a",
+  "reportSha256": "4268faedadf4a5c3b860f4e4fdeeb3088f9129370889288e6a4b3745965451ad",
+  "rerunSha256": "4268faedadf4a5c3b860f4e4fdeeb3088f9129370889288e6a4b3745965451ad",
+  "byteIdenticalRerun": true,
+  "poolRoots": 1229,
+  "auditedRoots": 24,
+  "auditedCandidates": 106,
+  "invalidCandidates": 0,
+  "twoPlayerRoots": 18,
+  "threePlayerRoots": 6,
+  "uniqueSeeds": 7,
+  "uniqueMaps": 7,
+  "phaseBuckets": {"early": 8, "middle": 8, "late": 8},
+  "actionFamilies": {
+    "hiring": 4,
+    "marketing": 4,
+    "production": 5,
+    "restructure": 4,
+    "training": 4,
+    "turn-order": 3
+  },
+  "terminalOutcomeFieldsRead": false,
+  "terminalOutcomeFieldsPersisted": false,
+  "privatePayloadPersisted": false,
+  "promotionHoldoutOpened": false,
+  "decision": "freeze-counterfactual-root-suite-v1-for-policy-population-puncture"
+}
